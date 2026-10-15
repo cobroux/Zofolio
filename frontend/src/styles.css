@@ -25,6 +25,7 @@ body {
   font: 400 var(--t-body) / 1.5 var(--font-text);
   font-variant-numeric: lining-nums;
   -webkit-font-smoothing: antialiased;
+  overflow-wrap: anywhere; /* break-ui : un mot sans espace ne doit jamais élargir la page */
 }
 
 h1,

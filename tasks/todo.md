@@ -224,13 +224,13 @@
 
 ## Phase 4 : Qualité et mise en production
 
-- [ ] T36 [agent: qa-engineer] E2E Playwright + axe dans la CI
+- [x] T36 [agent: qa-engineer] E2E Playwright + axe dans la CI
   - Acceptation : parcours SPEC §8 du V1 : accueil → CV (nom `Enzo-Leveque-CV-FR.pdf`), accueil → contact (e-mail visible dans Mailpit, 6e envoi → message 429), bascule de thème persistée sans flash, `javaScriptEnabled: false` : 5 sections lisibles, clavier : checkpoints et road book ; axe zéro violation clair et sombre ; job `e2e` ajouté à la CI (avec `docker compose`).
   - Vérification : `docker compose up --build -d && cd frontend && npx playwright test`.
   - Fichiers : `frontend/playwright.config.ts` (testDir `../e2e`), `e2e/cv.spec.ts`, `e2e/contact.spec.ts`, `e2e/home.spec.ts`, `.github/workflows/ci.yml`
   - Dépend de : T32, T34, T35
 
-- [ ] T37 [agent: qa-engineer] Lighthouse CI et passe break-ui
+- [x] T37 [agent: qa-engineer] Lighthouse CI et passe break-ui
   - Acceptation : `lighthouserc.json` mobile, seuils perf ≥ 0,9, a11y/bp/SEO ≥ 0,95, assertions bloquantes ; job CI ; break-ui (noms longs, champs vides, API en panne) : écarts corrigés ou listés en tâches.
   - Vérification : `cd frontend && npx lhci autorun --config=lighthouserc.json`.
   - Fichiers : `frontend/lighthouserc.json`, `.github/workflows/ci.yml`
