@@ -45,7 +45,8 @@ import { Split } from '../../../shared/split/split';
       gap: var(--s-8) var(--gutter);
       padding: var(--s-9) var(--margin);
       /* Aplat inversé : encre en clair, surface en sombre (DESIGN §3). */
-      background: light-dark(var(--ink), var(--surface));
+      /* sombre : un cran au-dessus de --surface pour garder la respiration de P2 (décision Enzo, revue T34 m10) */
+      background: light-dark(var(--ink), #1b2a48);
       color: light-dark(var(--bg), var(--ink));
     }
     .head {
