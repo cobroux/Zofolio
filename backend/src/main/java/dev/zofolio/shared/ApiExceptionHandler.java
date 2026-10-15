@@ -37,6 +37,17 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		if (body instanceof ProblemDetail pd && (pd.getProperties() == null || !pd.getProperties().containsKey("code"))) {
 			pd.setProperty("code", codeFor(status));
 		}
+		// detail générique, non localisé : ne reprend jamais le message Spring (pas de fuite)
+		if (body instanceof ProblemDetail pd) {
+			pd.setDetail(switch ((String) pd.getProperties().get("code")) {
+				case "VALIDATION_FAILED" -> "Validation failed";
+				case "MALFORMED_REQUEST" -> "Malformed request";
+				case "NOT_FOUND" -> "Not found";
+				case "RATE_LIMITED" -> "Rate limit exceeded";
+				case "MAIL_DELIVERY_FAILED" -> "Mail delivery failed";
+				default -> "Internal error";
+			});
+		}
 		return super.createResponseEntity(body, headers, status, request);
 	}
 
@@ -54,7 +65,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	ResponseEntity<Object> handleAny(Exception ex, WebRequest request) {
 		logger.error("Unhandled exception", ex);
-		ProblemDetail pd = ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "Internal error");
+		ProblemDetail pd = ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR);
 		return handleExceptionInternal(ex, pd, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
 	}
 
@@ -62,8 +73,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		return switch (status.value()) {
 			case 400 -> "MALFORMED_REQUEST";
 			case 404 -> "NOT_FOUND";
-			default -> status.is5xxServerError() ? "INTERNAL_ERROR"
-					: HttpStatus.valueOf(status.value()).name();
+			default -> status.is5xxServerError() ? "INTERNAL_ERROR" : "MALFORMED_REQUEST";
 		};
 	}
 }

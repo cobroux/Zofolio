@@ -147,7 +147,7 @@
   - Fichiers : `frontend/public/img/` (exports), `frontend/public/og/og-fr.jpg`, `docs/content/photos.md` (alt, crédits, validation)
   - Dépend de : T6
 
-- [ ] T24 [agent: code-reviewer] Revue du point de contrôle B
+- [x] T24 [agent: code-reviewer] Revue du point de contrôle B
   - Acceptation : critères B du plan §6 ; conformité stricte des DTO au §4 (back et `api.models.ts`) ; sécurité contact (validation, XFF, en-tête d'e-mail) ; problèmes classés avec fichier:ligne.
   - Vérification : `cd backend && ./mvnw verify` ; `cd frontend && npm test && npm run lint`.
   - Fichiers : —
@@ -240,6 +240,7 @@
   - Acceptation : `docker-compose.prod.yml` (images GHCR, back et Postgres sans port publié) ; `Caddyfile` : HTTPS auto sur `{$DOMAIN}`, `/api/*` → backend, reste → SSR, HSTS, `X-Content-Type-Options`, `Referrer-Policy`, `frame-ancestors 'none'`, compression ; `pg_dump` quotidien (cron), rétention 7 jours ; procédure VPS (prérequis Enzo : domaine, DNS, VPS, clé SSH) dans `docs/DEPLOY.md`.
   - Vérification : `docker compose -f docker-compose.prod.yml config -q && caddy validate --config Caddyfile` ; `bash -n scripts/backup.sh`.
   - Fichiers : `docker-compose.prod.yml`, `Caddyfile`, `scripts/backup.sh`, `docs/DEPLOY.md`
+  - Note (revue T24) : Caddy doit écraser `X-Forwarded-For` (`header_up X-Forwarded-For {remote_host}`) ; le back ne fait confiance qu'au sous-réseau Docker (172.16/12) et ne publie aucun port.
   - Dépend de : T9
 
 - [ ] T39 [agent: devops] Déploiement automatique depuis `main` (soumis à Enzo)

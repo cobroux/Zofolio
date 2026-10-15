@@ -8,7 +8,6 @@ import java.time.Instant;
 import java.util.HexFormat;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -29,7 +28,10 @@ class ContactService {
 	ContactService(ContactMessageRepository repository, JavaMailSender mailSender,
 			@Value("${CONTACT_TO:contact@zofolio.local}") String to,
 			@Value("${SMTP_USERNAME:}") String from,
-			@Value("${IP_HASH_SALT:dev-only-salt}") String salt) {
+			@Value("${IP_HASH_SALT:}") String salt) {
+		if (salt.length() < 16) {
+			throw new IllegalStateException("IP_HASH_SALT must be set to at least 16 characters");
+		}
 		this.repository = repository;
 		this.mailSender = mailSender;
 		this.to = to;
@@ -52,7 +54,7 @@ class ContactService {
 			mailSender.send(mail(r));
 			m.status = ContactMessage.Status.SENT;
 			repository.save(m);
-		} catch (MailException e) {
+		} catch (RuntimeException e) {
 			m.status = ContactMessage.Status.FAILED;
 			repository.save(m);
 			throw ApiException.mailFailed();

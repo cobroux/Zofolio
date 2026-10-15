@@ -10,4 +10,4 @@ record ContactRequest(
 		@NotBlank @Email @Size(max = 254) String email,
 		@Size(max = 100) String company,
 		@NotBlank @Size(max = 5000) String message,
-		String website) {}
+		@Size(max = 200) String website) {}

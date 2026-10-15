@@ -21,7 +21,9 @@ import org.testcontainers.containers.wait.strategy.Wait;
 import dev.zofolio.TestcontainersConfiguration;
 
 @Import(TestcontainersConfiguration.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+// le client de test (127.0.0.1) joue le rôle du proxy de confiance pour distinguer les IP
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+		properties = "server.tomcat.remoteip.internal-proxies=127\\.0\\.0\\.1")
 class ContactApiIT {
 
 	static final GenericContainer<?> mailpit = new GenericContainer<>("axllent/mailpit:v1.21")
@@ -69,7 +71,7 @@ class ContactApiIT {
 		long before = count();
 		HttpResponse<String> r = post(json("Ada\\r\\nBcc: x@y.z", ""), "10.1.0.2");
 		assertThat(r.statusCode()).isEqualTo(400);
-		assertThat(r.body()).contains("\"code\":\"VALIDATION_FAILED\"").contains("\"field\":\"name\"")
+		assertThat(r.body()).contains("\"detail\":\"Validation failed\"").contains("\"code\":\"VALIDATION_FAILED\"").contains("\"field\":\"name\"")
 				.contains("\"code\":\"Pattern\"");
 		assertThat(count()).isEqualTo(before);
 	}
@@ -87,7 +89,7 @@ class ContactApiIT {
 		HttpResponse<String> r = post(json("Ada", ""), "10.1.0.4");
 		assertThat(r.statusCode()).isEqualTo(429);
 		assertThat(r.headers().firstValue("Retry-After")).isPresent();
-		assertThat(r.body()).contains("\"code\":\"RATE_LIMITED\"");
+		assertThat(r.body()).contains("\"code\":\"RATE_LIMITED\"").contains("\"detail\":\"Rate limit exceeded\"");
 		assertThat(post(json("Ada", ""), "10.1.0.5").statusCode()).isEqualTo(202);
 	}
 }

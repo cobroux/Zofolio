@@ -28,6 +28,6 @@ class ApiErrorIT {
 				HttpResponse.BodyHandlers.ofString());
 		assertThat(r.statusCode()).isEqualTo(404);
 		assertThat(r.headers().firstValue("Content-Type").orElse("")).contains("application/problem+json");
-		assertThat(r.body()).contains("\"code\":\"NOT_FOUND\"").contains("\"status\":404");
+		assertThat(r.body()).contains("\"code\":\"NOT_FOUND\"").contains("\"detail\":\"Not found\"").contains("\"status\":404");
 	}
 }

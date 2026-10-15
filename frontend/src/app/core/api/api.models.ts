@@ -47,6 +47,7 @@ export interface ProblemDetail {
   type: string;
   title: string;
   status: number;
+  /** Texte générique en anglais, non localisé : le front traduit par `code`. */
   detail: string;
   instance: string;
   code: 'VALIDATION_FAILED' | 'MALFORMED_REQUEST' | 'NOT_FOUND' | 'RATE_LIMITED' | 'MAIL_DELIVERY_FAILED' | 'INTERNAL_ERROR';

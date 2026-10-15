@@ -21,7 +21,7 @@ import dev.zofolio.shared.ApiException;
 class ContactServiceTest {
 	ContactMessageRepository repo = mock(ContactMessageRepository.class);
 	JavaMailSender mail = mock(JavaMailSender.class);
-	ContactService service = new ContactService(repo, mail, "to@x.dev", "", "salt");
+	ContactService service = new ContactService(repo, mail, "to@x.dev", "", "salt-of-16-chars!");
 	ContactRequest req = new ContactRequest("Ada", "ada@x.dev", null, "Hello", "");
 
 	ContactServiceTest() {
@@ -50,6 +50,14 @@ class ContactServiceTest {
 				.isInstanceOf(ApiException.class).hasMessage("MAIL_DELIVERY_FAILED");
 		verify(repo, org.mockito.Mockito.times(2)).save(saved.capture());
 		assertThat(saved.getValue().status).isEqualTo(ContactMessage.Status.FAILED);
+	}
+
+	@Test
+	void shortOrMissingSaltFailsStartup() {
+		assertThatThrownBy(() -> new ContactService(repo, mail, "to@x.dev", "", "short"))
+				.isInstanceOf(IllegalStateException.class).hasMessageContaining("IP_HASH_SALT");
+		assertThatThrownBy(() -> new ContactService(repo, mail, "to@x.dev", "", ""))
+				.isInstanceOf(IllegalStateException.class);
 	}
 
 	@Test
