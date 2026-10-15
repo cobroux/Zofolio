@@ -40,6 +40,17 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		return super.createResponseEntity(body, headers, status, request);
 	}
 
+	@ExceptionHandler(ApiException.class)
+	ResponseEntity<Object> handleApi(ApiException ex, WebRequest request) {
+		ProblemDetail pd = ProblemDetail.forStatus(ex.status());
+		pd.setProperty("code", ex.code());
+		HttpHeaders headers = new HttpHeaders();
+		if (ex.retryAfterSeconds() != null) {
+			headers.set(HttpHeaders.RETRY_AFTER, ex.retryAfterSeconds().toString());
+		}
+		return handleExceptionInternal(ex, pd, headers, ex.status(), request);
+	}
+
 	@ExceptionHandler(Exception.class)
 	ResponseEntity<Object> handleAny(Exception ex, WebRequest request) {
 		logger.error("Unhandled exception", ex);

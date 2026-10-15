@@ -1,0 +1,34 @@
+/* Archivo + Source Sans 3 : WOFF2 variables, latin + latin-ext, OFL (voir public/fonts/OFL.txt). */
+/* Chemin absolu sous /fr/ : esbuild ne résout pas un relatif vers public/ ; une locale en plus = ses @font-face. */
+@font-face {
+  font-family: archivo;
+  src: url('/fr/fonts/archivo-latin.woff2') format('woff2');
+  font-weight: 400 900;
+  font-stretch: 62% 100%;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Sans 3';
+  src: url('/fr/fonts/source-sans-3-latin.woff2') format('woff2');
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+/* Replis ajustés aux métriques des polices web pour limiter le CLS. */
+@font-face {
+  font-family: 'Archivo Fallback';
+  src: local('Arial Narrow'), local('ArialNarrow'), local('Arial');
+  ascent-override: 87.8%;
+  descent-override: 21%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Source Sans 3 Fallback';
+  src: local('Arial');
+  size-adjust: 92%;
+  ascent-override: 111%;
+  descent-override: 43%;
+  line-gap-override: 0%;
+}
