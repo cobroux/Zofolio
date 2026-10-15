@@ -17,7 +17,7 @@ import { Split } from '../split/split';
       <p>{{ project().pitch }}</p>
       <app-split [duration]="project().duration" [stack]="project().stack" [commits]="project().commits" [note]="project().note" />
       @if (project().repoUrl) {
-        <a [href]="project().repoUrl" i18n>Voir le dépôt</a>
+        <a [href]="project().repoUrl" rel="noopener" i18n>Voir le dépôt<span class="sr"> {{ project().title }}</span></a>
       }
     </article>
   `,
@@ -53,11 +53,19 @@ import { Split } from '../split/split';
       display: inline-flex;
       align-items: center;
       align-self: flex-start;
+      margin-block-start: auto;
       min-height: var(--target);
       transition: transform 140ms var(--ease-out);
     }
     a:active {
       transform: scale(0.97);
+    }
+    .sr {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
     }
   `,
 })

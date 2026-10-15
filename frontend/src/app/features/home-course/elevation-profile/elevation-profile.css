@@ -1,6 +1,8 @@
 :host {
   display: none;
+  /* Posés par elevation-profile.ts au scroll : km / total (Y) et altitude interpolée (X). */
   --p: 0;
+  --x: 0.007;
 }
 @media (min-width: 1100px) {
   :host {
@@ -50,7 +52,7 @@ path {
   stroke: var(--accent);
   stroke-width: 3.5;
 }
-/* Masque de progression : seul will-change autorisé (DESIGN §7). État discret par défaut (reduced-motion, sans scroll-timeline). */
+/* Masque de progression : seul will-change autorisé (DESIGN §7). Suit le scroll sans transition (même valeur que le point). */
 .mask {
   transform-box: fill-box;
   transform-origin: top;
@@ -59,14 +61,13 @@ path {
 }
 .dot {
   position: absolute;
-  left: 8px;
-  top: 0;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+  left: -6px;
+  top: -6px;
+  width: 12px;
+  height: 12px;
   background: var(--accent);
-  margin: -5px 0 0 -5px;
-  transform: translateY(calc(var(--p) * 100cqh));
+  /* .track est un conteneur de taille : 100cqw/100cqh = repère du viewBox étiré. */
+  transform: translate(calc(var(--x) * 100cqw), calc(var(--p) * 100cqh));
 }
 ul {
   display: flex;
@@ -99,33 +100,4 @@ a[aria-current='location'] {
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
-}
-/* Progression continue liée au scroll de la page (≈ linéaire : voir CHECKPOINTS pour les repères exacts). */
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: scroll()) {
-    .mask {
-      animation: fill linear both;
-      animation-timeline: scroll(root);
-    }
-    .dot {
-      animation: move linear both;
-      animation-timeline: scroll(root);
-    }
-  }
-}
-@keyframes fill {
-  from {
-    transform: scaleY(0);
-  }
-  to {
-    transform: scaleY(1);
-  }
-}
-@keyframes move {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(100cqh);
-  }
 }

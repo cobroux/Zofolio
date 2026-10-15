@@ -42,12 +42,19 @@ picture img {
   object-fit: cover;
   object-position: center 20%;
 }
+/* Mobile : dossard entier, posé sur le bord bas de la photo, à droite du visage. */
 app-bib {
   position: absolute;
   inset-block-start: var(--ph);
-  inset-inline-end: -8px;
-  translate: 0 -88%;
-  font-size: clamp(6.5rem, 26vw, 9.5rem);
+  inset-inline-end: var(--margin);
+  translate: 0 -100%;
+  font-size: clamp(4rem, 18vw, 8rem);
+}
+/* Tablette : photo plus haute pour remplir le premier écran. */
+@media (min-width: 768px) and (max-width: 1099px) {
+  section {
+    --ph: clamp(380px, calc(100svh - 64px - 300px), 700px);
+  }
 }
 .text {
   position: relative;
@@ -105,6 +112,7 @@ h1 {
   section {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: auto 1fr;
     column-gap: var(--gutter);
     padding-inline-start: var(--margin);
   }
@@ -146,14 +154,18 @@ h1 {
   picture {
     order: 0;
     grid-column: 8 / span 5;
-    grid-row: 1;
+    grid-row: 1 / span 2;
     height: auto;
     max-width: 1200px;
   }
+  /* Le dossard suit le texte dans la grille : entier, jamais sous le texte ni sous la photo. */
   app-bib {
-    inset-block: auto -110px;
-    inset-inline: var(--s-5) auto;
+    position: static;
+    grid-column: 1 / span 7;
+    grid-row: 2;
+    align-self: end;
     translate: none;
-    font-size: min(var(--t-bib), 26vw);
+    padding-block-end: var(--s-6);
+    font-size: min(var(--t-bib), 24vw);
   }
 }

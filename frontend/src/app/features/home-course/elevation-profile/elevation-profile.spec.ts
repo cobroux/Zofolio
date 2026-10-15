@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { ElevationProfile } from './elevation-profile';
-import { CourseProgress, formatKm, kmToCoord, profilePath } from '../course-progress';
+import { CourseProgress, altitudeRatioAt, formatKm, kmAtScroll, kmToCoord, profilePath } from '../course-progress';
 
 describe('ElevationProfile', () => {
   it('convertit les km en coordonnée', () => {
@@ -9,6 +9,17 @@ describe('ElevationProfile', () => {
     expect(kmToCoord(39.705, 200)).toBeCloseTo(100);
     expect(profilePath(true).startsWith('M')).toBe(true);
     expect(formatKm(79.41)).toBe('79,4');
+  });
+
+  it('place le point sur le tracé : altitude interpolée et km lié au scroll', () => {
+    expect(altitudeRatioAt(0)).toBeCloseTo((414 - 407) / (1369 - 407));
+    expect(altitudeRatioAt(46.43)).toBe(1); // point culminant, 1369 m
+    expect(altitudeRatioAt(0.09)).toBeCloseTo((410.5 - 407) / (1369 - 407)); // mi-chemin entre 414 et 407 m
+    const anchors = [[-450, 0], [800, 20], [3000, 44]] as const;
+    expect(kmAtScroll(-1000, anchors)).toBe(0);
+    expect(kmAtScroll(800, anchors)).toBe(20);
+    expect(kmAtScroll(1900, anchors)).toBe(32);
+    expect(kmAtScroll(9999, anchors)).toBe(44);
   });
 
   it('rend 5 ancres réelles et marque le checkpoint actif', async () => {

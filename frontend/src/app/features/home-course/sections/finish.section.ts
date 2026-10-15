@@ -8,44 +8,72 @@ import { ContactForm } from '../../contact/contact-form';
   imports: [ContactForm, Reveal],
   template: `
     <section id="arrivee" aria-labelledby="arrivee-title">
-      <h2 id="arrivee-title" appReveal i18n>Prochain objectif : 100 km… et un nouveau poste</h2>
-      <div class="intro" [appReveal]="1">
-        <p class="chronos" i18n>Dossard 1592 · 79,4 km · 3 160 m D+ · 13 h 35 min 53 s</p>
-        <p class="lead" i18n>Je cherche un poste d'ingénieur fullstack Java / Spring Boot et Angular. Recherche basée à Paris.</p>
-        <ul>
-          <li><ng-container i18n>E-mail</ng-container> : <a href="mailto:enzo.lvq12@gmail.com">enzo.lvq12@gmail.com</a></li>
-          <li><a href="https://github.com/cobroux" rel="noopener">GitHub</a></li>
-          <li><a href="https://www.linkedin.com/in/enzo-leveque1" rel="noopener">LinkedIn</a></li>
-          <li><a class="cv" href="/api/fr/cv" i18n>Télécharger le CV</a></li>
-        </ul>
-        <p i18n>Français, anglais (TOEIC 910)</p>
+      <div class="intro">
+        <p class="small tnum" appReveal i18n>Arrivée 20 h 05 · km 79,4</p>
+        <h2 id="arrivee-title" appReveal i18n>Prochain objectif :<br />100 km.</h2>
+        <p class="lead" [appReveal]="1" i18n>Et un nouveau poste. Parlons-en.</p>
+        <a class="cv" href="/api/fr/cv" [appReveal]="1" i18n>Télécharger le CV</a>
+        <div class="contact" [appReveal]="2">
+          <p>
+            <a href="mailto:enzo.lvq12@gmail.com">enzo.lvq12@gmail.com</a> ·
+            <a href="https://github.com/cobroux" rel="noopener">GitHub</a> ·
+            <a href="https://www.linkedin.com/in/enzo-leveque1" rel="noopener">LinkedIn</a>
+          </p>
+          <p i18n>Recherche basée à Paris. Français, anglais (TOEIC 910).</p>
+        </div>
       </div>
       <app-contact-form [appReveal]="2" />
-      <p class="foot" i18n>13 h 35 min 53 s. Phidippides aurait signé.</p>
+      <p class="foot" i18n>Phidippides a couru de Marathon à Athènes pour porter un message. Ici, un formulaire suffit.</p>
     </section>
   `,
   styles: `
     section {
       display: grid;
       grid-template-columns: minmax(0, 1fr);
-      gap: var(--s-7) var(--s-9);
+      gap: var(--s-7) var(--gutter);
       padding: var(--s-10) var(--margin) var(--s-9);
       background: var(--accent);
       color: var(--on-accent);
     }
-    .intro { display: flex; flex-direction: column; gap: var(--s-5); align-items: flex-start; }
-    h2 { grid-column: 1 / -1; margin: 0; font-family: var(--font-display); font-size: clamp(2.25rem, 7vw, 6rem); text-wrap: balance; }
+    .intro {
+      container-type: inline-size;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-5);
+      align-items: flex-start;
+    }
+    /* Deux lignes imposées ; la taille suit la largeur de la colonne pour que « Prochain objectif : » tienne sur la première. */
+    h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 15cqi, 8rem);
+    }
     p { margin: 0; }
-    .chronos { font-variant-numeric: tabular-nums; font-size: var(--t-small); }
-    .lead { font-size: var(--t-lead); font-weight: 600; max-width: 28ch; }
-    ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--s-2); }
-    a { color: inherit; display: inline-flex; align-items: center; min-height: var(--target); }
+    .small, .contact { font-size: var(--t-small); }
+    .lead { font-size: var(--t-lead); font-weight: 600; line-height: 1.3; max-width: 24ch; }
+    .contact { display: flex; flex-direction: column; gap: var(--s-1); }
+    a { color: inherit; }
+    .contact a { display: inline-flex; align-items: center; min-height: var(--target); }
     a:focus-visible { outline: 3px solid currentColor; outline-offset: 2px; }
-    .cv { padding: 0 var(--s-5); background: var(--bg); color: var(--ink); font-weight: 600; text-decoration: none; }
-    .foot { grid-column: 1 / -1; font-size: var(--t-small); }
-    /* Le formulaire reste lisible sur l'aplat : champs et bouton posés sur --bg / --ink. */
+    .cv {
+      display: inline-flex;
+      align-items: center;
+      min-height: 48px;
+      padding: 0 var(--s-6);
+      background: var(--bg);
+      color: var(--ink);
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 140ms var(--ease-out);
+    }
+    .cv:active { transform: scale(0.97); }
+    .foot { max-width: 44ch; font-size: var(--t-small); }
     @media (min-width: 1100px) {
-      section { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); }
+      section { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+      /* Formulaire sur deux rangées ; la phrase de Phidippides ferme la colonne gauche, au niveau du bouton d'envoi. */
+      .intro { grid-column: 1 / span 6; grid-row: 1; }
+      app-contact-form { grid-column: 8 / span 5; grid-row: 1 / span 2; }
+      .foot { grid-column: 1 / span 6; grid-row: 2; align-self: end; }
     }
   `,
 })

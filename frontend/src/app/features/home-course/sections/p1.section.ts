@@ -20,13 +20,21 @@ import { SegmentCard } from '../../../shared/segment-card/segment-card';
             <p class="master">{{ m.title }}</p>
             <p>{{ m.body }}</p>
           }
+          @if (studies().length) {
+            <ol class="frise" i18n-aria-label aria-label="Études">
+              @for (e of studies(); track e.title) {
+                <li [style.flex-grow]="e.years">
+                  <span class="tnum">{{ e.period }}</span>
+                  <span>{{ e.title }}</span>
+                </li>
+              }
+            </ol>
+          }
           <p class="small" i18n>Voie romaine sur le GR3 : c'est à peu près ici que le trail devient sérieux.</p>
         </div>
-        <div class="cards" [appReveal]="2">
-          @for (p of cards(); track p.slug; let first = $first) {
-            <app-segment-card [project]="p" [large]="first" [class.first]="first" />
-          }
-        </div>
+        @for (p of cards(); track p.slug; let i = $index) {
+          <app-segment-card [project]="p" [large]="i === 0" [appReveal]="2" />
+        }
       } @else if (home() === null) {
         <p class="unavailable" role="status" i18n>Contenu indisponible pour le moment.</p>
       }
@@ -40,7 +48,7 @@ import { SegmentCard } from '../../../shared/segment-card/segment-card';
     section {
       display: grid;
       grid-template-columns: minmax(0, 1fr);
-      gap: var(--s-7) var(--gutter);
+      gap: var(--s-5) var(--gutter);
       padding: var(--s-9) var(--margin);
     }
     .head {
@@ -48,53 +56,99 @@ import { SegmentCard } from '../../../shared/segment-card/segment-card';
       flex-wrap: wrap;
       align-items: baseline;
       gap: var(--s-2) var(--s-5);
+      margin-block-end: var(--s-5);
     }
     .stage {
       color: var(--accent);
       font: 800 clamp(1.75rem, 4vw, 2.5rem) / 0.9 var(--font-display);
       font-stretch: 72%;
     }
-    .intro,
-    .cards {
+    .intro {
       display: flex;
       flex-direction: column;
       gap: var(--s-4);
+      margin-block-end: var(--s-5);
     }
     .master {
       font-size: 1.625rem;
       font-weight: 600;
       line-height: 1.3;
     }
+    p {
+      max-width: 52ch;
+    }
+    /* Mini-frise : un segment par diplôme, longueur proportionnelle à la durée. */
+    .frise {
+      display: flex;
+      gap: var(--s-1);
+      margin: var(--s-2) 0;
+      padding: 0;
+      list-style: none;
+      font-size: var(--t-small);
+    }
+    .frise li {
+      flex: 1 1 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-1);
+      min-width: 0;
+      padding-block-start: var(--s-3);
+      border-block-start: 6px solid var(--line-muted);
+    }
+    .frise li:last-child {
+      border-color: var(--accent);
+    }
+    .frise .tnum {
+      font-weight: 600;
+    }
     .small {
       color: var(--ink-2);
       font-size: var(--t-small);
     }
+    @media (min-width: 768px) {
+      section {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .head,
+      .intro,
+      .large {
+        grid-column: 1 / -1;
+      }
+    }
+    /* Desktop : Master et carte principale côte à côte, puis les deux autres cartes ; les rangées s'étirent, pas de vide. */
     @media (min-width: 1100px) {
       section {
         grid-template-columns: repeat(12, minmax(0, 1fr));
         padding-block: var(--s-10) var(--s-9);
       }
-      .head {
-        grid-column: 1 / -1;
-      }
       .intro {
         grid-column: 1 / span 5;
+        margin-block-end: 0;
+        padding-inline-end: var(--s-5);
       }
-      .cards {
-        display: grid;
-        grid-column: 7 / span 6;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: var(--s-5);
+      .large {
+        grid-column: 6 / span 7;
       }
-      .cards .first {
-        grid-column: 1 / span 2;
+      app-segment-card:not(.large) {
+        grid-column: span 6;
       }
     }
   `,
 })
 export class P1Section {
   readonly home = input<HomeResponse | null | undefined>();
-  protected readonly master = computed(() => this.home()?.experiences.find((e) => e.stage === 'P1'));
+  private readonly education = computed(() => this.home()?.experiences.filter((e) => e.stage === 'P1' && e.kind === 'EDUCATION') ?? []);
+  protected readonly master = computed(() => this.education()[0]);
+  /** Ordre chronologique ; « 2020-2023 » → 3 ans (sinon 1). */
+  protected readonly studies = computed(() =>
+    this.education()
+      .filter((e) => e.period)
+      .map((e) => {
+        const [from, to] = (e.period ?? '').split('-').map(Number);
+        return { title: e.title, period: e.period, years: to > from ? to - from : 1 };
+      })
+      .sort((a, b) => (a.period! < b.period! ? -1 : 1)),
+  );
   protected readonly aid = computed(() => this.home()?.experiences.find((e) => e.stage === 'R1'));
   protected readonly cards = computed(() => this.home()?.projects.filter((p) => p.stage === 'P1') ?? []);
 }

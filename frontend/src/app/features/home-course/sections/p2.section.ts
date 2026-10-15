@@ -119,8 +119,12 @@ import { Split } from '../../../shared/split/split';
       .head h2 {
         max-width: 12ch;
       }
+      /* Le texte d'intro accompagne la lecture de la frise au lieu de laisser une colonne vide. */
       .lead {
         grid-column: 1 / span 6;
+        position: sticky;
+        top: var(--s-9);
+        align-self: start;
       }
       ol,
       .unavailable {
