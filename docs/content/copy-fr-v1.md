@@ -1,6 +1,6 @@
 # Textes FR du V1 (T3)
 
-Statut : VALIDÉ par Enzo le 2026-10-15 (hors [À FOURNIR] restants)
+Statut : VALIDÉ par Enzo le 2026-10-15 (hors [À FOURNIR] restants). Mis à jour le 2026-10-16 (retours d'Enzo : P1, P3, Journal, Arrivée).
 
 Date : 2026-10-15. Rien n'est validé. Worldline : validation d'Enzo obligatoire avant tout usage (SPEC §9).
 Sources : `facts-v1.md`, faits ajoutés par Enzo (CV oct. 2026, course), SPEC §1, DESIGN §1 et §5, plan §4.1 et §4.3.
@@ -23,7 +23,7 @@ Les trous s'écrivent `[À FOURNIR : ...]`.
 | `nav.p3` | Projets |
 | `nav.journal` | Journal |
 | `nav.arrivee` | Arrivée |
-| `footer.line` | Phidippides a couru 42 km pour porter un message. Ici, un formulaire suffit. |
+| `footer.line` | Enzo Leveque · GitHub · LinkedIn (la phrase Phidippides passe sous le formulaire, voir `arrivee.foot`) |
 | `footer.legal` | Mentions légales |
 | `footer.skip` | Aller au contenu |
 | `profile.label` | Profil d'altitude du Grand Trail d'Auvergne 2025 |
@@ -53,8 +53,8 @@ Les trous s'écrivent `[À FOURNIR : ...]`.
 | `p1.title` | Les fondations |
 | `p1.lead` | Une licence et un Master en informatique à l'Université d'Artois, dont deux ans en alternance. Les projets ci-dessous sont écrits à la main et livrés dans le temps imparti. |
 | `p1.master.title` | Master Ingénierie Logicielle pour l'Internet (ILI) |
-| `p1.master.body` | Université d'Artois, en alternance à partir du 18 septembre 2023. Soutenance d'alternance : « Master 2 ILI ». Master 2023-2025, diplômé en 2025. |
-| `p1.licence` | Licence informatique, Université d'Artois, 2020-2023. |
+| `p1.master.body` | Licence informatique (2020-2023) puis Master ILI (2023-2025) à l'Université d'Artois, dont deux ans en alternance chez Worldline. |
+| `p1.licence` | Licence informatique, Université d'Artois, 2020-2023 (mini-frise : Licence 2020-2023, puis Master 2023-2025). |
 | `p1.tag` | Écrit à la main |
 | `p1.note` | Voie romaine sur le GR3 : c'est à peu près ici que le trail devient sérieux. |
 | `p1.card1` | LISP-Interpretor : un interpréteur Lisp écrit en Java, avec son lecteur, son évaluateur et son environnement. Java. github.com/cobroux/LISP-Interpretor |
@@ -128,8 +128,9 @@ Mosaïque 7/5, 5/7, 12. Les stats (commits) datent du 15 octobre 2026 : à figer
 | `p3.garmin.split` | Python · Railway · 29 commits |
 | `p3.garmin.todo` | Un serveur MCP et une API REST qui exposent mes données Garmin Connect (activités, sommeil, Body Battery) à Claude et à Oltre. Python · Docker · Railway. |
 | `p3.histoquiz` | HistoQuiz : un quiz d'histoire multijoueur en temps réel, de 1914 à 1991. Java 21 · Spring Boot 4.1 · WebSocket STOMP · Angular 22 · Docker. |
-| `p3.link` | Voir le projet |
-| `p3.video.alt` | [À FOURNIR : description du clip vidéo d'Oltre (V2)] |
+| `p3.link` | Voir le dépôt (github.com/cobroux/Oltre-backend, Zotracker, garmin-mcp, histoquiz) |
+| `p3.video.poster` | Démo vidéo à venir |
+| `p3.video.alt` | Emplacement de la démo vidéo d'Oltre, à venir. [À FOURNIR : description du clip (V2)] |
 
 ## 6. Journal (carnet d'entraînement)
 
@@ -138,14 +139,16 @@ Le graphe de contributions GitHub est hors V1. Pas de classement.
 | Clé | Texte |
 |---|---|
 | `journal.title` | Journal de course |
-| `journal.lead` | 32 courses terminées. UTMB Index : 459. |
+| `journal.lead` | 32 courses terminées, toujours un peu plus loin. Même méthode qu'au travail : mesurer, ajuster, recommencer. |
+| `journal.index` | 459 |
+| `journal.index.caption` | UTMB Index. Un chiffre, pas un classement. |
 | `journal.col.date` | Date |
 | `journal.col.race` | Course |
 | `journal.col.dist` | Distance |
 | `journal.col.time` | Temps |
 | `journal.col.note` | Note |
 | `journal.pr` | Record personnel |
-| `journal.fun` | Un chiffre, pas un classement. |
+| `journal.fun` | (fusionné dans `journal.index.caption`) |
 
 | Course | Date | Distance | Temps | Note |
 |---|---|---|---|---|
@@ -164,15 +167,15 @@ Aplat orange.
 
 | Clé | Texte |
 |---|---|
-| `arrivee.title` | Prochain objectif : 100 km… et un nouveau poste |
-| `arrivee.lead` | Je cherche un poste d'ingénieur fullstack Java / Spring Boot et Angular. Recherche basée à Paris. |
+| `arrivee.split` | Arrivée 20 h 05 · km 79,4 |
+| `arrivee.title` | Prochain objectif : 100 km. (2 lignes : « Prochain objectif : » / « 100 km. ») |
+| `arrivee.subtitle` | Et un nouveau poste. Parlons-en. |
+| `arrivee.lead` | Recherche basée à Paris. Français, anglais (TOEIC 910). |
 | `arrivee.email` | enzo.lvq12@gmail.com |
 | `arrivee.github` | GitHub |
 | `arrivee.linkedin` | LinkedIn |
 | `arrivee.cv` | Télécharger le CV |
-| `arrivee.langs` | Français, anglais (TOEIC 910) |
-| `arrivee.foot` | 13 h 35 min 53 s. Phidippides aurait signé. |
-| `arrivee.chronos` | Dossard 1592 · 79,4 km · 3 160 m D+ · 13 h 35 min 53 s |
+| `arrivee.foot` | Phidippides a couru de Marathon à Athènes pour porter un message. Ici, un formulaire suffit. |
 
 ### Formulaire de contact
 

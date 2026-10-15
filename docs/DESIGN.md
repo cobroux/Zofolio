@@ -13,7 +13,7 @@ Direction : affiche de course / magazine sport haut de gamme. Une idée : **le s
 - Le contenu d'abord : chaque section répond à une question d'un tech lead (qui, quoi, preuve, contact). La course habille, ne remplace pas.
 - Chiffres traités comme des données (tabulaires, alignés) : durées, km, D+, commits.
 - Humour sec en petit : splits ironiques, badges PR, notes de bas de page (« P2 : la plus longue étape. Ravito : badge d'accès. »).
-- Clins d'œil histoire discrets, une fois chacun : Phidippides (dans le footer), voies romaines (note sur le GR3 dans P1).
+- Clins d'œil histoire discrets, une fois chacun : Phidippides (sous le formulaire de l'Arrivée, phrase explicite : « Phidippides a couru de Marathon à Athènes pour porter un message. Ici, un formulaire suffit. »), voies romaines (note sur le GR3 dans P1).
 - Un seul accent (orange). Un seul geste signature de mouvement (le profil).
 - Photos réelles, grandes, cadrage constant, angles droits.
 
@@ -134,15 +134,15 @@ Chaque section est composée différemment de sa voisine. Titres ≤ 2 lignes.
 - Tuteur L1 (transmission, pédagogie). Même gabarit que R1, texte différent, jamais la même formulation.
 
 ### P3 — Projets perso nés de la course (km 58,2)
-- Titre « Nés de la course ». Trois segments en mosaïque asymétrique : Oltre (large, clip vidéo 16:9), Zotracker, garmin-mcp. Chaque carte : pitch en 1 phrase, split, tag IA, lien vers la page projet. Pas de trois cartes identiques : tailles 7/5, 5/7, 12 colonnes.
+- Titre « Nés de la course ». Mosaïque (retours Enzo 2026-10-16) : Oltre en phare sur 7 colonnes (affiche 16:9 « Démo vidéo à venir » tant que le clip n'existe pas, jamais de faux lecteur), une pile paire de cartes sur 5 colonnes (Zotracker, garmin-mcp), la carte restante (HistoQuiz) en bandeau pleine largeur : aucune case vide. Chaque carte : pitch en 1 phrase, split, tag IA, lien « Voir le dépôt » (GitHub).
 - Mobile : clips en tête de carte, lecture seulement dans le viewport.
 
 ### Journal — carnet d'entraînement
-- Fond `--surface`. Deux colonnes : à gauche le graphe de contributions GitHub (SVG, orange sur 5 pas de ton) ; à droite la liste des courses en tableau (vrai `<table>`) : date, course, distance, temps, note ironique. Lignes : UTMB index 459, marathons Paris et Louvre-Lens, Côte d'Opale 62 km ×2 (7 h 37 → 7 h 32, badge PR), triathlon M de Fourmies, Ch'ti Trail S, Baudets d'Hinges (club).
+- Fond `--surface`. Deux colonnes (≥ 1280 px) : à gauche titre, courte intro, grand chiffre UTMB Index 459 (« un chiffre, pas un classement ») et photo finisher qui occupe la hauteur restante (le graphe de contributions GitHub viendra en V2) ; à droite la liste des courses en tableau (vrai `<table>`) : date, course, distance, D+, temps, note ironique. Entre 768 et 1279 px : texte et photo côte à côte, puis une fiche par course. Lignes : UTMB index 459, marathons Paris et Louvre-Lens, Côte d'Opale 62 km ×2 (7 h 37 → 7 h 32, badge PR), triathlon M de Fourmies, Ch'ti Trail S, Baudets d'Hinges (club).
 - Mobile : graphe défilable horizontalement (focusable), tableau en cartes empilées.
 
 ### Arrivée — contact (km 79,41)
-- Aplat orange plein. Titre « Prochain objectif : 100 km… et un nouveau poste ». Email en lien géant, GitHub, LinkedIn, CV. Pied : « 13 h 35 min 53 s. Phidippides aurait signé. » Chronos finaux (dossard, 79,41 km, ~3 160 m D+).
+- Aplat orange plein. « Arrivée 20 h 05 · km 79,4 », titre display sur 2 lignes imposées « Prochain objectif : / 100 km. » (taille en `cqi` pour tenir dans la colonne), puis « Et un nouveau poste. Parlons-en. », bouton CV, ligne e-mail · GitHub · LinkedIn. Formulaire à droite ; la phrase Phidippides ferme la colonne gauche.
 - Mobile : email en 2 lignes max, boutons pleine largeur.
 
 ## 6. Composants clés

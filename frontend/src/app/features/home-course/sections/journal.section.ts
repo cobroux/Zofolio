@@ -24,29 +24,35 @@ const ELEVATION = new Intl.NumberFormat('fr-FR');
   imports: [Reveal],
   template: `
     <section id="journal" aria-labelledby="journal-title">
-      <h2 id="journal-title" appReveal i18n>Journal de course</h2>
-      <figure [appReveal]="1">
-        <picture>
-          <source type="image/avif" srcset="img/finisher-cote-d-opale-640.avif 640w, img/finisher-cote-d-opale-1280.avif 1280w" sizes="(min-width: 768px) 352px, 100vw" />
-          <source type="image/webp" srcset="img/finisher-cote-d-opale-640.webp 640w, img/finisher-cote-d-opale-1280.webp 1280w" sizes="(min-width: 768px) 352px, 100vw" />
-          <img
-            src="img/finisher-cote-d-opale-640.jpg"
-            srcset="img/finisher-cote-d-opale-640.jpg 640w, img/finisher-cote-d-opale-1280.jpg 1280w"
-            sizes="(min-width: 768px) 352px, 100vw"
-            width="1280"
-            height="1600"
-            loading="lazy"
-            decoding="async"
-            i18n-alt
-            alt="Enzo montre sa médaille de finisher devant l'affiche du Trail Côte d'Opale"
-          />
-        </picture>
-      </figure>
-      <div class="intro" [appReveal]="1">
-        @for (r of others(); track r.name) {
-          <p class="other">{{ r.name }}</p>
-        }
-        <p class="fun" i18n>Un chiffre, pas un classement.</p>
+      <div class="side">
+        <div class="lede">
+          <h2 id="journal-title" appReveal i18n>Journal de course</h2>
+          <p [appReveal]="1" i18n>32 courses terminées, toujours un peu plus loin. Même méthode qu'au travail : mesurer, ajuster, recommencer.</p>
+          <p class="index" [appReveal]="1">
+            <span class="big">459</span>
+            <span class="small" i18n>UTMB Index. Un chiffre, pas un classement.</span>
+          </p>
+          @for (r of others(); track r.name) {
+            <p class="small">{{ r.name }}</p>
+          }
+        </div>
+        <figure [appReveal]="2">
+          <picture>
+            <source type="image/avif" srcset="img/finisher-cote-d-opale-640.avif 640w, img/finisher-cote-d-opale-1280.avif 1280w" sizes="(min-width: 768px) 40vw, 100vw" />
+            <source type="image/webp" srcset="img/finisher-cote-d-opale-640.webp 640w, img/finisher-cote-d-opale-1280.webp 1280w" sizes="(min-width: 768px) 40vw, 100vw" />
+            <img
+              src="img/finisher-cote-d-opale-640.jpg"
+              srcset="img/finisher-cote-d-opale-640.jpg 640w, img/finisher-cote-d-opale-1280.jpg 1280w"
+              sizes="(min-width: 768px) 40vw, 100vw"
+              width="1280"
+              height="1600"
+              loading="lazy"
+              decoding="async"
+              i18n-alt
+              alt="Enzo montre sa médaille de finisher devant l'affiche du Trail Côte d'Opale"
+            />
+          </picture>
+        </figure>
       </div>
       @if (rows(); as list) {
         <table [appReveal]="2">
@@ -101,40 +107,56 @@ const ELEVATION = new Intl.NumberFormat('fr-FR');
       padding: var(--s-9) var(--margin);
       background: var(--surface);
     }
-    h2 {
-      grid-column: 1 / -1;
-      margin: 0;
-      font-family: var(--font-display);
-      font-size: var(--t-display);
-    }
-    figure {
-      margin: 0;
-      max-width: 22rem;
-    }
-    figure img {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 4 / 5;
-    }
-    table, .unavailable {
-      grid-column: 1 / -1;
-    }
-    .intro {
+    .side,
+    .lede {
       display: flex;
       flex-direction: column;
-      gap: var(--s-3);
+      gap: var(--s-5);
     }
-    .other, .fun, .unavailable {
+    h2 {
       margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 6rem);
+      text-wrap: balance;
+    }
+    p {
+      margin: 0;
+      max-width: 44ch;
+    }
+    .index {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-2);
+    }
+    .big {
+      color: var(--accent);
+      font: 800 clamp(4rem, 8vw, 6rem) / 0.85 var(--font-display);
+      font-stretch: 72%;
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+    .small,
+    .unavailable {
       color: var(--ink-2);
       font-size: var(--t-small);
+    }
+    figure {
+      position: relative;
+      margin: 0;
+    }
+    figure img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center 12%;
     }
     table {
       border-collapse: collapse;
       font-variant-numeric: tabular-nums;
     }
     th, td {
-      padding: var(--s-3) var(--s-3);
+      padding: var(--s-4) var(--s-3);
       text-align: left;
       font-weight: 400;
       vertical-align: top;
@@ -150,9 +172,12 @@ const ELEVATION = new Intl.NumberFormat('fr-FR');
     tbody th {
       font-weight: 600;
     }
+    td:first-child,
+    .num {
+      white-space: nowrap;
+    }
     .num {
       text-align: right;
-      white-space: nowrap;
     }
     .time {
       font-weight: 600;
@@ -176,17 +201,30 @@ const ELEVATION = new Intl.NumberFormat('fr-FR');
       overflow: hidden;
       clip-path: inset(50%);
     }
-    /* Mobile : une carte par course, libellés issus de data-label. */
-    @media (max-width: 1023px) {
+    /* Sous 1280 px (le tableau à 6 colonnes n'a pas la place à côté de la photo) : une fiche par course (nom, puis date/distance et D+/temps en 2 colonnes, puis la note). */
+    @media (max-width: 1279px) {
       thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-      table, tbody, tr, td, tbody th { display: block; }
-      tbody tr { padding: var(--s-3) 0; }
-      td, tbody th { display: flex; justify-content: space-between; gap: var(--s-4); }
-      td::before, tbody th::before { content: attr(data-label); color: var(--ink-2); font-weight: 400; }
+      table, tbody { display: block; }
+      tbody tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3) var(--s-4); padding: var(--s-5) 0; }
+      td, tbody th { display: flex; flex-direction: column; gap: 2px; padding: 0; text-align: left; white-space: normal; }
+      tbody th { grid-column: 1 / -1; order: -1; font-size: 1.125rem; }
+      td.num { text-align: left; }
+      td::before { content: attr(data-label); color: var(--ink-2); font-size: var(--t-small); font-weight: 400; }
+      td:last-child { grid-column: 1 / -1; }
       td:empty { display: none; }
     }
-    @media (min-width: 768px) {
-      section { grid-template-columns: minmax(0, 22rem) minmax(0, 1fr); align-items: start; }
+    @media (min-width: 768px) and (max-width: 1279px) {
+      tbody tr { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      /* Texte et photo côte à côte, le tableau en dessous. */
+      .side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 20rem); align-items: start; gap: var(--gutter); }
+    }
+    /* Desktop : à gauche titre, intro, 459 et photo qui prend la hauteur restante ; à droite le tableau. */
+    @media (min-width: 1280px) {
+      section { grid-template-columns: repeat(12, minmax(0, 1fr)); padding-block: var(--s-10); }
+      .side { grid-column: 1 / span 5; }
+      table, .unavailable { grid-column: 6 / span 7; align-self: start; }
+      figure { flex: 1 1 0; min-height: 18rem; }
+      figure img { position: absolute; inset: 0; aspect-ratio: auto; }
     }
   `,
 })

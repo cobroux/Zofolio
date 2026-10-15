@@ -6,7 +6,11 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink],
   template: `
     <footer>
-      <p i18n>Phidippides a couru 42 km pour porter un message. Ici, un formulaire suffit.</p>
+      <p>
+        Enzo Leveque ·
+        <a href="https://github.com/cobroux" rel="noopener">GitHub</a> ·
+        <a href="https://www.linkedin.com/in/enzo-leveque1" rel="noopener">LinkedIn</a>
+      </p>
       <a routerLink="/mentions-legales" i18n>Mentions légales</a>
     </footer>
   `,
