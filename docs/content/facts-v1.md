@@ -127,4 +127,4 @@ Non lu : CV (voir section 6).
 - Marathon du Louvre-Lens (La Route du Louvre), 11 mai 2025 : 42,195 km, temps net 3:56:05, dossard 1717. Source : diplôme finisher, https://my.raceresult.com/339883/details0/certificate/1608/Diplome%20Finisher
 - Triathlon des Moines (format M, Fourmies) : 2h28. Source : Enzo (année À FOURNIR)
 - Chtriman (format S) : 1h16. Source : Enzo (année À FOURNIR)
-- Marathon de Paris : page timeto rendue en JavaScript, illisible automatiquement. Source : https://results.timeto.com/detail/b08da3-14155-f2d2b69d3cae3de0 (année et temps À FOURNIR)
+- Marathon de Paris 2026 : 42,195 km, 3h36. Source : Enzo (résultats https://results.timeto.com/detail/b08da3-14155-f2d2b69d3cae3de0)

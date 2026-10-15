@@ -55,7 +55,7 @@
   - Fichiers : `.github/workflows/ci.yml`, `README.md`
   - Dépend de : T7
 
-- [ ] T9 [agent: code-reviewer] Revue du point de contrôle A
+- [x] T9 [agent: code-reviewer] Revue du point de contrôle A
   - Acceptation : critères A du plan §6 vérifiés ; problèmes listés par gravité avec fichier:ligne ; aucun bloquant ouvert.
   - Vérification : `cd backend && ./mvnw verify && cd ../frontend && npm test && npm run lint && npm run build` ; `git ls-files | grep -E 'private/|\.env$'` vide.
   - Fichiers : — (rapport dans la PR)
