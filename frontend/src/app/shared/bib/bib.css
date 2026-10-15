@@ -1,0 +1,9 @@
+:host {
+  display: block;
+  color: var(--accent);
+  font: 800 var(--t-bib) / 0.8 var(--font-display);
+  font-stretch: 62%;
+  font-variant-numeric: tabular-nums lining-nums;
+  letter-spacing: -0.02em;
+  user-select: none;
+}

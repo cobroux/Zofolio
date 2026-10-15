@@ -1,0 +1,26 @@
+<button #trigger type="button" class="bar" (click)="open()" aria-haspopup="dialog" [attr.aria-label]="'Ouvrir le road book : km ' + formatKm(progress.km()) + ' sur ' + formatKm(total)">
+  <svg aria-hidden="true" viewBox="0 0 1000 100" preserveAspectRatio="none">
+    <path [attr.d]="d" />
+  </svg>
+  <span class="km"><ng-container i18n>km</ng-container> {{ formatKm(progress.km()) }}</span>
+</button>
+
+<dialog #dialog aria-labelledby="road-book-title" (close)="restoreFocus()">
+  <div class="panel">
+    <header>
+      <h2 id="road-book-title" i18n>Road book</h2>
+      <button type="button" class="x" (click)="close()" i18n>Fermer</button>
+    </header>
+    <ol>
+      @for (s of steps; track s.id) {
+        <li>
+          <a [href]="'#' + s.id" (click)="close()" [attr.aria-current]="progress.active() === s.id ? 'location' : null">
+            <span class="km"><ng-container i18n>km</ng-container> {{ formatKm(s.km) }}</span>
+            <strong>{{ s.name }}</strong>
+            <span class="line">{{ s.line }}</span>
+          </a>
+        </li>
+      }
+    </ol>
+  </div>
+</dialog>

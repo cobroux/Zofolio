@@ -1,0 +1,20 @@
+<nav aria-label="Profil de la course" i18n-aria-label>
+  <span class="km"><ng-container i18n>km</ng-container> {{ formatKm(progress.km()) }}</span>
+  <div class="track">
+    <svg aria-hidden="true" viewBox="0 0 100 1000" preserveAspectRatio="none">
+      <clipPath id="elevation-done"><rect class="mask" x="0" y="0" width="100" height="1000" /></clipPath>
+      <path class="rest" [attr.d]="d" />
+      <path class="done" [attr.d]="d" clip-path="url(#elevation-done)" />
+    </svg>
+    <span class="dot" aria-hidden="true"></span>
+  </div>
+  <ul>
+    @for (c of items; track c.id) {
+      <li>
+        <a [href]="'#' + c.id" [attr.aria-current]="progress.active() === c.id ? 'location' : null">
+          {{ c.short }}<span class="sr-only"> {{ c.full }}, km {{ formatKm(c.km) }}</span>
+        </a>
+      </li>
+    }
+  </ul>
+</nav>

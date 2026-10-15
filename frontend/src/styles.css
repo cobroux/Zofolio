@@ -91,3 +91,10 @@ video {
   animation-duration: 200ms;
   animation-timing-function: ease;
 }
+
+/* Le rail fixe (72 px) occupe le bord droit dès 1100 px. */
+@media (min-width: 1100px) {
+  main {
+    padding-right: 72px;
+  }
+}

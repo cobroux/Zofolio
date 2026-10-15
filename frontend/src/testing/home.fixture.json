@@ -62,7 +62,67 @@
       "distanceKm": 79.4,
       "elevationGainM": 3160,
       "durationS": 48953,
-      "note": "Note de test.",
+      "note": "Départ à 6 h 30, arrivée à 20 h 05.",
+      "personalRecord": false
+    },
+    {
+      "kind": "RACE",
+      "date": "2026-05-01",
+      "name": "Trail Côte d'Opale",
+      "distanceKm": 62.9,
+      "elevationGainM": 893,
+      "durationS": 27159,
+      "note": "5 min 12 s de mieux que l'année précédente.",
+      "personalRecord": true
+    },
+    {
+      "kind": "RACE",
+      "date": "2025-05-01",
+      "name": "Trail Côte d'Opale",
+      "distanceKm": 63.3,
+      "elevationGainM": 891,
+      "durationS": 27471,
+      "note": null,
+      "personalRecord": false
+    },
+    {
+      "kind": "RACE",
+      "date": "2026-04-01",
+      "name": "Marathon de Paris",
+      "distanceKm": 42.195,
+      "elevationGainM": null,
+      "durationS": 12960,
+      "note": null,
+      "personalRecord": false
+    },
+    {
+      "kind": "RACE",
+      "date": "2025-04-01",
+      "name": "Marathon Louvre-Lens (Route du Louvre)",
+      "distanceKm": 42.195,
+      "elevationGainM": null,
+      "durationS": 14165,
+      "note": null,
+      "personalRecord": false
+    },
+    {
+      "kind": "RACE",
+      "date": "2025-01-01",
+      "name": "Triathlon des Moines M",
+      "distanceKm": null,
+      "elevationGainM": null,
+      "durationS": 8880,
+      "note": null,
+      "personalRecord": false
+    },
+    {
+      "kind": "RACE",
+      "date": "2025-01-01",
+      "name": "Chtriman S",
+      "distanceKm": null,
+      "elevationGainM": null,
+      "durationS": 4560,
+      "note": null,
       "personalRecord": false
     },
     {

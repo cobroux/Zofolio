@@ -1,13 +1,12 @@
 # Textes FR du V1 (T3)
 
-Statut : BROUILLON, en attente de validation d'Enzo
+Statut : VALIDÉ par Enzo le 2026-10-15 (hors [À FOURNIR] restants)
 
 Date : 2026-10-15. Rien n'est validé. Worldline : validation d'Enzo obligatoire avant tout usage (SPEC §9).
 Sources : `facts-v1.md`, faits ajoutés par Enzo (CV oct. 2026, course), SPEC §1, DESIGN §1 et §5, plan §4.1 et §4.3.
 Règles appliquées : « je » sobre, jamais de tutoiement, une touche de fun par section au plus, pas d'eyebrow, pas de mot accentué dans un titre, titres sur 2 lignes maximum, chiffres au format FR (`13 h 35 min 53 s`, `79,4 km`, `3 160 m`).
 Worldline : ni client, ni architecture, ni nom de produit.
-Les trous s'écrivent `[À FOURNIR : ...]`. La maquette n'a pas été retrouvée dans le dépôt : le ton vient des deux exemples donnés par Enzo.
-
+Les trous s'écrivent `[À FOURNIR : ...]`. 
 ---
 
 ## 0. Meta et transversal
@@ -54,13 +53,13 @@ Les trous s'écrivent `[À FOURNIR : ...]`. La maquette n'a pas été retrouvée
 | `p1.title` | Les fondations |
 | `p1.lead` | Une licence et un Master en informatique à l'Université d'Artois, dont deux ans en alternance. Les projets ci-dessous sont écrits à la main et livrés dans le temps imparti. |
 | `p1.master.title` | Master Ingénierie Logicielle pour l'Internet (ILI) |
-| `p1.master.body` | Université d'Artois, en alternance à partir du 18 septembre 2023. Soutenance d'alternance : « Master 2 ILI ». Date du diplôme : [À FOURNIR : date du diplôme]. |
-| `p1.licence` | Licence informatique, Université d'Artois, [À FOURNIR : années de licence]. |
+| `p1.master.body` | Université d'Artois, en alternance à partir du 18 septembre 2023. Soutenance d'alternance : « Master 2 ILI ». Master 2023-2025, diplômé en 2025. |
+| `p1.licence` | Licence informatique, Université d'Artois, 2020-2023. |
 | `p1.tag` | Écrit à la main |
 | `p1.note` | Voie romaine sur le GR3 : c'est à peu près ici que le trail devient sérieux. |
-| `p1.card1` | [À FOURNIR : projet universitaire n°1 (parmi BomberStudent, Cin-folie, calculateur DPE, quarkus-color, LISP-Interpretor, ObjVLisp2023, LambdaCalcul) : titre, pitch d'une phrase, stack, lien dépôt] |
-| `p1.card2` | [À FOURNIR : projet universitaire n°2, mêmes champs] |
-| `p1.card3` | [À FOURNIR : projet universitaire n°3, mêmes champs] |
+| `p1.card1` | LISP-Interpretor : un interpréteur Lisp écrit en Java, avec son lecteur, son évaluateur et son environnement. Java. github.com/cobroux/LISP-Interpretor |
+| `p1.card2` | BomberStudent : un Bomberman en réseau, client et serveur communiquant par sockets. C. github.com/cobroux/BomberStudent |
+| `p1.card3` | Calculateur DPE : une application qui calcule le DPE médian d'une rue, d'une ville ou d'un département, livrée avec sa chaîne CI/CD (projet DevOps). Java EE · JSF · Docker Compose · Elasticsearch · Nginx. github.com/cobroux/Projet-JAI-Devops-DPE-calculator |
 
 Remarque : le logo de la promo ILI est exclu du V1 sans l'accord écrit de l'enseignant représenté (plan §5).
 
@@ -80,23 +79,22 @@ Aplat inversé, la plus longue étape. Tout le bloc est soumis à validation d'E
 | Clé | Texte |
 |---|---|
 | `p2.title` | 2,5 ans sur une appli de trading |
-| `p2.lead` | De mars 2023 à septembre 2025, chez Worldline, à Seclin : d'abord développeur back-end, puis développeur fullstack dans une équipe Scrum. Une application de trading de titres, où une erreur ne se voit pas dans un log : elle se voit dans un ordre. |
+| `p2.lead` | Chez Worldline, de 2023 à 2025 : 2,5 ans d'expérience professionnelle. L'application permet à des professionnels de la finance d'acheter et de vendre des titres en bourse. Ici, une erreur ne se voit pas dans un log : elle se voit dans un ordre. |
 | `p2.stack` | Java · Spring Boot · JEE · Hibernate · REST · messaging asynchrone · Docker · Tomcat · GitLab CI |
 | `p2.m1.title` | Développeur back-end |
 | `p2.m1.dates` | Mars à août 2023 |
-| `p2.m1.body` | Un projet pris en charge de bout en bout : étude, développement, recette. Les tests techniques d'entrée portaient sur Java, SQL et Git. |
+| `p2.m1.body` | Mes premiers mois : un projet back-end mené de bout en bout, de l'étude à la recette. |
 | `p2.m1.split` | Java · SQL · Git · messaging asynchrone |
 | `p2.m2.title` | Développeur fullstack |
 | `p2.m2.dates` | Septembre 2023 à septembre 2025 |
-| `p2.m2.body` | Analyse d'impact, développement back-end en Java, évolutions du front, modifications de base de données, tests unitaires, revue de code, documentation. Le tout en sprints Scrum d'environ quatre semaines, avec Definition of Done. |
+| `p2.m2.body` | Des évolutions complètes, du besoin à la mise en production : analyse, code back et front, tests, revue. En équipe Scrum. |
 | `p2.m2.split` | Spring Boot · Hibernate · REST · GitLab CI · Docker · Tomcat · Scrum |
-| `p2.m3.title` | Sauvegarder et partager des recherches |
-| `p2.m3.body` | Ma fonctionnalité de dernière année, sur les écrans d'administration : analyse de l'existant, maquette Figma, validation par le Product Owner et le Scrum Master, puis développement front, back et base de données. [À FOURNIR : accord d'Enzo pour nommer cette fonctionnalité, qui touche au produit] |
-| `p2.m3.split` | Figma · Spring · JPQL · SQL |
+| `p2.m3.title` | Une fonctionnalité, de la maquette à la prod |
+| `p2.m3.body` | En dernière année, une fonctionnalité portée seul : maquette, validation avec le Product Owner, puis développement complet. |
+| `p2.m3.split` | Figma · Spring · SQL |
 | `p2.lesson` | Une date codée en dur a masqué un bug jusqu'en production. Depuis, je teste en conditions réelles. |
-| `p2.impact` | [À FOURNIR : un chiffre d'impact générique (ordre de grandeur), validé par Enzo] |
 | `p2.fun` | P2 : la plus longue étape. |
-| `p2.now` | Depuis juin 2026, ingénieur d'études chez Aubay. [À FOURNIR : accord d'Enzo pour afficher cette ligne ; aucun détail de mission] |
+| `p2.now` | Depuis juin 2026 : ingénieur d'études chez Aubay. |
 
 ## 4. R2 : Ravitaillement, tuteur L1
 
@@ -118,7 +116,7 @@ Mosaïque 7/5, 5/7, 12. Les stats (commits) datent du 15 octobre 2026 : à figer
 | `p3.oltre.pitch` | Une application personnelle de pilotage du quotidien, avec un backend Java et un frontend Angular séparés. |
 | `p3.oltre.split` | Angular 22 · Java · MySQL · Docker Compose · 355 commits (backend et frontend) |
 | `p3.oltre.tag` | Commencé à la main, puis IA |
-| `p3.oltre.todo` | [À FOURNIR : confirmation de Spring Boot dans Oltre-backend ; date de début du projet (mars 2026 ou novembre 2025)] |
+| `p3.oltre.todo` | Backend Spring Boot 4.1. Projet commencé en juin 2026. |
 | `p3.zotracker.title` | Zotracker |
 | `p3.zotracker.pitch` | Le suivi GPS en direct d'une course à pied : carte, chrono, allure, heure d'arrivée estimée, profil d'altitude et messages des proches. |
 | `p3.zotracker.split` | Node.js 22 · Docker Compose · 34 commits |
@@ -128,8 +126,8 @@ Mosaïque 7/5, 5/7, 12. Les stats (commits) datent du 15 octobre 2026 : à figer
 | `p3.garmin.title` | garmin-mcp |
 | `p3.garmin.pitch` | Un service REST qui relaie mes données Garmin Connect vers Oltre. |
 | `p3.garmin.split` | Python · Railway · 29 commits |
-| `p3.garmin.todo` | [À FOURNIR : description détaillée et stack de garmin-mcp, README non lu] |
-| `p3.histoquiz` | [À FOURNIR : description, stack et objectif de histoquiz (fiche courte) ; le dépôt compte 2 commits] |
+| `p3.garmin.todo` | Un serveur MCP et une API REST qui exposent mes données Garmin Connect (activités, sommeil, Body Battery) à Claude et à Oltre. Python · Docker · Railway. |
+| `p3.histoquiz` | HistoQuiz : un quiz d'histoire multijoueur en temps réel, de 1914 à 1991. Java 21 · Spring Boot 4.1 · WebSocket STOMP · Angular 22 · Docker. |
 | `p3.link` | Voir le projet |
 | `p3.video.alt` | [À FOURNIR : description du clip vidéo d'Oltre (V2)] |
 
@@ -151,14 +149,14 @@ Le graphe de contributions GitHub est hors V1. Pas de classement.
 
 | Course | Date | Distance | Temps | Note |
 |---|---|---|---|---|
-| Grand Trail d'Auvergne (GTA) | 2025, [À FOURNIR : jour et mois] | 79,4 km, 3 160 m D+ | 13 h 35 min 53 s | Départ à 6 h 30, arrivée à 20 h 05. Une journée entière sans réunion. |
-| Côte d'Opale | 2026, [À FOURNIR : jour et mois] | 62 km | 7 h 32 min 39 s (record personnel) | 5 min 12 s de mieux que l'année précédente. |
-| Côte d'Opale | 2025, [À FOURNIR : jour et mois] | 62 km | 7 h 37 min 51 s | La référence à battre. |
-| Marathon de Paris | [À FOURNIR : date] | [À FOURNIR : distance, 42,195 km à confirmer] | [À FOURNIR : temps] | [À FOURNIR : note] |
-| Marathon du Louvre-Lens | [À FOURNIR : date] | [À FOURNIR] | [À FOURNIR : temps] | [À FOURNIR : note] |
-| Triathlon M de Fourmies | [À FOURNIR : date] | [À FOURNIR] | [À FOURNIR : temps] | [À FOURNIR : note] |
-| Ch'ti Trail S | [À FOURNIR : date] | [À FOURNIR] | [À FOURNIR : temps] | [À FOURNIR : note] |
-| Club des Baudets d'Hinges | [À FOURNIR : depuis quand] | sans objet | sans objet | [À FOURNIR : note] |
+| Grand Trail d'Auvergne (GTA) | 11 octobre 2025 | 79,4 km, 3 160 m D+ | 13 h 35 min 53 s | Départ à 6 h 30, arrivée à 20 h 05. Une journée entière sans réunion. |
+| Côte d'Opale | 13 septembre 2026 | 62 km | 7 h 32 min 39 s (record personnel) | 5 min 12 s de mieux que l'année précédente. |
+| Côte d'Opale | 14 septembre 2025 | 62 km | 7 h 37 min 51 s | La référence à battre. |
+| Marathon de Paris | 2026, [À FOURNIR : jour et mois] | 42,195 km | 3 h 36 min | Sous les 3 h 40, dans les rues de Paris. |
+| Marathon du Louvre-Lens (La Route du Louvre) | 11 mai 2025 | 42,195 km | 3 h 56 min 05 s | Quatre minutes de moins que les 4 heures. |
+| Triathlon des Moines (format M, Fourmies) | [À FOURNIR : année] | [À FOURNIR] | 2 h 28 min | Trois sports, un seul chrono. |
+| Chtriman (format S) | [À FOURNIR : année] | [À FOURNIR] | 1 h 16 min | Format court, rythme soutenu. |
+| Club des Baudets d'Hinges | [À FOURNIR : depuis quand] | sans objet | sans objet | Courir à plusieurs, ça change le rythme. |
 
 ## 7. Arrivée (km 79,4)
 
@@ -168,7 +166,7 @@ Aplat orange.
 |---|---|
 | `arrivee.title` | Prochain objectif : 100 km… et un nouveau poste |
 | `arrivee.lead` | Je cherche un poste d'ingénieur fullstack Java / Spring Boot et Angular. Recherche basée à Paris. |
-| `arrivee.email` | [À FOURNIR : adresse e-mail de contact] |
+| `arrivee.email` | enzo.lvq12@gmail.com |
 | `arrivee.github` | GitHub |
 | `arrivee.linkedin` | LinkedIn |
 | `arrivee.cv` | Télécharger le CV |
@@ -222,10 +220,10 @@ Erreurs globales (par `code` du plan §4.1, `aria-live`) :
 | Clé | Alt |
 |---|---|
 | `photo.portrait.alt` | Enzo Leveque en tenue de trail, devant un ciel bleu. |
-| `photo.IMG_0124.alt` | [À FOURNIR : description de la photo IMG_0124] |
-| `photo.IMG_7732.alt` | [À FOURNIR : description de la photo IMG_7732] |
-| `photo.IMG_2506.alt` | [À FOURNIR : description de la photo IMG_2506] |
-| `photo.IMG_2487.alt` | [À FOURNIR : description de la photo IMG_2487] |
+| `photo.IMG_0124.alt` | Enzo, médaille au cou, devant l'arche d'arrivée du Trail de la Côte d'Opale 62 km |
+| `photo.IMG_7732.alt` | Enzo en pleine course, dossard sur le ventre |
+| `photo.IMG_2506.alt` | non utilisée en V1 |
+| `photo.IMG_2487.alt` | non utilisée en V1 |
 
 Les photos montrant des tiers restent à recadrer (SPEC §11, plan §5).
 
@@ -235,25 +233,24 @@ Les photos montrant des tiers restent à recadrer (SPEC §11, plan §5).
 |---|---|
 | `legal.title` | Mentions légales |
 | `legal.editor.title` | Éditeur |
-| `legal.editor.body` | Enzo Leveque, [À FOURNIR : statut (particulier ou autre) et adresse postale ou domiciliation]. Directeur de la publication : Enzo Leveque. Contact : [À FOURNIR : adresse e-mail de contact]. |
+| `legal.editor.body` | Enzo Leveque, particulier. Contact : enzo.lvq12@gmail.com. Conformément à l'article 6-III-2 de la LCEN, l'adresse de l'éditeur non professionnel est communiquée à l'hébergeur. |
 | `legal.host.title` | Hébergeur |
-| `legal.host.body` | Hetzner Online GmbH, [À FOURNIR : adresse et coordonnées de l'hébergeur, à reprendre du site de Hetzner]. Serveur situé dans l'Union européenne. |
+| `legal.host.body` | Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, Allemagne, www.hetzner.com. Serveur situé dans l'Union européenne. |
 | `legal.data.title` | Données du formulaire de contact |
 | `legal.data.body` | Le formulaire collecte votre nom, votre adresse e-mail, votre société (facultative) et votre message, pour répondre à votre demande. Une empreinte chiffrée de votre adresse IP est conservée uniquement pour limiter le nombre d'envois (5 par heure). Aucun e-mail automatique ne vous est envoyé. |
 | `legal.retention.title` | Conservation |
-| `legal.retention.body` | Les messages sont conservés 12 mois, puis supprimés. [À FOURNIR : confirmation d'Enzo de la durée de 12 mois, plan §7 question 5] |
+| `legal.retention.body` | Les messages sont conservés 12 mois, puis supprimés. |
 | `legal.rights.title` | Vos droits |
 | `legal.rights.body` | Vous pouvez demander l'accès, la rectification ou la suppression de vos données (RGPD) en écrivant à [À FOURNIR : adresse e-mail de contact]. Vous pouvez aussi saisir la CNIL (cnil.fr). |
-| `legal.cookies` | [À FOURNIR : confirmation qu'aucun cookie ni traceur n'est déposé en V1] |
-| `legal.credits` | Photographies : [À FOURNIR : crédits photo, dont l'accord du photographe pour IMG_2487]. |
+| `legal.cookies` | Ce site ne dépose aucun cookie ni traceur. Seule une préférence de thème est stockée dans votre navigateur (localStorage) : elle est strictement nécessaire et exemptée de consentement. |
+| `legal.credits` | Photographies : Enzo Leveque. Pour IMG_2487, si elle est utilisée plus tard : Margot et Fabien photographes, accord obtenu. |
 
 ---
 
 ## Trous restants (récapitulatif)
 
-1. Contact : adresse e-mail publique, statut et adresse de l'éditeur, adresse Hetzner.
+1. Contact : adresse e-mail publique, statut et adresse de l'éditeur.
 2. Worldline : accord pour la fonctionnalité « sauvegarder et partager des recherches », le chiffre d'impact, la ligne Aubay.
-3. P1 : trois projets universitaires retenus (titre, pitch, stack, lien), dates de licence et de diplôme.
-4. Journal : dates, distances, temps et notes des marathons, triathlon, Ch'ti Trail, Baudets d'Hinges ; jour et mois du GTA et des Côte d'Opale.
-5. P3 : Spring Boot dans Oltre, date de début, descriptions de garmin-mcp et histoquiz, alt du clip.
-6. Photos (alt des trois courses et IMG_2487), conservation 12 mois, cookies, crédits photo.
+3. P1 : dates de licence et de diplôme.
+4. Journal : année du triathlon et du Chtriman, distances de ces deux courses, jour et mois du marathon de Paris, date du club.
+5. P3 : alt du clip.
