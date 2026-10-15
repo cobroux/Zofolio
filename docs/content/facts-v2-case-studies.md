@@ -250,3 +250,4 @@ Fiches compactes, faits des README : Cin-folie (projet PHP de L3, avec Maxime De
 - garmin-mcp : en cours de développement, mais stable. Source : Enzo
 - ObjVLisp2023 : TDD, tests fournis à faire passer. Source : Enzo
 - Restent à fournir : raison du truststore Spoonacular, clip GFaim, Worldline (relecture d'Enzo).
+- Fiches P1 confirmées par Enzo (2026-10-15) : quarkus-color (gabarit Quarkus de TP), ObjVLisp2023 (modèle objet en Java, développé en TDD), LambdalCalcul-project (logique propositionnelle et épistémique en Haskell).

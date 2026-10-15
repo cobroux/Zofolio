@@ -1,4 +1,4 @@
-Statut : BROUILLON, en attente de validation d'Enzo
+Statut : VALIDÉ par Enzo le 2026-10-15 (Worldline inclus ; trous restants : certificat Spoonacular, clip GFaim)
 
 # Textes FR du V2 « Mi-course » (T4)
 
@@ -97,14 +97,14 @@ Tout le bloc est soumis à validation d'Enzo, mot à mot. Pas de clip, pas de sc
 | `trading.pitch` | Pendant 2,5 ans, j'ai fait évoluer une application qui permet à des professionnels de la finance d'acheter et de vendre des titres en bourse. |
 | `trading.role` | Développeur back-end, puis fullstack |
 | `trading.duration` | 2,5 ans d'expérience professionnelle (mars 2023 à septembre 2025) |
-| `trading.stack` | Java · Spring Boot · SQL · Git |
+| `trading.stack` | Java · Spring Boot · JEE · Hibernate · REST · messaging asynchrone · GitLab CI · Docker |
 | `trading.problem` | Une application de trading n'a pas droit à l'approximation. Quand on achète ou qu'on vend des titres, une erreur ne reste pas dans un fichier de log : elle se voit dans un ordre. Mon travail : livrer des évolutions complètes, de l'analyse du besoin à la mise en production, en équipe Scrum. |
 | `trading.decision1.title` | Tester en conditions réelles |
 | `trading.decision1.tradeoff` | Une date codée en dur a masqué un bug jusqu'en production. Depuis, je teste dans des conditions proches du réel, ce qui demande plus de temps de préparation avant la livraison. |
 | `trading.decision2.title` | Valider la maquette avant de coder |
 | `trading.decision2.tradeoff` | Sur une fonctionnalité portée seul, en dernière année, j'ai fait valider la maquette par le Product Owner avant le développement. Un échange de plus au départ, mais moins de retours en cours de route. |
 | `trading.wall` | La complexité de la solution, et le respect de la Definition of Done : une évolution n'est terminée que lorsque tout est vérifié, testé et relu. |
-| `trading.takeaway` | Une date codée en dur a masqué un bug jusqu'en production. Depuis, je teste en conditions réelles, et je garde la tête froide quand tout va vite. |
+| `trading.takeaway` | Travailler sur un système critique m'a appris la rigueur : analyser avant de coder, tester avant de livrer, et garder la tête froide quand tout va vite. |
 | `trading.aiNote` | `null` |
 | `trading.repos` | `[]` |
 | `trading.privacy` | Expérience professionnelle : par confidentialité, je ne détaille ni l'architecture ni les fonctionnalités de l'application. |

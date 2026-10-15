@@ -5,6 +5,7 @@ export default defineConfig({
   testDir: '.',
   testMatch: '*.clip.ts',
   workers: 1,
+  timeout: 90_000,
   reporter: 'list',
   outputDir: process.env['CLIPS_OUT'] ?? './out',
   use: {

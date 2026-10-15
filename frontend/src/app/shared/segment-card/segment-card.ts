@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ProjectSummary } from '../../core/api/api.models';
 import { AiTag } from '../ai-tag/ai-tag';
 import { Split } from '../split/split';
@@ -6,7 +7,7 @@ import { Split } from '../split/split';
 /** Carte segment (DESIGN §6) : `large` pour la carte dominante. Carrée, sans ombre. */
 @Component({
   selector: 'app-segment-card',
-  imports: [AiTag, Split],
+  imports: [AiTag, RouterLink, Split],
   host: { '[class.large]': 'large()' },
   template: `
     <article>
@@ -15,10 +16,15 @@ import { Split } from '../split/split';
         <app-ai-tag [tag]="project().aiTag" />
       </header>
       <p>{{ project().pitch }}</p>
-      <app-split [duration]="project().duration" [stack]="project().stack" [commits]="project().commits" [note]="project().note" />
+      <app-split [duration]="project().duration" [stack]="project().stack" [commits]="project().commits" [languages]="project().languages" [lastPushAt]="project().lastPushAt" [note]="project().note" />
+      <div class="links">
+      @if (project().tier === 'CASE_STUDY') {
+        <a class="study" [routerLink]="['/projets', project().slug]" i18n>Lire l'étude de cas<span class="sr"> {{ project().title }}</span></a>
+      }
       @if (project().repoUrl) {
         <a [href]="project().repoUrl" rel="noopener" i18n>Voir le dépôt<span class="sr"> {{ project().title }}</span></a>
       }
+      </div>
     </article>
   `,
   styles: `
@@ -49,11 +55,19 @@ import { Split } from '../split/split';
     :host(.large) h3 {
       font-size: 2.75rem;
     }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 var(--s-5);
+      margin-block-start: auto;
+    }
+    .study {
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+    }
     a {
       display: inline-flex;
       align-items: center;
-      align-self: flex-start;
-      margin-block-start: auto;
       min-height: var(--target);
       transition: transform 140ms var(--ease-out);
     }

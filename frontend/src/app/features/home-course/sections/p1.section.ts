@@ -35,6 +35,19 @@ import { SegmentCard } from '../../../shared/segment-card/segment-card';
         @for (p of cards(); track p.slug; let i = $index) {
           <app-segment-card [project]="p" [large]="i === 0" [appReveal]="2" />
         }
+        @if (shorts().length) {
+          <ul class="shorts" [appReveal]="2" i18n-aria-label aria-label="Autres projets">
+            @for (p of shorts(); track p.slug) {
+              <li>
+                <span class="name">{{ p.title }}</span>
+                <span class="small">{{ p.stack.join(', ') }}</span>
+                @if (p.repoUrl) {
+                  <a [href]="p.repoUrl" rel="noopener" i18n>Voir le dépôt<span class="sr"> {{ p.title }}</span></a>
+                }
+              </li>
+            }
+          </ul>
+        }
       } @else if (home() === null) {
         <p class="unavailable" role="status" i18n>Contenu indisponible pour le moment.</p>
       }
@@ -105,6 +118,39 @@ import { SegmentCard } from '../../../shared/segment-card/segment-card';
       color: var(--ink-2);
       font-size: var(--t-small);
     }
+    .shorts {
+      grid-column: 1 / -1;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .shorts li {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0 var(--s-5);
+      padding-block: var(--s-1);
+      border-block-start: 1px solid var(--line-muted);
+    }
+    .name {
+      min-width: 9rem;
+      font-weight: 600;
+    }
+    .shorts .small {
+      flex: 1 1 12rem;
+    }
+    .shorts a {
+      display: inline-flex;
+      align-items: center;
+      min-height: var(--target);
+    }
+    .sr {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
     @media (min-width: 768px) {
       section {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -150,5 +196,6 @@ export class P1Section {
       .sort((a, b) => (a.period! < b.period! ? -1 : 1)),
   );
   protected readonly aid = computed(() => this.home()?.experiences.find((e) => e.stage === 'R1'));
-  protected readonly cards = computed(() => this.home()?.projects.filter((p) => p.stage === 'P1') ?? []);
+  protected readonly cards = computed(() => this.home()?.projects.filter((p) => p.stage === 'P1' && p.tier === 'CASE_STUDY') ?? []);
+  protected readonly shorts = computed(() => this.home()?.projects.filter((p) => p.stage === 'P1' && p.tier === 'SHORT') ?? []);
 }

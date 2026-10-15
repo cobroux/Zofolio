@@ -1,0 +1,237 @@
+:host {
+  display: block;
+  padding-block-end: var(--s-9);
+}
+.wrap {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: var(--margin);
+}
+h2 {
+  font-size: clamp(2.25rem, 5.5vw, 4.5rem);
+}
+h3 {
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  line-height: 1;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target);
+  font-size: var(--t-small);
+}
+.hero {
+  display: grid;
+  gap: var(--s-7);
+  padding-block: var(--s-5) var(--s-9);
+}
+.hero h1 {
+  margin-block: var(--s-3) var(--s-5);
+}
+.lead {
+  max-width: 28ch;
+  font-size: var(--t-lead);
+  line-height: 1.3;
+}
+app-ai-tag {
+  margin-block-start: var(--s-5);
+}
+
+/* Dossard de segment : 4 trous d'épingle comme Bib (DESIGN §6) */
+.bib {
+  position: relative;
+  align-self: start;
+  padding: var(--s-6) var(--s-5);
+  background: var(--surface);
+}
+.bib::before,
+.bib::after,
+.bib i::before,
+.bib i::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg);
+}
+.bib::before {
+  inset: 12px auto auto 12px;
+}
+.bib::after {
+  inset: 12px 12px auto auto;
+}
+.bib i::before {
+  inset: auto auto 12px 12px;
+}
+.bib i::after {
+  inset: auto 12px 12px auto;
+}
+.stage {
+  margin: 0 var(--s-4) var(--s-5);
+  color: var(--accent);
+  font: 900 clamp(2.5rem, 5vw, 3.75rem) / 0.9 var(--font-display);
+  font-stretch: 62%;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.stage small {
+  display: block;
+  margin-block-start: var(--s-2);
+  color: var(--ink-2);
+  font: 600 var(--t-small) / 1.3 var(--font-text);
+}
+dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s-2) var(--s-5);
+  margin: 0;
+  padding-inline: var(--s-4);
+}
+dt {
+  color: var(--ink-2);
+  font-size: var(--t-small);
+}
+dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums lining-nums;
+  text-align: end;
+}
+.note {
+  margin: var(--s-5) var(--s-4) 0;
+  color: var(--ink-2);
+  font-size: var(--t-small);
+}
+
+.clipwrap {
+  margin-block-end: var(--s-9);
+}
+
+/* Corps : h2 en colonnes 1-3, contenu en 4-11 sur grand écran */
+.blk {
+  padding-block-start: var(--s-9);
+}
+.grid {
+  display: grid;
+  gap: var(--s-5);
+}
+.txt {
+  max-width: var(--measure);
+}
+.txt p + p {
+  margin-block-start: var(--s-4);
+}
+.diagram-wrap {
+  margin-block-start: var(--s-6);
+}
+.decisions {
+  display: grid;
+  gap: var(--s-7);
+}
+.decisions h3 {
+  margin-block-end: var(--s-3);
+}
+.tradeoff {
+  color: var(--ink-2);
+}
+.tradeoff b {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.wall {
+  margin-block-start: var(--s-9);
+  padding-block: var(--s-9);
+  background: var(--surface);
+}
+.km {
+  color: var(--accent);
+  font: 900 clamp(4rem, 12vw, 9rem) / 0.85 var(--font-display);
+  font-stretch: 62%;
+}
+.wall h2 {
+  margin-block-end: var(--s-5);
+}
+
+.links {
+  display: grid;
+  gap: var(--s-1);
+  margin: var(--s-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.links a {
+  display: flex;
+  align-items: center;
+  min-height: var(--target);
+}
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--target);
+  margin-block-start: var(--s-6);
+  padding: 0 var(--s-4);
+  background: var(--accent);
+  color: var(--on-accent);
+  font: 600 var(--t-small) / 1 var(--font-text);
+  text-decoration: none;
+  transition: transform 140ms var(--ease-out);
+}
+.cta:active {
+  transform: scale(0.97);
+}
+@media (hover: hover) and (pointer: fine) {
+  .cta:hover {
+    color: var(--on-accent);
+  }
+}
+@media (max-width: 767px) {
+  .cta {
+    display: flex;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--gutter);
+  }
+  .pitch {
+    grid-column: 1 / 8;
+  }
+  .bib {
+    grid-column: 9 / 13;
+  }
+}
+@media (min-width: 1100px) {
+  .wrap {
+    padding-inline-end: calc(var(--margin) + 72px); /* même marge que l'accueil (rail du profil non rendu ici) */
+  }
+  .wall .wrap {
+    padding-inline-end: var(--margin);
+  }
+  .grid {
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--gutter);
+  }
+  .grid > h2,
+  .grid > .km {
+    grid-column: 1 / 4;
+  }
+  .grid > .txt,
+  .grid > .decisions,
+  .grid > .diagram-wrap {
+    grid-column: 4 / 12;
+  }
+  .decisions {
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--gutter);
+    row-gap: var(--s-7);
+  }
+  .decisions article:first-child {
+    grid-column: 1 / -1;
+    max-width: var(--measure);
+  }
+}

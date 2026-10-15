@@ -14,7 +14,7 @@ export interface Experience {
 export interface ProjectSummary {
   slug: string;
   tier: 'CASE_STUDY' | 'SHORT';
-  stage: 'P1' | 'P3' | null;
+  stage: 'P1' | 'P2' | 'P3' | null;
   title: string;
   pitch: string;
   aiTag: 'HAND' | 'HAND_THEN_AI' | 'AI';

@@ -67,6 +67,86 @@
         "caption": "Légende de test."
       },
       "caseStudy": null
+    },
+    {
+      "slug": "gfaim",
+      "tier": "CASE_STUDY",
+      "stage": "P1",
+      "title": "GFaim",
+      "pitch": "Pitch de test.",
+      "aiTag": "HAND_THEN_AI",
+      "stack": [
+        "Android"
+      ],
+      "duration": null,
+      "commits": null,
+      "note": null,
+      "repoUrl": null,
+      "demoUrl": null,
+      "languages": [],
+      "lastPushAt": null,
+      "video": null,
+      "caseStudy": null
+    },
+    {
+      "slug": "cin-folie",
+      "tier": "SHORT",
+      "stage": "P1",
+      "title": "Cin-folie",
+      "pitch": "Pitch de test.",
+      "aiTag": "HAND_THEN_AI",
+      "stack": [
+        "Java"
+      ],
+      "duration": null,
+      "commits": null,
+      "note": null,
+      "repoUrl": "https://github.com/cobroux/cin-folie",
+      "demoUrl": null,
+      "languages": [],
+      "lastPushAt": null,
+      "video": null,
+      "caseStudy": null
+    },
+    {
+      "slug": "lambda-calcul",
+      "tier": "SHORT",
+      "stage": "P1",
+      "title": "LambdaCalcul",
+      "pitch": "Pitch de test.",
+      "aiTag": "HAND_THEN_AI",
+      "stack": [
+        "Java"
+      ],
+      "duration": null,
+      "commits": null,
+      "note": null,
+      "repoUrl": "https://github.com/cobroux/lambda-calcul",
+      "demoUrl": null,
+      "languages": [],
+      "lastPushAt": null,
+      "video": null,
+      "caseStudy": null
+    },
+    {
+      "slug": "histoquiz",
+      "tier": "SHORT",
+      "stage": "P3",
+      "title": "HistoQuiz",
+      "pitch": "Pitch de test.",
+      "aiTag": "HAND_THEN_AI",
+      "stack": [
+        "Java"
+      ],
+      "duration": null,
+      "commits": null,
+      "note": null,
+      "repoUrl": "https://github.com/cobroux/histoquiz",
+      "demoUrl": null,
+      "languages": [],
+      "lastPushAt": null,
+      "video": null,
+      "caseStudy": null
     }
   ],
   "races": [

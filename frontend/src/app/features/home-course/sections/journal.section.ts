@@ -1,6 +1,7 @@
 import { Component, computed, input } from '@angular/core';
+import { ContributionsGraph } from '../../../shared/contributions/contributions';
+import { Contributions, Race } from '../../../core/api/api.models';
 import { Reveal } from '../../../shared/reveal/reveal';
-import { Race } from '../../../core/api/api.models';
 
 /** 79.4 → « 79,4 km ». */
 export function formatDistance(km: number | null): string {
@@ -21,7 +22,7 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
 /** Pas de classement : uniquement des chiffres. Les lignes `INDEX`/`CLUB` ne sont pas des courses. */
 @Component({
   selector: 'app-journal-section',
-  imports: [Reveal],
+  imports: [ContributionsGraph, Reveal],
   template: `
     <section id="journal" aria-labelledby="journal-title">
       <div class="side">
@@ -32,6 +33,7 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
             <span class="big">459</span>
             <span class="small" i18n>UTMB Index. Un chiffre, pas un classement.</span>
           </p>
+          <app-contributions [data]="contributions()" [appReveal]="2" />
           @for (r of others(); track r.name) {
             <p class="small">{{ r.name }}</p>
           }
@@ -231,6 +233,8 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
 export class JournalSection {
   /** `null` = API en échec. */
   readonly races = input<Race[] | null>(null);
+  /** `null` = pas encore de synchro GitHub : le graphe n'est pas rendu. */
+  readonly contributions = input<Contributions | null>(null);
   readonly rows = computed(() => this.races()?.filter((r) => r.kind === 'RACE') ?? null);
   readonly others = computed(() => this.races()?.filter((r) => r.kind !== 'RACE') ?? []);
   protected readonly label = {

@@ -1,11 +1,12 @@
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import fixture from '../../../testing/home.fixture.json';
 import { HomePage } from './home.page';
 
 async function render(respond: (req: import('@angular/common/http/testing').TestRequest) => void) {
-  TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting()] });
+  TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting(), provideRouter([])] });
   const f = TestBed.createComponent(HomePage);
   f.detectChanges();
   respond(TestBed.inject(HttpTestingController).expectOne('/api/fr/home'));

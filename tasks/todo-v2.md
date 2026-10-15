@@ -13,7 +13,7 @@
   - Fichiers : `tasks/plan-v2.md` (réponses), `docs/adr/0003-format-et-hebergement-des-videos.md` (statut)
   - Dépend de : —
 
-- [ ] V2-T2 🟧 ENZO [agent: — · Enzo] Compléter les « À FOURNIR » des études de cas
+- [x] V2-T2 🟧 ENZO [agent: — · Enzo] Compléter les « À FOURNIR » des études de cas
   - Acceptation : réponses à `docs/content/facts-v2-case-studies.md` §6 : motivation de chaque projet, rôle et durée, statut ; GFaim (pitch, problème, description et frameworks de l'app Android, difficulté) ; Worldline (nom de l'employeur publiable ou non, dates, ce qui peut être dit à un non-initié).
   - Vérification : chaque puce `À FOURNIR` de la §6 a une réponse (dans le fichier ou en message).
   - Fichiers : `docs/content/facts-v2-case-studies.md`
@@ -31,13 +31,13 @@
   - Fichiers : `docs/content/copy-fr-v2.md`
   - Dépend de : T3
 
-- [ ] V2-T5 🟧 ENZO [agent: — · Enzo] Valider les textes FR du V2 (point de contrôle E)
+- [x] V2-T5 🟧 ENZO [agent: — · Enzo] Valider les textes FR du V2 (point de contrôle E)
   - Acceptation : `copy-fr-v2.md` relu ; Worldline validé mot à mot (SPEC §9) ; validation datée en tête du fichier.
   - Vérification : ligne « Validé par Enzo le … » en tête de `copy-fr-v2.md`.
   - Fichiers : `docs/content/copy-fr-v2.md`
   - Dépend de : T4
 
-- [ ] V2-T6 🟧 ENZO [agent: — · Enzo] Fournir le CV EN en PDF
+- [x] V2-T6 🟧 ENZO [agent: — · Enzo] Fournir le CV EN en PDF
   - Acceptation : même contenu public que le CV FR (V1 T1 : téléphone, e-mail, localisation de recherche), exporté depuis Google Docs.
   - Vérification : `exiftool Enzo-Leveque-CV-EN.pdf | grep -i -E 'author|creator'` vide ou neutre (fait par T12).
   - Fichiers : —
@@ -99,7 +99,7 @@
   - Fichiers : `docs/DESIGN.md`
   - Dépend de : T1
 
-- [ ] V2-T16 [agent: code-reviewer · sonnet] Revue du point de contrôle F
+- [x] V2-T16 [agent: code-reviewer · sonnet] Revue du point de contrôle F
   - Acceptation : critères F du plan-v2 §7 ; DTO identiques au contrat (back et `api.models.ts`) ; sécurité de la synchro (token absent des logs et des erreurs, réponse externe validée, timeouts, aucun dépôt non curé exposé) ; redirection `Accept-Language` sans redirection ouverte ; problèmes classés par gravité avec fichier:ligne.
   - Vérification : `cd backend && ./mvnw verify` ; `cd frontend && npm test && npm run lint && npm run build`.
   - Fichiers : —
@@ -107,19 +107,19 @@
 
 ## Phase 2 : Clips vidéo (en parallèle de la phase 1)
 
-- [ ] V2-T17 [agent: qa-engineer · sonnet] Outillage d'enregistrement des clips
+- [x] V2-T17 [agent: qa-engineer · sonnet] Outillage d'enregistrement des clips
   - Acceptation : `tools/clips/` : `playwright.clips.config.ts` (vidéo `on`, 1280×800, hors du `testDir` E2E et de la CI), `oltre.override.yml` et `zotracker.override.yml` (`container_name` suffixés `-demo`, ports liés à `127.0.0.1`, `ports: !override`), `encode.sh` (ADR 0003 : H.264 et VP9 sans audio ni métadonnées, `+faststart`, affiche WebP via `cwebp`, échec si un fichier dépasse 2,5 Mo), `README.md` (procédure plan-v2 §5). **Interdit** : monter `oltre-backend_mysql_data` ou `zotracker-local_data`, ou modifier les dépôts Oltre et Zotracker.
   - Vérification : `bash -n tools/clips/encode.sh` ; `docker compose -p oltre-demo -f "../../Oltre/Oltre-backend/docker-compose.yaml" -f tools/clips/oltre.override.yml config | grep -E 'oltre-demo_mysql_data|container_name'` (volume `oltre-demo_*` uniquement).
   - Fichiers : `tools/clips/playwright.clips.config.ts`, `tools/clips/oltre.override.yml`, `tools/clips/zotracker.override.yml`, `tools/clips/encode.sh`, `tools/clips/README.md`
   - Dépend de : T1
 
-- [ ] V2-T18 [agent: qa-engineer · sonnet] Clip Oltre sur données factices
+- [x] V2-T18 [agent: qa-engineer · sonnet] Clip Oltre sur données factices
   - Acceptation : `oltre-seed.mjs` (Node sans dépendance) : utilisateur `demo@example.com`, environ 20 dépenses sur 3 mois, tâches, repas et rendez-vous inventés, via l'API REST ; `oltre.clip.ts` : parcours 15-30 s (plan-v2 §5) sans pages sport ni coach ; encodage `oltre-1.{mp4,webm,webp}` ; `docker compose -p oltre-demo down -v` en fin de tâche.
   - Vérification : `ffprobe -v error -show_entries format=duration -of csv=p=0 frontend/public/media/oltre-1.mp4` entre 15 et 30 ; `ffprobe … -select_streams a` vide ; `du -k frontend/public/media/oltre-1.*` ≤ 2560 chacun ; `docker volume ls | grep oltre-demo` vide.
   - Fichiers : `tools/clips/oltre-seed.mjs`, `tools/clips/oltre.clip.ts`, `frontend/public/media/oltre-1.mp4`, `frontend/public/media/oltre-1.webm`, `frontend/public/media/oltre-1.webp`
   - Dépend de : T17
 
-- [ ] V2-T19 [agent: qa-engineer · sonnet] Clip Zotracker en simulation
+- [x] V2-T19 [agent: qa-engineer · sonnet] Clip Zotracker en simulation
   - Acceptation : `zotracker.clip.ts` : `ADMIN_PASSWORD` factice, course « Démo » créée dans l'admin avec le GPX officiel du GTA (lu depuis `~/Downloads`, jamais copié dans le dépôt), profil « Coureur démo » sans photo, aucun contact de sécurité, simulation ×30, puis page publique (carte, chrono, ravitos, profil) ; encodage `zotracker-1.*` ; `down -v`.
   - Vérification : mêmes contrôles `ffprobe`/`du` que T18 ; `git ls-files | grep -i '\.gpx$'` vide ; `docker volume ls | grep zotracker-demo` vide.
   - Fichiers : `tools/clips/zotracker.clip.ts`, `frontend/public/media/zotracker-1.mp4`, `frontend/public/media/zotracker-1.webm`, `frontend/public/media/zotracker-1.webp`
@@ -139,37 +139,37 @@
 
 ## Phase 3 : Pages, accueil et contenu FR
 
-- [ ] V2-T22 [agent: backend-dev · sonnet] Données FR du V2 (Liquibase)
+- [x] V2-T22 [agent: backend-dev · sonnet] Données FR du V2 (Liquibase)
   - Acceptation : changeset `20261016-0300-seed-v2-fr.sql` depuis `copy-fr-v2.md` et `facts-v2-case-studies.md` : champs d'étude de cas des 4 projets ; `github_repos` de tous les projets non masqués (T3) ; `video` des 3 clips (noms, tailles, légendes) ; `stage` de GFaim et des fiches courtes selon T1 ; garmin-mcp en `SHORT`.
   - Vérification : `cd backend && ./mvnw verify` ; `curl -s localhost:8080/api/fr/projects/oltre | jq '.caseStudy.decisions|length'` ∈ {2, 3} ; `grep -i -E 'client|banque' db/changelog/changes/20261016-03*.sql` vide.
   - Fichiers : `db/changelog/changes/20261016-0300-seed-v2-fr.sql`, `content/SeedContentIT.java`
   - Dépend de : T5, T8, T21
 
-- [ ] V2-T23 [agent: frontend-dev · sonnet] Composant Clip
+- [x] V2-T23 [agent: frontend-dev · sonnet] Composant Clip
   - Acceptation : `shared/clip/clip.ts` selon D23 et T15 : `@defer (on viewport)` avec affiche en placeholder, `preload="none"`, `<source>` WebM puis MP4, lecture et pause par IntersectionObserver côté navigateur seulement, pas de lecture automatique sous reduced-motion, Save-Data ou 2G (bouton Lecture), bouton Pause toujours présent, `width`/`height` posés, légende en nom accessible ; rien si `video` est `null`.
   - Vérification : `cd frontend && npm test` (Vitest : reduced-motion → pas de `play()`, sortie du viewport → `pause()`, `saveData` → bouton Lecture, rendu serveur sans accès à `window`).
   - Fichiers : `shared/clip/clip.ts`, `shared/clip/clip.css`, `shared/clip/clip.spec.ts`
   - Dépend de : T13, T15
 
-- [ ] V2-T24 [agent: frontend-dev · sonnet] Page d'étude de cas
+- [x] V2-T24 [agent: frontend-dev · sonnet] Page d'étude de cas
   - Acceptation : route `projets/:slug` (D20) ; gabarit plan-v2 §4.2 (Split avec `role` et `languages`, sections, bloc « Le mur du 60e km », liens vers dépôts, démo, clip) ; `caseStudy` nul ou API en échec → page 404 avec statut 404 en SSR ; title, description et canonical par projet ; contenu complet dans le HTML SSR, lisible sans JS.
   - Vérification : `cd frontend && npm test` (rendu depuis les fixtures Oltre et Worldline : pas de schéma ni de dépôt pour Worldline) ; `npm run build && node dist/frontend/server/server.mjs & sleep 2; curl -s -o /dev/null -w '%{http_code}' localhost:4000/fr/projets/histoquiz` = 404.
   - Fichiers : `features/projects/case-study.page.ts`, `features/projects/case-study.page.css`, `features/projects/case-study.page.spec.ts`, `app.routes.ts`, `shared/split/split.ts`
   - Dépend de : T13, T15, T23
 
-- [ ] V2-T25 [agent: frontend-dev · sonnet] Schémas d'architecture SVG
+- [x] V2-T25 [agent: frontend-dev · sonnet] Schémas d'architecture SVG
   - Acceptation : `oltre`, `zotracker` et `gfaim` (D25), d'après la section « Architecture » de `facts-v2` et les textes de T4 : SVG inline, couleurs par tokens (clair et sombre), `<title>` et `<desc>` traduits, lisibles à 360 px (empilement vertical sur mobile), aucun texte en image ; registre par slug, rien pour `trading-app`.
   - Vérification : `cd frontend && npm test` (chaque schéma a un `<title>` et un `<desc>` non vides ; slug sans schéma → rien).
   - Fichiers : `features/projects/diagrams/oltre.diagram.ts`, `features/projects/diagrams/zotracker.diagram.ts`, `features/projects/diagrams/gfaim.diagram.ts`, `features/projects/diagrams/diagrams.ts`, `features/projects/diagrams/diagrams.spec.ts`
   - Dépend de : T4, T15, T24
 
-- [ ] V2-T26 [agent: frontend-dev · sonnet] Accueil : liens vers les études, clip, données GitHub
+- [x] V2-T26 [agent: frontend-dev · sonnet] Accueil : liens vers les études, clip, données GitHub
   - Acceptation : carte `CASE_STUDY` → `routerLink` vers `projets/:slug`, sinon lien vers le dépôt (`repoUrl`) ; P2 → page `trading-app` ; clip sur la carte Oltre (Clip en tête de carte sur mobile, DESIGN §5) ; Split avec `commits` et `languages` issus de la synchro (rien si `null`) ; GFaim et fiches courtes placées selon T1/T15.
   - Vérification : `cd frontend && npm test` (rendu depuis `home.fixture.json` : lien interne pour Oltre, lien externe pour histoquiz, aucun `commits` affiché quand il est `null`).
   - Fichiers : `features/home-course/sections/p3.section.ts`, `features/home-course/sections/p2.section.ts`, `features/home-course/sections/p1.section.ts`, `shared/segment-card/segment-card.ts`
   - Dépend de : T13, T23 (fusion de `fix/retours-enzo`)
 
-- [ ] V2-T27 [agent: frontend-dev · sonnet] Journal : graphe de contributions GitHub
+- [x] V2-T27 [agent: frontend-dev · sonnet] Journal : graphe de contributions GitHub
   - Acceptation : `shared/contributions/contributions.ts` (D26) : grille SVG 53×7 depuis `start` + `counts`, 5 tons d'orange (seuils par quantiles, 0 = ton vide), résumé texte localisé (« N contributions sur 12 mois »), `aria-hidden` sur le SVG, rendu en SSR ; colonne gauche du Journal (DESIGN §5) ; rien si `contributions` est `null`.
   - Vérification : `cd frontend && npm test` (mapping jour → colonne et ligne, seuils, `null` → rien).
   - Fichiers : `shared/contributions/contributions.ts`, `shared/contributions/contributions.spec.ts`, `features/home-course/sections/journal.section.ts`

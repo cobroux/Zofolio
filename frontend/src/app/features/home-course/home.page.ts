@@ -20,7 +20,7 @@ import { StartSection } from './sections/start.section';
     <app-p1 [home]="home.value()" />
     <app-p2 [home]="home.value()" />
     <app-p3-section [projects]="home.value()?.projects ?? null" />
-    <app-journal-section [races]="home.value()?.races ?? null" />
+    <app-journal-section [races]="home.value()?.races ?? null" [contributions]="home.value()?.contributions ?? null" />
     <app-finish-section />
   `,
   styles: `
