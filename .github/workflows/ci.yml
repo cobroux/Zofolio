@@ -44,3 +44,54 @@ jobs:
       - run: npm run lint
       - run: npm test
       - run: npm run build
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: .env depuis .env.example
+        run: sed 's/^IP_HASH_SALT=.*/IP_HASH_SALT=ci-salt-0123456789abcdef/' .env.example > .env
+      - run: docker compose up --build -d
+      - name: Attendre le back et le SSR
+        run: timeout 180 sh -c "until curl -fs localhost:4000/api/fr/home >/dev/null && curl -fs localhost:4000/fr/ >/dev/null; do sleep 3; done"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+        working-directory: frontend
+      - run: npx playwright install --with-deps chromium
+        working-directory: frontend
+      - run: npx playwright test
+        working-directory: frontend
+      - if: failure()
+        run: docker compose logs --tail 100
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-traces
+          path: frontend/test-results
+      - if: always()
+        run: docker compose down
+
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: .env depuis .env.example
+        run: sed 's/^IP_HASH_SALT=.*/IP_HASH_SALT=ci-salt-0123456789abcdef/' .env.example > .env
+      - run: docker compose up --build -d
+      - name: Attendre le back et le SSR
+        run: timeout 180 sh -c "until curl -fs localhost:4000/api/fr/home >/dev/null && curl -fs localhost:4000/fr/ >/dev/null; do sleep 3; done"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+        working-directory: frontend
+      - run: npx lhci autorun --config=lighthouserc.json
+        working-directory: frontend
+      - if: always()
+        run: docker compose down

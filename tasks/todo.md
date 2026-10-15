@@ -17,7 +17,7 @@
   - Fichiers : `docs/content/facts-v1.md`
   - Dépend de : —
 
-- [ ] T3 [agent: copywriter] Rédiger les textes FR du V1
+- [x] T3 [agent: copywriter] Rédiger les textes FR du V1
   - Acceptation : hero, titres et chapôs des 5 sections + journal, contenus P1/P2/P3/R1/R2, notes des courses, Arrivée, libellés et messages d'erreur du formulaire (par `code` du §4.1), meta title/description, alt des photos, mentions légales ; DESIGN §1 (aucune phrase creuse, 1 touche de fun max par section) ; **validé par Enzo** (Worldline obligatoirement).
   - Vérification : `grep -i -E 'passionn|innovant|de l.idée à la production' docs/content/copy-fr-v1.md` ne renvoie rien ; validation d'Enzo notée en tête du fichier.
   - Fichiers : `docs/content/copy-fr-v1.md`
@@ -155,68 +155,68 @@
 
 ## Phase 3 : Accueil « La Course »
 
-- [ ] T25 [agent: frontend-dev] Section Départ et composant Bib
+- [x] T25 [agent: frontend-dev] Section Départ et composant Bib
   - Acceptation : h1 « Enzo Leveque », titre, phrase Worldline, stack, CTA « Télécharger le CV » (`<a href="/api/fr/cv">`) et « Me contacter » (`#arrivee`) visibles sans scroll à 360×640, 390×844, 1440×900 ; Bib `aria-hidden` ; portrait `fetchpriority="high"`, `width`/`height`, `min-height: 100svh` ; textes statiques i18n (D3).
   - Vérification : `cd frontend && npm test && npm run lint` ; capture Playwright à 360×640 : `npx playwright screenshot --viewport-size=360,640 http://localhost:4000/fr/ /tmp/hero.png` montrant les 2 CTA.
   - Fichiers : `features/home-course/home.page.ts`, `features/home-course/sections/start.section.ts`, `shared/bib/bib.ts`, `shared/bib/bib.css`
   - Dépend de : T18, T23
 
-- [ ] T26 [agent: frontend-dev] ElevationProfile : rail desktop et navigation
+- [x] T26 [agent: frontend-dev] ElevationProfile : rail desktop et navigation
   - Acceptation : un `<path>` SVG depuis `PROFILE` + masque de progression (`animation-timeline: scroll()`, repli IntersectionObserver, côté navigateur seulement) ; `<nav aria-label="Profil de la course">` avec 5 ancres réelles, `aria-current="location"` sur l'actif ; cibles 44 px ; reduced-motion = états discrets ; km affiché en texte ; ≥ `lg` uniquement.
   - Vérification : `cd frontend && npm test` (Vitest : conversion km → coordonnée, checkpoint actif selon la section visible).
   - Fichiers : `features/home-course/elevation-profile/elevation-profile.ts`, `features/home-course/elevation-profile/elevation-profile.css`, `features/home-course/elevation-profile/elevation-profile.spec.ts`
   - Dépend de : T18, T22
 
-- [ ] T27 [agent: frontend-dev] Barre mobile et RoadBook
+- [x] T27 [agent: frontend-dev] Barre mobile et RoadBook
   - Acceptation : barre haute 4 px < `lg` (déclencheur ≥ 44 px) ; `<dialog>` modal (focus piégé natif, `Esc`, retour du focus), 5 étapes ancres, étape courante marquée, fermeture au tap puis scroll vers l'ancre ; animations DESIGN §7 et reduced-motion.
   - Vérification : `cd frontend && npm test` (Vitest : ouverture, Esc ferme, focus rendu au déclencheur).
   - Fichiers : `features/home-course/road-book/road-book.ts`, `features/home-course/road-book/road-book.css`, `features/home-course/road-book/road-book.spec.ts`
   - Dépend de : T26
 
-- [ ] T28 [agent: frontend-dev] Sections P1 et R1 (SegmentCard, AiTag, Aid)
+- [x] T28 [agent: frontend-dev] Sections P1 et R1 (SegmentCard, AiTag, Aid)
   - Acceptation : rendu depuis `home` (`stage` P1/R1) ; Master ILI + 3 cartes de tailles inégales ; AiTag (libellés §4.2, jamais orange) ; Aid en bande basse ; état « contenu indisponible » si l'API échoue ; tout présent dans le HTML SSR.
   - Vérification : `cd frontend && npm test` (rendu depuis `home.fixture.json`, état d'erreur).
   - Fichiers : `features/home-course/sections/p1.section.ts`, `shared/segment-card/segment-card.ts`, `shared/ai-tag/ai-tag.ts`, `shared/aid/aid.ts`
   - Dépend de : T21, T25
 
-- [ ] T29 [agent: frontend-dev] Sections P2 Worldline et R2 (Split)
+- [x] T29 [agent: frontend-dev] Sections P2 Worldline et R2 (Split)
   - Acceptation : aplat inversé, frise des missions (`stage` P2), Split tabulaire (`tabular-nums`, aligné à droite) ; R2 réutilise Aid ; section la plus haute.
   - Vérification : `cd frontend && npm test` (Split : formatage FR des durées et nombres).
   - Fichiers : `features/home-course/sections/p2.section.ts`, `shared/split/split.ts`, `shared/split/split.spec.ts`
   - Dépend de : T21, T25
 
-- [ ] T30 [agent: frontend-dev] Sections P3 et Journal (tableau des courses)
+- [x] T30 [agent: frontend-dev] Sections P3 et Journal (tableau des courses)
   - Acceptation : mosaïque asymétrique 7/5, 5/7, 12 (pas 3 cartes identiques), liens repo ; Journal = vrai `<table>` (date, course, distance, temps `13 h 35 min 53 s`, note, badge PR icône + texte), cartes empilées sur mobile ; graphe GitHub absent (V2) ; aucun classement.
   - Vérification : `cd frontend && npm test` (formatage `durationS` → `13 h 35 min 53 s`, `distanceKm` → `79,4 km`).
   - Fichiers : `features/home-course/sections/p3.section.ts`, `features/home-course/sections/journal.section.ts`, `features/home-course/sections/journal.section.spec.ts`
   - Dépend de : T21, T25
 
-- [ ] T31 [agent: frontend-dev] Section Arrivée et formulaire de contact
+- [x] T31 [agent: frontend-dev] Section Arrivée et formulaire de contact
   - Acceptation : aplat orange, titre, e-mail, GitHub, LinkedIn, CV, chronos finaux ; formulaire (labels visibles, règles §4.3 côté client, honeypot `website` caché hors accessibilité) ; états succès / 400 par champ / 429 / 503 avec messages FR par `code` et `aria-live` ; sans JS, liens e-mail et CV restent utilisables.
   - Vérification : `cd frontend && npm test` (Vitest : validation, mapping des 4 réponses, honeypot envoyé vide).
   - Fichiers : `features/home-course/sections/finish.section.ts`, `features/contact/contact-form.ts`, `features/contact/contact.api.ts`, `features/contact/contact-form.spec.ts`
   - Dépend de : T18 (contrat §4.3)
 
-- [ ] T32 [agent: backend-dev] Données de contenu FR validées (Liquibase)
+- [x] T32 [agent: backend-dev] Données de contenu FR validées (Liquibase)
   - Acceptation : changesets `0150-seed-projects.sql`, `0151-seed-experiences.sql`, `0152-seed-races.sql` depuis `copy-fr-v1.md` et `facts-v1.md` ; tiers et tags IA du SPEC §1 ; masqués en `HIDDEN` ; GTA = 79,4 km, 3 160 m, 48953 s ; aucun nom de client Worldline.
   - Vérification : `cd backend && ./mvnw verify` ; `docker compose up -d && curl -s localhost:8080/api/fr/home | jq '.experiences|length, .projects|length, .races|length'` non nuls ; `grep -i -E 'client|banque' db/changelog/changes/015*.sql` vide.
   - Fichiers : `db/changelog/changes/0150-seed-projects.sql`, `db/changelog/changes/0151-seed-experiences.sql`, `db/changelog/changes/0152-seed-races.sql`
   - Dépend de : T3, T12
 
-- [ ] T33 [agent: frontend-dev] Page mentions légales
+- [x] T33 [agent: frontend-dev] Page mentions légales
   - Acceptation : route `mentions-legales` (éditeur, hébergeur Hetzner, données du formulaire, conservation, droits RGPD) depuis `copy-fr-v1.md` ; lien dans le footer ; title/meta.
   - Vérification : `cd frontend && npm run build && node dist/frontend/server/server.mjs & sleep 2; curl -s localhost:4000/fr/mentions-legales | grep -q Hetzner`.
   - Fichiers : `features/legal/legal.page.ts`, `app.routes.ts`, `core/layout/footer.ts`
   - Dépend de : T3, T18
 
-- [ ] T34 [agent: designer] Revue design du point de contrôle C
+- [x] T34 [agent: designer] Revue design du point de contrôle C
   - Décision d'Enzo (2026-10-15) : photo finisher (`img/finisher-*`) recadrée au choix du designer pour la meilleure composition, en retirant les passants flous ; bascule de thème système → clair → sombre validée ; domaine `enzoleveque.dev` provisoire (à confirmer à l'achat).
   - Acceptation : checklist DESIGN §9 sur captures 360, 390, 768, 1440 px en clair et sombre ; traitement du formulaire sur orange validé ou corrigé (D11) ; DESIGN.md mis à jour si une décision change.
   - Vérification : `cd e2e && npx playwright test --project=screens` hors CI, ou captures manuelles listées dans le rapport.
   - Fichiers : `docs/DESIGN.md` (si décision modifiée)
   - Dépend de : T25-T33
 
-- [ ] T35 [agent: code-reviewer] Revue de code du point de contrôle C
+- [x] T35 [agent: code-reviewer] Revue de code du point de contrôle C
   - Acceptation : SSR sûr (aucun accès `window`/`localStorage` hors navigateur), a11y du code (rôles, focus, aria-live), reduced-motion, pas de `transition: all`, aucune propriété animée hors `transform`/`opacity`, surcomplexité.
   - Vérification : `cd frontend && npm test && npm run lint && npm run build && grep -rn 'transition: all' src/ ; test $? -eq 1`.
   - Fichiers : —
@@ -224,13 +224,13 @@
 
 ## Phase 4 : Qualité et mise en production
 
-- [ ] T36 [agent: qa-engineer] E2E Playwright + axe dans la CI
+- [x] T36 [agent: qa-engineer] E2E Playwright + axe dans la CI
   - Acceptation : parcours SPEC §8 du V1 : accueil → CV (nom `Enzo-Leveque-CV-FR.pdf`), accueil → contact (e-mail visible dans Mailpit, 6e envoi → message 429), bascule de thème persistée sans flash, `javaScriptEnabled: false` : 5 sections lisibles, clavier : checkpoints et road book ; axe zéro violation clair et sombre ; job `e2e` ajouté à la CI (avec `docker compose`).
   - Vérification : `docker compose up --build -d && cd frontend && npx playwright test`.
   - Fichiers : `frontend/playwright.config.ts` (testDir `../e2e`), `e2e/cv.spec.ts`, `e2e/contact.spec.ts`, `e2e/home.spec.ts`, `.github/workflows/ci.yml`
   - Dépend de : T32, T34, T35
 
-- [ ] T37 [agent: qa-engineer] Lighthouse CI et passe break-ui
+- [x] T37 [agent: qa-engineer] Lighthouse CI et passe break-ui
   - Acceptation : `lighthouserc.json` mobile, seuils perf ≥ 0,9, a11y/bp/SEO ≥ 0,95, assertions bloquantes ; job CI ; break-ui (noms longs, champs vides, API en panne) : écarts corrigés ou listés en tâches.
   - Vérification : `cd frontend && npx lhci autorun --config=lighthouserc.json`.
   - Fichiers : `frontend/lighthouserc.json`, `.github/workflows/ci.yml`

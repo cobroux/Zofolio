@@ -1,0 +1,131 @@
+:host {
+  display: none;
+  --p: 0;
+}
+@media (min-width: 1100px) {
+  :host {
+    display: block;
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: 72px;
+    z-index: 10;
+    background: var(--bg);
+  }
+}
+nav {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.km {
+  font: 600 15px/1 var(--font-text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.track {
+  position: relative;
+  flex: 1 1 auto;
+  width: 48px;
+  container-type: size;
+}
+svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+path {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+.rest {
+  stroke: var(--line-muted);
+  stroke-width: 2;
+}
+.done {
+  stroke: var(--accent);
+  stroke-width: 3.5;
+}
+/* Masque de progression : seul will-change autorisé (DESIGN §7). État discret par défaut (reduced-motion, sans scroll-timeline). */
+.mask {
+  transform-box: fill-box;
+  transform-origin: top;
+  transform: scaleY(var(--p));
+  will-change: transform;
+}
+.dot {
+  position: absolute;
+  left: 8px;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin: -5px 0 0 -5px;
+  transform: translateY(calc(var(--p) * 100cqh));
+}
+ul {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--target);
+  min-height: var(--target);
+  font: 600 13px/1 var(--font-text);
+  color: inherit;
+  text-decoration: none;
+  transition: transform 140ms var(--ease-out);
+}
+a:active {
+  transform: scale(0.97);
+}
+a[aria-current='location'] {
+  color: var(--accent);
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* Progression continue liée au scroll de la page (≈ linéaire : voir CHECKPOINTS pour les repères exacts). */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    .mask {
+      animation: fill linear both;
+      animation-timeline: scroll(root);
+    }
+    .dot {
+      animation: move linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+}
+@keyframes fill {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes move {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100cqh);
+  }
+}

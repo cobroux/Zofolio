@@ -128,3 +128,7 @@ Non lu : CV (voir section 6).
 - Triathlon des Moines (format M, Fourmies) : 2h28. Source : Enzo (année À FOURNIR)
 - Chtriman (format S) : 1h16. Source : Enzo (année À FOURNIR)
 - Marathon de Paris 2026 : 42,195 km, 3h36. Source : Enzo (résultats https://results.timeto.com/detail/b08da3-14155-f2d2b69d3cae3de0)
+
+## Parcours universitaire (fourni par Enzo, 2026-10-15)
+- Licence informatique, Université d'Artois : 2020-2023. Source : Enzo
+- Master ILI, Université d'Artois : 2023-2025 (en alternance chez Worldline). Source : Enzo

@@ -20,6 +20,11 @@ import { ThemeToggle } from '../theme/theme-toggle';
       min-height: 64px;
       padding-inline: var(--margin);
     }
+    @media (min-width: 1100px) {
+      header {
+        padding-inline-end: calc(var(--margin) + 72px);
+      }
+    }
     .wordmark {
       display: inline-flex;
       align-items: center;

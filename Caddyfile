@@ -1,0 +1,13 @@
+# Dev local : un seul point d'entrée 127.0.0.1:4000. En prod (T38), même routage derrière TLS.
+:4000 {
+	encode zstd gzip
+	handle /api/* {
+		# Écrase X-Forwarded-For par l'IP réelle du client : le back ne fait confiance à aucune valeur fournie.
+		reverse_proxy backend:8080 {
+			header_up X-Forwarded-For {remote_host}
+		}
+	}
+	handle {
+		reverse_proxy frontend:4000
+	}
+}

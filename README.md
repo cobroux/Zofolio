@@ -5,7 +5,7 @@ Portfolio d'Enzo Leveque : Angular 22 (SSR) côté front, Spring Boot 4.1 et Pos
 ## Commandes de dev
 
 ```bash
-# Tout lancer en local
+# Tout lancer en local : http://localhost:4000 (Caddy : /api/* -> backend, le reste -> frontend)
 docker compose up --build
 # Back
 cd backend && ./mvnw verify            # build + tests unitaires et d'intégration

@@ -28,7 +28,7 @@ export interface ProjectSummary {
 
 export interface Race {
   kind: 'RACE' | 'INDEX' | 'CLUB';
-  date: string;
+  date: string | null;
   name: string;
   distanceKm: number | null;
   elevationGainM: number | null;
