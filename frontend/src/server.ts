@@ -29,6 +29,11 @@ app.get(/^\/(en(\/.*)?)?$/, (req, res) => {
   res.redirect(302, req.path === '/' ? '/fr/' : req.originalUrl.replace(/^\/en/, '/fr'));
 });
 
+// robots.txt et sitemap.xml doivent répondre à la racine ; le build les place sous /fr/.
+app.get(['/robots.txt', '/sitemap.xml'], (req, res) => {
+  res.sendFile(join(browserDistFolder, 'fr', req.path));
+});
+
 /**
  * Serve static files from /browser
  */

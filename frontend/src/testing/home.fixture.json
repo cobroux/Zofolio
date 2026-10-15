@@ -1,0 +1,79 @@
+{
+  "experiences": [
+    {
+      "stage": "P1",
+      "kind": "EDUCATION",
+      "title": "Master ILI, Université d'Artois",
+      "body": "Texte de test.",
+      "period": "2023–2025",
+      "stack": [
+        "Java",
+        "Angular"
+      ],
+      "note": null
+    },
+    {
+      "stage": "R1",
+      "kind": "AID",
+      "title": "Brancardier aux urgences",
+      "body": "Texte de test.",
+      "period": null,
+      "stack": null,
+      "note": "Note de test."
+    },
+    {
+      "stage": "P2",
+      "kind": "MISSION",
+      "title": "Mission de test",
+      "body": "Texte de test.",
+      "period": "8 mois",
+      "stack": [
+        "Java 21",
+        "Spring Boot"
+      ],
+      "note": "Note de test."
+    }
+  ],
+  "projects": [
+    {
+      "slug": "oltre",
+      "tier": "CASE_STUDY",
+      "stage": "P3",
+      "title": "Oltre",
+      "pitch": "Pitch de test.",
+      "aiTag": "HAND_THEN_AI",
+      "stack": [
+        "Java 21",
+        "Spring Boot",
+        "Angular"
+      ],
+      "duration": "8 mois",
+      "commits": 412,
+      "note": "Note de test.",
+      "repoUrl": "https://github.com/cobroux/oltre",
+      "demoUrl": null
+    }
+  ],
+  "races": [
+    {
+      "kind": "RACE",
+      "date": "2025-06-01",
+      "name": "Grand Trail d'Auvergne",
+      "distanceKm": 79.4,
+      "elevationGainM": 3160,
+      "durationS": 48953,
+      "note": "Note de test.",
+      "personalRecord": false
+    },
+    {
+      "kind": "INDEX",
+      "date": "2025-06-01",
+      "name": "UTMB index 459",
+      "distanceKm": null,
+      "elevationGainM": null,
+      "durationS": null,
+      "note": null,
+      "personalRecord": false
+    }
+  ]
+}
