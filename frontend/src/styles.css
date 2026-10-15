@@ -92,6 +92,43 @@ video {
   animation-timing-function: ease;
 }
 
+/* Entrée des blocs (DESIGN §7) : caché seulement si le script inline a posé html.js ; sans JS tout est visible. */
+.reveal {
+  transition:
+    opacity 320ms var(--ease-out),
+    transform 320ms var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 60ms);
+}
+html.js .reveal:not(.in) {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.reveal.now {
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal:not(.in) {
+    transform: none;
+  }
+  .reveal {
+    transition-property: opacity !important;
+    transition-duration: 160ms !important;
+    transition-delay: 0s;
+  }
+}
+
+/* Sans JS le formulaire n'est pas soumissible (il enverrait le message dans l'URL) : seul le <noscript> reste. */
+html:not(.js) app-contact-form form > :not(noscript) {
+  display: none;
+}
+
+/* La barre road book sticky (--target) ne doit pas recouvrir le haut d'une section après un saut d'ancre. */
+@media (max-width: 1099px) {
+  section[id] {
+    scroll-margin-top: var(--target);
+  }
+}
+
 /* Le rail fixe (72 px) occupe le bord droit dès 1100 px. */
 @media (min-width: 1100px) {
   main {

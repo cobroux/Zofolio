@@ -34,8 +34,9 @@ describe('JournalSection', () => {
     expect(el.querySelectorAll('.pr').length).toBe(1);
     expect(el.querySelector('.pr')?.textContent).toContain('Record personnel');
     expect(el.querySelector('tbody tr')?.textContent).toContain('13 h 35 min 53 s');
-    expect(el.textContent).toContain('UTMB index 459');
-    expect(el.textContent?.toLowerCase()).not.toContain('classement :');
+    expect(el.querySelector('tbody th')?.textContent).toContain('Grand Trail d\'Auvergne (GTA)');
+    expect(el.textContent!.replace('Un chiffre, pas un classement.', '')).not.toMatch(/classement|rang|place/i);
+    expect(el.querySelectorAll('tbody td:first-child')[4].textContent).toContain('Date non renseignée'); // dates NULL du seed
   });
 
   it('affiche une course sans date sans planter', () => {

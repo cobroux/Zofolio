@@ -5,8 +5,8 @@ import { Experience } from '../../core/api/api.models';
 @Component({
   selector: 'app-aid',
   template: `
-    <aside>
-      <p class="d tnum">Ravito · km {{ km() }}</p>
+    <section class="aid">
+      <p class="d tnum"><ng-container i18n>Ravito · km</ng-container> {{ km() }}</p>
       @if (aid(); as a) {
         <div>
           <p>
@@ -19,13 +19,13 @@ import { Experience } from '../../core/api/api.models';
       } @else {
         <p role="status" i18n>Contenu indisponible pour le moment.</p>
       }
-    </aside>
+    </section>
   `,
   styles: `
     :host {
       display: block;
     }
-    aside {
+    section {
       display: flex;
       flex-wrap: wrap;
       align-items: baseline;

@@ -22,6 +22,11 @@ import { RouterLink } from '@angular/router';
       color: var(--ink-2);
       font-size: var(--t-small);
     }
+    @media (min-width: 1100px) {
+      footer {
+        padding-inline-end: calc(var(--margin) + 72px);
+      }
+    }
     a {
       display: inline-flex;
       align-items: center;

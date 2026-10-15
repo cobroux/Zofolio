@@ -1,26 +1,27 @@
 import { Component, computed, input } from '@angular/core';
 import { HomeResponse } from '../../../core/api/api.models';
 import { Aid } from '../../../shared/aid/aid';
+import { Reveal } from '../../../shared/reveal/reveal';
 import { Split } from '../../../shared/split/split';
 
 /** P2 (Worldline, km 44, la plus longue étape) suivi du ravitaillement R2. `home` null = API en échec. */
 @Component({
   selector: 'app-p2',
-  imports: [Aid, Split],
+  imports: [Aid, Reveal, Split],
   template: `
-    <section id="p2">
-      <div class="head">
+    <section id="p2" aria-labelledby="p2-title">
+      <div class="head" appReveal>
         <span class="stage d tnum" i18n>P2 · km 44 · la plus longue étape</span>
-        <h2 i18n>2,5 ans sur une appli de trading</h2>
+        <h2 id="p2-title" i18n>2,5 ans sur une appli de trading</h2>
       </div>
-      <p class="lead" i18n>
-        De mars 2023 à septembre 2025, chez Worldline, à Seclin : d'abord développeur back-end, puis développeur fullstack dans une équipe Scrum. Une
-        application de trading de titres, où une erreur ne se voit pas dans un log : elle se voit dans un ordre.
+      <p class="lead" [appReveal]="1" i18n>
+        Chez Worldline, de 2023 à 2025 : 2,5 ans d'expérience professionnelle. L'application permet à des professionnels de la finance d'acheter et de
+        vendre des titres en bourse. Ici, une erreur ne se voit pas dans un log : elle se voit dans un ordre.
       </p>
       @if (home() === null) {
         <p class="unavailable" role="status" i18n>Contenu indisponible pour le moment.</p>
       } @else {
-        <ol>
+        <ol [appReveal]="2">
           @for (m of missions(); track m.title) {
             <li>
               <h3>{{ m.title }}</h3>

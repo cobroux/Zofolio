@@ -57,18 +57,18 @@
   "races": [
     {
       "kind": "RACE",
-      "date": "2025-06-01",
-      "name": "Grand Trail d'Auvergne",
+      "date": "2025-10-11",
+      "name": "Grand Trail d'Auvergne (GTA)",
       "distanceKm": 79.4,
       "elevationGainM": 3160,
       "durationS": 48953,
-      "note": "Départ à 6 h 30, arrivée à 20 h 05.",
+      "note": "Départ à 6 h 30, arrivée à 20 h 05. Une journée entière sans réunion.",
       "personalRecord": false
     },
     {
       "kind": "RACE",
-      "date": "2026-05-01",
-      "name": "Trail Côte d'Opale",
+      "date": "2026-09-13",
+      "name": "Côte d'Opale",
       "distanceKm": 62.9,
       "elevationGainM": 893,
       "durationS": 27159,
@@ -77,62 +77,52 @@
     },
     {
       "kind": "RACE",
-      "date": "2025-05-01",
-      "name": "Trail Côte d'Opale",
+      "date": "2025-09-14",
+      "name": "Côte d'Opale",
       "distanceKm": 63.3,
       "elevationGainM": 891,
       "durationS": 27471,
-      "note": null,
+      "note": "La référence à battre.",
       "personalRecord": false
     },
     {
       "kind": "RACE",
-      "date": "2026-04-01",
-      "name": "Marathon de Paris",
-      "distanceKm": 42.195,
-      "elevationGainM": null,
-      "durationS": 12960,
-      "note": null,
-      "personalRecord": false
-    },
-    {
-      "kind": "RACE",
-      "date": "2025-04-01",
-      "name": "Marathon Louvre-Lens (Route du Louvre)",
-      "distanceKm": 42.195,
+      "date": "2025-05-11",
+      "name": "Marathon du Louvre-Lens (La Route du Louvre)",
+      "distanceKm": 42.2,
       "elevationGainM": null,
       "durationS": 14165,
-      "note": null,
+      "note": "Quatre minutes de moins que les 4 heures.",
       "personalRecord": false
     },
     {
       "kind": "RACE",
-      "date": "2025-01-01",
-      "name": "Triathlon des Moines M",
+      "date": null,
+      "name": "Marathon de Paris 2026",
+      "distanceKm": 42.2,
+      "elevationGainM": null,
+      "durationS": 12960,
+      "note": "Sous les 3 h 40, dans les rues de Paris.",
+      "personalRecord": false
+    },
+    {
+      "kind": "RACE",
+      "date": null,
+      "name": "Triathlon des Moines (format M, Fourmies)",
       "distanceKm": null,
       "elevationGainM": null,
       "durationS": 8880,
-      "note": null,
+      "note": "Trois sports, un seul chrono.",
       "personalRecord": false
     },
     {
       "kind": "RACE",
-      "date": "2025-01-01",
-      "name": "Chtriman S",
+      "date": null,
+      "name": "Chtriman (format S)",
       "distanceKm": null,
       "elevationGainM": null,
       "durationS": 4560,
-      "note": null,
-      "personalRecord": false
-    },
-    {
-      "kind": "INDEX",
-      "date": "2025-06-01",
-      "name": "UTMB index 459",
-      "distanceKm": null,
-      "elevationGainM": null,
-      "durationS": null,
-      "note": null,
+      "note": "Format court, rythme soutenu.",
       "personalRecord": false
     }
   ]

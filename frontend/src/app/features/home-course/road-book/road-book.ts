@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, afterNextRender, inject, viewChild, ElementRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, afterNextRender, inject, viewChild, ElementRef } from '@angular/core';
 import { CHECKPOINTS } from '../profile.data';
 import { CHECKPOINT_IDS, CourseProgress, TOTAL_KM, formatKm, profilePath } from '../course-progress';
 
@@ -20,8 +20,12 @@ export class RoadBook {
   protected readonly progress = inject(CourseProgress);
   protected readonly d = profilePath(false);
   protected readonly formatKm = formatKm;
-  protected readonly total = TOTAL_KM;
   protected readonly steps = CHECKPOINT_IDS.map((id) => ({ id, km: CHECKPOINTS[id], ...STEPS[id] }));
+  protected readonly label = computed(() => {
+    const [km, total] = [formatKm(this.progress.km()), formatKm(TOTAL_KM)];
+    return $localize`Ouvrir le road book : km ${km} sur ${total}`;
+  });
+  private target: string | null = null;
   private readonly dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
   private readonly trigger = viewChild.required<ElementRef<HTMLButtonElement>>('trigger');
 
@@ -33,12 +37,17 @@ export class RoadBook {
     this.dialog().nativeElement.showModal();
   }
 
-  protected close(): void {
+  /** `target` : section visée par un lien d'étape, qui reçoit le focus à la fermeture. */
+  protected close(target: string | null = null): void {
+    this.target = target;
     this.dialog().nativeElement.close();
   }
 
-  /** Appelé à tout `close` (Esc, tap sur une étape, bouton) : le focus revient au déclencheur. */
+  /** Appelé à tout `close` : le focus va à la section choisie, sinon (Esc, bouton) revient au déclencheur. */
   protected restoreFocus(): void {
-    this.trigger().nativeElement.focus({ preventScroll: true });
+    const section = this.target ? document.getElementById(this.target) : null;
+    this.target = null;
+    if (section) section.tabIndex = -1;
+    (section ?? this.trigger().nativeElement).focus({ preventScroll: true });
   }
 }

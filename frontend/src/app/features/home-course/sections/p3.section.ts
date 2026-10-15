@@ -1,20 +1,21 @@
 import { Component, computed, input } from '@angular/core';
 import { ProjectSummary } from '../../../core/api/api.models';
+import { Reveal } from '../../../shared/reveal/reveal';
 import { AiTag } from '../../../shared/ai-tag/ai-tag';
 
 /** Mosaïque asymétrique 7/5, 5/7, 12 (classes `.m1` à `.m3` cycliques). */
 @Component({
   selector: 'app-p3-section',
-  imports: [AiTag],
+  imports: [AiTag, Reveal],
   template: `
     <section id="p3" aria-labelledby="p3-title">
-      <header>
+      <header appReveal>
         <span class="km" i18n>P3 · km 58,2</span>
         <h2 id="p3-title" i18n>Nés de la course</h2>
       </header>
       @if (items(); as list) {
         @for (p of list; track p.slug; let i = $index) {
-          <article [class]="'m' + (i % 3)">
+          <article [class]="'m' + (i % 3)" [appReveal]="1 + (i % 2)">
             <div class="head">
               <h3>{{ p.title }}</h3>
               <app-ai-tag [tag]="p.aiTag" />

@@ -1,4 +1,5 @@
 import { Component, computed, input } from '@angular/core';
+import { Reveal } from '../../../shared/reveal/reveal';
 import { Race } from '../../../core/api/api.models';
 
 /** 79.4 → « 79,4 km ». */
@@ -20,17 +21,35 @@ const ELEVATION = new Intl.NumberFormat('fr-FR');
 /** Pas de classement : uniquement des chiffres. Les lignes `INDEX`/`CLUB` ne sont pas des courses. */
 @Component({
   selector: 'app-journal-section',
+  imports: [Reveal],
   template: `
     <section id="journal" aria-labelledby="journal-title">
-      <div class="intro">
-        <h2 id="journal-title" i18n>Journal de course</h2>
+      <h2 id="journal-title" appReveal i18n>Journal de course</h2>
+      <figure [appReveal]="1">
+        <picture>
+          <source type="image/avif" srcset="img/finisher-cote-d-opale-640.avif 640w, img/finisher-cote-d-opale-1280.avif 1280w" sizes="(min-width: 768px) 352px, 100vw" />
+          <source type="image/webp" srcset="img/finisher-cote-d-opale-640.webp 640w, img/finisher-cote-d-opale-1280.webp 1280w" sizes="(min-width: 768px) 352px, 100vw" />
+          <img
+            src="img/finisher-cote-d-opale-640.jpg"
+            srcset="img/finisher-cote-d-opale-640.jpg 640w, img/finisher-cote-d-opale-1280.jpg 1280w"
+            sizes="(min-width: 768px) 352px, 100vw"
+            width="1280"
+            height="1600"
+            loading="lazy"
+            decoding="async"
+            i18n-alt
+            alt="Enzo montre sa médaille de finisher devant l'affiche du Trail Côte d'Opale"
+          />
+        </picture>
+      </figure>
+      <div class="intro" [appReveal]="1">
         @for (r of others(); track r.name) {
           <p class="other">{{ r.name }}</p>
         }
         <p class="fun" i18n>Un chiffre, pas un classement.</p>
       </div>
       @if (rows(); as list) {
-        <table>
+        <table [appReveal]="2">
           <caption class="sr" i18n>Courses terminées</caption>
           <thead>
             <tr>
@@ -70,7 +89,7 @@ const ELEVATION = new Intl.NumberFormat('fr-FR');
           </tbody>
         </table>
       } @else {
-        <p class="unavailable" i18n>Contenu indisponible pour le moment.</p>
+        <p class="unavailable" role="status" i18n>Contenu indisponible pour le moment.</p>
       }
     </section>
   `,
@@ -83,9 +102,22 @@ const ELEVATION = new Intl.NumberFormat('fr-FR');
       background: var(--surface);
     }
     h2 {
+      grid-column: 1 / -1;
       margin: 0;
       font-family: var(--font-display);
       font-size: var(--t-display);
+    }
+    figure {
+      margin: 0;
+      max-width: 22rem;
+    }
+    figure img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+    }
+    table, .unavailable {
+      grid-column: 1 / -1;
     }
     .intro {
       display: flex;
@@ -130,9 +162,12 @@ const ELEVATION = new Intl.NumberFormat('fr-FR');
       align-items: center;
       gap: var(--s-1);
       margin-left: var(--s-2);
-      color: var(--accent);
+      color: var(--ink);
       font-size: var(--t-small);
       font-weight: 600;
+    }
+    .pr svg {
+      color: var(--accent);
     }
     .sr {
       position: absolute;
@@ -142,7 +177,7 @@ const ELEVATION = new Intl.NumberFormat('fr-FR');
       clip-path: inset(50%);
     }
     /* Mobile : une carte par course, libellés issus de data-label. */
-    @media (max-width: 767px) {
+    @media (max-width: 1023px) {
       thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
       table, tbody, tr, td, tbody th { display: block; }
       tbody tr { padding: var(--s-3) 0; }
@@ -151,7 +186,7 @@ const ELEVATION = new Intl.NumberFormat('fr-FR');
       td:empty { display: none; }
     }
     @media (min-width: 768px) {
-      section { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); }
+      section { grid-template-columns: minmax(0, 22rem) minmax(0, 1fr); align-items: start; }
     }
   `,
 })

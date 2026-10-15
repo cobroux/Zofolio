@@ -39,10 +39,14 @@ describe('RoadBook', () => {
     expect(document.activeElement).toBe(trigger);
 
     trigger.click();
+    const section = document.createElement('section');
+    section.id = 'depart';
+    document.body.append(section);
     el.querySelector<HTMLAnchorElement>('ol a')!.addEventListener('click', (e) => e.preventDefault());
     el.querySelector<HTMLAnchorElement>('ol a')!.click();
     expect(dialog.hasAttribute('open')).toBe(false);
-    expect(document.activeElement).toBe(trigger);
+    expect(document.activeElement).toBe(section); // le focus suit le lien, pas le déclencheur
+    section.remove();
     el.remove();
   });
 });

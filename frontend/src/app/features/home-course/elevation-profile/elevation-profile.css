@@ -22,7 +22,7 @@ nav {
   gap: 8px;
 }
 .km {
-  font: 600 13px/1 var(--font-text);
+  font: 600 15px/1 var(--font-text);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }

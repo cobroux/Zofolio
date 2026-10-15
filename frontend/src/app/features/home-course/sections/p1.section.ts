@@ -1,27 +1,28 @@
 import { Component, computed, input } from '@angular/core';
 import { HomeResponse } from '../../../core/api/api.models';
 import { Aid } from '../../../shared/aid/aid';
+import { Reveal } from '../../../shared/reveal/reveal';
 import { SegmentCard } from '../../../shared/segment-card/segment-card';
 
 /** P1 (Les fondations, km 20) suivi du ravitaillement R1. `home` null = API en échec. */
 @Component({
   selector: 'app-p1',
-  imports: [Aid, SegmentCard],
+  imports: [Aid, Reveal, SegmentCard],
   template: `
-    <section id="p1">
-      <div class="head">
+    <section id="p1" aria-labelledby="p1-title">
+      <div class="head" appReveal>
         <span class="stage d tnum" i18n>P1 · km 20</span>
-        <h2 i18n>Les fondations</h2>
+        <h2 id="p1-title" i18n>Les fondations</h2>
       </div>
       @if (home(); as h) {
-        <div class="intro">
+        <div class="intro" [appReveal]="1">
           @if (master(); as m) {
             <p class="master">{{ m.title }}</p>
             <p>{{ m.body }}</p>
           }
           <p class="small" i18n>Voie romaine sur le GR3 : c'est à peu près ici que le trail devient sérieux.</p>
         </div>
-        <div class="cards">
+        <div class="cards" [appReveal]="2">
           @for (p of cards(); track p.slug; let first = $first) {
             <app-segment-card [project]="p" [large]="first" [class.first]="first" />
           }

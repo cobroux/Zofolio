@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
+import { Reveal } from '../../../shared/reveal/reveal';
 import { ContactForm } from '../../contact/contact-form';
 
 /** Statique (D3) : ne dépend pas de l'API. */
 @Component({
   selector: 'app-finish-section',
-  imports: [ContactForm],
+  imports: [ContactForm, Reveal],
   template: `
     <section id="arrivee" aria-labelledby="arrivee-title">
-      <div class="intro">
+      <h2 id="arrivee-title" appReveal i18n>Prochain objectif : 100 km… et un nouveau poste</h2>
+      <div class="intro" [appReveal]="1">
         <p class="chronos" i18n>Dossard 1592 · 79,4 km · 3 160 m D+ · 13 h 35 min 53 s</p>
-        <h2 id="arrivee-title" i18n>Prochain objectif : 100 km… et un nouveau poste</h2>
         <p class="lead" i18n>Je cherche un poste d'ingénieur fullstack Java / Spring Boot et Angular. Recherche basée à Paris.</p>
         <ul>
           <li><ng-container i18n>E-mail</ng-container> : <a href="mailto:enzo.lvq12@gmail.com">enzo.lvq12@gmail.com</a></li>
@@ -19,7 +20,7 @@ import { ContactForm } from '../../contact/contact-form';
         </ul>
         <p i18n>Français, anglais (TOEIC 910)</p>
       </div>
-      <app-contact-form />
+      <app-contact-form [appReveal]="2" />
       <p class="foot" i18n>13 h 35 min 53 s. Phidippides aurait signé.</p>
     </section>
   `,
@@ -33,7 +34,7 @@ import { ContactForm } from '../../contact/contact-form';
       color: var(--on-accent);
     }
     .intro { display: flex; flex-direction: column; gap: var(--s-5); align-items: flex-start; }
-    h2 { margin: 0; font-family: var(--font-display); font-size: var(--t-display); }
+    h2 { grid-column: 1 / -1; margin: 0; font-family: var(--font-display); font-size: clamp(2.25rem, 7vw, 6rem); text-wrap: balance; }
     p { margin: 0; }
     .chronos { font-variant-numeric: tabular-nums; font-size: var(--t-small); }
     .lead { font-size: var(--t-lead); font-weight: 600; max-width: 28ch; }

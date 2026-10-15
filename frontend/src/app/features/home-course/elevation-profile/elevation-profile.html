@@ -12,7 +12,7 @@
     @for (c of items; track c.id) {
       <li>
         <a [href]="'#' + c.id" [attr.aria-current]="progress.active() === c.id ? 'location' : null">
-          {{ c.short }}<span class="sr-only"> {{ c.full }}, km {{ formatKm(c.km) }}</span>
+          {{ c.short }}<span class="sr-only"> {{ c.full }}, <ng-container i18n>km</ng-container> {{ formatKm(c.km) }}</span>
         </a>
       </li>
     }

@@ -59,7 +59,7 @@ export function globalMessage(r: Extract<ContactResult, { ok: false }>): string 
 @Component({
   selector: 'app-contact-form',
   template: `
-    <form novalidate (submit)="submit($event)" aria-labelledby="form-title">
+    <form method="post" novalidate (submit)="submit($event)" aria-labelledby="form-title">
       <h3 id="form-title" i18n>Écrire un message</h3>
 
       <div class="field">
@@ -169,6 +169,8 @@ export class ContactForm {
     this.errors.set(errors);
     if (Object.keys(errors).length) {
       this.global.set($localize`Quelques champs sont à corriger avant l'envoi.`);
+      const first = (['name', 'email', 'company', 'message'] as Field[]).find((f) => errors[f]);
+      (e.target as HTMLFormElement).querySelector<HTMLElement>(`[name="${first}"]`)?.focus();
       return;
     }
     this.sending.set(true);

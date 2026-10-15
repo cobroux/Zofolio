@@ -57,4 +57,34 @@ describe('CourseProgress.start', () => {
     document.body.replaceChildren();
     vi.unstubAllGlobals();
   });
+
+  it('start() deux fois : déconnecte l\'ancien observateur et observe les nouveaux nœuds', () => {
+    const disconnect = vi.fn();
+    const observed: Element[] = [];
+    vi.stubGlobal(
+      'IntersectionObserver',
+      class {
+        observe(e: Element) {
+          observed.push(e);
+        }
+        disconnect = disconnect;
+      },
+    );
+    const mk = () => {
+      const s = document.createElement('section');
+      s.id = 'depart';
+      document.body.append(s);
+      return s;
+    };
+    const p = TestBed.inject(CourseProgress);
+    mk();
+    p.start();
+    document.body.replaceChildren(); // navigation vers les mentions légales puis retour : sections recréées
+    const fresh = mk();
+    p.start();
+    expect(disconnect).toHaveBeenCalledTimes(1);
+    expect(observed.at(-1)).toBe(fresh);
+    document.body.replaceChildren();
+    vi.unstubAllGlobals();
+  });
 });

@@ -25,7 +25,7 @@ describe('ContentApi', () => {
     const { api, http } = setup('browser');
     const res = firstValueFrom(api.home());
     http.expectOne((r) => r.url === '/api/fr/home').flush(fixture as HomeResponse);
-    expect((await res)?.races.length).toBe(8);
+    expect((await res)?.races.length).toBe(7);
   });
 
   it("appelle l'URL absolue côté serveur", () => {

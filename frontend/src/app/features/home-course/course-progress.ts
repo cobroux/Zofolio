@@ -30,16 +30,16 @@ export class CourseProgress {
   readonly active = signal<CheckpointId>('depart');
   readonly km = computed(() => CHECKPOINTS[this.active()]);
   readonly ratio = computed(() => this.km() / TOTAL_KM);
-  private started = false;
+  private io?: IntersectionObserver;
 
-  /** Navigateur seulement ; idempotent. Sans section dans le DOM, l'état reste « depart ». */
+  /** Navigateur seulement. Réobserve les sections courantes (la page d'accueil peut être recréée). Sans section, l'état reste « depart ». */
   start(): void {
-    if (this.started || typeof IntersectionObserver === 'undefined') return;
-    this.started = true;
-    const io = new IntersectionObserver(
+    if (typeof IntersectionObserver === 'undefined') return;
+    this.io?.disconnect();
+    const io = (this.io = new IntersectionObserver(
       (entries) => entries.filter((e) => e.isIntersecting).forEach((e) => this.active.set(e.target.id as CheckpointId)),
       { rootMargin: '-50% 0px -50% 0px' },
-    );
+    ));
     CHECKPOINT_IDS.forEach((id) => {
       const el = document.getElementById(id);
       if (el) io.observe(el);

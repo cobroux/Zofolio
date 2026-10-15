@@ -3,11 +3,11 @@ import { CHECKPOINTS } from '../profile.data';
 import { CHECKPOINT_IDS, CourseProgress, TOTAL_KM, formatKm, profilePath } from '../course-progress';
 
 const LABELS = {
-  depart: { short: '0', full: $localize`Départ` },
-  p1: { short: 'P1', full: $localize`Fondations` },
-  p2: { short: 'P2', full: $localize`Worldline` },
-  p3: { short: 'P3', full: $localize`Projets perso` },
-  arrivee: { short: 'Arr.', full: $localize`Arrivée` },
+  depart: { short: $localize`0`, full: $localize`Départ` },
+  p1: { short: $localize`P1`, full: $localize`Fondations` },
+  p2: { short: $localize`P2`, full: $localize`Worldline` },
+  p3: { short: $localize`P3`, full: $localize`Projets perso` },
+  arrivee: { short: $localize`Arr.`, full: $localize`Arrivée` },
 };
 
 @Component({
