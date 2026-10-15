@@ -16,7 +16,7 @@ export function formatDuration(s: number | null): string {
   return [h ? `${h} h` : '', h || m ? `${m} min` : '', sec || (!h && !m) ? `${sec} s` : ''].filter(Boolean).join(' ');
 }
 
-const ELEVATION = new Intl.NumberFormat('fr-FR');
+const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
 
 /** Pas de classement : uniquement des chiffres. Les lignes `INDEX`/`CLUB` ne sont pas des courses. */
 @Component({

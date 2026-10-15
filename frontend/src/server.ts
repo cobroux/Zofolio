@@ -24,9 +24,9 @@ const angularApp = new AngularNodeAppEngine();
  * ```
  */
 
-// D6 : V1 = FR seul. `/` -> `/fr/` ; `/en/*` -> `/fr/*`.
-app.get(/^\/(en(\/.*)?)?$/, (req, res) => {
-  res.redirect(302, req.path === '/' ? '/fr/' : req.originalUrl.replace(/^\/en/, '/fr'));
+// D21 : `/` -> `/fr/` ou `/en/` selon Accept-Language (FR par défaut). `/en/*` est servi tel quel.
+app.get('/', (req, res) => {
+  res.vary('Accept-Language').redirect(302, `/${req.acceptsLanguages('fr', 'en') || 'fr'}/`);
 });
 
 // robots.txt et sitemap.xml doivent répondre à la racine ; le build les place sous /fr/.

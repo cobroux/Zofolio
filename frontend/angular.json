@@ -33,7 +33,9 @@
             "server": "src/main.server.ts",
             "outputMode": "server",
             "security": {
-              "allowedHosts": ["localhost"]
+              "allowedHosts": [
+                "localhost"
+              ]
             },
             "ssr": {
               "entry": "src/server.ts"
@@ -42,8 +44,10 @@
               "@angular/localize/init"
             ],
             "localize": [
-              "fr"
-            ]
+              "fr",
+              "en"
+            ],
+            "i18nMissingTranslation": "error"
           },
           "configurations": {
             "production": {
@@ -101,6 +105,12 @@
         "sourceLocale": {
           "code": "fr",
           "subPath": "fr"
+        },
+        "locales": {
+          "en": {
+            "translation": "src/locale/messages.en.xlf",
+            "subPath": "en"
+          }
         }
       }
     }

@@ -19,7 +19,7 @@
   - Fichiers : `docs/content/facts-v2-case-studies.md`
   - Dépend de : —
 
-- [ ] V2-T3 [agent: content-researcher · haiku] Consolider les faits V2
+- [x] V2-T3 [agent: content-researcher · haiku] Consolider les faits V2
   - Acceptation : réponses de T2 intégrées avec leur source (« Source : Enzo ») ; garmin-mcp sorti des études de cas (fiche courte) ; nouvelle section « Dépôts par projet » : chaque projet non masqué → liste de dépôts GitHub `cobroux/*` (Oltre : `Oltre-backend`, `oltre-frontend` ; GFaim : `GFaim-api`, `GFaim-app` ; Cin-folie : `Cin-folie-website` ; LambdaCalcul : `LambdalCalcul-project` ; DPE : `Projet-JAI-Devops-DPE-calculator`…) ; aucun fait inventé.
   - Vérification : `grep -c 'À FOURNIR' docs/content/facts-v2-case-studies.md` = 0, ou chaque reste justifié ; `gh repo view cobroux/<nom>` répond pour chaque dépôt listé.
   - Fichiers : `docs/content/facts-v2-case-studies.md`
@@ -51,19 +51,19 @@
 
 ## Phase 1 : Briques (back ∥ front, contrat = plan-v2 §4)
 
-- [ ] V2-T8 [agent: backend-dev · sonnet] Schéma projet V2 et DTO d'étude de cas
+- [x] V2-T8 [agent: backend-dev · sonnet] Schéma projet V2 et DTO d'étude de cas
   - Acceptation : changeset `20261016-0100-project-v2.sql` (plan-v2 §4.5 : migration `repo_url` → `github_repos`, suppression de `commits` et `repo_url`) ; entité `Project` à jour ; `I18n.pick` générique (D14) ; `ProjectSummary` étendu (`languages`, `lastPushAt`, `video`, `caseStudy`) et `CaseStudy`, `Decision`, `Video`, `RepoLink` en records ; `repoUrl` dérivé ; `caseStudy` à `null` dans les listes et pour un `SHORT` ; en attendant T10, `commits`/`languages`/`lastPushAt` valent `null`/`[]`/`null`.
   - Vérification : `cd backend && ./mvnw verify` (IT : détail d'une étude de cas sur des données de test, `decisions` EN absentes → liste FR, `video` → 3 URL, fiche courte → `caseStudy: null`, `HIDDEN` → 404 ; `SeedContentIT` toujours vert).
   - Fichiers : `db/changelog/changes/20261016-0100-project-v2.sql`, `content/Project.java`, `content/ContentDto.java`, `content/ContentService.java`, `shared/I18n.java`, `content/ContentApiIT.java`, `content/ContentServiceTest.java`
   - Dépend de : T1
 
-- [ ] V2-T9 [agent: backend-dev · sonnet] github-sync : client GraphQL et cache en base
+- [x] V2-T9 [agent: backend-dev · sonnet] github-sync : client GraphQL et cache en base
   - Acceptation : package `githubsync/` : `GithubClient` (`RestClient`, timeouts 10 s, `Authorization: Bearer`, requête plan-v2 §4.6), `GithubSyncService.sync()` transactionnel (D18), entités `GithubRepo` et `GithubContributions`, changeset `20261016-0200-github-cache.sql` ; réponse validée (HTTP 200, pas de `errors`, `user` non nul ; noms ≤ 100 caractères, nombres ≥ 0) ; token vide → aucun appel ; le token n'apparaît dans aucun log.
   - Vérification : `cd backend && ./mvnw verify` (`MockRestServiceServer` : succès → lignes écrites ; 401, 500, `errors` GraphQL, `user: null`, timeout → cache précédent intact ; token vide → 0 requête).
   - Fichiers : `githubsync/GithubClient.java`, `githubsync/GithubSyncService.java`, `githubsync/GithubRepo.java`, `githubsync/GithubRepoRepository.java`, `githubsync/GithubContributions.java`, `githubsync/GithubContributionsRepository.java`, `db/changelog/changes/20261016-0200-github-cache.sql`, `githubsync/GithubSyncServiceTest.java`, `githubsync/GithubSyncIT.java`, `backend/src/test/resources/github/graphql-ok.json`, `backend/src/main/resources/application.properties`
   - Dépend de : T8
 
-- [ ] V2-T10 [agent: backend-dev · sonnet] github-sync : planification et exposition dans l'API
+- [x] V2-T10 [agent: backend-dev · sonnet] github-sync : planification et exposition dans l'API
   - Acceptation : `@EnableScheduling` ; `@Scheduled(fixedRateString = "PT6H", initialDelayString = "PT30S")` ; `ProjectSummary.commits` = somme, `languages` = 3 premiers par octets cumulés, `lastPushAt` = maximum, sur les seuls `github_repos` du projet (D15, D16) ; `home.contributions` (plan-v2 §4.3) ou `null`. Aucun dépôt hors `github_repos` exposé.
   - Vérification : `cd backend && ./mvnw verify` (tests : agrégation sur 2 dépôts, cache vide → `null`/`[]`, dépôt non curé jamais exposé ; couverture `ContentService` et `GithubSyncService` ≥ 80 %).
   - Fichiers : `ZofolioApplication.java`, `githubsync/GithubSyncJob.java`, `content/ContentService.java`, `content/ContentDto.java`, `content/ContentServiceTest.java`, `content/ContentApiIT.java`
@@ -81,19 +81,19 @@
   - Fichiers : `cv/CvController.java`, `cv/CvApiIT.java`, `backend/src/main/resources/cv/Enzo-Leveque-CV-EN.pdf`, `backend/src/test/resources/cv/Enzo-Leveque-CV-EN.pdf`
   - Dépend de : T6
 
-- [ ] V2-T13 [agent: frontend-dev · sonnet] Modèles et client API V2
+- [x] V2-T13 [agent: frontend-dev · sonnet] Modèles et client API V2
   - Acceptation : `api.models.ts` miroir exact de plan-v2 §4 (`ProjectSummary` étendu, `CaseStudy`, `Video`, `Contributions`) ; `ContentApi.project()` inchangé côté appel ; fixtures `project-oltre.fixture.json`, `project-trading-app.fixture.json` (`repos: []`, sans vidéo) et `home.fixture.json` complété (`contributions`, `video`, `languages`).
   - Vérification : `cd frontend && npm test && npm run lint`.
   - Fichiers : `core/api/api.models.ts`, `core/api/content.api.spec.ts`, `frontend/src/testing/home.fixture.json`, `frontend/src/testing/project-oltre.fixture.json`, `frontend/src/testing/project-trading-app.fixture.json`
   - Dépend de : T1
 
-- [ ] V2-T14 [agent: frontend-dev · sonnet] Infra i18n EN, redirection et bascule FR/EN
+- [x] V2-T14 [agent: frontend-dev · sonnet] Infra i18n EN, redirection et bascule FR/EN
   - Acceptation : `angular.json` (D22 : `localize: true`, locale `en`, `i18nMissingTranslation: "error"`) ; `ng extract-i18n` → `src/locale/messages.xlf` et `messages.en.xlf` (cibles FR en `state="initial"`) ; `server.ts` : redirection `/en` → `/fr` supprimée, `/` → `/fr/` ou `/en/` par `req.acceptsLanguages` + `Vary: Accept-Language` (D21), `robots.txt`/`sitemap.xml` toujours à la racine ; SEO : `hreflang` `fr`, `en`, `x-default` ; `sitemap.xml` (plan-v2 §4.6) ; bascule dans l'en-tête (D21 : ancre active conservée, `lang`/`hreflang`, cible 44 px) ; `og-en.jpg` si l'image OG contient du texte FR ; formats de dates et de nombres suivant `LOCALE_ID`.
   - Vérification : `cd frontend && npm test && npm run build && test -d dist/frontend/browser/en && node dist/frontend/server/server.mjs & sleep 2; curl -s -o /dev/null -w '%{redirect_url}' -H 'Accept-Language: en-US' localhost:4000/` → `/en/` ; `curl -s localhost:4000/en/ | grep -c -E 'lang="en"|hreflang="fr"|hreflang="en"'` = 3.
   - Fichiers : `frontend/angular.json`, `frontend/src/locale/messages.xlf`, `frontend/src/locale/messages.en.xlf`, `frontend/src/server.ts`, `core/seo/seo.service.ts`, `core/seo/seo.service.spec.ts`, `core/layout/header.ts`, `frontend/public/sitemap.xml`, `frontend/public/og/og-en.jpg`
   - Dépend de : T1 (fusion de `fix/retours-enzo`)
 
-- [ ] V2-T15 [agent: designer · sonnet] Direction V2 : page projet, clip, graphe, bascule
+- [x] V2-T15 [agent: designer · sonnet] Direction V2 : page projet, clip, graphe, bascule
   - Acceptation : DESIGN.md complété : mise en page de l'étude de cas (gabarit §8, variante Worldline sans schéma), composant Clip (ratio : trancher entre le 16:9 de §5 et le 16:10 de §8 ; portrait GFaim ; boutons Lecture/Pause ; affiche WebP de l'ADR 0003), graphe de contributions (5 tons, légende), bascule FR/EN dans l'en-tête, place de GFaim et des fiches courtes sur l'accueil (selon les réponses de T1).
   - Vérification : diff de `docs/DESIGN.md` relu par le tech lead ; aucune décision contraire à D20-D26 sans ADR.
   - Fichiers : `docs/DESIGN.md`

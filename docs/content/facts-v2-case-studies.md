@@ -16,7 +16,7 @@ Dépôts : `Oltre-backend` et `oltre-frontend`.
 
 ### Problème (pourquoi le projet existe)
 - Centraliser dans une seule application les données du quotidien d'Enzo, dont ses activités sportives Garmin. Source : SPEC.md §1 (tag « Commencé à la main, puis IA ») ; `Oltre-backend/README.md`, « Intégration Garmin ».
-- Motivation exacte d'Enzo : `À FOURNIR`.
+- Motivation (Enzo) : organiser sa vie professionnelle et personnelle dans un agenda complet (sport, dépenses, tâches, rendez-vous). Source : Enzo.
 
 ### Architecture (vue d'ensemble)
 - Frontend Angular (SPA, routes chargées à la demande, garde d'authentification, intercepteur qui ajoute le JWT aux seules requêtes vers son propre backend). Source : `oltre-frontend/src/app/app.routes.ts` ; `oltre-frontend/src/app/core/interceptors/auth.interceptor.ts`.
@@ -34,7 +34,7 @@ Dépôts : `Oltre-backend` et `oltre-frontend`.
 3. **Verrouillage de connexion par couple (email, IP), en mémoire.** Compromis : un tiers ne peut pas verrouiller le compte d'autrui depuis sa propre machine, mais l'état est perdu au redémarrage et n'est pas partagé entre plusieurs instances. Source : `auth/LoginAttemptService.java` (commentaire et `ConcurrentHashMap`) ; commit du 2026-10-14 « Verrouillage de connexion par couple (email, IP) ».
 
 ### Difficulté principale
-- Candidat : intégrer Garmin, qui dépend d'une API interne non officielle, et faire remonter les vraies erreurs jusqu'à l'interface. Source : commits du 2026-10-13 « Relaie le vrai message d'erreur Garmin » et « Réponse propre (502) au lieu d'une stack trace 500 » ; `Oltre-backend/README.md`, « Lancer avec Docker » (réseau d'entreprise avec proxy TLS). Confirmation par Enzo : `À FOURNIR`.
+- Synthétiser son idée et lui donner forme : passer d'un besoin flou (organiser vie pro et perso) à un produit concret (« mur du 60e km »). Source : Enzo. Construit seul, de zéro (Spring Boot et Angular mis en place par lui). L'intégration Garmin (API non officielle, 502 propre, commits du 2026-10-13) reste un point technique secondaire.
 
 ### Stack
 - Backend : Java 21, Spring Boot 4.1.0 (Web MVC, Data JPA, Validation, Security, Flyway), JJWT 0.12.6, MySQL Connector/J, springdoc-openapi 2.5.0, Lombok, Testcontainers (MySQL) pour les tests. Source : `Oltre-backend/pom.xml`.
@@ -46,10 +46,10 @@ Dépôts : `Oltre-backend` et `oltre-frontend`.
 - Premier commit : 2026-06-22 (« Initial commit ») pour les deux dépôts. Source : `git log` des deux dépôts.
 - Dernier commit : 2026-10-14 pour les deux dépôts. Source : `git log` des deux dépôts.
 - Nombre de commits : backend 145, frontend 210. Source : `git rev-list --count HEAD`.
-- Date de début réelle selon le CV : contradictoire (novembre 2025 ou mars 2026). Source : `docs/content/facts-v1.md`, section 7. Garder la date Git ou la date validée par Enzo : `À FOURNIR`.
+- Date de début : aucune affichée, seulement « en cours » (décision d'Enzo). Les dates Git ci-dessus restent internes. Source : Enzo.
 
 ### Statut
-- En cours : commits actifs jusqu'au 2026-10-14. Source : `git log`.
+- En cours. Source : Enzo ; `git log` (commits actifs jusqu'au 2026-10-14).
 
 ---
 
@@ -62,7 +62,7 @@ Dépôt : `ZoTracker/Zotracker`.
 
 ### Problème (pourquoi le projet existe)
 - Permettre aux proches de suivre une course en direct sans appli à installer. Source : `Zotracker/README.md`, premier paragraphe (« Tout fonctionne dans le navigateur du téléphone, sans appli à installer »).
-- Motivation exacte d'Enzo : `À FOURNIR` (non écrite dans le README).
+- Motivation (Enzo) : permettre à ses parents, sa famille et ses amis de suivre sa position pendant le marathon de Lille. Né pour cette course, il compte le réutiliser sur d'autres. Source : Enzo.
 
 ### Architecture (vue d'ensemble)
 - Position GPS : depuis le navigateur de l'admin (page ouverte, écran allumé) ou depuis une appli externe (OsmAnd, GPSLogger, Traccar Client), envoyée à `/api/ingest` avec une clé traceur. Source : `Zotracker/README.md`, « Envoyer sa position : navigateur ou appli dédiée » ; `docs/PLAN.md`, diagramme de la section 1.
@@ -96,7 +96,7 @@ Dépôt : `ZoTracker/Zotracker`.
 
 ---
 
-## 3. garmin-mcp
+## 3. garmin-mcp (fiche courte, hors études de cas, décision plan-v2 §1)
 
 Dépôt : `cobroux/garmin-mcp` (lien avec Oltre).
 
@@ -106,7 +106,7 @@ Dépôt : `cobroux/garmin-mcp` (lien avec Oltre).
 ### Problème (pourquoi le projet existe)
 - Donner à un assistant IA l'accès aux données sportives de l'utilisateur. Source : README (premier paragraphe).
 - Pourquoi un service séparé pour Oltre : le même service expose une API REST multi-utilisateur pour le backend Oltre. Source : README, section « Héberger le serveur pour l'utiliser dans claude.ai » ; `Oltre-backend/README.md`, « Intégration Garmin ».
-- Motivation exacte d'Enzo : `À FOURNIR`.
+- Motivation (Enzo) : exporter ses données Garmin vers Claude (serveur MCP) et les exposer en API à Oltre. Source : Enzo.
 
 ### Architecture (vue d'ensemble)
 - Client MCP (Claude Desktop, Claude Code, ou claude.ai via un connecteur) vers le serveur garmin-mcp, avec OAuth 2.1 mono-utilisateur pour claude.ai. Source : README, sections « Config Claude Desktop / Claude Code avec Docker » et « Héberger le serveur ».
@@ -131,7 +131,9 @@ Dépôt : `cobroux/garmin-mcp` (lien avec Oltre).
 - Nombre de commits : 29. Source : API GitHub, en-tête `Link` (`page=29` sur `per_page=1`).
 
 ### Statut
-- En cours (dernier commit le 2026-10-13). Statut confirmé par Enzo : `À FOURNIR`.
+- En cours de développement, mais stable. Source : Enzo.
+
+Fiche courte : pas de page d'étude de cas ; les sections Décisions et Difficulté ci-dessus restent en réserve.
 
 ---
 
@@ -141,13 +143,13 @@ Dépôts : `cobroux/GFaim-app` et `cobroux/GFaim-api`. Non déployé. Source : S
 
 ### Pitch
 - API de gestion de repas (« meal management ») qui s'appuie sur l'API externe Spoonacular. Source : `GFaim-api/README.md`, en-tête et section « Initial setup » (image Docker `api-meal-management`, base `meal_management_db`).
-- Description de l'application mobile ou web (`GFaim-app`) : `À FOURNIR`. Le README de `GFaim-app` sur `main` est un gabarit GitLab qui s'intitule « Projet-mobilite-JavaEE » et ne décrit pas le produit. Source : `https://raw.githubusercontent.com/cobroux/GFaim-app/main/README.md`.
+- Application Android native (`GFaim-app`). Équipe de 4 ; rôle d'Enzo : front et back. Source : Enzo.
 
 ### Problème (pourquoi le projet existe)
-- `À FOURNIR`. Aucun README ne l'explique. Le nom du dépôt de l'app (« Projet-mobilite-JavaEE ») suggère un projet universitaire, à confirmer. Source : `GFaim-app/README.md` ; SPEC.md §1, « Études de cas ».
+- Projet de fin d'études. Le professeur voulait un planificateur de repas pour sa famille ; cahier des charges initial à respecter, puis liberté d'innover au-delà. Source : Enzo. Innovations : seulement « des fonctionnalités proposées par l'équipe au-delà du cahier des charges » (rien de plus précis).
 
 ### Architecture (vue d'ensemble)
-- Application cliente : `À FOURNIR` (README non décrit).
+- Application cliente : Android native. Source : Enzo.
 - Client vers l'API GFaim : authentification par jeton JWT signé en RSA. Source : `GFaim-api/README.md`, « Generating auth keys ».
 - API GFaim vers PostgreSQL (base lancée par Docker Compose). Source : `GFaim-api/README.md`, « Containerized » et « Database ».
 - API GFaim vers Spoonacular (HTTPS avec un truststore dédié). Source : `GFaim-api/README.md`, « Generate Spoonacular certificate ».
@@ -158,12 +160,12 @@ Dépôts : `cobroux/GFaim-app` et `cobroux/GFaim-api`. Non déployé. Source : S
 2. **Truststore dédié pour l'API Spoonacular.** Compromis : la connexion HTTPS passe par un certificat importé à la main dans un fichier JKS ; contrepartie : étape manuelle à refaire sur chaque machine. Raison exacte (proxy ou choix) : `À FOURNIR`. Source : `GFaim-api/README.md`, « Generate Spoonacular certificate » et « IntelliJ ».
 
 ### Difficulté principale
-- `À FOURNIR` (candidat : configuration TLS et clés, documentée à la main dans le README ; confirmation d'Enzo requise).
+- Faire converger les idées de 4 personnes et tenir les délais de livraison. Ce qu'il en retire : un bon résultat et une bonne expérience d'équipe. Source : Enzo.
 
 ### Stack
 - API : Java 21 (`GFaim-api/README.md`, « Requirements »), Quarkus (`mvn quarkus:dev`), PostgreSQL, Docker Compose, Swagger/OpenAPI. Source : `GFaim-api/README.md`.
 - Langages du dépôt (API GitHub) : `GFaim-api` Java (502 Ko), Dockerfile (5 Ko), Smarty (4 Ko, rôle à confirmer) ; `GFaim-app` Java uniquement. Source : `https://api.github.com/repos/cobroux/GFaim-api/languages` et `.../GFaim-app/languages`.
-- Frameworks de l'app : `À FOURNIR`.
+- Application : Android natif, Java (seul langage du dépôt `GFaim-app`). Source : Enzo ; API GitHub.
 
 ### Dates et volume
 - `GFaim-api` : premier commit 2025-01-14, dernier commit 2025-03-28, 43 commits. Source : API GitHub, `repos/cobroux/GFaim-api/commits` (en-tête `Link` et liste des commits).
@@ -171,7 +173,7 @@ Dépôts : `cobroux/GFaim-app` et `cobroux/GFaim-api`. Non déployé. Source : S
 - Dépôts créés sur GitHub le 2025-04-25 (après les premiers commits, import probable). Source : API GitHub, `created_at`.
 
 ### Statut
-- Inachevé ou en pause : aucun commit depuis le 2025-03-28, non déployé. Statut confirmé par Enzo : `À FOURNIR`. Source : API GitHub ; SPEC.md §13, décision 5.
+- Terminé : projet de fin d'études livré ; non déployé. Source : Enzo ; SPEC.md §13, décision 5.
 
 ---
 
@@ -209,17 +211,42 @@ Règle absolue : aucun nom de client, d'architecture ni de fonctionnalité. Seul
 
 ---
 
-## 6. À FOURNIR (synthèse)
+## 6. À FOURNIR (synthèse, mise à jour après les réponses d'Enzo)
 
-- **Oltre** : motivation d'Enzo ; date de début validée (contradiction CV) ; difficulté principale confirmée ; statut confirmé.
-- **Zotracker** : motivation d'Enzo.
-- **garmin-mcp** : motivation d'Enzo ; statut confirmé.
-- **GFaim** : pitch et problème ; description de l'app et frameworks ; difficulté principale ; raison du truststore Spoonacular ; statut confirmé.
-- **Worldline** : nom de l'employeur (validation SPEC §9) ; dates exactes de l'alternance et du stage L3 ; validation de tout texte.
+- **Oltre** : rien (mur confirmé, aucune date de début affichée, « en cours »).
+- **Zotracker** : rien de bloquant (motivation reçue, source Enzo).
+- **garmin-mcp** : rien (en cours, stable).
+- **GFaim** : raison du truststore Spoonacular ; légende et description du clip.
+- **Worldline** : dates exactes de l'alternance et du stage L3 ; validation mot à mot d'Enzo. Le nom de l'employeur est autorisé (plan-v2 §9, décision 6).
+
+## 7. Dépôts par projet
+
+Vérifiés par `gh repo view cobroux/<nom>` le 2026-10-15 : tous publics.
+
+| Projet | Niveau | Dépôts | Langage principal |
+|---|---|---|---|
+| Oltre | étude de cas | `Oltre-backend`, `oltre-frontend` | Java, TypeScript |
+| Zotracker | étude de cas | `Zotracker` | JavaScript |
+| GFaim | étude de cas (P1) | `GFaim-api`, `GFaim-app` | Java |
+| Worldline | étude de cas | aucun (code interne) | sans objet |
+| garmin-mcp | fiche courte | `garmin-mcp` | Python |
+| HistoQuiz | fiche courte | `histoquiz` | Java |
+| LISP-Interpretor, BomberStudent | fiche courte (P1) | `LISP-Interpretor`, `BomberStudent` | voir V1 |
+| Calculateur DPE | fiche courte (P1) | `Projet-JAI-Devops-DPE-calculator` | Java |
+| Cin-folie | fiche compacte (P1) | `Cin-folie-website` | PHP (27 Ko), CSS |
+| quarkus-color | fiche compacte (P1) | `quarkus-color` | HTML (245 Ko), Java (1 Ko) |
+| ObjVLisp2023 | fiche compacte (P1) | `ObjVLisp2023` | Java |
+| LambdaCalcul | fiche compacte (P1) | `LambdalCalcul-project` | Haskell |
+
+Fiches compactes, faits des README : Cin-folie (projet PHP de L3, avec Maxime De Sainte Maresville ; recherche de films via TMDB, comptes, avis et notes ; SQLite via PDO), quarkus-color (gabarit Quarkus : ressource REST `/colors` renvoyant un texte, test `@QuarkusTest`, Dockerfiles, workflow `build-and-push` ; pas d'application au-delà), ObjVLisp2023 (projet ObjVLisp de L3 informatique, rendu du 31 janvier 2023 ; objet : modèle objet ObjVLisp en Java, en TDD avec des tests fournis, source Enzo ; commits « Bootstrap de :message et :accept »), LambdaCalcul (nom du projet « LCPF », avec Ugo Couché ; logique propositionnelle en Haskell : `genAllWorlds`, `sat`, `findWorlds`, puis `epiSat` et `update` ; problème 4 non résolu, source : `Episode_2/READ_ME.txt` et commits). Le README raw de `Cin-folie` et `LambdaCalcul` renvoie 404 sous ces noms : les dépôts réels sont `Cin-folie-website` et `LambdalCalcul-project`.
 
 ## Réponses d'Enzo (2026-10-15)
 - Oltre : organiser sa vie pro et perso dans un agenda complet (sport, dépenses, tâches, rendez-vous). Statut : en cours. Source : Enzo
 - Zotracker : permettre à ses parents, sa famille et ses amis de suivre sa position pendant le marathon de Lille ; il prévoit de réutiliser l'appli sur d'autres courses. Source : Enzo
 - garmin-mcp : exporter ses données Garmin vers Claude (serveur MCP) et les exposer en API à Oltre. Source : Enzo
 - GFaim : projet de fin d'études. Le professeur voulait un planificateur de repas pour sa famille, avec un cahier des charges initial à respecter, puis une liberté d'innover au-delà. Source : Enzo
-- Restent à fournir : mur technique d'Oltre, difficulté de GFaim, statut de garmin-mcp et de GFaim.
+- Oltre : construit seul, de zéro (Spring Boot et Angular mis en place par lui). Mur : synthétiser son idée et lui donner forme. Pas de date de début : « en cours ». Source : Enzo
+- GFaim : application Android native ; équipe de 4, Enzo en front et back ; difficultés : faire converger les idées, tenir les délais ; bilan : bon résultat, bonne expérience d'équipe ; terminé (projet de fin d'études livré). Source : Enzo
+- garmin-mcp : en cours de développement, mais stable. Source : Enzo
+- ObjVLisp2023 : TDD, tests fournis à faire passer. Source : Enzo
+- Restent à fournir : raison du truststore Spoonacular, clip GFaim, Worldline (relecture d'Enzo).

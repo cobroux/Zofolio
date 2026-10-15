@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="fr" data-theme-choice="system">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oltre — maquette page projet V2</title>
+<meta name="color-scheme" content="light dark">
+<!-- Maquette statique V2-T15. Textes de travail tirés de docs/content/facts-v2-case-studies.md, à valider (V2-T4/T5). Tokens = frontend/src/styles/tokens.css. Polices : pile de repli (Archivo / Source Sans 3 non embarquées dans la maquette). -->
+<style>
+:root{
+  color-scheme: light dark;
+  --bg:#f6f3ec;--surface:#ece8de;--ink:#14161a;--ink-2:#4a4d55;--accent:#c2410c;--on-accent:#fff;--line-muted:#8a8d94;--contour:rgb(20 22 26 / 6%);--focus:#14161a;
+  --font-display:archivo,'Archivo Fallback','Arial Narrow','Helvetica Neue',sans-serif;
+  --font-text:'Source Sans 3','Source Sans 3 Fallback',system-ui,sans-serif;
+  --t-display:clamp(3rem,9vw,8rem);--t-lead:clamp(1.375rem,2.2vw,1.75rem);--t-body:clamp(1.0625rem,1vw + .8rem,1.1875rem);--t-small:.9375rem;
+  --s-1:4px;--s-2:8px;--s-3:12px;--s-4:16px;--s-5:24px;--s-6:32px;--s-7:48px;--s-8:64px;--s-9:96px;--s-10:144px;
+  --gutter:16px;--margin:16px;--measure:62ch;--target:44px;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+}
+@media (min-width:768px){:root{--margin:24px;--gutter:24px}}
+@media (min-width:1100px){:root{--margin:32px}}
+@media (prefers-color-scheme:dark){:root:not([data-theme='light']){--bg:#0e1626;--surface:#16213a;--ink:#edeff4;--ink-2:#a9b1c3;--accent:#ff8a2b;--on-accent:#0e1626;--line-muted:#5b6b8c;--contour:rgb(237 239 244 / 5%);--focus:#edeff4}}
+:root[data-theme='dark']{color-scheme:dark;--bg:#0e1626;--surface:#16213a;--ink:#edeff4;--ink-2:#a9b1c3;--accent:#ff8a2b;--on-accent:#0e1626;--line-muted:#5b6b8c;--contour:rgb(237 239 244 / 5%);--focus:#edeff4}
+:root[data-theme='light']{color-scheme:light}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 var(--t-body)/1.5 var(--font-text);font-variant-numeric:lining-nums}
+h1,h2,h3{font-family:var(--font-display);font-stretch:75%;font-weight:800;letter-spacing:-.02em;line-height:.95;margin:0;text-wrap:balance}
+h1{font-size:var(--t-display)}
+h2{font-size:clamp(2.25rem,5.5vw,4.5rem)}
+h3{font-size:clamp(1.5rem,2.4vw,2rem);line-height:1}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums lining-nums}
+a{color:inherit;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+@media (hover:hover){a:hover{color:var(--accent)}}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.skip{position:absolute;left:var(--margin);top:-100px;background:var(--ink);color:var(--bg);padding:var(--s-3) var(--s-4);z-index:10}
+.skip:focus{top:var(--s-2)}
+.wrap{max-width:1440px;margin:0 auto;padding-inline:var(--margin)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:var(--target);min-width:var(--target);padding:0 var(--s-4);font:600 var(--t-small)/1 var(--font-text);background:transparent;color:inherit;border:0;cursor:pointer;text-decoration:none;transition:transform 140ms var(--ease-out)}
+.btn:active{transform:scale(.97);transition-duration:140ms}
+
+/* En-tête : wordmark à gauche, FR/EN et thème à droite */
+header.top{display:flex;align-items:center;justify-content:space-between;min-height:64px}
+.wordmark{font:800 1.25rem/1 var(--font-display);font-stretch:75%;text-decoration:none;display:inline-flex;align-items:center;min-height:var(--target)}
+.tools{display:flex;align-items:center;gap:var(--s-1)}
+.lang{display:flex;align-items:center}
+.lang a{display:inline-flex;align-items:center;justify-content:center;min-width:var(--target);min-height:var(--target);font:600 var(--t-small)/1 var(--font-text);text-decoration:none;color:var(--ink-2)}
+.lang a[aria-current='true']{color:var(--ink);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}
+.lang span{color:var(--line-muted)}
+.theme{background:var(--surface)}
+
+/* Hero : pitch + dossard de segment */
+.back{display:inline-flex;align-items:center;min-height:var(--target);font-size:var(--t-small)}
+.hero{display:grid;gap:var(--s-7);padding-block:var(--s-5) var(--s-9)}
+.hero h1{margin-block:var(--s-3) var(--s-5)}
+.lead{font-size:var(--t-lead);line-height:1.3;max-width:28ch}
+.tag{display:inline-flex;align-items:center;min-height:28px;padding:0 var(--s-3);margin-top:var(--s-5);background:var(--ink);color:var(--bg);font:600 var(--t-small)/1 var(--font-text)}
+.bib{position:relative;background:var(--surface);padding:var(--s-6) var(--s-5);align-self:start}
+.bib::before,.bib::after,.bib i::before,.bib i::after{content:'';position:absolute;width:12px;height:12px;border-radius:50%;background:var(--bg)}
+.bib::before{left:12px;top:12px}.bib::after{right:12px;top:12px}
+.bib i::before{left:12px;bottom:12px}.bib i::after{right:12px;bottom:12px}
+.bib .stage{font:900 clamp(2.5rem,5vw,3.75rem)/.9 var(--font-display);font-stretch:62%;color:var(--accent);margin:0 var(--s-4) var(--s-5)}
+.bib .stage small{display:block;font:600 var(--t-small)/1.3 var(--font-text);color:var(--ink-2);margin-top:var(--s-2);font-stretch:100%}
+.bib dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:var(--s-2) var(--s-5);padding-inline:var(--s-4)}
+.bib dt{color:var(--ink-2);font-size:var(--t-small)}
+.bib dd{margin:0;text-align:right;font-weight:600;font-variant-numeric:tabular-nums lining-nums}
+.bib .note{color:var(--ink-2);font-size:var(--t-small);margin:var(--s-5) var(--s-4) 0}
+
+/* Clip */
+.clip{margin:0 0 var(--s-9)}
+.clip .frame{position:relative;background:var(--ink);aspect-ratio:16/10;overflow:hidden}
+.clip video{display:block;width:100%;height:100%;object-fit:cover}
+.clip .fail{position:absolute;inset:auto 0 0 0;padding:var(--s-4);color:#edeff4;font-size:var(--t-small);display:none}
+.clip.is-missing .fail{display:block}
+.clip figcaption{display:flex;align-items:center;gap:var(--s-4);padding-top:var(--s-3);font-size:var(--t-small);color:var(--ink-2)}
+.clip .ctl{background:var(--ink);color:var(--bg);flex:none;min-width:96px}
+.clip.portrait .frame{aspect-ratio:9/19.5;max-height:min(70svh,640px);margin-inline:auto;width:auto}
+
+/* Corps : un rythme éditorial, trois bords (col. 1, 4, 7) */
+section.blk{padding-block:var(--s-9) 0}
+.grid{display:grid;gap:var(--s-5)}
+.grid>.txt{max-width:var(--measure)}
+.grid>.txt p+p{margin-top:var(--s-4)}
+.decisions{display:grid;gap:var(--s-7)}
+.decisions h3{margin-bottom:var(--s-3)}
+.decisions .tradeoff{color:var(--ink-2)}
+.decisions .tradeoff b{color:var(--ink);font-weight:600}
+
+figure.diagram{margin:var(--s-6) 0 0;background:var(--surface);padding:var(--s-5)}
+figure.diagram svg{display:block;width:100%;height:auto}
+figure.diagram .v{display:none}
+@media (max-width:899px){figure.diagram .h{display:none}figure.diagram .v{display:block;max-width:360px;margin-inline:auto}}
+figure.diagram figcaption{margin-top:var(--s-4);font-size:var(--t-small);color:var(--ink-2)}
+/* Style schéma : carrés pleins --surface relevés par l'encre, flèches en encre, un seul nœud orange = le mur */
+.d-box{fill:var(--bg)}
+.d-wall{fill:var(--accent)}
+.d-t{fill:var(--ink);font:600 15px var(--font-text)}
+.d-s{fill:var(--ink-2);font:400 15px var(--font-text)}
+.d-w{fill:var(--on-accent);font:600 15px var(--font-text)}
+.d-ws{fill:var(--on-accent);font:400 15px var(--font-text)}
+.d-a{stroke:var(--ink);stroke-width:2;fill:none}
+.d-opt{stroke-dasharray:6 5}
+.d-ah{fill:var(--ink)}
+.d-hot{stroke:var(--accent);stroke-width:3}
+.d-hah{fill:var(--accent)}
+
+.wall{background:var(--surface);margin-top:var(--s-9);padding-block:var(--s-9)}
+.wall .grid{gap:var(--s-5)}
+.wall .km{font:900 clamp(4rem,12vw,9rem)/.85 var(--font-display);font-stretch:62%;color:var(--accent)}
+.links{list-style:none;margin:var(--s-5) 0 0;padding:0;display:grid;gap:var(--s-1)}
+.links a{display:flex;align-items:center;min-height:var(--target)}
+.cta{background:var(--accent);color:var(--on-accent);margin-top:var(--s-6)}
+@media (hover:hover){.cta:hover{color:var(--on-accent)}}
+footer{padding-block:var(--s-9);color:var(--ink-2);font-size:var(--t-small)}
+
+/* Annexe : graphe de contributions (Journal) */
+.annex{background:var(--surface);margin-top:var(--s-10);padding-block:var(--s-9)}
+.annex .note{color:var(--ink-2);font-size:var(--t-small);margin-top:var(--s-3)}
+.carnet{margin-top:var(--s-6)}
+.carnet .scroll{overflow-x:auto;padding-bottom:var(--s-2)}
+.carnet .scroll svg{display:block;min-width:740px;width:100%;height:auto}
+.carnet .g0{fill:var(--line-muted)}
+.carnet .g1{fill:color-mix(in srgb,var(--accent) 35%,var(--surface))}
+.carnet .g2{fill:color-mix(in srgb,var(--accent) 55%,var(--surface))}
+.carnet .g3{fill:color-mix(in srgb,var(--accent) 78%,var(--surface))}
+.carnet .g4{fill:var(--accent)}
+.carnet .base{stroke:var(--ink);stroke-width:2}
+.carnet .scroll text{fill:var(--ink-2);font:400 15px var(--font-text);font-variant-numeric:tabular-nums}
+.carnet .peak{fill:var(--ink);font-weight:600}
+.legend{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-2) var(--s-3);margin-top:var(--s-4);font-size:var(--t-small);color:var(--ink-2)}
+.legend svg{display:inline-block;width:16px;height:16px;flex:none}
+.legend .sw{display:inline-flex;align-items:center;gap:var(--s-1)}
+
+@media (min-width:768px){
+  .hero{grid-template-columns:repeat(12,1fr);column-gap:var(--gutter)}
+  .hero .pitch{grid-column:1/8}
+  .hero .bib{grid-column:9/13}
+}
+@media (min-width:1100px){
+  .grid{grid-template-columns:repeat(12,1fr);column-gap:var(--gutter)}
+  .grid>h2{grid-column:1/4}
+  .grid>.txt,.grid>.decisions,.grid>.diagram-wrap{grid-column:4/12}
+  .decisions{grid-template-columns:1fr 1fr;column-gap:var(--gutter);row-gap:var(--s-7)}
+  .decisions article:first-child{grid-column:1/-1;max-width:var(--measure)}
+  .wall .grid>.km{grid-column:1/4}
+  .wall .grid>.txt{grid-column:4/12}
+  main{padding-right:72px} /* rail du profil non rendu sur la page projet : marge identique à l'accueil */
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<div class="wrap">
+<header class="top">
+  <a class="wordmark" href="#" aria-label="E. Leveque, accueil">E. Leveque</a>
+  <div class="tools">
+    <nav class="lang" aria-label="Langue">
+      <a href="#" lang="fr" hreflang="fr" aria-current="true">FR</a><span aria-hidden="true">/</span><a href="#" lang="en" hreflang="en" title="English">EN</a>
+    </nav>
+    <button class="btn theme" id="theme" type="button" aria-label="Thème : système">Thème</button>
+  </div>
+</header>
+
+<main id="contenu">
+  <a class="back" href="#">← Retour au parcours (P3, km 58,2)</a>
+
+  <div class="hero">
+    <div class="pitch">
+      <h1>Oltre</h1>
+      <p class="lead">Une application personnelle de pilotage du quotidien : sport, dépenses, tâches, repas, avec un backend Java et un frontend Angular séparés.</p>
+      <span class="tag">Commencé à la main, puis IA</span>
+    </div>
+    <aside class="bib" aria-label="Fiche du projet"><i></i>
+      <p class="stage">P3 · km 58,2<small>Segment : projets nés de la course</small></p>
+      <dl>
+        <dt>Durée</dt><dd>4 mois</dd>
+        <dt>Rôle</dt><dd>Seul développeur</dd>
+        <dt>Commits</dt><dd>355</dd>
+        <dt>Langages</dt><dd>Java · TypeScript · HTML</dd>
+        <dt>Dernier push</dt><dd>14 oct. 2026</dd>
+        <dt>Stack</dt><dd>Angular 22 · Spring Boot · MySQL</dd>
+      </dl>
+      <p class="note">Commits et langages : synchro GitHub, 6 h.</p>
+    </aside>
+  </div>
+
+  <figure class="clip" id="clip" aria-labelledby="clip-cap">
+    <div class="frame">
+      <video id="vid" muted loop playsinline preload="none" width="1280" height="800"
+        poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 800'%3E%3Crect width='1280' height='800' fill='%2314161a'/%3E%3Crect x='80' y='80' width='300' height='640' fill='%23232831'/%3E%3Crect x='420' y='80' width='780' height='180' fill='%23232831'/%3E%3Crect x='420' y='300' width='380' height='420' fill='%23232831'/%3E%3Crect x='840' y='300' width='360' height='420' fill='%23232831'/%3E%3C/svg%3E">
+        <source src="../../frontend/public/media/oltre-1.webm" type="video/webm">
+        <source src="../../frontend/public/media/oltre-1.mp4" type="video/mp4">
+      </video>
+      <p class="fail">Clip non encore enregistré (V2-T18) : l'affiche seule est montrée.</p>
+    </div>
+    <figcaption>
+      <button class="btn ctl" id="play" type="button">Lecture</button>
+      <span id="clip-cap">Parcours dans Oltre : dépenses, tâches, repas. Données factices, 22 s, sans son.</span>
+    </figcaption>
+  </figure>
+
+  <section class="blk" aria-labelledby="h-pb"><div class="grid">
+    <h2 id="h-pb">Le problème</h2>
+    <div class="txt">
+      <p>Mes données du quotidien vivent dans cinq applications : mes activités Garmin, mes dépenses, mes tâches, mes rendez-vous, mes repas. Je voulais les voir au même endroit, sans confier le tout à un service tiers.</p>
+      <p>Deux dépôts, un frontend Angular et un backend Spring Boot, un package par domaine, une authentification par jeton.</p>
+    </div></div></section>
+
+  <section class="blk" aria-labelledby="h-arch"><div class="grid">
+    <h2 id="h-arch">Le schéma</h2>
+    <div class="diagram-wrap">
+    <figure class="diagram">
+      <svg class="h" viewBox="0 0 900 330" role="img" aria-labelledby="dt-h dd-h">
+        <title id="dt-h">Architecture d'Oltre</title>
+        <desc id="dd-h">Le frontend Angular appelle le backend Spring Boot en REST avec un jeton JWT. Le backend lit MySQL, appelle le service garmin-mcp avec un jeton interne, qui interroge l'API Garmin Connect non officielle (le point fragile). Le backend appelle aussi Gemini pour le coach, de façon optionnelle.</desc>
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10z" class="d-ah"/></marker>
+          <marker id="ahh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10z" class="d-hah"/></marker>
+        </defs>
+        <rect class="d-box" x="0" y="125" width="170" height="80"/>
+        <text class="d-t" x="16" y="158">Frontend Angular</text><text class="d-s" x="16" y="182">nginx, SPA</text>
+
+        <rect class="d-box" x="290" y="85" width="200" height="160"/>
+        <text class="d-t" x="306" y="118">Backend Spring Boot</text>
+        <text class="d-s" x="306" y="144">sport, dépenses, tâches,</text><text class="d-s" x="306" y="164">rendez-vous, repas, coach</text><text class="d-s" x="306" y="196">Sécurité stateless (JWT)</text>
+
+        <rect class="d-box" x="640" y="10" width="170" height="70"/>
+        <text class="d-t" x="656" y="42">MySQL 8.4</text><text class="d-s" x="656" y="64">schéma Flyway</text>
+
+        <rect class="d-box" x="620" y="125" width="130" height="80"/>
+        <text class="d-t" x="636" y="158">garmin-mcp</text><text class="d-s" x="636" y="182">REST, Python</text>
+
+        <rect class="d-wall" x="780" y="125" width="120" height="80"/>
+        <text class="d-w" x="792" y="152">Garmin</text><text class="d-w" x="792" y="170">Connect</text><text class="d-ws" x="792" y="192">non officielle</text>
+
+        <rect class="d-box" x="640" y="250" width="170" height="70"/>
+        <text class="d-t" x="656" y="282">Gemini</text><text class="d-s" x="656" y="304">coach, optionnel</text>
+
+        <path class="d-a" d="M170 165H288" marker-end="url(#ah)"/><text class="d-s" x="180" y="152">REST + JWT</text>
+        <path class="d-a" d="M490 105H560V45H638" marker-end="url(#ah)"/><text class="d-s" x="500" y="97" text-anchor="start">JPA</text>
+        <path class="d-a" d="M490 165H618" marker-end="url(#ah)"/><text class="d-s" x="498" y="152">jeton interne</text>
+        <path class="d-a d-hot" d="M750 165H778" marker-end="url(#ahh)"/>
+        <path class="d-a d-opt" d="M490 225H560V285H638" marker-end="url(#ah)"/><text class="d-s" x="500" y="248">clé API</text>
+      </svg>
+      <svg class="v" viewBox="0 0 360 700" role="img" aria-labelledby="dt-v dd-v" aria-hidden="false">
+        <title id="dt-v">Architecture d'Oltre</title>
+        <desc id="dd-v">Frontend Angular, puis backend Spring Boot, qui lit MySQL, appelle garmin-mcp puis Garmin Connect (API non officielle, point fragile), et appelle Gemini de façon optionnelle.</desc>
+        <rect class="d-box" x="40" y="0" width="280" height="64"/><text class="d-t" x="56" y="30">Frontend Angular</text><text class="d-s" x="56" y="50">nginx, SPA</text>
+        <path class="d-a" d="M180 64V112" marker-end="url(#ah)"/><text class="d-s" x="192" y="94">REST + JWT</text>
+        <rect class="d-box" x="40" y="114" width="280" height="104"/><text class="d-t" x="56" y="144">Backend Spring Boot</text><text class="d-s" x="56" y="168">sport, dépenses, tâches,</text><text class="d-s" x="56" y="188">rendez-vous, repas, coach</text>
+        <path class="d-a" d="M120 218V266" marker-end="url(#ah)"/><text class="d-s" x="132" y="248">JPA</text>
+        <rect class="d-box" x="40" y="268" width="150" height="64"/><text class="d-t" x="56" y="298">MySQL 8.4</text><text class="d-s" x="56" y="318">Flyway</text>
+        <path class="d-a" d="M260 218V266" marker-end="url(#ah)"/><text class="d-s" x="270" y="246">jeton</text>
+        <rect class="d-box" x="200" y="268" width="120" height="64"/><text class="d-t" x="212" y="298">garmin-mcp</text><text class="d-s" x="212" y="318">REST</text>
+        <path class="d-a d-hot" d="M260 332V380" marker-end="url(#ahh)"/>
+        <rect class="d-wall" x="160" y="382" width="160" height="80"/><text class="d-w" x="174" y="410">Garmin Connect</text><text class="d-ws" x="174" y="434">API non officielle</text>
+        <path class="d-a d-opt" d="M100 218V500H128" marker-end="url(#ah)"/><text class="d-s" x="40" y="540">clé API</text>
+        <rect class="d-box" x="130" y="480" width="190" height="64"/><text class="d-t" x="146" y="510">Gemini</text><text class="d-s" x="146" y="530">coach, optionnel</text>
+      </svg>
+      <figcaption>Un trait plein : appel systématique. Pointillé : optionnel. Orange : la dépendance sur laquelle je n'ai aucune prise.</figcaption>
+    </figure></div></div></section>
+
+  <section class="blk" aria-labelledby="h-dec"><div class="grid">
+    <h2 id="h-dec">Trois décisions, trois compromis</h2>
+    <div class="decisions">
+      <article>
+        <h3>Garmin dans un service séparé</h3>
+        <p class="tradeoff"><b>Compromis :</b> un service de plus à lancer et à protéger par un jeton, en échange d'une bibliothèque non officielle isolée du backend. Les erreurs (identifiants, indisponibilité, MFA) sont relayées jusqu'à l'écran.</p>
+      </article>
+      <article>
+        <h3>Gemini plutôt qu'Anthropic pour le coach</h3>
+        <p class="tradeoff"><b>Compromis :</b> un palier gratuit, mais un coach inactif sans clé et un nom de modèle qu'il a déjà fallu corriger.</p>
+      </article>
+      <article>
+        <h3>Verrou de connexion par couple e-mail et IP</h3>
+        <p class="tradeoff"><b>Compromis :</b> personne ne peut verrouiller le compte d'autrui depuis sa machine, mais l'état est en mémoire : perdu au redémarrage, non partagé entre instances.</p>
+      </article>
+    </div></div></section>
+</main>
+
+</div>
+<div class="wall" id="mur">
+  <div class="wrap"><div class="grid">
+    <p class="km num" aria-hidden="true">km 60</p>
+    <div class="txt">
+      <h2>Le mur du 60e km</h2>
+      <p style="margin-top:var(--s-5)">Intégrer Garmin : une API interne sans garantie, des comptes MFA non supportés, un réseau d'entreprise qui casse le TLS. J'ai arrêté de masquer les échecs : le vrai message remonte, avec un 502 propre à la place d'une trace de pile.</p>
+    </div></div></div>
+</div>
+
+<div class="wrap">
+<main>
+  <section class="blk" aria-labelledby="h-ret"><div class="grid">
+    <h2 id="h-ret">Ce que j'en retire</h2>
+    <div class="txt">
+      <p>Isoler la dépendance instable coûte un conteneur de plus et évite qu'elle contamine le reste. Un message d'erreur honnête fait gagner plus de temps qu'un bel écran de secours.</p>
+      <p>Partie conçue avec l'IA : la couche coach et une partie des écrans. Le découpage par domaine et la sécurité ont été écrits à la main.</p>
+    </div></div></section>
+
+  <section class="blk" aria-labelledby="h-liens"><div class="grid">
+    <h2 id="h-liens">Liens</h2>
+    <div class="txt">
+      <ul class="links">
+        <li><a href="#">Oltre-backend sur GitHub</a></li>
+        <li><a href="#">oltre-frontend sur GitHub</a></li>
+        <li><a href="#clip">Revoir le clip</a></li>
+      </ul>
+      <a class="btn cta" href="#">Me contacter</a>
+    </div></div></section>
+</main>
+</div>
+
+<!-- Annexe hors gabarit : aperçu du graphe de contributions (section Journal de l'accueil). Données fictives. -->
+<div class="annex"><div class="wrap">
+  <h2>Carnet d'entraînement</h2>
+  <p class="note">Aperçu hors page projet : section Journal de l'accueil. Données fictives de maquette.</p>
+  <div class="carnet">
+    <p class="num" id="carnet-sum" style="font-size:var(--t-lead)">287 contributions sur 12 mois · 31 semaines actives sur 53 · meilleure semaine : 31</p>
+    <div class="scroll" tabindex="0" role="region" aria-labelledby="carnet-sum">
+<svg viewBox="0 0 742 170" role="img" aria-labelledby="gt"><title id="gt">Contributions GitHub par semaine sur 12 mois</title>
+<rect class="g2" x="0" y="87.9" width="10" height="32.1"/>
+<rect class="g1" x="14" y="108.2" width="10" height="11.8"/>
+<rect class="g3" x="28" y="79.2" width="10" height="40.8"/>
+<rect class="g0" x="42" y="117.0" width="10" height="3.0"/>
+<rect class="g0" x="56" y="117.0" width="10" height="3.0"/>
+<rect class="g1" x="70" y="111.1" width="10" height="8.9"/>
+<rect class="g0" x="84" y="117.0" width="10" height="3.0"/>
+<rect class="g2" x="98" y="87.9" width="10" height="32.1"/>
+<rect class="g0" x="112" y="117.0" width="10" height="3.0"/>
+<rect class="g1" x="126" y="102.4" width="10" height="17.6"/>
+<rect class="g0" x="140" y="117.0" width="10" height="3.0"/>
+<rect class="g0" x="154" y="117.0" width="10" height="3.0"/>
+<rect class="g3" x="168" y="79.2" width="10" height="40.8"/>
+<rect class="g3" x="182" y="79.2" width="10" height="40.8"/>
+<rect class="g0" x="196" y="117.0" width="10" height="3.0"/>
+<rect class="g0" x="210" y="117.0" width="10" height="3.0"/>
+<rect class="g0" x="224" y="117.0" width="10" height="3.0"/>
+<rect class="g3" x="238" y="79.2" width="10" height="40.8"/>
+<rect class="g0" x="252" y="117.0" width="10" height="3.0"/>
+<rect class="g0" x="266" y="117.0" width="10" height="3.0"/>
+<rect class="g1" x="280" y="102.4" width="10" height="17.6"/>
+<rect class="g0" x="294" y="117.0" width="10" height="3.0"/>
+<rect class="g3" x="308" y="79.2" width="10" height="40.8"/>
+<rect class="g0" x="322" y="117.0" width="10" height="3.0"/>
+<rect class="g1" x="336" y="102.4" width="10" height="17.6"/>
+<rect class="g0" x="350" y="117.0" width="10" height="3.0"/>
+<rect class="g1" x="364" y="111.1" width="10" height="8.9"/>
+<rect class="g2" x="378" y="99.5" width="10" height="20.5"/>
+<rect class="g4" x="392" y="61.7" width="10" height="58.3"/>
+<rect class="g4" x="406" y="24.0" width="10" height="96.0"/>
+<rect class="g2" x="420" y="87.9" width="10" height="32.1"/>
+<rect class="g2" x="434" y="99.5" width="10" height="20.5"/>
+<rect class="g4" x="448" y="61.7" width="10" height="58.3"/>
+<rect class="g2" x="462" y="87.9" width="10" height="32.1"/>
+<rect class="g0" x="476" y="117.0" width="10" height="3.0"/>
+<rect class="g1" x="490" y="102.4" width="10" height="17.6"/>
+<rect class="g2" x="504" y="87.9" width="10" height="32.1"/>
+<rect class="g0" x="518" y="117.0" width="10" height="3.0"/>
+<rect class="g1" x="532" y="111.1" width="10" height="8.9"/>
+<rect class="g0" x="546" y="117.0" width="10" height="3.0"/>
+<rect class="g0" x="560" y="117.0" width="10" height="3.0"/>
+<rect class="g0" x="574" y="117.0" width="10" height="3.0"/>
+<rect class="g4" x="588" y="67.5" width="10" height="52.5"/>
+<rect class="g3" x="602" y="79.2" width="10" height="40.8"/>
+<rect class="g2" x="616" y="87.9" width="10" height="32.1"/>
+<rect class="g4" x="630" y="67.5" width="10" height="52.5"/>
+<rect class="g4" x="644" y="67.5" width="10" height="52.5"/>
+<rect class="g2" x="658" y="87.9" width="10" height="32.1"/>
+<rect class="g0" x="672" y="117.0" width="10" height="3.0"/>
+<rect class="g0" x="686" y="117.0" width="10" height="3.0"/>
+<rect class="g1" x="700" y="108.2" width="10" height="11.8"/>
+<rect class="g1" x="714" y="102.4" width="10" height="17.6"/>
+<rect class="g0" x="728" y="117.0" width="10" height="3.0"/>
+<path class="base" d="M0 121H742"/>
+<text x="0" y="146">oct.</text>
+<text x="56" y="146">nov.</text>
+<text x="126" y="146">déc.</text>
+<text x="182" y="146">janv.</text>
+<text x="252" y="146">févr.</text>
+<text x="308" y="146">mars</text>
+<text x="364" y="146">avr.</text>
+<text x="434" y="146">mai</text>
+<text x="490" y="146">juin</text>
+<text x="560" y="146">juil.</text>
+<text x="616" y="146">août</text>
+<text x="686" y="146">sept.</text>
+<text class="peak" x="336" y="16">Meilleure semaine : 31</text>
+</svg>
+    </div>
+    <div class="legend" aria-hidden="true">
+      <span class="sw"><svg viewBox="0 0 16 16"><rect class="g0" x="0" y="13" width="16" height="3" style="fill:var(--line-muted)"/></svg> Repos</span>
+      <span class="sw"><svg viewBox="0 0 16 16"><rect x="3" y="2" width="10" height="14" style="fill:color-mix(in srgb,var(--accent) 35%,var(--surface))"/></svg> Léger</span>
+      <span class="sw"><svg viewBox="0 0 16 16"><rect x="3" y="2" width="10" height="14" style="fill:color-mix(in srgb,var(--accent) 55%,var(--surface))"/></svg></span>
+      <span class="sw"><svg viewBox="0 0 16 16"><rect x="3" y="2" width="10" height="14" style="fill:color-mix(in srgb,var(--accent) 78%,var(--surface))"/></svg></span>
+      <span class="sw"><svg viewBox="0 0 16 16"><rect x="3" y="2" width="10" height="14" style="fill:var(--accent)"/></svg> Charge</span>
+      <span>La hauteur donne la valeur ; le ton la répète.</span>
+    </div>
+  </div>
+</div></div>
+
+<footer><div class="wrap">Maquette V2-T15, statique. Rien n'est relié à l'API.</div></footer>
+
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById('theme'),modes=['system','light','dark'],i=0;
+  var lab={system:'Thème : système',light:'Thème : clair',dark:'Thème : sombre'};
+  btn.addEventListener('click',function(){
+    i=(i+1)%3;var m=modes[i];
+    if(m==='system')root.removeAttribute('data-theme');else root.setAttribute('data-theme',m);
+    btn.setAttribute('aria-label',lab[m]);btn.textContent=m==='system'?'Thème':m==='light'?'Clair':'Sombre';
+  });
+
+  /* Clip : lecture seulement si le contexte le permet, bouton toujours présent */
+  var v=document.getElementById('vid'),b=document.getElementById('play'),fig=document.getElementById('clip');
+  var c=navigator.connection||{};
+  var calm=matchMedia('(prefers-reduced-motion: reduce)').matches||c.saveData===true||/(^|slow-)2g$/.test(c.effectiveType||'');
+  function sync(){b.textContent=v.paused?'Lecture':'Pause';}
+  b.addEventListener('click',function(){
+    if(v.paused){v.preload='auto';v.play().catch(function(){});}else v.pause();
+  });
+  ['play','pause'].forEach(function(e){v.addEventListener(e,sync);});
+  v.addEventListener('error',function(){fig.classList.add('is-missing');},true);
+  v.querySelectorAll('source').forEach(function(s){s.addEventListener('error',function(){if(v.networkState===3)fig.classList.add('is-missing');});});
+  if(!calm&&'IntersectionObserver' in window){
+    new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){v.preload='auto';v.play().catch(function(){});}else v.pause();
+    });},{threshold:.5}).observe(v);
+  }
+  sync();
+})();
+</script>
+</body>
+</html>

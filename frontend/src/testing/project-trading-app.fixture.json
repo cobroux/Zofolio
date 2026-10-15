@@ -1,0 +1,39 @@
+{
+  "slug": "trading-app",
+  "tier": "CASE_STUDY",
+  "stage": "P1",
+  "title": "Trading app",
+  "pitch": "Pitch de test.",
+  "aiTag": "HAND_THEN_AI",
+  "stack": [
+    "Java 21",
+    "Spring Boot",
+    "Angular"
+  ],
+  "duration": "8 mois",
+  "commits": null,
+  "note": "Note de test.",
+  "repoUrl": null,
+  "demoUrl": null,
+  "languages": [],
+  "lastPushAt": null,
+  "video": null,
+  "caseStudy": {
+    "role": "Rôle de test",
+    "problem": "Problème de test.",
+    "decisions": [
+      {
+        "title": "Décision A",
+        "tradeoff": "Compromis A."
+      },
+      {
+        "title": "Décision B",
+        "tradeoff": "Compromis B."
+      }
+    ],
+    "wall": "Mur de test.",
+    "takeaway": "Leçon de test.",
+    "aiNote": null,
+    "repos": []
+  }
+}

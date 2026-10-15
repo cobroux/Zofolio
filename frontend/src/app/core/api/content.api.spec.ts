@@ -4,7 +4,8 @@ import { PLATFORM_ID } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { firstValueFrom } from 'rxjs';
 import fixture from '../../../testing/home.fixture.json';
-import { HomeResponse } from './api.models';
+import oltre from '../../../testing/project-oltre.fixture.json';
+import { HomeResponse, ProjectSummary } from './api.models';
 import { ContentApi } from './content.api';
 import { API_INTERNAL_URL, serverApiInterceptor } from './server-api.interceptor';
 
@@ -32,6 +33,13 @@ describe('ContentApi', () => {
     const { api, http } = setup('server');
     api.races().subscribe();
     http.expectOne((r) => r.url === 'http://backend:8080/api/fr/races').flush([]);
+  });
+
+  it("project() renvoie l'étude de cas du contrat V2", async () => {
+    const { api, http } = setup('browser');
+    const res = firstValueFrom(api.project('oltre'));
+    http.expectOne('/api/fr/projects/oltre').flush(oltre as ProjectSummary);
+    expect((await res)?.caseStudy?.repos.length).toBe(2);
   });
 
   it('renvoie null sur erreur', async () => {

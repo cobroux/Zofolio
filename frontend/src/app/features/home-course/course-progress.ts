@@ -37,8 +37,8 @@ export const altitudeRatioAt = (km: number) => (lerp(km, PROFILE) - MIN) / (MAX 
 export const kmAtScroll = (scroll: number, anchors: readonly (readonly [number, number])[]) =>
   lerp(scroll, anchors);
 
-/** « 79,4 » : km au dixième, virgule française. */
-export const formatKm = (km: number) => String(r(km)).replace('.', ',');
+/** « 79,4 » (fr) / « 79.4 » (en) : km au dixième, séparateur de la locale. */
+export const formatKm = (km: number) => r(km).toLocaleString($localize`:@@numberLocale:fr-FR`);
 
 /** Checkpoint actif = section qui croise la mi-hauteur du viewport (IntersectionObserver, aucun calcul de layout). */
 @Injectable({ providedIn: 'root' })

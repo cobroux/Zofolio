@@ -1,4 +1,4 @@
-// Miroir du contrat plan.md §4 : seule source de types API côté front.
+// Miroir du contrat plan-v2.md §4 : seule source de types API côté front.
 export type Stage = 'P1' | 'R1' | 'P2' | 'R2' | 'P3';
 
 export interface Experience {
@@ -24,6 +24,39 @@ export interface ProjectSummary {
   note: string | null;
   repoUrl: string | null;
   demoUrl: string | null;
+  languages: string[];
+  lastPushAt: string | null;
+  video: Video | null;
+  /** Toujours `null` dans les listes ; renseigné par `project(slug)` pour une étude de cas. */
+  caseStudy: CaseStudy | null;
+}
+
+/** URL relatives à `<base href>` (ADR 0003). */
+export interface Video {
+  mp4: string;
+  webm: string;
+  poster: string;
+  width: number;
+  height: number;
+  caption: string;
+}
+
+export interface CaseStudy {
+  role: string;
+  problem: string;
+  decisions: { title: string; tradeoff: string }[];
+  wall: string;
+  takeaway: string;
+  aiNote: string | null;
+  repos: { name: string; url: string }[];
+}
+
+export interface Contributions {
+  /** Premier jour (dimanche) du calendrier GitHub, `YYYY-MM-DD`. */
+  start: string;
+  counts: number[];
+  total: number;
+  syncedAt: string;
 }
 
 export interface Race {
@@ -41,6 +74,8 @@ export interface HomeResponse {
   experiences: Experience[];
   projects: ProjectSummary[];
   races: Race[];
+  /** `null` tant qu'aucune synchro GitHub n'a réussi. */
+  contributions: Contributions | null;
 }
 
 export interface ProblemDetail {

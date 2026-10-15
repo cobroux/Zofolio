@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { filter, map } from 'rxjs';
+import { CourseProgress } from '../../features/home-course/course-progress';
 import { ThemeToggle } from '../theme/theme-toggle';
 
 @Component({
@@ -9,7 +12,8 @@ import { ThemeToggle } from '../theme/theme-toggle';
     <a class="skip" href="#contenu" (click)="skip($event)" i18n>Aller au contenu</a>
     <header>
       <a class="wordmark" routerLink="/" i18n-aria-label aria-label="E. Leveque, accueil">E. Leveque</a>
-      <div class="tools"><!-- Bascule FR/EN masquée (D6). --><app-theme-toggle /></div>
+      <div class="tools">
+        <a class="lang" [href]="switchHref()" [attr.lang]="other" [attr.hreflang]="other" [attr.aria-label]="label">{{ other.toUpperCase() }}</a><app-theme-toggle /></div>
     </header>
   `,
   styles: `
@@ -34,6 +38,14 @@ import { ThemeToggle } from '../theme/theme-toggle';
       letter-spacing: -0.02em;
       text-decoration: none;
     }
+    .lang {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: var(--target);
+      min-height: var(--target);
+      font-weight: 600;
+    }
     .tools {
       display: flex;
       gap: var(--s-2);
@@ -54,6 +66,22 @@ import { ThemeToggle } from '../theme/theme-toggle';
   `,
 })
 export class Header {
+  // D21 : bascule = rechargement vers l'autre préfixe de locale ; chemin et section active conservés (l'ancre n'existe que sur l'accueil).
+  protected readonly other = $localize`:@@otherLocale:en`;
+  protected readonly label = $localize`:@@switchLabel:EN, version anglaise`;
+  private readonly router = inject(Router);
+  private readonly progress = inject(CourseProgress);
+  private readonly path = toSignal(
+    this.router.events.pipe(
+      filter((e) => e instanceof NavigationEnd),
+      map(() => this.router.url.split(/[?#]/)[0]),
+    ),
+    { initialValue: this.router.url.split(/[?#]/)[0] },
+  );
+  protected readonly switchHref = computed(
+    () => `/${this.other}${this.path()}${this.path() === '/' ? `#${this.progress.active()}` : ''}`,
+  );
+
   // Le href="#contenu" seul pointerait vers la racine du <base href="/fr/">.
   skip(event: Event) {
     event.preventDefault();

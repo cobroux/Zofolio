@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, LOCALE_ID } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
@@ -14,6 +14,7 @@ export class SeoService {
   private readonly doc = inject(DOCUMENT);
   private readonly title = inject(Title);
   private readonly meta = inject(Meta);
+  private readonly lang = inject(LOCALE_ID).slice(0, 2);
 
   constructor() {
     const router = inject(Router);
@@ -27,17 +28,18 @@ export class SeoService {
   }
 
   update(url: string, description: string, noindex = false, pageTitle?: string) {
-    const path = url.split(/[?#]/)[0].replace(/^\/(fr\/?)?/, '');
-    const href = `${SITE_URL}/fr/${path}`;
+    const path = url.split(/[?#]/)[0].replace(/^\/((fr|en)\/?)?/, '');
+    const at = (l: string) => `${SITE_URL}/${l}/${path}`;
+    const href = at(this.lang);
     const title = pageTitle ?? this.title.getTitle();
     const tags: Record<string, string> = {
       description,
       'og:type': 'website',
-      'og:locale': 'fr_FR',
+      'og:locale': this.lang === 'en' ? 'en_US' : 'fr_FR',
       'og:title': title,
       'og:description': description,
       'og:url': href,
-      'og:image': `${SITE_URL}/fr/og/og-fr.jpg`,
+      'og:image': `${SITE_URL}/${this.lang}/og/og-${this.lang}.jpg`,
       'twitter:card': 'summary_large_image',
       robots: noindex ? 'noindex' : 'index, follow',
     };
@@ -46,8 +48,9 @@ export class SeoService {
       this.meta.updateTag({ [key]: name, content }, `${key}="${name}"`);
     }
     this.link('canonical', href);
-    this.link('alternate', href, 'fr');
-    this.link('alternate', href, 'x-default');
+    this.link('alternate', at('fr'), 'fr');
+    this.link('alternate', at('en'), 'en');
+    this.link('alternate', at('fr'), 'x-default');
   }
 
   private link(rel: string, href: string, hreflang?: string) {
