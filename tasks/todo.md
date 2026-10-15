@@ -210,6 +210,7 @@
   - Dépend de : T3, T18
 
 - [ ] T34 [agent: designer] Revue design du point de contrôle C
+  - Décision d'Enzo (2026-10-15) : photo finisher (`img/finisher-*`) recadrée au choix du designer pour la meilleure composition, en retirant les passants flous ; bascule de thème système → clair → sombre validée ; domaine `enzoleveque.dev` provisoire (à confirmer à l'achat).
   - Acceptation : checklist DESIGN §9 sur captures 360, 390, 768, 1440 px en clair et sombre ; traitement du formulaire sur orange validé ou corrigé (D11) ; DESIGN.md mis à jour si une décision change.
   - Vérification : `cd e2e && npx playwright test --project=screens` hors CI, ou captures manuelles listées dans le rapport.
   - Fichiers : `docs/DESIGN.md` (si décision modifiée)
