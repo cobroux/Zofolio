@@ -17,3 +17,11 @@ Prérequis : Docker, ffmpeg, cwebp, et `frontend/node_modules` (le lien `tools/c
 3. `TRIM=1.5 tools/clips/encode.sh $TMP/out/zotracker.webm zotracker-1 4`, puis `down -v`.
 
 Vérifier : `ffprobe` (durée 15-30 s, sans audio), `du -k` <= 2560, aucune donnée réelle sur 3 images extraites.
+
+## GFaim (Android, portrait 540x1170, `-p gfaim-demo`)
+Dépôts publics `GFaim-app` et `GFaim-api` clonés dans un dossier temporaire. Aucune clé Spoonacular : l'API démarre avec une clé et un truststore factices, les recettes viennent de `gfaim-seed.sh`.
+1. API : `mvn -B package -DskipTests` (JDK 21), clés JWT générées par `openssl` dans `src/main/resources/META-INF/keys` (README de l'API), truststore JKS bidon (`keytool -genkeypair`), Postgres seul via `docker compose -p gfaim-demo` (hôte 127.0.0.1:55432). L'API tourne sur l'hôte (`QUARKUS_HTTP_PORT`) ; `SPOONACULAR_API_BASE_URL=http://127.0.0.1:9`.
+2. APK : Gradle 8.9 + JDK 21 (le dépôt n'a pas `gradle-wrapper.jar` : utiliser une distribution 8.9), `assembleDebug`. Si le port 8080 de l'hôte est pris, remplacer le port de `BASE_URL` (`ApiClient.java`) dans la copie temporaire seulement.
+3. `tools/clips/gfaim-seed.sh <API>` (utilisateur « Démo », 4 recettes, repas, courses).
+4. AVD `zofolio-demo` (android-35 google_apis_playstore arm64, pixel_6), `wm size 1080x2340`, `cmd package compile -m speed -f com.gfaim`, désactiver Play Store et apps Google superflues (sinon ANR), installer l'APK, puis `tools/clips/gfaim.sh $TMP/out` (enregistre via `screenrecord`, accélère x1,9, produit `gfaim-1.*` et `gfaim-shot-1..3.png`).
+5. Nettoyage : `adb emu kill`, `avdmanager delete avd -n zofolio-demo`, `docker compose -p gfaim-demo down -v`.
