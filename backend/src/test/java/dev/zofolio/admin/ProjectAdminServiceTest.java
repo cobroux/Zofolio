@@ -19,7 +19,7 @@ import dev.zofolio.shared.ApiException;
 class ProjectAdminServiceTest {
 
 	ProjectAdminService service = new ProjectAdminService(mock(ProjectRepository.class), mock(GithubRepoRepository.class),
-			mock(ContentService.class));
+			mock(ContentService.class), mock(MediaRepository.class));
 
 	static ProjectAdmin project(List<String> stack, Map<String, List<Decision>> decisions, Integer sortOrder) {
 		return new ProjectAdmin("ok", null, null, sortOrder, Map.of("fr", "T"), Map.of("fr", "P"), "AI", stack, null, null,

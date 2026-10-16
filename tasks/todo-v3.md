@@ -113,7 +113,7 @@
   - Fichiers : `admin/RaceAdminController.java`, `admin/SportYearController.java`, `content/SportYear.java`, `content/SportYearRepository.java`, `content/ContentDto.java`, `content/ContentService.java`, `admin/RaceSportAdminIT.java`, `20261017-0300-sport-year.sql`
   - Dépend de : T12
 
-- [ ] V3-T15 [agent: backend-dev · sonnet] Upload de médias validé
+- [x] V3-T15 [agent: backend-dev · sonnet] Upload de médias validé
   - Acceptation : D43-D44 et plan-v3 §3.5 ; changeset `20261017-0400-media.sql` ; ré-encodage `ImageIO` avec application de l'orientation EXIF ; parcours des boîtes MP4 (refus `udta`/`meta`) ; écriture atomique (fichier temporaire puis `move`) ; `delete` résolu sous `MEDIA_DIR` après contrôle du nom ; URL `mp4`/`poster` du `ProjectSummary` dérivées selon D44 ; volume `media` monté dans `docker-compose.yml` (back en écriture, Caddy en lecture) et route `/uploads/*` dans le `Caddyfile` de dev.
   - Vérification : `cd backend && ./mvnw verify` avec fixtures : JPEG avec GPS → sortie sans EXIF (`exiftool` vide en IT ou lecture des segments APP1) ; orientation 6 → largeur et hauteur inversées ; PNG renommé `.mp4` → `TYPE` ; 6 Mo → `SIZE` ; 5000 px → `DIMENSIONS` ; MP4 avec `©xyz` → `METADATA` ; sortie de `encode.sh` acceptée ; `DELETE` d'un média référencé → 409 ; nom `../x` impossible à atteindre.
   - Fichiers : `admin/MediaController.java`, `admin/MediaService.java`, `admin/ImageSanitizer.java`, `admin/Mp4Check.java`, `admin/MediaIT.java`, `admin/ImageSanitizerTest.java`, `admin/Mp4CheckTest.java`, `20261017-0400-media.sql`, `docker-compose.yml`, `Caddyfile`

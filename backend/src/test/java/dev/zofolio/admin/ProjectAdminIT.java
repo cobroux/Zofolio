@@ -116,6 +116,7 @@ class ProjectAdminIT {
 	@Test
 	void uploadedClipUrlsAreServedWithoutWebm() throws Exception {
 		var c = AdminClient.loggedIn(port);
+		jdbc.update("insert into media (file_name, kind, content_type, bytes) values ('0123456789abcdef01234567.mp4', 'VIDEO', 'video/mp4', 1), ('0123456789abcdef01234567.jpg', 'IMAGE', 'image/jpeg', 1) on conflict do nothing");
 		String video = "\"tier\":\"SHORT\",\"video\":{\"name\":\"clip-it\",\"mp4\":\"/uploads/0123456789abcdef01234567.mp4\","
 				+ "\"poster\":\"/uploads/0123456789abcdef01234567.jpg\",\"width\":1280,\"height\":800,\"caption\":{\"fr\":\"Legende\"}}";
 		assertThat(c.send("POST", "/api/admin/projects", body("clip-it", video)).statusCode()).isEqualTo(201);

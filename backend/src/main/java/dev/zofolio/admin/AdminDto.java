@@ -20,6 +20,9 @@ interface AdminDto {
 	record RaceAdmin(Long id, String kind, java.time.LocalDate date, Map<String, String> name, java.math.BigDecimal distanceKm,
 			Integer elevationGainM, Integer durationS, Map<String, String> note, Boolean personalRecord, Integer sortOrder) {}
 
+	record MediaAdmin(Long id, String url, String kind, String contentType, int bytes, Integer width, Integer height,
+			java.time.Instant createdAt, List<String> usedBy) {}
+
 	record GithubRepoAdmin(String name, java.time.Instant pushedAt, Integer commits, List<String> languages,
 			List<String> projects) {}
 }

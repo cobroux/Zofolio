@@ -37,8 +37,11 @@ class ProjectAdminService {
 	private final ProjectRepository projects;
 	private final GithubRepoRepository githubRepos;
 	private final ContentService content;
+	private final MediaRepository media;
 
-	ProjectAdminService(ProjectRepository projects, GithubRepoRepository githubRepos, ContentService content) {
+	ProjectAdminService(ProjectRepository projects, GithubRepoRepository githubRepos, ContentService content,
+			MediaRepository media) {
+		this.media = media;
 		this.projects = projects;
 		this.githubRepos = githubRepos;
 		this.content = content;
@@ -57,7 +60,7 @@ class ProjectAdminService {
 	@Transactional
 	ProjectAdmin create(ProjectAdmin in) {
 		Check c = new Check();
-		Project p = fill(new Project(), in, c, true);
+		Project p = fill(new Project(), in, c, true, media::existsByFileName);
 		c.throwIfAny();
 		if (projects.findBySlug(p.slug).isPresent()) {
 			throw ApiException.conflict();
@@ -83,7 +86,7 @@ class ProjectAdminService {
 		Project.Tier keep = p.tier;
 		int keepOrder = p.sortOrder;
 		Check c = new Check();
-		fill(p, in, c, false);
+		fill(p, in, c, false, media::existsByFileName);
 		c.throwIfAny();
 		p.slug = slug; // immuable (D47)
 		if (p.tier == null) {
@@ -107,7 +110,7 @@ class ProjectAdminService {
 	@Transactional(readOnly = true)
 	ProjectSummary preview(String lang, ProjectAdmin in) {
 		Check c = new Check();
-		Project p = fill(new Project(), in, c, false);
+		Project p = fill(new Project(), in, c, false, media::existsByFileName);
 		c.throwIfAny();
 		p.tier = Project.Tier.CASE_STUDY;
 		if (p.slug == null) {
@@ -127,7 +130,8 @@ class ProjectAdminService {
 	}
 
 	/** Valide chaque champ et l'applique à {@code p} (les erreurs sont dans {@code c}). */
-	private static Project fill(Project p, ProjectAdmin in, Check c, boolean requireSlug) {
+	private static Project fill(Project p, ProjectAdmin in, Check c, boolean requireSlug,
+			java.util.function.Predicate<String> mediaExists) {
 		if (requireSlug) {
 			c.matches("slug", in.slug(), SLUG);
 			p.slug = in.slug();
@@ -165,7 +169,7 @@ class ProjectAdminService {
 		}
 		p.demoUrl = in.demoUrl();
 		p.decisions = decisions(c, in.decisions());
-		p.video = video(c, in.video());
+		p.video = video(c, in.video(), mediaExists);
 		return p;
 	}
 
@@ -233,7 +237,7 @@ class ProjectAdminService {
 		return out;
 	}
 
-	private static Project.VideoData video(Check c, VideoAdmin v) {
+	private static Project.VideoData video(Check c, VideoAdmin v, java.util.function.Predicate<String> mediaExists) {
 		if (v == null) {
 			return null;
 		}
@@ -241,10 +245,14 @@ class ProjectAdminService {
 		c.range("video.width", v.width(), 1, 4096);
 		c.range("video.height", v.height(), 1, 4096);
 		if (v.mp4() != null) {
-			c.matches("video.mp4", v.mp4(), MP4);
+			if (c.matches("video.mp4", v.mp4(), MP4) && !mediaExists.test(v.mp4().substring("/uploads/".length()))) {
+				c.add("video.mp4", "NotFound");
+			}
 		}
 		if (v.poster() != null) {
-			c.matches("video.poster", v.poster(), POSTER);
+			if (c.matches("video.poster", v.poster(), POSTER) && !mediaExists.test(v.poster().substring("/uploads/".length()))) {
+				c.add("video.poster", "NotFound");
+			}
 		}
 		Map<String, String> caption = c.text("video.caption", v.caption(), 200, false);
 		return new Project.VideoData(v.name(), v.mp4(), v.poster(), v.width() == null ? 0 : v.width(),

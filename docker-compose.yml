@@ -18,6 +18,9 @@ services:
     env_file: .env
     environment:
       GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+      MEDIA_DIR: /data/media
+    volumes:
+      - media:/data/media
     depends_on:
       postgres:
         condition: service_healthy
@@ -37,6 +40,7 @@ services:
     image: caddy:2
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - media:/srv/uploads:ro
     depends_on:
       - frontend
       - backend
@@ -50,3 +54,4 @@ services:
 
 volumes:
   pgdata:
+  media:

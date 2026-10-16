@@ -49,10 +49,19 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 				case "FORBIDDEN" -> "Forbidden";
 				case "LOGIN_LOCKED" -> "Too many failed attempts";
 				case "CONFLICT" -> "Conflict";
+				case "MEDIA_REJECTED" -> "Media rejected";
 				default -> "Internal error";
 			});
 		}
 		return super.createResponseEntity(body, headers, status, request);
+	}
+
+	/** Fichier plus gros que la limite multipart : même contrat que les autres refus de média. */
+	@Override
+	protected ResponseEntity<Object> handleMaxUploadSizeExceededException(
+			org.springframework.web.multipart.MaxUploadSizeExceededException ex, HttpHeaders headers, HttpStatusCode status,
+			WebRequest request) {
+		return handleApi(ApiException.mediaRejected("SIZE"), request);
 	}
 
 	@ExceptionHandler(ApiException.class)
@@ -61,6 +70,9 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		pd.setProperty("code", ex.code());
 		if (ex.errors() != null) {
 			pd.setProperty("errors", ex.errors());
+		}
+		if (ex.reason() != null) {
+			pd.setProperty("reason", ex.reason());
 		}
 		HttpHeaders headers = new HttpHeaders();
 		if (ex.retryAfterSeconds() != null) {
