@@ -42,7 +42,14 @@ describe('ContentApi', () => {
     expect((await res)?.caseStudy?.repos.length).toBe(2);
   });
 
-  it('renvoie null sur erreur', async () => {
+  it('project() propage une erreur 5xx', async () => {
+    const { api, http } = setup('browser');
+    const res = firstValueFrom(api.project('x'));
+    http.expectOne('/api/fr/projects/x').flush(null, { status: 500, statusText: 'Server Error' });
+    await expect(res).rejects.toBeTruthy();
+  });
+
+  it('renvoie null sur 404', async () => {
     const { api, http } = setup('browser');
     const res = firstValueFrom(api.project('x'));
     http.expectOne('/api/fr/projects/x').flush(null, { status: 404, statusText: 'Not Found' });

@@ -1,9 +1,9 @@
 import { DatePipe, DecimalPipe, NgComponentOutlet } from '@angular/common';
-import { Component, computed, effect, inject } from '@angular/core';
-import { rxResource, toSignal } from '@angular/core/rxjs-interop';
+import { Component, RESPONSE_INIT, computed, effect, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { map } from 'rxjs';
+import { catchError, map, of, switchMap } from 'rxjs';
 import { ContentApi } from '../../core/api/content.api';
 import { NotFoundPage } from '../../core/layout/not-found.page';
 import { DEFAULT_DESCRIPTION, SeoService } from '../../core/seo/seo.service';
@@ -14,16 +14,41 @@ import { formatKm } from '../home-course/course-progress';
 import { CHECKPOINTS } from '../home-course/profile.data';
 import { diagramFor } from './diagrams/diagrams';
 
+/** API momentanément indisponible : 503 + Retry-After, jamais `noindex` (la page existe). */
+@Component({
+  selector: 'app-unavailable',
+  imports: [RouterLink],
+  template: `
+    <h1 i18n>Contenu momentanément indisponible</h1>
+    <p i18n>Réessayez dans quelques instants.</p>
+    <a routerLink="/" i18n>Retour au départ</a>
+  `,
+  styles: `
+    :host { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s-5); padding: var(--s-9) var(--margin); }
+    a { display: inline-flex; align-items: center; min-height: var(--target); }
+  `,
+})
+export class Unavailable {
+  constructor() {
+    const init = inject(RESPONSE_INIT, { optional: true });
+    if (init) {
+      init.status = 503;
+      init.headers = new Headers(init.headers);
+      init.headers.set('Retry-After', '30');
+    }
+  }
+}
+
 const SEGMENTS = {
   P1: $localize`Segment : les fondations`,
   P2: $localize`Segment : Worldline`,
   P3: $localize`Segment : projets nés de la course`,
 } as const;
 
-/** Étude de cas `projets/:slug` (DESIGN §10.1). Fiche courte, slug inconnu ou API en échec : page 404 (statut posé par NotFoundPage). */
+/** Étude de cas `projets/:slug` (DESIGN §10.1). Fiche courte ou slug inconnu : 404 (NotFoundPage) ; API en échec : 503 (Unavailable). */
 @Component({
   selector: 'app-case-study',
-  imports: [RouterLink, DatePipe, DecimalPipe, NgComponentOutlet, AiTag, Clip, Reveal, NotFoundPage],
+  imports: [RouterLink, DatePipe, DecimalPipe, NgComponentOutlet, AiTag, Clip, Reveal, NotFoundPage, Unavailable],
   styleUrl: './case-study.page.css',
   template: `
     @if (view(); as v) {
@@ -153,6 +178,8 @@ const SEGMENTS = {
       </section>
     } @else if (view() === null) {
       <app-not-found />
+    } @else if (down()) {
+      <app-unavailable />
     }
   `,
 })
@@ -162,22 +189,35 @@ export class CaseStudyPage {
   private readonly seo = inject(SeoService);
   private readonly title = inject(Title);
   private readonly slug = toSignal(inject(ActivatedRoute).paramMap.pipe(map((p) => p.get('slug') ?? '')), { requireSync: true });
-  private readonly project = rxResource({ params: () => this.slug(), stream: ({ params }) => this.api.project(params) });
+  // Requête émise dès le constructeur (et non dans un effet) : la réponse SSR du TransferState est alors réutilisée à l'hydratation, sans page blanche.
+  private readonly project = toSignal(
+    inject(ActivatedRoute).paramMap.pipe(
+      map((p) => p.get('slug') ?? ''),
+      switchMap((slug) => this.api.project(slug).pipe(catchError(() => of('down' as const)))),
+    ),
+  );
 
-  /** `undefined` = chargement ; `null` = 404 (API en échec, slug inconnu ou fiche courte). */
+  /** `undefined` = chargement ; `null` = 404 (slug inconnu ou fiche courte). */
   protected readonly view = computed(() => {
-    if (this.project.status() !== 'resolved') return undefined;
-    const p = this.project.value();
+    const p = this.project();
+    if (p === undefined || p === 'down') return undefined;
     if (!p?.caseStudy) return null;
     const id = p.stage?.toLowerCase() as keyof typeof CHECKPOINTS | undefined;
     const stage = p.stage && id ? { id, label: $localize`${p.stage} · km ${formatKm(CHECKPOINTS[id])}`, segment: SEGMENTS[p.stage] } : null;
     return { p, c: p.caseStudy, stage };
   });
+  protected readonly down = computed(() => this.project() === 'down');
   protected readonly diagram = computed(() => diagramFor(this.slug()));
 
   constructor() {
     effect(() => {
       const v = this.view();
+      if (this.down()) {
+        const t = $localize`Contenu momentanément indisponible`;
+        this.title.setTitle(t);
+        this.seo.update(this.router.url, DEFAULT_DESCRIPTION, false, t);
+        return;
+      }
       if (v === undefined) return;
       const title = v ? `${v.p.title}, Enzo Leveque` : $localize`Page introuvable`;
       this.title.setTitle(title);

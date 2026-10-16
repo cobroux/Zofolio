@@ -40,12 +40,12 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
         </div>
         <figure [appReveal]="2">
           <picture>
-            <source type="image/avif" srcset="img/finisher-cote-d-opale-640.avif 640w, img/finisher-cote-d-opale-1280.avif 1280w" sizes="(min-width: 768px) 40vw, 100vw" />
-            <source type="image/webp" srcset="img/finisher-cote-d-opale-640.webp 640w, img/finisher-cote-d-opale-1280.webp 1280w" sizes="(min-width: 768px) 40vw, 100vw" />
+            <source type="image/avif" srcset="img/finisher-cote-d-opale-640.avif 640w, img/finisher-cote-d-opale-1280.avif 1280w" sizes="(min-width: 768px) 40vw, 360px" />
+            <source type="image/webp" srcset="img/finisher-cote-d-opale-640.webp 640w, img/finisher-cote-d-opale-1280.webp 1280w" sizes="(min-width: 768px) 40vw, 360px" />
             <img
               src="img/finisher-cote-d-opale-640.jpg"
               srcset="img/finisher-cote-d-opale-640.jpg 640w, img/finisher-cote-d-opale-1280.jpg 1280w"
-              sizes="(min-width: 768px) 40vw, 100vw"
+              sizes="(min-width: 768px) 40vw, 360px"
               width="1280"
               height="1600"
               loading="lazy"

@@ -60,7 +60,14 @@ describe('CaseStudyPage', () => {
     expect(el.querySelector('h1')?.textContent).toBe('Page introuvable');
   });
 
-  it('API en échec ou slug inconnu : 404', async () => {
+  it('API en panne (5xx) : 503 + Retry-After, pas de 404', async () => {
+    const { el, init } = await render('oltre', (r) => r.flush(null, { status: 503, statusText: 'Unavailable' }));
+    expect(init.status).toBe(503);
+    expect(new Headers((init as { headers?: HeadersInit }).headers).get('Retry-After')).toBe('30');
+    expect(el.querySelector('h1')?.textContent).toBe('Contenu momentanément indisponible');
+  });
+
+  it('slug inconnu (404 de l\'API) : 404', async () => {
     const { init } = await render('inconnu', (r) => r.flush(null, { status: 404, statusText: 'Not Found' }));
     expect(init.status).toBe(404);
   });

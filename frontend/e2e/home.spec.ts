@@ -82,7 +82,7 @@ test('sans JavaScript : sections lisibles', async ({ browser }) => {
   await ctx.close();
 });
 
-for (const path of ['/fr/', '/fr/mentions-legales']) {
+for (const path of ['/fr/', '/en/', '/fr/mentions-legales']) {
   for (const scheme of ['light', 'dark'] as const) {
     test(`axe ${path} (${scheme})`, async ({ page }) => {
       await page.emulateMedia({ colorScheme: scheme });

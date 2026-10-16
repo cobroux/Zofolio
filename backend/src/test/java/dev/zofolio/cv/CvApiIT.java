@@ -38,9 +38,15 @@ class CvApiIT {
 		assertThat(r.statusCode()).isEqualTo(200);
 		assertThat(r.headers().firstValue("Content-Type")).hasValue("application/pdf");
 		assertThat(r.headers().firstValue("Content-Disposition").orElse(""))
-				.contains("attachment").contains("Enzo-Leveque-CV-FR.pdf");
+				.contains("attachment").contains("Enzo-Leveque-CV-EN.pdf");
 		assertThat(new String(r.body(), 0, 4)).isEqualTo("%PDF");
 		assertThat(count()).isEqualTo(before + 1);
+	}
+
+	@Test
+	void frServesFrenchCv() throws Exception {
+		assertThat(get("/api/fr/cv").headers().firstValue("Content-Disposition").orElse(""))
+				.contains("Enzo-Leveque-CV-FR.pdf");
 	}
 
 	@Test

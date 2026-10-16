@@ -1971,6 +1971,22 @@
           <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="8361028789661352179" datatype="html">
+        <source>Contenu momentanément indisponible</source>
+        <target state="translated">Content temporarily unavailable</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/case-study.page.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1437541925280405385" datatype="html">
+        <source>Réessayez dans quelques instants.</source>
+        <target state="translated">Please try again in a moment.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/case-study.page.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

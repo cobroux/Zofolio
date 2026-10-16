@@ -215,13 +215,13 @@
 
 ## Phase 5 : Qualité et mise en production
 
-- [ ] V2-T34 [agent: qa-engineer · sonnet] E2E et axe V2
+- [x] V2-T34 [agent: qa-engineer · sonnet] E2E et axe V2
   - Acceptation : parcours SPEC §8 ajoutés : accueil → étude de cas (les 4 slugs), fiche courte et slug inconnu → 404 ; bascule FR/EN (section conservée, `lang="en"`, CV EN téléchargé sous le bon nom) ; `/` avec `Accept-Language: en` → `/en/` ; `javaScriptEnabled: false` : page d'étude lisible ; `reducedMotion: 'reduce'` : vidéo non lue, bouton Lecture présent ; axe à zéro violation sur l'accueil et une étude de cas, en FR et en EN, en clair et en sombre ; job CI à jour.
   - Vérification : `docker compose up --build -d && cd frontend && npx playwright test`.
   - Fichiers : `e2e/projects.spec.ts`, `e2e/i18n.spec.ts`, `e2e/home.spec.ts`, `.github/workflows/ci.yml`
   - Dépend de : T28, T29, T32, T33
 
-- [ ] V2-T35 [agent: qa-engineer · sonnet] Lighthouse FR/EN et passe break-ui
+- [x] V2-T35 [agent: qa-engineer · sonnet] Lighthouse FR/EN et passe break-ui
   - Acceptation : `lighthouserc.json` étendu à `/fr/`, `/en/`, `/fr/projets/oltre` et `/en/projets/oltre` (seuils V1 bloquants) ; break-ui : cache GitHub vide, clip absent, textes EN longs, titres de décision longs, API en panne sur la page projet ; écarts corrigés ou listés en tâches.
   - Vérification : `cd frontend && npx lhci autorun --config=lighthouserc.json`.
   - Fichiers : `frontend/lighthouserc.json`, `docs/reviews/V2-T35-qa.md`

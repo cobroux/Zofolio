@@ -2,7 +2,10 @@
   "ci": {
     "collect": {
       "url": [
-        "http://localhost:4000/fr/"
+        "http://localhost:4000/fr/",
+        "http://localhost:4000/en/",
+        "http://localhost:4000/fr/projets/oltre",
+        "http://localhost:4000/en/projets/oltre"
       ],
       "numberOfRuns": 3,
       "settings": {
