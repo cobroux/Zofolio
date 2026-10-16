@@ -19,7 +19,7 @@ jobs:
       run:
         working-directory: backend
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -34,7 +34,7 @@ jobs:
       run:
         working-directory: frontend
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -48,7 +48,7 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: .env depuis .env.example, avec un mot de passe admin de test généré (aucun secret réel)
         run: |
           pw="e2e-$(openssl rand -hex 12)"
@@ -84,7 +84,7 @@ jobs:
   lighthouse:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: .env depuis .env.example
         run: sed 's/^IP_HASH_SALT=.*/IP_HASH_SALT=ci-salt-0123456789abcdef/' .env.example > .env
       - run: docker compose up --build -d
