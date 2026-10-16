@@ -195,7 +195,7 @@
   - Fichiers : `docker-entrypoint.sh`, `src/app/...` (composant racine, page de connexion, configuration d'environnement)
   - Dépend de : T1
 
-- [ ] V3-T28 [agent: code-reviewer · sonnet] Revue de la démo Oltre (point de contrôle L)
+- [x] V3-T28 [agent: code-reviewer · sonnet] Revue de la démo Oltre (point de contrôle L)
   - Acceptation : critères L du plan-v3 §6 ; aucune donnée réelle (e-mails, noms, coordonnées) dans les générateurs ; profil `demo` impossible à activer par erreur en prod normale (activé seulement par la variable du compose de démo) ; ponytail.
   - Vérification : `grep -rn -i -E '@gmail|leveque|lat|lon' src/main/java/io/oltre_backend/demo` relu ; `./mvnw verify`.
   - Fichiers : `docs/reviews/V3-T28-demo-L.md` (dans Zofolio)
