@@ -19,7 +19,11 @@
 		# Angular SSR : styles critiques et script de rejeu d'événements inlinés (d'où 'unsafe-inline') ; clips et affiches en 'self'.
 		Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
 		-Server
+		-X-Powered-By
 	}
+
+	@trace method TRACE TRACK
+	respond @trace 405
 
 	handle /api/admin/media {
 		request_body {
