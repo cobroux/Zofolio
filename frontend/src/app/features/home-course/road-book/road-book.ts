@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, afterNextRender, inject, viewChild, ElementRef } from '@angular/core';
 import { CHECKPOINTS } from '../profile.data';
-import { CHECKPOINT_IDS, CourseProgress, TOTAL_KM, formatKm, profilePath } from '../course-progress';
+import { CHECKPOINT_IDS, CourseProgress, TOTAL_KM, altitudeRatioAt, formatKm, profilePath } from '../course-progress';
 
 const STEPS = {
   depart: { name: $localize`Départ`, line: $localize`Ingénieur fullstack, Java et Angular.` },
@@ -22,9 +22,10 @@ export class RoadBook {
   protected readonly formatKm = formatKm;
   protected readonly steps = CHECKPOINT_IDS.map((id) => ({ id, km: CHECKPOINTS[id], ...STEPS[id] }));
   protected readonly label = computed(() => {
-    const [km, total] = [formatKm(this.progress.km()), formatKm(TOTAL_KM)];
+    const [km, total] = [formatKm(this.progress.scrollKm()), formatKm(TOTAL_KM)];
     return $localize`Ouvrir le road book : km ${km} sur ${total}`;
   });
+  protected readonly pos = computed(() => ({ p: this.progress.scrollKm() / TOTAL_KM, a: altitudeRatioAt(this.progress.scrollKm()) }));
   private target: string | null = null;
   private readonly dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
   private readonly trigger = viewChild.required<ElementRef<HTMLButtonElement>>('trigger');

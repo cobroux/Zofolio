@@ -35,7 +35,34 @@ describe('ElevationProfile', () => {
     TestBed.inject(CourseProgress).active.set('p2');
     await f.whenStable();
     expect(links[2].getAttribute('aria-current')).toBe('location');
-    expect(el.querySelector('.km')!.textContent).toContain('km 44');
+    // Libellé et point dérivent de la même valeur : le km du scroll, pas celui du checkpoint actif.
+    const p = TestBed.inject(CourseProgress);
+    p.scrollKm.set(12.4);
+    await f.whenStable();
+    expect(el.querySelector('.km')!.textContent).toContain('km 12,4');
+  });
+});
+
+describe('ElevationProfile : cohérence libellé / point', () => {
+  it('le libellé et --p lisent le même km de scroll, arrondi au dixième', async () => {
+    // départ à mi-hauteur (scroll 0 -> km 0), p1 à 1000 px sous la mi-hauteur
+    const tops: Record<string, number> = { depart: innerHeight / 2, p1: innerHeight / 2 + 1000, p2: 5000, p3: 6000, arrivee: 7000 };
+    Object.entries(tops).forEach(([id, top]) => {
+      const s = document.createElement('section');
+      s.id = id;
+      s.getBoundingClientRect = () => ({ top }) as DOMRect;
+      document.body.append(s);
+    });
+    vi.stubGlobal('scrollY', 333);
+    const f = TestBed.createComponent(ElevationProfile);
+    await f.whenStable();
+    const km = TestBed.inject(CourseProgress).scrollKm();
+    expect(km).toBeGreaterThan(0);
+    expect(km).toBe(Math.round(km * 10) / 10);
+    expect(f.nativeElement.querySelector('.km').textContent).toContain(`km ${formatKm(km)}`);
+    expect(Number(f.nativeElement.style.getPropertyValue('--p'))).toBeCloseTo(km / 79.4, 2);
+    document.body.replaceChildren();
+    vi.unstubAllGlobals();
   });
 });
 

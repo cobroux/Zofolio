@@ -27,10 +27,29 @@
 .bar:active {
   transform: scale(0.97);
 }
-.bar svg {
+.mini {
+  position: relative;
   flex: 1 1 auto;
   height: 28px;
   min-width: 0;
+}
+.mini svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* Rond orange à la position du scroll sur le mini-profil, même valeur que le libellé km. */
+.dot {
+  position: absolute;
+  left: calc(var(--p) * 100%);
+  top: calc((1 - var(--a)) * 100%);
+  width: 14px;
+  height: 14px;
+  box-sizing: border-box;
+  border: 2px solid var(--bg);
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translate(-50%, -50%);
 }
 path {
   fill: none;

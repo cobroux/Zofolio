@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { CourseProgress } from '../course-progress';
 import { RoadBook } from './road-book';
 
 // jsdom n'implémente pas showModal : on simule open/close + l'évènement close.
@@ -20,6 +21,16 @@ describe('RoadBook', () => {
     const el: HTMLElement = f.nativeElement;
     return { el, dialog: el.querySelector('dialog')!, trigger: el.querySelector<HTMLButtonElement>('.bar')! };
   }
+
+  it('libellé de la barre et marqueur lisent le km du scroll', async () => {
+    const f = TestBed.createComponent(RoadBook);
+    TestBed.inject(CourseProgress).scrollKm.set(12.4);
+    await f.whenStable();
+    const el: HTMLElement = f.nativeElement;
+    expect(el.querySelector('.bar .km')!.textContent).toContain('km 12,4');
+    expect(el.querySelector('.bar')!.getAttribute('aria-label')).toContain('km 12,4 sur');
+    expect(el.querySelector<HTMLElement>('.mini')!.style.getPropertyValue('--p')).toBe(String(12.4 / 79.41));
+  });
 
   it('ouvre le dialog avec 5 étapes ancres dont une courante', async () => {
     const { el, dialog, trigger } = await setup();

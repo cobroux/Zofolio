@@ -61,8 +61,10 @@ export class ElevationProfile {
         // En bas de page, l'arrivée ne croise jamais la mi-hauteur : le bas du scroll vaut l'arrivée.
         const atEnd = scrollY >= document.documentElement.scrollHeight - innerHeight - 1;
         const km = atEnd ? TOTAL_KM : anchors.length ? kmAtScroll(scrollY, anchors) : 0;
-        host.style.setProperty('--p', String(km / TOTAL_KM));
-        host.style.setProperty('--x', String(altitudeRatioAt(km)));
+        const shown = Math.round(km * 10) / 10;
+        this.progress.scrollKm.set(shown);
+        host.style.setProperty('--p', String(shown / TOTAL_KM));
+        host.style.setProperty('--x', String(altitudeRatioAt(shown)));
       };
       const schedule = () => (frame ||= requestAnimationFrame(update));
       update();

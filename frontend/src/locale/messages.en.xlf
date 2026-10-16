@@ -2591,6 +2591,18 @@
           <context context-type="linenumber">71,72</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="5178652351654797364" datatype="html">
+        <source>79,4 km parcourus sur 100</source>
+        <target state="translated">79.4 km covered out of 100</target>
+      </trans-unit>
+      <trans-unit id="3490420496671634451" datatype="html">
+        <source>79,4 km</source>
+        <target state="translated">79.4 km</target>
+      </trans-unit>
+      <trans-unit id="190099704623535625" datatype="html">
+        <source>100 km</source>
+        <target state="translated">100 km</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

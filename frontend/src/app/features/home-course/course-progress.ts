@@ -45,6 +45,8 @@ export const formatKm = (km: number) => r(km).toLocaleString($localize`:@@number
 export class CourseProgress {
   readonly active = signal<CheckpointId>('depart');
   readonly km = computed(() => CHECKPOINTS[this.active()]);
+  /** km courant du scroll, au dixième : source unique du libellé ; le point du profil est placé sur la même valeur. Le signal ignore les `set` identiques. */
+  readonly scrollKm = signal(0);
   readonly ratio = computed(() => this.km() / TOTAL_KM);
   private io?: IntersectionObserver;
 

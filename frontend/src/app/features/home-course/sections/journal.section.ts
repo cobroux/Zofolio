@@ -35,68 +35,74 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
             <span class="small" i18n>UTMB Index. Un chiffre, pas un classement.</span>
           </p>
           <app-contributions [data]="contributions()" [appReveal]="2" />
-          @if (sportYears().length) {
-            <div class="stats" [appReveal]="2">
-              <h3 id="stats-title" i18n>Les années en chiffres</h3>
-              <p i18n>Course, vélo et natation, année par année, d'après ma montre.</p>
-              <p class="small" i18n>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km et dénivelé : course et vélo (les km en natation, peu fiables, sont exclus). Année en cours incluse.</p>
-              <div class="scroll" role="region" tabindex="0" aria-labelledby="stats-title">
-                <table>
-                  <caption class="sr" i18n>Totaux annuels d'endurance</caption>
-                  <thead>
-                    <tr>
-                      <th scope="col" i18n>Année</th>
-                      <th scope="col" class="num" i18n>Kilomètres (km)</th>
-                      <th scope="col" class="num" i18n>Dénivelé (m D+)</th>
-                      <th scope="col" class="num" i18n>Heures (h)</th>
-                      <th scope="col" class="num" i18n>Activités</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @for (y of sportYears(); track y.year) {
-                      <tr>
-                        <th scope="row"><span class="yr">{{ y.year }}</span>@if (y.year === thisYear) { <span class="small" i18n>en cours</span> }</th>
-                        <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.distanceKm }" />
-                        <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.elevationGainM }" />
-                        <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.hours }" />
-                        <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.activities }" />
-                      </tr>
-                    }
-                  </tbody>
-                </table>
-              </div>
-              <ng-template #cell let-v>
-                <td class="num">
-                  @if (v === null) {
-                    <span aria-hidden="true">—</span><span class="sr" i18n>non renseigné</span>
-                  } @else {
-                    {{ number(v) }}
-                  }
-                </td>
-              </ng-template>
-            </div>
-          }
           @for (r of others(); track r.name) {
             <p class="small">{{ r.name }}</p>
           }
         </div>
-        <figure [appReveal]="2">
-          <picture>
-            <source type="image/avif" srcset="img/finisher-cote-d-opale-640.avif 640w, img/finisher-cote-d-opale-1280.avif 1280w" sizes="(min-width: 768px) 40vw, 360px" />
-            <source type="image/webp" srcset="img/finisher-cote-d-opale-640.webp 640w, img/finisher-cote-d-opale-1280.webp 1280w" sizes="(min-width: 768px) 40vw, 360px" />
-            <img
-              src="img/finisher-cote-d-opale-640.jpg"
-              srcset="img/finisher-cote-d-opale-640.jpg 640w, img/finisher-cote-d-opale-1280.jpg 1280w"
-              sizes="(min-width: 768px) 40vw, 360px"
-              width="1280"
-              height="1600"
-              loading="lazy"
-              decoding="async"
-              i18n-alt
-              alt="Enzo montre sa médaille de finisher devant l'affiche du Trail Côte d'Opale"
-            />
-          </picture>
-        </figure>
+      </div>
+      <div class="years">
+      <figure [appReveal]="2">
+        <picture>
+          <source type="image/avif" srcset="img/finisher-cote-d-opale-640.avif 640w, img/finisher-cote-d-opale-1280.avif 1280w" sizes="(min-width: 768px) 40vw, 360px" />
+          <source type="image/webp" srcset="img/finisher-cote-d-opale-640.webp 640w, img/finisher-cote-d-opale-1280.webp 1280w" sizes="(min-width: 768px) 40vw, 360px" />
+          <img
+            src="img/finisher-cote-d-opale-640.jpg"
+            srcset="img/finisher-cote-d-opale-640.jpg 640w, img/finisher-cote-d-opale-1280.jpg 1280w"
+            sizes="(min-width: 768px) 40vw, 360px"
+            width="1280"
+            height="1600"
+            loading="lazy"
+            decoding="async"
+            i18n-alt
+            alt="Enzo montre sa médaille de finisher devant l'affiche du Trail Côte d'Opale"
+          />
+        </picture>
+      </figure>
+      @if (sportYears().length) {
+        <div class="stats" [appReveal]="2">
+        <h3 id="stats-title" i18n>Les années en chiffres</h3>
+        <p i18n>Course, vélo et natation, année par année, d'après ma montre.</p>
+        <p class="small" i18n>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km et dénivelé : course et vélo (les km en natation, peu fiables, sont exclus). Année en cours incluse.</p>
+        <div class="scroll" role="region" tabindex="0" aria-labelledby="stats-title">
+          <table>
+            <caption class="sr" i18n>Totaux annuels d'endurance</caption>
+            <thead>
+              <tr>
+                <th scope="col" i18n>Année</th>
+                <th scope="col" class="num km" i18n>Kilomètres (km)</th>
+                <th scope="col" class="num" i18n>Dénivelé (m D+)</th>
+                <th scope="col" class="num" i18n>Heures (h)</th>
+                <th scope="col" class="num" i18n>Activités</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (y of sportYears(); track y.year) {
+                <tr>
+                  <th scope="row"><span class="yr">{{ y.year }}</span>@if (y.year === thisYear) { <span class="small" i18n>en cours</span> }</th>
+                  <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.distanceKm, bar: true, year: y.year }" />
+                  <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.elevationGainM }" />
+                  <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.hours }" />
+                  <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.activities }" />
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <ng-template #cell let-v let-bar="bar" let-year="year">
+          <td class="num" [class.km]="bar">
+          @if (v === null) {
+              <span aria-hidden="true">—</span><span class="sr" i18n>non renseigné</span>
+            } @else {
+              {{ number(v) }}
+              @if (bar) {
+                <!-- Décoratif : les km sont déjà en texte. Longueur = km / max des années. -->
+                <span class="bar" aria-hidden="true" [class.now]="year === thisYear" [style.--k]="v / maxKm()"></span>
+              }
+            }
+          </td>
+        </ng-template>
+        </div>
+      }
       </div>
       @if (rows(); as list) {
         <table class="races" [appReveal]="2">
@@ -185,8 +191,10 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
     }
     figure {
       position: relative;
+      order: 1;
       margin: 0;
     }
+    .years { display: flex; flex-direction: column; gap: var(--s-7); }
     figure img {
       display: block;
       width: 100%;
@@ -239,13 +247,17 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
     .pr svg {
       color: var(--accent);
     }
-    .stats { display: flex; flex-direction: column; gap: var(--s-3); max-width: 44rem; }
+    .stats { display: flex; flex-direction: column; gap: var(--s-3); }
     .stats h3 { margin: 0; font: 800 clamp(1.25rem, 2vw, 1.625rem) / 1.05 var(--font-display); font-stretch: 75%; letter-spacing: -0.02em; }
     .stats .scroll { overflow-x: auto; }
     .stats table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums lining-nums; }
     .stats th, .stats td { padding: var(--s-3) var(--s-3) var(--s-3) 0; text-align: left; font-weight: 400; }
     .stats thead th { color: var(--ink-2); font-size: var(--t-small); font-weight: 600; vertical-align: bottom; }
     .stats th.num, .stats td.num { text-align: right; white-space: nowrap; }
+    /* Barre par année, proportionnelle aux km : la progression se lit d'un coup d'œil (décoratif, aria-hidden). */
+    .stats th.km, .stats td.km { text-align: left; width: 40%; min-width: 5.5rem; }
+    .bar { display: block; height: 6px; margin-top: var(--s-2); background: var(--ink-2); transform: scaleX(var(--k)); transform-origin: left; }
+    .bar.now { background: var(--accent); }
     /* le body a overflow-wrap: anywhere : sans cela la colonne Année s'écrase chiffre par chiffre à 390 */
     .stats th { overflow-wrap: normal; }
     .stats tbody th { white-space: nowrap; }
@@ -270,18 +282,22 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
       .races td:last-child { grid-column: 1 / -1; }
       .races td:empty { display: none; }
     }
+    @media (min-width: 768px) {
+      /* Photo à gauche, chiffres à droite : aucune moitié vide. */
+      .years { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: var(--gutter); align-items: start; }
+      figure { order: 0; }
+    }
     @media (min-width: 768px) and (max-width: 1279px) {
       .races tbody tr { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-      /* Texte et photo côte à côte, le tableau en dessous. */
-      .side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 20rem); align-items: start; gap: var(--gutter); }
     }
-    /* Desktop : à gauche titre, intro, 459 et photo qui prend la hauteur restante ; à droite le tableau. */
+    /* Desktop : à gauche titre, intro, 459 ; à droite le tableau ; dessous, pleine largeur, la photo et les chiffres. */
     @media (min-width: 1280px) {
       section { grid-template-columns: repeat(12, minmax(0, 1fr)); padding-block: var(--s-10); }
-      .side { grid-column: 1 / span 5; }
-      .races, .unavailable { grid-column: 6 / span 7; align-self: start; }
-      figure { flex: 1 1 0; min-height: 18rem; }
-      figure img { position: absolute; inset: 0; aspect-ratio: auto; }
+      .side { grid-column: 1 / span 5; grid-row: 1; }
+      .races, .unavailable { grid-column: 6 / span 7; grid-row: 1; align-self: start; }
+      .years { grid-column: 1 / -1; grid-row: 2; grid-template-columns: subgrid; }
+      figure { grid-column: 1 / span 4; }
+      .stats { grid-column: 6 / span 7; }
     }
   `,
 })
@@ -294,6 +310,8 @@ export class JournalSection {
   readonly sportYears = input<SportYear[]>([]);
   protected readonly thisYear = new Date().getFullYear();
   protected readonly number = (n: number) => ELEVATION.format(n);
+  /** Plus grand total annuel : échelle commune des barres. */
+  protected readonly maxKm = computed(() => Math.max(1, ...this.sportYears().map((y) => y.distanceKm ?? 0)));
   readonly rows = computed(() => this.races()?.filter((r) => r.kind === 'RACE') ?? null);
   readonly others = computed(() => this.races()?.filter((r) => r.kind !== 'RACE') ?? []);
   protected readonly label = {
