@@ -27,10 +27,13 @@ function calm(): boolean {
             @defer (on viewport; on interaction(btn)) {
               <video #vid muted [muted]="true" loop playsinline preload="none" [poster]="v.poster" [attr.aria-labelledby]="capId" [attr.width]="v.width" [attr.height]="v.height"
                 (play)="playing.set(true)" (pause)="playing.set(false)">
+                <!-- MP4 (H.264) d'abord : lu partout, y compris Safari/iOS qui choisit le WebM sans savoir toujours le lire -->
                 @if (v.webm) {
-                  <source [src]="v.webm" type="video/webm" />
+                  <source [src]="v.mp4" type="video/mp4" />
+                  <source [src]="v.webm" type="video/webm" (error)="missing.set(true)" />
+                } @else {
+                  <source [src]="v.mp4" type="video/mp4" (error)="missing.set(true)" />
                 }
-                <source [src]="v.mp4" type="video/mp4" (error)="missing.set(true)" />
               </video>
             } @placeholder {
               <img [src]="v.poster" alt="" loading="lazy" [attr.width]="v.width" [attr.height]="v.height" (error)="missing.set(true)" />
@@ -67,7 +70,11 @@ export class Clip {
     // Une affiche déjà en erreur avant l'hydratation a perdu son événement `error`.
     afterNextRender(() => {
       const img = this.host.querySelector('img');
-      if (img?.complete && img.naturalWidth === 0) this.missing.set(true);
+      // Une image `loading="lazy"` hors écran (fréquent sur mobile) est aussi `complete` sans pixels : on revérifie par une vraie requête.
+      if (!img?.complete || img.naturalWidth > 0) return;
+      const probe = new Image();
+      probe.onerror = () => this.missing.set(true);
+      probe.src = img.currentSrc || img.src;
     });
     effect((onCleanup) => {
       const v = this.vid()?.nativeElement;

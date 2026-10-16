@@ -1,0 +1,120 @@
+# Provisionnement idempotent de la VM Oracle (Ubuntu 24.04 arm64). Relancer à volonté.
+- hosts: zofolio
+  become: true
+  vars:
+    app_dir: /opt/zofolio
+    deploy_user: ubuntu
+  tasks:
+    - name: Paquets de base
+      ansible.builtin.apt:
+        name: [unattended-upgrades, fail2ban, ufw, ca-certificates, curl, git, docker.io, docker-compose-v2, cron]
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+
+    # Oracle fournit des règles iptables (REJECT par défaut) : on les remplace par ufw (22/80/443).
+    - name: Purger iptables-persistent s'il existe (conflit avec ufw)
+      ansible.builtin.apt:
+        name: [iptables-persistent, netfilter-persistent]
+        state: absent
+    - name: Retirer le REJECT d'Oracle (INPUT et FORWARD), ufw prend le relais
+      ansible.builtin.command: "iptables -D {{ item }} -j REJECT --reject-with icmp-host-prohibited"
+      loop: [INPUT, FORWARD]
+      register: ipt
+      failed_when: false
+      changed_when: ipt.rc == 0
+    - name: ufw, politique par défaut
+      community.general.ufw:
+        default: "{{ item.d }}"
+        direction: "{{ item.dir }}"
+      loop:
+        - {d: deny, dir: incoming}
+        - {d: allow, dir: outgoing}
+    - name: ufw, ports ouverts
+      community.general.ufw:
+        rule: allow
+        port: "{{ item }}"
+        proto: tcp
+      loop: ["22", "80", "443"]
+    - name: ufw, activation
+      community.general.ufw:
+        state: enabled
+
+    - name: Mises à jour de sécurité automatiques
+      ansible.builtin.copy:
+        dest: /etc/apt/apt.conf.d/20auto-upgrades
+        content: |
+          APT::Periodic::Update-Package-Lists "1";
+          APT::Periodic::Unattended-Upgrade "1";
+        mode: "0644"
+
+    - name: SSH durci (clé seule, root interdit)
+      ansible.builtin.copy:
+        dest: /etc/ssh/sshd_config.d/00-zofolio.conf
+        content: |
+          PasswordAuthentication no
+          KbdInteractiveAuthentication no
+          PermitRootLogin no
+          PubkeyAuthentication yes
+        mode: "0644"
+        validate: sshd -t -f %s
+      notify: reload ssh
+
+    - name: fail2ban (sshd)
+      ansible.builtin.copy:
+        dest: /etc/fail2ban/jail.d/zofolio.local
+        content: |
+          [sshd]
+          enabled = true
+          maxretry = 5
+          bantime = 1h
+        mode: "0644"
+      notify: restart fail2ban
+
+    - name: Utilisateur de déploiement dans le groupe docker
+      ansible.builtin.user:
+        name: "{{ deploy_user }}"
+        groups: docker
+        append: true
+
+    - name: Dossiers de l'application
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ deploy_user }}"
+        mode: "0755"
+      loop: ["{{ app_dir }}"]
+    - name: Dossier des sauvegardes (privé, contient les messages de contact)
+      ansible.builtin.file:
+        path: "{{ app_dir }}/backups"
+        state: directory
+        owner: "{{ deploy_user }}"
+        mode: "0700"
+
+    - name: Fichier de swap 2 Go
+      ansible.builtin.command:
+        cmd: fallocate -l 2G /swapfile
+        creates: /swapfile
+    - name: Droits du swap
+      ansible.builtin.file: {path: /swapfile, mode: "0600"}
+    - name: Formater le swap
+      ansible.builtin.command:
+        cmd: mkswap /swapfile
+      when: ansible_facts.swaptotal_mb == 0
+    - name: Activer le swap
+      ansible.builtin.command:
+        cmd: swapon /swapfile
+      when: ansible_facts.swaptotal_mb == 0
+    - name: Swap persistant
+      ansible.posix.mount:
+        path: none
+        src: /swapfile
+        fstype: swap
+        opts: sw
+        state: present
+
+  handlers:
+    - name: reload ssh
+      ansible.builtin.service: {name: ssh, state: reloaded}
+    - name: restart fail2ban
+      ansible.builtin.service: {name: fail2ban, state: restarted, enabled: true}

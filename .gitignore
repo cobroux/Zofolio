@@ -16,3 +16,6 @@ coverage/
 
 # Doublons créés par le Finder (« fichier 2.ext »)
 * [2-9].*
+
+# Serveur : sauvegardes locales
+backups/

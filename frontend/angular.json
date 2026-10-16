@@ -34,7 +34,8 @@
             "outputMode": "server",
             "security": {
               "allowedHosts": [
-                "localhost"
+                "localhost",
+                "88-96-45-97.sslip.io"
               ]
             },
             "ssr": {

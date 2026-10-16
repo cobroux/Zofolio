@@ -3,6 +3,8 @@ package dev.zofolio.contact;
 import java.time.Duration;
 import java.time.Instant;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -13,6 +15,7 @@ import dev.zofolio.shared.IpHash;
 
 @Service
 class ContactService {
+	private static final Logger log = LoggerFactory.getLogger(ContactService.class);
 	static final int MAX_PER_HOUR = 5;
 	static final Duration WINDOW = Duration.ofMinutes(60);
 
@@ -52,6 +55,8 @@ class ContactService {
 			m.status = ContactMessage.Status.SENT;
 			repository.save(m);
 		} catch (RuntimeException e) {
+			// type d'erreur seulement : le message d'exception SMTP peut contenir l'identifiant
+			log.warn("Échec d'envoi du message de contact {} : {}", m.id, e.getClass().getSimpleName());
 			m.status = ContactMessage.Status.FAILED;
 			repository.save(m);
 			throw ApiException.mailFailed();

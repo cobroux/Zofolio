@@ -114,4 +114,19 @@ describe('Clip', () => {
     expect(f.nativeElement.textContent).toContain('Démo vidéo à venir');
     expect(f.nativeElement.querySelector('button')).toBeNull();
   });
+
+  it('affiche lazy pas encore chargée (complete sans pixels) : revérifiée, clip gardé si elle charge', async () => {
+    const probes: { onerror?: () => void; src?: string }[] = [];
+    vi.stubGlobal('Image', class { constructor() { probes.push(this as never); } });
+    vi.spyOn(HTMLImageElement.prototype, 'complete', 'get').mockReturnValue(true);
+    const f = TestBed.createComponent(Clip);
+    f.componentRef.setInput('video', oltre.video);
+    f.detectChanges();
+    await f.whenStable();
+    expect(probes).toHaveLength(1);
+    expect(f.nativeElement.textContent).not.toContain('Démo vidéo à venir');
+    probes[0].onerror!();
+    f.detectChanges();
+    expect(f.nativeElement.textContent).toContain('Démo vidéo à venir');
+  });
 });
