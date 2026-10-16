@@ -70,7 +70,11 @@ export class Clip {
     // Une affiche déjà en erreur avant l'hydratation a perdu son événement `error`.
     afterNextRender(() => {
       const img = this.host.querySelector('img');
-      if (img?.complete && img.naturalWidth === 0) this.missing.set(true);
+      // Une image `loading="lazy"` hors écran (fréquent sur mobile) est aussi `complete` sans pixels : on revérifie par une vraie requête.
+      if (!img?.complete || img.naturalWidth > 0) return;
+      const probe = new Image();
+      probe.onerror = () => this.missing.set(true);
+      probe.src = img.currentSrc || img.src;
     });
     effect((onCleanup) => {
       const v = this.vid()?.nativeElement;
