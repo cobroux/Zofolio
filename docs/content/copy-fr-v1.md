@@ -101,8 +101,8 @@ Aplat inversé, la plus longue étape. Tout le bloc est soumis à validation d'E
 | Clé | Texte |
 |---|---|
 | `r2.title` | Tuteur en L1 |
-| `r2.body` | En 2022-2023, à l'Université d'Artois, j'ai accompagné des étudiants de première année sur leurs premiers programmes. Expliquer clairement oblige à comprendre sérieusement. |
-| `r2.ration` | 2022-2023 · Université d'Artois · L1 |
+| `r2.body` | De 2023 à 2025, à l'Université d'Artois, j'ai accompagné des étudiants de première année sur leurs premiers programmes. Expliquer clairement oblige à comprendre sérieusement. |
+| `r2.ration` | 2023-2025 · Université d'Artois · L1 |
 
 ## 5. P3 : Nés de la course (km 58,2)
 

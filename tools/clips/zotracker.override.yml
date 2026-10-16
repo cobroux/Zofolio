@@ -1,0 +1,7 @@
+# Projet Compose « zotracker-demo » : volume zotracker-demo_data, image dédiée, port 127.0.0.1:3010.
+services:
+  app:
+    container_name: zotracker-app-demo
+    image: zotracker-demo:local
+    ports: !override
+      - "127.0.0.1:3010:3000"

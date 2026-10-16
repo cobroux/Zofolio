@@ -1,4 +1,6 @@
 import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { P1Section } from './p1.section';
 import fixture from '../../../../testing/home.fixture.json';
 import { HomeResponse } from '../../../core/api/api.models';
 import { JournalSection, formatDistance, formatDuration } from './journal.section';
@@ -39,6 +41,17 @@ describe('JournalSection', () => {
     expect(el.querySelectorAll('tbody td:first-child')[4].textContent).toContain('Date non renseignée'); // dates NULL du seed
   });
 
+  it('graphe de contributions : rendu si présent, rien si null', () => {
+    const f = TestBed.createComponent(JournalSection);
+    f.componentRef.setInput('races', home.races);
+    f.componentRef.setInput('contributions', home.contributions);
+    f.detectChanges();
+    expect(f.nativeElement.querySelector('app-contributions .carnet')).toBeTruthy();
+    f.componentRef.setInput('contributions', null);
+    f.detectChanges();
+    expect(f.nativeElement.querySelector('app-contributions .carnet')).toBeNull();
+  });
+
   it('affiche une course sans date sans planter', () => {
     const el = render([{ ...home.races[0], date: null }]);
     expect(el.querySelector('tbody td')?.textContent).toContain('Date non renseignée');
@@ -52,13 +65,30 @@ describe('JournalSection', () => {
 });
 
 describe('P3Section', () => {
+  beforeEach(() => TestBed.configureTestingModule({ providers: [provideRouter([])] }));
+
+  it('lien interne pour Oltre, externe pour HistoQuiz, commits/langages/push depuis la synchro, rien si null', () => {
+    const f = TestBed.createComponent(P3Section);
+    f.componentRef.setInput('projects', home.projects);
+    f.detectChanges();
+    const el = f.nativeElement as HTMLElement;
+    const [oltre, histo] = Array.from(el.querySelectorAll('article'));
+    expect(oltre.querySelector('a.study')?.getAttribute('href')).toBe('/projets/oltre');
+    expect(oltre.textContent).toContain('412 commits');
+    expect(oltre.textContent).toContain('Java, TypeScript, HTML');
+    expect(oltre.textContent).toMatch(/dernier push : oct\.? 2026/);
+    expect(histo.querySelector('a.study')).toBeNull();
+    expect(histo.querySelector('a')?.getAttribute('href')).toBe('https://github.com/cobroux/histoquiz');
+    expect(histo.textContent).not.toContain('commits');
+  });
+
   it('rend les projets P3 avec lien dépôt', () => {
     const f = TestBed.createComponent(P3Section);
     f.componentRef.setInput('projects', home.projects);
     f.detectChanges();
     const el = f.nativeElement as HTMLElement;
-    expect(el.querySelectorAll('article').length).toBe(1);
-    expect(el.querySelector('a')?.getAttribute('href')).toBe('https://github.com/cobroux/oltre');
+    expect(el.querySelectorAll('article').length).toBe(2);
+    expect(el.querySelector('a[href="https://github.com/cobroux/oltre"]')).toBeTruthy();
     expect(el.textContent).toContain('Commencé à la main, puis IA');
   });
 
@@ -66,5 +96,18 @@ describe('P3Section', () => {
     const f = TestBed.createComponent(P3Section);
     f.detectChanges();
     expect((f.nativeElement as HTMLElement).textContent).toContain('Contenu indisponible');
+  });
+});
+
+describe('P1Section', () => {
+  it('GFaim en carte avec étude de cas, fiches courtes en une ligne', () => {
+    TestBed.configureTestingModule({ providers: [provideRouter([])] });
+    const f = TestBed.createComponent(P1Section);
+    f.componentRef.setInput('home', home);
+    f.detectChanges();
+    const el = f.nativeElement as HTMLElement;
+    expect(el.querySelector('app-segment-card a.study')?.getAttribute('href')).toBe('/projets/gfaim');
+    expect(el.querySelectorAll('.shorts li').length).toBe(2);
+    expect(el.querySelector('.shorts a')?.getAttribute('href')).toBe('https://github.com/cobroux/cin-folie');
   });
 });

@@ -1,0 +1,55 @@
+:host {
+  display: block;
+}
+figure {
+  margin: 0;
+}
+.frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+.frame video,
+.frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.portrait .frame {
+  width: auto;
+  max-width: 100%;
+  height: min(70svh, 640px);
+  margin-inline: auto;
+}
+figcaption {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  padding-block-start: var(--s-3);
+  color: var(--ink-2);
+  font-size: var(--t-small);
+}
+.ctl {
+  flex: none;
+  min-width: 96px;
+  min-height: var(--target);
+  padding: 0 var(--s-4);
+  border: 0;
+  background: var(--ink);
+  color: var(--bg);
+  font: 600 var(--t-small) / 1 var(--font-text);
+  cursor: pointer;
+  transition: transform 140ms var(--ease-out);
+}
+.ctl:active {
+  transform: scale(0.97);
+}
+.soon {
+  display: grid;
+  place-items: center;
+  max-width: none;
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: var(--t-small);
+}

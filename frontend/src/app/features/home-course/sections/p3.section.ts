@@ -1,12 +1,15 @@
 import { Component, computed, input } from '@angular/core';
 import { ProjectSummary } from '../../../core/api/api.models';
+import { RouterLink } from '@angular/router';
 import { Reveal } from '../../../shared/reveal/reveal';
+import { Clip } from '../../../shared/clip/clip';
+import { Split } from '../../../shared/split/split';
 import { AiTag } from '../../../shared/ai-tag/ai-tag';
 
 /** Mosaïque : le premier projet (Oltre) en grand avec son emplacement vidéo, les autres empilés à droite ; aucune case vide. */
 @Component({
   selector: 'app-p3-section',
-  imports: [AiTag, Reveal],
+  imports: [AiTag, Clip, Reveal, RouterLink, Split],
   template: `
     <section id="p3" aria-labelledby="p3-title">
       <header appReveal>
@@ -22,19 +25,22 @@ import { AiTag } from '../../../shared/ai-tag/ai-tag';
             [appReveal]="i === 0 ? 1 : 2"
           >
             @if (i === 0) {
-              <div class="poster" role="img" i18n-aria-label aria-label="Emplacement de la démo vidéo d'Oltre, à venir">
-                <span i18n>Démo vidéo à venir</span>
-              </div>
+              <app-clip class="poster" [video]="p.video" />
             }
             <div class="head">
               <h3>{{ p.title }}</h3>
               <app-ai-tag [tag]="p.aiTag" />
             </div>
             <p>{{ p.pitch }}</p>
-            <p class="stack">{{ p.stack.join(' · ') }}@if (p.commits) { · {{ p.commits }} <ng-container i18n>commits</ng-container> }</p>
-            @if (p.repoUrl) {
-              <a [href]="p.repoUrl" rel="noopener" i18n>Voir le dépôt<span class="sr"> {{ p.title }}</span></a>
-            }
+            <app-split [duration]="p.duration" [stack]="p.stack" [commits]="p.commits" [languages]="p.languages" [lastPushAt]="p.lastPushAt" [note]="p.note" />
+            <div class="links">
+              @if (p.tier === 'CASE_STUDY') {
+                <a class="study" [routerLink]="['/projets', p.slug]" i18n>Lire l'étude de cas<span class="sr"> {{ p.title }}</span></a>
+              }
+              @if (p.repoUrl) {
+                <a [href]="p.repoUrl" rel="noopener" i18n>Voir le dépôt<span class="sr"> {{ p.title }}</span></a>
+              }
+            </div>
           </article>
         } @empty {
           <p class="unavailable" i18n>Contenu indisponible pour le moment.</p>
@@ -92,27 +98,24 @@ import { AiTag } from '../../../shared/ai-tag/ai-tag';
     .lead h3 {
       font-size: clamp(2.25rem, 4vw, 3.5rem);
     }
-    /* Affiche sobre en attendant le clip (16:9) : pas de faux lecteur. */
     .poster {
-      display: flex;
-      align-items: flex-end;
+      display: block;
       width: 100%;
-      aspect-ratio: 16 / 9;
       margin-block-end: var(--s-3);
-      padding: var(--s-5);
-      background: light-dark(var(--ink), #1b2a48);
-      color: light-dark(#c9ccd3, var(--ink-2));
-      font-size: var(--t-small);
-      font-weight: 600;
     }
     p {
       margin: 0;
       max-width: 52ch;
     }
-    .stack {
-      color: var(--ink-2);
-      font-size: var(--t-small);
-      font-variant-numeric: tabular-nums;
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 var(--s-5);
+      margin-block-start: auto;
+    }
+    .study {
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
     }
     .head {
       display: flex;
@@ -125,7 +128,6 @@ import { AiTag } from '../../../shared/ai-tag/ai-tag';
       display: inline-flex;
       align-items: center;
       min-height: var(--target);
-      margin-block-start: auto;
       color: var(--ink);
       transition: transform 140ms var(--ease-out);
     }

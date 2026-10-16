@@ -8,6 +8,11 @@ export const routes: Routes = [
     loadComponent: () => import('./features/home-course/home.page').then((m) => m.HomePage),
   },
   {
+    path: 'projets/:slug',
+    title: $localize`Étude de cas, Enzo Leveque`,
+    loadComponent: () => import('./features/projects/case-study.page').then((m) => m.CaseStudyPage),
+  },
+  {
     path: 'mentions-legales',
     title: $localize`Mentions légales, Enzo Leveque`,
     data: { description: $localize`Éditeur, hébergeur, données du formulaire de contact, conservation et droits RGPD.` },

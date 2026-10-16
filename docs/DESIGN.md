@@ -134,7 +134,7 @@ Chaque section est composée différemment de sa voisine. Titres ≤ 2 lignes.
 - Tuteur L1 (transmission, pédagogie). Même gabarit que R1, texte différent, jamais la même formulation.
 
 ### P3 — Projets perso nés de la course (km 58,2)
-- Titre « Nés de la course ». Mosaïque (retours Enzo 2026-10-16) : Oltre en phare sur 7 colonnes (affiche 16:9 « Démo vidéo à venir » tant que le clip n'existe pas, jamais de faux lecteur), une pile paire de cartes sur 5 colonnes (Zotracker, garmin-mcp), la carte restante (HistoQuiz) en bandeau pleine largeur : aucune case vide. Chaque carte : pitch en 1 phrase, split, tag IA, lien « Voir le dépôt » (GitHub).
+- Titre « Nés de la course ». Mosaïque (retours Enzo 2026-10-16) : Oltre en phare sur 7 colonnes (affiche 16:10 « Démo vidéo à venir » tant que le clip n'existe pas, jamais de faux lecteur), une pile paire de cartes sur 5 colonnes (Zotracker, garmin-mcp), la carte restante (HistoQuiz) en bandeau pleine largeur : aucune case vide. Chaque carte : pitch en 1 phrase, split, tag IA, lien « Voir le dépôt » (GitHub).
 - Mobile : clips en tête de carte, lecture seulement dans le viewport.
 
 ### Journal — carnet d'entraînement
@@ -222,7 +222,7 @@ Principe : le mouvement sert l'orientation (où suis-je dans la course) et le re
 - **Photos de course :** une image dominante par section, 3:2 (large) ou 4:5 (portrait), même traitement partout, coins droits. Alt = description factuelle (« Montée vers Saint-Anthème, 14 h »), pas décorative. Max 6 à 8 photos sur la page.
 - **Recadrage des tiers :** visages de coureurs ou de bénévoles non consentants : recadrer ou flouter. Pas de plaques, pas de dossards tiers lisibles. Crédit photo si l'auteur est un tiers.
 - **Traitement :** pas de duotone, pas de grain artificiel, pas de bord arrondi. Clair : photo telle quelle. Sombre : réduire légèrement la luminosité (`filter: brightness(.9)` statique) si l'image est très blanche.
-- **Vidéo :** 15–30 s, boucle muette, ≤ 4 Mo, H.264 + WebM, poster AVIF. Pas d'autoplay hors viewport ni sous `prefers-reduced-motion`/`Save-Data`.
+- **Vidéo :** 15–30 s, boucle muette, ≤ 2,5 Mo par fichier, H.264 + WebM, affiche WebP (ADR 0003). Pas d'autoplay hors viewport ni sous `prefers-reduced-motion`/`Save-Data`.
 - Aucun tracé GPS, aucune carte de parcours ; le profil de dénivelé seul.
 - Poids total des images au premier écran ≤ 250 Ko ; `srcset` 480/800/1200 px ; Lighthouse mobile ≥ 90 perf.
 
@@ -264,3 +264,77 @@ Principe : le mouvement sert l'orientation (où suis-je dans la course) et le re
 - [ ] LCP < 2,5 s (portrait hero préchargé), CLS < 0,05, JS d'animation < 20 Ko.
 - [ ] Images dimensionnées, formats modernes, vidéo hors viewport non chargée.
 - [ ] Relecture finale à froid le lendemain, sur un vrai téléphone, en ralenti ×4 pour le mouvement.
+
+## 10. V2 : page projet, clip, carnet d'entraînement, FR/EN
+
+Maquette : `docs/design/v2-page-projet.html` (Oltre, autonome, tokens de `tokens.css`, clair/sombre, bouton Thème pour comparer). Décisions compatibles D20-D26 ; aucune n'en contredit une. La page projet est plus sobre que l'accueil : pas de rail de profil, pas d'aplat orange, pas de geste signature animé. Elle garde le dossard, les chiffres tabulaires et un seul accent.
+
+### 10.1 Blueprint de la page projet (`projets/:slug`)
+Ordre fixe (D25, plan-v2 §4.2) : lien retour → pitch + dossard de segment → clip → problème → schéma → décisions → mur du 60e km → ce que j'en retire → liens. Un seul `<h1>` (titre du projet), les sections sont des `<h2>` en sentence case, sans eyebrow ni numérotation.
+
+| Zone | Desktop (≥ 1100) | Mobile (< 768) |
+|---|---|---|
+| Retour | Lien texte « ← Retour au parcours (P3, km 58,2) » vers `/#p3`, cible 44 px | Idem |
+| Pitch + dossard | Titre `--t-display` + chapô `--t-lead` (≤ 25 mots, 28ch) + Tag IA en col. 1-7 ; dossard en col. 9-12 | Pile : titre, chapô, tag, puis dossard pleine largeur |
+| Clip | Pleine largeur du conteneur, 16:10, sous le hero | Pleine largeur, 16:10 ; bouton et légende sous le cadre |
+| Problème, schéma, décisions, retire, liens | `h2` en col. 1-3, contenu en col. 4-11 (bords gauches 1 et 4 seulement), mesure 62 ch | `h2` au-dessus, contenu pleine largeur |
+| Décisions | Première décision en pleine mesure, les deux suivantes côte à côte (jamais 3 cartes identiques) ; titre `h3` + « Compromis : » en gras, texte, pas d'accordéon | Pile |
+| Mur du 60e km | Bande `--surface` pleine largeur ; « km 60 » display orange (décor, `aria-hidden`, ≥ 18 px) en col. 1-3, `h2` + texte en col. 4-11 | « km 60 » au-dessus, puis texte |
+| Liens | Liste de liens (dépôts, « Revoir le clip »), puis un CTA « Me contacter » | Idem, CTA pleine largeur |
+
+Variante **Worldline** (`trading-app`, titre « Application de trading chez Worldline ») : même gabarit sans schéma (la section et son `h2` n'existent pas), sans clip, `repos` vide donc pas de lien dépôt, dossard sans « Commits » ni « Langages » (valeurs `null` : ligne omise, pas de tiret). Aucun nom de fonctionnalité ni de client.
+Variante **GFaim** : clip portrait (10.3) ; pas de lien store.
+
+**Dossard de segment (`BibSplit`)** : rectangle `--surface`, 4 trous d'épingle `--bg` (comme `Bib`, §6), numéro d'étape « P3 · km 58,2 » en Archivo wdth 62 / 900 orange, puis une `<dl>` : libellé `--ink-2` à gauche, valeur à droite en `tabular-nums` (durée, rôle, commits, langages, dernier push, stack). Une ligne de note « synchro GitHub, 6 h » rappelle l'origine des chiffres. Landmark `<aside aria-label="Fiche du projet">`. `commits`, `languages`, `lastPushAt` à `null` : la ligne disparaît.
+
+### 10.2 Schéma d'architecture (SVG inline, D25)
+Style « relais » : nœuds carrés pleins `--bg` posés sur un cadre `--surface` (inversion de ton, aucun filet de contour), texte `--ink` 15 px (nom, 600) et `--ink-2` (détail), flèches orthogonales `--ink` 2 px à pointe pleine, légende de lien en `--ink-2` sur la flèche. **Une seule couleur d'accent : le nœud fragile (celui du mur) en aplat `--accent`, texte `--on-accent`, flèche orange.** Optionnel = pointillé. Aucune information par la seule couleur : le nœud orange porte aussi le texte « non officielle ». Contraste : orange sur `--surface` clair 4,23:1 (grand aplat, OK UI ≥ 3:1), texte dessus en `--on-accent` 5,18:1 / 7,68:1.
+- Deux gabarits du même schéma : horizontal (≥ 900 px, viewBox 900×330, texte 15 px minimum à l'affichage) et vertical (< 900 px, viewBox 360×700, `max-width: 360`), un seul visible (`display: none` sur l'autre : jamais de double annonce). `role="img"`, `<title>` et `<desc>` traduits (le `desc` décrit le flux en une phrase), légende `<figcaption>`.
+- Max 7 nœuds, 1 niveau de nesting. Rien de décoratif, pas d'icône de marque.
+
+### 10.3 Clip (`Clip`)
+- **Ratio : 16:10, partout** (tranche §5 16:9 contre §8 16:10). Raison : l'enregistrement est en 1280×800 (D24, `video.width/height`), donc 16:10 évite recadrage et bandes ; `SegmentCard` (§6) était déjà en 16:10. Le §5 est aligné. `aspect-ratio: 16/10` posé sur le cadre ; l'affiche (`<img>` en placeholder du `@defer`) a le même ratio : zéro CLS.
+- **Portrait (GFaim)** : cadre `aspect-ratio: 9/19.5`, `max-height: min(70svh, 640px)`, centré dans une bande `--surface` ; légende et boutons sous le cadre, à droite sur desktop.
+- **Affiche** WebP ≈ 40 Ko (ADR 0003), alt vide (la légende nomme le contenu).
+- **Contrôle** : un bouton texte unique « Lecture » / « Pause » (pas d'icône seule, pas de `controls` natif), 44×96 px minimum, fond `--ink`, texte `--bg`, placé **sous** le cadre (jamais en surimpression), premier élément focusable après la vidéo ; `aria-label` identique à son texte. Toujours visible (WCAG 2.2.2). La légende est le nom accessible (`aria-labelledby` sur la `<figure>`).
+- **Lecture** : `<video muted loop playsinline preload="none" poster>` ; démarre dans le viewport (seuil 50 %), se met en pause en dehors ; **aucune lecture automatique** sous `prefers-reduced-motion`, `saveData` ou `effectiveType` 2g : l'affiche reste, le bouton fait « Lecture ». Un clic utilisateur est toujours honoré. Clip absent (`video: null`) : le composant n'est pas rendu.
+- Légende : sujet + « Données factices, 22 s, sans son ».
+
+### 10.4 Carnet d'entraînement (graphe de contributions, D26)
+Pas de grille 53×7 : c'est la heatmap GitHub reproduite. Un **carnet** lit comme un volume hebdomadaire de plan d'entraînement.
+- **Forme** : une barre par semaine (53), la **hauteur** donne le total hebdomadaire (échelle linéaire, plancher 6 px, max = 90 px), alignées sur une ligne de base en encre 2 px. Semaine à zéro = repos : trait de 3 px en `--line-muted` (le repos fait partie du carnet). Une annotation « Meilleure semaine : N » au-dessus de la barre maximale.
+- **5 tons** (le ton répète la hauteur, il ne la remplace pas) : repos `--line-muted`, puis `--accent` mélangé à `--surface` à 35 / 55 / 78 / 100 % (`color-mix`, pas de dégradé), par quartiles des semaines actives. Aucun vert.
+- **Légende** : `Repos`, quatre tons, `Charge`, + « La hauteur donne la valeur ; le ton la répète. » ; `aria-hidden`.
+- **Accessibilité** : résumé texte au-dessus (« 812 contributions sur 12 mois · 41 semaines actives sur 53 · meilleure semaine : 47 »), le SVG est `role="img"` avec `<title>`. Mois sous la ligne de base, 15 px, tabulaires.
+- **Responsive** : viewBox 742×170 ; sous 742 px, conteneur `overflow-x: auto` focusable (`tabindex="0"`, `role="region"`, nommé par le résumé), scroll initial sur les semaines récentes. Section masquée si `contributions` est `null`. Pas d'animation (SSR, §7 « compteurs »).
+- Place : colonne gauche de la section Journal, sous le chiffre UTMB Index, à la place du vide actuel sous la photo si l'espace manque, sinon sous la photo.
+
+### 10.5 Bascule FR/EN (D21)
+Dans l'en-tête, groupe à droite avant le bouton Thème : `FR / EN`, deux liens `<a hreflang lang>` dans `<nav aria-label="Langue">` (traduit), chacun 44×44, `--t-small` 600 ; la langue courante `aria-current="true"` en encre soulignée 2 px (offset 6 px), l'autre en `--ink-2` ; séparateur « / » `aria-hidden`. Pas de drapeaux, pas de menu, pas de select. Le lien conserve le chemin et l'ancre active (la section courante) ; recharge de page, sans animation.
+
+### 10.6 Accueil : GFaim et fiches courtes (décisions d'Enzo, plan-v2 §9)
+- GFaim entre en **P1** avec une `SegmentCard` « étude de cas » (lien vers `projets/gfaim`) ; Cin-folie, quarkus-color, ObjVLisp2023, LambdaCalcul : une ligne chacune (nom, stack, lien dépôt) dans une liste compacte sous les cartes P1, sans carte ni tag, pour ne pas ajouter 4 cartes identiques.
+- Les 4 études de cas (Oltre, Zotracker, GFaim, Worldline) ont un lien « Lire l'étude de cas » (lien souligné, pas de flèche) en plus de « Voir le dépôt ». Les fiches courtes n'ont jamais de page.
+
+### 10.7 Mouvement V2 (Emil : un but, `transform`/`opacity`, `--ease-out`, jamais d'`ease-in`)
+| Élément | Propriété | Courbe | Durée | Interruption | Reduced-motion |
+|---|---|---|---|---|---|
+| Entrée des blocs (problème, décisions, retire) | `opacity` + `translateY(16px → 0)`, 1 fois | `--ease-out` | 320 ms, décalage 60 ms | Transition CSS, pas de reset | Fondu 160 ms seul |
+| Bouton Lecture/Pause, Me contacter, FR/EN | `transform: scale(.97)` à `:active` | `--ease-out` | 140 ms | Retarget naturel | Conservé |
+| Lien (survol, pointeur fin) | `color` seulement | `ease` | 120 ms | — | Retiré |
+| Clip | Lecture muette en boucle | — | — | Pause hors viewport, au `blur` d'onglet | Affiche + « Lecture », jamais auto |
+| Dossard, schéma, mur, carnet | Aucune | — | — | — | — |
+| Bascule FR/EN, thème | Rechargement / View Transitions (§7) | — | — | — | Direct |
+Pas de parallaxe, pas de tracé animé du schéma, pas de barres qui poussent dans le carnet. Aucun `transition: all`.
+
+### 10.8 Checklist V2
+- [ ] Ordre du gabarit respecté ; Worldline sans schéma, sans clip, sans ligne vide dans le dossard.
+- [ ] Un `h1` ; titres ≤ 2 lignes à 320, 390, 768, 1440 px (« Trois décisions, trois compromis » vérifier à 320).
+- [ ] Dossard : chiffres `tabular-nums`, lignes `null` omises, contraste orange ≥ 3:1 (grand display).
+- [ ] Schéma lisible en clair et en sombre, texte ≥ 15 px affiché, un seul nœud orange, `title` + `desc` traduits, pas de double annonce horizontal/vertical.
+- [ ] Clip 16:10 sans CLS ; sous reduced-motion, `saveData` et 2g : affiche + « Lecture », aucune requête vidéo avant clic ; bouton Pause visible, 44 px, nommé ; vidéo sans piste audio.
+- [ ] Carnet : résumé texte, légende, 5 tons distincts en clair et sombre, hauteur lisible sans la couleur, zone défilable focusable sur mobile.
+- [ ] Bascule FR/EN : 2 cibles 44 px, `aria-current`, `hreflang`, ancre conservée, fonctionne sans JS.
+- [ ] Un seul accent, zéro dégradé/ombre/filet décoratif/eyebrow ; mouvement conforme à 10.7.
+- [ ] Revue à 360/390/768/1440, clair et sombre, ralenti ×4.
+

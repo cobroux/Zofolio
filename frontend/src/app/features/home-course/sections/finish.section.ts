@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, LOCALE_ID, inject } from '@angular/core';
 import { Reveal } from '../../../shared/reveal/reveal';
 import { ContactForm } from '../../contact/contact-form';
 
@@ -12,7 +12,7 @@ import { ContactForm } from '../../contact/contact-form';
         <p class="small tnum" appReveal i18n>Arrivée 20 h 05 · km 79,4</p>
         <h2 id="arrivee-title" appReveal i18n>Prochain objectif :<br />100 km.</h2>
         <p class="lead" [appReveal]="1" i18n>Et un nouveau poste. Parlons-en.</p>
-        <a class="cv" href="/api/fr/cv" [appReveal]="1" i18n>Télécharger le CV</a>
+        <a class="cv" [href]="cv" [appReveal]="1" i18n>Télécharger le CV</a>
         <div class="contact" [appReveal]="2">
           <p>
             <a href="mailto:enzo.lvq12@gmail.com">enzo.lvq12@gmail.com</a> ·
@@ -77,4 +77,6 @@ import { ContactForm } from '../../contact/contact-form';
     }
   `,
 })
-export class FinishSection {}
+export class FinishSection {
+  protected readonly cv = `/api/${inject(LOCALE_ID).slice(0, 2)}/cv`;
+}

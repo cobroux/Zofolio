@@ -1,0 +1,15 @@
+{"data":{"user":{
+  "repositories":{"nodes":[
+    {"name":"repo-a","pushedAt":"2026-10-14T09:35:08Z",
+     "languages":{"edges":[{"size":500,"node":{"name":"Java"}},{"size":200,"node":{"name":"HTML"}}]},
+     "defaultBranchRef":{"target":{"history":{"totalCount":10}}}},
+    {"name":"repo-b","pushedAt":"2026-09-01T00:00:00Z",
+     "languages":{"edges":[{"size":300,"node":{"name":"TypeScript"}},{"size":100,"node":{"name":"Java"}}]},
+     "defaultBranchRef":{"target":{"history":{"totalCount":5}}}},
+    {"name":"repo-vide","pushedAt":null,"languages":{"edges":[]},"defaultBranchRef":null}
+  ]},
+  "contributionsCollection":{"contributionCalendar":{"totalContributions":4,
+    "weeks":[{"contributionDays":[
+      {"date":"2026-10-11","contributionCount":0},{"date":"2026-10-12","contributionCount":3},
+      {"date":"2026-10-13","contributionCount":1}]}]}}
+}}}

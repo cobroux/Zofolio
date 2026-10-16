@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, LOCALE_ID, inject } from '@angular/core';
 import { Bib } from '../../../shared/bib/bib';
 
 /** Départ (DESIGN §5) : textes d'interface statiques (D3), aucune donnée d'API. */
@@ -21,7 +21,7 @@ import { Bib } from '../../../shared/bib/bib';
         <p class="keyfact small" i18n>2,5 ans · Worldline · trading</p>
         <p class="stack small" i18n>Java · Spring Boot · Angular · Docker · SQL</p>
         <div class="cta">
-          <a class="primary" href="/api/fr/cv" i18n>Télécharger le CV</a>
+          <a class="primary" [href]="cv" i18n>Télécharger le CV</a>
           <a class="secondary" href="#arrivee" i18n>Me contacter</a>
         </div>
       </div>
@@ -44,4 +44,6 @@ import { Bib } from '../../../shared/bib/bib';
   `,
   styleUrl: './start.section.css',
 })
-export class StartSection {}
+export class StartSection {
+  protected readonly cv = `/api/${inject(LOCALE_ID).slice(0, 2)}/cv`;
+}

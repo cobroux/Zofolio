@@ -1,0 +1,77 @@
+/* Style « relais » (DESIGN §10.2) : nœuds --bg sur cadre --surface, flèches en encre, un seul nœud orange = le point fragile. */
+:host {
+  display: block;
+}
+figure {
+  margin: 0;
+  padding: var(--s-5);
+  background: var(--surface);
+}
+@media (max-width: 599px) {
+  figure {
+    padding: var(--s-3);
+  }
+}
+svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.v {
+  display: none;
+}
+@media (max-width: 899px) {
+  .h {
+    display: none;
+  }
+  .v {
+    display: block;
+    max-width: 360px;
+    margin-inline: auto;
+  }
+}
+figcaption {
+  margin-block-start: var(--s-4);
+  color: var(--ink-2);
+  font-size: var(--t-small);
+}
+.d-box {
+  fill: var(--bg);
+}
+.d-wall {
+  fill: var(--accent);
+}
+.d-t {
+  fill: var(--ink);
+  font: 600 15px var(--font-text);
+}
+.d-s {
+  fill: var(--ink-2);
+  font: 400 15px var(--font-text);
+}
+.d-w {
+  fill: var(--on-accent);
+  font: 600 15px var(--font-text);
+}
+.d-ws {
+  fill: var(--on-accent);
+  font: 400 15px var(--font-text);
+}
+.d-a {
+  stroke: var(--ink);
+  stroke-width: 2;
+  fill: none;
+}
+.d-opt {
+  stroke-dasharray: 6 5;
+}
+.d-ah {
+  fill: var(--ink);
+}
+.d-hot {
+  stroke: var(--accent);
+  stroke-width: 3;
+}
+.d-hah {
+  fill: var(--accent);
+}

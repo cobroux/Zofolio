@@ -1,0 +1,59 @@
+{
+  "slug": "oltre",
+  "tier": "CASE_STUDY",
+  "stage": "P3",
+  "title": "Oltre",
+  "pitch": "Pitch de test.",
+  "aiTag": "HAND_THEN_AI",
+  "stack": [
+    "Java 21",
+    "Spring Boot",
+    "Angular"
+  ],
+  "duration": "8 mois",
+  "commits": 412,
+  "note": "Note de test.",
+  "repoUrl": "https://github.com/cobroux/oltre",
+  "demoUrl": null,
+  "languages": [
+    "Java",
+    "TypeScript",
+    "HTML"
+  ],
+  "lastPushAt": "2026-10-14T09:35:08Z",
+  "video": {
+    "mp4": "media/oltre-1.mp4",
+    "webm": "media/oltre-1.webm",
+    "poster": "media/oltre-1.webp",
+    "width": 1280,
+    "height": 800,
+    "caption": "Légende de test."
+  },
+  "caseStudy": {
+    "role": "Rôle de test",
+    "problem": "Problème de test.",
+    "decisions": [
+      {
+        "title": "Décision A",
+        "tradeoff": "Compromis A."
+      },
+      {
+        "title": "Décision B",
+        "tradeoff": "Compromis B."
+      }
+    ],
+    "wall": "Mur de test.",
+    "takeaway": "Leçon de test.",
+    "aiNote": null,
+    "repos": [
+      {
+        "name": "Oltre-backend",
+        "url": "https://github.com/cobroux/Oltre-backend"
+      },
+      {
+        "name": "oltre-frontend",
+        "url": "https://github.com/cobroux/oltre-frontend"
+      }
+    ]
+  }
+}

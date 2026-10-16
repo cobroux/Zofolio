@@ -4,7 +4,8 @@ import { PLATFORM_ID } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { firstValueFrom } from 'rxjs';
 import fixture from '../../../testing/home.fixture.json';
-import { HomeResponse } from './api.models';
+import oltre from '../../../testing/project-oltre.fixture.json';
+import { HomeResponse, ProjectSummary } from './api.models';
 import { ContentApi } from './content.api';
 import { API_INTERNAL_URL, serverApiInterceptor } from './server-api.interceptor';
 
@@ -34,7 +35,21 @@ describe('ContentApi', () => {
     http.expectOne((r) => r.url === 'http://backend:8080/api/fr/races').flush([]);
   });
 
-  it('renvoie null sur erreur', async () => {
+  it("project() renvoie l'étude de cas du contrat V2", async () => {
+    const { api, http } = setup('browser');
+    const res = firstValueFrom(api.project('oltre'));
+    http.expectOne('/api/fr/projects/oltre').flush(oltre as ProjectSummary);
+    expect((await res)?.caseStudy?.repos.length).toBe(2);
+  });
+
+  it('project() propage une erreur 5xx', async () => {
+    const { api, http } = setup('browser');
+    const res = firstValueFrom(api.project('x'));
+    http.expectOne('/api/fr/projects/x').flush(null, { status: 500, statusText: 'Server Error' });
+    await expect(res).rejects.toBeTruthy();
+  });
+
+  it('renvoie null sur 404', async () => {
     const { api, http } = setup('browser');
     const res = firstValueFrom(api.project('x'));
     http.expectOne('/api/fr/projects/x').flush(null, { status: 404, statusText: 'Not Found' });

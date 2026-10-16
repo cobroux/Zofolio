@@ -1,0 +1,14 @@
+# Projet Compose « oltre-demo » : volume oltre-demo_mysql_data (jamais oltre-backend_mysql_data).
+# Aucun port MySQL publié ; backend et front liés à 127.0.0.1 sur 8090 et 4210.
+services:
+  mysql:
+    container_name: oltre-mysql-demo
+    ports: !reset []
+  backend:
+    container_name: oltre-backend-demo
+    ports: !override
+      - "127.0.0.1:8090:8080"
+  frontend:
+    container_name: oltre-frontend-demo
+    ports: !override
+      - "127.0.0.1:4210:80"

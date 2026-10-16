@@ -20,9 +20,22 @@ test('thème : bascule sans flash, conservée au rechargement', async ({ page })
   expect(await bg()).toBe(dark);
 });
 
-test('/en/ redirige vers /fr/', async ({ page }) => {
-  await page.goto('/en/');
-  await expect(page).toHaveURL(/\/fr\/$/);
+test.describe('locale', () => {
+  test.use({ extraHTTPHeaders: { 'Accept-Language': 'en-US' } });
+  test('/ suit Accept-Language', async ({ page }) => {
+    await page.goto('/');
+    await expect(page).toHaveURL(/\/en\/$/);
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  });
+});
+
+test('bascule FR/EN : garde le chemin, /en/ est servi sans redirection', async ({ page }) => {
+  await page.goto('/fr/mentions-legales');
+  await page.getByRole('link', { name: /version anglaise/ }).click();
+  await expect(page).toHaveURL(/\/en\/mentions-legales$/);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await expect(page.locator('link[hreflang="fr"]')).toHaveAttribute('href', /\/fr\/mentions-legales$/);
+  await expect(page.locator('link[hreflang="x-default"]')).toHaveCount(1);
 });
 
 test('404', async ({ page }) => {
@@ -69,7 +82,7 @@ test('sans JavaScript : sections lisibles', async ({ browser }) => {
   await ctx.close();
 });
 
-for (const path of ['/fr/', '/fr/mentions-legales']) {
+for (const path of ['/fr/', '/en/', '/fr/mentions-legales']) {
   for (const scheme of ['light', 'dark'] as const) {
     test(`axe ${path} (${scheme})`, async ({ page }) => {
       await page.emulateMedia({ colorScheme: scheme });

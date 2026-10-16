@@ -3,11 +3,73 @@
   <url>
     <loc>https://enzoleveque.dev/fr/</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://enzoleveque.dev/fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://enzoleveque.dev/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://enzoleveque.dev/fr/"/>
+  </url>
+  <url>
+    <loc>https://enzoleveque.dev/fr/projets/oltre</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://enzoleveque.dev/fr/projets/oltre"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://enzoleveque.dev/en/projets/oltre"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://enzoleveque.dev/fr/projets/oltre"/>
+  </url>
+  <url>
+    <loc>https://enzoleveque.dev/fr/projets/zotracker</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://enzoleveque.dev/fr/projets/zotracker"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://enzoleveque.dev/en/projets/zotracker"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://enzoleveque.dev/fr/projets/zotracker"/>
+  </url>
+  <url>
+    <loc>https://enzoleveque.dev/fr/projets/gfaim</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://enzoleveque.dev/fr/projets/gfaim"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://enzoleveque.dev/en/projets/gfaim"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://enzoleveque.dev/fr/projets/gfaim"/>
+  </url>
+  <url>
+    <loc>https://enzoleveque.dev/fr/projets/trading-app</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://enzoleveque.dev/fr/projets/trading-app"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://enzoleveque.dev/en/projets/trading-app"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://enzoleveque.dev/fr/projets/trading-app"/>
   </url>
   <url>
     <loc>https://enzoleveque.dev/fr/mentions-legales</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://enzoleveque.dev/fr/mentions-legales"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://enzoleveque.dev/en/mentions-legales"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://enzoleveque.dev/fr/mentions-legales"/>
+  </url>
+  <url>
+    <loc>https://enzoleveque.dev/en/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://enzoleveque.dev/fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://enzoleveque.dev/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://enzoleveque.dev/fr/"/>
+  </url>
+  <url>
+    <loc>https://enzoleveque.dev/en/projets/oltre</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://enzoleveque.dev/fr/projets/oltre"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://enzoleveque.dev/en/projets/oltre"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://enzoleveque.dev/fr/projets/oltre"/>
+  </url>
+  <url>
+    <loc>https://enzoleveque.dev/en/projets/zotracker</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://enzoleveque.dev/fr/projets/zotracker"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://enzoleveque.dev/en/projets/zotracker"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://enzoleveque.dev/fr/projets/zotracker"/>
+  </url>
+  <url>
+    <loc>https://enzoleveque.dev/en/projets/gfaim</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://enzoleveque.dev/fr/projets/gfaim"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://enzoleveque.dev/en/projets/gfaim"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://enzoleveque.dev/fr/projets/gfaim"/>
+  </url>
+  <url>
+    <loc>https://enzoleveque.dev/en/projets/trading-app</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://enzoleveque.dev/fr/projets/trading-app"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://enzoleveque.dev/en/projets/trading-app"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://enzoleveque.dev/fr/projets/trading-app"/>
+  </url>
+  <url>
+    <loc>https://enzoleveque.dev/en/mentions-legales</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://enzoleveque.dev/fr/mentions-legales"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://enzoleveque.dev/en/mentions-legales"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://enzoleveque.dev/fr/mentions-legales"/>
   </url>
 </urlset>
