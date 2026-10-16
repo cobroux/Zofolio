@@ -15,8 +15,8 @@ describe('ElevationProfile', () => {
     expect(altitudeRatioAt(0)).toBeCloseTo((414 - 407) / (1369 - 407));
     expect(altitudeRatioAt(46.43)).toBe(1); // point culminant, 1369 m
     expect(altitudeRatioAt(0.09)).toBeCloseTo((410.5 - 407) / (1369 - 407)); // mi-chemin entre 414 et 407 m
-    const anchors = [[-450, 0], [800, 20], [3000, 44]] as const;
-    expect(kmAtScroll(-1000, anchors)).toBe(0);
+    const anchors = [[300, 0], [800, 20], [3000, 44]] as const;
+    expect(kmAtScroll(0, anchors)).toBe(0);
     expect(kmAtScroll(800, anchors)).toBe(20);
     expect(kmAtScroll(1900, anchors)).toBe(32);
     expect(kmAtScroll(9999, anchors)).toBe(44);

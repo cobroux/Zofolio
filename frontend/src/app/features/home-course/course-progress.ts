@@ -33,9 +33,9 @@ function lerp(x: number, pts: readonly (readonly [number, number])[]): number {
 /** Abscisse du tracé vertical au km donné, de 0 (altitude min) à 1 (max) : même échelle que `profilePath(true)`. */
 export const altitudeRatioAt = (km: number) => (lerp(km, PROFILE) - MIN) / (MAX - MIN);
 
-/** km courant selon le scroll : linéaire entre les ancres [scroll où la section croise la mi-hauteur, km du checkpoint]. */
-export const kmAtScroll = (scroll: number, anchors: readonly (readonly [number, number])[]) =>
-  lerp(scroll, anchors);
+/** km à la position `pos` (ligne de référence, en coordonnées document) : linéaire entre les ancres [haut de section, km du checkpoint], borné aux extrémités. */
+export const kmAtScroll = (pos: number, anchors: readonly (readonly [number, number])[]) =>
+  lerp(pos, anchors);
 
 /** « 79,4 » (fr) / « 79.4 » (en) : km au dixième, séparateur de la locale. */
 export const formatKm = (km: number) => r(km).toLocaleString($localize`:@@numberLocale:fr-FR`);

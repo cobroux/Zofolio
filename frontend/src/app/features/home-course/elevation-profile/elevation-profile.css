@@ -24,9 +24,12 @@ nav {
   gap: 8px;
 }
 .km {
-  font: 600 15px/1 var(--font-text);
+  /* « km 79,4 » tient dans les 72 px du rail. */
+  font: 600 13px/1 var(--font-text);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+  width: 100%;
+  text-align: center;
 }
 .track {
   position: relative;
