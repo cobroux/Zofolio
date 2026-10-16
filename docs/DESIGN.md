@@ -341,7 +341,7 @@ Pas de parallaxe, pas de tracé animé du schéma, pas de barres qui poussent da
 
 ## 11. V3 : admin, colophon, stats du Journal
 
-Maquette : `docs/design/v3-colophon-admin.html` (captures 1440 et 390, clair et sombre, dans `docs/design/v3-captures/`). Aucun token, aucune couleur, aucune police en plus : mêmes `--bg/--surface/--ink/--ink-2/--accent/--line-muted`, mêmes Archivo + Source Sans 3, coins carrés, un seul accent. Les textes du colophon sont ceux de `docs/content/copy-v3.md` (brouillon, non validé) ; la maquette n'en reprend que la structure.
+Maquette : `docs/design/v3-colophon-admin.html` (captures 1440 et 390, clair et sombre : retirées du repo, voir l'historique git). Aucun token, aucune couleur, aucune police en plus : mêmes `--bg/--surface/--ink/--ink-2/--accent/--line-muted`, mêmes Archivo + Source Sans 3, coins carrés, un seul accent. Les textes du colophon sont ceux de `docs/content/copy-v3.md` (brouillon, non validé) ; la maquette n'en reprend que la structure.
 
 ### 11.1 Admin (`/fr/admin`, usage d'Enzo seul)
 **Principe** : un outil, pas une vitrine. Pas de dossard, pas de profil, pas de mouvement signature, pas de sections en aplat orange. L'admin est une page `--bg` avec des bandes `--surface` ; la sobriété vient de la densité (interligne 1.4, espaces 8/16/24) et non d'une autre palette. Thème clair et sombre comme le site (même bascule), `noindex`.
