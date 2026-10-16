@@ -125,7 +125,7 @@ class ProjectAdminIT {
 	}
 
 	@Test
-	void seededProjectsRoundTripUnchangedExceptTooLongMetaDescription() throws Exception {
+	void seededProjectsRoundTripUnchanged() throws Exception {
 		var c = AdminClient.loggedIn(port);
 		List<String> failures = new java.util.ArrayList<>();
 		for (JsonNode p : json.readTree(c.get("/api/admin/projects").body())) {
@@ -134,9 +134,7 @@ class ProjectAdminIT {
 				failures.add(p.get("slug").asText() + " " + r.body());
 			}
 		}
-		// shortcut: la copie validée de GFaim (FR) fait 161 caractères pour 160 autorisés ; à raccourcir dans l'admin
-		assertThat(failures).hasSize(1);
-		assertThat(failures.get(0)).startsWith("gfaim").contains("metaDescription.fr");
+		assertThat(failures).isEmpty(); // GFaim FR raccourci par 20261017-0900-gfaim-meta-fr.sql
 	}
 
 	@Test

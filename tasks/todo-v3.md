@@ -119,7 +119,7 @@
   - Fichiers : `admin/MediaController.java`, `admin/MediaService.java`, `admin/ImageSanitizer.java`, `admin/Mp4Check.java`, `admin/MediaIT.java`, `admin/ImageSanitizerTest.java`, `admin/Mp4CheckTest.java`, `20261017-0400-media.sql`, `docker-compose.yml`, `Caddyfile`
   - Dépend de : T13
 
-- [ ] V3-T16 [agent: code-reviewer · sonnet] Revue sécurité de l'admin (point de contrôle J)
+- [x] V3-T16 [agent: code-reviewer · sonnet] Revue sécurité de l'admin (point de contrôle J)
   - Acceptation : diff T9, T12-T15 revu avec `security-and-hardening` et `code-review-and-quality` : plan-v3 §4 point par point, OWASP A01 (toutes les routes `/api/admin/**` couvertes, y compris `preview`), A03, A05, A07 ; aucune fuite du hash ou du mot de passe dans les logs ; critères J du plan-v3 §6 ; constats bloquants corrigés avant la phase 4.
   - Vérification : `cd backend && ./mvnw verify` ; `grep -rn -i 'password' backend/src/main | grep -i log` vide.
   - Fichiers : `docs/reviews/V3-T16-securite-J.md`

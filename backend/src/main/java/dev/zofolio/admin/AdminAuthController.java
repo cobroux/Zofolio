@@ -66,7 +66,7 @@ class AdminAuthController {
 	@GetMapping("/session")
 	Map<String, Boolean> session(HttpServletRequest request, CsrfToken csrf) {
 		csrf.getToken(); // force l'écriture du cookie XSRF-TOKEN
-		request.getSession(true); // ligne de base : login change ensuite l'identifiant (anti-fixation)
+		// aucune session avant la connexion : un anonyme ne peut pas remplir la mémoire (DoS) et il n'y a rien à fixer
 		var auth = SecurityContextHolder.getContext().getAuthentication();
 		return Map.of("authenticated", auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken));
 	}
@@ -74,7 +74,13 @@ class AdminAuthController {
 	@PostMapping("/login")
 	ResponseEntity<Void> login(@Valid @RequestBody LoginRequest body, HttpServletRequest request, HttpServletResponse response) {
 		String ipHash = IpHash.of(salt, request.getRemoteAddr());
-		var locked = throttle.lockedFor(ipHash);
+		java.util.OptionalLong locked;
+		synchronized (this) { // contrôle + comptage atomiques (une seule instance) et AVANT bcrypt : les essais parallèles ne dépassent pas le plafond
+			locked = throttle.lockedFor(ipHash);
+			if (locked.isEmpty()) {
+				throttle.recordFailure(ipHash); // effacé au succès
+			}
+		}
 		// bcrypt toujours calculé (même bloqué) : temps de réponse constant
 		boolean ok = matches(body.password());
 		if (locked.isPresent()) {
@@ -82,7 +88,6 @@ class AdminAuthController {
 			throw ApiException.loginLocked(locked.getAsLong());
 		}
 		if (!ok) {
-			throttle.recordFailure(ipHash);
 			log.info("admin-login : échec ip={}", ipHash.substring(0, 12));
 			throw ApiException.unauthenticated();
 		}

@@ -64,15 +64,14 @@ class AdminAuthIT {
 	void goodPasswordGivesNewSessionIdWithHardenedCookieThenLogoutEndsIt(CapturedOutput out) throws Exception {
 		var c = new AdminClient(port, "10.0.0.1");
 		c.get("/api/admin/session");
-		String before = c.cookies.get("__Host-zadmin");
-		assertThat(before).isNotBlank();
+		assertThat(c.cookies).doesNotContainKey("__Host-zadmin"); // pas de session avant la connexion
 
 		var r = c.send("POST", "/api/admin/login", "{\"password\":\"" + AdminClient.PASSWORD + "\"}");
 
 		assertThat(r.statusCode()).isEqualTo(204);
 		String cookie = r.headers().allValues("Set-Cookie").stream().filter(s -> s.startsWith("__Host-zadmin=")).findFirst().orElseThrow();
 		assertThat(cookie).contains("HttpOnly", "Secure", "SameSite=Strict", "Path=/");
-		assertThat(c.cookies.get("__Host-zadmin")).isNotEqualTo(before);
+		assertThat(c.cookies.get("__Host-zadmin")).isNotBlank();
 		assertThat(r.headers().firstValue("Cache-Control").orElse("")).contains("no-store");
 		assertThat(c.get("/api/admin/session").body()).contains("\"authenticated\":true");
 		assertThat(c.get("/api/admin/projects").statusCode()).isNotEqualTo(401); // 404 tant que T13 n'est pas là
@@ -94,6 +93,33 @@ class AdminAuthIT {
 		assertThat(Long.parseLong(locked.headers().firstValue("Retry-After").orElseThrow())).isBetween(1L, 900L);
 
 		assertThat(new AdminClient(port, "10.0.0.3").login(AdminClient.PASSWORD).statusCode()).isEqualTo(204);
+	}
+
+	@Test
+	void parallelWrongGuessesAreCountedBeforeBcrypt() throws Exception {
+		int n = 15;
+		var clients = new java.util.ArrayList<AdminClient>();
+		for (int i = 0; i < n; i++) {
+			var c = new AdminClient(port, "10.0.0.8");
+			c.get("/api/admin/session");
+			clients.add(c);
+		}
+		var start = new java.util.concurrent.CountDownLatch(1);
+		var pool = java.util.concurrent.Executors.newFixedThreadPool(n);
+		var results = new java.util.ArrayList<java.util.concurrent.Future<Integer>>();
+		for (var c : clients) {
+			results.add(pool.submit(() -> {
+				start.await();
+				return c.send("POST", "/api/admin/login", "{\"password\":\"mauvais\"}").statusCode();
+			}));
+		}
+		start.countDown();
+		int wrong = 0;
+		for (var f : results) {
+			wrong += f.get() == 401 ? 1 : 0;
+		}
+		pool.shutdown();
+		assertThat(wrong).as("essais parallèles passés au bcrypt").isLessThanOrEqualTo(10);
 	}
 
 	@Test

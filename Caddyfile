@@ -10,6 +10,9 @@
 		}
 	}
 	handle /api/* {
+		request_body {
+			max_size 1MB
+		}
 		# Écrase X-Forwarded-For par l'IP réelle du client : le back ne fait confiance à aucune valeur fournie.
 		reverse_proxy backend:8080 {
 			header_up X-Forwarded-For {remote_host}
