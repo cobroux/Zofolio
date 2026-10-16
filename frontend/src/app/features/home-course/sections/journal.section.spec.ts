@@ -35,10 +35,17 @@ describe('JournalSection', () => {
     expect(el.querySelectorAll('tbody tr').length).toBe(7);
     expect(el.querySelectorAll('.pr').length).toBe(1);
     expect(el.querySelector('.pr')?.textContent).toContain('Record personnel');
-    expect(el.querySelector('tbody tr')?.textContent).toContain('13 h 35 min 53 s');
-    expect(el.querySelector('tbody th')?.textContent).toContain('Grand Trail d\'Auvergne (GTA)');
+    expect(el.querySelector('tbody tr')?.textContent).toContain('7 h 32 min 39 s');
+    expect(el.querySelector('tbody th')?.textContent).toContain('Côte d\'Opale');
     expect(el.textContent!.replace('Un chiffre, pas un classement.', '')).not.toMatch(/classement|rang|place/i);
-    expect(el.querySelectorAll('tbody td:first-child')[4].textContent).toContain('Date non renseignée'); // dates NULL du seed
+    expect(el.querySelectorAll('tbody td:first-child')[5].textContent).toContain('Date non renseignée'); // dates NULL du seed
+  });
+
+  it('ordre chronologique décroissant, mois et année affichés, sans date en dernier', () => {
+    const el = render(home.races);
+    const dates = [...el.querySelectorAll('tbody td:first-child')].map((c) => c.textContent!.trim());
+    expect(dates.slice(0, 5)).toEqual(['sept. 2026', 'avr. 2026', 'oct. 2025', 'sept. 2025', 'mai 2025']);
+    expect([...el.querySelectorAll('tbody th')][1].textContent).toContain('Marathon de Paris');
   });
 
   it('graphe de contributions : rendu si présent, rien si null', () => {

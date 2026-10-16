@@ -97,8 +97,13 @@ const SEGMENTS = {
               <p class="note" i18n>Commits et langages : synchro GitHub, 6 h.</p>
             }
           </aside>
+          @if (v.p.video; as vid) {
+            @if (vid.height > vid.width) {
+              <app-clip id="clip" class="clipwrap portrait" [video]="vid" />
+            }
+          }
         </div>
-        @if (v.p.video) {
+        @if (v.p.video && v.p.video.height <= v.p.video.width) {
           <app-clip id="clip" class="clipwrap" [video]="v.p.video" />
         }
       </div>
