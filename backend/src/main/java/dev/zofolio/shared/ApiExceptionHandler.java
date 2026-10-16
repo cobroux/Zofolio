@@ -45,16 +45,35 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 				case "NOT_FOUND" -> "Not found";
 				case "RATE_LIMITED" -> "Rate limit exceeded";
 				case "MAIL_DELIVERY_FAILED" -> "Mail delivery failed";
+				case "UNAUTHENTICATED" -> "Authentication required";
+				case "FORBIDDEN" -> "Forbidden";
+				case "LOGIN_LOCKED" -> "Too many failed attempts";
+				case "CONFLICT" -> "Conflict";
+				case "MEDIA_REJECTED" -> "Media rejected";
 				default -> "Internal error";
 			});
 		}
 		return super.createResponseEntity(body, headers, status, request);
 	}
 
+	/** Fichier plus gros que la limite multipart : même contrat que les autres refus de média. */
+	@Override
+	protected ResponseEntity<Object> handleMaxUploadSizeExceededException(
+			org.springframework.web.multipart.MaxUploadSizeExceededException ex, HttpHeaders headers, HttpStatusCode status,
+			WebRequest request) {
+		return handleApi(ApiException.mediaRejected("SIZE"), request);
+	}
+
 	@ExceptionHandler(ApiException.class)
 	ResponseEntity<Object> handleApi(ApiException ex, WebRequest request) {
 		ProblemDetail pd = ProblemDetail.forStatus(ex.status());
 		pd.setProperty("code", ex.code());
+		if (ex.errors() != null) {
+			pd.setProperty("errors", ex.errors());
+		}
+		if (ex.reason() != null) {
+			pd.setProperty("reason", ex.reason());
+		}
 		HttpHeaders headers = new HttpHeaders();
 		if (ex.retryAfterSeconds() != null) {
 			headers.set(HttpHeaders.RETRY_AFTER, ex.retryAfterSeconds().toString());

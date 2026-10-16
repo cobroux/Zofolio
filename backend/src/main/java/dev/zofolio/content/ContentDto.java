@@ -13,7 +13,8 @@ public interface ContentDto {
 
 	record ProjectSummary(String slug, String tier, String stage, String title, String pitch, String aiTag,
 			List<String> stack, String duration, Integer commits, String note, String repoUrl, String demoUrl,
-			List<String> languages, Instant lastPushAt, Video video, CaseStudy caseStudy) {}
+			List<String> languages, Instant lastPushAt, Video video, CaseStudy caseStudy, String metaTitle,
+			String metaDescription) {}
 
 	record Decision(String title, String tradeoff) {}
 
@@ -29,6 +30,8 @@ public interface ContentDto {
 
 	record Contributions(LocalDate start, List<Integer> counts, int total, Instant syncedAt) {}
 
+	record SportYearDto(Integer year, Integer distanceKm, Integer elevationGainM, Integer hours, Integer activities) {}
+
 	record Home(List<ExperienceDto> experiences, List<ProjectSummary> projects, List<RaceDto> races,
-			Contributions contributions) {}
+			Contributions contributions, List<SportYearDto> sportYears) {}
 }

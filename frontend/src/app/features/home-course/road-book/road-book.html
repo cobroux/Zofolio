@@ -1,8 +1,11 @@
 <button #trigger type="button" class="bar" (click)="open()" aria-haspopup="dialog" [attr.aria-label]="label()">
-  <svg aria-hidden="true" viewBox="0 0 1000 100" preserveAspectRatio="none">
-    <path [attr.d]="d" />
-  </svg>
-  <span class="km"><ng-container i18n>km</ng-container> {{ formatKm(progress.km()) }}</span>
+  <span class="mini" aria-hidden="true" [style.--p]="pos().p" [style.--a]="pos().a">
+    <svg viewBox="0 0 1000 100" preserveAspectRatio="none">
+      <path [attr.d]="d" />
+    </svg>
+    <span class="dot"></span>
+  </span>
+  <span class="km"><ng-container i18n>km</ng-container> {{ formatKm(progress.scrollKm()) }}</span>
 </button>
 
 <dialog #dialog aria-labelledby="road-book-title" (close)="restoreFocus()">

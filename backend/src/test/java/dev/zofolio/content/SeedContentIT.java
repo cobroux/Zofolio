@@ -75,6 +75,7 @@ class SeedContentIT {
 	@Test
 	void englishIsServedFromTheSeed() throws Exception {
 		JsonNode p = new ObjectMapper().readTree(get("/api/en/projects/oltre"));
+		assertThat(p.get("metaTitle").asText()).isEqualTo("Oltre, a day-to-day planning app, Enzo Leveque");
 		assertThat(p.get("pitch").asText()).startsWith("A personal app to organize");
 		assertThat(p.get("caseStudy").get("problem").asText()).startsWith("My daily life was scattered");
 		assertThat(p.get("caseStudy").get("decisions").get(0).get("title").asText()).isEqualTo("Garmin in a separate service");

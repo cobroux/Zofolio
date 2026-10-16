@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maquette V3 : colophon et admin</title>
+<meta name="color-scheme" content="light dark">
+<!-- Maquette statique V3-T11 (DESIGN §11). Autonome : seules les polices viennent de Google Fonts (Archivo variable avec axe wdth, Source Sans 3). Tokens = DESIGN §3. Textes de travail : structure de docs/content/copy-v3.md (brouillon non validé) ; les scores et les totaux sont des valeurs de maquette, pas des mesures. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: light dark;
+  --bg:#f6f3ec;--surface:#ece8de;--ink:#14161a;--ink-2:#4a4d55;--accent:#c2410c;--on-accent:#fff;--line-muted:#8a8d94;--focus:#14161a;
+  --font-display:'Archivo','Arial Narrow','Helvetica Neue',sans-serif;
+  --font-text:'Source Sans 3',system-ui,sans-serif;
+  --t-display:clamp(3rem,9vw,8rem);--t-lead:clamp(1.375rem,2.2vw,1.75rem);--t-body:clamp(1.0625rem,1vw + .8rem,1.1875rem);--t-small:.9375rem;
+  --s-1:4px;--s-2:8px;--s-3:12px;--s-4:16px;--s-5:24px;--s-6:32px;--s-7:48px;--s-8:64px;--s-9:96px;
+  --gutter:16px;--margin:16px;--target:44px;--ease-out:cubic-bezier(.23,1,.32,1);
+}
+@media (min-width:768px){:root{--margin:24px;--gutter:24px}}
+@media (min-width:1100px){:root{--margin:32px}}
+@media (prefers-color-scheme:dark){:root:not([data-theme='light']){--bg:#0e1626;--surface:#16213a;--ink:#edeff4;--ink-2:#a9b1c3;--accent:#ff8a2b;--on-accent:#0e1626;--line-muted:#5b6b8c;--focus:#edeff4}}
+:root[data-theme='dark']{color-scheme:dark;--bg:#0e1626;--surface:#16213a;--ink:#edeff4;--ink-2:#a9b1c3;--accent:#ff8a2b;--on-accent:#0e1626;--line-muted:#5b6b8c;--focus:#edeff4}
+:root[data-theme='light']{color-scheme:light}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 var(--t-body)/1.5 var(--font-text);font-variant-numeric:lining-nums;-webkit-font-smoothing:antialiased;overflow-wrap:anywhere}
+h1,h2,h3{font-family:var(--font-display);font-stretch:75%;font-weight:800;letter-spacing:-.02em;line-height:.95;margin:0;text-wrap:balance}
+h1{font-size:var(--t-display)}
+h2{font-size:clamp(2.25rem,5.5vw,4.5rem)}
+h3{font-size:clamp(1.25rem,2vw,1.625rem);line-height:1.05}
+p{margin:0;max-width:62ch}
+.tnum,td,th{font-variant-numeric:tabular-nums lining-nums}
+a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+@media (hover:hover){a:hover{color:var(--accent)}}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.wrap{max-width:1440px;margin:0 auto;padding-inline:var(--margin)}
+.small{font-size:var(--t-small);color:var(--ink-2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s-2);min-height:var(--target);min-width:var(--target);padding:0 var(--s-4);font:600 var(--t-small)/1 var(--font-text);background:transparent;color:var(--ink);border:2px solid var(--ink);cursor:pointer;text-decoration:none;transition:transform 140ms var(--ease-out)}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.btn.plain{border-color:transparent}
+
+/* Barre de la maquette (hors design) */
+.mock{position:sticky;top:0;z-index:5;background:var(--ink);color:var(--bg);font-size:var(--t-small)}
+.mock .wrap{display:flex;flex-wrap:wrap;gap:var(--s-2) var(--s-4);align-items:center;min-height:48px}
+.mock a,.mock button{color:inherit;font:600 var(--t-small)/1 var(--font-text);background:none;border:0;cursor:pointer;min-height:var(--target);display:inline-flex;align-items:center;padding:0}
+.screen{border-block-start:8px solid var(--ink);padding-block-end:var(--s-9)}
+
+/* Admin */
+.adm-head{background:var(--surface)}
+.adm-head .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 var(--s-5);min-height:64px}
+.wm{font:800 1.25rem/1 var(--font-display);font-stretch:75%;display:inline-flex;align-items:center;min-height:var(--target)}
+.adm-head nav{display:flex;flex-wrap:wrap;gap:0 var(--s-2)}
+.adm-head nav a{display:inline-flex;align-items:center;min-height:var(--target);padding:0 var(--s-3);font:600 var(--t-small)/1 var(--font-text);text-decoration:none}
+.adm-head nav a[aria-current]{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:8px}
+.adm{max-width:1100px;margin:0 auto;padding:var(--s-7) var(--margin) 0}
+.adm h1{font-size:clamp(2rem,4vw,3rem);line-height:1}
+.adm .bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s-4);margin-block-end:var(--s-6)}
+table{border-collapse:collapse;width:100%}
+caption{text-align:left;color:var(--ink-2);font-size:var(--t-small);padding-block-end:var(--s-3)}
+th{text-align:left;font:600 var(--t-small)/1.3 var(--font-text);color:var(--ink-2);padding:var(--s-2) var(--s-3) var(--s-2) 0;vertical-align:bottom}
+td{padding:var(--s-3) var(--s-3) var(--s-3) 0;vertical-align:baseline;font-size:1.0625rem}
+th.n,td.n{text-align:right;padding-right:var(--s-5)}
+tbody tr:hover{background:var(--surface)}
+.lvl{display:inline-flex;align-items:center;gap:var(--s-2);font-size:var(--t-small);font-weight:600}
+.lvl svg{width:18px;height:18px;flex:none}
+.cards{display:none}
+@media (max-width:767px){
+  .tbl{display:none}
+  .cards{display:grid;gap:var(--s-5)}
+  .cards dl{display:grid;grid-template-columns:auto 1fr;gap:var(--s-1) var(--s-4);margin:var(--s-2) 0 0;font-size:var(--t-small)}
+  .cards dt{color:var(--ink-2)}.cards dd{margin:0}
+  .cards a{font-weight:600;font-size:1.125rem;display:inline-flex;align-items:center;min-height:var(--target)}
+}
+.err-sum{border:2px solid var(--accent);padding:var(--s-4) var(--s-5);margin-block-end:var(--s-6);max-width:62ch}
+.err-sum ul{margin:var(--s-2) 0 0;padding-left:1.2em}
+.err-ico{display:inline-flex;vertical-align:-3px;margin-right:var(--s-2)}
+fieldset{border:0;padding:0;margin:0 0 var(--s-7)}
+legend{font:800 clamp(1.5rem,2.4vw,2rem)/1 var(--font-display);font-stretch:75%;letter-spacing:-.02em;padding:0;margin-block-end:var(--s-4)}
+.cols{display:grid;gap:var(--s-5)}
+@media (min-width:900px){.cols{grid-template-columns:1fr 1fr;gap:var(--s-6)}}
+.col h3{font-size:1.125rem;margin-block-end:var(--s-3);font-family:var(--font-text);font-stretch:100%;font-weight:600;letter-spacing:0;line-height:1.2}
+.field{display:grid;gap:var(--s-1);margin-block-end:var(--s-4)}
+.field label{font-weight:600;font-size:var(--t-small)}
+.field .help{font-size:var(--t-small);color:var(--ink-2);display:flex;justify-content:space-between;gap:var(--s-4)}
+input,textarea,select{font:400 1.0625rem/1.4 var(--font-text);color:var(--ink);background:var(--bg);border:1px solid var(--line-muted);border-radius:0;padding:var(--s-3);min-height:var(--target);width:100%}
+textarea{min-height:7.5rem;resize:vertical}
+input[readonly]{background:var(--surface);color:var(--ink-2)}
+.invalid input,.invalid textarea{border:2px solid var(--accent)}
+.invalid .msg{color:var(--ink);font-size:var(--t-small);font-weight:600}
+.upload{background:var(--surface);border:2px solid var(--line-muted);padding:var(--s-5);display:grid;gap:var(--s-3);max-width:62ch}
+.prog{height:4px;background:var(--line-muted);position:relative}
+.prog i{position:absolute;inset:0 auto 0 0;width:62%;background:var(--accent)}
+.actions{position:sticky;bottom:0;background:var(--surface);margin-top:var(--s-7)}
+.actions .wrap{max-width:1100px;display:flex;flex-wrap:wrap;gap:var(--s-3);align-items:center;min-height:72px;padding-block:var(--s-2)}
+.actions .small{margin-right:auto}
+@media (max-width:767px){.actions .btn{flex:1 1 100%}}
+
+/* Colophon */
+.site-head{display:flex;align-items:center;justify-content:space-between;min-height:64px}
+.site-head nav{display:flex;gap:var(--s-2)}
+.site-head nav a{min-height:var(--target);min-width:var(--target);display:inline-flex;align-items:center;justify-content:center;font:600 var(--t-small)/1 var(--font-text)}
+.start{padding-block:var(--s-8) var(--s-9);display:grid;gap:var(--s-6)}
+@media (min-width:1100px){.start{grid-template-columns:7fr 3fr;align-items:end}}
+.start .lead{font-size:var(--t-lead);line-height:1.3;margin-block-start:var(--s-5)}
+.bib{background:var(--surface);padding:var(--s-5);min-height:12rem;display:flex;flex-direction:column;justify-content:space-between}
+.bib b{font:800 clamp(1.75rem,3vw,2.5rem)/1 var(--font-display);font-stretch:75%;color:var(--accent)}
+.blk{padding-block:var(--s-9)}
+.blk.alt{background:var(--surface)}
+.blk.inv{background:var(--ink);color:var(--bg)}
+.blk.inv .small{color:inherit;opacity:.8}
+.blk.arr{background:var(--accent);color:var(--on-accent)}
+.grid{display:grid;gap:var(--s-6)}
+@media (min-width:900px){.grid{grid-template-columns:3fr 9fr;gap:var(--gutter)}}
+.three{display:grid;gap:var(--s-6)}
+@media (min-width:900px){.three{grid-template-columns:repeat(3,1fr);gap:var(--s-6)}}
+.three h3{margin-block-end:var(--s-3)}
+.agents td,.agents th{font-size:1.0625rem}
+.agents td:last-child{white-space:nowrap}
+@media (max-width:767px){.agents td,.agents th{padding-right:var(--s-3);font-size:var(--t-small)}}
+.agents th{color:inherit;opacity:.8}
+.agents tr:hover{background:transparent}
+.tags{display:grid;gap:var(--s-5)}
+@media (min-width:900px){.tags{grid-template-columns:repeat(3,1fr)}}
+.tag{border-inline-start:4px solid var(--accent);padding-inline-start:var(--s-4)}
+.tag b{display:block}
+.aid{background:var(--surface);padding:var(--s-5);margin-block-start:var(--s-6)}
+.blk.alt .aid{background:var(--bg)}
+.lh-tbl{margin-block-start:var(--s-6)}
+.lh-tbl th,.lh-tbl td{padding:var(--s-4) var(--s-5) var(--s-4) 0;vertical-align:bottom}
+.split{font:800 clamp(2.5rem,6vw,4.5rem)/.95 var(--font-display);font-stretch:75%;letter-spacing:-.02em;display:block;text-align:right}
+.split-note{display:flex;gap:var(--s-2);justify-content:flex-end;align-items:center;font-size:var(--t-small);color:var(--ink-2);text-align:right;max-width:20ch;margin-left:auto}
+.lh-tbl td.n{padding-right:var(--s-6)}
+.lh-tbl thead th.n{text-align:right}
+.lh-cards{display:none}
+@media (max-width:767px){
+  .lh-tbl{display:none}
+  .lh-cards{display:grid;gap:var(--s-6);margin-block-start:var(--s-6)}
+  .lh-cards h3{margin-block-end:var(--s-3)}
+  .lh-cards dl{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4) var(--s-5);margin:0}
+  .lh-cards dt{font-size:var(--t-small);color:var(--ink-2)}
+  .lh-cards dd{margin:0}
+  .lh-cards .split{text-align:left;font-size:2.75rem}
+}
+.links a{display:block;font:800 clamp(1.75rem,4vw,3rem)/1.1 var(--font-display);font-stretch:75%;letter-spacing:-.02em;padding-block:var(--s-2);min-height:var(--target)}
+.links a:hover{color:inherit;text-decoration-thickness:3px}
+
+/* Stats du Journal */
+.journal{background:var(--surface);padding-block:var(--s-9)}
+.stats{max-width:720px}
+.stats h3{margin-block-end:var(--s-3)}
+.stats .yr{font:800 1.5rem/1 var(--font-display);font-stretch:75%}
+.stats td{font-size:1.125rem;padding-block:var(--s-3)}
+.stats tbody tr:hover{background:transparent}
+.stats th.n,.stats td.n{padding-right:var(--s-4)}
+.stats .na{color:var(--ink-2)}
+.stats .scroll{overflow-x:auto}
+</style>
+</head>
+<body>
+<div class="mock"><div class="wrap">
+  <strong>Maquette V3 (DESIGN §11)</strong>
+  <a href="#colophon">Colophon</a><a href="#journal">Stats du Journal</a><a href="#admin-liste">Admin : liste</a><a href="#admin-edition">Admin : édition</a>
+  <button type="button" id="theme" aria-pressed="false">Thème : système</button>
+</div></div>
+
+<!-- ============ COLOPHON ============ -->
+<div class="screen" id="colophon">
+  <div class="wrap site-head"><span class="wm">Enzo Leveque</span><nav aria-label="Langue"><a href="#" aria-current="true">FR</a><a href="#">EN</a></nav></div>
+  <main>
+    <section class="start wrap" aria-labelledby="c-h1">
+      <div>
+        <h1 id="c-h1">Colophon</h1>
+        <p class="lead">Ce site est aussi une preuve. Voici comment il est fait, qui a écrit quoi, et ce que j'ai décidé moi-même.</p>
+      </div>
+      <aside class="bib" aria-label="Édition">
+        <b>Édition 2026</b>
+        <p class="small tnum">FR + EN · mise à jour le 16 octobre 2026</p>
+      </aside>
+    </section>
+
+    <section class="blk" aria-labelledby="c-stack"><div class="wrap grid">
+      <h2 id="c-stack" style="font-size:clamp(2rem,4vw,3.25rem)">La stack</h2>
+      <div class="three">
+        <div><h3>Back</h3><p>Java <span class="tnum">21</span>, Spring Boot <span class="tnum">4.1</span>, Maven, Liquibase pour le schéma, PostgreSQL <span class="tnum">17</span>.</p></div>
+        <div><h3>Front</h3><p>Angular <span class="tnum">22</span> (standalone, signals), rendu serveur, TypeScript, CSS natif sans framework.</p></div>
+        <div><h3>Infra</h3><p>Docker Compose, Caddy en frontal, GitHub Actions.</p></div>
+      </div>
+    </div></section>
+
+    <section class="blk inv" aria-labelledby="c-meth"><div class="wrap grid">
+      <h2 id="c-meth" style="font-size:clamp(2rem,4vw,3.25rem)">Une équipe d'agents, un chef d'équipe</h2>
+      <div>
+        <table class="agents"><caption class="small">Agents, rôle et modèle (SPEC §12)</caption>
+          <thead><tr><th scope="col">Agent</th><th scope="col">Rôle</th><th scope="col">Modèle</th></tr></thead>
+          <tbody>
+            <tr><th scope="row" style="opacity:1;color:inherit">frontend-dev</th><td>Angular, SSR, accessibilité</td><td>Sonnet</td></tr>
+            <tr><th scope="row" style="opacity:1;color:inherit">backend-dev</th><td>Spring Boot, Liquibase, API</td><td>Sonnet</td></tr>
+            <tr><th scope="row" style="opacity:1;color:inherit">designer</th><td>Direction artistique, DESIGN.md</td><td>Sonnet</td></tr>
+            <tr><th scope="row" style="opacity:1;color:inherit">code-reviewer</th><td>Revue avant fusion</td><td>Sonnet</td></tr>
+          </tbody>
+        </table>
+        <p class="small" style="margin-block-start:var(--s-5)">Une fonctionnalité : spec, tâche, test, revue, fusion.</p>
+      </div>
+    </div></section>
+
+    <section class="blk" aria-labelledby="c-ai"><div class="wrap grid">
+      <h2 id="c-ai" style="font-size:clamp(2rem,4vw,3.25rem)">Qui a écrit quoi</h2>
+      <div class="tags">
+        <p class="tag"><b>À la main</b><span class="small">Worldline, GFaim</span></p>
+        <p class="tag"><b>Commencé à la main puis IA</b><span class="small">Oltre</span></p>
+        <p class="tag"><b>Conçu avec IA</b><span class="small">Zotracker, ce site</span></p>
+      </div>
+    </div></section>
+
+    <section class="blk alt" aria-labelledby="c-ci"><div class="wrap grid">
+      <h2 id="c-ci" style="font-size:clamp(2rem,4vw,3.25rem)">Ce que la CI vérifie</h2>
+      <div>
+        <p>Build et tests du back et du front, lint, E2E Playwright, audit axe, Lighthouse sur quatre pages. Déploiement automatique depuis <code style="font:inherit">main</code> uniquement si la CI est verte.</p>
+        <p class="aid"><strong>Ravito.</strong> Le déploiement revient seul au tag précédent s'il casse. Je l'ai testé avec un tag volontairement cassé.</p>
+      </div>
+    </div></section>
+
+    <section class="blk" aria-labelledby="c-lh"><div class="wrap">
+      <h2 id="c-lh" style="font-size:clamp(2rem,4vw,3.25rem)">Scores Lighthouse</h2>
+      <p style="margin-block-start:var(--s-4)" class="small">Mobile, médiane de trois mesures, mesurées le <span class="tnum">16 octobre 2026</span>. Valeurs de maquette : à remplacer par la mesure de production.</p>
+      <table class="lh-tbl"><caption class="small">Scores par page, seuil entre parenthèses</caption>
+        <thead><tr><th scope="col"><span class="small">Catégorie</span></th><th scope="col" class="n">/fr/</th><th scope="col" class="n">/en/</th><th scope="col" class="n">/fr/projets/oltre</th></tr></thead>
+        <tbody>
+          <tr><th scope="row" style="color:var(--ink);font-size:1.125rem">Performance <span class="small tnum" style="font-weight:400">(90)</span></th>
+            <td class="n"><span class="split tnum">90</span><span class="split-note"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1 15 14H1z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Limite : pile au seuil. Je l'écris.</span></td>
+            <td class="n"><span class="split tnum">93</span></td><td class="n"><span class="split tnum">94</span></td></tr>
+          <tr><th scope="row" style="color:var(--ink);font-size:1.125rem">Accessibilité <span class="small tnum" style="font-weight:400">(95)</span></th>
+            <td class="n"><span class="split tnum">100</span></td><td class="n"><span class="split tnum">100</span></td><td class="n"><span class="split tnum">100</span></td></tr>
+          <tr><th scope="row" style="color:var(--ink);font-size:1.125rem">Bonnes pratiques <span class="small tnum" style="font-weight:400">(95)</span></th>
+            <td class="n"><span class="split tnum">100</span></td><td class="n"><span class="split tnum">100</span></td><td class="n"><span class="split tnum">100</span></td></tr>
+          <tr><th scope="row" style="color:var(--ink);font-size:1.125rem">SEO <span class="small tnum" style="font-weight:400">(95)</span></th>
+            <td class="n"><span class="split tnum">100</span></td><td class="n"><span class="split tnum">100</span></td><td class="n"><span class="split tnum">100</span></td></tr>
+        </tbody>
+      </table>
+      <div class="lh-cards">
+        <section aria-labelledby="m-fr"><h3 id="m-fr">/fr/</h3><dl>
+          <div><dt>Performance (90)</dt><dd class="split tnum">90</dd><dd class="small">Limite : pile au seuil.</dd></div>
+          <div><dt>Accessibilité (95)</dt><dd class="split tnum">100</dd></div>
+          <div><dt>Bonnes pratiques (95)</dt><dd class="split tnum">100</dd></div>
+          <div><dt>SEO (95)</dt><dd class="split tnum">100</dd></div></dl></section>
+      </div>
+    </div></section>
+
+    <section class="blk arr" aria-labelledby="c-repo"><div class="wrap grid">
+      <h2 id="c-repo" style="font-size:clamp(2rem,4vw,3.25rem)">Tout est dans le dépôt</h2>
+      <div class="links"><a href="#">Le dépôt GitHub</a><a href="#">tasks/ : le plan et les tâches</a><a href="#">docs/adr/ : les décisions</a></div>
+    </div></section>
+  </main>
+</div>
+
+<!-- ============ STATS DU JOURNAL ============ -->
+<div class="screen" id="journal">
+  <section class="journal" aria-labelledby="j-h"><div class="wrap grid">
+    <h2 id="j-h" style="font-size:clamp(2.25rem,5vw,4rem)">Journal</h2>
+    <div class="stats">
+      <h3>Les années en chiffres</h3>
+      <p class="small" style="margin-block-end:var(--s-5)">Totaux par année, saisis à la main. Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé.</p>
+      <div class="scroll" role="region" aria-label="Totaux sportifs par année" tabindex="0">
+      <table><caption class="small">Valeurs de maquette</caption>
+        <thead><tr><th scope="col">Année</th><th scope="col" class="n">Kilomètres <span class="small">(km)</span></th><th scope="col" class="n">Dénivelé <span class="small">(m D+)</span></th><th scope="col" class="n">Heures <span class="small">(h)</span></th><th scope="col" class="n">Activités</th></tr></thead>
+        <tbody>
+          <tr><th scope="row" class="yr" style="color:var(--ink)">2026 <span class="small" style="font:400 var(--t-small) var(--font-text)">en cours</span></th><td class="n">1&#8239;420</td><td class="n">24&#8239;300</td><td class="n">168</td><td class="n">131</td></tr>
+          <tr><th scope="row" class="yr" style="color:var(--ink)">2025</th><td class="n">2&#8239;140</td><td class="n">41&#8239;200</td><td class="n">260</td><td class="n">210</td></tr>
+          <tr><th scope="row" class="yr" style="color:var(--ink)">2024</th><td class="n">1&#8239;310</td><td class="n">9&#8239;800</td><td class="n">121</td><td class="n na"><span aria-label="non renseigné">—</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- ============ ADMIN : LISTE ============ -->
+<div class="screen" id="admin-liste">
+  <header class="adm-head"><div class="wrap"><span class="wm">Zofolio admin</span>
+    <nav aria-label="Admin"><a href="#" aria-current="page">Projets</a><a href="#">Courses</a><a href="#">Stats</a><a href="#">Médias</a></nav>
+    <a class="btn plain" href="#">Déconnexion</a></div></header>
+  <main class="adm">
+    <div class="bar"><h1>Projets</h1><a class="btn primary" href="#">Nouveau projet</a></div>
+    <table class="tbl"><caption>5 projets, triés par ordre</caption>
+      <thead><tr><th scope="col">Titre</th><th scope="col">Slug</th><th scope="col">Niveau</th><th scope="col">Étape</th><th scope="col" class="n">Ordre</th><th scope="col">Mis à jour</th></tr></thead>
+      <tbody>
+        <tr><th scope="row" style="color:var(--ink);font-size:1.0625rem"><a href="#admin-edition">Oltre</a></th><td>oltre</td>
+          <td><span class="lvl">Étude de cas</span></td><td>P3</td><td class="n">1</td><td class="tnum">12 oct. 2026</td></tr>
+        <tr><th scope="row" style="color:var(--ink);font-size:1.0625rem"><a href="#admin-edition">Zotracker</a></th><td>zotracker</td>
+          <td><span class="lvl">Étude de cas</span></td><td>P3</td><td class="n">2</td><td class="tnum">9 oct. 2026</td></tr>
+        <tr><th scope="row" style="color:var(--ink);font-size:1.0625rem"><a href="#admin-edition">GFaim</a></th><td>gfaim</td>
+          <td><span class="lvl">Étude de cas</span></td><td>P1</td><td class="n">3</td><td class="tnum">2 oct. 2026</td></tr>
+        <tr><th scope="row" style="color:var(--ink);font-size:1.0625rem"><a href="#admin-edition">Cin-folie</a></th><td>cin-folie</td>
+          <td><span class="lvl">Fiche</span></td><td>P1</td><td class="n">4</td><td class="tnum">28 sept. 2026</td></tr>
+        <tr><th scope="row" style="color:var(--ink);font-size:1.0625rem"><a href="#admin-edition">Un très long nom de projet pour tester la coupure</a></th><td>nouveau-projet</td>
+          <td><span class="lvl"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M1 9s3-5.5 8-5.5S17 9 17 9s-3 5.5-8 5.5S1 9 1 9z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="9" r="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M2 16 16 2" stroke="currentColor" stroke-width="1.6"/></svg>Masqué</span></td><td>—</td><td class="n">5</td><td class="tnum">16 oct. 2026</td></tr>
+      </tbody>
+    </table>
+    <div class="cards" aria-label="Projets">
+      <div><a href="#admin-edition">Oltre</a><dl><dt>Slug</dt><dd>oltre</dd><dt>Niveau</dt><dd>Étude de cas</dd><dt>Étape</dt><dd>P3 · ordre <span class="tnum">1</span></dd></dl></div>
+      <div><a href="#admin-edition">Zotracker</a><dl><dt>Slug</dt><dd>zotracker</dd><dt>Niveau</dt><dd>Étude de cas</dd><dt>Étape</dt><dd>P3 · ordre <span class="tnum">2</span></dd></dl></div>
+      <div><a href="#admin-edition">Un très long nom de projet pour tester la coupure</a><dl><dt>Slug</dt><dd>nouveau-projet</dd><dt>Niveau</dt><dd>Masqué</dd><dt>Étape</dt><dd>—</dd></dl></div>
+    </div>
+  </main>
+</div>
+
+<!-- ============ ADMIN : ÉDITION ============ -->
+<div class="screen" id="admin-edition">
+  <header class="adm-head"><div class="wrap"><span class="wm">Zofolio admin</span>
+    <nav aria-label="Admin"><a href="#" aria-current="page">Projets</a><a href="#">Courses</a><a href="#">Stats</a><a href="#">Médias</a></nav>
+    <a class="btn plain" href="#">Déconnexion</a></div></header>
+  <main class="adm">
+    <p class="small"><a href="#admin-liste">← Projets</a></p>
+    <div class="bar" style="margin-block-start:var(--s-3)"><h1>Modifier Oltre</h1><span class="small">Étude de cas · publié</span></div>
+
+    <div class="err-sum" role="alert" tabindex="-1">
+      <strong><svg class="err-ico" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="7.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 5v5M9 12.2v1" stroke="currentColor" stroke-width="2"/></svg>2 erreurs à corriger</strong>
+      <ul><li><a href="#f-pitch-fr">Pitch (FR) : 300 caractères maximum.</a></li><li><a href="#f-meta-en">Meta description (EN) : 160 caractères maximum.</a></li></ul>
+    </div>
+
+    <form onsubmit="return false">
+      <fieldset><legend>Identité</legend>
+        <div class="cols">
+          <div class="field"><label for="f-slug">Slug</label><input id="f-slug" value="oltre" readonly><span class="help">Immuable après création.</span></div>
+          <div class="field"><label for="f-tier">Niveau</label><select id="f-tier"><option>Étude de cas</option><option>Fiche</option><option>Masqué</option></select><span class="help">« Masqué » = non publié.</span></div>
+        </div>
+      </fieldset>
+
+      <fieldset><legend>Textes</legend>
+        <div class="cols">
+          <div class="col">
+            <h3>Français</h3>
+            <div class="field"><label for="f-title-fr">Titre</label><input id="f-title-fr" lang="fr" value="Oltre"><span class="help"><span>Affiché sur la carte et la page.</span><span class="tnum">5 / 120</span></span></div>
+            <div class="field invalid"><label for="f-pitch-fr">Pitch</label><textarea id="f-pitch-fr" lang="fr" aria-invalid="true" aria-describedby="e1">Une application de suivi de trail qui transforme les exports de montre en carnet d'entraînement lisible, sans jamais afficher de classement ni de tracé, et qui fait ce que les applications grand public ne font pas : dire la vérité sur la charge de la semaine.</textarea><span class="help"><span class="msg" id="e1"><svg class="err-ico" width="16" height="16" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="7.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 5v5M9 12.2v1" stroke="currentColor" stroke-width="2"/></svg>300 caractères maximum.</span><span class="tnum">312 / 300</span></span></div>
+          </div>
+          <div class="col">
+            <h3>English</h3>
+            <div class="field"><label for="f-title-en">Title</label><input id="f-title-en" lang="en" value="Oltre"><span class="help"><span>Falls back to French if empty.</span><span class="tnum">5 / 120</span></span></div>
+            <div class="field"><label for="f-pitch-en">Pitch</label><textarea id="f-pitch-en" lang="en">A trail-running tracker that turns watch exports into a readable training log, with no ranking and no route map.</textarea><span class="help"><span></span><span class="tnum">112 / 300</span></span></div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset><legend>Référencement</legend>
+        <div class="cols">
+          <div class="col">
+            <div class="field"><label for="f-meta-fr">Meta description (FR)</label><textarea id="f-meta-fr" lang="fr">Étude de cas d'Oltre : un carnet d'entraînement de trail.</textarea><span class="help"><span></span><span class="tnum">55 / 160</span></span></div>
+          </div>
+          <div class="col">
+            <div class="field invalid"><label for="f-meta-en">Meta description (EN)</label><textarea id="f-meta-en" lang="en" aria-invalid="true">Case study of Oltre, a trail-running training log built with Spring Boot and Angular, with the decisions and trade-offs behind it, the wall at the sixtieth kilometre and what I took away from it.</textarea><span class="help"><span class="msg"><svg class="err-ico" width="16" height="16" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="7.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 5v5M9 12.2v1" stroke="currentColor" stroke-width="2"/></svg>160 caractères maximum.</span><span class="tnum">187 / 160</span></span></div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset><legend>Clip</legend>
+        <div class="upload" role="group" aria-label="Affiche du clip">
+          <p><strong>Choisir un fichier</strong> <span class="small">ou le déposer ici</span></p>
+          <p class="small">JPEG, PNG, WebP, MP4 · 8 Mo max · métadonnées retirées.</p>
+          <div><button type="button" class="btn">Choisir un fichier</button></div>
+          <div role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" aria-label="Envoi de oltre-1.mp4"><div class="prog"><i></i></div></div>
+          <p class="small tnum">oltre-1.mp4 · 62 %</p>
+        </div>
+      </fieldset>
+    </form>
+  </main>
+  <div class="actions"><div class="wrap">
+    <span class="small">2 erreurs, rien n'est enregistré.</span>
+    <button type="button" class="btn">Aperçu FR</button><button type="button" class="btn">Aperçu EN</button><button type="button" class="btn primary">Enregistrer et publier</button>
+  </div></div>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement,b=document.getElementById('theme'),modes=['system','light','dark'],i=0;
+  function set(m){if(m==='system')root.removeAttribute('data-theme');else root.setAttribute('data-theme',m);b.textContent='Thème : '+(m==='system'?'système':m==='light'?'clair':'sombre');}
+  b.addEventListener('click',function(){i=(i+1)%3;set(modes[i]);});
+  var q=new URLSearchParams(location.search).get('theme');if(q&&modes.indexOf(q)>-1){i=modes.indexOf(q);set(q);}
+})();
+</script>
+</body>
+</html>

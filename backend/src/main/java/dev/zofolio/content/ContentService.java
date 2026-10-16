@@ -25,6 +25,7 @@ import dev.zofolio.content.ContentDto.Home;
 import dev.zofolio.content.ContentDto.ProjectSummary;
 import dev.zofolio.content.ContentDto.RaceDto;
 import dev.zofolio.content.ContentDto.RepoLink;
+import dev.zofolio.content.ContentDto.SportYearDto;
 import dev.zofolio.content.ContentDto.Video;
 import dev.zofolio.githubsync.GithubContributions;
 import dev.zofolio.githubsync.GithubContributionsRepository;
@@ -33,7 +34,7 @@ import dev.zofolio.githubsync.GithubRepoRepository;
 
 @Service
 @Transactional(readOnly = true)
-class ContentService {
+public class ContentService {
 
 	private final RaceRepository races;
 	private final ProjectRepository projects;
@@ -41,13 +42,15 @@ class ContentService {
 
 	private final GithubRepoRepository githubRepos;
 	private final GithubContributionsRepository githubContributions;
+	private final SportYearRepository sportYears;
 	private final String login;
 
 	ContentService(RaceRepository races, ProjectRepository projects, ExperienceRepository experiences,
-			GithubRepoRepository githubRepos, GithubContributionsRepository githubContributions,
+			GithubRepoRepository githubRepos, GithubContributionsRepository githubContributions, SportYearRepository sportYears,
 			@Value("${zofolio.github.login:cobroux}") String login) {
 		this.githubRepos = githubRepos;
 		this.githubContributions = githubContributions;
+		this.sportYears = sportYears;
 		this.login = login;
 		this.races = races;
 		this.projects = projects;
@@ -71,6 +74,11 @@ class ContentService {
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 	}
 
+	/** Aperçu admin (D41) : même conversion que l'API publique, pour un projet non enregistré. */
+	public ProjectSummary preview(Project p, String lang) {
+		return toDto(p, lang, true, cache());
+	}
+
 	Home home(String lang) {
 		List<ExperienceDto> xp = experiences.findAllByOrderBySortOrder().stream()
 				.map(e -> new ExperienceDto(e.stage, e.kind.name(), pick(e.title, lang), pick(e.body, lang),
@@ -78,7 +86,9 @@ class ContentService {
 				.toList();
 		var contrib = githubContributions.findById(GithubContributions.ID)
 				.map(c -> new Contributions(c.startDate, c.counts, c.total, c.syncedAt)).orElse(null);
-		return new Home(xp, projects(lang).stream().filter(p -> p.stage() != null).toList(), races(lang), contrib);
+		return new Home(xp, projects(lang).stream().filter(p -> p.stage() != null).toList(), races(lang), contrib,
+				sportYears.findAllByOrderByYearDesc().stream().map(y -> new SportYearDto((int) y.year, y.distanceKm,
+						y.elevationGainM, y.hours, y.activities)).toList());
 	}
 
 	private Map<String, GithubRepo> cache() {
@@ -98,7 +108,8 @@ class ContentService {
 				.orElse(null);
 		return new ProjectSummary(p.slug, p.tier.name(), p.stage, pick(p.title, lang), pick(p.pitch, lang),
 				p.aiTag.name(), p.stack, pick(p.duration, lang), commits, pick(p.note, lang), repoUrl(p.githubRepos),
-				p.demoUrl, languages, lastPush, video(p.video, lang), detail ? caseStudy(p, lang) : null);
+				p.demoUrl, languages, lastPush, video(p.video, lang), detail ? caseStudy(p, lang) : null,
+				pick(p.metaTitle, lang), pick(p.metaDescription, lang));
 	}
 
 	private String repoUrl(List<String> repos) {
@@ -114,7 +125,11 @@ class ContentService {
 			return null;
 		}
 		String base = "media/" + v.name();
-		return new Video(base + ".mp4", base + ".webm", base + ".webp", v.width(), v.height(), pick(v.caption(), lang));
+		if (v.mp4() != null) { // clip téléversé (D44) : MP4 seul, pas de WebM
+			return new Video(v.mp4(), null, v.poster(), v.width(), v.height(), pick(v.caption(), lang));
+		}
+		return new Video(base + ".mp4", base + ".webm", v.poster() != null ? v.poster() : base + ".webp", v.width(),
+				v.height(), pick(v.caption(), lang));
 	}
 
 	/** Non nul ssi CASE_STUDY et {@code problem} renseigné (plan-v2 §4.2). */

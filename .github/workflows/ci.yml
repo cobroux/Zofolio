@@ -49,8 +49,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: .env depuis .env.example
-        run: sed 's/^IP_HASH_SALT=.*/IP_HASH_SALT=ci-salt-0123456789abcdef/' .env.example > .env
+      - name: .env depuis .env.example, avec un mot de passe admin de test généré (aucun secret réel)
+        run: |
+          pw="e2e-$(openssl rand -hex 12)"
+          echo "::add-mask::$pw"
+          echo "ADMIN_E2E_PASSWORD=$pw" >> "$GITHUB_ENV"
+          hash=$(docker run --rm caddy:2 caddy hash-password --plaintext "$pw")
+          sed -e 's/^IP_HASH_SALT=.*/IP_HASH_SALT=ci-salt-0123456789abcdef/' -e '/^ADMIN_PASSWORD_HASH=/d' .env.example > .env
+          echo "ADMIN_PASSWORD_HASH='$hash'" >> .env
       - run: docker compose up --build -d
       - name: Attendre le back et le SSR
         run: timeout 180 sh -c "until curl -fs localhost:4000/api/fr/home >/dev/null && curl -fs localhost:4000/fr/ >/dev/null; do sleep 3; done"

@@ -1,5 +1,9 @@
-<app-header />
-<main id="contenu" tabindex="-1">
+@if (admin()) {
   <router-outlet />
-</main>
-<app-footer />
+} @else {
+  <app-header />
+  <main id="contenu" tabindex="-1">
+    <router-outlet />
+  </main>
+  <app-footer />
+}

@@ -246,9 +246,12 @@ dd {
     font-size: clamp(2.25rem, 3.3vw, 3.25rem); /* « L'architecture » tient dans 3 colonnes sans coupure de mot */
   }
   .grid > .txt,
-  .grid > .decisions,
-  .grid > .diagram-wrap {
+  .grid > .decisions {
     grid-column: 4 / 12;
+  }
+  /* Jusqu'au bord droit : le schéma large (viewBox 900) y garde un texte ≥ 15 px. */
+  .grid > .diagram-wrap {
+    grid-column: 4 / -1;
   }
   .decisions {
     grid-template-columns: 1fr 1fr;

@@ -1,11 +1,7 @@
 package dev.zofolio.contact;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.HexFormat;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -13,6 +9,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import dev.zofolio.shared.ApiException;
+import dev.zofolio.shared.IpHash;
 
 @Service
 class ContactService {
@@ -73,11 +70,6 @@ class ContactService {
 	}
 
 	private String hash(String ip) {
-		try {
-			byte[] d = MessageDigest.getInstance("SHA-256").digest((salt + ip).getBytes(StandardCharsets.UTF_8));
-			return HexFormat.of().formatHex(d);
-		} catch (NoSuchAlgorithmException e) {
-			throw new IllegalStateException(e);
-		}
+		return IpHash.of(salt, ip);
 	}
 }

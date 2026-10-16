@@ -95,3 +95,15 @@ for (const path of ['/fr/', '/en/', '/fr/mentions-legales']) {
     });
   }
 }
+
+test.describe('rail desktop 1440', () => {
+  test.use({ viewport: { width: 1440, height: 900 } });
+  test('km 0 en haut, libellé non tronqué', async ({ page }) => {
+    await page.goto('/fr/');
+    const km = page.locator('app-elevation-profile .km');
+    await expect(km).toHaveText('km 0');
+    const [k, host] = await Promise.all([km.boundingBox(), page.locator('app-elevation-profile').boundingBox()]);
+    expect(k!.x + k!.width).toBeLessThanOrEqual(host!.x + host!.width);
+    expect(await km.evaluate((e) => e.scrollWidth <= e.clientWidth)).toBe(true);
+  });
+});

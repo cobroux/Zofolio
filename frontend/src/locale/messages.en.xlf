@@ -1987,6 +1987,622 @@
           <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6538724632949284534" datatype="html">
+        <source>Colophon : comment ce site a été construit</source>
+        <target state="initial">Colophon: how this site was built</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.routes.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3446892420012892561" datatype="html">
+        <source>Stack, équipe d&apos;agents IA, CI et scores Lighthouse : comment Enzo Leveque a construit son portfolio, sans rien cacher.</source>
+        <target state="initial">Stack, AI agent team, CI and Lighthouse scores: how Enzo Leveque built his portfolio, nothing hidden.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.routes.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5433653896661887621" datatype="html">
+        <source>Pied de page</source>
+        <target state="initial">Footer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/layout/footer.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4932564737250522896" datatype="html">
+        <source>Colophon</source>
+        <target state="initial">Colophon</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/layout/footer.ts</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">25,26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1322586333669103999" datatype="html">
+        <source>Performance</source>
+        <target state="initial">Performance</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5066959347903984445" datatype="html">
+        <source>Accessibilité</source>
+        <target state="initial">Accessibility</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8449252742944252269" datatype="html">
+        <source>Bonnes pratiques</source>
+        <target state="initial">Best practices</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8402215316598137110" datatype="html">
+        <source>SEO</source>
+        <target state="initial">SEO</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6246540268097077631" datatype="html">
+        <source>Ce site est aussi une preuve. Voici comment il est fait, qui a écrit quoi, et ce que j&apos;ai décidé moi-même.</source>
+        <target state="initial">This site is also a proof. Here is how it is made, who wrote what, and what I decided myself.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">26,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5019411871001968061" datatype="html">
+        <source>Édition</source>
+        <target state="initial">Edition</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1418529956452457595" datatype="html">
+        <source>Édition 2026</source>
+        <target state="initial">Edition 2026</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">29,30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1731368540476538816" datatype="html">
+        <source>FR + EN · mise à jour le</source>
+        <target state="initial">FR + EN · updated on</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3456404826177942114" datatype="html">
+        <source>La stack</source>
+        <target state="initial">The stack</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7178997693066178229" datatype="html">
+        <source>Java 21, Spring Boot 4.1, Maven, Liquibase pour le schéma, PostgreSQL 17.</source>
+        <target state="initial">Java 21, Spring Boot 4.1, Maven, Liquibase for the schema, PostgreSQL 17.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1233442594091052594" datatype="html">
+        <source>Angular 22 (composants standalone, signals), rendu côté serveur avec <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>@angular/ssr<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>, TypeScript, CSS natif sans framework.</source>
+        <target state="initial">Angular 22 (standalone components, signals), server-side rendering with <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>@angular/ssr<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>, TypeScript, plain CSS with no framework.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">38,39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6068406979033168372" datatype="html">
+        <source>Docker Compose, Caddy en frontal, GitHub Actions.</source>
+        <target state="initial">Docker Compose, Caddy in front, GitHub Actions.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">39,40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7093058048100301637" datatype="html">
+        <source>Le site se lit sans JavaScript. Le serveur envoie déjà le HTML complet.</source>
+        <target state="initial">The site reads fine without JavaScript. The server already sends the full HTML.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5850266075799249148" datatype="html">
+        <source>Même famille de technos que mes projets perso (Oltre, Zotracker) et que mon travail chez Worldline : je ne change pas d&apos;outils pour faire joli.</source>
+        <target state="initial">Same tech family as my side projects (Oltre, Zotracker) and my work at Worldline: I did not swap tools just to look good.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4627216612420095536" datatype="html">
+        <source>Une équipe d&apos;agents, un chef d&apos;équipe</source>
+        <target state="initial">A team of agents, one team lead</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">46,47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1064482536550909230" datatype="html">
+        <source>Le code de ce site a été écrit en grande partie par des agents IA. Je les pilote, je tranche, je relis. Comme une petite équipe, avec un budget à surveiller.</source>
+        <target state="initial">Most of this site's code was written by AI agents. I steer them, decide, and review. Like a small team, with a budget to watch.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">47,48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2787890453043266826" datatype="html">
+        <source>Agents, rôle et modèle</source>
+        <target state="initial">Agents, role and model</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1545595531048356531" datatype="html">
+        <source>Agent</source>
+        <target state="initial">Agent</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1864695627253625534" datatype="html">
+        <source>Modèle</source>
+        <target state="initial">Model</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1185794821067640965" datatype="html">
+        <source>Specs, ADR, arbitrages</source>
+        <target state="initial">Specs, ADRs, trade-offs</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="269170911763981027" datatype="html">
+        <source>Direction artistique, DESIGN.md</source>
+        <target state="initial">Art direction, DESIGN.md</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4378246834582583517" datatype="html">
+        <source>Spring Boot, Liquibase, API</source>
+        <target state="initial">Spring Boot, Liquibase, API</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4660604627301875263" datatype="html">
+        <source>Angular, SSR, accessibilité</source>
+        <target state="initial">Angular, SSR, accessibility</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7035718011844899766" datatype="html">
+        <source>Revue avant fusion</source>
+        <target state="initial">Review before merge</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3597086562806867996" datatype="html">
+        <source>E2E, axe, Lighthouse</source>
+        <target state="initial">E2E, axe, Lighthouse</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9076210318341588894" datatype="html">
+        <source>Premiers jets de textes</source>
+        <target state="initial">First drafts of texts</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2381692270664625087" datatype="html">
+        <source>Docker, CI, déploiement</source>
+        <target state="initial">Docker, CI, deployment</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4360389032369975196" datatype="html">
+        <source>Faits tirés de mes documents</source>
+        <target state="initial">Facts taken from my documents</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4590292822960180417" datatype="html">
+        <source>Chaque rôle prend le modèle le moins coûteux qui tient la tâche : Opus pour le tech lead (specs, arbitrages), Sonnet pour la plupart des autres, Haiku pour le DevOps et la recherche de contenu.</source>
+        <target state="initial">Each role gets the cheapest model that can handle the job: Opus for the tech lead (specs, trade-offs), Sonnet for most of the others, Haiku for DevOps and content research.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">63,64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7708705424734102180" datatype="html">
+        <source>Des skills guident les agents. Pour le design, Taste (contre le look « fait par une IA ») et Emil (les détails de finition et de mouvement).</source>
+        <target state="initial">Skills guide the agents. For design, Taste (against the "made by an AI" look) and Emil (polish and motion details).</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">64,65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8315353825029931379" datatype="html">
+        <source>Le cycle d&apos;une feature : spec, design si besoin, back et front en parallèle, revue de code, QA, déploiement.</source>
+        <target state="initial">The cycle of a feature: spec, design if needed, back and front in parallel, code review, QA, deployment.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">65,66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9154805837840280159" datatype="html">
+        <source>À chaque point de contrôle, une revue de code et une passe QA (E2E, accessibilité, performance). Leurs rapports sont dans <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>docs/reviews/<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>, défauts compris.</source>
+        <target state="initial">At every checkpoint, a code review and a QA pass (E2E, accessibility, performance). Their reports are in <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>docs/reviews/<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>, flaws included.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">66,67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8784930103397759105" datatype="html">
+        <source>Règle commune : la plus petite modification qui résout vraiment le problème. Pas d&apos;abstraction « au cas où ».</source>
+        <target state="initial">Common rule: the smallest change that truly solves the problem. No "just in case" abstractions.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">67,68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4632622525146467198" datatype="html">
+        <source>Oui, il y a un agent rédacteur. Non, il n&apos;a pas écrit cette phrase sans que je la relise.</source>
+        <target state="initial">Yes, there is a copywriter agent. No, it did not write this sentence without my review.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">68,69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3660481099394145449" datatype="html">
+        <source>Qui a écrit quoi</source>
+        <target state="initial">Who wrote what</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">72,73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5144939347359978959" datatype="html">
+        <source>Chaque projet porte un tag. « Écrit à la main » : les projets universitaires. « Commencé à la main, puis IA » : Oltre. « Conçu avec IA » : Zotracker et ce site.</source>
+        <target state="initial">Each project carries a tag. "Written by hand": the university projects. "Started by hand, then AI": Oltre. "Designed with AI": Zotracker and this site.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">74,75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="196300602146834756" datatype="html">
+        <source>Ce que j&apos;ai décidé moi-même : le concept (le site suit mon Grand Trail d&apos;Auvergne), tous les contenus et leur validation, les arbitrages d&apos;architecture et de budget. Aucun texte ne part en ligne sans mon accord.</source>
+        <target state="initial">What I decided myself: the concept (the site follows my Grand Trail d'Auvergne), all the content and its sign-off, the architecture and budget trade-offs. No text goes live without my approval.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">75,76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5453388476461068559" datatype="html">
+        <source>Ce que les agents ont fait : écrire le code, les tests et les premiers jets de textes, sur mes specs. Je relis, je corrige, je refuse parfois.</source>
+        <target state="initial">What the agents did: write the code, the tests and first drafts of texts, from my specs. I review, correct, and sometimes reject.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">76,77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="580782926780631414" datatype="html">
+        <source>Les clips des projets</source>
+        <target state="initial">The project clips</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">77,78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5477522177459360265" datatype="html">
+        <source>Les courtes vidéos de démonstration sont générées par script : Docker lance le projet, Playwright le pilote avec un faux curseur, ffmpeg encode le MP4. Données factices uniquement : aucune donnée Garmin ni aucun compte réels ne passent devant la caméra. Chaque clip pèse moins de 2,5 Mo, sans métadonnées, et ne se charge que lorsqu&apos;il entre à l&apos;écran.</source>
+        <target state="initial">The short demo videos are generated by script: Docker starts the project, Playwright drives it with a fake cursor, ffmpeg encodes the MP4. Fake data only: no real Garmin data or account ever goes in front of the camera. Each clip weighs under 2.5 MB, has no metadata, and only loads when it scrolls into view.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">78,79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4652608521773804114" datatype="html">
+        <source>Ce que la CI vérifie</source>
+        <target state="initial">What the CI checks</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">82,83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4529626337259579355" datatype="html">
+        <source>À chaque push, GitHub Actions lance quatre jobs : le back (build et tests, <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>./mvnw verify<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>), le front (lint, tests, build), les tests E2E Playwright sur la pile complète, et Lighthouse.</source>
+        <target state="initial">On every push, GitHub Actions runs four jobs: back (build and tests, <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>./mvnw verify<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>), front (lint, tests, build), Playwright E2E tests on the full stack, and Lighthouse.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">83,84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5162643059681106083" datatype="html">
+        <source>Les E2E incluent axe-core : zéro violation d&apos;accessibilité, en clair et en sombre, en FR et en EN.</source>
+        <target state="initial">The E2E tests include axe-core: zero accessibility violations, light and dark, in FR and EN.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">84,85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9214200765325450216" datatype="html">
+        <source>Les seuils Lighthouse mobile font échouer le build : 90 en performance, 95 en accessibilité, bonnes pratiques et SEO. Une PR rouge ne se fusionne pas.</source>
+        <target state="initial">The mobile Lighthouse thresholds fail the build: 90 for performance, 95 for accessibility, best practices and SEO. A red PR does not merge.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">85,86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="111176193444867593" datatype="html">
+        <source>Environ 120 tests au total (back, front, E2E). [À recompter avant publication]</source>
+        <target state="initial">About 120 tests in total (back, front, E2E). [Recount before publishing]</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">86,87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="923794799127162408" datatype="html">
+        <source>(conditionnel) Une CI verte sur <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> déclenche le déploiement : images Docker poussées sur GHCR, mises en ligne sur une VM Oracle Cloud (gratuite), derrière Cloudflare, avec retour automatique à la version précédente si le démarrage échoue.</source>
+        <target state="initial">(conditional) A green CI on <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> triggers the deployment: Docker images pushed to GHCR, rolled out on an Oracle Cloud VM (free tier), behind Cloudflare, with automatic rollback to the previous version if startup fails.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">87,88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2880037394494066058" datatype="html">
+        <source>(conditionnel) La base est sauvegardée chaque nuit, chiffrée, sur Cloudflare R2.</source>
+        <target state="initial">(conditional) The database is backed up every night, encrypted, to Cloudflare R2.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">88,89</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5288744275275761868" datatype="html">
+        <source>Scores Lighthouse</source>
+        <target state="initial">Lighthouse scores</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">92,93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6536864698954542667" datatype="html">
+        <source>Mesurés sur le site en ligne, mobile, médiane de trois mesures. Pas de score arrondi à la hausse.</source>
+        <target state="initial">Measured on the live site, mobile, median of three runs. No rounding up.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">93,94</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="109611215155679097" datatype="html">
+        <source>Mesure du</source>
+        <target state="initial">Measured on</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1115717087277927353" datatype="html">
+        <source>Mesure du [À MESURER : date, T8]</source>
+        <target state="initial">Measured on [À MESURER: date, T8]</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9074050584937325616" datatype="html">
+        <source>Scores par page, seuil entre parenthèses</source>
+        <target state="initial">Scores per page, threshold in brackets</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">99,100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5831985829809767394" datatype="html">
+        <source>Catégorie</source>
+        <target state="initial">Category</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">101</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1392088035644905443" datatype="html">
+        <source>[À MESURER : prod]</source>
+        <target state="initial">[À MESURER: prod]</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">109,110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6318338994098830642" datatype="html">
+        <source>Limite : pile au seuil. Je l&apos;écris.</source>
+        <target state="initial">Limit: right at the threshold. I am writing it down.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">112,113</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5259836909068233043" datatype="html">
+        <source>Pour mémoire, la dernière mesure locale (<x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>docs/reviews/V2-T34-T35-qa.md<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>) donnait 90, 100, 100, 100 sur <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>/fr/<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> : la performance était juste au seuil. Je préfère l&apos;écrire que de le cacher.</source>
+        <target state="initial">For the record, the last local run (<x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>docs/reviews/V2-T34-T35-qa.md<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>) gave 90, 100, 100, 100 on <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>/fr/<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>: performance was right at the threshold. I would rather say so than hide it.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">120,121</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5942671110811724425" datatype="html">
+        <source>Tout est dans le dépôt</source>
+        <target state="initial">It is all in the repo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">124,125</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4096810155458901411" datatype="html">
+        <source>Le code source</source>
+        <target state="initial">The source code</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">126,127</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4987758247039244483" datatype="html">
+        <source>Les plans et listes de tâches (tasks/)</source>
+        <target state="initial">The plans and task lists (tasks/)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">127,128</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7830855131540145941" datatype="html">
+        <source>Les décisions d&apos;architecture (docs/adr/)</source>
+        <target state="initial">The architecture decisions (docs/adr/)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">128,129</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7421213708471553475" datatype="html">
+        <source>Les années en chiffres</source>
+        <target state="translated">The years in numbers</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">40,41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2967245884137980359" datatype="html">
+        <source>Course, vélo et natation, année par année, d&apos;après ma montre.</source>
+        <target state="translated">Running, cycling and swimming, year by year, from my watch.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="510448242925122577" datatype="html">
+        <source>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km et dénivelé : course et vélo (les km en natation, peu fiables, sont exclus). Année en cours incluse.</source>
+        <target state="translated">Yearly totals only: no track, no heart rate, no health data. Distance and elevation: running and cycling (swim distances, unreliable, are excluded). Current year included.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1229716062486939868" datatype="html">
+        <source>Totaux annuels d&apos;endurance</source>
+        <target state="translated">Yearly endurance totals</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">45,46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8415249390267046376" datatype="html">
+        <source>Année</source>
+        <target state="translated">Year</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">48,49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1520696175350811727" datatype="html">
+        <source>Kilomètres (km)</source>
+        <target state="translated">Kilometres (km)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6282014921908647866" datatype="html">
+        <source>Dénivelé (m D+)</source>
+        <target state="translated">Elevation gain (m D+)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">50,51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6318374050802732469" datatype="html">
+        <source>Heures (h)</source>
+        <target state="translated">Hours (h)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">51,52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3757382813330853359" datatype="html">
+        <source>Activités</source>
+        <target state="translated">Activities</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1958150413233501306" datatype="html">
+        <source>en cours</source>
+        <target state="translated">in progress</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4372371957547532942" datatype="html">
+        <source>non renseigné</source>
+        <target state="translated">not provided</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">71,72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5178652351654797364" datatype="html">
+        <source>79,4 km parcourus sur 100</source>
+        <target state="translated">79.4 km covered out of 100</target>
+      </trans-unit>
+      <trans-unit id="3490420496671634451" datatype="html">
+        <source>79,4 km</source>
+        <target state="translated">79.4 km</target>
+      </trans-unit>
+      <trans-unit id="190099704623535625" datatype="html">
+        <source>100 km</source>
+        <target state="translated">100 km</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -89,6 +89,36 @@ class GithubSyncServiceTest {
 	}
 
 	@Test
+	void hasNextPageKeepsMissingReposAndOnlyUpserts(CapturedOutput out) throws IOException {
+		GithubRepo stale = new GithubRepo();
+		stale.name = "page-2";
+		when(repos.findAll()).thenReturn(List.of(stale));
+		server.expect(requestTo(URL)).andRespond(withSuccess(
+				ok().replace("\"hasNextPage\":false", "\"hasNextPage\":true"), MediaType.APPLICATION_JSON));
+
+		service(TOKEN).sync();
+
+		verify(repos, never()).deleteAll(any(Iterable.class));
+		verify(repos, times(3)).save(any(GithubRepo.class));
+		assertThat(out.getAll()).contains("aucune suppression");
+	}
+
+	@Test
+	void emptyListWithNonEmptyCacheLeavesCacheIntact(CapturedOutput out) throws IOException {
+		GithubRepo cached = new GithubRepo();
+		cached.name = "repo-a";
+		when(repos.findAll()).thenReturn(List.of(cached));
+		String empty = ok().replaceAll("(?s)\"nodes\":\\[.*?\\]\\},\\s*\"contributionsCollection", "\"nodes\":[]},\"contributionsCollection");
+		server.expect(requestTo(URL)).andRespond(withSuccess(empty, MediaType.APPLICATION_JSON));
+
+		service(TOKEN).sync();
+
+		verify(repos, never()).deleteAll(any(Iterable.class));
+		verify(repos, never()).save(any());
+		assertThat(out.getAll()).contains("aucune suppression");
+	}
+
+	@Test
 	void blankTokenMakesNoRequest() {
 		service("").sync(); // aucune attente déclarée : toute requête ferait échouer MockRestServiceServer
 		server.verify();

@@ -1,7 +1,7 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgTemplateOutlet } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import { ContributionsGraph } from '../../../shared/contributions/contributions';
-import { Contributions, Race } from '../../../core/api/api.models';
+import { Contributions, Race, SportYear } from '../../../core/api/api.models';
 import { Reveal } from '../../../shared/reveal/reveal';
 
 /** 79.4 → « 79,4 km ». */
@@ -23,7 +23,7 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
 /** Pas de classement : uniquement des chiffres. Les lignes `INDEX`/`CLUB` ne sont pas des courses. */
 @Component({
   selector: 'app-journal-section',
-  imports: [ContributionsGraph, Reveal, DatePipe],
+  imports: [ContributionsGraph, Reveal, DatePipe, NgTemplateOutlet],
   template: `
     <section id="journal" aria-labelledby="journal-title">
       <div class="side">
@@ -39,26 +39,73 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
             <p class="small">{{ r.name }}</p>
           }
         </div>
-        <figure [appReveal]="2">
-          <picture>
-            <source type="image/avif" srcset="img/finisher-cote-d-opale-640.avif 640w, img/finisher-cote-d-opale-1280.avif 1280w" sizes="(min-width: 768px) 40vw, 360px" />
-            <source type="image/webp" srcset="img/finisher-cote-d-opale-640.webp 640w, img/finisher-cote-d-opale-1280.webp 1280w" sizes="(min-width: 768px) 40vw, 360px" />
-            <img
-              src="img/finisher-cote-d-opale-640.jpg"
-              srcset="img/finisher-cote-d-opale-640.jpg 640w, img/finisher-cote-d-opale-1280.jpg 1280w"
-              sizes="(min-width: 768px) 40vw, 360px"
-              width="1280"
-              height="1600"
-              loading="lazy"
-              decoding="async"
-              i18n-alt
-              alt="Enzo montre sa médaille de finisher devant l'affiche du Trail Côte d'Opale"
-            />
-          </picture>
-        </figure>
+      </div>
+      <div class="years">
+      <figure [appReveal]="2">
+        <picture>
+          <source type="image/avif" srcset="img/finisher-cote-d-opale-640.avif 640w, img/finisher-cote-d-opale-1280.avif 1280w" sizes="(min-width: 768px) 40vw, 360px" />
+          <source type="image/webp" srcset="img/finisher-cote-d-opale-640.webp 640w, img/finisher-cote-d-opale-1280.webp 1280w" sizes="(min-width: 768px) 40vw, 360px" />
+          <img
+            src="img/finisher-cote-d-opale-640.jpg"
+            srcset="img/finisher-cote-d-opale-640.jpg 640w, img/finisher-cote-d-opale-1280.jpg 1280w"
+            sizes="(min-width: 768px) 40vw, 360px"
+            width="1280"
+            height="1600"
+            loading="lazy"
+            decoding="async"
+            i18n-alt
+            alt="Enzo montre sa médaille de finisher devant l'affiche du Trail Côte d'Opale"
+          />
+        </picture>
+      </figure>
+      @if (sportYears().length) {
+        <div class="stats" [appReveal]="2">
+        <h3 id="stats-title" i18n>Les années en chiffres</h3>
+        <p i18n>Course, vélo et natation, année par année, d'après ma montre.</p>
+        <p class="small" i18n>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km et dénivelé : course et vélo (les km en natation, peu fiables, sont exclus). Année en cours incluse.</p>
+        <div class="scroll" role="region" tabindex="0" aria-labelledby="stats-title">
+          <table>
+            <caption class="sr" i18n>Totaux annuels d'endurance</caption>
+            <thead>
+              <tr>
+                <th scope="col" i18n>Année</th>
+                <th scope="col" class="num km" i18n>Kilomètres (km)</th>
+                <th scope="col" class="num" i18n>Dénivelé (m D+)</th>
+                <th scope="col" class="num" i18n>Heures (h)</th>
+                <th scope="col" class="num" i18n>Activités</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (y of sportYears(); track y.year) {
+                <tr>
+                  <th scope="row"><span class="yr">{{ y.year }}</span>@if (y.year === thisYear) { <span class="small" i18n>en cours</span> }</th>
+                  <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.distanceKm, bar: true, year: y.year }" />
+                  <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.elevationGainM }" />
+                  <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.hours }" />
+                  <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.activities }" />
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <ng-template #cell let-v let-bar="bar" let-year="year">
+          <td class="num" [class.km]="bar">
+          @if (v === null) {
+              <span aria-hidden="true">—</span><span class="sr" i18n>non renseigné</span>
+            } @else {
+              {{ number(v) }}
+              @if (bar) {
+                <!-- Décoratif : les km sont déjà en texte. Longueur = km / max des années. -->
+                <span class="bar" aria-hidden="true" [class.now]="year === thisYear" [style.--k]="v / maxKm()"></span>
+              }
+            }
+          </td>
+        </ng-template>
+        </div>
+      }
       </div>
       @if (rows(); as list) {
-        <table [appReveal]="2">
+        <table class="races" [appReveal]="2">
           <caption class="sr" i18n>Courses terminées</caption>
           <thead>
             <tr>
@@ -144,8 +191,10 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
     }
     figure {
       position: relative;
+      order: 1;
       margin: 0;
     }
+    .years { display: flex; flex-direction: column; gap: var(--s-7); }
     figure img {
       display: block;
       width: 100%;
@@ -154,35 +203,36 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
       object-fit: cover;
       object-position: center 12%;
     }
-    table {
+    .races {
       border-collapse: collapse;
       font-variant-numeric: tabular-nums;
     }
-    th, td {
+    .races th,
+    .races td {
       padding: var(--s-4) var(--s-3);
       text-align: left;
       font-weight: 400;
       vertical-align: top;
     }
-    thead th {
+    .races thead th {
       color: var(--ink-2);
       font-size: var(--t-small);
       font-weight: 600;
     }
-    tbody tr {
+    .races tbody tr {
       border-top: 1px solid var(--line-muted);
     }
-    tbody th {
+    .races tbody th {
       font-weight: 600;
     }
-    td:first-child,
-    .num {
+    .races td:first-child,
+    .races .num {
       white-space: nowrap;
     }
-    .num {
+    .races .num {
       text-align: right;
     }
-    .time {
+    .races .time {
       font-weight: 600;
     }
     .pr {
@@ -197,6 +247,22 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
     .pr svg {
       color: var(--accent);
     }
+    .stats { display: flex; flex-direction: column; gap: var(--s-3); }
+    .stats h3 { margin: 0; font: 800 clamp(1.25rem, 2vw, 1.625rem) / 1.05 var(--font-display); font-stretch: 75%; letter-spacing: -0.02em; }
+    .stats .scroll { overflow-x: auto; }
+    .stats table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums lining-nums; }
+    .stats th, .stats td { padding: var(--s-3) var(--s-3) var(--s-3) 0; text-align: left; font-weight: 400; }
+    .stats thead th { color: var(--ink-2); font-size: var(--t-small); font-weight: 600; vertical-align: bottom; }
+    .stats th.num, .stats td.num { text-align: right; white-space: nowrap; }
+    /* Barre par année, proportionnelle aux km : la progression se lit d'un coup d'œil (décoratif, aria-hidden). */
+    .stats th.km, .stats td.km { text-align: left; width: 40%; min-width: 5.5rem; }
+    .bar { display: block; height: 6px; margin-top: var(--s-2); background: var(--ink-2); transform: scaleX(var(--k)); transform-origin: left; }
+    .bar.now { background: var(--accent); }
+    /* le body a overflow-wrap: anywhere : sans cela la colonne Année s'écrase chiffre par chiffre à 390 */
+    .stats th { overflow-wrap: normal; }
+    .stats tbody th { white-space: nowrap; }
+    .stats tbody th .small { display: block; }
+    .stats .yr { font: 800 1.5rem / 1 var(--font-display); font-stretch: 75%; margin-inline-end: var(--s-2); }
     .sr {
       position: absolute;
       width: 1px;
@@ -206,28 +272,32 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
     }
     /* Sous 1280 px (le tableau à 6 colonnes n'a pas la place à côté de la photo) : une fiche par course (nom, puis date/distance et D+/temps en 2 colonnes, puis la note). */
     @media (max-width: 1279px) {
-      thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-      table, tbody { display: block; }
-      tbody tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3) var(--s-4); padding: var(--s-5) 0; }
-      td, tbody th { display: flex; flex-direction: column; gap: 2px; padding: 0; text-align: left; white-space: normal; }
-      tbody th { grid-column: 1 / -1; order: -1; font-size: 1.125rem; }
-      td.num { text-align: left; }
-      td::before { content: attr(data-label); color: var(--ink-2); font-size: var(--t-small); font-weight: 400; }
-      td:last-child { grid-column: 1 / -1; }
-      td:empty { display: none; }
+      .races thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+      .races, .races tbody { display: block; }
+      .races tbody tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3) var(--s-4); padding: var(--s-5) 0; }
+      .races td, .races tbody th { display: flex; flex-direction: column; gap: 2px; padding: 0; text-align: left; white-space: normal; }
+      .races tbody th { grid-column: 1 / -1; order: -1; font-size: 1.125rem; }
+      .races td.num { text-align: left; }
+      .races td::before { content: attr(data-label); color: var(--ink-2); font-size: var(--t-small); font-weight: 400; }
+      .races td:last-child { grid-column: 1 / -1; }
+      .races td:empty { display: none; }
+    }
+    @media (min-width: 768px) {
+      /* Photo à gauche, chiffres à droite : aucune moitié vide. */
+      .years { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: var(--gutter); align-items: start; }
+      figure { order: 0; }
     }
     @media (min-width: 768px) and (max-width: 1279px) {
-      tbody tr { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-      /* Texte et photo côte à côte, le tableau en dessous. */
-      .side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 20rem); align-items: start; gap: var(--gutter); }
+      .races tbody tr { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     }
-    /* Desktop : à gauche titre, intro, 459 et photo qui prend la hauteur restante ; à droite le tableau. */
+    /* Desktop : à gauche titre, intro, 459 ; à droite le tableau ; dessous, pleine largeur, la photo et les chiffres. */
     @media (min-width: 1280px) {
       section { grid-template-columns: repeat(12, minmax(0, 1fr)); padding-block: var(--s-10); }
-      .side { grid-column: 1 / span 5; }
-      table, .unavailable { grid-column: 6 / span 7; align-self: start; }
-      figure { flex: 1 1 0; min-height: 18rem; }
-      figure img { position: absolute; inset: 0; aspect-ratio: auto; }
+      .side { grid-column: 1 / span 5; grid-row: 1; }
+      .races, .unavailable { grid-column: 6 / span 7; grid-row: 1; align-self: start; }
+      .years { grid-column: 1 / -1; grid-row: 2; grid-template-columns: subgrid; }
+      figure { grid-column: 1 / span 4; }
+      .stats { grid-column: 6 / span 7; }
     }
   `,
 })
@@ -236,6 +306,12 @@ export class JournalSection {
   readonly races = input<Race[] | null>(null);
   /** `null` = pas encore de synchro GitHub : le graphe n'est pas rendu. */
   readonly contributions = input<Contributions | null>(null);
+  /** Année décroissante ; `[]` : le bloc n'est pas rendu. */
+  readonly sportYears = input<SportYear[]>([]);
+  protected readonly thisYear = new Date().getFullYear();
+  protected readonly number = (n: number) => ELEVATION.format(n);
+  /** Plus grand total annuel : échelle commune des barres. */
+  protected readonly maxKm = computed(() => Math.max(1, ...this.sportYears().map((y) => y.distanceKm ?? 0)));
   readonly rows = computed(() => this.races()?.filter((r) => r.kind === 'RACE') ?? null);
   readonly others = computed(() => this.races()?.filter((r) => r.kind !== 'RACE') ?? []);
   protected readonly label = {

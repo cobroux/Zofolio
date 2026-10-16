@@ -25,7 +25,7 @@
   - Fichiers : `docs/content/facts-v2-case-studies.md`
   - Dépend de : T2
 
-- [ ] V2-T4 [agent: copywriter · sonnet] Rédiger les textes FR du V2
+- [x] V2-T4 [agent: copywriter · sonnet] Rédiger les textes FR du V2
   - Acceptation : pour Oltre, Zotracker, GFaim et Worldline : `pitch`, `role`, `duration`, `problem`, 2 ou 3 `decisions` (titre et compromis), `wall`, `takeaway`, `aiNote`, selon le gabarit plan-v2 §4.2. **Worldline** : vue d'ensemble compréhensible par un non-initié, sans architecture, client ni nom de fonctionnalité, pas de `decisions` techniques internes (des leçons de métier à la place) ; légendes des 3 clips ; textes `title`/`desc` des 3 schémas ; textes d'interface V2 (titres de la page projet, « Le mur du 60e km », boutons Lecture/Pause, bascule de langue, graphe de contributions, 404 projet) ; meta title et description des 4 pages ; DESIGN §1 respecté.
   - Vérification : `grep -i -E 'passionn|innovant|de l.idée à la production|client|banque' docs/content/copy-fr-v2.md` vide.
   - Fichiers : `docs/content/copy-fr-v2.md`
@@ -75,7 +75,7 @@
   - Fichiers : `.env.example`, `docker-compose.yml`, `README.md`
   - Dépend de : T1
 
-- [ ] V2-T12 [agent: backend-dev · sonnet] CV EN
+- [x] V2-T12 [agent: backend-dev · sonnet] CV EN
   - Acceptation : `Enzo-Leveque-CV-EN.pdf` (T6) placé sans métadonnées d'auteur ; `GET /api/en/cv` → fichier EN, nom `Enzo-Leveque-CV-EN.pdf` ; fichier EN absent → repli FR (D9) ; compteur inchangé.
   - Vérification : `cd backend && ./mvnw verify` (IT : en-tête `filename` EN, repli FR quand le fichier EN manque) ; `exiftool backend/src/main/resources/cv/Enzo-Leveque-CV-EN.pdf | grep -i -E 'author|creator'` vide ou neutre.
   - Fichiers : `cv/CvController.java`, `cv/CvApiIT.java`, `backend/src/main/resources/cv/Enzo-Leveque-CV-EN.pdf`, `backend/src/test/resources/cv/Enzo-Leveque-CV-EN.pdf`

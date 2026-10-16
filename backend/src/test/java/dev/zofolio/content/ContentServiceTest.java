@@ -28,7 +28,7 @@ class ContentServiceTest {
 	ExperienceRepository experiences = mock(ExperienceRepository.class);
 	GithubRepoRepository githubRepos = mock(GithubRepoRepository.class);
 	GithubContributionsRepository contributions = mock(GithubContributionsRepository.class);
-	ContentService service = new ContentService(races, projects, experiences, githubRepos, contributions, "cobroux");
+	ContentService service = new ContentService(races, projects, experiences, githubRepos, contributions, mock(SportYearRepository.class), "cobroux");
 
 	@Test
 	void homeFallsBackToFrenchKeepsOrderAndFiltersStage() {

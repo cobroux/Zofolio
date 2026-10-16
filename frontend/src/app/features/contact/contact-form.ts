@@ -115,11 +115,11 @@ export function globalMessage(r: Extract<ContactResult, { ok: false }>): string 
     input, textarea {
       font: inherit;
       padding: var(--s-3);
-      border: 0;
+      border: 1px solid var(--ink-2);
       min-height: var(--target);
       box-sizing: border-box;
       color: var(--ink);
-      background: var(--bg);
+      background: var(--surface);
     }
     textarea { resize: vertical; }
     input:focus-visible, textarea:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
@@ -132,8 +132,8 @@ export function globalMessage(r: Extract<ContactResult, { ok: false }>): string 
       padding: 0 var(--s-5);
       border: 0;
       cursor: pointer;
-      color: var(--bg);
-      background: var(--ink);
+      color: var(--on-accent);
+      background: var(--accent);
     }
     button:disabled { opacity: 0.6; cursor: progress; }
     .err, .note { margin: 0; font-size: var(--t-small); }

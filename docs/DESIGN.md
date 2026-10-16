@@ -338,3 +338,61 @@ Pas de parallaxe, pas de tracé animé du schéma, pas de barres qui poussent da
 - [ ] Un seul accent, zéro dégradé/ombre/filet décoratif/eyebrow ; mouvement conforme à 10.7.
 - [ ] Revue à 360/390/768/1440, clair et sombre, ralenti ×4.
 
+
+## 11. V3 : admin, colophon, stats du Journal
+
+Maquette : `docs/design/v3-colophon-admin.html` (captures 1440 et 390, clair et sombre, dans `docs/design/v3-captures/`). Aucun token, aucune couleur, aucune police en plus : mêmes `--bg/--surface/--ink/--ink-2/--accent/--line-muted`, mêmes Archivo + Source Sans 3, coins carrés, un seul accent. Les textes du colophon sont ceux de `docs/content/copy-v3.md` (brouillon, non validé) ; la maquette n'en reprend que la structure.
+
+### 11.1 Admin (`/fr/admin`, usage d'Enzo seul)
+**Principe** : un outil, pas une vitrine. Pas de dossard, pas de profil, pas de mouvement signature, pas de sections en aplat orange. L'admin est une page `--bg` avec des bandes `--surface` ; la sobriété vient de la densité (interligne 1.4, espaces 8/16/24) et non d'une autre palette. Thème clair et sombre comme le site (même bascule), `noindex`.
+- **Cadre** : en-tête de 64 px (wordmark « Zofolio admin » en Archivo, liens Projets · Courses · Stats · Médias en 600 `--t-small`, Déconnexion à droite, chaque cible 44 px). Contenu en une colonne de 1100 px max. Titres de page en Archivo 800, `clamp(2rem, 4vw, 3rem)` (pas `--t-display` : l'admin ne crie pas).
+- **Connexion** : un seul champ « Mot de passe », un bouton primaire. Erreur sous le champ (texte + icône, `role="alert"`). `LOGIN_LOCKED` : « Trop d'essais. Réessayez dans N min » avec le `Retry-After` en minutes, bouton désactivé (`aria-disabled`, pas masqué).
+- **Liste des projets** : vrai `<table>` : titre (lien), slug, niveau (`Étude de cas` / `Fiche` / `Masqué`), étape, ordre, mis à jour. Chiffres en `tnum`. Pas de zébrage ni de filets (grille visible, §1) : lignes séparées par l'espace (12 px), survol en `--surface`. Un `HIDDEN` est écrit « Masqué » et porte l'icône œil barré, pas seulement `--ink-2`. Bouton primaire « Nouveau projet » en haut à droite : **un seul CTA orange par écran**. Mobile : le tableau devient une pile (titre, puis `dl` slug/niveau/étape), pas de défilement horizontal.
+- **Formulaire d'édition** : une section par groupe (Identité, Textes, Décisions, Dépôts, Clip, Référencement). Les champs traduisibles sont **FR à gauche, EN à droite** (deux colonnes ≥ 900 px, empilés FR puis EN en dessous, chaque colonne titrée « Français » / « English » en `<h3>`, `lang` posé sur chaque champ). Label au-dessus du champ (jamais placeholder seul), aide en `--t-small` `--ink-2`, compteur « 112 / 120 » en `tnum` quand la limite est proche (≥ 80 %). Champs : fond `--bg`, contour 1 px `--line-muted` (UI ≥ 3:1), focus = anneau 3 px du site. Slug en lecture seule après création (« Immuable »). Barre d'actions collante en bas : **Aperçu FR**, **Aperçu EN** (secondaires, contour encre), **Enregistrer** (orange, = publier ; libellé « Enregistrer et publier » tant que le niveau n'est pas `Masqué`). Un projet `Masqué` affiche « Non publié » dans la barre.
+- **Aperçu** : panneau plein écran qui rend le vrai gabarit `CaseStudyView` ; bandeau haut `--ink` inversé « Aperçu · FR · non enregistré », bouton Fermer (`Esc`) ; le focus revient au bouton d'origine. **Limite connue** : l'admin est en FR seul (D39) et les libellés fixes du gabarit (titres de sections, boutons) sont compilés en français ; l'« Aperçu EN » ne traduit que les textes du projet, pas ces libellés. Le rendu EN complet se vérifie sur `/en/projets/<slug>` après l'enregistrement.
+- **États d'erreur par `code`** (texte clair, jamais le `detail` anglais) :
+  | `code` | Où | Texte (FR) |
+  |---|---|---|
+  | `VALIDATION_FAILED` | sous le champ de `errors[].field`, bloc récapitulatif en tête (`role="alert"`, liens vers chaque champ) | « Titre : 120 caractères maximum. » |
+  | `UNAUTHENTICATED` | redirection vers la connexion, brouillon du formulaire gardé en mémoire de page (jamais `localStorage`) | « Session expirée. Reconnectez-vous. » |
+  | `LOGIN_LOCKED` | connexion | voir plus haut |
+  | `SLUG_TAKEN` / 409 | sous le champ slug | « Ce slug existe déjà. » |
+  | `MEDIA_REJECTED` / refus d'upload | sous la zone d'upload | raison traduite : type, taille, métadonnées interdites |
+  | `MEDIA_IN_USE` / 409 | dialogue de suppression | « Utilisé par : oltre, gfaim. Retirez-le d'abord. » |
+  | `NOT_FOUND` | page | « Introuvable. Retour à la liste. » |
+  | `INTERNAL_ERROR` / réseau | bandeau en tête | « Erreur du serveur. Rien n'est perdu : réessayez. » |
+  Une erreur = texte + icône + bordure 2 px `--accent` du champ ; jamais la couleur seule. Pas de toast qui disparaît (les messages restent jusqu'à action).
+- **Zone d'upload** (Médias, clip) : bloc `--surface`, bordure 2 px **pleine** `--line-muted` (pas de pointillés « dropzone » : décor), grande cible, texte « Choisir un fichier » (bouton, clavier d'abord) et « ou déposez-le ici ». Contraintes écrites en clair avant l'envoi (« JPEG, PNG · 5 Mo max · MP4 · 2,5 Mo max · métadonnées retirées », alignées sur `MediaService` : 5 Mo image, 2,5 Mo MP4 ; pas de WebP en envoi). Envoi : barre de progression d'un trait de 4 px `--accent` + pourcentage en `tnum` (`role="progressbar"`) ; succès : nom, dimensions, poids, « Utilisé par : — ». Sous reduced-motion, la barre avance sans transition.
+- **Mouvement** : aucun, hors `scale(.97)` à `:active` des boutons (140 ms, §10.7) et fondu 120 ms de l'aperçu. Pas de squelette animé : « Chargement… » en texte.
+- **Médias** : liste en tableau (miniature 48 px carrée, nom, dimensions, poids `tnum`, `usedBy`, Supprimer). Suppression = dialogue de confirmation, focus piégé, bouton par défaut « Annuler ».
+
+### 11.2 Colophon (`/fr/colophon`, ADN « La Course »)
+La page prouve la méthode. Elle garde la signature (dossard, orange, aplats) mais en **version calme** : aucun profil, pas de 1592 géant (le dossard est déjà sur l'accueil), mouvement = §7 seulement.
+- **Blueprint** (ordre de `copy-v3.md`) :
+  1. **Départ** (fond `--bg`) : `h1` « Colophon » en `--t-display` (une ligne), chapô `--t-lead`. À droite ≥ 1100 px, bloc « dossard » petit (`--surface`, hauteur ~ 12rem) : « Édition 2026 · FR + EN » et la date de dernière mise à jour en `tnum`. Pas d'image.
+  2. **La stack** (`--bg`) : trois colonnes de texte (Back, Front, Infra), **pas** de cartes ni d'icônes de logos. Chaque ligne : nom en 600, version en `tnum`.
+  3. **Méthode : une équipe d'agents** (aplat `--ink` inversé, comme P2) : liste des agents et du modèle de chacun en tableau (agent, rôle, modèle), la boucle d'une feature en 5 lignes (spec, tâche, test, revue, merge).
+  4. **IA assumée** (`--bg`) : les trois tags `AiTag` existants avec le projet concerné, sans fausse modestie.
+  5. **Ce que la CI vérifie** (`--surface`) : liste des jobs, un `Aid` (ravito) pour la phrase d'humour.
+  6. **Scores Lighthouse** (voir ci-dessous).
+  7. **Tout est dans le dépôt** (aplat `--accent`, texte `--on-accent`, comme l'Arrivée) : trois liens (dépôt, `tasks/`, `docs/adr/`) en grandes lignes soulignées. Seul aplat orange de la page.
+- **Scores Lighthouse comme des « splits »** : un tableau 4 lignes (Performance, Accessibilité, Bonnes pratiques, SEO) × 3 colonnes de pages (`/fr/`, `/en/`, `/fr/projets/oltre`). Le score est un `Split` : chiffre en Archivo 800 `wdth 75`, `tnum`, aligné à droite, taille `clamp(2.5rem, 6vw, 4.5rem)` ; libellé et seuil (« seuil 90 ») en `--t-small` `--ink-2`. **Tout score ≥ seuil est en encre ; le score qui est juste au seuil (≤ seuil + 2) prend une note ironique en `--ink-2` et une icône « limite » (« 90 : pile au seuil, je l'écris »)** ; aucun vert, aucun anneau/jauge/cercle d'activité. L'orange reste réservé au record éventuel (badge PR, icône + texte) : jamais pour « bon ». En dessous : date de mesure (`tnum`), méthode (« mobile, médiane de trois mesures »), lien vers le rapport `docs/reviews/…`. Valeurs en dur, datées, jamais « 100 » arrondi.
+- **Mobile 390** : une colonne ; le tableau des scores passe en 3 blocs (une page chacun) avec 4 splits en grille 2×2 ; le tableau des agents en `dl`.
+- **Accessibilité** : vrais `<table>` avec `<caption>`, scores lisibles sans la couleur ni l'icône (le mot « limite » est écrit), un `h1`, titres ≤ 2 lignes de 320 à 1440.
+
+### 11.3 Stats sport du Journal (`sportYears`)
+- **Place** : dans la colonne gauche du Journal, **sous** le graphe de contributions (§10.4), avant la photo si l'espace manque ; masqué si `sportYears` est `[]`. Titre `<h3>` « Les années en chiffres », une phrase d'intro, la note « Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé » en `--t-small`.
+- **Forme** : un vrai `<table>` (c'est l'équivalent texte), une ligne par année décroissante, colonnes Année · Kilomètres · D+ · Heures · Activités. Chiffres `tabular-nums lining-nums`, alignés à droite sur la virgule, milliers en espace fine insécable, unités dans l'en-tête de colonne (`km`, `m D+`, `h`), jamais répétées par cellule. Année en Archivo 800. Valeur `null` : tiret long « — » avec `aria-label` « non renseigné ». Ligne de l'année en cours : mention « en cours » en texte.
+- **Pas de graphique** : ni barres, ni anneaux, ni courbe (l'écart serait décor et la donnée est saisie à la main). Pas de classement ni de « meilleure année » en badge. Le seul geste visuel est la hauteur de ligne et la typographie.
+- **Mobile** : le tableau garde 5 colonnes si la largeur le permet à 15 px (≥ 360 px : Année, km, D+, h, act.) ; sinon `overflow-x: auto` focusable nommé par le titre. Pas d'animation, pas de compteur qui monte (SSR, §7).
+
+### 11.4 Checklist V3
+- [ ] Admin : zéro couleur/police hors tokens ; un seul bouton orange par écran ; aucun dégradé, ombre, verre, filet décoratif, zébrage ; coins carrés.
+- [ ] Admin : FR et EN côte à côte ≥ 900 px, empilés en dessous, `lang` par champ ; labels visibles ; compteurs `tnum`.
+- [ ] Admin : chaque `code` d'erreur a un texte FR, une icône et une position ; erreur jamais portée par la couleur seule ; focus placé sur le récapitulatif après un échec.
+- [ ] Admin : upload au clavier ; contraintes écrites avant l'envoi ; refus expliqué en clair ; suppression avec confirmation et `usedBy`.
+- [ ] Admin : `noindex`, aucune donnée en `localStorage`, aucun `innerHTML`.
+- [ ] Colophon : un `h1`, titres ≤ 2 lignes de 320 à 1440 ; un seul aplat orange ; aucune carte d'icônes ni logo ; faits renvoyant à un fichier du dépôt.
+- [ ] Colophon : scores = splits en `tnum`, datés, valeurs réelles, note au seuil, aucune jauge ni vert.
+- [ ] Stats : `<table>` avec `<caption>`, `tnum`, `null` → « — », masqué si `[]`, aucun graphique ni classement ; rendu SSR sans `sportYears`.
+- [ ] 360 / 390 / 768 / 1440, clair et sombre, contrastes mesurés ; texte ≥ 15 px.

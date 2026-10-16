@@ -72,4 +72,16 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://enzoleveque.dev/en/mentions-legales"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://enzoleveque.dev/fr/mentions-legales"/>
   </url>
+  <url>
+    <loc>https://enzoleveque.dev/fr/colophon</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://enzoleveque.dev/fr/colophon"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://enzoleveque.dev/en/colophon"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://enzoleveque.dev/fr/colophon"/>
+  </url>
+  <url>
+    <loc>https://enzoleveque.dev/en/colophon</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://enzoleveque.dev/fr/colophon"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://enzoleveque.dev/en/colophon"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://enzoleveque.dev/fr/colophon"/>
+  </url>
 </urlset>

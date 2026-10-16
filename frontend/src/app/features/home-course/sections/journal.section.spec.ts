@@ -59,6 +59,21 @@ describe('JournalSection', () => {
     expect(f.nativeElement.querySelector('app-contributions .carnet')).toBeNull();
   });
 
+  it('stats annuelles : tableau avec légende, null en tiret, masqué si []', () => {
+    const f = TestBed.createComponent(JournalSection);
+    f.componentRef.setInput('races', home.races);
+    f.componentRef.setInput('sportYears', [{ year: 2025, distanceKm: 2140, elevationGainM: 41200, hours: null, activities: 210 }]);
+    f.detectChanges();
+    const t = f.nativeElement.querySelector('.stats table') as HTMLTableElement;
+    expect(t.querySelector('caption')).toBeTruthy();
+    expect(t.querySelectorAll('tbody tr').length).toBe(1);
+    expect(t.querySelectorAll('tbody td')[2].textContent).toContain('non renseigné');
+    expect(t.querySelectorAll('tbody td')[0].textContent).toMatch(/2\s140/);
+    f.componentRef.setInput('sportYears', []);
+    f.detectChanges();
+    expect(f.nativeElement.querySelector('.stats')).toBeNull();
+  });
+
   it('affiche une course sans date sans planter', () => {
     const el = render([{ ...home.races[0], date: null }]);
     expect(el.querySelector('tbody td')?.textContent).toContain('Date non renseignée');

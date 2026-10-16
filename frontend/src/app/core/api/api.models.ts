@@ -17,6 +17,8 @@ export interface ProjectSummary {
   stage: 'P1' | 'P2' | 'P3' | null;
   title: string;
   pitch: string;
+  metaTitle: string | null;
+  metaDescription: string | null;
   aiTag: 'HAND' | 'HAND_THEN_AI' | 'AI';
   stack: string[];
   duration: string | null;
@@ -34,7 +36,8 @@ export interface ProjectSummary {
 /** URL relatives à `<base href>` (ADR 0003). */
 export interface Video {
   mp4: string;
-  webm: string;
+  /** `null` : seul le MP4 est servi (D44). */
+  webm: string | null;
   poster: string;
   width: number;
   height: number;
@@ -70,10 +73,20 @@ export interface Race {
   personalRecord: boolean;
 }
 
+export interface SportYear {
+  year: number;
+  distanceKm: number | null;
+  elevationGainM: number | null;
+  hours: number | null;
+  activities: number | null;
+}
+
 export interface HomeResponse {
   experiences: Experience[];
   projects: ProjectSummary[];
   races: Race[];
+  /** Année décroissante ; `[]` si aucune. */
+  sportYears: SportYear[];
   /** `null` tant qu'aucune synchro GitHub n'a réussi. */
   contributions: Contributions | null;
 }

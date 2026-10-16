@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /fr/admin
+Disallow: /en/admin
 
 Sitemap: https://enzoleveque.dev/sitemap.xml
