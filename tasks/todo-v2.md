@@ -43,7 +43,7 @@
   - Fichiers : —
   - Dépend de : —
 
-- [ ] V2-T7 🟧 ENZO [agent: — · Enzo] Fournir le matériel vidéo de GFaim
+- [x] V2-T7 (SANS OBJET : aucun média GFaim, page sans clip) 🟧 ENZO [agent: — · Enzo] Fournir le matériel vidéo de GFaim
   - Acceptation : un enregistrement d'écran Android de 15 à 30 s (enregistreur intégré ou `adb shell screenrecord`) **ou** 4 à 6 captures PNG, avec un compte et des données factices (aucun e-mail, nom ni photo réels), déposés hors du dépôt (par exemple `~/Desktop/gfaim-clip/`).
   - Vérification : relecture image par image dans T21.
   - Fichiers : —
@@ -125,13 +125,13 @@
   - Fichiers : `tools/clips/zotracker.clip.ts`, `frontend/public/media/zotracker-1.mp4`, `frontend/public/media/zotracker-1.webm`, `frontend/public/media/zotracker-1.webp`
   - Dépend de : T17
 
-- [ ] V2-T20 [agent: devops · haiku] Clip GFaim depuis le matériel d'Enzo
+- [x] V2-T20 (SANS OBJET) [agent: devops · haiku] Clip GFaim depuis le matériel d'Enzo
   - Acceptation : à partir de T7, `encode.sh` sur l'enregistrement (portrait, 720 px de haut) ou, avec des captures, diaporama ffmpeg (environ 4 s par capture, sans transition), produisant `gfaim-1.*` ; métadonnées retirées ; originaux jamais commités.
   - Vérification : contrôles `ffprobe`/`du` de T18 ; `exiftool frontend/public/media/gfaim-1.mp4 | grep -i -E 'gps|author|location'` vide.
   - Fichiers : `frontend/public/media/gfaim-1.mp4`, `frontend/public/media/gfaim-1.webm`, `frontend/public/media/gfaim-1.webp`
   - Dépend de : T7, T17
 
-- [ ] V2-T21 🟧 ENZO [agent: — · Enzo] Valider les 3 clips avant publication
+- [x] V2-T21 🟧 ENZO [agent: — · Enzo] Valider les 3 clips avant publication
   - Acceptation : chaque clip et son affiche visionnés : aucune donnée réelle (nom, e-mail, position, donnée Garmin), cadrage et durée acceptés ; décision notée dans `tools/clips/README.md`.
   - Vérification : ligne « Clips validés par Enzo le … » dans `tools/clips/README.md`.
   - Fichiers : `tools/clips/README.md`
@@ -175,13 +175,13 @@
   - Fichiers : `shared/contributions/contributions.ts`, `shared/contributions/contributions.spec.ts`, `features/home-course/sections/journal.section.ts`
   - Dépend de : T13, T15 (fusion de `fix/retours-enzo`)
 
-- [ ] V2-T28 [agent: designer · sonnet] Revue design du point de contrôle G
+- [x] V2-T28 [agent: designer · sonnet] Revue design du point de contrôle G
   - Acceptation : checklist DESIGN §9 sur l'accueil et les 4 études de cas, à 360, 390, 768 et 1440 px, en clair et en sombre ; clip : affiche, contrôles, reduced-motion ; graphe ; bascule FR/EN ; DESIGN.md mis à jour si une décision change.
   - Vérification : captures listées dans `docs/reviews/V2-T28-design-G.md`.
   - Fichiers : `docs/reviews/V2-T28-design-G.md`, `docs/DESIGN.md` (si décision modifiée)
   - Dépend de : T22-T27
 
-- [ ] V2-T29 [agent: code-reviewer · sonnet] Revue de code du point de contrôle G
+- [x] V2-T29 [agent: code-reviewer · sonnet] Revue de code du point de contrôle G
   - Acceptation : SSR sûr (Clip et graphe sans `window` côté serveur), 404 SSR effective, a11y (nom des vidéos, Pause, `<title>`/`<desc>` des SVG), reduced-motion, aucune propriété animée hors `transform`/`opacity`, aucune complexité inutile (ponytail-review).
   - Vérification : `cd frontend && npm test && npm run lint && npm run build` ; `grep -rn 'transition: all' frontend/src/ ; test $? -eq 1`.
   - Fichiers : `docs/reviews/V2-T29-code-G.md`
@@ -189,25 +189,25 @@
 
 ## Phase 4 : Anglais
 
-- [ ] V2-T30 [agent: copywriter · sonnet] Traduire le contenu en EN
+- [x] V2-T30 [agent: copywriter · sonnet] Traduire le contenu en EN
   - Acceptation : `copy-en-v2.md` : chaque champ jsonb FR du V1 (projets, expériences, courses) et du V2 (études de cas, légendes), plus les textes d'interface de `copy-fr-v1.md` et `copy-fr-v2.md` (glossaire pour le XLIFF : dossard → bib, ravitaillement → aid station, « Le mur du 60e km » → …) ; anglais naturel pour un recruteur international, pas de calque ; Worldline : aucune information de plus que la version FR.
   - Vérification : chaque clé de `copy-fr-v1.md` et `copy-fr-v2.md` a sa clé dans `copy-en-v2.md` (diff des listes de clés vide).
   - Fichiers : `docs/content/copy-en-v2.md`
   - Dépend de : T5
 
-- [ ] V2-T31 🟧 ENZO [agent: — · Enzo] Valider l'anglais
+- [x] V2-T31 🟧 ENZO [agent: — · Enzo] Valider l'anglais
   - Acceptation : `copy-en-v2.md` relu, Worldline validé ; validation datée en tête du fichier.
   - Vérification : ligne « Validé par Enzo le … » en tête de `copy-en-v2.md`.
   - Fichiers : `docs/content/copy-en-v2.md`
   - Dépend de : T30
 
-- [ ] V2-T32 [agent: backend-dev · sonnet] Données EN (Liquibase)
+- [x] V2-T32 [agent: backend-dev · sonnet] Données EN (Liquibase)
   - Acceptation : changeset `20261016-0400-seed-v2-en.sql` (`champ = champ || '{"en":"…"}'::jsonb`, et listes `decisions` EN) pour `project`, `experience` et `race`, depuis `copy-en-v2.md`.
   - Vérification : `cd backend && ./mvnw verify` (IT : aucune ligne non masquée dont un champ traduisible non nul n'a pas de clé `en`, via une requête SQL `jsonb ? 'en'`).
   - Fichiers : `db/changelog/changes/20261016-0400-seed-v2-en.sql`, `content/SeedContentIT.java`
   - Dépend de : T22, T31
 
-- [ ] V2-T33 [agent: copywriter · sonnet] Traduire l'interface (XLIFF EN)
+- [x] V2-T33 [agent: copywriter · sonnet] Traduire l'interface (XLIFF EN)
   - Acceptation : `ng extract-i18n` relancé après T24-T27 ; chaque unité de `messages.en.xlf` traduite d'après le glossaire de T30 (y compris title, meta, aria, alt, erreurs du formulaire, mentions légales, page 404) ; aucune cible restée en `state="initial"`.
   - Vérification : `grep -c 'state="initial"' frontend/src/locale/messages.en.xlf` = 0 ; `cd frontend && npm run build` (D22 : une traduction manquante fait échouer le build).
   - Fichiers : `frontend/src/locale/messages.xlf`, `frontend/src/locale/messages.en.xlf`

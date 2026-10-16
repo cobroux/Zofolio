@@ -220,6 +220,9 @@ dd {
   .grid > .km {
     grid-column: 1 / 4;
   }
+  .grid > h2 {
+    font-size: clamp(2.25rem, 3.3vw, 3.25rem); /* « L'architecture » tient dans 3 colonnes sans coupure de mot */
+  }
   .grid > .txt,
   .grid > .decisions,
   .grid > .diagram-wrap {

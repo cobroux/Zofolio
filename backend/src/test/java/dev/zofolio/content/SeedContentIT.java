@@ -59,4 +59,14 @@ class SeedContentIT {
 			}
 		}
 	}
+
+	@Test
+	void englishIsServedFromTheSeed() throws Exception {
+		JsonNode p = new ObjectMapper().readTree(get("/api/en/projects/oltre"));
+		assertThat(p.get("pitch").asText()).startsWith("A personal app to organize");
+		assertThat(p.get("caseStudy").get("problem").asText()).startsWith("My daily life was scattered");
+		assertThat(p.get("caseStudy").get("decisions").get(0).get("title").asText()).isEqualTo("Garmin in a separate service");
+		assertThat(p.get("video").get("caption").asText()).startsWith("A walk through Oltre");
+		assertThat(get("/api/en/home")).contains("Hospital porter in the ER", "Software Engineer").doesNotContain("Brancardier");
+	}
 }

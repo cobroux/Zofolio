@@ -25,7 +25,7 @@ function calm(): boolean {
         <figure [class.portrait]="v.height > v.width" [attr.aria-labelledby]="capId">
           <div class="frame" [style.aspect-ratio]="v.width + ' / ' + v.height">
             @defer (on viewport; on interaction(btn)) {
-              <video #vid muted [muted]="true" loop playsinline preload="none" [poster]="v.poster" [attr.width]="v.width" [attr.height]="v.height"
+              <video #vid muted [muted]="true" loop playsinline preload="none" [poster]="v.poster" [attr.aria-labelledby]="capId" [attr.width]="v.width" [attr.height]="v.height"
                 (play)="playing.set(true)" (pause)="playing.set(false)">
                 <source [src]="v.webm" type="video/webm" />
                 <source [src]="v.mp4" type="video/mp4" (error)="missing.set(true)" />
@@ -57,6 +57,8 @@ export class Clip {
   private readonly vid = viewChild<ElementRef<HTMLVideoElement>>('vid');
   private readonly host: HTMLElement = inject(ElementRef).nativeElement;
   private wantPlay = false;
+  /** Une pause demandée par le visiteur n'est pas annulée par le retour dans le viewport. */
+  private userPaused = false;
 
   constructor() {
     const browser = isPlatformBrowser(inject(PLATFORM_ID));
@@ -74,7 +76,7 @@ export class Clip {
         return;
       }
       if (calm() || typeof IntersectionObserver === 'undefined') return;
-      const io = new IntersectionObserver(([e]) => (e.isIntersecting ? play() : v.pause()), { threshold: 0.5 });
+      const io = new IntersectionObserver(([e]) => (e.isIntersecting && !this.userPaused ? play() : v.pause()), { threshold: 0.5 });
       io.observe(v);
       onCleanup(() => io.disconnect());
     });
@@ -84,6 +86,7 @@ export class Clip {
     const v = this.vid()?.nativeElement;
     // Clic avant le chargement : le @defer se déclenche (interaction) et la lecture démarre à l'apparition de la vidéo.
     if (!v) return void (this.wantPlay = true);
+    this.userPaused = !v.paused;
     if (v.paused) v.play()?.catch(ignore);
     else v.pause();
   }
