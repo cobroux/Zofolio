@@ -14,26 +14,26 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-class Race {
-	enum Kind { RACE, INDEX, CLUB }
+public class Race {
+	public enum Kind { RACE, INDEX, CLUB }
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
+	public Long id;
 	@jakarta.persistence.Enumerated(jakarta.persistence.EnumType.STRING)
-	Kind kind;
-	LocalDate raceDate;
+	public Kind kind;
+	public LocalDate raceDate;
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")
-	Map<String, String> name;
-	BigDecimal distanceKm;
+	public Map<String, String> name;
+	public BigDecimal distanceKm;
 	@Column(name = "elevation_gain_m")
-	Integer elevationGainM;
+	public Integer elevationGainM;
 	@Column(name = "duration_s")
-	Integer durationS;
+	public Integer durationS;
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")
-	Map<String, String> note;
-	boolean personalRecord;
-	int sortOrder;
+	public Map<String, String> note;
+	public boolean personalRecord;
+	public int sortOrder;
 }

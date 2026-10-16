@@ -15,68 +15,68 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-class Project {
-	enum Tier { CASE_STUDY, SHORT, HIDDEN }
+public class Project {
+	public enum Tier { CASE_STUDY, SHORT, HIDDEN }
 
-	enum AiTag { HAND, HAND_THEN_AI, AI }
+	public enum AiTag { HAND, HAND_THEN_AI, AI }
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
-	String slug;
+	public Long id;
+	public String slug;
 	@Enumerated(EnumType.STRING)
-	Tier tier;
-	String stage;
+	public Tier tier;
+	public String stage;
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")
-	Map<String, String> title;
+	public Map<String, String> title;
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")
-	Map<String, String> pitch;
+	public Map<String, String> pitch;
 	@Enumerated(EnumType.STRING)
-	AiTag aiTag;
+	public AiTag aiTag;
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")
-	List<String> stack;
+	public List<String> stack;
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")
-	Map<String, String> duration;
+	public Map<String, String> duration;
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")
-	Map<String, String> note;
+	public Map<String, String> note;
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")
-	List<String> githubRepos = List.of();
+	public List<String> githubRepos = List.of();
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")
-	Map<String, String> role;
+	public Map<String, String> role;
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")
-	Map<String, String> problem;
+	public Map<String, String> problem;
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")
-	Map<String, List<ContentDto.Decision>> decisions;
+	public Map<String, List<ContentDto.Decision>> decisions;
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")
-	Map<String, String> wall;
+	public Map<String, String> wall;
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")
-	Map<String, String> takeaway;
+	public Map<String, String> takeaway;
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")
-	Map<String, String> aiNote;
+	public Map<String, String> aiNote;
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")
-	Map<String, String> metaTitle;
+	public Map<String, String> metaTitle;
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")
-	Map<String, String> metaDescription;
+	public Map<String, String> metaDescription;
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")
-	VideoData video;
-	String demoUrl;
-	int sortOrder;
+	public VideoData video;
+	public String demoUrl;
+	public int sortOrder;
 
-	/** Forme stockée du clip (plan-v2 §4.5) ; les URL sont dérivées du nom (ADR 0003). */
-	record VideoData(String name, int width, int height, Map<String, String> caption) {}
+	/** Forme stockée du clip (plan-v2 §4.5, D44) : sans {@code mp4}/{@code poster}, les URL sont dérivées du nom (ADR 0003). */
+	public record VideoData(String name, String mp4, String poster, int width, int height, Map<String, String> caption) {}
 }

@@ -23,6 +23,7 @@ class AdminAuthIT {
 	@LocalServerPort int port;
 	@Autowired JdbcTemplate jdbc;
 
+	@org.junit.jupiter.api.AfterEach
 	@BeforeEach
 	void clean() {
 		jdbc.update("delete from admin_login_failure");

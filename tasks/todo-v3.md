@@ -101,7 +101,7 @@
   - Fichiers : `admin/AdminSecurityConfig.java`, `admin/AdminAuthController.java`, `admin/LoginThrottle.java`, `admin/AdminLoginFailureRepository.java`, `admin/AdminAuthIT.java`, `shared/ApiExceptionHandler.java`, `application.properties`, `pom.xml`, `20261017-0100-admin-login.sql`
   - Dépend de : T1
 
-- [ ] V3-T13 [agent: backend-dev · sonnet] CRUD des projets, aperçu, dépôts du cache
+- [x] V3-T13 [agent: backend-dev · sonnet] CRUD des projets, aperçu, dépôts du cache
   - Acceptation : plan-v3 §3.3 à l'identique (validation de chaque champ, clés de langue sur liste blanche, slug immuable, 409 si pris, nouveau projet `HIDDEN`) ; l'aperçu réutilise la conversion de `ContentService` (aucune duplication du mapping) ; `GET /api/admin/github-repos` ; journal INFO de chaque écriture (slug, action).
   - Vérification : `cd backend && ./mvnw verify` (IT : création → absent de `/api/fr/projects` tant que `HIDDEN` ; PUT → visible avec `en` et repli FR ; `demoUrl: "javascript:alert(1)"` → 400 `VALIDATION_FAILED` ; clé `de` → 400 ; aperçu sans écriture en base ; 401 sans session) ; couverture des services ≥ 80 %.
   - Fichiers : `admin/ProjectAdminController.java`, `admin/ProjectAdminService.java`, `admin/AdminDto.java`, `content/ContentService.java`, `admin/ProjectAdminIT.java`, `admin/ProjectAdminServiceTest.java`

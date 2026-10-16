@@ -64,7 +64,7 @@ class ContentApiIT {
 		etude.role = Map.of("fr", "Role FR");
 		etude.problem = Map.of("fr", "Probleme FR");
 		etude.decisions = Map.of("fr", List.of(new ContentDto.Decision("Choix FR", "Compromis FR")));
-		etude.video = new Project.VideoData("demo-1", 1280, 800, Map.of("fr", "Legende"));
+		etude.video = new Project.VideoData("demo-1", null, null, 1280, 800, Map.of("fr", "Legende"));
 		projects.save(etude);
 		Experience e = new Experience();
 		e.stage = "P1";

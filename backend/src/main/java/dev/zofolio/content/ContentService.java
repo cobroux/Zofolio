@@ -33,7 +33,7 @@ import dev.zofolio.githubsync.GithubRepoRepository;
 
 @Service
 @Transactional(readOnly = true)
-class ContentService {
+public class ContentService {
 
 	private final RaceRepository races;
 	private final ProjectRepository projects;
@@ -69,6 +69,11 @@ class ContentService {
 	ProjectSummary project(String slug, String lang) {
 		return projects.findBySlugAndTierNot(slug, Project.Tier.HIDDEN).map(p -> toDto(p, lang, true, cache()))
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+	}
+
+	/** Aperçu admin (D41) : même conversion que l'API publique, pour un projet non enregistré. */
+	public ProjectSummary preview(Project p, String lang) {
+		return toDto(p, lang, true, cache());
 	}
 
 	Home home(String lang) {
@@ -115,7 +120,11 @@ class ContentService {
 			return null;
 		}
 		String base = "media/" + v.name();
-		return new Video(base + ".mp4", base + ".webm", base + ".webp", v.width(), v.height(), pick(v.caption(), lang));
+		if (v.mp4() != null) { // clip téléversé (D44) : MP4 seul, pas de WebM
+			return new Video(v.mp4(), null, v.poster(), v.width(), v.height(), pick(v.caption(), lang));
+		}
+		return new Video(base + ".mp4", base + ".webm", v.poster() != null ? v.poster() : base + ".webp", v.width(),
+				v.height(), pick(v.caption(), lang));
 	}
 
 	/** Non nul ssi CASE_STUDY et {@code problem} renseigné (plan-v2 §4.2). */

@@ -59,6 +59,9 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	ResponseEntity<Object> handleApi(ApiException ex, WebRequest request) {
 		ProblemDetail pd = ProblemDetail.forStatus(ex.status());
 		pd.setProperty("code", ex.code());
+		if (ex.errors() != null) {
+			pd.setProperty("errors", ex.errors());
+		}
 		HttpHeaders headers = new HttpHeaders();
 		if (ex.retryAfterSeconds() != null) {
 			headers.set(HttpHeaders.RETRY_AFTER, ex.retryAfterSeconds().toString());

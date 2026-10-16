@@ -53,6 +53,15 @@ public class AdminClient {
 		return r;
 	}
 
+	/** Client déjà connecté (IP simulée propre à chaque appel : n'interfère pas avec le blocage). */
+	public static AdminClient loggedIn(int port) throws Exception {
+		var c = new AdminClient(port, "10.9." + (int) (Math.random() * 250) + "." + (int) (Math.random() * 250));
+		if (c.login(PASSWORD).statusCode() != 204) {
+			throw new IllegalStateException("connexion de test refusée");
+		}
+		return c;
+	}
+
 	public HttpResponse<String> get(String path) throws Exception {
 		return send("GET", path, null);
 	}
