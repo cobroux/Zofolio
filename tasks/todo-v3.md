@@ -95,7 +95,7 @@
   - Fichiers : `docs/DESIGN.md`
   - Dépend de : T1
 
-- [ ] V3-T12 [agent: backend-dev · sonnet] Authentification admin (session, CSRF, blocage)
+- [x] V3-T12 [agent: backend-dev · sonnet] Authentification admin (session, CSRF, blocage)
   - Acceptation : D35-D38 et plan-v3 §3.1-3.2 ; dépendances T1 ; `admin/` (config de sécurité à deux chaînes, `AdminAuthController`, `LoginThrottle` sur `admin_login_failure`) ; changeset `20261017-0100-admin-login.sql` ; propriétés de cookie de session ; nouveaux `code` dans `ApiExceptionHandler` (401, 403, 429, 409) ; hash vide → 401 et WARN.
   - Vérification : `cd backend && ./mvnw verify` avec IT : `GET /api/admin/projects` sans session → 401 ; `POST login` sans en-tête CSRF → 403 ; bon mot de passe → 204, identifiant de session différent de celui d'avant, cookie `HttpOnly; Secure; SameSite=Strict` ; 5 échecs puis 6e essai (même bon) → 429 + `Retry-After` ; une autre IP passe ; 20 échecs globaux → 429 ; logout → 401 ensuite ; `ContactApiIT`, `ForwardedForIT` et `CvApiIT` inchangés et verts.
   - Fichiers : `admin/AdminSecurityConfig.java`, `admin/AdminAuthController.java`, `admin/LoginThrottle.java`, `admin/AdminLoginFailureRepository.java`, `admin/AdminAuthIT.java`, `shared/ApiExceptionHandler.java`, `application.properties`, `pom.xml`, `20261017-0100-admin-login.sql`

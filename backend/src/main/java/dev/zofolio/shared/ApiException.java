@@ -27,6 +27,22 @@ public class ApiException extends RuntimeException {
 		return new ApiException(HttpStatus.NOT_FOUND, "NOT_FOUND", null);
 	}
 
+	public static ApiException unauthenticated() {
+		return new ApiException(HttpStatus.UNAUTHORIZED, "UNAUTHENTICATED", null);
+	}
+
+	public static ApiException forbidden() {
+		return new ApiException(HttpStatus.FORBIDDEN, "FORBIDDEN", null);
+	}
+
+	public static ApiException loginLocked(long retryAfterSeconds) {
+		return new ApiException(HttpStatus.TOO_MANY_REQUESTS, "LOGIN_LOCKED", retryAfterSeconds);
+	}
+
+	public static ApiException conflict() {
+		return new ApiException(HttpStatus.CONFLICT, "CONFLICT", null);
+	}
+
 	HttpStatus status() { return status; }
 	String code() { return code; }
 	Long retryAfterSeconds() { return retryAfterSeconds; }

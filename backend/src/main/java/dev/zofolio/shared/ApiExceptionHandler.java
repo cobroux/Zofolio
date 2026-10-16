@@ -45,6 +45,10 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 				case "NOT_FOUND" -> "Not found";
 				case "RATE_LIMITED" -> "Rate limit exceeded";
 				case "MAIL_DELIVERY_FAILED" -> "Mail delivery failed";
+				case "UNAUTHENTICATED" -> "Authentication required";
+				case "FORBIDDEN" -> "Forbidden";
+				case "LOGIN_LOCKED" -> "Too many failed attempts";
+				case "CONFLICT" -> "Conflict";
 				default -> "Internal error";
 			});
 		}
