@@ -22,9 +22,11 @@
 		-X-Powered-By
 	}
 
+	# En premier : `handle` passe avant `respond` dans l'ordre Caddy.
 	@trace method TRACE TRACK
-	respond @trace 405
-
+	handle @trace {
+		respond 405
+	}
 	handle /api/admin/media {
 		request_body {
 			max_size 6MB

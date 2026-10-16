@@ -7,7 +7,7 @@ Prod : VM Oracle Always Free (Ubuntu 24.04 arm64), `https://88-96-45-97.sslip.io
 
 ## Déployer
 - Automatique : tout push sur `main` lance `.github/workflows/deploy.yml` (SSH, mise à jour sur `origin/main`, `docker compose -f docker-compose.prod.yml up -d --build --wait`). Le build arm64 se fait sur la VM (premier build ~10 min, ensuite le cache).
-- Manuel : `ssh ubuntu@88.96.45.97 'cd /opt/zofolio && git fetch origin main && git checkout -f -B main origin/main && docker compose -f docker-compose.prod.yml up -d --build --wait'`.
+- Manuel : `ssh ubuntu@88.96.45.97 'cd /opt/zofolio && git fetch origin main && git checkout -f -B main origin/main && docker compose -f docker-compose.prod.yml up -d --build --wait --remove-orphans && docker compose -f docker-compose.prod.yml restart caddy'`.
 - Secrets GitHub : `SSH_HOST`, `SSH_USER`, `SSH_KEY` (clé de déploiement dédiée, restreinte par `restrict` dans `authorized_keys`), `SSH_KNOWN_HOSTS` (clé d'hôte épinglée).
 - Retour arrière : sur la VM, `git checkout -f <sha>` puis la même commande `up -d --build --wait`.
 
