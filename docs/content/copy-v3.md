@@ -1,6 +1,6 @@
 # Textes V3 : colophon et bloc stats (T20)
 
-Statut : BROUILLON, en attente de validation d'Enzo
+Statut : VALIDÉ par Enzo le 2026-10-16 (scores de prod et décompte des tests à compléter au déploiement)
 
 Date : 2026-10-16. Rien n'est validé.
 Sources : SPEC §1 (tags IA), §4 (stack), §12 (équipe d'agents), plan-v3 D48 et D49, `.github/workflows/ci.yml`, `lighthouserc.json`, `docs/reviews/V2-T34-T35-qa.md` et `T36-T37-qa.md`, `tools/clips/README.md`, DESIGN §1.

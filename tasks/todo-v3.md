@@ -151,7 +151,7 @@
   - Fichiers : `docs/content/copy-v3.md`
   - Dépend de : T1
 
-- [ ] V3-T21 🟧 ENZO [agent: — · Enzo] Valider le colophon et fournir les stats
+- [x] V3-T21 🟧 ENZO [agent: — · Enzo] Valider le colophon et fournir les stats
   - Acceptation : `copy-v3.md` validé (noté en tête) ; totaux par année fournis (km, D+, heures, activités, Q10), saisis plus tard dans l'admin en prod (T30), pas commités.
   - Vérification : mention « VALIDÉ par Enzo le … » en tête de `copy-v3.md`.
   - Fichiers : `docs/content/copy-v3.md`
