@@ -6,7 +6,7 @@
 			max_size 6MB
 		}
 		reverse_proxy backend:8080 {
-			header_up X-Forwarded-For {remote_host}
+			header_up X-Forwarded-For {client_ip}
 		}
 	}
 	handle /api/* {
@@ -15,7 +15,7 @@
 		}
 		# Écrase X-Forwarded-For par l'IP réelle du client : le back ne fait confiance à aucune valeur fournie.
 		reverse_proxy backend:8080 {
-			header_up X-Forwarded-For {remote_host}
+			header_up X-Forwarded-For {client_ip}
 		}
 	}
 	# Médias téléversés (D43) : lus seulement, nom = hash du contenu donc immuable.

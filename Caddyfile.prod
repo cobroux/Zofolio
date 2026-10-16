@@ -1,0 +1,46 @@
+# Prod sans domaine : hôte sslip.io, certificat Let's Encrypt automatique (80 et 443 ouverts).
+# Domaine plus tard : remplacer l'adresse du site (voir infra/README.md).
+88-96-45-97.sslip.io {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		X-Frame-Options DENY
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		# Angular SSR : styles critiques et script de rejeu d'événements inlinés (d'où 'unsafe-inline') ; clips et affiches en 'self'.
+		Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+		-Server
+	}
+
+	handle /api/admin/media {
+		request_body {
+			max_size 6MB
+		}
+		reverse_proxy backend:8080 {
+			header_up X-Forwarded-For {client_ip}
+		}
+	}
+	handle /api/* {
+		request_body {
+			max_size 1MB
+		}
+		# Pas de proxy devant Caddy : {client_ip} = l'adresse du pair ; on écrase toute valeur fournie par le client.
+		reverse_proxy backend:8080 {
+			header_up X-Forwarded-For {client_ip}
+		}
+	}
+	handle /uploads/* {
+		root * /srv
+		header Cache-Control "public, max-age=31536000, immutable"
+		file_server
+	}
+	redir /admin /fr/admin 302
+	handle {
+		request_body {
+			max_size 1MB
+		}
+		reverse_proxy frontend:4000
+	}
+}
