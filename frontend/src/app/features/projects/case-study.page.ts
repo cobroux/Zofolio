@@ -224,9 +224,9 @@ export class CaseStudyPage {
         return;
       }
       if (v === undefined) return;
-      const title = v ? `${v.p.title}, Enzo Leveque` : $localize`Page introuvable`;
+      const title = v ? (v.p.metaTitle ?? `${v.p.title}, Enzo Leveque`) : $localize`Page introuvable`;
       this.title.setTitle(title);
-      this.seo.update(this.router.url, v ? v.p.pitch : DEFAULT_DESCRIPTION, !v, title);
+      this.seo.update(this.router.url, v ? (v.p.metaDescription ?? v.p.pitch) : DEFAULT_DESCRIPTION, !v, title);
     });
   }
 }

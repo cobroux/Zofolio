@@ -1,6 +1,7 @@
 /* Style « relais » (DESIGN §10.2) : nœuds --bg sur cadre --surface, flèches en encre, un seul nœud orange = le point fragile. */
 :host {
   display: block;
+  container-type: inline-size;
 }
 figure {
   margin: 0;
@@ -13,21 +14,24 @@ figure {
   }
 }
 svg {
-  display: block;
   width: 100%;
   height: auto;
 }
+/* Texte des schémas ≥ 15 px : le schéma large (viewBox 900) n'est affiché que si son conteneur fait ≥ 950 px (900 + padding du cadre), sinon le schéma vertical (viewBox 360, plafonné à 360 px). */
 .v {
+  display: block;
+  max-width: 360px;
+  margin-inline: auto;
+}
+.h {
   display: none;
 }
-@media (max-width: 899px) {
+@container (min-width: 950px) {
   .h {
-    display: none;
+    display: block;
   }
   .v {
-    display: block;
-    max-width: 360px;
-    margin-inline: auto;
+    display: none;
   }
 }
 figcaption {

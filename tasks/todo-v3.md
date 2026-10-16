@@ -81,7 +81,7 @@
   - Fichiers : `githubsync/GithubClient.java`, `githubsync/GithubSyncService.java`, `githubsync/GithubSyncServiceTest.java`, `content/Project.java`, `content/ContentDto.java`, `content/ContentService.java`, `20261017-0200-project-meta.sql`
   - Dépend de : T1
 
-- [ ] V3-T10 [agent: frontend-dev · sonnet] Front : schémas 15 px, course du clip, meta, marge Lighthouse
+- [x] V3-T10 [agent: frontend-dev · sonnet] Front : schémas 15 px, course du clip, meta, marge Lighthouse
   - Acceptation : texte des schémas ≥ 15 px affichés à 900-1440 px (viewBox ou largeur du conteneur, revues V2-T28 n° 2 et V2-T29 n° 4) ; `Clip` : un clic de l'utilisateur fige le mode manuel (l'IntersectionObserver ne relance ni ne met plus en pause), et `<source webm>` seulement si `webm` non nul (D44) ; page projet : `metaTitle`/`metaDescription` avec repli `title, Enzo Leveque`/`pitch` ; `api.models.ts` à jour (`metaTitle`, `metaDescription`, `sportYears`, `webm` nullable) ; `/fr/` ≥ 92 en performance (médiane de 3 runs locaux), cause notée.
   - Vérification : `cd frontend && npm test` (test du Clip : clic pendant l'entrée dans le viewport → reste en lecture) ; `npx lhci autorun --config=lighthouserc.json` ; capture du schéma Oltre à 1000 px.
   - Fichiers : `features/projects/diagrams/diagram.css`, `shared/clip/clip.ts`, `shared/clip/clip.spec.ts`, `features/projects/case-study.page.ts`, `core/api/api.models.ts`
@@ -89,7 +89,7 @@
 
 ## Phase 3 : Admin côté back
 
-- [ ] V3-T11 [agent: designer · sonnet] Direction : admin, colophon, stats du Journal
+- [x] V3-T11 [agent: designer · sonnet] Direction : admin, colophon, stats du Journal
   - Acceptation : `DESIGN.md` §11 : admin sobre avec les tokens existants (liste, formulaire FR/EN côte à côte, bouton Aperçu, états d'erreur par `code`, zone d'upload) sans aucune nouvelle couleur ni police ; colophon (blueprint de section, traitement des scores Lighthouse comme des « splits ») ; bloc `sportYears` dans le Journal (tableau en `tnum`, équivalent texte) ; checklist §11 ajoutée.
   - Vérification : relecture par le tech-lead : aucun élément de la liste anti-slop (§1).
   - Fichiers : `docs/DESIGN.md`

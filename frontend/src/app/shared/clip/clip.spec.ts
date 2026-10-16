@@ -69,6 +69,20 @@ describe('Clip', () => {
     expect(pause).toHaveBeenCalledTimes(1);
   });
 
+  it('un clic avant la vidéo fige le mode manuel : l\'observateur ne met plus en pause', async () => {
+    const el = await render();
+    el.querySelector('button')!.click();
+    seen(true);
+    seen(false);
+    expect(pause).not.toHaveBeenCalled();
+  });
+
+  it('sans webm, aucune source webm', async () => {
+    const el = await render({ video: { ...oltre.video, webm: null } });
+    expect(el.querySelector('source[type="video/webm"]')).toBeNull();
+    expect(el.querySelector('source[type="video/mp4"]')).not.toBeNull();
+  });
+
   it('reduced-motion : pas de play(), bouton Lecture', async () => {
     const el = await render({ reduced: true });
     expect(observe).toBeUndefined();

@@ -27,7 +27,9 @@ function calm(): boolean {
             @defer (on viewport; on interaction(btn)) {
               <video #vid muted [muted]="true" loop playsinline preload="none" [poster]="v.poster" [attr.aria-labelledby]="capId" [attr.width]="v.width" [attr.height]="v.height"
                 (play)="playing.set(true)" (pause)="playing.set(false)">
-                <source [src]="v.webm" type="video/webm" />
+                @if (v.webm) {
+                  <source [src]="v.webm" type="video/webm" />
+                }
                 <source [src]="v.mp4" type="video/mp4" (error)="missing.set(true)" />
               </video>
             } @placeholder {
@@ -57,8 +59,8 @@ export class Clip {
   private readonly vid = viewChild<ElementRef<HTMLVideoElement>>('vid');
   private readonly host: HTMLElement = inject(ElementRef).nativeElement;
   private wantPlay = false;
-  /** Une pause demandée par le visiteur n'est pas annulée par le retour dans le viewport. */
-  private userPaused = false;
+  /** Premier clic : le visiteur pilote, l'IntersectionObserver n'agit plus. */
+  private manual = false;
 
   constructor() {
     const browser = isPlatformBrowser(inject(PLATFORM_ID));
@@ -76,7 +78,8 @@ export class Clip {
         return;
       }
       if (calm() || typeof IntersectionObserver === 'undefined') return;
-      const io = new IntersectionObserver(([e]) => (e.isIntersecting && !this.userPaused ? play() : v.pause()), { threshold: 0.5 });
+      // Un clic fige le mode manuel : l'observateur ne relance ni ne met plus en pause.
+      const io = new IntersectionObserver(([e]) => !this.manual && (e.isIntersecting ? play() : v.pause()), { threshold: 0.5 });
       io.observe(v);
       onCleanup(() => io.disconnect());
     });
@@ -85,8 +88,8 @@ export class Clip {
   protected toggle() {
     const v = this.vid()?.nativeElement;
     // Clic avant le chargement : le @defer se déclenche (interaction) et la lecture démarre à l'apparition de la vidéo.
+    this.manual = true;
     if (!v) return void (this.wantPlay = true);
-    this.userPaused = !v.paused;
     if (v.paused) v.play()?.catch(ignore);
     else v.pause();
   }
