@@ -98,7 +98,8 @@ class ContentService {
 				.orElse(null);
 		return new ProjectSummary(p.slug, p.tier.name(), p.stage, pick(p.title, lang), pick(p.pitch, lang),
 				p.aiTag.name(), p.stack, pick(p.duration, lang), commits, pick(p.note, lang), repoUrl(p.githubRepos),
-				p.demoUrl, languages, lastPush, video(p.video, lang), detail ? caseStudy(p, lang) : null);
+				p.demoUrl, languages, lastPush, video(p.video, lang), detail ? caseStudy(p, lang) : null,
+				pick(p.metaTitle, lang), pick(p.metaDescription, lang));
 	}
 
 	private String repoUrl(List<String> repos) {

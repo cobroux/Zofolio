@@ -59,6 +59,8 @@ class ContentApiIT {
 				project("masque", Project.Tier.HIDDEN, "P1", 1), project("sans-etape", Project.Tier.SHORT, null, 3)));
 		Project etude = project("etude", Project.Tier.CASE_STUDY, "P3", 4);
 		etude.githubRepos = List.of("repo-a", "repo-b");
+		etude.metaTitle = Map.of("fr", "Meta FR", "en", "Meta EN");
+		etude.metaDescription = Map.of("fr", "Desc FR");
 		etude.role = Map.of("fr", "Role FR");
 		etude.problem = Map.of("fr", "Probleme FR");
 		etude.decisions = Map.of("fr", List.of(new ContentDto.Decision("Choix FR", "Compromis FR")));
@@ -119,6 +121,14 @@ class ContentApiIT {
 				"\"repos\":[{\"name\":\"repo-a\",\"url\":\"https://github.com/cobroux/repo-a\"},{\"name\":\"repo-b\"",
 				"\"mp4\":\"media/demo-1.mp4\"", "\"webm\":\"media/demo-1.webm\"",
 				"\"poster\":\"media/demo-1.webp\"", "\"caption\":\"Legende\"", "\"wall\":null");
+	}
+
+	@Test
+	void metaIsResolvedByLanguageWithFrenchFallbackAndNullWhenAbsent() throws Exception {
+		assertThat(get("/api/en/projects/etude").body()).contains("\"metaTitle\":\"Meta EN\"",
+				"\"metaDescription\":\"Desc FR\"");
+		assertThat(get("/api/fr/projects/etude").body()).contains("\"metaTitle\":\"Meta FR\"");
+		assertThat(get("/api/fr/projects/sans-etape").body()).contains("\"metaTitle\":null", "\"metaDescription\":null");
 	}
 
 	@Test

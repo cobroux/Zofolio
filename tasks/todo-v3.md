@@ -75,7 +75,7 @@
 
 ## Phase 2 : Restes V2 (en parallèle de la phase 1)
 
-- [ ] V3-T9 [agent: backend-dev · sonnet] github-sync paginé et meta des projets
+- [x] V3-T9 [agent: backend-dev · sonnet] github-sync paginé et meta des projets
   - Acceptation : requête GraphQL avec `pageInfo { hasNextPage }` ; si `hasNextPage` ou si `nodes` est vide alors que le cache ne l'est pas : upsert seulement, **aucune suppression**, WARN ; changeset `20261017-0200-project-meta.sql` (D45, valeurs FR/EN reprises des `meta.*` validés) ; `ProjectSummary` gagne `metaTitle` et `metaDescription` (nullables, résolus par langue).
   - Vérification : `cd backend && ./mvnw verify` (tests : `hasNextPage=true` → dépôts absents conservés ; liste vide → cache intact ; `metaTitle` EN servi, repli FR).
   - Fichiers : `githubsync/GithubClient.java`, `githubsync/GithubSyncService.java`, `githubsync/GithubSyncServiceTest.java`, `content/Project.java`, `content/ContentDto.java`, `content/ContentService.java`, `20261017-0200-project-meta.sql`

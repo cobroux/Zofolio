@@ -48,7 +48,13 @@ class GithubSyncService {
 		}
 		Instant now = Instant.now();
 		Set<String> names = s.repos().stream().map(Repo::name).collect(Collectors.toSet());
-		repos.deleteAll(repos.findAll().stream().filter(r -> !names.contains(r.name)).toList());
+		var cached = repos.findAll();
+		// Page tronquée ou liste vide alors que le cache ne l'est pas : on ne supprime rien (upsert seulement).
+		if (s.truncated() || (names.isEmpty() && !cached.isEmpty())) {
+			log.warn("github-sync : réponse partielle (hasNextPage ou liste vide), aucune suppression");
+		} else {
+			repos.deleteAll(cached.stream().filter(r -> !names.contains(r.name)).toList());
+		}
 		for (Repo r : s.repos()) {
 			GithubRepo e = new GithubRepo();
 			e.name = r.name();

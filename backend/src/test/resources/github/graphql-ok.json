@@ -1,5 +1,5 @@
 {"data":{"user":{
-  "repositories":{"nodes":[
+  "repositories":{"pageInfo":{"hasNextPage":false},"nodes":[
     {"name":"repo-a","pushedAt":"2026-10-14T09:35:08Z",
      "languages":{"edges":[{"size":500,"node":{"name":"Java"}},{"size":200,"node":{"name":"HTML"}}]},
      "defaultBranchRef":{"target":{"history":{"totalCount":10}}}},

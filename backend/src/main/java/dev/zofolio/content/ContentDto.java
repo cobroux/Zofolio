@@ -13,7 +13,8 @@ public interface ContentDto {
 
 	record ProjectSummary(String slug, String tier, String stage, String title, String pitch, String aiTag,
 			List<String> stack, String duration, Integer commits, String note, String repoUrl, String demoUrl,
-			List<String> languages, Instant lastPushAt, Video video, CaseStudy caseStudy) {}
+			List<String> languages, Instant lastPushAt, Video video, CaseStudy caseStudy, String metaTitle,
+			String metaDescription) {}
 
 	record Decision(String title, String tradeoff) {}
 

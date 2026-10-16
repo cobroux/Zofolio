@@ -67,6 +67,12 @@ class Project {
 	Map<String, String> aiNote;
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")
+	Map<String, String> metaTitle;
+	@JdbcTypeCode(SqlTypes.JSON)
+	@Column(columnDefinition = "jsonb")
+	Map<String, String> metaDescription;
+	@JdbcTypeCode(SqlTypes.JSON)
+	@Column(columnDefinition = "jsonb")
 	VideoData video;
 	String demoUrl;
 	int sortOrder;

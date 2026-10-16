@@ -23,7 +23,7 @@ class GithubClient {
 
 	static final String QUERY = """
 			query($login: String!) { user(login: $login) {
-			  repositories(first: 100, privacy: PUBLIC, ownerAffiliations: OWNER, isFork: false) { nodes {
+			  repositories(first: 100, privacy: PUBLIC, ownerAffiliations: OWNER, isFork: false) { pageInfo { hasNextPage } nodes {
 			    name pushedAt
 			    languages(first: 10, orderBy: {field: SIZE, direction: DESC}) { edges { size node { name } } }
 			    defaultBranchRef { target { ... on Commit { history { totalCount } } } } } }
@@ -35,7 +35,8 @@ class GithubClient {
 
 	record Calendar(LocalDate start, List<Integer> counts, int total) {}
 
-	record Snapshot(List<Repo> repos, Calendar calendar) {}
+	/** {@code truncated} : GitHub annonce d'autres pages que les 100 dépôts reçus. */
+	record Snapshot(List<Repo> repos, Calendar calendar, boolean truncated) {}
 
 	/** Réponse GraphQL brute. */
 	record Response(Data data, List<Object> errors) {
@@ -43,7 +44,9 @@ class GithubClient {
 
 		record User(Repositories repositories, Contributions contributionsCollection) {}
 
-		record Repositories(List<Node> nodes) {}
+		record Repositories(PageInfo pageInfo, List<Node> nodes) {}
+
+		record PageInfo(Boolean hasNextPage) {}
 
 		record Node(String name, Instant pushedAt, Languages languages, Branch defaultBranchRef) {}
 
@@ -114,7 +117,8 @@ class GithubClient {
 		for (var n : u.repositories().nodes()) {
 			repos.add(toRepo(n));
 		}
-		return new Snapshot(repos, toCalendar(u.contributionsCollection().contributionCalendar()));
+		return new Snapshot(repos, toCalendar(u.contributionsCollection().contributionCalendar()),
+				u.repositories().pageInfo() == null || !Boolean.FALSE.equals(u.repositories().pageInfo().hasNextPage()));
 	}
 
 	private static Repo toRepo(Response.Node n) {
