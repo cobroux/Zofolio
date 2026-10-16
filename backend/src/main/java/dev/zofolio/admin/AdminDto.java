@@ -17,6 +17,9 @@ interface AdminDto {
 			Map<String, List<Decision>> decisions, Map<String, String> wall, Map<String, String> takeaway,
 			Map<String, String> aiNote, VideoAdmin video) {}
 
+	record RaceAdmin(Long id, String kind, java.time.LocalDate date, Map<String, String> name, java.math.BigDecimal distanceKm,
+			Integer elevationGainM, Integer durationS, Map<String, String> note, Boolean personalRecord, Integer sortOrder) {}
+
 	record GithubRepoAdmin(String name, java.time.Instant pushedAt, Integer commits, List<String> languages,
 			List<String> projects) {}
 }

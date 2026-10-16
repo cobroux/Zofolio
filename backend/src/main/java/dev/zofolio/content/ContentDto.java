@@ -30,6 +30,8 @@ public interface ContentDto {
 
 	record Contributions(LocalDate start, List<Integer> counts, int total, Instant syncedAt) {}
 
+	record SportYearDto(Integer year, Integer distanceKm, Integer elevationGainM, Integer hours, Integer activities) {}
+
 	record Home(List<ExperienceDto> experiences, List<ProjectSummary> projects, List<RaceDto> races,
-			Contributions contributions) {}
+			Contributions contributions, List<SportYearDto> sportYears) {}
 }

@@ -25,6 +25,7 @@ import dev.zofolio.content.ContentDto.Home;
 import dev.zofolio.content.ContentDto.ProjectSummary;
 import dev.zofolio.content.ContentDto.RaceDto;
 import dev.zofolio.content.ContentDto.RepoLink;
+import dev.zofolio.content.ContentDto.SportYearDto;
 import dev.zofolio.content.ContentDto.Video;
 import dev.zofolio.githubsync.GithubContributions;
 import dev.zofolio.githubsync.GithubContributionsRepository;
@@ -41,13 +42,15 @@ public class ContentService {
 
 	private final GithubRepoRepository githubRepos;
 	private final GithubContributionsRepository githubContributions;
+	private final SportYearRepository sportYears;
 	private final String login;
 
 	ContentService(RaceRepository races, ProjectRepository projects, ExperienceRepository experiences,
-			GithubRepoRepository githubRepos, GithubContributionsRepository githubContributions,
+			GithubRepoRepository githubRepos, GithubContributionsRepository githubContributions, SportYearRepository sportYears,
 			@Value("${zofolio.github.login:cobroux}") String login) {
 		this.githubRepos = githubRepos;
 		this.githubContributions = githubContributions;
+		this.sportYears = sportYears;
 		this.login = login;
 		this.races = races;
 		this.projects = projects;
@@ -83,7 +86,9 @@ public class ContentService {
 				.toList();
 		var contrib = githubContributions.findById(GithubContributions.ID)
 				.map(c -> new Contributions(c.startDate, c.counts, c.total, c.syncedAt)).orElse(null);
-		return new Home(xp, projects(lang).stream().filter(p -> p.stage() != null).toList(), races(lang), contrib);
+		return new Home(xp, projects(lang).stream().filter(p -> p.stage() != null).toList(), races(lang), contrib,
+				sportYears.findAllByOrderByYearDesc().stream().map(y -> new SportYearDto((int) y.year, y.distanceKm,
+						y.elevationGainM, y.hours, y.activities)).toList());
 	}
 
 	private Map<String, GithubRepo> cache() {

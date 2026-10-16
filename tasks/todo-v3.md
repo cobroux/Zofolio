@@ -107,7 +107,7 @@
   - Fichiers : `admin/ProjectAdminController.java`, `admin/ProjectAdminService.java`, `admin/AdminDto.java`, `content/ContentService.java`, `admin/ProjectAdminIT.java`, `admin/ProjectAdminServiceTest.java`
   - Dépend de : T9, T12
 
-- [ ] V3-T14 [agent: backend-dev · sonnet] Courses et stats sport (admin + public)
+- [x] V3-T14 [agent: backend-dev · sonnet] Courses et stats sport (admin + public)
   - Acceptation : plan-v3 §3.4 (CRUD `races`, upsert `sport-years`, `sportYears` dans `/home`) ; changeset `20261017-0300-sport-year.sql` ; aucun champ de classement ni de tracé.
   - Vérification : `cd backend && ./mvnw verify` (IT : PUT 2025 → `/api/fr/home` contient `sportYears[0].year = 2025` ; année future → 400 ; course modifiée visible dans `/races`).
   - Fichiers : `admin/RaceAdminController.java`, `admin/SportYearController.java`, `content/SportYear.java`, `content/SportYearRepository.java`, `content/ContentDto.java`, `content/ContentService.java`, `admin/RaceSportAdminIT.java`, `20261017-0300-sport-year.sql`

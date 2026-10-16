@@ -58,6 +58,13 @@ final class Check {
 		return true;
 	}
 
+	/** Nombre facultatif : absent accepté, présent borné. */
+	void optRange(String field, Number v, double min, double max) {
+		if (v != null) {
+			range(field, v, min, max);
+		}
+	}
+
 	void range(String field, Number v, double min, double max) {
 		if (v == null || v.doubleValue() < min || v.doubleValue() > max) {
 			add(field, "Range");
