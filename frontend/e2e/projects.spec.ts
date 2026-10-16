@@ -42,7 +42,8 @@ test('CV EN : servi par /api/en/cv, téléchargé sous le nom EN', async ({ page
 test('clip : affiche, lecture dans le viewport, Pause puis Lecture au clic', async ({ page }) => {
   await page.goto('/fr/projets/oltre');
   const clip = page.locator('app-clip');
-  await expect(clip.locator('img')).toBeVisible();
+  // l'affiche est soit l'img placeholder, soit la <video> si le @defer s'est déjà déclenché (viewport)
+  await expect(clip.locator('img, video').first()).toBeVisible();
   await clip.scrollIntoViewIfNeeded();
   const video = clip.locator('video');
   const playing = () => video.evaluate((v: HTMLVideoElement) => !v.paused);
