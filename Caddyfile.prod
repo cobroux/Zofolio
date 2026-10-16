@@ -1,5 +1,12 @@
 # Prod sans domaine : hôte sslip.io, certificat Let's Encrypt automatique (80 et 443 ouverts).
 # Domaine plus tard : remplacer l'adresse du site (voir infra/README.md).
+# Pas de HTTP/3 : UDP 443 fermé (Oracle + ufw) ; Safari/iOS se bloquait sur l'annonce h3 au lieu de repasser en h2.
+{
+	servers {
+		protocols h1 h2
+	}
+}
+
 88-96-45-97.sslip.io {
 	encode zstd gzip
 
