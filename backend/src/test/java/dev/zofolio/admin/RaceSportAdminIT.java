@@ -74,19 +74,24 @@ class RaceSportAdminIT {
 	@Test
 	void sportYearUpsertAppearsInHomeNewestFirst() throws Exception {
 		var c = AdminClient.loggedIn(port);
-		assertThat(c.send("PUT", "/api/admin/sport-years/2024", "{\"year\":2024,\"distanceKm\":1800,\"elevationGainM\":30000,\"hours\":200,\"activities\":150}").statusCode()).isEqualTo(200);
-		assertThat(c.send("PUT", "/api/admin/sport-years/2025", "{\"year\":2025,\"distanceKm\":2140,\"elevationGainM\":null,\"hours\":260,\"activities\":210}").statusCode()).isEqualTo(200);
-		assertThat(c.send("PUT", "/api/admin/sport-years/2025", "{\"year\":2025,\"distanceKm\":2200}").statusCode()).isEqualTo(200);
+		// 2021-2022 : les années 2023+ sont déjà semées (20261017-1000) ; on vérifie l'ordre décroissant et l'upsert.
+		assertThat(c.send("PUT", "/api/admin/sport-years/2021", "{\"year\":2021,\"distanceKm\":1800,\"elevationGainM\":30000,\"hours\":200,\"activities\":150}").statusCode()).isEqualTo(200);
+		assertThat(c.send("PUT", "/api/admin/sport-years/2022", "{\"year\":2022,\"distanceKm\":2140,\"elevationGainM\":null,\"hours\":260,\"activities\":210}").statusCode()).isEqualTo(200);
+		assertThat(c.send("PUT", "/api/admin/sport-years/2022", "{\"year\":2022,\"distanceKm\":2200}").statusCode()).isEqualTo(200);
 
 		JsonNode years = json.readTree(c.get("/api/fr/home").body()).get("sportYears");
-		assertThat(years.get(0).get("year").asInt()).isEqualTo(2025);
-		assertThat(years.get(0).get("distanceKm").asInt()).isEqualTo(2200);
-		assertThat(years.get(0).get("hours").isNull()).isTrue();
-		assertThat(years.get(1).get("year").asInt()).isEqualTo(2024);
-		assertThat(c.get("/api/admin/sport-years").body()).contains("\"year\":2025");
+		int n = years.size();
+		assertThat(years.get(n - 1).get("year").asInt()).isEqualTo(2021);
+		JsonNode y22 = years.get(n - 2);
+		assertThat(y22.get("year").asInt()).isEqualTo(2022);
+		assertThat(y22.get("distanceKm").asInt()).isEqualTo(2200);
+		assertThat(y22.get("hours").isNull()).isTrue();
+		assertThat(years.get(0).get("year").asInt()).isGreaterThan(2022);
+		assertThat(c.get("/api/admin/sport-years").body()).contains("\"year\":2022");
 
-		assertThat(c.send("DELETE", "/api/admin/sport-years/2024", null).statusCode()).isEqualTo(204);
-		assertThat(c.send("DELETE", "/api/admin/sport-years/2024", null).statusCode()).isEqualTo(404);
+		assertThat(c.send("DELETE", "/api/admin/sport-years/2022", null).statusCode()).isEqualTo(204);
+		assertThat(c.send("DELETE", "/api/admin/sport-years/2021", null).statusCode()).isEqualTo(204);
+		assertThat(c.send("DELETE", "/api/admin/sport-years/2021", null).statusCode()).isEqualTo(404);
 	}
 
 	@Test

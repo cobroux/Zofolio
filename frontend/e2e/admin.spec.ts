@@ -42,6 +42,11 @@ test.describe('admin connecté', () => {
     await login(page);
     await expect(page.getByRole('table')).toContainText('oltre');
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await openOltre(page);
+    expect((await new AxeBuilder({ page }).analyze()).violations.map((v) => v.id)).toEqual([]);
+    await page.emulateMedia({ colorScheme: 'light' });
+    await page.goto('/fr/admin/projets');
     await page.getByRole('button', { name: 'Déconnexion' }).click();
     await expect(page).toHaveURL(/\/connexion/);
     await page.goto('/fr/admin/projets');
@@ -112,10 +117,10 @@ test.describe('admin connecté', () => {
       expect(html).toContain('Les années en chiffres');
       expect(html).toMatch(/1\s234/);
     } finally {
-      await page.getByRole('button', { name: /^Supprimer/ }).first().click();
+      await page.getByRole('button', { name: /^Supprimer 2001/ }).click();
       await page.getByRole('button', { name: /^Confirmer/ }).click();
       await expect(page.getByRole('status').filter({ hasText: '2001 supprimée' })).toBeVisible();
     }
-    expect(await (await page.request.get('/fr/')).text()).not.toContain('Les années en chiffres');
+    expect(await (await page.request.get('/fr/')).text()).not.toMatch(/1\s234/); // les années semées (Garmin) restent
   });
 });

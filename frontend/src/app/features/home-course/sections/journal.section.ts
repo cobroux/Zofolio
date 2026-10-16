@@ -38,11 +38,11 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
           @if (sportYears().length) {
             <div class="stats" [appReveal]="2">
               <h3 id="stats-title" i18n>Les années en chiffres</h3>
-              <p i18n>Ce que je cours, année par année, saisi à la main.</p>
-              <p class="small" i18n>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé.</p>
+              <p i18n>Course, vélo et natation, année par année, d'après ma montre.</p>
+              <p class="small" i18n>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km et dénivelé : course et vélo (les km en natation, peu fiables, sont exclus). Année en cours incluse.</p>
               <div class="scroll" role="region" tabindex="0" aria-labelledby="stats-title">
                 <table>
-                  <caption class="sr" i18n>Totaux annuels de course</caption>
+                  <caption class="sr" i18n>Totaux annuels d'endurance</caption>
                   <thead>
                     <tr>
                       <th scope="col" i18n>Année</th>
@@ -246,6 +246,10 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
     .stats th, .stats td { padding: var(--s-3) var(--s-3) var(--s-3) 0; text-align: left; font-weight: 400; }
     .stats thead th { color: var(--ink-2); font-size: var(--t-small); font-weight: 600; vertical-align: bottom; }
     .stats th.num, .stats td.num { text-align: right; white-space: nowrap; }
+    /* le body a overflow-wrap: anywhere : sans cela la colonne Année s'écrase chiffre par chiffre à 390 */
+    .stats th { overflow-wrap: normal; }
+    .stats tbody th { white-space: nowrap; }
+    .stats tbody th .small { display: block; }
     .stats .yr { font: 800 1.5rem / 1 var(--font-display); font-stretch: 75%; margin-inline-end: var(--s-2); }
     .sr {
       position: absolute;

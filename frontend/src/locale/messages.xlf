@@ -548,49 +548,49 @@
         <source>[À MESURER : prod]</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">109,110</context>
+          <context context-type="linenumber">128,129</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6318338994098830642" datatype="html">
         <source>Limite : pile au seuil. Je l&apos;écris.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">112,113</context>
+          <context context-type="linenumber">131,132</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5259836909068233043" datatype="html">
         <source>Pour mémoire, la dernière mesure locale (<x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>docs/reviews/V2-T34-T35-qa.md<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>) donnait 90, 100, 100, 100 sur <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>/fr/<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> : la performance était juste au seuil. Je préfère l&apos;écrire que de le cacher.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">120,121</context>
+          <context context-type="linenumber">134,135</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5942671110811724425" datatype="html">
         <source>Tout est dans le dépôt</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">124,125</context>
+          <context context-type="linenumber">138,139</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4096810155458901411" datatype="html">
         <source>Le code source</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">126,127</context>
+          <context context-type="linenumber">140,141</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4987758247039244483" datatype="html">
         <source>Les plans et listes de tâches (tasks/)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">127,128</context>
+          <context context-type="linenumber">141,142</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7830855131540145941" datatype="html">
         <source>Les décisions d&apos;architecture (docs/adr/)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">128,129</context>
+          <context context-type="linenumber">142,143</context>
         </context-group>
       </trans-unit>
       <trans-unit id="218251113383272180" datatype="html">
@@ -1045,22 +1045,22 @@
           <context context-type="linenumber">40,41</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2650240106052034881" datatype="html">
-        <source>Ce que je cours, année par année, saisi à la main.</source>
+      <trans-unit id="2967245884137980359" datatype="html">
+        <source>Course, vélo et natation, année par année, d&apos;après ma montre.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
           <context context-type="linenumber">41,42</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3391608129733456582" datatype="html">
-        <source>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé.</source>
+      <trans-unit id="510448242925122577" datatype="html">
+        <source>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km et dénivelé : course et vélo (les km en natation, peu fiables, sont exclus). Année en cours incluse.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
           <context context-type="linenumber">42,43</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="285598942340442947" datatype="html">
-        <source>Totaux annuels de course</source>
+      <trans-unit id="1229716062486939868" datatype="html">
+        <source>Totaux annuels d&apos;endurance</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
           <context context-type="linenumber">45,46</context>

@@ -5,7 +5,8 @@
         "http://localhost:4000/fr/",
         "http://localhost:4000/en/",
         "http://localhost:4000/fr/projets/oltre",
-        "http://localhost:4000/en/projets/oltre"
+        "http://localhost:4000/en/projets/oltre",
+        "http://localhost:4000/fr/colophon"
       ],
       "numberOfRuns": 3,
       "settings": {

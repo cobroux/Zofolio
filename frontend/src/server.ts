@@ -34,6 +34,12 @@ app.get(['/robots.txt', '/sitemap.xml'], (req, res) => {
   res.sendFile(join(browserDistFolder, 'fr', req.path));
 });
 
+// L'admin (coquille CSR sans balise robots) est exclu de l'index par l'en-tête ; le SeoService pose aussi la balise côté client.
+app.use(/^\/(fr|en)\/admin(\/|$)/, (_req, res, next) => {
+  res.setHeader('X-Robots-Tag', 'noindex');
+  next();
+});
+
 /**
  * Serve static files from /browser
  */

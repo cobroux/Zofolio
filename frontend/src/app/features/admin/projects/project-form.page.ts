@@ -124,7 +124,7 @@ const SEO: TextField[] = [{ key: 'metaTitle' }, { key: 'metaDescription', area: 
           <div class="cols">
             @for (l of langs; track l) {
               <div class="col" [attr.lang]="l">
-                <h3>{{ l === 'fr' ? 'Français' : 'English' }}</h3>
+                <h2>{{ l === 'fr' ? 'Français' : 'English' }}</h2>
                 @for (d of decisions()[l]; track d; let i = $index) {
                   <div class="field" [class.invalid]="errors()['decisions.' + l + '[' + i + '].title']" [formGroup]="d">
                     <label [for]="'f-decisions-' + l + '-' + i + '-title'">Décision {{ i + 1 }}, titre</label>
@@ -214,7 +214,7 @@ const SEO: TextField[] = [{ key: 'metaTitle' }, { key: 'metaDescription', area: 
             <div class="cols" style="margin-block-start:var(--s-5)">
               @for (l of langs; track l) {
                 <div class="col" [attr.lang]="l">
-                  <h3>Légende ({{ l === 'fr' ? 'Français' : 'English' }})</h3>
+                  <h2>Légende ({{ l === 'fr' ? 'Français' : 'English' }})</h2>
                   <div class="field" [class.invalid]="errors()['video.caption.' + l]" formGroupName="caption">
                     <label [for]="'f-video-caption-' + l">Légende</label>
                     <input [id]="'f-video-caption-' + l" [formControlName]="l" [attr.aria-invalid]="errors()['video.caption.' + l] ? 'true' : null" [attr.aria-describedby]="'m-video-caption-' + l" />
@@ -259,7 +259,7 @@ const SEO: TextField[] = [{ key: 'metaTitle' }, { key: 'metaDescription', area: 
       <div class="cols">
         @for (l of langs; track l) {
           <div class="col" [attr.lang]="l">
-            <h3>{{ l === 'fr' ? 'Français' : 'English' }}</h3>
+            <h2>{{ l === 'fr' ? 'Français' : 'English' }}</h2>
             @for (f of fields; track f.key) {
               <div class="field" [class.invalid]="errors()[f.key + '.' + l]">
                 <label [for]="'f-' + f.key + '-' + l">{{ meta[f.key].label }}</label>

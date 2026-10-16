@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgTemplateOutlet } from '@angular/common';
 import { Component } from '@angular/core';
 import { AiTag } from '../../shared/ai-tag/ai-tag';
 
@@ -18,7 +18,7 @@ export const isAtLimit = (score: number | null, threshold: number) => score !== 
 
 @Component({
   selector: 'app-colophon',
-  imports: [AiTag, DatePipe],
+  imports: [AiTag, DatePipe, NgTemplateOutlet],
   template: `
     <section class="start" aria-labelledby="c-h1">
       <div>
@@ -95,7 +95,7 @@ export const isAtLimit = (score: number | null, threshold: number) => score !== 
         @if (lhDate) { <ng-container i18n>Mesure du</ng-container> {{ lhDate | date: 'longDate' }} }
         @else { <ng-container i18n>Mesure du [À MESURER : date, T8]</ng-container> }
       </p>
-      <table class="lh">
+      <table class="lh lh-table">
         <caption i18n>Scores par page, seuil entre parenthèses</caption>
         <thead>
           <tr><th scope="col" i18n>Catégorie</th>@for (p of pages; track p) { <th scope="col" class="n">{{ p }}</th> }</tr>
@@ -105,18 +105,32 @@ export const isAtLimit = (score: number | null, threshold: number) => score !== 
             <tr>
               <th scope="row">{{ r.label }} <span class="tnum">({{ r.threshold }})</span></th>
               @for (s of r.scores; track $index) {
-                <td class="n">
-                  @if (s === null) { <span class="todo" i18n>[À MESURER : prod]</span> }
-                  @else {
-                    <span class="split tnum">{{ s }}</span>
-                    @if (limit(s, r.threshold)) { <span class="note" i18n>Limite : pile au seuil. Je l'écris.</span> }
-                  }
-                </td>
+                <td class="n"><ng-container *ngTemplateOutlet="cell; context: { $implicit: s, t: r.threshold }" /></td>
               }
             </tr>
           }
         </tbody>
       </table>
+      <!-- Mobile (DESIGN §11.2) : le tableau devient 3 blocs, un par page, 4 scores en grille 2×2. -->
+      <div class="lh-blocks">
+        @for (p of pages; track p; let i = $index) {
+          <div class="lh-block">
+            <h3>{{ p }}</h3>
+            <dl>
+              @for (r of rows; track r.label) {
+                <div><dt>{{ r.label }} <span class="tnum">({{ r.threshold }})</span></dt><dd><ng-container *ngTemplateOutlet="cell; context: { $implicit: r.scores[i], t: r.threshold }" /></dd></div>
+              }
+            </dl>
+          </div>
+        }
+      </div>
+      <ng-template #cell let-s let-t="t">
+        @if (s === null) { <span class="todo" i18n>[À MESURER : prod]</span> }
+        @else {
+          <span class="split tnum">{{ s }}</span>
+          @if (limit(s, t)) { <span class="note" i18n>Limite : pile au seuil. Je l'écris.</span> }
+        }
+      </ng-template>
       <p i18n>Pour mémoire, la dernière mesure locale (<code>docs/reviews/V2-T34-T35-qa.md</code>) donnait 90, 100, 100, 100 sur <code>/fr/</code> : la performance était juste au seuil. Je préfère l'écrire que de le cacher.</p>
     </section>
 
@@ -149,6 +163,13 @@ export const isAtLimit = (score: number | null, threshold: number) => score !== 
     caption { text-align: start; font-size: var(--t-small); padding-block-end: var(--s-2); }
     th, td { text-align: start; padding: var(--s-2) var(--s-4) var(--s-2) 0; vertical-align: bottom; }
     .lh .n { text-align: end; }
+    .lh-blocks { display: none; }
+    .lh-block dl { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5) var(--s-4); margin: 0; }
+    .lh-block dt { font-size: var(--t-small); color: var(--ink-2); }
+    .lh-block dd { margin: 0; }
+    .lh-block + .lh-block { margin-block-start: var(--s-6); }
+    .lh-block .split { font-size: clamp(2.5rem, 12vw, 3.5rem); }
+    @media (max-width: 767px) { .lh-table { display: none; } .lh-blocks { display: block; } }
     .split { display: block; font: 800 clamp(2.5rem, 6vw, 4.5rem) / 0.95 var(--font-display); font-stretch: 75%; }
     .note, .todo { display: block; font-size: var(--t-small); color: var(--ink-2); }
     .tags { display: flex; flex-wrap: wrap; gap: var(--s-3); }

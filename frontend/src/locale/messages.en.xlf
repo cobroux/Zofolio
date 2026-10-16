@@ -2511,25 +2511,25 @@
           <context context-type="linenumber">40,41</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2650240106052034881" datatype="html">
-        <source>Ce que je cours, année par année, saisi à la main.</source>
-        <target state="translated">What I run, year by year, entered by hand.</target>
+      <trans-unit id="2967245884137980359" datatype="html">
+        <source>Course, vélo et natation, année par année, d&apos;après ma montre.</source>
+        <target state="translated">Running, cycling and swimming, year by year, from my watch.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
           <context context-type="linenumber">41,42</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3391608129733456582" datatype="html">
-        <source>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé.</source>
-        <target state="translated">Yearly totals only: no GPS track, no heart rate, no health data.</target>
+      <trans-unit id="510448242925122577" datatype="html">
+        <source>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km et dénivelé : course et vélo (les km en natation, peu fiables, sont exclus). Année en cours incluse.</source>
+        <target state="translated">Yearly totals only: no track, no heart rate, no health data. Distance and elevation: running and cycling (swim distances, unreliable, are excluded). Current year included.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
           <context context-type="linenumber">42,43</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="285598942340442947" datatype="html">
-        <source>Totaux annuels de course</source>
-        <target state="translated">Yearly running totals</target>
+      <trans-unit id="1229716062486939868" datatype="html">
+        <source>Totaux annuels d&apos;endurance</source>
+        <target state="translated">Yearly endurance totals</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
           <context context-type="linenumber">45,46</context>

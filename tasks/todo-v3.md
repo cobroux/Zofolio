@@ -163,19 +163,19 @@
   - Fichiers : `features/colophon/colophon.page.ts`, `app.routes.ts`, `core/layout/footer.ts`, `public/sitemap.xml`, `src/locale/messages.en.xlf`
   - Dépend de : T11, T21
 
-- [ ] V3-T23 [agent: designer · sonnet] Revue design K
+- [x] V3-T23 [agent: designer · sonnet] Revue design K
   - Acceptation : admin, colophon et Journal à 360/390/768/1440, clair et sombre, contre DESIGN §9 et §11 ; captures dans `docs/reviews/V3-T23/` ; écarts corrigés ou listés en tâches.
   - Vérification : rapport avec captures.
   - Fichiers : `docs/reviews/V3-T23-design-K.md`
   - Dépend de : T18, T19, T22
 
-- [ ] V3-T24 [agent: code-reviewer · sonnet] Revue de code K
+- [x] V3-T24 [agent: code-reviewer · sonnet] Revue de code K
   - Acceptation : diff T10, T17-T19, T22 : aucun `innerHTML` ni `bypassSecurity`, aucune donnée admin en `localStorage`, `CaseStudyView` sans régression du rendu public, aucun changeset de contenu après `20261017-0200` (D46), ponytail (pas d'abstraction inutile).
   - Vérification : `grep -rn 'innerHTML\|bypassSecurity\|localStorage' frontend/src/app/features/admin` vide ; `cd frontend && npm run lint && npm test`.
   - Fichiers : `docs/reviews/V3-T24-code-K.md`
   - Dépend de : T18, T19, T22
 
-- [ ] V3-T25 [agent: qa-engineer · sonnet] E2E admin, axe, Lighthouse, audit (point de contrôle K)
+- [x] V3-T25 [agent: qa-engineer · sonnet] E2E admin, axe, Lighthouse, audit (point de contrôle K)
   - Acceptation : E2E (hash de test injecté par la CI) : connexion ratée puis réussie, 6e échec → message de blocage, modification FR/EN d'un projet → aperçu → enregistrement → visible sur `/fr/projets/<slug>` et `/en/…`, ajout d'une année → Journal, upload d'une affiche → clip affiché, déconnexion ; axe 0 sur la connexion, un formulaire, le colophon (clair et sombre) ; `lighthouserc.json` étendu à `/fr/colophon` ; break-ui sur l'admin (textes longs, 0 projet, API en 500) ; `npm audit --omit=dev` et dépendances Maven triés ; job CI à jour.
   - Vérification : `docker compose up --build -d && cd frontend && npx playwright test` ; `npx lhci autorun --config=lighthouserc.json`.
   - Fichiers : `frontend/e2e/admin.spec.ts`, `frontend/e2e/colophon.spec.ts`, `frontend/lighthouserc.json`, `.github/workflows/ci.yml`, `docs/reviews/V3-T25-qa.md`

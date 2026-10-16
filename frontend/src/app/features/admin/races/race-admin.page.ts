@@ -42,7 +42,7 @@ const num = (s: string): number | null => (s.trim() === '' ? null : Number(s.rep
           <div class="cols">
             @for (l of langs; track l) {
               <div class="col" [attr.lang]="l[0]">
-                <h3>{{ l[1] }}</h3>
+                <h2>{{ l[1] }}</h2>
                 @for (k of ['name', 'note']; track k) {
                   <div class="field" [class.invalid]="errors()[k + '.' + l[0]]">
                     <label [for]="'f-' + k + '-' + l[0]">{{ k === 'name' ? 'Nom' : 'Note' }}</label>
