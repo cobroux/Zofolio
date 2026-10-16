@@ -127,19 +127,19 @@
 
 ## Phase 4 : Admin côté front, stats, colophon
 
-- [ ] V3-T17 [agent: frontend-dev · sonnet] Coquille admin : connexion, garde, routes
+- [x] V3-T17 [agent: frontend-dev · sonnet] Coquille admin : connexion, garde, routes
   - Acceptation : D39 (route `admin/**` en `RenderMode.Client`, `noindex`, `robots.txt`) ; page de connexion (erreurs `UNAUTHENTICATED` et `LOGIN_LOCKED` avec la durée), garde de route via `GET /session`, déconnexion, navigation Projets / Courses / Stats / Médias ; XSRF par l'intercepteur natif (aucun code maison) ; tout l'admin utilisable au clavier, focus visible, libellés liés aux champs.
   - Vérification : `cd frontend && npm test` (garde : redirige vers la connexion si `authenticated: false`) ; `npm run build` (aucune erreur XLIFF) ; `curl -s localhost:4000/fr/admin | grep -c 'noindex'` ≥ 1.
   - Fichiers : `features/admin/admin.routes.ts`, `features/admin/admin.api.ts`, `features/admin/login.page.ts`, `features/admin/admin-shell.ts`, `app.routes.ts`, `app.routes.server.ts`, `public/robots.txt`
   - Dépend de : T11, T12
 
-- [ ] V3-T18 [agent: frontend-dev · sonnet] Formulaires des projets et aperçu
+- [x] V3-T18 [agent: frontend-dev · sonnet] Formulaires des projets et aperçu
   - Acceptation : liste des projets (tier, étape, ordre) ; formulaire réactif typé : champs FR/EN côte à côte, `decisions` (0 à 3 par langue), dépôts choisis dans `GET /github-repos`, clip (nom, dimensions, légende, `mp4`/`poster` choisis parmi les médias) ; erreurs `VALIDATION_FAILED` affichées sous le champ (`field` pointé) ; **Aperçu** FR et EN via `POST /preview` rendu par `CaseStudyView`, extrait de `case-study.page.ts` sans changer le rendu public ; Enregistrer = publier.
   - Vérification : `cd frontend && npm test` (mapping des erreurs pointées) ; E2E publics inchangés (`npx playwright test e2e/projects.spec.ts`).
   - Fichiers : `features/admin/projects/project-list.page.ts`, `features/admin/projects/project-form.page.ts`, `features/admin/projects/project-preview.ts`, `features/projects/case-study-view.ts`, `features/projects/case-study.page.ts`
   - Dépend de : T13, T17
 
-- [ ] V3-T19 [agent: frontend-dev · sonnet] Courses, stats, médias (admin) et stats du Journal
+- [x] V3-T19 [agent: frontend-dev · sonnet] Courses, stats, médias (admin) et stats du Journal
   - Acceptation : écrans CRUD des courses et des années de stats ; page Médias (upload avec la raison du refus traduite en clair, liste avec `usedBy`, suppression avec confirmation, 409 expliqué) ; bloc `sportYears` du Journal selon DESIGN §11, masqué si `[]`, avec textes i18n FR/EN (cibles EN fournies par T20).
   - Vérification : `cd frontend && npm test` ; `npm run build` ; Journal rendu en SSR avec et sans `sportYears`.
   - Fichiers : `features/admin/races/race-admin.page.ts`, `features/admin/stats/sport-year-admin.page.ts`, `features/admin/media/media.page.ts`, `features/home-course/sections/journal.section.ts`, `src/locale/messages.en.xlf`

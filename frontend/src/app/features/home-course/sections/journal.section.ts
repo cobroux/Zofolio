@@ -1,7 +1,7 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgTemplateOutlet } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import { ContributionsGraph } from '../../../shared/contributions/contributions';
-import { Contributions, Race } from '../../../core/api/api.models';
+import { Contributions, Race, SportYear } from '../../../core/api/api.models';
 import { Reveal } from '../../../shared/reveal/reveal';
 
 /** 79.4 → « 79,4 km ». */
@@ -23,7 +23,7 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
 /** Pas de classement : uniquement des chiffres. Les lignes `INDEX`/`CLUB` ne sont pas des courses. */
 @Component({
   selector: 'app-journal-section',
-  imports: [ContributionsGraph, Reveal, DatePipe],
+  imports: [ContributionsGraph, Reveal, DatePipe, NgTemplateOutlet],
   template: `
     <section id="journal" aria-labelledby="journal-title">
       <div class="side">
@@ -35,6 +35,47 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
             <span class="small" i18n>UTMB Index. Un chiffre, pas un classement.</span>
           </p>
           <app-contributions [data]="contributions()" [appReveal]="2" />
+          @if (sportYears().length) {
+            <div class="stats" [appReveal]="2">
+              <h3 id="stats-title" i18n>Les années en chiffres</h3>
+              <p i18n>Ce que je cours, année par année, saisi à la main.</p>
+              <p class="small" i18n>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé.</p>
+              <div class="scroll" role="region" tabindex="0" aria-labelledby="stats-title">
+                <table>
+                  <caption class="sr" i18n>Totaux annuels de course</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col" i18n>Année</th>
+                      <th scope="col" class="num" i18n>Kilomètres (km)</th>
+                      <th scope="col" class="num" i18n>Dénivelé (m D+)</th>
+                      <th scope="col" class="num" i18n>Heures (h)</th>
+                      <th scope="col" class="num" i18n>Activités</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (y of sportYears(); track y.year) {
+                      <tr>
+                        <th scope="row"><span class="yr">{{ y.year }}</span>@if (y.year === thisYear) { <span class="small" i18n>en cours</span> }</th>
+                        <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.distanceKm }" />
+                        <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.elevationGainM }" />
+                        <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.hours }" />
+                        <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.activities }" />
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+              <ng-template #cell let-v>
+                <td class="num">
+                  @if (v === null) {
+                    <span aria-hidden="true">—</span><span class="sr" i18n>non renseigné</span>
+                  } @else {
+                    {{ number(v) }}
+                  }
+                </td>
+              </ng-template>
+            </div>
+          }
           @for (r of others(); track r.name) {
             <p class="small">{{ r.name }}</p>
           }
@@ -58,7 +99,7 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
         </figure>
       </div>
       @if (rows(); as list) {
-        <table [appReveal]="2">
+        <table class="races" [appReveal]="2">
           <caption class="sr" i18n>Courses terminées</caption>
           <thead>
             <tr>
@@ -154,35 +195,36 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
       object-fit: cover;
       object-position: center 12%;
     }
-    table {
+    .races {
       border-collapse: collapse;
       font-variant-numeric: tabular-nums;
     }
-    th, td {
+    .races th,
+    .races td {
       padding: var(--s-4) var(--s-3);
       text-align: left;
       font-weight: 400;
       vertical-align: top;
     }
-    thead th {
+    .races thead th {
       color: var(--ink-2);
       font-size: var(--t-small);
       font-weight: 600;
     }
-    tbody tr {
+    .races tbody tr {
       border-top: 1px solid var(--line-muted);
     }
-    tbody th {
+    .races tbody th {
       font-weight: 600;
     }
-    td:first-child,
-    .num {
+    .races td:first-child,
+    .races .num {
       white-space: nowrap;
     }
-    .num {
+    .races .num {
       text-align: right;
     }
-    .time {
+    .races .time {
       font-weight: 600;
     }
     .pr {
@@ -197,6 +239,14 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
     .pr svg {
       color: var(--accent);
     }
+    .stats { display: flex; flex-direction: column; gap: var(--s-3); max-width: 44rem; }
+    .stats h3 { margin: 0; font: 800 clamp(1.25rem, 2vw, 1.625rem) / 1.05 var(--font-display); font-stretch: 75%; letter-spacing: -0.02em; }
+    .stats .scroll { overflow-x: auto; }
+    .stats table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums lining-nums; }
+    .stats th, .stats td { padding: var(--s-3) var(--s-3) var(--s-3) 0; text-align: left; font-weight: 400; }
+    .stats thead th { color: var(--ink-2); font-size: var(--t-small); font-weight: 600; vertical-align: bottom; }
+    .stats th.num, .stats td.num { text-align: right; white-space: nowrap; }
+    .stats .yr { font: 800 1.5rem / 1 var(--font-display); font-stretch: 75%; margin-inline-end: var(--s-2); }
     .sr {
       position: absolute;
       width: 1px;
@@ -206,18 +256,18 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
     }
     /* Sous 1280 px (le tableau à 6 colonnes n'a pas la place à côté de la photo) : une fiche par course (nom, puis date/distance et D+/temps en 2 colonnes, puis la note). */
     @media (max-width: 1279px) {
-      thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-      table, tbody { display: block; }
-      tbody tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3) var(--s-4); padding: var(--s-5) 0; }
-      td, tbody th { display: flex; flex-direction: column; gap: 2px; padding: 0; text-align: left; white-space: normal; }
-      tbody th { grid-column: 1 / -1; order: -1; font-size: 1.125rem; }
-      td.num { text-align: left; }
-      td::before { content: attr(data-label); color: var(--ink-2); font-size: var(--t-small); font-weight: 400; }
-      td:last-child { grid-column: 1 / -1; }
-      td:empty { display: none; }
+      .races thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+      .races, .races tbody { display: block; }
+      .races tbody tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3) var(--s-4); padding: var(--s-5) 0; }
+      .races td, .races tbody th { display: flex; flex-direction: column; gap: 2px; padding: 0; text-align: left; white-space: normal; }
+      .races tbody th { grid-column: 1 / -1; order: -1; font-size: 1.125rem; }
+      .races td.num { text-align: left; }
+      .races td::before { content: attr(data-label); color: var(--ink-2); font-size: var(--t-small); font-weight: 400; }
+      .races td:last-child { grid-column: 1 / -1; }
+      .races td:empty { display: none; }
     }
     @media (min-width: 768px) and (max-width: 1279px) {
-      tbody tr { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .races tbody tr { grid-template-columns: repeat(4, minmax(0, 1fr)); }
       /* Texte et photo côte à côte, le tableau en dessous. */
       .side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 20rem); align-items: start; gap: var(--gutter); }
     }
@@ -225,7 +275,7 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
     @media (min-width: 1280px) {
       section { grid-template-columns: repeat(12, minmax(0, 1fr)); padding-block: var(--s-10); }
       .side { grid-column: 1 / span 5; }
-      table, .unavailable { grid-column: 6 / span 7; align-self: start; }
+      .races, .unavailable { grid-column: 6 / span 7; align-self: start; }
       figure { flex: 1 1 0; min-height: 18rem; }
       figure img { position: absolute; inset: 0; aspect-ratio: auto; }
     }
@@ -236,6 +286,10 @@ export class JournalSection {
   readonly races = input<Race[] | null>(null);
   /** `null` = pas encore de synchro GitHub : le graphe n'est pas rendu. */
   readonly contributions = input<Contributions | null>(null);
+  /** Année décroissante ; `[]` : le bloc n'est pas rendu. */
+  readonly sportYears = input<SportYear[]>([]);
+  protected readonly thisYear = new Date().getFullYear();
+  protected readonly number = (n: number) => ELEVATION.format(n);
   readonly rows = computed(() => this.races()?.filter((r) => r.kind === 'RACE') ?? null);
   readonly others = computed(() => this.races()?.filter((r) => r.kind !== 'RACE') ?? []);
   protected readonly label = {
