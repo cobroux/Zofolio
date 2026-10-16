@@ -152,16 +152,6 @@
   "races": [
     {
       "kind": "RACE",
-      "date": "2025-10-11",
-      "name": "Grand Trail d'Auvergne (GTA)",
-      "distanceKm": 79.4,
-      "elevationGainM": 3160,
-      "durationS": 48953,
-      "note": "Départ à 6 h 30, arrivée à 20 h 05. Une journée entière sans réunion.",
-      "personalRecord": false
-    },
-    {
-      "kind": "RACE",
       "date": "2026-09-13",
       "name": "Côte d'Opale",
       "distanceKm": 62.9,
@@ -169,6 +159,26 @@
       "durationS": 27159,
       "note": "5 min 12 s de mieux que l'année précédente.",
       "personalRecord": true
+    },
+    {
+      "kind": "RACE",
+      "date": "2026-04-12",
+      "name": "Marathon de Paris",
+      "distanceKm": 42.2,
+      "elevationGainM": null,
+      "durationS": 12960,
+      "note": "Sous les 3 h 40, dans les rues de Paris.",
+      "personalRecord": false
+    },
+    {
+      "kind": "RACE",
+      "date": "2025-10-11",
+      "name": "Grand Trail d'Auvergne (GTA)",
+      "distanceKm": 79.4,
+      "elevationGainM": 3160,
+      "durationS": 48953,
+      "note": "Départ à 6 h 30, arrivée à 20 h 05. Une journée entière sans réunion.",
+      "personalRecord": false
     },
     {
       "kind": "RACE",
@@ -188,16 +198,6 @@
       "elevationGainM": null,
       "durationS": 14165,
       "note": "Quatre minutes de moins que les 4 heures.",
-      "personalRecord": false
-    },
-    {
-      "kind": "RACE",
-      "date": null,
-      "name": "Marathon de Paris 2026",
-      "distanceKm": 42.2,
-      "elevationGainM": null,
-      "durationS": 12960,
-      "note": "Sous les 3 h 40, dans les rues de Paris.",
       "personalRecord": false
     },
     {

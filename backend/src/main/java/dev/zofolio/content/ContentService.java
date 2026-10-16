@@ -55,7 +55,7 @@ class ContentService {
 	}
 
 	List<RaceDto> races(String lang) {
-		return races.findAllByOrderBySortOrder().stream().map(r -> new RaceDto(r.kind.name(), r.raceDate,
+		return races.findAllOrdered().stream().map(r -> new RaceDto(r.kind.name(), r.raceDate,
 				pick(r.name, lang), r.distanceKm, r.elevationGainM, r.durationS, pick(r.note, lang),
 				r.personalRecord)).toList();
 	}

@@ -13,3 +13,6 @@ dist/
 .angular/
 coverage/
 .DS_Store
+
+# Doublons créés par le Finder (« fichier 2.ext »)
+* [2-9].*

@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import { ContributionsGraph } from '../../../shared/contributions/contributions';
 import { Contributions, Race } from '../../../core/api/api.models';
@@ -22,7 +23,7 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
 /** Pas de classement : uniquement des chiffres. Les lignes `INDEX`/`CLUB` ne sont pas des courses. */
 @Component({
   selector: 'app-journal-section',
-  imports: [ContributionsGraph, Reveal],
+  imports: [ContributionsGraph, Reveal, DatePipe],
   template: `
     <section id="journal" aria-labelledby="journal-title">
       <div class="side">
@@ -74,7 +75,7 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
               <tr>
                 <td [attr.data-label]="label.date">
                   @if (r.date) {
-                    {{ r.date.slice(0, 4) }}
+                    {{ r.date | date: 'MMM y' }}
                   } @else {
                     <span aria-hidden="true">—</span><span class="sr" i18n>Date non renseignée</span>
                   }

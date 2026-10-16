@@ -39,7 +39,7 @@ class ContentServiceTest {
 		e.body = Map.of("fr", "Corps", "en", "Body");
 		Race a = race("A"), b = race("B");
 		when(experiences.findAllByOrderBySortOrder()).thenReturn(List.of(e));
-		when(races.findAllByOrderBySortOrder()).thenReturn(List.of(a, b));
+		when(races.findAllOrdered()).thenReturn(List.of(a, b));
 		when(projects.findByTierNotOrderBySortOrder(Project.Tier.HIDDEN))
 				.thenReturn(List.of(project("x", "P1"), project("y", null), project("z", "P3")));
 
