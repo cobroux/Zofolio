@@ -83,7 +83,13 @@
         state: directory
         owner: "{{ deploy_user }}"
         mode: "0755"
-      loop: ["{{ app_dir }}", "{{ app_dir }}/backups"]
+      loop: ["{{ app_dir }}"]
+    - name: Dossier des sauvegardes (privé, contient les messages de contact)
+      ansible.builtin.file:
+        path: "{{ app_dir }}/backups"
+        state: directory
+        owner: "{{ deploy_user }}"
+        mode: "0700"
 
     - name: Fichier de swap 2 Go
       ansible.builtin.command:

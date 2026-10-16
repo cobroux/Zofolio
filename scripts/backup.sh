@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Sauvegarde quotidienne : pg_dump compressé, rétention 7 jours. Lancé par cron (voir infra/README.md).
 set -euo pipefail
+umask 077
 cd /opt/zofolio
 set -a; . ./.env; set +a
 out=/opt/zofolio/backups/zofolio-$(date +%F-%H%M).dump
