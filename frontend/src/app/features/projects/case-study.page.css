@@ -260,3 +260,24 @@ dd {
     max-width: var(--measure);
   }
 }
+
+/* Clip portrait sur grand écran : au centre, entre le titre et le dossard (retour d'Enzo, pas de vide) */
+@media (min-width: 1100px) {
+  .hero:has(.portrait) {
+    grid-template-rows: auto;
+  }
+  .hero:has(.portrait) .pitch {
+    grid-column: 1 / 6;
+  }
+  .hero:has(.portrait) .bib {
+    grid-row: 1;
+  }
+  .hero .portrait {
+    grid-column: 6 / 9;
+    grid-row: 1;
+    justify-self: center;
+    align-self: start;
+    width: 100%;
+    max-width: 340px;
+  }
+}
