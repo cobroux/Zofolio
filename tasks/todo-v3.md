@@ -157,7 +157,7 @@
   - Fichiers : `docs/content/copy-v3.md`
   - Dépend de : T20
 
-- [ ] V3-T22 [agent: frontend-dev · sonnet] Page colophon
+- [x] V3-T22 [agent: frontend-dev · sonnet] Page colophon
   - Acceptation : route `colophon` dans les deux locales, rendue en SSR, textes de T20 (`i18n` + XLIFF EN, aucune cible `state="initial"`), scores Lighthouse datés en constantes (mesure de T8), lien dans le pied de page, `sitemap.xml` (2 entrées + alternates), `hreflang`, meta ; lisible sans JS.
   - Vérification : `cd frontend && npm test && npm run build` ; `curl -s localhost:4000/en/colophon | grep -q 'lang="en"'`.
   - Fichiers : `features/colophon/colophon.page.ts`, `app.routes.ts`, `core/layout/footer.ts`, `public/sitemap.xml`, `src/locale/messages.en.xlf`

@@ -19,6 +19,14 @@ export const routes: Routes = [
     loadComponent: () => import('./features/legal/legal.page').then((m) => m.LegalPage),
   },
   {
+    path: 'colophon',
+    title: $localize`Colophon : comment ce site a été construit`,
+    data: { description: $localize`Stack, équipe d'agents IA, CI et scores Lighthouse : comment Enzo Leveque a construit son portfolio, sans rien cacher.` },
+    loadComponent: () => import('./features/colophon/colophon.page').then((m) => m.ColophonPage),
+  },
+  // D39 : admin en FR seul (sans marqueur i18n), chargé à la demande, rendu client uniquement (app.routes.server.ts)
+  { path: 'admin', loadChildren: () => import('./features/admin/admin.routes') },
+  {
     path: '**',
     data: { noindex: true },
     title: $localize`Page introuvable`,

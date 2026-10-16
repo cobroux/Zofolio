@@ -11,7 +11,10 @@ import { RouterLink } from '@angular/router';
         <a href="https://github.com/cobroux" rel="noopener">GitHub</a> ·
         <a href="https://www.linkedin.com/in/enzo-leveque1" rel="noopener">LinkedIn</a>
       </p>
-      <a routerLink="/mentions-legales" i18n>Mentions légales</a>
+      <nav aria-label="Pied de page" i18n-aria-label>
+        <a routerLink="/colophon" i18n>Colophon</a>
+        <a routerLink="/mentions-legales" i18n>Mentions légales</a>
+      </nav>
     </footer>
   `,
   styles: `
@@ -30,6 +33,11 @@ import { RouterLink } from '@angular/router';
       footer {
         padding-inline-end: calc(var(--margin) + 72px);
       }
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s-4) var(--s-6);
     }
     a {
       display: inline-flex;

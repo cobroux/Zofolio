@@ -18,7 +18,9 @@ import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;
 
 @Import(TestcontainersConfiguration.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = AdminClient.PROXY_PROPS)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = { AdminClient.PROXY_PROPS,
+		// Le refus de 6 Mo se produit avant la fin de la lecture : au-delà de 2 Mo non lus (défaut), Tomcat coupe la connexion et le client voit un échec d'envoi au lieu du 400.
+		"server.tomcat.max-swallow-size=16MB" })
 class MediaIT {
 
 	@LocalServerPort int port;
