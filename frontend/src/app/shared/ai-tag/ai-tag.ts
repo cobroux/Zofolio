@@ -4,7 +4,7 @@ import { ProjectSummary } from '../../core/api/api.models';
 const LABELS: Record<ProjectSummary['aiTag'], string> = {
   HAND: $localize`Écrit à la main`,
   HAND_THEN_AI: $localize`Commencé à la main, puis IA`,
-  AI: $localize`Conçu avec IA`,
+  AI: $localize`IA comme outil, conçu et revu par moi`,
 };
 
 /** Étiquette carrée, texte explicite, jamais orange (DESIGN §6). */

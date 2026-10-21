@@ -1875,9 +1875,9 @@
           <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2219273822996926765" datatype="html">
-        <source>Conçu avec IA</source>
-        <target state="translated">Built with AI</target>
+      <trans-unit id="2824935141573357201" datatype="html">
+        <source>IA comme outil, conçu et revu par moi</source>
+        <target state="translated">AI as a tool, designed and reviewed by me</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/ai-tag/ai-tag.ts</context>
           <context context-type="linenumber">7</context>
@@ -2303,9 +2303,9 @@
           <context context-type="linenumber">72,73</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5144939347359978959" datatype="html">
-        <source>Chaque projet porte un tag. « Écrit à la main » : les projets universitaires. « Commencé à la main, puis IA » : Oltre. « Conçu avec IA » : Zotracker et ce site.</source>
-        <target state="initial">Each project carries a tag. "Written by hand": the university projects. "Started by hand, then AI": Oltre. "Designed with AI": Zotracker and this site.</target>
+      <trans-unit id="1576364284568072886" datatype="html">
+        <source>Chaque projet porte un tag. « Écrit à la main » : les projets universitaires. « Commencé à la main, puis IA » : Oltre. « IA comme outil, conçu et revu par moi » : Zotracker et ce site.</source>
+        <target state="initial">Each project carries a tag. "Written by hand": the university projects. "Started by hand, then AI": Oltre. "AI as a tool, designed and reviewed by me": Zotracker and this site.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
           <context context-type="linenumber">74,75</context>

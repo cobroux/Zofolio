@@ -71,7 +71,7 @@ export const isAtLimit = (score: number | null, threshold: number) => score !== 
     <section aria-labelledby="c-ai">
       <h2 id="c-ai" i18n>Qui a écrit quoi</h2>
       <p class="tags"><app-ai-tag tag="HAND" /> <app-ai-tag tag="HAND_THEN_AI" /> <app-ai-tag tag="AI" /></p>
-      <p i18n>Chaque projet porte un tag. « Écrit à la main » : les projets universitaires. « Commencé à la main, puis IA » : Oltre. « Conçu avec IA » : Zotracker et ce site.</p>
+      <p i18n>Chaque projet porte un tag. « Écrit à la main » : les projets universitaires. « Commencé à la main, puis IA » : Oltre. « IA comme outil, conçu et revu par moi » : Zotracker et ce site.</p>
       <p i18n>Ce que j'ai décidé moi-même : le concept (le site suit mon Grand Trail d'Auvergne), tous les contenus et leur validation, les arbitrages d'architecture et de budget. Aucun texte ne part en ligne sans mon accord.</p>
       <p i18n>Ce que les agents ont fait : écrire le code, les tests et les premiers jets de textes, sur mes specs. Je relis, je corrige, je refuse parfois.</p>
       <h3 i18n>Les clips des projets</h3>

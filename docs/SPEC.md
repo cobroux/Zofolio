@@ -30,7 +30,7 @@ En plus : des **ravitaillements** (soft skills discrets : brancardier aux urgenc
 ### Tags IA (transparence)
 - `Écrit à la main` : les projets universitaires. Leur statut inachevé est assumé : « livré dans le temps imparti ».
 - `Commencé à la main, puis IA` : Oltre.
-- `Conçu avec IA` : Zotracker et Zofolio, avec la méthode expliquée dans le colophon.
+- `IA comme outil, conçu et revu par moi` : Zotracker et Zofolio, avec la méthode expliquée dans le colophon.
 
 ## 2. Carte des capacités (modules)
 

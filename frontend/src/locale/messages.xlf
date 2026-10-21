@@ -418,8 +418,8 @@
           <context context-type="linenumber">72,73</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5144939347359978959" datatype="html">
-        <source>Chaque projet porte un tag. « Écrit à la main » : les projets universitaires. « Commencé à la main, puis IA » : Oltre. « Conçu avec IA » : Zotracker et ce site.</source>
+      <trans-unit id="1576364284568072886" datatype="html">
+        <source>Chaque projet porte un tag. « Écrit à la main » : les projets universitaires. « Commencé à la main, puis IA » : Oltre. « IA comme outil, conçu et revu par moi » : Zotracker et ce site.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
           <context context-type="linenumber">74,75</context>
@@ -1147,55 +1147,11 @@
         <source>Courses terminées</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">105,106</context>
+          <context context-type="linenumber">109,110</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3973931101896534797" datatype="html">
         <source>Date</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">108,109</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">314</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8317457230285174180" datatype="html">
-        <source>Course</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">109,110</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">315</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1779552786277618671" datatype="html">
-        <source>Distance</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">110,111</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">316</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="243567702094105596" datatype="html">
-        <source>D+</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">112</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">317</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7631405440758027758" datatype="html">
-        <source>Temps</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
           <context context-type="linenumber">112,113</context>
@@ -1205,8 +1161,8 @@
           <context context-type="linenumber">318</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4388879716045736175" datatype="html">
-        <source>Note</source>
+      <trans-unit id="8317457230285174180" datatype="html">
+        <source>Course</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
           <context context-type="linenumber">113,114</context>
@@ -1216,25 +1172,69 @@
           <context context-type="linenumber">319</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1779552786277618671" datatype="html">
+        <source>Distance</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">114,115</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">320</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="243567702094105596" datatype="html">
+        <source>D+</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">321</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7631405440758027758" datatype="html">
+        <source>Temps</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">116,117</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">322</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4388879716045736175" datatype="html">
+        <source>Note</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">117,118</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">323</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="71658782535622884" datatype="html">
         <source>Date non renseignée</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">123,124</context>
+          <context context-type="linenumber">127,128</context>
         </context-group>
       </trans-unit>
       <trans-unit id="879123622368781140" datatype="html">
         <source>Record personnel</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">131</context>
+          <context context-type="linenumber">135</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1307588471547279582" datatype="html">
         <source>Contenu indisponible pour le moment.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">144,145</context>
+          <context context-type="linenumber">148,149</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
@@ -2247,8 +2247,8 @@
           <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2219273822996926765" datatype="html">
-        <source>Conçu avec IA</source>
+      <trans-unit id="2824935141573357201" datatype="html">
+        <source>IA comme outil, conçu et revu par moi</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/ai-tag/ai-tag.ts</context>
           <context context-type="linenumber">7</context>
@@ -2272,14 +2272,14 @@
         <source>Pause</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/clip/clip.ts</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1478700475585808513" datatype="html">
         <source>Lecture</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/clip/clip.ts</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7770271707668598464" datatype="html">
