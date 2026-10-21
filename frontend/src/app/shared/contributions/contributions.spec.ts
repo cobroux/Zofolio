@@ -28,7 +28,7 @@ describe('ContributionsGraph', () => {
   it('rend une barre par semaine, un résumé texte et un titre SVG', () => {
     const el = render(fixture.contributions as Contributions);
     expect(el.querySelectorAll('svg[role="img"] rect').length).toBe(Math.ceil(fixture.contributions.counts.length / 7));
-    expect(el.querySelector('.sum')?.textContent).toMatch(/^812 contributions sur 12 mois · \d+ semaines actives sur \d+ · meilleure semaine : \d+$/);
+    expect(el.querySelector('.sum')?.textContent).toMatch(/^812 contributions sur 12 mois · meilleure semaine : \d+$/);
     expect(el.querySelector('title')?.textContent).toContain('par semaine');
     expect(el.querySelector('.legend')?.getAttribute('aria-hidden')).toBe('true');
   });

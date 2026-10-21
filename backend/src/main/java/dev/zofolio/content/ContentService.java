@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -35,6 +36,9 @@ import dev.zofolio.githubsync.GithubRepoRepository;
 @Service
 @Transactional(readOnly = true)
 public class ContentService {
+	/** Fichiers de config ou de gabarit que GitHub compte comme langages : du bruit à côté de Java ou TypeScript. */
+	private static final Set<String> NOT_LANGUAGES = Set.of("Dockerfile", "Smarty", "Makefile", "Procfile");
+
 
 	private final RaceRepository races;
 	private final ProjectRepository projects;
@@ -102,6 +106,7 @@ public class ContentService {
 		Map<String, Long> bytes = new HashMap<>();
 		own.forEach(r -> r.languages.forEach((l, n) -> bytes.merge(l, n, Long::sum)));
 		List<String> languages = bytes.entrySet().stream()
+				.filter(e -> !NOT_LANGUAGES.contains(e.getKey()))
 				.sorted(Map.Entry.<String, Long>comparingByValue().reversed().thenComparing(Map.Entry.comparingByKey()))
 				.limit(3).map(Map.Entry::getKey).toList();
 		Instant lastPush = own.stream().map(r -> r.pushedAt).filter(Objects::nonNull).max(Comparator.naturalOrder())
