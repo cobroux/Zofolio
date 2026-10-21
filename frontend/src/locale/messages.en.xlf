@@ -651,14 +651,6 @@
           <context context-type="linenumber">54,55</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6298631935673402568" datatype="html">
-        <source>Courses terminées</source>
-        <target state="translated">Finished races</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">61,62</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="3973931101896534797" datatype="html">
         <source>Date</source>
         <target state="translated">Date</target>
@@ -2602,6 +2594,30 @@
       <trans-unit id="190099704623535625" datatype="html">
         <source>100 km</source>
         <target state="translated">100 km</target>
+      </trans-unit>
+      <trans-unit id="5135005963082951569" datatype="html">
+        <source>Voir le détail : les années en chiffres et les autres courses</source>
+        <target state="translated">See the details: the years in numbers and the other races</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">70,71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4450271950810119055" datatype="html">
+        <source>Dernières courses terminées</source>
+        <target state="translated">Latest finished races</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">344</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6745294617554084103" datatype="html">
+        <source>Autres courses terminées</source>
+        <target state="translated">Other finished races</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">345</context>
+        </context-group>
       </trans-unit>
     </body>
   </file>

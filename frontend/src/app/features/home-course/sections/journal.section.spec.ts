@@ -33,6 +33,8 @@ describe('JournalSection', () => {
   it('rend un vrai tableau, une ligne par course, badge PR avec texte, sans classement', () => {
     const el = render(home.races);
     expect(el.querySelectorAll('tbody tr').length).toBe(7);
+    expect(el.querySelectorAll('.latest tbody tr').length).toBe(3);
+    expect(el.querySelectorAll('details.more:not([open]) .races tbody tr').length).toBe(4);
     expect(el.querySelectorAll('.pr').length).toBe(1);
     expect(el.querySelector('.pr')?.textContent).toContain('Record personnel');
     expect(el.querySelector('tbody tr')?.textContent).toContain('7 h 32 min 39 s');
