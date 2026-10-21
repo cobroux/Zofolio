@@ -50,7 +50,7 @@ Chiffres comptés dans le repo le 2026-10-16 (grep de `@Test`, `it(`/`test(`) : 
 | Clé | FR | EN |
 |---|---|---|
 | `colophon.ai.title` | Qui a écrit quoi | Who wrote what |
-| `colophon.ai.body` | Chaque projet porte un tag. « Écrit à la main » : les projets universitaires. « Commencé à la main, puis IA » : Oltre. « Conçu avec IA » : Zotracker et ce site. | Each project carries a tag. "Written by hand": the university projects. "Started by hand, then AI": Oltre. "Designed with AI": Zotracker and this site. |
+| `colophon.ai.body` | Chaque projet porte un tag. « Écrit à la main » : les projets universitaires. « Commencé à la main, puis IA » : Oltre. « IA comme outil, conçu et revu par moi » : Zotracker et ce site. | Each project carries a tag. "Written by hand": the university projects. "Started by hand, then AI": Oltre. "Designed with AI": Zotracker and this site. |
 | `colophon.ai.me` | Ce que j'ai décidé moi-même : le concept (le site suit mon Grand Trail d'Auvergne), tous les contenus et leur validation, les arbitrages d'architecture et de budget. Aucun texte ne part en ligne sans mon accord. | What I decided myself: the concept (the site follows my Grand Trail d'Auvergne), all the content and its sign-off, the architecture and budget trade-offs. No text goes live without my approval. |
 | `colophon.ai.agents` | Ce que les agents ont fait : écrire le code, les tests et les premiers jets de textes, sur mes specs. Je relis, je corrige, je refuse parfois. | What the agents did: write the code, the tests and first drafts of texts, from my specs. I review, correct, and sometimes reject. |
 

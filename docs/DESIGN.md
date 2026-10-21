@@ -168,7 +168,7 @@ Bande basse (≤ 160 px) `--surface`, texte `--t-body`, un fait + un trait d'hum
 Ligne de 4 colonnes : durée · stack · commits · note. Tabulaire, alignée à droite pour les nombres. Format : « 3 mois · Java 21, Spring Boot · 214 commits ». La note ironique (`--ink-2`, `--t-small`) : « dont 12 pour corriger un typo ». Badge PR (carré orange plein, icône + texte « PR »), uniquement pour un record réel.
 
 ### Tag IA (`AiTag`)
-Pastille carrée 28 px de haut, texte `--t-small` 600 : « Écrit à la main », « Commencé à la main, puis IA », « Conçu avec IA ». Ton `--surface`-contrasté (fond encre, texte papier en clair ; inverse en sombre) ; jamais en orange. Info textuelle explicite, pas d'icône seule. Lien vers une courte note « Comment j'utilise l'IA » (1 paragraphe dans la page projet).
+Pastille carrée 28 px de haut, texte `--t-small` 600 : « Écrit à la main », « Commencé à la main, puis IA », « IA comme outil, conçu et revu par moi ». Ton `--surface`-contrasté (fond encre, texte papier en clair ; inverse en sombre) ; jamais en orange. Info textuelle explicite, pas d'icône seule. Lien vers une courte note « Comment j'utilise l'IA » (1 paragraphe dans la page projet).
 
 ### Bascule de thème (`ThemeToggle`)
 Bouton 44×44 dans l'en-tête, `<button aria-pressed>` avec libellé « Thème sombre » ; 3 états : système / clair / sombre via menu simple. Défaut : `prefers-color-scheme`. Persistance `localStorage` dans try/catch. Application avant le premier rendu (script inline) pour éviter le flash.
