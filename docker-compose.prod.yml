@@ -58,9 +58,15 @@ services:
       - ./Caddyfile.prod:/etc/caddy/Caddyfile:ro
       - media:/srv/uploads:ro
       - caddy_data:/data
+    # edge : réseau partagé avec les autres applis du serveur (Zotracker, /opt/zotracker).
+    networks: [default, edge]
     depends_on:
       frontend:
         condition: service_healthy
+
+networks:
+  edge:
+    external: true
 
 volumes:
   pgdata:
