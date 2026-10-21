@@ -21,6 +21,10 @@ import { Split } from '../../../shared/split/split';
         vendre des titres en bourse. Ici, une erreur ne se voit pas dans un log : elle se voit dans un ordre.
       </p>
       <a class="study" routerLink="/projets/trading-app" i18n>Lire l'étude de cas<span class="sr"> Worldline</span></a>
+      <p class="now" [appReveal]="1" i18n>
+        Depuis juin 2026 : ingénieur d'études chez Aubay. En mission sur une application d'inventaire en microservices pour les Restos du Cœur,
+        j'interviens sur le back end en Python. J'ai aussi monté l'environnement Docker du projet et j'appuie l'équipe sur GitLab.
+      </p>
       </div>
       @if (home() === null) {
         <p class="unavailable" role="status" i18n>Contenu indisponible pour le moment.</p>
@@ -71,6 +75,10 @@ import { Split } from '../../../shared/split/split';
     .lead {
       font-size: var(--t-lead);
       line-height: 1.35;
+    }
+    .now {
+      margin-block-start: var(--s-6);
+      max-width: var(--measure);
     }
     .study {
       display: inline-flex;

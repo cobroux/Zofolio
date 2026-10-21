@@ -583,14 +583,6 @@
           <context context-type="linenumber">13,14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5638767312076096816" datatype="html">
-        <source>Et un nouveau poste. Parlons-en.</source>
-        <target state="translated">And a new role. Let&apos;s talk.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">14,15</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="1955051087209940082" datatype="html">
         <source>Télécharger le CV</source>
         <target state="translated">Download the CV</target>
@@ -2602,6 +2594,22 @@
       <trans-unit id="190099704623535625" datatype="html">
         <source>100 km</source>
         <target state="translated">100 km</target>
+      </trans-unit>
+      <trans-unit id="2519547902255538963" datatype="html">
+        <source>Et de nouveaux projets. Parlons-en.</source>
+        <target state="translated">And new projects. Let's talk.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
+          <context context-type="linenumber">21,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7594132149348202175" datatype="html">
+        <source> Depuis juin 2026 : ingénieur d&apos;études chez Aubay. En mission sur une application d&apos;inventaire en microservices pour les Restos du Cœur, j&apos;interviens sur le back end en Python. J&apos;ai aussi monté l&apos;environnement Docker du projet et j&apos;appuie l&apos;équipe sur GitLab. </source>
+        <target state="translated">Since June 2026: software engineer at Aubay. On assignment building a microservices inventory application for the Restos du Cœur charity, I work on the Python back end. I also set up the project's Docker environment and support the team with GitLab.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
+          <context context-type="linenumber">25,26</context>
+        </context-group>
       </trans-unit>
     </body>
   </file>

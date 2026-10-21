@@ -1006,8 +1006,8 @@
           <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5638767312076096816" datatype="html">
-        <source>Et un nouveau poste. Parlons-en.</source>
+      <trans-unit id="2519547902255538963" datatype="html">
+        <source>Et de nouveaux projets. Parlons-en.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
           <context context-type="linenumber">21,22</context>
@@ -1242,7 +1242,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">26,27</context>
+          <context context-type="linenumber">30,31</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
@@ -1332,7 +1332,14 @@
         <source>Lire l&apos;étude de cas<x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;sr&quot;&gt;"/> Worldline<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">23,25</context>
+          <context context-type="linenumber">23,24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7594132149348202175" datatype="html">
+        <source> Depuis juin 2026 : ingénieur d&apos;études chez Aubay. En mission sur une application d&apos;inventaire en microservices pour les Restos du Cœur, j&apos;interviens sur le back end en Python. J&apos;ai aussi monté l&apos;environnement Docker du projet et j&apos;appuie l&apos;équipe sur GitLab. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
+          <context context-type="linenumber">25,26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4180035747429477656" datatype="html">
