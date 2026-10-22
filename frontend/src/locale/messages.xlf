@@ -995,18 +995,18 @@
           <context context-type="linenumber">20,21</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5924578661757316840" datatype="html">
-        <source>Enzo montre sa médaille de finisher devant l&apos;affiche du Trail Côte d&apos;Opale</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">64,65</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="5135005963082951569" datatype="html">
         <source>Voir le détail : les années en chiffres et les autres courses</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">70,71</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5924578661757316840" datatype="html">
+        <source>Enzo montre sa médaille de finisher devant l&apos;affiche du Trail Côte d&apos;Opale</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">67,68</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7421213708471553475" datatype="html">
@@ -1094,7 +1094,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">335</context>
+          <context context-type="linenumber">337</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8317457230285174180" datatype="html">
@@ -1105,7 +1105,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">336</context>
+          <context context-type="linenumber">338</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1779552786277618671" datatype="html">
@@ -1116,7 +1116,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">337</context>
+          <context context-type="linenumber">339</context>
         </context-group>
       </trans-unit>
       <trans-unit id="243567702094105596" datatype="html">
@@ -1127,7 +1127,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">338</context>
+          <context context-type="linenumber">340</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7631405440758027758" datatype="html">
@@ -1138,7 +1138,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">339</context>
+          <context context-type="linenumber">341</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4388879716045736175" datatype="html">
@@ -1149,7 +1149,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">340</context>
+          <context context-type="linenumber">342</context>
         </context-group>
       </trans-unit>
       <trans-unit id="71658782535622884" datatype="html">
@@ -1170,14 +1170,14 @@
         <source>Dernières courses terminées</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">341</context>
+          <context context-type="linenumber">343</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6745294617554084103" datatype="html">
         <source>Autres courses terminées</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">342</context>
+          <context context-type="linenumber">344</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8923872238526304845" datatype="html">
@@ -1304,15 +1304,15 @@
           <context context-type="linenumber">19,20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7360700084254780778" datatype="html">
-        <source>2,5 ans sur une application de trading critique chez Worldline.</source>
+      <trans-unit id="205888203357535245" datatype="html">
+        <source>Ingénieur d&apos;études chez Aubay, après 2,5 ans sur une application de trading critique chez Worldline.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
           <context context-type="linenumber">20,21</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8041109317764964357" datatype="html">
-        <source>2,5 ans · Worldline · trading</source>
+      <trans-unit id="7651249318715680856" datatype="html">
+        <source>Aubay · 2,5 ans chez Worldline · trading</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
           <context context-type="linenumber">21,22</context>

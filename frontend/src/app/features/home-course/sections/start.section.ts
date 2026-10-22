@@ -17,8 +17,8 @@ import { Bib } from '../../../shared/bib/bib';
         <p class="small tnum" i18n>Départ 6 h 30 · km 0</p>
         <h1>Enzo Leveque</h1>
         <p class="title" i18n>Ingénieur fullstack Java / Spring Boot + Angular</p>
-        <p class="lead" i18n>2,5 ans sur une application de trading critique chez Worldline.</p>
-        <p class="keyfact small" i18n>2,5 ans · Worldline · trading</p>
+        <p class="lead" i18n>Ingénieur d'études chez Aubay, après 2,5 ans sur une application de trading critique chez Worldline.</p>
+        <p class="keyfact small" i18n>Aubay · 2,5 ans chez Worldline · trading</p>
         <p class="stack small" i18n>Java · Spring Boot · Angular · Docker · SQL</p>
         <div class="cta">
           <a class="primary" [href]="cv" i18n>Télécharger le CV</a>

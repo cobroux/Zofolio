@@ -891,22 +891,6 @@
           <context context-type="linenumber">19,20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7360700084254780778" datatype="html">
-        <source>2,5 ans sur une application de trading critique chez Worldline.</source>
-        <target state="translated">2.5 years on a critical trading application at Worldline.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
-          <context context-type="linenumber">20,21</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8041109317764964357" datatype="html">
-        <source>2,5 ans · Worldline · trading</source>
-        <target state="translated">2.5 years · Worldline · trading</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
-          <context context-type="linenumber">21,22</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="8024820102482525624" datatype="html">
         <source>Java · Spring Boot · Angular · Docker · SQL</source>
         <target state="translated">Java · Spring Boot · Angular · Docker · SQL</target>
@@ -2521,6 +2505,22 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
           <context context-type="linenumber">345</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="205888203357535245" datatype="html">
+        <source>Ingénieur d&apos;études chez Aubay, après 2,5 ans sur une application de trading critique chez Worldline.</source>
+        <target state="translated">Software engineer at Aubay, after 2.5 years on a critical trading application at Worldline.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
+          <context context-type="linenumber">20,21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7651249318715680856" datatype="html">
+        <source>Aubay · 2,5 ans chez Worldline · trading</source>
+        <target state="translated">Aubay · 2.5 years at Worldline · trading</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
+          <context context-type="linenumber">21,22</context>
         </context-group>
       </trans-unit>
     </body>

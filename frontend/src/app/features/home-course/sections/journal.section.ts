@@ -47,8 +47,11 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
       } @else {
         <p class="unavailable" role="status" i18n>Contenu indisponible pour le moment.</p>
       }
+      @if (sportYears().length || (rows()?.length ?? 0) > shown) {
+      <details class="more">
+        <summary i18n>Voir le détail : les années en chiffres et les autres courses</summary>
       <div class="years">
-      <figure [appReveal]="2">
+      <figure>
         <picture>
           <source type="image/avif" srcset="img/finisher-cote-d-opale-640.avif 640w, img/finisher-cote-d-opale-1280.avif 1280w" sizes="(min-width: 768px) 40vw, 360px" />
           <source type="image/webp" srcset="img/finisher-cote-d-opale-640.webp 640w, img/finisher-cote-d-opale-1280.webp 1280w" sizes="(min-width: 768px) 40vw, 360px" />
@@ -65,9 +68,6 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
           />
         </picture>
       </figure>
-      @if (sportYears().length || (rows()?.length ?? 0) > shown) {
-      <details class="more">
-        <summary i18n>Voir le détail : les années en chiffres et les autres courses</summary>
       @if (sportYears().length) {
         <div class="stats">
         <h3 id="stats-title" i18n>Les années en chiffres</h3>
@@ -113,6 +113,7 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
         </ng-template>
         </div>
       }
+      </div>
       @if (rows(); as list) {
         @if (list.length > shown) {
           <ng-container *ngTemplateOutlet="racesTable; context: { $implicit: list.slice(shown), caption: label.otherRaces }" />
@@ -120,7 +121,6 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
       }
       </details>
       }
-      </div>
       <ng-template #racesTable let-list let-caption="caption">
         <table class="races">
           <caption class="sr">{{ caption }}</caption>
@@ -307,12 +307,14 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
     @media (min-width: 768px) and (max-width: 1279px) {
       .races tbody tr { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     }
-    /* Desktop : à gauche titre, intro, 459, contributions ; à droite les dernières courses, puis la photo et le détail replié. */
+    /* Desktop : à gauche titre, intro, 459, contributions ; à droite les dernières courses ; dessous, pleine largeur, le détail replié (photo + années, puis les autres courses). */
     @media (min-width: 1280px) {
       section { grid-template-columns: repeat(12, minmax(0, 1fr)); padding-block: var(--s-10); }
-      .side { grid-column: 1 / span 5; grid-row: 1 / span 2; }
+      .side { grid-column: 1 / span 5; grid-row: 1; }
       .latest, .unavailable { grid-column: 6 / span 7; grid-row: 1; align-self: start; }
-      .years { grid-column: 6 / span 7; grid-row: 2; }
+      .more { grid-column: 1 / -1; grid-row: 2; }
+      .years { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+      figure { max-width: 22rem; }
     }
   `,
 })
