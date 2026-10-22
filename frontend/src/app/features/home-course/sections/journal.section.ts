@@ -40,6 +40,13 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
           }
         </div>
       </div>
+      @if (rows(); as list) {
+        <div class="latest" [appReveal]="2">
+          <ng-container *ngTemplateOutlet="racesTable; context: { $implicit: list.slice(0, shown), caption: label.latestRaces }" />
+        </div>
+      } @else {
+        <p class="unavailable" role="status" i18n>Contenu indisponible pour le moment.</p>
+      }
       <div class="years">
       <figure [appReveal]="2">
         <picture>
@@ -58,8 +65,11 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
           />
         </picture>
       </figure>
+      @if (sportYears().length || (rows()?.length ?? 0) > shown) {
+      <details class="more">
+        <summary i18n>Voir le détail : les années en chiffres et les autres courses</summary>
       @if (sportYears().length) {
-        <div class="stats" [appReveal]="2">
+        <div class="stats">
         <h3 id="stats-title" i18n>Les années en chiffres</h3>
         <p i18n>Course, vélo et natation, année par année, d'après ma montre.</p>
         <p class="small" i18n>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km et dénivelé : course et vélo (les km en natation, peu fiables, sont exclus). Année en cours incluse.</p>
@@ -103,10 +113,17 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
         </ng-template>
         </div>
       }
-      </div>
       @if (rows(); as list) {
-        <table class="races" [appReveal]="2">
-          <caption class="sr" i18n>Courses terminées</caption>
+        @if (list.length > shown) {
+          <ng-container *ngTemplateOutlet="racesTable; context: { $implicit: list.slice(shown), caption: label.otherRaces }" />
+        }
+      }
+      </details>
+      }
+      </div>
+      <ng-template #racesTable let-list let-caption="caption">
+        <table class="races">
+          <caption class="sr">{{ caption }}</caption>
           <thead>
             <tr>
               <th scope="col" i18n>Date</th>
@@ -144,9 +161,7 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
             }
           </tbody>
         </table>
-      } @else {
-        <p class="unavailable" role="status" i18n>Contenu indisponible pour le moment.</p>
-      }
+      </ng-template>
     </section>
   `,
   styles: `
@@ -248,6 +263,8 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
       color: var(--accent);
     }
     .stats { display: flex; flex-direction: column; gap: var(--s-3); }
+    .more { display: flex; flex-direction: column; gap: var(--s-7); }
+    .more summary { display: flex; align-items: center; min-height: var(--target); font-weight: 600; text-decoration: underline; cursor: pointer; }
     .stats h3 { margin: 0; font: 800 clamp(1.25rem, 2vw, 1.625rem) / 1.05 var(--font-display); font-stretch: 75%; letter-spacing: -0.02em; }
     .stats .scroll { overflow-x: auto; }
     .stats table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums lining-nums; }
@@ -290,14 +307,12 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
     @media (min-width: 768px) and (max-width: 1279px) {
       .races tbody tr { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     }
-    /* Desktop : à gauche titre, intro, 459 ; à droite le tableau ; dessous, pleine largeur, la photo et les chiffres. */
+    /* Desktop : à gauche titre, intro, 459, contributions ; à droite les dernières courses, puis la photo et le détail replié. */
     @media (min-width: 1280px) {
       section { grid-template-columns: repeat(12, minmax(0, 1fr)); padding-block: var(--s-10); }
-      .side { grid-column: 1 / span 5; grid-row: 1; }
-      .races, .unavailable { grid-column: 6 / span 7; grid-row: 1; align-self: start; }
-      .years { grid-column: 1 / -1; grid-row: 2; grid-template-columns: subgrid; }
-      figure { grid-column: 1 / span 4; }
-      .stats { grid-column: 6 / span 7; }
+      .side { grid-column: 1 / span 5; grid-row: 1 / span 2; }
+      .latest, .unavailable { grid-column: 6 / span 7; grid-row: 1; align-self: start; }
+      .years { grid-column: 6 / span 7; grid-row: 2; }
     }
   `,
 })
@@ -312,6 +327,8 @@ export class JournalSection {
   protected readonly number = (n: number) => ELEVATION.format(n);
   /** Plus grand total annuel : échelle commune des barres. */
   protected readonly maxKm = computed(() => Math.max(1, ...this.sportYears().map((y) => y.distanceKm ?? 0)));
+  /** Les dernières courses restent visibles ; le reste et les années en chiffres sont repliés (conseil du 2026-10-21). */
+  protected readonly shown = 3;
   readonly rows = computed(() => this.races()?.filter((r) => r.kind === 'RACE') ?? null);
   readonly others = computed(() => this.races()?.filter((r) => r.kind !== 'RACE') ?? []);
   protected readonly label = {
@@ -321,6 +338,8 @@ export class JournalSection {
     gain: $localize`D+`,
     temps: $localize`Temps`,
     note: $localize`Note`,
+    latestRaces: $localize`Dernières courses terminées`,
+    otherRaces: $localize`Autres courses terminées`,
   };
   readonly distance = formatDistance;
   readonly duration = formatDuration;
