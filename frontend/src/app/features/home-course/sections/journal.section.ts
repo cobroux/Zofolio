@@ -34,7 +34,6 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
             <span class="big">459</span>
             <span class="small" i18n>UTMB Index. Un chiffre, pas un classement.</span>
           </p>
-          <app-contributions [data]="contributions()" [appReveal]="2" />
           @for (r of others(); track r.name) {
             <p class="small">{{ r.name }}</p>
           }
@@ -47,11 +46,8 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
       } @else {
         <p class="unavailable" role="status" i18n>Contenu indisponible pour le moment.</p>
       }
-      @if (sportYears().length || (rows()?.length ?? 0) > shown) {
-      <details class="more">
-        <summary i18n>Voir le détail : les années en chiffres et les autres courses</summary>
-      <div class="years">
-      <figure>
+      <app-contributions class="contrib" [data]="contributions()" [appReveal]="2" />
+      <figure [appReveal]="2">
         <picture>
           <source type="image/avif" srcset="img/finisher-cote-d-opale-640.avif 640w, img/finisher-cote-d-opale-1280.avif 1280w" sizes="(min-width: 768px) 40vw, 360px" />
           <source type="image/webp" srcset="img/finisher-cote-d-opale-640.webp 640w, img/finisher-cote-d-opale-1280.webp 1280w" sizes="(min-width: 768px) 40vw, 360px" />
@@ -68,6 +64,10 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
           />
         </picture>
       </figure>
+      @if (sportYears().length || (rows()?.length ?? 0) > shown) {
+      <details class="more">
+        <summary i18n>Voir le détail : les années en chiffres et les autres courses</summary>
+      <div class="body">
       @if (sportYears().length) {
         <div class="stats">
         <h3 id="stats-title" i18n>Les années en chiffres</h3>
@@ -113,12 +113,12 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
         </ng-template>
         </div>
       }
-      </div>
       @if (rows(); as list) {
         @if (list.length > shown) {
           <ng-container *ngTemplateOutlet="racesTable; context: { $implicit: list.slice(shown), caption: label.otherRaces }" />
         }
       }
+      </div>
       </details>
       }
       <ng-template #racesTable let-list let-caption="caption">
@@ -206,10 +206,10 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
     }
     figure {
       position: relative;
-      order: 1;
+      max-width: 22rem;
       margin: 0;
     }
-    .years { display: flex; flex-direction: column; gap: var(--s-7); }
+    .body { display: flex; flex-direction: column; gap: var(--s-7); }
     figure img {
       display: block;
       width: 100%;
@@ -299,22 +299,22 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
       .races td:last-child { grid-column: 1 / -1; }
       .races td:empty { display: none; }
     }
-    @media (min-width: 768px) {
-      /* Photo à gauche, chiffres à droite : aucune moitié vide. */
-      .years { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: var(--gutter); align-items: start; }
-      figure { order: 0; }
-    }
     @media (min-width: 768px) and (max-width: 1279px) {
       .races tbody tr { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     }
-    /* Desktop : à gauche titre, intro, 459, contributions ; à droite les dernières courses ; dessous, pleine largeur, le détail replié (photo + années, puis les autres courses). */
+    /* Desktop, 3 rangées : intro | dernières courses ; contributions | photo ; détail replié en pleine largeur,
+       années à gauche et autres courses dans la colonne des dernières (mêmes colonnes, tableaux alignés). */
     @media (min-width: 1280px) {
       section { grid-template-columns: repeat(12, minmax(0, 1fr)); padding-block: var(--s-10); }
       .side { grid-column: 1 / span 5; grid-row: 1; }
       .latest, .unavailable { grid-column: 6 / span 7; grid-row: 1; align-self: start; }
-      .more { grid-column: 1 / -1; grid-row: 2; }
-      .years { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
-      figure { max-width: 22rem; }
+      .contrib { grid-column: 1 / span 7; grid-row: 2; align-self: end; }
+      figure { grid-column: 9 / span 4; grid-row: 2; max-width: none; }
+      figure img { aspect-ratio: 4 / 3; }
+      .more { grid-column: 1 / -1; grid-row: 3; }
+      .body { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--s-7) var(--gutter); align-items: start; }
+      .stats { grid-column: 1 / span 5; }
+      .body > .races { grid-column: 6 / span 7; }
     }
   `,
 })
