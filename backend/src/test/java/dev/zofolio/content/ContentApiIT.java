@@ -142,7 +142,7 @@ class ContentApiIT {
 		assertThat(get("/api/fr/projects/etude").body()).contains("\"commits\":null", "\"languages\":[]",
 				"\"lastPushAt\":null");
 		assertThat(get("/api/fr/home").body()).contains("\"contributions\":null");
-		githubRepos.saveAll(List.of(cached("repo-a", 10, "2026-01-01T00:00:00Z", Map.of("Java", 500L, "HTML", 5L)),
+		githubRepos.saveAll(List.of(cached("repo-a", 10, "2026-01-01T00:00:00Z", Map.of("Java", 500L, "HTML", 5L, "Dockerfile", 400L)),
 				cached("repo-b", 5, "2026-03-01T00:00:00Z", Map.of("TypeScript", 300L, "Java", 100L)),
 				cached("prive-non-cure", 999, "2030-01-01T00:00:00Z", Map.of("Rust", 99999L))));
 		GithubContributions c = new GithubContributions();

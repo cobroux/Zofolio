@@ -583,14 +583,6 @@
           <context context-type="linenumber">13,14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5638767312076096816" datatype="html">
-        <source>Et un nouveau poste. Parlons-en.</source>
-        <target state="translated">And a new role. Let&apos;s talk.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">14,15</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="1955051087209940082" datatype="html">
         <source>Télécharger le CV</source>
         <target state="translated">Download the CV</target>
@@ -1939,14 +1931,6 @@
           <context context-type="linenumber">65,66</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6605221667863555305" datatype="html">
-        <source><x id="PH" equiv-text="n(d.total)"/> contributions sur 12 mois · <x id="PH_1" equiv-text="active"/> semaines actives sur <x id="PH_2" equiv-text="totals.length"/> · meilleure semaine : <x id="PH_3" equiv-text="n(best)"/></source>
-        <target state="translated"><x id="PH" equiv-text="n(d.total)"/> contributions over 12 months · <x id="PH_1" equiv-text="active"/> active weeks out of <x id="PH_2" equiv-text="totals.length"/> · best week: <x id="PH_3" equiv-text="n(best)"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/contributions/contributions.ts</context>
-          <context context-type="linenumber">114</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="4118887439078151206" datatype="html">
         <source><x id="PH" equiv-text="n(s.commits)"/> commits</source>
         <target state="translated"><x id="PH" equiv-text="n(s.commits)"/> commits</target>
@@ -2013,38 +1997,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
           <context context-type="linenumber">25,26</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1322586333669103999" datatype="html">
-        <source>Performance</source>
-        <target state="initial">Performance</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">9</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5066959347903984445" datatype="html">
-        <source>Accessibilité</source>
-        <target state="initial">Accessibility</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">10</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8449252742944252269" datatype="html">
-        <source>Bonnes pratiques</source>
-        <target state="initial">Best practices</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8402215316598137110" datatype="html">
-        <source>SEO</source>
-        <target state="initial">SEO</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6246540268097077631" datatype="html">
@@ -2367,102 +2319,6 @@
           <context context-type="linenumber">85,86</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="111176193444867593" datatype="html">
-        <source>Environ 120 tests au total (back, front, E2E). [À recompter avant publication]</source>
-        <target state="initial">About 120 tests in total (back, front, E2E). [Recount before publishing]</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">86,87</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="923794799127162408" datatype="html">
-        <source>(conditionnel) Une CI verte sur <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> déclenche le déploiement : images Docker poussées sur GHCR, mises en ligne sur une VM Oracle Cloud (gratuite), derrière Cloudflare, avec retour automatique à la version précédente si le démarrage échoue.</source>
-        <target state="initial">(conditional) A green CI on <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> triggers the deployment: Docker images pushed to GHCR, rolled out on an Oracle Cloud VM (free tier), behind Cloudflare, with automatic rollback to the previous version if startup fails.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">87,88</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2880037394494066058" datatype="html">
-        <source>(conditionnel) La base est sauvegardée chaque nuit, chiffrée, sur Cloudflare R2.</source>
-        <target state="initial">(conditional) The database is backed up every night, encrypted, to Cloudflare R2.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">88,89</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5288744275275761868" datatype="html">
-        <source>Scores Lighthouse</source>
-        <target state="initial">Lighthouse scores</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">92,93</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6536864698954542667" datatype="html">
-        <source>Mesurés sur le site en ligne, mobile, médiane de trois mesures. Pas de score arrondi à la hausse.</source>
-        <target state="initial">Measured on the live site, mobile, median of three runs. No rounding up.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">93,94</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="109611215155679097" datatype="html">
-        <source>Mesure du</source>
-        <target state="initial">Measured on</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">95</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1115717087277927353" datatype="html">
-        <source>Mesure du [À MESURER : date, T8]</source>
-        <target state="initial">Measured on [À MESURER: date, T8]</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">96</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="9074050584937325616" datatype="html">
-        <source>Scores par page, seuil entre parenthèses</source>
-        <target state="initial">Scores per page, threshold in brackets</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">99,100</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5831985829809767394" datatype="html">
-        <source>Catégorie</source>
-        <target state="initial">Category</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">101</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1392088035644905443" datatype="html">
-        <source>[À MESURER : prod]</source>
-        <target state="initial">[À MESURER: prod]</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">109,110</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6318338994098830642" datatype="html">
-        <source>Limite : pile au seuil. Je l&apos;écris.</source>
-        <target state="initial">Limit: right at the threshold. I am writing it down.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">112,113</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5259836909068233043" datatype="html">
-        <source>Pour mémoire, la dernière mesure locale (<x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>docs/reviews/V2-T34-T35-qa.md<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>) donnait 90, 100, 100, 100 sur <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>/fr/<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> : la performance était juste au seuil. Je préfère l&apos;écrire que de le cacher.</source>
-        <target state="initial">For the record, the last local run (<x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>docs/reviews/V2-T34-T35-qa.md<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>) gave 90, 100, 100, 100 on <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>/fr/<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>: performance was right at the threshold. I would rather say so than hide it.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">120,121</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="5942671110811724425" datatype="html">
         <source>Tout est dans le dépôt</source>
         <target state="initial">It is all in the repo</target>
@@ -2594,6 +2450,54 @@
       <trans-unit id="190099704623535625" datatype="html">
         <source>100 km</source>
         <target state="translated">100 km</target>
+      </trans-unit>
+      <trans-unit id="2029578346137460090" datatype="html">
+        <source>190 tests au 21 octobre 2026 : 80 côté back, 81 côté front, 29 E2E.</source>
+        <target state="translated">190 tests as of 21 October 2026: 80 on the back end, 81 on the front end, 29 E2E.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">74,75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8862891218797040189" datatype="html">
+        <source>Une fusion sur <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> déclenche le déploiement : GitHub Actions se connecte en SSH au serveur, récupère <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> et reconstruit les conteneurs. Docker Compose attend que chaque service soit sain avant de rendre la main. Pour revenir en arrière, une commande suffit.</source>
+        <target state="translated">A merge to <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> triggers the deployment: GitHub Actions connects to the server over SSH, pulls <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> and rebuilds the containers. Docker Compose waits for every service to be healthy before returning. Rolling back takes one command.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">75,76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2599008181736713108" datatype="html">
+        <source>La base est sauvegardée chaque nuit sur le serveur (7 jours gardés), et la restauration se teste sur une base jetable. Pas encore de copie hors du serveur : c&apos;est la prochaine étape.</source>
+        <target state="translated">The database is backed up every night on the server (7 days kept), and restores are tested on a throwaway database. No off-server copy yet: that is the next step.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
+          <context context-type="linenumber">76,77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2519547902255538963" datatype="html">
+        <source>Et de nouveaux projets. Parlons-en.</source>
+        <target state="translated">And new projects. Let's talk.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
+          <context context-type="linenumber">21,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7594132149348202175" datatype="html">
+        <source> Depuis juin 2026 : ingénieur d&apos;études chez Aubay. En mission sur une application d&apos;inventaire en microservices pour les Restos du Cœur, j&apos;interviens sur le back end en Python. J&apos;ai aussi monté l&apos;environnement Docker du projet et j&apos;appuie l&apos;équipe sur GitLab. </source>
+        <target state="translated">Since June 2026: software engineer at Aubay. On assignment building a microservices inventory application for the Restos du Cœur charity, I work on the Python back end. I also set up the project's Docker environment and support the team with GitLab.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
+          <context context-type="linenumber">25,26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5256605689993326760" datatype="html">
+        <source><x id="PH" equiv-text="n(d.total)"/> contributions sur 12 mois · meilleure semaine : <x id="PH_1" equiv-text="n(best)"/></source>
+        <target state="translated"><x id="PH" equiv-text="n(d.total)"/> contributions over 12 months · best week: <x id="PH_1" equiv-text="n(best)"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/contributions/contributions.ts</context>
+          <context context-type="linenumber">113</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="5135005963082951569" datatype="html">
         <source>Voir le détail : les années en chiffres et les autres courses</source>
