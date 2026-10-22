@@ -18,7 +18,7 @@ import { ContactForm } from '../../contact/contact-form';
           <div class="track" aria-hidden="true"><span class="fill"></span></div>
           <p class="tnum"><span i18n>79,4 km</span><span i18n>100 km</span></p>
         </div>
-        <p class="lead" [appReveal]="1" i18n>Et un nouveau poste. Parlons-en.</p>
+        <p class="lead" [appReveal]="1" i18n>Et de nouveaux projets. Parlons-en.</p>
         <a class="cv" [href]="cv" [appReveal]="1" i18n>Télécharger le CV</a>
         <div class="contact" [appReveal]="2">
           <p>

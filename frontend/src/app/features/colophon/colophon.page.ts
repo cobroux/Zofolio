@@ -1,24 +1,12 @@
-import { DatePipe, NgTemplateOutlet } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { AiTag } from '../../shared/ai-tag/ai-tag';
 
-/** Mesures Lighthouse mobile (médiane de 3) : à remplir avec la prod (T8) ; null = pas encore mesuré. */
-export const LH_DATE: string | null = null;
-export const LH_PAGES = ['/fr/', '/en/', '/fr/projets/oltre'];
-export const LH_ROWS: { label: string; threshold: number; scores: (number | null)[] }[] = [
-  { label: $localize`Performance`, threshold: 90, scores: [null, null, null] },
-  { label: $localize`Accessibilité`, threshold: 95, scores: [null, null, null] },
-  { label: $localize`Bonnes pratiques`, threshold: 95, scores: [null, null, null] },
-  { label: $localize`SEO`, threshold: 95, scores: [null, null, null] },
-];
-export const EDITION_UPDATED = '2026-10-16';
-
-/** Un score à moins de 2 points du seuil reçoit la note « limite » (DESIGN §11.2). */
-export const isAtLimit = (score: number | null, threshold: number) => score !== null && score <= threshold + 2;
+export const EDITION_UPDATED = '2026-10-21';
 
 @Component({
   selector: 'app-colophon',
-  imports: [AiTag, DatePipe, NgTemplateOutlet],
+  imports: [AiTag, DatePipe],
   template: `
     <section class="start" aria-labelledby="c-h1">
       <div>
@@ -83,55 +71,9 @@ export const isAtLimit = (score: number | null, threshold: number) => score !== 
       <p i18n>À chaque push, GitHub Actions lance quatre jobs : le back (build et tests, <code>./mvnw verify</code>), le front (lint, tests, build), les tests E2E Playwright sur la pile complète, et Lighthouse.</p>
       <p i18n>Les E2E incluent axe-core : zéro violation d'accessibilité, en clair et en sombre, en FR et en EN.</p>
       <p i18n>Les seuils Lighthouse mobile font échouer le build : 90 en performance, 95 en accessibilité, bonnes pratiques et SEO. Une PR rouge ne se fusionne pas.</p>
-      <p i18n>Environ 120 tests au total (back, front, E2E). [À recompter avant publication]</p>
-      <p i18n>(conditionnel) Une CI verte sur <code>main</code> déclenche le déploiement : images Docker poussées sur GHCR, mises en ligne sur une VM Oracle Cloud (gratuite), derrière Cloudflare, avec retour automatique à la version précédente si le démarrage échoue.</p>
-      <p class="aid" i18n>(conditionnel) La base est sauvegardée chaque nuit, chiffrée, sur Cloudflare R2.</p>
-    </section>
-
-    <section aria-labelledby="c-lh">
-      <h2 id="c-lh" i18n>Scores Lighthouse</h2>
-      <p i18n>Mesurés sur le site en ligne, mobile, médiane de trois mesures. Pas de score arrondi à la hausse.</p>
-      <p class="tnum">
-        @if (lhDate) { <ng-container i18n>Mesure du</ng-container> {{ lhDate | date: 'longDate' }} }
-        @else { <ng-container i18n>Mesure du [À MESURER : date, T8]</ng-container> }
-      </p>
-      <table class="lh lh-table">
-        <caption i18n>Scores par page, seuil entre parenthèses</caption>
-        <thead>
-          <tr><th scope="col" i18n>Catégorie</th>@for (p of pages; track p) { <th scope="col" class="n">{{ p }}</th> }</tr>
-        </thead>
-        <tbody>
-          @for (r of rows; track r.label) {
-            <tr>
-              <th scope="row">{{ r.label }} <span class="tnum">({{ r.threshold }})</span></th>
-              @for (s of r.scores; track $index) {
-                <td class="n"><ng-container *ngTemplateOutlet="cell; context: { $implicit: s, t: r.threshold }" /></td>
-              }
-            </tr>
-          }
-        </tbody>
-      </table>
-      <!-- Mobile (DESIGN §11.2) : le tableau devient 3 blocs, un par page, 4 scores en grille 2×2. -->
-      <div class="lh-blocks">
-        @for (p of pages; track p; let i = $index) {
-          <div class="lh-block">
-            <h3>{{ p }}</h3>
-            <dl>
-              @for (r of rows; track r.label) {
-                <div><dt>{{ r.label }} <span class="tnum">({{ r.threshold }})</span></dt><dd><ng-container *ngTemplateOutlet="cell; context: { $implicit: r.scores[i], t: r.threshold }" /></dd></div>
-              }
-            </dl>
-          </div>
-        }
-      </div>
-      <ng-template #cell let-s let-t="t">
-        @if (s === null) { <span class="todo" i18n>[À MESURER : prod]</span> }
-        @else {
-          <span class="split tnum">{{ s }}</span>
-          @if (limit(s, t)) { <span class="note" i18n>Limite : pile au seuil. Je l'écris.</span> }
-        }
-      </ng-template>
-      <p i18n>Pour mémoire, la dernière mesure locale (<code>docs/reviews/V2-T34-T35-qa.md</code>) donnait 90, 100, 100, 100 sur <code>/fr/</code> : la performance était juste au seuil. Je préfère l'écrire que de le cacher.</p>
+      <p i18n>190 tests au 21 octobre 2026 : 80 côté back, 81 côté front, 29 E2E.</p>
+      <p i18n>Une fusion sur <code>main</code> déclenche le déploiement : GitHub Actions se connecte en SSH au serveur, récupère <code>main</code> et reconstruit les conteneurs. Docker Compose attend que chaque service soit sain avant de rendre la main. Pour revenir en arrière, une commande suffit.</p>
+      <p class="aid" i18n>La base est sauvegardée chaque nuit sur le serveur (7 jours gardés), et la restauration se teste sur une base jetable. Pas encore de copie hors du serveur : c'est la prochaine étape.</p>
     </section>
 
     <section class="arr" aria-labelledby="c-repo">
@@ -162,24 +104,10 @@ export const isAtLimit = (score: number | null, threshold: number) => score !== 
     table { width: 100%; border-collapse: collapse; }
     caption { text-align: start; font-size: var(--t-small); padding-block-end: var(--s-2); }
     th, td { text-align: start; padding: var(--s-2) var(--s-4) var(--s-2) 0; vertical-align: bottom; }
-    .lh .n { text-align: end; }
-    .lh-blocks { display: none; }
-    .lh-block dl { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5) var(--s-4); margin: 0; }
-    .lh-block dt { font-size: var(--t-small); color: var(--ink-2); }
-    .lh-block dd { margin: 0; }
-    .lh-block + .lh-block { margin-block-start: var(--s-6); }
-    .lh-block .split { font-size: clamp(2.5rem, 12vw, 3.5rem); }
-    @media (max-width: 767px) { .lh-table { display: none; } .lh-blocks { display: block; } }
-    .split { display: block; font: 800 clamp(2.5rem, 6vw, 4.5rem) / 0.95 var(--font-display); font-stretch: 75%; }
-    .note, .todo { display: block; font-size: var(--t-small); color: var(--ink-2); }
     .tags { display: flex; flex-wrap: wrap; gap: var(--s-3); }
     .links a { display: block; font: 800 clamp(1.75rem, 4vw, 3rem) / 1.1 var(--font-display); min-height: var(--target); color: inherit; text-decoration: underline; }
   `,
 })
 export class ColophonPage {
   protected readonly updated = EDITION_UPDATED;
-  protected readonly lhDate = LH_DATE;
-  protected readonly pages = LH_PAGES;
-  protected readonly rows = LH_ROWS;
-  protected readonly limit = isAtLimit;
 }

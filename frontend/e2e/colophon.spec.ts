@@ -13,13 +13,10 @@ for (const path of ['/fr/colophon', '/en/colophon']) {
   }
 }
 
-test('colophon mobile : scores en 3 blocs, pas de tableau des scores (DESIGN §11.2)', async ({ browser }) => {
+test('colophon mobile : pas de défilement horizontal', async ({ browser }) => {
   const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
   const page = await ctx.newPage();
   await page.goto('/fr/colophon');
-  await expect(page.locator('.lh-block')).toHaveCount(3);
-  await expect(page.locator('.lh-block').first()).toBeVisible();
-  await expect(page.locator('table.lh-table')).toBeHidden();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await ctx.close();
 });
