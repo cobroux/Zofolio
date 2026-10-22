@@ -1,6 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { TestBed } from '@angular/core/testing';
+import { DeferBlockState, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import fixture from '../../../testing/home.fixture.json';
 import { HomePage } from './home.page';
@@ -10,6 +10,8 @@ async function render(respond: (req: import('@angular/common/http/testing').Test
   const f = TestBed.createComponent(HomePage);
   f.detectChanges();
   respond(TestBed.inject(HttpTestingController).expectOne('/api/fr/home'));
+  // P1 à Journal sont en @defer (hydratation incrémentale) : on les rend explicitement.
+  for (const block of await f.getDeferBlocks()) await block.render(DeferBlockState.Complete);
   await f.whenStable();
   f.detectChanges();
   return f.nativeElement as HTMLElement;
