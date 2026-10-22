@@ -1939,14 +1939,6 @@
           <context context-type="linenumber">65,66</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6605221667863555305" datatype="html">
-        <source><x id="PH" equiv-text="n(d.total)"/> contributions sur 12 mois · <x id="PH_1" equiv-text="active"/> semaines actives sur <x id="PH_2" equiv-text="totals.length"/> · meilleure semaine : <x id="PH_3" equiv-text="n(best)"/></source>
-        <target state="translated"><x id="PH" equiv-text="n(d.total)"/> contributions over 12 months · <x id="PH_1" equiv-text="active"/> active weeks out of <x id="PH_2" equiv-text="totals.length"/> · best week: <x id="PH_3" equiv-text="n(best)"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/contributions/contributions.ts</context>
-          <context context-type="linenumber">114</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="4118887439078151206" datatype="html">
         <source><x id="PH" equiv-text="n(s.commits)"/> commits</source>
         <target state="translated"><x id="PH" equiv-text="n(s.commits)"/> commits</target>
@@ -2505,6 +2497,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
           <context context-type="linenumber">25,26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5256605689993326760" datatype="html">
+        <source><x id="PH" equiv-text="n(d.total)"/> contributions sur 12 mois · meilleure semaine : <x id="PH_1" equiv-text="n(best)"/></source>
+        <target state="translated"><x id="PH" equiv-text="n(d.total)"/> contributions over 12 months · best week: <x id="PH_1" equiv-text="n(best)"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/contributions/contributions.ts</context>
+          <context context-type="linenumber">113</context>
         </context-group>
       </trans-unit>
     </body>

@@ -98,7 +98,6 @@ export class ContributionsGraph {
     const totals = weeklyTotals(d.counts);
     const bars = weeklyBars(totals);
     const best = Math.max(...totals);
-    const active = totals.filter((t) => t > 0).length;
     const n = new Intl.NumberFormat(this.locale).format;
     const month = new Intl.DateTimeFormat(this.locale, { month: 'short', timeZone: 'UTC' });
     const start = Date.parse(d.start);
@@ -111,7 +110,7 @@ export class ContributionsGraph {
       bars,
       months,
       peak: bars[totals.indexOf(best)],
-      summary: $localize`${n(d.total)} contributions sur 12 mois · ${active} semaines actives sur ${totals.length} · meilleure semaine : ${n(best)}`,
+      summary: $localize`${n(d.total)} contributions sur 12 mois · meilleure semaine : ${n(best)}`,
     };
   });
 
