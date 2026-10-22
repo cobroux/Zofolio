@@ -17,14 +17,15 @@ import { StartSection } from './sections/start.section';
   template: `
     <app-road-book /><app-elevation-profile />
     <app-start />
-    <!-- Sous la ligne de flottaison : rendu complet côté serveur, JS chargé et hydraté à l'approche de l'écran (LCP/TBT). -->
+    <!-- P1 à Journal : rendu complet côté serveur, JS chargé et hydraté à l'approche de l'écran (LCP/TBT). -->
     @defer (hydrate on viewport) { <app-p1 [home]="home.value()" /> }
     @defer (hydrate on viewport) { <app-p2 [home]="home.value()" /> }
     @defer (hydrate on viewport) { <app-p3-section [projects]="home.value()?.projects ?? null" /> }
     @defer (hydrate on viewport) {
       <app-journal-section [races]="home.value()?.races ?? null" [contributions]="home.value()?.contributions ?? null" [sportYears]="home.value()?.sportYears ?? []" />
     }
-    @defer (hydrate on viewport) { <app-finish-section /> }
+    <!-- Arrivée hydratée tout de suite : son formulaire perdrait une saisie tapée avant l'hydratation. -->
+    <app-finish-section />
   `,
   styles: `
     :host {
