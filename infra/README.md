@@ -1,6 +1,6 @@
 # Infra Zofolio
 
-Prod : VM Oracle Always Free (Ubuntu 24.04 arm64), `https://88-96-45-97.sslip.io` (Caddy, Let's Encrypt automatique). Pas de domaine ni de Cloudflare pour l'instant.
+Prod : VM Oracle Always Free (Ubuntu 24.04 arm64), `https://88-96-45-97.sslip.io` (HTTPS par le proxy frontal `/opt/edge`, Let's Encrypt automatique). Pas de domaine ni de Cloudflare pour l'instant.
 
 ## Provisionner la VM
 `brew install ansible`, puis `cd infra/ansible && ansible-playbook playbook.yml` (idempotent). Il pose : mises à jour de sécurité automatiques, SSH par clé seule, root interdit, fail2ban, ufw 22/80/443 (remplace les règles iptables REJECT d'Oracle), Docker + compose, `/opt/zofolio`, swap 2 Go. La Security List Oracle doit ouvrir 22, 80, 443.
@@ -32,5 +32,6 @@ Cron `/etc/cron.d/zofolio-backup` : 03:30, `scripts/backup.sh` (`pg_dump -Fc` da
 4. Sauvegardes hors serveur : rclone vers R2 (chiffré) en fin de `backup.sh` (D33).
 
 ## Notes
-- Seul Caddy publie des ports (80, 443). Postgres, back et front restent sur le réseau Compose.
+- Aucun port publié par Zofolio. Les ports 80/443 et le HTTPS sont tenus par le proxy frontal partagé `/opt/edge` (Caddy, indépendant des projets, certificats dans le volume `edge_caddy_data`). Il renvoie `88-96-45-97.sslip.io` vers `zofolio-web:80` (le Caddy interne de Zofolio, réseau `edge`). Chaque appli du serveur a son fichier dans `/opt/edge/sites/` ; ajouter ou modifier un site : éditer ce fichier puis `docker exec edge-caddy caddy reload --config /etc/caddy/Caddyfile`.
+- Postgres, back et front restent sur le réseau Compose.
 - Ordre de démarrage : postgres sain, puis backend sain, puis frontend sain, puis Caddy.
