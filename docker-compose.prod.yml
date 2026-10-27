@@ -1,4 +1,4 @@
-# Prod (VM Oracle arm64) : build sur le serveur, seul Caddy publie 80/443. Voir infra/README.md.
+# Prod (VM Oracle arm64) : build sur le serveur, aucun port publié (HTTPS par le proxy frontal /opt/edge). Voir infra/README.md.
 services:
   postgres:
     image: postgres:17
@@ -48,18 +48,19 @@ services:
       retries: 12
       start_period: 15s
 
+  # Caddy interne, sans port publié : le proxy frontal /opt/edge (HTTPS, 80/443) le joint
+  # sur le réseau partagé « edge » sous l'alias zofolio-web.
   caddy:
     image: caddy:2
     restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
     volumes:
       - ./Caddyfile.prod:/etc/caddy/Caddyfile:ro
       - media:/srv/uploads:ro
       - caddy_data:/data
-    # edge : réseau partagé avec les autres applis du serveur (Zotracker, /opt/zotracker).
-    networks: [default, edge]
+    networks:
+      default:
+      edge:
+        aliases: [zofolio-web]
     depends_on:
       frontend:
         condition: service_healthy
