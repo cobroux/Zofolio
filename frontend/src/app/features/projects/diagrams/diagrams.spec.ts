@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { diagramFor } from './diagrams';
 
 describe('diagramFor', () => {
-  it.each(['oltre', 'zotracker', 'gfaim'])('%s : chaque SVG a un role img, un title et un desc non vides', (slug) => {
+  it.each(['oltre', 'zotracker', 'gfaim', 'trading-app'])('%s : chaque SVG a un role img, un title et un desc non vides', (slug) => {
     const f = TestBed.createComponent(diagramFor(slug)!);
     f.detectChanges();
     const svgs = (f.nativeElement as HTMLElement).querySelectorAll('svg');
@@ -15,8 +15,7 @@ describe('diagramFor', () => {
     });
   });
 
-  it('aucun schéma pour trading-app ni pour un slug inconnu', () => {
-    expect(diagramFor('trading-app')).toBeUndefined();
+  it('aucun schéma pour un slug inconnu', () => {
     expect(diagramFor('constructor')).toBeUndefined();
   });
 });

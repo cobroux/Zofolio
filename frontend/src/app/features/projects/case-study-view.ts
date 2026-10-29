@@ -6,7 +6,8 @@ import { Clip } from '../../shared/clip/clip';
 import { Reveal } from '../../shared/reveal/reveal';
 import { formatKm } from '../home-course/course-progress';
 import { CHECKPOINTS } from '../home-course/profile.data';
-import { diagramFor } from './diagrams/diagrams';
+import { diagramFor, diagramTitle } from './diagrams/diagrams';
+import { WorldlineTimeline } from './worldline-timeline';
 
 const SEGMENTS = {
   P1: $localize`Segment : les fondations`,
@@ -17,7 +18,7 @@ const SEGMENTS = {
 /** Gabarit d'une étude de cas (DESIGN §10.1), partagé par la page publique et l'aperçu de l'admin. Exige `project.caseStudy`. */
 @Component({
   selector: 'app-case-study-view',
-  imports: [RouterLink, DatePipe, DecimalPipe, NgComponentOutlet, Clip, Reveal],
+  imports: [RouterLink, DatePipe, DecimalPipe, NgComponentOutlet, Clip, Reveal, WorldlineTimeline],
   styleUrl: './case-study.page.css',
   template: `
     @if (view(); as v) {
@@ -29,6 +30,9 @@ const SEGMENTS = {
       }
       <div class="hero">
         <div class="pitch">
+          @if (v.p.slug === 'trading-app') {
+            <img class="logo" src="img/worldline.svg" alt="Worldline" width="196" height="20" />
+          }
           <h1>{{ v.p.title }}</h1>
           <p class="lead">{{ v.p.pitch }}</p>
         </div>
@@ -70,6 +74,9 @@ const SEGMENTS = {
             <app-clip id="clip" class="clipwrap portrait" [video]="vid" />
           }
         }
+        @if (v.p.slug === 'trading-app') {
+          <app-worldline-timeline class="timeline" />
+        }
       </div>
       @if (v.p.video && v.p.video.height <= v.p.video.width) {
         <app-clip id="clip" class="clipwrap" [video]="v.p.video" />
@@ -102,7 +109,7 @@ const SEGMENTS = {
     @if (diagram(); as d) {
       <section class="blk" aria-labelledby="h-arch">
         <div class="wrap grid">
-          <h2 id="h-arch" i18n>L'architecture</h2>
+          <h2 id="h-arch">{{ diagramTitle(v.p.slug) }}</h2>
           <div class="diagram-wrap"><ng-container [ngComponentOutlet]="d" /></div>
         </div>
       </section>
@@ -159,4 +166,5 @@ export class CaseStudyView {
     return { p, c: p.caseStudy, stage };
   });
   protected readonly diagram = computed(() => diagramFor(this.project().slug));
+  protected readonly diagramTitle = diagramTitle;
 }
