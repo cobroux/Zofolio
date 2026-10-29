@@ -282,7 +282,7 @@ Ordre fixe (D25, plan-v2 §4.2) : lien retour → pitch + dossard de segment →
 | Mur du 60e km | Bande `--surface` pleine largeur ; « km 60 » display orange (décor, `aria-hidden`, ≥ 18 px) en col. 1-3, `h2` + texte en col. 4-11 | « km 60 » au-dessus, puis texte |
 | Liens | Liste de liens (dépôts, « Revoir le clip »), puis un CTA « Me contacter » | Idem, CTA pleine largeur |
 
-Variante **Worldline** (`trading-app`, titre « Application de trading chez Worldline ») : même gabarit sans schéma (la section et son `h2` n'existent pas), sans clip, `repos` vide donc pas de lien dépôt, dossard sans « Commits » ni « Langages » (valeurs `null` : ligne omise, pas de tiret). Aucun nom de fonctionnalité ni de client.
+Variante **Worldline** (`trading-app`, titre « Application de trading chez Worldline ») : logo Worldline au-dessus du `h1`, frise des 2,5 ans sous le dossard (à la place du clip), et à la place de l'architecture un schéma « Le parcours d'un ordre » (vue d'ensemble, étapes qui entrent une à une), sans clip, `repos` vide donc pas de lien dépôt, dossard sans « Commits » ni « Langages » (valeurs `null` : ligne omise, pas de tiret). Aucun nom de fonctionnalité ni de client.
 Variante **GFaim** : clip portrait (10.3) ; pas de lien store.
 
 **Dossard de segment (`BibSplit`)** : rectangle `--surface`, 4 trous d'épingle `--bg` (comme `Bib`, §6), numéro d'étape « P3 · km 58,2 » en Archivo wdth 62 / 900 orange, puis une `<dl>` : libellé `--ink-2` à gauche, valeur à droite en `tabular-nums` (durée, rôle, commits, langages, dernier push, stack). Une ligne de note « synchro GitHub, 6 h » rappelle l'origine des chiffres. Landmark `<aside aria-label="Fiche du projet">`. `commits`, `languages`, `lastPushAt` à `null` : la ligne disparaît.

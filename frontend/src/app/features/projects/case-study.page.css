@@ -34,6 +34,13 @@ h3 {
   font-size: var(--t-lead);
   line-height: 1.3;
 }
+.logo {
+  display: block;
+  width: 196px;
+  max-width: 60%;
+  height: auto;
+  margin-block-start: var(--s-5);
+}
 
 /* Dossard de segment : 4 trous d'épingle comme Bib (DESIGN §6) */
 .bib {
@@ -279,5 +286,24 @@ dd {
     align-self: start;
     width: 100%;
     max-width: 340px;
+  }
+}
+
+/* Worldline : la frise prend la place du clip, sous le dossard (le pitch couvre les deux rangées) */
+@media (min-width: 768px) {
+  .hero:has(.timeline) {
+    grid-template-rows: auto 1fr;
+  }
+  .hero:has(.timeline) .pitch {
+    grid-row: 1 / 3;
+  }
+  .hero .timeline {
+    grid-column: 7 / 13;
+    padding-inline-start: var(--s-3);
+  }
+}
+@media (min-width: 1100px) {
+  .hero .timeline {
+    grid-column: 9 / 13;
   }
 }

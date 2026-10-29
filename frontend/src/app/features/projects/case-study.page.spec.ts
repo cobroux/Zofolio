@@ -43,11 +43,12 @@ describe('CaseStudyPage', () => {
     expect(el.querySelectorAll('.links a[href^="https://github.com"]').length).toBe(2);
   });
 
-  it('Worldline : ni schéma, ni dépôt, ni clip, ni commits', async () => {
+  it('Worldline : logo, frise et parcours d\'ordre ; ni dépôt, ni clip, ni commits', async () => {
     const { el } = await render('trading-app', (r) => r.flush(trading));
     expect(el.querySelector('h1')?.textContent).toBe('Trading app');
-    expect(el.querySelector('svg')).toBeNull();
-    expect(el.querySelector('#h-arch')).toBeNull();
+    expect(el.querySelector('img.logo')?.getAttribute('alt')).toBe('Worldline');
+    expect(el.querySelectorAll('app-worldline-timeline li').length).toBe(4);
+    expect(el.querySelector('#h-arch')?.textContent).toBe("Le parcours d'un ordre");
     expect(el.querySelector('app-clip')).toBeNull();
     expect(el.querySelector('.links a[href^="https://github.com"]')).toBeNull();
     expect(el.querySelector('aside')?.textContent).not.toContain('Commits');

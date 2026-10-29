@@ -2491,6 +2491,290 @@
           <context context-type="linenumber">21,22</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="3576389053257955599" datatype="html">
+        <source>Le parcours d&apos;un ordre</source>
+        <target state="translated">The journey of an order</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/diagrams.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2219176399845972925" datatype="html">
+        <source>Le parcours d&apos;un ordre de bourse</source>
+        <target state="translated">The journey of a stock market order</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">12,13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">53,54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1248883057193507855" datatype="html">
+        <source>Un professionnel de la finance saisit un ordre d&apos;achat ou de vente dans l&apos;application. L&apos;ordre passe des contrôles stricts (le point où aucune approximation n&apos;est permise), puis part de façon asynchrone vers la bourse, qui l&apos;exécute. La confirmation revient jusqu&apos;au professionnel.</source>
+        <target state="translated">A finance professional enters a buy or sell order in the application. The order goes through strict checks (the point where no approximation is allowed), then is sent asynchronously to the stock exchange, which executes it. The confirmation comes back to the professional.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5153493289786491040" datatype="html">
+        <source>Professionnel</source>
+        <target state="translated">Finance</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">20,21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">61,62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8598733165923090218" datatype="html">
+        <source>de la finance,</source>
+        <target state="translated">professional,</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">21,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1062115723158393163" datatype="html">
+        <source>saisit un ordre</source>
+        <target state="translated">enters an order</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">22,23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">62,63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3590230950266480730" datatype="html">
+        <source>ordre</source>
+        <target state="translated">order</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">26,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5710550455494461439" datatype="html">
+        <source>Application</source>
+        <target state="translated">Application</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">67,68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7530924310264047616" datatype="html">
+        <source>achat et vente</source>
+        <target state="translated">buying and selling</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">29,30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6129134836615812065" datatype="html">
+        <source>de titres</source>
+        <target state="translated">securities</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3015639400385508939" datatype="html">
+        <source>Contrôles</source>
+        <target state="translated">Checks</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">73,74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7257231387419529714" datatype="html">
+        <source>aucune</source>
+        <target state="translated">no</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">36,37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2895632787507813589" datatype="html">
+        <source>approximation</source>
+        <target state="translated">approximation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6603618425433103769" datatype="html">
+        <source>envoi</source>
+        <target state="translated">asynchronous</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4902364083428589566" datatype="html">
+        <source>asynchrone</source>
+        <target state="translated">sending</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3998740430528256688" datatype="html">
+        <source>Bourse</source>
+        <target state="translated">Stock exchange</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">44,45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">80,81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7552322723457550662" datatype="html">
+        <source>exécute l&apos;ordre</source>
+        <target state="translated">executes the order</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">45,46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">81,82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6434867234054053736" datatype="html">
+        <source>confirmation d&apos;exécution</source>
+        <target state="translated">execution confirmation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5249005618700493757" datatype="html">
+        <source>Le professionnel saisit un ordre dans l&apos;application, l&apos;ordre passe des contrôles stricts (aucune approximation permise), part de façon asynchrone vers la bourse qui l&apos;exécute, et la confirmation revient au professionnel.</source>
+        <target state="translated">The professional enters an order in the application, the order goes through strict checks (no approximation allowed), is sent asynchronously to the stock exchange, which executes it, and the confirmation comes back to the professional.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">54,55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6277250834495704086" datatype="html">
+        <source>achat et vente de titres</source>
+        <target state="translated">buying and selling securities</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">68,69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="767330481660446667" datatype="html">
+        <source>aucune approximation</source>
+        <target state="translated">no approximation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">74,75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2462576130539128700" datatype="html">
+        <source>envoi asynchrone</source>
+        <target state="translated">asynchronous sending</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">78,79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1711133922333221839" datatype="html">
+        <source>Retour : confirmation d&apos;exécution</source>
+        <target state="translated">Back: execution confirmation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/diagrams/trading-app.diagram.ts</context>
+          <context context-type="linenumber">85,86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5487987018250656579" datatype="html">
+        <source>Mes 2,5 ans chez Worldline</source>
+        <target state="translated">My 2.5 years at Worldline</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/worldline-timeline.ts</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="335611209377996525" datatype="html">
+        <source>Mars 2023</source>
+        <target state="translated">March 2023</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/worldline-timeline.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7839891217027674368" datatype="html">
+        <source>Arrivée, développeur back-end</source>
+        <target state="translated">Joined as a back-end developer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/worldline-timeline.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6026454771687100215" datatype="html">
+        <source>Puis</source>
+        <target state="translated">Then</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/worldline-timeline.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8535988951389821711" datatype="html">
+        <source>Passage fullstack, en équipe Scrum, du besoin à la mise en production</source>
+        <target state="translated">Moved to fullstack, in a Scrum team, from requirements to production</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/worldline-timeline.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4272912792795315334" datatype="html">
+        <source>Dernière année</source>
+        <target state="translated">Final year</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/worldline-timeline.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7428452627022084488" datatype="html">
+        <source>Une fonctionnalité portée seul, maquette validée avec le Product Owner</source>
+        <target state="translated">Owned a feature on my own, with the mockup approved by the Product Owner</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/worldline-timeline.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5464408769086052559" datatype="html">
+        <source>Sept. 2025</source>
+        <target state="translated">Sept. 2025</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/worldline-timeline.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="63405487779763801" datatype="html">
+        <source>Fin de mission, 2,5 ans plus tard</source>
+        <target state="translated">End of assignment, 2.5 years later</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/worldline-timeline.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>
