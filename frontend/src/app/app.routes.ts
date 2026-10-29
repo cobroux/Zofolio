@@ -21,7 +21,7 @@ export const routes: Routes = [
   {
     path: 'colophon',
     title: $localize`Colophon : comment ce site a été construit`,
-    data: { description: $localize`Stack, équipe d'agents IA, CI et scores Lighthouse : comment Enzo Leveque a construit son portfolio, sans rien cacher.` },
+    data: { description: $localize`Stack, développement agentique, CI et scores Lighthouse : comment Enzo Leveque a construit son portfolio, sans rien cacher.` },
     loadComponent: () => import('./features/colophon/colophon.page').then((m) => m.ColophonPage),
   },
   // D39 : admin en FR seul (sans marqueur i18n), chargé à la demande, rendu client uniquement (app.routes.server.ts)

@@ -1827,30 +1827,6 @@
           <context context-type="linenumber">89</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1678036888013142922" datatype="html">
-        <source>Écrit à la main</source>
-        <target state="translated">Written by hand</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/ai-tag/ai-tag.ts</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5586343165405675754" datatype="html">
-        <source>Commencé à la main, puis IA</source>
-        <target state="translated">Started by hand, then with AI</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/ai-tag/ai-tag.ts</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2824935141573357201" datatype="html">
-        <source>IA comme outil, conçu et revu par moi</source>
-        <target state="translated">AI as a tool, designed and reviewed by me</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/ai-tag/ai-tag.ts</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="5522868938537082044" datatype="html">
         <source>Ravito · km</source>
         <target state="translated">Aid station · km</target>
@@ -1955,9 +1931,9 @@
           <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3446892420012892561" datatype="html">
-        <source>Stack, équipe d&apos;agents IA, CI et scores Lighthouse : comment Enzo Leveque a construit son portfolio, sans rien cacher.</source>
-        <target state="initial">Stack, AI agent team, CI and Lighthouse scores: how Enzo Leveque built his portfolio, nothing hidden.</target>
+      <trans-unit id="7252237444246564173" datatype="html">
+        <source>Stack, développement agentique, CI et scores Lighthouse : comment Enzo Leveque a construit son portfolio, sans rien cacher.</source>
+        <target state="translated">Stack, agentic development, CI and Lighthouse scores: how Enzo Leveque built his portfolio, nothing hidden.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.routes.ts</context>
           <context context-type="linenumber">24</context>
@@ -2071,9 +2047,9 @@
           <context context-type="linenumber">46,47</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1064482536550909230" datatype="html">
-        <source>Le code de ce site a été écrit en grande partie par des agents IA. Je les pilote, je tranche, je relis. Comme une petite équipe, avec un budget à surveiller.</source>
-        <target state="initial">Most of this site's code was written by AI agents. I steer them, decide, and review. Like a small team, with a budget to watch.</target>
+      <trans-unit id="2103668923794754319" datatype="html">
+        <source>Ce site est construit en développement agentique : j&apos;écris les specs, je découpe le travail en tâches, des agents spécialisés codent, et je tranche et relis chaque modification. Comme une petite équipe, avec un budget à surveiller.</source>
+        <target state="translated">This site is built with agentic development: I write the specs, break the work into tasks, specialized agents write the code, and I make the calls and review every change. Like a small team, with a budget to watch.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
           <context context-type="linenumber">47,48</context>
@@ -2183,9 +2159,9 @@
           <context context-type="linenumber">63,64</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7708705424734102180" datatype="html">
-        <source>Des skills guident les agents. Pour le design, Taste (contre le look « fait par une IA ») et Emil (les détails de finition et de mouvement).</source>
-        <target state="initial">Skills guide the agents. For design, Taste (against the "made by an AI" look) and Emil (polish and motion details).</target>
+      <trans-unit id="1165816636646647163" datatype="html">
+        <source>Des skills guident les agents. Pour le design, Taste (contre le look générique) et Emil (les détails de finition et de mouvement).</source>
+        <target state="translated">Skills guide the agents. For design, Taste (against the generic look) and Emil (polish and motion details).</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
           <context context-type="linenumber">64,65</context>
@@ -2229,14 +2205,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
           <context context-type="linenumber">72,73</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1576364284568072886" datatype="html">
-        <source>Chaque projet porte un tag. « Écrit à la main » : les projets universitaires. « Commencé à la main, puis IA » : Oltre. « IA comme outil, conçu et revu par moi » : Zotracker et ce site.</source>
-        <target state="initial">Each project carries a tag. "Written by hand": the university projects. "Started by hand, then AI": Oltre. "AI as a tool, designed and reviewed by me": Zotracker and this site.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">74,75</context>
         </context-group>
       </trans-unit>
       <trans-unit id="196300602146834756" datatype="html">
