@@ -2,7 +2,6 @@ import { DatePipe, DecimalPipe, NgComponentOutlet } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ProjectSummary } from '../../core/api/api.models';
-import { AiTag } from '../../shared/ai-tag/ai-tag';
 import { Clip } from '../../shared/clip/clip';
 import { Reveal } from '../../shared/reveal/reveal';
 import { formatKm } from '../home-course/course-progress';
@@ -18,7 +17,7 @@ const SEGMENTS = {
 /** Gabarit d'une étude de cas (DESIGN §10.1), partagé par la page publique et l'aperçu de l'admin. Exige `project.caseStudy`. */
 @Component({
   selector: 'app-case-study-view',
-  imports: [RouterLink, DatePipe, DecimalPipe, NgComponentOutlet, AiTag, Clip, Reveal],
+  imports: [RouterLink, DatePipe, DecimalPipe, NgComponentOutlet, Clip, Reveal],
   styleUrl: './case-study.page.css',
   template: `
     @if (view(); as v) {
@@ -32,7 +31,6 @@ const SEGMENTS = {
         <div class="pitch">
           <h1>{{ v.p.title }}</h1>
           <p class="lead">{{ v.p.pitch }}</p>
-          <app-ai-tag [tag]="v.p.aiTag" />
         </div>
         <aside class="bib" aria-label="Fiche du projet" i18n-aria-label>
           <i></i>
@@ -85,15 +83,6 @@ const SEGMENTS = {
       </div>
     </section>
 
-    @if (diagram(); as d) {
-      <section class="blk" aria-labelledby="h-arch">
-        <div class="wrap grid">
-          <h2 id="h-arch" i18n>L'architecture</h2>
-          <div class="diagram-wrap"><ng-container [ngComponentOutlet]="d" /></div>
-        </div>
-      </section>
-    }
-
     <section class="blk" aria-labelledby="h-dec" appReveal>
       <div class="wrap grid">
         <h2 id="h-dec" i18n>Les décisions</h2>
@@ -110,6 +99,15 @@ const SEGMENTS = {
       </div>
     </section>
 
+    @if (diagram(); as d) {
+      <section class="blk" aria-labelledby="h-arch">
+        <div class="wrap grid">
+          <h2 id="h-arch" i18n>L'architecture</h2>
+          <div class="diagram-wrap"><ng-container [ngComponentOutlet]="d" /></div>
+        </div>
+      </section>
+    }
+
     <section class="wall" aria-labelledby="h-wall">
       <div class="wrap grid">
         <p class="km tnum" aria-hidden="true" i18n>km 60</p>
@@ -125,9 +123,6 @@ const SEGMENTS = {
         <h2 id="h-ret" i18n>Ce que j'en retire</h2>
         <div class="txt">
           <p>{{ v.c.takeaway }}</p>
-          @if (v.c.aiNote) {
-            <p>{{ v.c.aiNote }}</p>
-          }
         </div>
       </div>
     </section>

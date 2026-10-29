@@ -113,7 +113,7 @@ describe('P3Section', () => {
     const el = f.nativeElement as HTMLElement;
     expect(el.querySelectorAll('article').length).toBe(2);
     expect(el.querySelector('a[href="https://github.com/cobroux/oltre"]')).toBeTruthy();
-    expect(el.textContent).toContain('Commencé à la main, puis IA');
+    expect(el.textContent).not.toContain('puis IA');
   });
 
   it("affiche l'état indisponible si l'API échoue", () => {

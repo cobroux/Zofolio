@@ -1,19 +1,17 @@
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ProjectSummary } from '../../core/api/api.models';
-import { AiTag } from '../ai-tag/ai-tag';
 import { Split } from '../split/split';
 
 /** Carte segment (DESIGN §6) : `large` pour la carte dominante. Carrée, sans ombre. */
 @Component({
   selector: 'app-segment-card',
-  imports: [AiTag, RouterLink, Split],
+  imports: [RouterLink, Split],
   host: { '[class.large]': 'large()' },
   template: `
     <article>
       <header>
         <h3>{{ project().title }}</h3>
-        <app-ai-tag [tag]="project().aiTag" />
       </header>
       <p>{{ project().pitch }}</p>
       <app-split [duration]="project().duration" [stack]="project().stack" [commits]="project().commits" [languages]="project().languages" [lastPushAt]="project().lastPushAt" [note]="project().note" />

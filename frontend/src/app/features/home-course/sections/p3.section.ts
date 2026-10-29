@@ -4,12 +4,11 @@ import { RouterLink } from '@angular/router';
 import { Reveal } from '../../../shared/reveal/reveal';
 import { Clip } from '../../../shared/clip/clip';
 import { Split } from '../../../shared/split/split';
-import { AiTag } from '../../../shared/ai-tag/ai-tag';
 
 /** Mosaïque : le premier projet (Oltre) en grand avec son emplacement vidéo, les autres empilés à droite ; aucune case vide. */
 @Component({
   selector: 'app-p3-section',
-  imports: [AiTag, Clip, Reveal, RouterLink, Split],
+  imports: [Clip, Reveal, RouterLink, Split],
   template: `
     <section id="p3" aria-labelledby="p3-title">
       <header appReveal>
@@ -29,7 +28,6 @@ import { AiTag } from '../../../shared/ai-tag/ai-tag';
             }
             <div class="head">
               <h3>{{ p.title }}</h3>
-              <app-ai-tag [tag]="p.aiTag" />
             </div>
             <p>{{ p.pitch }}</p>
             <app-split [duration]="p.duration" [stack]="p.stack" [commits]="p.commits" [languages]="p.languages" [lastPushAt]="p.lastPushAt" [note]="p.note" />

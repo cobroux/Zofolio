@@ -37,8 +37,8 @@
           <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3446892420012892561" datatype="html">
-        <source>Stack, équipe d&apos;agents IA, CI et scores Lighthouse : comment Enzo Leveque a construit son portfolio, sans rien cacher.</source>
+      <trans-unit id="7252237444246564173" datatype="html">
+        <source>Stack, développement agentique, CI et scores Lighthouse : comment Enzo Leveque a construit son portfolio, sans rien cacher.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.routes.ts</context>
           <context context-type="linenumber">24</context>
@@ -74,7 +74,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">13,14</context>
+          <context context-type="linenumber">12,13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7164540129836416689" datatype="html">
@@ -166,340 +166,333 @@
         <source>Ce site est aussi une preuve. Voici comment il est fait, qui a écrit quoi, et ce que j&apos;ai décidé moi-même.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">14,15</context>
+          <context context-type="linenumber">13,14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5019411871001968061" datatype="html">
         <source>Édition</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">16,17</context>
+          <context context-type="linenumber">15,16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1418529956452457595" datatype="html">
         <source>Édition 2026</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">17,18</context>
+          <context context-type="linenumber">16,17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1731368540476538816" datatype="html">
         <source>FR + EN · mise à jour le</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3456404826177942114" datatype="html">
         <source>La stack</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">23,24</context>
+          <context context-type="linenumber">22,23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7178997693066178229" datatype="html">
         <source>Java 21, Spring Boot 4.1, Maven, Liquibase pour le schéma, PostgreSQL 17.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">25,26</context>
+          <context context-type="linenumber">24,25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1233442594091052594" datatype="html">
         <source>Angular 22 (composants standalone, signals), rendu côté serveur avec <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>@angular/ssr<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>, TypeScript, CSS natif sans framework.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">26,27</context>
+          <context context-type="linenumber">25,26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6068406979033168372" datatype="html">
         <source>Docker Compose, Caddy en frontal, GitHub Actions.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">27,28</context>
+          <context context-type="linenumber">26,27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7093058048100301637" datatype="html">
         <source>Le site se lit sans JavaScript. Le serveur envoie déjà le HTML complet.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">29,30</context>
+          <context context-type="linenumber">28,29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5850266075799249148" datatype="html">
         <source>Même famille de technos que mes projets perso (Oltre, Zotracker) et que mon travail chez Worldline : je ne change pas d&apos;outils pour faire joli.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">30,31</context>
+          <context context-type="linenumber">29,30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4627216612420095536" datatype="html">
         <source>Une équipe d&apos;agents, un chef d&apos;équipe</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">34,35</context>
+          <context context-type="linenumber">33,34</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1064482536550909230" datatype="html">
-        <source>Le code de ce site a été écrit en grande partie par des agents IA. Je les pilote, je tranche, je relis. Comme une petite équipe, avec un budget à surveiller.</source>
+      <trans-unit id="2103668923794754319" datatype="html">
+        <source>Ce site est construit en développement agentique : j&apos;écris les specs, je découpe le travail en tâches, des agents spécialisés codent, et je tranche et relis chaque modification. Comme une petite équipe, avec un budget à surveiller.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">35,36</context>
+          <context context-type="linenumber">34,35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2787890453043266826" datatype="html">
         <source>Agents, rôle et modèle</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">37,38</context>
+          <context context-type="linenumber">36,37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1545595531048356531" datatype="html">
         <source>Agent</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8546041164867999964" datatype="html">
         <source>Rôle</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">37</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">47,48</context>
+          <context context-type="linenumber">45,46</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1864695627253625534" datatype="html">
         <source>Modèle</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1185794821067640965" datatype="html">
         <source>Specs, ADR, arbitrages</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="269170911763981027" datatype="html">
         <source>Direction artistique, DESIGN.md</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4378246834582583517" datatype="html">
         <source>Spring Boot, Liquibase, API</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4660604627301875263" datatype="html">
         <source>Angular, SSR, accessibilité</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7035718011844899766" datatype="html">
         <source>Revue avant fusion</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3597086562806867996" datatype="html">
         <source>E2E, axe, Lighthouse</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9076210318341588894" datatype="html">
         <source>Premiers jets de textes</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2381692270664625087" datatype="html">
         <source>Docker, CI, déploiement</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4360389032369975196" datatype="html">
         <source>Faits tirés de mes documents</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4590292822960180417" datatype="html">
         <source>Chaque rôle prend le modèle le moins coûteux qui tient la tâche : Opus pour le tech lead (specs, arbitrages), Sonnet pour la plupart des autres, Haiku pour le DevOps et la recherche de contenu.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">51,52</context>
+          <context context-type="linenumber">50,51</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7708705424734102180" datatype="html">
-        <source>Des skills guident les agents. Pour le design, Taste (contre le look « fait par une IA ») et Emil (les détails de finition et de mouvement).</source>
+      <trans-unit id="1165816636646647163" datatype="html">
+        <source>Des skills guident les agents. Pour le design, Taste (contre le look générique) et Emil (les détails de finition et de mouvement).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">52,53</context>
+          <context context-type="linenumber">51,52</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8315353825029931379" datatype="html">
         <source>Le cycle d&apos;une feature : spec, design si besoin, back et front en parallèle, revue de code, QA, déploiement.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">53,54</context>
+          <context context-type="linenumber">52,53</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9154805837840280159" datatype="html">
         <source>À chaque point de contrôle, une revue de code et une passe QA (E2E, accessibilité, performance). Leurs rapports sont dans <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>docs/reviews/<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>, défauts compris.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">54,55</context>
+          <context context-type="linenumber">53,54</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8784930103397759105" datatype="html">
         <source>Règle commune : la plus petite modification qui résout vraiment le problème. Pas d&apos;abstraction « au cas où ».</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">55,56</context>
+          <context context-type="linenumber">54,55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4632622525146467198" datatype="html">
         <source>Oui, il y a un agent rédacteur. Non, il n&apos;a pas écrit cette phrase sans que je la relise.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">56,57</context>
+          <context context-type="linenumber">55,56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3660481099394145449" datatype="html">
         <source>Qui a écrit quoi</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">60,61</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1576364284568072886" datatype="html">
-        <source>Chaque projet porte un tag. « Écrit à la main » : les projets universitaires. « Commencé à la main, puis IA » : Oltre. « IA comme outil, conçu et revu par moi » : Zotracker et ce site.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">62,63</context>
+          <context context-type="linenumber">59,60</context>
         </context-group>
       </trans-unit>
       <trans-unit id="196300602146834756" datatype="html">
         <source>Ce que j&apos;ai décidé moi-même : le concept (le site suit mon Grand Trail d&apos;Auvergne), tous les contenus et leur validation, les arbitrages d&apos;architecture et de budget. Aucun texte ne part en ligne sans mon accord.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">63,64</context>
+          <context context-type="linenumber">60,61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5453388476461068559" datatype="html">
         <source>Ce que les agents ont fait : écrire le code, les tests et les premiers jets de textes, sur mes specs. Je relis, je corrige, je refuse parfois.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">64,65</context>
+          <context context-type="linenumber">61,62</context>
         </context-group>
       </trans-unit>
       <trans-unit id="580782926780631414" datatype="html">
         <source>Les clips des projets</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">65,66</context>
+          <context context-type="linenumber">62,63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5477522177459360265" datatype="html">
         <source>Les courtes vidéos de démonstration sont générées par script : Docker lance le projet, Playwright le pilote avec un faux curseur, ffmpeg encode le MP4. Données factices uniquement : aucune donnée Garmin ni aucun compte réels ne passent devant la caméra. Chaque clip pèse moins de 2,5 Mo, sans métadonnées, et ne se charge que lorsqu&apos;il entre à l&apos;écran.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">66,67</context>
+          <context context-type="linenumber">63,64</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4652608521773804114" datatype="html">
         <source>Ce que la CI vérifie</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">70,71</context>
+          <context context-type="linenumber">67,68</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4529626337259579355" datatype="html">
         <source>À chaque push, GitHub Actions lance quatre jobs : le back (build et tests, <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>./mvnw verify<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>), le front (lint, tests, build), les tests E2E Playwright sur la pile complète, et Lighthouse.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">71,72</context>
+          <context context-type="linenumber">68,69</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5162643059681106083" datatype="html">
         <source>Les E2E incluent axe-core : zéro violation d&apos;accessibilité, en clair et en sombre, en FR et en EN.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">72,73</context>
+          <context context-type="linenumber">69,70</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9214200765325450216" datatype="html">
         <source>Les seuils Lighthouse mobile font échouer le build : 90 en performance, 95 en accessibilité, bonnes pratiques et SEO. Une PR rouge ne se fusionne pas.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">73,74</context>
+          <context context-type="linenumber">70,71</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2029578346137460090" datatype="html">
         <source>190 tests au 21 octobre 2026 : 80 côté back, 81 côté front, 29 E2E.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">74,75</context>
+          <context context-type="linenumber">71,72</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8862891218797040189" datatype="html">
         <source>Une fusion sur <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> déclenche le déploiement : GitHub Actions se connecte en SSH au serveur, récupère <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> et reconstruit les conteneurs. Docker Compose attend que chaque service soit sain avant de rendre la main. Pour revenir en arrière, une commande suffit.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">75,76</context>
+          <context context-type="linenumber">72,73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2599008181736713108" datatype="html">
         <source>La base est sauvegardée chaque nuit sur le serveur (7 jours gardés), et la restauration se teste sur une base jetable. Pas encore de copie hors du serveur : c&apos;est la prochaine étape.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">76,77</context>
+          <context context-type="linenumber">73,74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5942671110811724425" datatype="html">
         <source>Tout est dans le dépôt</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">80,81</context>
+          <context context-type="linenumber">77,78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4096810155458901411" datatype="html">
         <source>Le code source</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">82,83</context>
+          <context context-type="linenumber">79,80</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4987758247039244483" datatype="html">
         <source>Les plans et listes de tâches (tasks/)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">83,84</context>
+          <context context-type="linenumber">80,81</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7830855131540145941" datatype="html">
         <source>Les décisions d&apos;architecture (docs/adr/)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">84,85</context>
+          <context context-type="linenumber">81,82</context>
         </context-group>
       </trans-unit>
       <trans-unit id="218251113383272180" datatype="html">
@@ -984,11 +977,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">46,47</context>
+          <context context-type="linenumber">44,45</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">49,50</context>
+          <context context-type="linenumber">47,48</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/aid/aid.ts</context>
@@ -1223,11 +1216,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">41,42</context>
+          <context context-type="linenumber">39,40</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/segment-card/segment-card.ts</context>
-          <context context-type="linenumber">25,27</context>
+          <context context-type="linenumber">23,25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4150423570912578002" datatype="html">
@@ -1269,25 +1262,25 @@
         <source>P3 · km 58,2</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">16,17</context>
+          <context context-type="linenumber">15,16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1053292106523444216" datatype="html">
         <source>Nés de la course</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">17,18</context>
+          <context context-type="linenumber">16,17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="332779816682471989" datatype="html">
         <source>Lire l&apos;étude de cas<x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;sr&quot;&gt;"/> <x id="INTERPOLATION" equiv-text="{{ p.title }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">38,39</context>
+          <context context-type="linenumber">36,37</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/segment-card/segment-card.ts</context>
-          <context context-type="linenumber">22,24</context>
+          <context context-type="linenumber">20,22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7571053778988209212" datatype="html">
@@ -1333,7 +1326,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">150,151</context>
+          <context context-type="linenumber">145,146</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3277084266824894235" datatype="html">
@@ -1445,168 +1438,168 @@
         <source>Segment : les fondations</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7333686123790078124" datatype="html">
         <source>Segment : Worldline</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7979037827108164469" datatype="html">
         <source>Segment : projets nés de la course</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="262991673465632544" datatype="html">
         <source>← Retour au parcours (<x id="INTERPOLATION" equiv-text="{{ s.label }}"/>)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">27,28</context>
+          <context context-type="linenumber">26,27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7398124504908803632" datatype="html">
         <source>← Retour au parcours</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">29,30</context>
+          <context context-type="linenumber">28,29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3080140678516269306" datatype="html">
         <source>Fiche du projet</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2771905879066664456" datatype="html">
         <source>Durée</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">44,45</context>
+          <context context-type="linenumber">42,43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9005457553529671208" datatype="html">
         <source>Commits</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">50,51</context>
+          <context context-type="linenumber">48,49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2180522701456218992" datatype="html">
         <source>Langages</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">54,55</context>
+          <context context-type="linenumber">52,53</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2456703340126200606" datatype="html">
         <source>Dernier push</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">58,59</context>
+          <context context-type="linenumber">56,57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4212985239102280850" datatype="html">
         <source>Stack</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">62,63</context>
+          <context context-type="linenumber">60,61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4921439356441031513" datatype="html">
         <source>Commits et langages : synchro GitHub, 6 h.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">67,68</context>
+          <context context-type="linenumber">65,66</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8649839533549473236" datatype="html">
         <source>Le problème</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">83,84</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3243216665420722660" datatype="html">
-        <source>L&apos;architecture</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">91,92</context>
+          <context context-type="linenumber">81,82</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6310691346279544735" datatype="html">
         <source>Les décisions</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">99,100</context>
+          <context context-type="linenumber">88,89</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7475501712995091876" datatype="html">
         <source>Compromis :</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">105</context>
+          <context context-type="linenumber">94</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3243216665420722660" datatype="html">
+        <source>L&apos;architecture</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
+          <context context-type="linenumber">105,106</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5524712451340370698" datatype="html">
         <source>km 60</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">115,116</context>
+          <context context-type="linenumber">113,114</context>
         </context-group>
       </trans-unit>
       <trans-unit id="181330328678975882" datatype="html">
         <source>Le mur du 60e km</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">117,118</context>
+          <context context-type="linenumber">115,116</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2862028272647915969" datatype="html">
         <source>Ce que j&apos;en retire</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">125,126</context>
+          <context context-type="linenumber">123,124</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1673114612147962830" datatype="html">
         <source>Liens</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">137,138</context>
+          <context context-type="linenumber">132,133</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5442571032125501579" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{ r.name }}"/> sur GitHub</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">141,142</context>
+          <context context-type="linenumber">136,137</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6358655669371888728" datatype="html">
         <source>Voir la démo</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">144,145</context>
+          <context context-type="linenumber">139,140</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5293774587552771604" datatype="html">
         <source>Revoir le clip</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">147,148</context>
+          <context context-type="linenumber">142,143</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5280079547787277567" datatype="html">
         <source><x id="PH" equiv-text="p.stage"/> · km <x id="PH_1" equiv-text="formatKm(CHECKPOINTS[id])"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">163</context>
+          <context context-type="linenumber">158</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8361028789661352179" datatype="html">
@@ -2161,27 +2154,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/diagrams/zotracker.diagram.ts</context>
           <context context-type="linenumber">89</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1678036888013142922" datatype="html">
-        <source>Écrit à la main</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/ai-tag/ai-tag.ts</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5586343165405675754" datatype="html">
-        <source>Commencé à la main, puis IA</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/ai-tag/ai-tag.ts</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2824935141573357201" datatype="html">
-        <source>IA comme outil, conçu et revu par moi</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/ai-tag/ai-tag.ts</context>
-          <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5522868938537082044" datatype="html">

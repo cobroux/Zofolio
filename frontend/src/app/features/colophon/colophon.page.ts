@@ -1,12 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { AiTag } from '../../shared/ai-tag/ai-tag';
 
 export const EDITION_UPDATED = '2026-10-21';
 
 @Component({
   selector: 'app-colophon',
-  imports: [AiTag, DatePipe],
+  imports: [DatePipe],
   template: `
     <section class="start" aria-labelledby="c-h1">
       <div>
@@ -32,7 +31,7 @@ export const EDITION_UPDATED = '2026-10-21';
 
     <section class="inv" aria-labelledby="c-meth">
       <h2 id="c-meth" i18n>Une équipe d'agents, un chef d'équipe</h2>
-      <p i18n>Le code de ce site a été écrit en grande partie par des agents IA. Je les pilote, je tranche, je relis. Comme une petite équipe, avec un budget à surveiller.</p>
+      <p i18n>Ce site est construit en développement agentique : j'écris les specs, je découpe le travail en tâches, des agents spécialisés codent, et je tranche et relis chaque modification. Comme une petite équipe, avec un budget à surveiller.</p>
       <table>
         <caption i18n>Agents, rôle et modèle</caption>
         <thead><tr><th scope="col" i18n>Agent</th><th scope="col" i18n>Rôle</th><th scope="col" i18n>Modèle</th></tr></thead>
@@ -49,17 +48,15 @@ export const EDITION_UPDATED = '2026-10-21';
         </tbody>
       </table>
       <p i18n>Chaque rôle prend le modèle le moins coûteux qui tient la tâche : Opus pour le tech lead (specs, arbitrages), Sonnet pour la plupart des autres, Haiku pour le DevOps et la recherche de contenu.</p>
-      <p i18n>Des skills guident les agents. Pour le design, Taste (contre le look « fait par une IA ») et Emil (les détails de finition et de mouvement).</p>
+      <p i18n>Des skills guident les agents. Pour le design, Taste (contre le look générique) et Emil (les détails de finition et de mouvement).</p>
       <p i18n>Le cycle d'une feature : spec, design si besoin, back et front en parallèle, revue de code, QA, déploiement.</p>
       <p i18n>À chaque point de contrôle, une revue de code et une passe QA (E2E, accessibilité, performance). Leurs rapports sont dans <code>docs/reviews/</code>, défauts compris.</p>
       <p i18n>Règle commune : la plus petite modification qui résout vraiment le problème. Pas d'abstraction « au cas où ».</p>
       <p i18n>Oui, il y a un agent rédacteur. Non, il n'a pas écrit cette phrase sans que je la relise.</p>
     </section>
 
-    <section aria-labelledby="c-ai">
-      <h2 id="c-ai" i18n>Qui a écrit quoi</h2>
-      <p class="tags"><app-ai-tag tag="HAND" /> <app-ai-tag tag="HAND_THEN_AI" /> <app-ai-tag tag="AI" /></p>
-      <p i18n>Chaque projet porte un tag. « Écrit à la main » : les projets universitaires. « Commencé à la main, puis IA » : Oltre. « IA comme outil, conçu et revu par moi » : Zotracker et ce site.</p>
+    <section aria-labelledby="c-role">
+      <h2 id="c-role" i18n>Qui a écrit quoi</h2>
       <p i18n>Ce que j'ai décidé moi-même : le concept (le site suit mon Grand Trail d'Auvergne), tous les contenus et leur validation, les arbitrages d'architecture et de budget. Aucun texte ne part en ligne sans mon accord.</p>
       <p i18n>Ce que les agents ont fait : écrire le code, les tests et les premiers jets de textes, sur mes specs. Je relis, je corrige, je refuse parfois.</p>
       <h3 i18n>Les clips des projets</h3>
@@ -104,7 +101,6 @@ export const EDITION_UPDATED = '2026-10-21';
     table { width: 100%; border-collapse: collapse; }
     caption { text-align: start; font-size: var(--t-small); padding-block-end: var(--s-2); }
     th, td { text-align: start; padding: var(--s-2) var(--s-4) var(--s-2) 0; vertical-align: bottom; }
-    .tags { display: flex; flex-wrap: wrap; gap: var(--s-3); }
     .links a { display: block; font: 800 clamp(1.75rem, 4vw, 3rem) / 1.1 var(--font-display); min-height: var(--target); color: inherit; text-decoration: underline; }
   `,
 })
