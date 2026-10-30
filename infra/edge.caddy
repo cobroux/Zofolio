@@ -1,6 +1,10 @@
 # Routage Zofolio sur la VM (source de vérité), copié dans /opt/edge/caddy/sites/zofolio.caddy
 # (proxy frontal partagé, dépôt cobroux/edge). Tout le domaine part vers le Caddy interne
 # (Caddyfile.prod : en-têtes, limites, /uploads), joignable sur le réseau « edge » en zofolio-web.
-88-96-45-97.sslip.io {
+zoworks.fr, 88-96-45-97.sslip.io {
 	reverse_proxy zofolio-web:80
+}
+
+www.zoworks.fr {
+	redir https://zoworks.fr{uri} permanent
 }

@@ -35,7 +35,9 @@
             "security": {
               "allowedHosts": [
                 "localhost",
-                "88-96-45-97.sslip.io"
+                "88-96-45-97.sslip.io",
+                "zoworks.fr",
+                "www.zoworks.fr"
               ]
             },
             "ssr": {

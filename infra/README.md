@@ -1,6 +1,6 @@
 # Infra Zofolio
 
-Prod : VM Oracle Always Free (Ubuntu 24.04 arm64), `https://88-96-45-97.sslip.io` (HTTPS par le proxy frontal `/opt/edge`, Let's Encrypt automatique). Pas de domaine ni de Cloudflare pour l'instant.
+Prod : VM Oracle Always Free (Ubuntu 24.04 arm64), `https://zoworks.fr` (DNS chez OVH, `www` redirigé ; l'ancienne adresse `https://88-96-45-97.sslip.io` répond encore). HTTPS par le proxy frontal `/opt/edge`, Let's Encrypt automatique.
 
 ## Provisionner la VM
 `brew install ansible`, puis `cd infra/ansible && ansible-playbook playbook.yml` (idempotent). Il pose : mises à jour de sécurité automatiques, SSH par clé seule, root interdit, fail2ban, ufw 22/80/443 (remplace les règles iptables REJECT d'Oracle), Docker + compose, `/opt/zofolio`, swap 2 Go. La Security List Oracle doit ouvrir 22, 80, 443.
