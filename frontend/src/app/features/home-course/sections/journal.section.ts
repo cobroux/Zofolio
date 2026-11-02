@@ -3,6 +3,7 @@ import { Component, computed, input } from '@angular/core';
 import { ContributionsGraph } from '../../../shared/contributions/contributions';
 import { Contributions, Race, SportYear } from '../../../core/api/api.models';
 import { Reveal } from '../../../shared/reveal/reveal';
+import { CountUp } from '../../../shared/count-up/count-up';
 
 /** 79.4 → « 79,4 km ». */
 export function formatDistance(km: number | null): string {
@@ -23,7 +24,7 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
 /** Pas de classement : uniquement des chiffres. Les lignes `INDEX`/`CLUB` ne sont pas des courses. */
 @Component({
   selector: 'app-journal-section',
-  imports: [ContributionsGraph, Reveal, DatePipe, NgTemplateOutlet],
+  imports: [ContributionsGraph, Reveal, CountUp, DatePipe, NgTemplateOutlet],
   template: `
     <section id="journal" aria-labelledby="journal-title">
       <div class="side">
@@ -74,7 +75,7 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
         <p i18n>Course, vélo et natation, année par année, d'après ma montre.</p>
         <p class="small" i18n>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km et dénivelé : course et vélo (les km en natation, peu fiables, sont exclus). Année en cours incluse.</p>
         <div class="scroll" role="region" tabindex="0" aria-labelledby="stats-title">
-          <table>
+          <table [appCountUp]="number">
             <caption class="sr" i18n>Totaux annuels d'endurance</caption>
             <thead>
               <tr>
@@ -86,7 +87,7 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
               </tr>
             </thead>
             <tbody>
-              @for (y of sportYears(); track y.year) {
+              @for (y of years(); track y.year) {
                 <tr>
                   <th scope="row"><span class="yr">{{ y.year }}</span>@if (y.year === thisYear) { <span class="small" i18n>en cours</span> }</th>
                   <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.distanceKm, bar: true, year: y.year }" />
@@ -103,10 +104,13 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
           @if (v === null) {
               <span aria-hidden="true">—</span><span class="sr" i18n>non renseigné</span>
             } @else {
-              {{ number(v) }}
               @if (bar) {
+                <!-- Chiffre animé par CountUp, masqué aux lecteurs d'écran qui lisent la valeur finale. -->
+                <span aria-hidden="true" [attr.data-count]="v">{{ number(v) }}</span><span class="sr">{{ number(v) }}</span>
                 <!-- Décoratif : les km sont déjà en texte. Longueur = km / max des années. -->
                 <span class="bar" aria-hidden="true" [class.now]="year === thisYear" [style.--k]="v / maxKm()"></span>
+              } @else {
+                {{ number(v) }}
               }
             }
           </td>
@@ -273,7 +277,7 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
     .stats th.num, .stats td.num { text-align: right; white-space: nowrap; }
     /* Barre par année, proportionnelle aux km : la progression se lit d'un coup d'œil (décoratif, aria-hidden). */
     .stats th.km, .stats td.km { text-align: left; width: 40%; min-width: 5.5rem; }
-    .bar { display: block; height: 6px; margin-top: var(--s-2); background: var(--ink-2); transform: scaleX(var(--k)); transform-origin: left; }
+    .bar { display: block; height: 6px; margin-top: var(--s-2); background: var(--ink-2); transform: scaleX(calc(var(--k) * var(--p, 1))); transform-origin: left; }
     .bar.now { background: var(--accent); }
     /* le body a overflow-wrap: anywhere : sans cela la colonne Année s'écrase chiffre par chiffre à 390 */
     .stats th { overflow-wrap: normal; }
@@ -323,10 +327,12 @@ export class JournalSection {
   readonly races = input<Race[] | null>(null);
   /** `null` = pas encore de synchro GitHub : le graphe n'est pas rendu. */
   readonly contributions = input<Contributions | null>(null);
-  /** Année décroissante ; `[]` : le bloc n'est pas rendu. */
+  /** Ordre libre (affiché par `years`) ; `[]` : le bloc n'est pas rendu. */
   readonly sportYears = input<SportYear[]>([]);
   protected readonly thisYear = new Date().getFullYear();
   protected readonly number = (n: number) => ELEVATION.format(n);
+  /** Ordre chronologique : la progression se lit de haut en bas, et CountUp remplit les barres dans cet ordre. */
+  protected readonly years = computed(() => [...this.sportYears()].sort((a, b) => a.year - b.year));
   /** Plus grand total annuel : échelle commune des barres. */
   protected readonly maxKm = computed(() => Math.max(1, ...this.sportYears().map((y) => y.distanceKm ?? 0)));
   /** Les dernières courses restent visibles ; le reste et les années en chiffres sont repliés (conseil du 2026-10-21). */

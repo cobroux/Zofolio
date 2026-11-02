@@ -76,6 +76,21 @@ describe('JournalSection', () => {
     expect(f.nativeElement.querySelector('.stats')).toBeNull();
   });
 
+  it('stats annuelles : années dans l’ordre chronologique, chiffre animable par CountUp', () => {
+    const f = TestBed.createComponent(JournalSection);
+    f.componentRef.setInput('races', home.races);
+    f.componentRef.setInput('sportYears', [
+      { year: 2026, distanceKm: 4748, elevationGainM: 1, hours: 1, activities: 1 },
+      { year: 2023, distanceKm: 347, elevationGainM: 1, hours: 1, activities: 1 },
+    ]);
+    f.detectChanges();
+    const rows = [...f.nativeElement.querySelectorAll('.stats tbody th .yr')].map((e: Element) => e.textContent);
+    expect(rows).toEqual(['2023', '2026']);
+    const counts = [...f.nativeElement.querySelectorAll('.stats [data-count]')] as HTMLElement[];
+    expect(counts.map((e) => e.dataset['count'])).toEqual(['347', '4748']);
+    expect(counts[0].getAttribute('aria-hidden')).toBe('true');
+  });
+
   it('affiche une course sans date sans planter', () => {
     const el = render([{ ...home.races[0], date: null }]);
     expect(el.querySelector('tbody td')?.textContent).toContain('Date non renseignée');
