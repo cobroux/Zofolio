@@ -131,7 +131,7 @@ Chaque section a une composition différente de ses voisines, et aucune n'est un
 - **Ordinateur.** Terrain nuit. La **ligne d'arrivée** : « 13 h 35 min 53 s » en chiffres monumentaux, avec les quatre pointages en tableau compact dessous, et « Prochain objectif : 100 km » en petit. Puis le contact, directement visible : email (`mailto`), bouton CV et LinkedIn en tête, puis le formulaire existant, restylé dans le monde (champs pleins, sans coupon). Phidippides reste sous le formulaire.
 - **Pied de page, « le dos du dossard », le colophon vivant.** Le dossard retourné porte :
   - le **commit en ligne** (hash court lié au commit sur GitHub) et la **date du dernier déploiement**, injectés au build par la CI ;
-  - le **nombre de tests** de la dernière CI, calculé au build ;
+  - le **statut de la dernière CI sur `main`** (verte ou rouge, avec le lien vers l'exécution), récupéré par le client GitHub existant ;
   - le **score Lighthouse mobile** de la dernière exécution CI sur `main`, s'il est disponible via la synchro GitHub, sinon la ligne est omise ;
   - la stack et le lien vers le dépôt ;
   - email, GitHub, LinkedIn, CV.
