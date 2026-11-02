@@ -30,6 +30,24 @@ function lerp(x: number, pts: readonly (readonly [number, number])[]): number {
   return x1 === x0 ? y1 : y0 + ((x - x0) / (x1 - x0)) * (y1 - y0);
 }
 
+/** Altitude en m au km donné (bornée aux extrémités). */
+export const altitudeAt = (km: number) => lerp(km, PROFILE);
+
+/** D+ cumulé en m jusqu'au km donné : somme des montées, dernier segment au prorata. */
+export function gainAt(km: number): number {
+  let sum = 0;
+  for (let i = 1; i < PROFILE.length && PROFILE[i - 1][0] < km; i++) {
+    const [[k0, e0], [k1, e1]] = [PROFILE[i - 1], PROFILE[i]];
+    const up = Math.max(0, e1 - e0);
+    sum += km >= k1 ? up : (up * (km - k0)) / (k1 - k0);
+  }
+  return sum;
+}
+
+/** Dernier pointage dont le km est ≤ `km`. */
+export const lastCheckpoint = (km: number): CheckpointId =>
+  CHECKPOINT_IDS.filter((id) => CHECKPOINTS[id] <= km).at(-1) ?? 'depart';
+
 /** Abscisse du tracé vertical au km donné, de 0 (altitude min) à 1 (max) : même échelle que `profilePath(true)`. */
 export const altitudeRatioAt = (km: number) => (lerp(km, PROFILE) - MIN) / (MAX - MIN);
 
