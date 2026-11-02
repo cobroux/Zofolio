@@ -1,0 +1,51 @@
+<style>
+  .pg{position:relative;background:#0e1626;color:#edeff4;font-family:system-ui,sans-serif;height:560px;overflow:hidden;border-radius:4px}
+  .topo{position:absolute;inset:0;opacity:.13;background:repeating-radial-gradient(ellipse at 75% 35%,transparent 0 22px,#a8b0c0 22px 23px);animation:drift 18s ease-in-out infinite alternate}
+  @keyframes drift{to{transform:translate(-18px,10px)}}
+  .tint{position:absolute;inset:0;background:#162238}
+  .pin{position:absolute;left:36px;top:40px;width:300px}
+  .pin .num{font:800 120px/0.8 system-ui;color:#ff8a2b;letter-spacing:-.05em}
+  .pin h3{font:800 40px/0.95 system-ui;margin:12px 0 6px;letter-spacing:-.03em}
+  .pin .s{font-size:13px;color:#a8b0c0}
+  .body{position:absolute;left:36px;top:300px;width:330px;font-size:15px;line-height:1.5}
+  .body b{color:#ff8a2b}
+  .ph{position:absolute;right:40px;top:36px;width:44%;height:330px;background:linear-gradient(#1f6fd1,#2a7d4f)}
+  .ph2{position:absolute;right:300px;top:260px;width:22%;height:150px;background:#7a8aa3;outline:8px solid #162238}
+  .cap{position:absolute;right:40px;top:372px;font-size:11px;color:#a8b0c0}
+  .pass{position:absolute;right:40px;top:410px;background:#edeff4;color:#0e1626;padding:10px 14px;font:700 14px system-ui;animation:in 4s ease-out infinite}
+  .pass small{display:block;font:500 11px system-ui;color:#4a5568}
+  @keyframes in{0%,8%{opacity:0;transform:translateY(10px)}16%,85%{opacity:1;transform:none}100%{opacity:0}}
+  .band{position:absolute;left:0;right:0;bottom:0;height:58px;background:#0b1220;border-top:2px solid #ff8a2b;display:flex;align-items:center;gap:18px;padding:0 18px;font-size:13px}
+  .band .km{font:800 22px system-ui;color:#ff8a2b;min-width:92px}
+  .band svg{flex:1;height:38px}
+  .band .t{font:700 15px system-ui;font-variant-numeric:tabular-nums}
+  .pop{position:absolute;left:47%;bottom:66px;background:#edeff4;color:#0e1626;padding:8px 10px;font-size:12px;width:190px}
+  .pop:after{content:"";position:absolute;left:20px;bottom:-6px;border:6px solid transparent;border-top-color:#edeff4;border-bottom:0}
+  .note{font-size:13px;color:#a8b0c0;margin-top:10px}
+</style>
+
+<h2>Maquette : l'étape P2 Worldline dans le mélange B + A + C</h2>
+<p class="subtitle">Image fixe avec deux mouvements suggérés (fond qui dérive, pointage qui apparaît). Les vraies photos et textes remplaceront les aplats.</p>
+
+<div class="pg">
+  <div class="tint"></div><div class="topo"></div>
+  <div class="pin">
+    <div class="num">P2</div>
+    <h3>La plus longue étape</h3>
+    <div class="s">km 44 · Worldline · 2023 → 2025</div>
+  </div>
+  <div class="body">
+    Pendant 2,5 ans, j'ai fait évoluer <b>TOM</b>, l'application qui transmet aux marchés les ordres de bourse de Boursorama. Migration vers <b>RabbitMQ</b>, choix argumenté d'<b>ActiveMQ</b> pour les alertes…
+  </div>
+  <div class="ph"></div><div class="ph2"></div>
+  <div class="cap">Seclin, l'équipe TOM · photo</div>
+  <div class="pass">Pointage P2 · 04:12:08<small>+2,5 ans d'expérience · 6 projets livrés</small></div>
+  <div class="pop"><b>P3 · Projets perso</b><br>Oltre, Zotracker · km 58,2 →</div>
+  <div class="band">
+    <span class="km">km 44,0</span>
+    <svg viewBox="0 0 400 38" preserveAspectRatio="none"><path d="M0 34 L40 22 L70 28 L110 8 L150 26 L190 14 L230 30 L280 12 L330 24 L400 18" fill="none" stroke="#3a4a66" stroke-width="2"/><path d="M0 34 L40 22 L70 28 L110 8 L150 26 L190 14" fill="none" stroke="#ff8a2b" stroke-width="3"/><circle cx="190" cy="14" r="5" fill="#ff8a2b"/><circle cx="110" cy="8" r="3" fill="#edeff4"/><circle cx="280" cy="12" r="3" fill="#edeff4"/><circle cx="400" cy="18" r="3" fill="#edeff4"/></svg>
+    <span>prochain : <b>P3</b> km 58,2</span>
+    <span class="t">04:12:08</span>
+  </div>
+</div>
+<p class="note">Lecture : à gauche le chapitre reste épinglé pendant qu'on lit l'étape ; à droite photos superposées ; le pointage apparaît en passant P2 ; le bandeau en bas montre le parcours fait (orange), le prochain pointage et le chrono ; survol d'un point = aperçu (ici P3).</p>

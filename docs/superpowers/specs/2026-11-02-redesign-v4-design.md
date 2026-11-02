@@ -58,6 +58,29 @@ Le `docs/DESIGN.md` actuel reste la référence de la prod jusqu'à la fusion. S
 - **Photos** : celles d'Enzo, en grand, à angles droits, avec un traitement unique. Elles sont posées en **plaques superposées** : une grande, une petite qui chevauche avec une marge couleur du terrain, et une légende en Source Sans à 14 px. Elles se révèlent au scroll par `clip-path: inset()`, une seule fois.
 - **Chiffres** : tabulaires, très grands pour les pointages et le Journal, toujours en texte réel (SSR). Pas de chiffre décoratif inventé.
 
+## 5 bis. Inventaire des médias (réels, à placer)
+
+**Vidéos de projets** (déjà dans `frontend/public/media/`, en MP4, WebM et poster WebP) : `oltre-1`, `zotracker-1`, `gfaim-1`, plus les captures `gfaim-shot-1..3`. Elles alimentent l'aperçu de l'index P3 (boucle muette quand la ligne est active, poster sinon) et la couverture de chaque étude de cas. Elles se mettent en pause hors écran, et en mouvement réduit seul le poster s'affiche.
+
+**Schémas d'architecture** (`features/projects/diagrams/` : trading-app, oltre, zotracker, gfaim) et **frise Worldline** (`worldline-timeline.ts`). Ce sont des plaques `data-ui` dans P2 et dans les études de cas, redessinées dans le nouveau monde (terrains, encre, accent).
+
+**Photos fournies par Enzo le 2026-11-02** :
+
+| Photo | Place |
+| --- | --- |
+| Badge « Certifiée meilleure promo ILI 2024-2025 » | P1, petit tampon (la touche d'humour de l'étape). Publication validée par Enzo. |
+| Promo ILI en sweats bleus | P1, grande plaque (cadrage à confirmer selon l'accord des camarades) |
+| Remise de diplôme, en toge (360×480 px) | P1, petite plaque qui chevauche la photo de promo ; à remplacer par l'original si disponible |
+| Cérémonie du Master (320×240 px) | Écartée : trop petite, et le nom d'une enseignante est lisible |
+| Arrivée du Trail Côte d'Opale, médaille | Journal |
+| Sortie de nuit du club Les Baudets | Journal ou ravitaillement, grande plaque |
+| En course sous la passerelle | Journal ou appui du Départ |
+| Logo du club Les Baudets Dhinges | Journal, en petit, à côté du nom du club ; son rose ne devient jamais un accent |
+
+Déjà en ligne : portrait, finisher Côte d'Opale, en course (`frontend/public/img/`). Manquent encore : une photo du GTA 2025 avec le dossard 1592, et une photo d'Enzo au travail.
+
+**Maquettes de cadrage** : [`2026-11-02-redesign-v4-maquettes/`](2026-11-02-redesign-v4-maquettes/) (directions, étape P2 sur ordinateur et sur mobile). Ce sont des repères de composition, pas des maquettes finales.
+
 ## 6. Composition, section par section
 
 Chaque section a une composition différente de ses voisines, et aucune n'est une grille de cartes. Les marges extérieures sont égales, et l'espace entre sections va de 160 à 240 px sur ordinateur.
