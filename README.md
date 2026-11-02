@@ -20,10 +20,14 @@ cd frontend && npx playwright test     # E2E
 
 ## CI et protection de branche
 
-La CI est définie dans `.github/workflows/ci.yml`. Elle se lance sur chaque `pull_request` et sur chaque `push` sur `main`, avec deux jobs :
+La CI est définie dans `.github/workflows/ci.yml`. Elle se lance sur chaque `pull_request` et sur chaque `push` sur `main`, avec quatre jobs :
 
 - `backend` : `./mvnw -B verify` (Java 21 Temurin, Testcontainers sur `ubuntu-latest`) ;
-- `frontend` : `npm ci`, `npm run lint`, `npm test`, `npm run build` (Node 22).
+- `frontend` : `npm ci`, `npm run lint`, `npm test`, `npm run build` (Node 22) ;
+- `e2e` : Playwright (axe-core compris) sur la pile `docker compose` complète ;
+- `lighthouse` : seuils mobiles sur le build de production, à titre d'alerte (non exigé pour fusionner).
+
+La protection de `main` exige `backend`, `frontend` et `e2e`.
 
 Les runs obsolètes d'une même branche sont annulés. Les actions sont épinglées sur leur version majeure et le token n'a que `contents: read`.
 

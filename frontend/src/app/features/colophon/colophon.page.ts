@@ -67,7 +67,7 @@ export const EDITION_UPDATED = '2026-10-21';
       <h2 id="c-ci" i18n>Ce que la CI vérifie</h2>
       <p i18n>À chaque push, GitHub Actions lance quatre jobs : le back (build et tests, <code>./mvnw verify</code>), le front (lint, tests, build), les tests E2E Playwright sur la pile complète, et Lighthouse.</p>
       <p i18n>Les E2E incluent axe-core : zéro violation d'accessibilité, en clair et en sombre, en FR et en EN.</p>
-      <p i18n>Les seuils Lighthouse mobile font échouer le build : 90 en performance, 95 en accessibilité, bonnes pratiques et SEO. Une PR rouge ne se fusionne pas.</p>
+      <p i18n>Les seuils Lighthouse mobile font passer le job au rouge : 90 en performance, 95 en accessibilité, bonnes pratiques et SEO. Ils sont mesurés sur le build de production lancé en CI. Pour fusionner, le back, le front et les E2E doivent être verts ; Lighthouse sert d'alerte.</p>
       <p i18n>190 tests au 21 octobre 2026 : 80 côté back, 81 côté front, 29 E2E.</p>
       <p i18n>Une fusion sur <code>main</code> déclenche le déploiement : GitHub Actions se connecte en SSH au serveur, récupère <code>main</code> et reconstruit les conteneurs. Docker Compose attend que chaque service soit sain avant de rendre la main. Pour revenir en arrière, une commande suffit.</p>
       <p class="aid" i18n>La base est sauvegardée chaque nuit sur le serveur (7 jours gardés), et la restauration se teste sur une base jetable. Pas encore de copie hors du serveur : c'est la prochaine étape.</p>

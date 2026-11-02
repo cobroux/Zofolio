@@ -26,7 +26,7 @@ import { ContactForm } from '../../contact/contact-form';
             <a href="https://github.com/cobroux" rel="noopener">GitHub</a> ·
             <a href="https://www.linkedin.com/in/enzo-leveque1" rel="noopener">LinkedIn</a>
           </p>
-          <p i18n>Recherche basée à Paris. Français, anglais (TOEIC 910).</p>
+          <p i18n>En poste chez Aubay, ouvert aux opportunités à Paris. Français, anglais (TOEIC 910).</p>
         </div>
       </div>
       <div class="card" [appReveal]="2"><app-contact-form /><i></i></div>

@@ -134,8 +134,8 @@
           <context context-type="linenumber">18,20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="256342937819667238" datatype="html">
-        <source>Portfolio d&apos;Enzo Leveque : 2,5 ans sur une application de trading chez Worldline, des projets perso nés de la course, et un Grand Trail d&apos;Auvergne en 13 h 35 min 53 s.</source>
+      <trans-unit id="3823155053795623867" datatype="html">
+        <source>Portfolio d&apos;Enzo Leveque, ingénieur d&apos;études chez Aubay (Java/Spring Boot, Python), après 2,5 ans sur une application de trading chez Worldline. Études de cas, projets perso et code en production.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/core/seo/seo.service.ts</context>
           <context context-type="linenumber">9</context>
@@ -439,8 +439,8 @@
           <context context-type="linenumber">69,70</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9214200765325450216" datatype="html">
-        <source>Les seuils Lighthouse mobile font échouer le build : 90 en performance, 95 en accessibilité, bonnes pratiques et SEO. Une PR rouge ne se fusionne pas.</source>
+      <trans-unit id="4167626673738975488" datatype="html">
+        <source>Les seuils Lighthouse mobile font passer le job au rouge : 90 en performance, 95 en accessibilité, bonnes pratiques et SEO. Ils sont mesurés sur le build de production lancé en CI. Pour fusionner, le back, le front et les E2E doivent être verts ; Lighthouse sert d&apos;alerte.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
           <context context-type="linenumber">70,71</context>
@@ -689,6 +689,10 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
           <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
@@ -926,8 +930,8 @@
           <context context-type="linenumber">24,25</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5002157705255814769" datatype="html">
-        <source>Recherche basée à Paris. Français, anglais (TOEIC 910).</source>
+      <trans-unit id="4570915871252515708" datatype="html">
+        <source>En poste chez Aubay, ouvert aux opportunités à Paris. Français, anglais (TOEIC 910).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
           <context context-type="linenumber">29,30</context>
@@ -1237,8 +1241,8 @@
           <context context-type="linenumber">16,17</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4129791328230256451" datatype="html">
-        <source> Chez Worldline, de 2023 à 2025 : 2,5 ans d&apos;expérience professionnelle. L&apos;application permet à des professionnels de la finance d&apos;acheter et de vendre des titres en bourse. Ici, une erreur ne se voit pas dans un log : elle se voit dans un ordre. </source>
+      <trans-unit id="1830637839692304579" datatype="html">
+        <source> Chez Worldline, de 2023 à 2025 : 2,5 ans, en stage puis en alternance. L&apos;application permet à des professionnels de la finance d&apos;acheter et de vendre des titres en bourse. Ici, une erreur ne se voit pas dans un log : elle se voit dans un ordre. </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
           <context context-type="linenumber">20,21</context>
@@ -1251,8 +1255,8 @@
           <context context-type="linenumber">23,24</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7594132149348202175" datatype="html">
-        <source> Depuis juin 2026 : ingénieur d&apos;études chez Aubay. En mission sur une application d&apos;inventaire en microservices pour les Restos du Cœur, j&apos;interviens sur le back end en Python. J&apos;ai aussi monté l&apos;environnement Docker du projet et j&apos;appuie l&apos;équipe sur GitLab. </source>
+      <trans-unit id="3133540160084083044" datatype="html">
+        <source> Depuis juin 2026 : ingénieur d&apos;études chez Aubay. En mission sur une application d&apos;inventaire en microservices pour les Restos du Cœur, j&apos;interviens sur le back end, en Java/Spring Boot et en Python. J&apos;ai aussi monté l&apos;environnement Docker du projet et j&apos;appuie l&apos;équipe sur GitLab. </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
           <context context-type="linenumber">25,26</context>

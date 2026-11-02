@@ -108,9 +108,9 @@
           <context context-type="linenumber">10,12</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="256342937819667238" datatype="html">
-        <source>Portfolio d&apos;Enzo Leveque : 2,5 ans sur une application de trading chez Worldline, des projets perso nés de la course, et un Grand Trail d&apos;Auvergne en 13 h 35 min 53 s.</source>
-        <target state="translated">Enzo Leveque&apos;s portfolio: 2.5 years on a trading application at Worldline, side projects born from running, and the Grand Trail d&apos;Auvergne finished in 13:35:53.</target>
+      <trans-unit id="3823155053795623867" datatype="html">
+        <source>Portfolio d&apos;Enzo Leveque, ingénieur d&apos;études chez Aubay (Java/Spring Boot, Python), après 2,5 ans sur une application de trading chez Worldline. Études de cas, projets perso et code en production.</source>
+        <target state="translated">Enzo Leveque&apos;s portfolio: software engineer at Aubay (Java/Spring Boot, Python), after 2.5 years on a trading application at Worldline. Case studies, side projects and code in production.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/core/seo/seo.service.ts</context>
           <context context-type="linenumber">9</context>
@@ -595,9 +595,9 @@
           <context context-type="linenumber">24,25</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5002157705255814769" datatype="html">
-        <source>Recherche basée à Paris. Français, anglais (TOEIC 910).</source>
-        <target state="translated">Looking for a role based in Paris. French, English (TOEIC 910).</target>
+      <trans-unit id="4570915871252515708" datatype="html">
+        <source>En poste chez Aubay, ouvert aux opportunités à Paris. Français, anglais (TOEIC 910).</source>
+        <target state="translated">Working at Aubay, open to opportunities in Paris. French, English (TOEIC 910).</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
           <context context-type="linenumber">22,23</context>
@@ -831,9 +831,9 @@
           <context context-type="linenumber">16,17</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4129791328230256451" datatype="html">
-        <source> Chez Worldline, de 2023 à 2025 : 2,5 ans d&apos;expérience professionnelle. L&apos;application permet à des professionnels de la finance d&apos;acheter et de vendre des titres en bourse. Ici, une erreur ne se voit pas dans un log : elle se voit dans un ordre. </source>
-        <target state="translated"> At Worldline, from 2023 to 2025: 2.5 years of professional experience. The application lets finance professionals buy and sell securities on the stock market. Here, a mistake doesn&apos;t show up in a log: it shows up in an order. </target>
+      <trans-unit id="1830637839692304579" datatype="html">
+        <source> Chez Worldline, de 2023 à 2025 : 2,5 ans, en stage puis en alternance. L&apos;application permet à des professionnels de la finance d&apos;acheter et de vendre des titres en bourse. Ici, une erreur ne se voit pas dans un log : elle se voit dans un ordre. </source>
+        <target state="translated"> At Worldline, from 2023 to 2025: 2.5 years, as an intern then a work-study engineer. The application lets finance professionals buy and sell securities on the stock market. Here, a mistake doesn&apos;t show up in a log: it shows up in an order. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
           <context context-type="linenumber">20,21</context>
@@ -2263,9 +2263,9 @@
           <context context-type="linenumber">84,85</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9214200765325450216" datatype="html">
-        <source>Les seuils Lighthouse mobile font échouer le build : 90 en performance, 95 en accessibilité, bonnes pratiques et SEO. Une PR rouge ne se fusionne pas.</source>
-        <target state="initial">The mobile Lighthouse thresholds fail the build: 90 for performance, 95 for accessibility, best practices and SEO. A red PR does not merge.</target>
+      <trans-unit id="4167626673738975488" datatype="html">
+        <source>Les seuils Lighthouse mobile font passer le job au rouge : 90 en performance, 95 en accessibilité, bonnes pratiques et SEO. Ils sont mesurés sur le build de production lancé en CI. Pour fusionner, le back, le front et les E2E doivent être verts ; Lighthouse sert d&apos;alerte.</source>
+        <target state="translated">The mobile Lighthouse thresholds turn the job red: 90 for performance, 95 for accessibility, best practices and SEO. They are measured on the production build started in CI. To merge, the back end, front end and E2E jobs must be green; Lighthouse is a warning.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
           <context context-type="linenumber">85,86</context>
@@ -2435,9 +2435,9 @@
           <context context-type="linenumber">21,22</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7594132149348202175" datatype="html">
-        <source> Depuis juin 2026 : ingénieur d&apos;études chez Aubay. En mission sur une application d&apos;inventaire en microservices pour les Restos du Cœur, j&apos;interviens sur le back end en Python. J&apos;ai aussi monté l&apos;environnement Docker du projet et j&apos;appuie l&apos;équipe sur GitLab. </source>
-        <target state="translated">Since June 2026: software engineer at Aubay. On assignment building a microservices inventory application for the Restos du Cœur charity, I work on the Python back end. I also set up the project's Docker environment and support the team with GitLab.</target>
+      <trans-unit id="3133540160084083044" datatype="html">
+        <source> Depuis juin 2026 : ingénieur d&apos;études chez Aubay. En mission sur une application d&apos;inventaire en microservices pour les Restos du Cœur, j&apos;interviens sur le back end, en Java/Spring Boot et en Python. J&apos;ai aussi monté l&apos;environnement Docker du projet et j&apos;appuie l&apos;équipe sur GitLab. </source>
+        <target state="translated">Since June 2026: software engineer at Aubay. On assignment building a microservices inventory application for the Restos du Cœur charity, I work on the back end, in Java/Spring Boot and Python. I also set up the project's Docker environment and support the team with GitLab.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
           <context context-type="linenumber">25,26</context>
