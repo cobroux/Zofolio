@@ -9,11 +9,7 @@ for (const lang of LANGS) {
   for (const slug of SLUGS) {
     test(`accueil -> étude de cas ${slug} (${lang})`, async ({ page }) => {
       await page.goto(`/${lang}/`);
-      const study = page.locator(`a.study[href$="/projets/${slug}"]`).first();
-      // Section hydratée à la demande (viewport) : on l'amène à l'écran et on attend son hydratation avant de cliquer.
-      await study.scrollIntoViewIfNeeded();
-      await expect(study).not.toHaveAttribute('jsaction'); // retiré une fois la section hydratée
-      await study.click();
+      await page.locator(`a.study[href$="/projets/${slug}"]`).first().click();
       await expect(page).toHaveURL(new RegExp(`/${lang}/projets/${slug}$`));
       await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
       await expect(page.locator('html')).toHaveAttribute('lang', lang);
@@ -58,8 +54,53 @@ test('clip : affiche, lecture dans le viewport, Pause puis Lecture au clic', asy
   await expect.poll(playing).toBe(true);
 });
 
+test('index P3 : survol puis focus = aperçu de la ligne, vidéo muette seulement pendant le survol', async ({ page }) => {
+  await page.goto('/fr/');
+  const zotracker = page.locator('#p3 ol.rows > li').filter({ has: page.locator('a[href$="/projets/zotracker"]') });
+  const shot = page.locator('#p3 .preview .shot.on');
+  await zotracker.scrollIntoViewIfNeeded();
+  // Le survol n'est pas rejoué avant l'hydratation : on le refait jusqu'à ce qu'il prenne.
+  await expect(async () => {
+    await zotracker.hover();
+    await expect(shot).toHaveAttribute('data-slug', 'zotracker', { timeout: 500 });
+  }).toPass();
+  const video = shot.locator('video');
+  await expect.poll(() => video.evaluate((v: HTMLVideoElement) => v.muted && !v.paused)).toBe(true);
+  await page.mouse.move(0, 0);
+  await expect(page.locator('#p3 .preview video')).toHaveCount(0);
+  await page.locator('#p3 a.study[href$="/projets/oltre"]').focus();
+  await expect(shot).toHaveAttribute('data-slug', 'oltre');
+});
+
+test.describe('index P3 sur mobile', () => {
+  test.use({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+  test('poster en ligne, pas de cadre, vidéo seulement au toucher', async ({ page }) => {
+    await page.goto('/fr/');
+    const clip = page.locator('#p3 app-clip.inline').first();
+    await clip.scrollIntoViewIfNeeded();
+    await expect(page.locator('#p3 .preview')).toBeHidden();
+    await expect(clip.locator('img, video').first()).toBeVisible();
+    await page.waitForTimeout(1000);
+    expect(await clip.locator('video').evaluateAll((vs) => vs.some((v) => !(v as HTMLVideoElement).paused))).toBe(false);
+    await clip.getByRole('button', { name: 'Lecture' }).tap();
+    await expect.poll(() => clip.locator('video').evaluate((v: HTMLVideoElement) => !v.paused)).toBe(true);
+  });
+});
+
 test.describe('reduced motion', () => {
   test.use({ reducedMotion: 'reduce' });
+  test('index P3 : aperçu au survol, poster seul, aucune vidéo', async ({ page }) => {
+    await page.goto('/fr/');
+    const zotracker = page.locator('#p3 ol.rows > li').filter({ has: page.locator('a[href$="/projets/zotracker"]') });
+    await zotracker.scrollIntoViewIfNeeded();
+    await expect(async () => {
+      await zotracker.hover();
+      await expect(page.locator('#p3 .preview .shot.on')).toHaveAttribute('data-slug', 'zotracker', { timeout: 500 });
+    }).toPass();
+    await page.waitForTimeout(500);
+    await expect(page.locator('#p3 .preview video')).toHaveCount(0);
+    await expect(page.locator('#p3 .preview .shot.on img')).toBeVisible();
+  });
   test('clip : pas de lecture automatique, bouton Lecture présent', async ({ page }) => {
     await page.goto('/fr/projets/oltre');
     await page.locator('app-clip').scrollIntoViewIfNeeded();

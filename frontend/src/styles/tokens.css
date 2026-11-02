@@ -111,8 +111,10 @@
 .terrain-accent {
   background: #c2410c;
   color: #ffffff;
+  --bg: #c2410c;
   --ink: #ffffff;
   --ink-2: #ffffff;
+  --focus: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -137,8 +139,10 @@
   :root:not([data-theme='light']) .terrain-accent {
     background: #ff8a2b;
     color: #0e1626;
+    --bg: #ff8a2b;
     --ink: #0e1626;
     --ink-2: #0e1626;
+    --focus: #0e1626;
   }
 }
 
@@ -166,6 +170,8 @@
 :root[data-theme='dark'] .terrain-accent {
   background: #ff8a2b;
   color: #0e1626;
+  --bg: #ff8a2b;
   --ink: #0e1626;
   --ink-2: #0e1626;
+  --focus: #0e1626;
 }

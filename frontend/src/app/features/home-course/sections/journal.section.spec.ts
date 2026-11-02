@@ -106,28 +106,19 @@ describe('JournalSection', () => {
 describe('P3Section', () => {
   beforeEach(() => TestBed.configureTestingModule({ providers: [provideRouter([])] }));
 
-  it('lien interne pour Oltre, externe pour HistoQuiz, commits/langages/push depuis la synchro, rien si null', () => {
+  it('terrain accent, index des seuls projets P3 : étude pour Oltre, dépôt pour HistoQuiz', () => {
     const f = TestBed.createComponent(P3Section);
     f.componentRef.setInput('projects', home.projects);
     f.detectChanges();
     const el = f.nativeElement as HTMLElement;
-    const [oltre, histo] = Array.from(el.querySelectorAll('article'));
+    expect(el.querySelector('section')!.classList).toContain('terrain-accent');
+    const [oltre, histo] = Array.from(el.querySelectorAll('ol.rows > li'));
+    expect(el.querySelectorAll('ol.rows > li').length).toBe(2);
     expect(oltre.querySelector('a.study')?.getAttribute('href')).toBe('/projets/oltre');
     expect(oltre.textContent).toContain('412 commits');
-    expect(oltre.textContent).toContain('Java, TypeScript, HTML');
-    expect(oltre.textContent).toMatch(/dernier push : oct\.? 2026/);
     expect(histo.querySelector('a.study')).toBeNull();
     expect(histo.querySelector('a')?.getAttribute('href')).toBe('https://github.com/cobroux/histoquiz');
     expect(histo.textContent).not.toContain('commits');
-  });
-
-  it('rend les projets P3 avec lien dépôt', () => {
-    const f = TestBed.createComponent(P3Section);
-    f.componentRef.setInput('projects', home.projects);
-    f.detectChanges();
-    const el = f.nativeElement as HTMLElement;
-    expect(el.querySelectorAll('article').length).toBe(2);
-    expect(el.querySelector('a[href="https://github.com/cobroux/oltre"]')).toBeTruthy();
     expect(el.textContent).not.toContain('puis IA');
   });
 

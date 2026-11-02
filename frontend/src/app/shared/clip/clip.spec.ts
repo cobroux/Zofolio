@@ -7,7 +7,7 @@ let observe: IntersectionObserverCallback | undefined;
 let play: ReturnType<typeof vi.spyOn>;
 let pause: ReturnType<typeof vi.spyOn>;
 
-async function render(opts: { reduced?: boolean; saveData?: boolean; platform?: string; video?: unknown } = {}) {
+async function render(opts: { reduced?: boolean; saveData?: boolean; platform?: string; video?: unknown; autoplay?: boolean } = {}) {
   vi.stubGlobal('matchMedia', () => ({ matches: !!opts.reduced }));
   vi.stubGlobal('navigator', { connection: { saveData: !!opts.saveData } });
   observe = undefined;
@@ -27,6 +27,7 @@ async function render(opts: { reduced?: boolean; saveData?: boolean; platform?: 
   });
   const f = TestBed.createComponent(Clip);
   f.componentRef.setInput('video', opts.video === undefined ? oltre.video : opts.video);
+  if (opts.autoplay === false) f.componentRef.setInput('autoplay', false);
   f.detectChanges();
   const [block] = await f.getDeferBlocks();
   if (block) await block.render(DeferBlockState.Complete);
@@ -88,6 +89,13 @@ describe('Clip', () => {
     expect(observe).toBeUndefined();
     expect(play).not.toHaveBeenCalled();
     expect(el.querySelector('button')?.textContent?.trim()).toBe('Lecture');
+  });
+
+  it('autoplay false : lecture seulement au toucher du bouton', async () => {
+    const el = await render({ autoplay: false });
+    expect(observe).toBeUndefined();
+    el.querySelector('button')!.click();
+    expect(play).toHaveBeenCalledTimes(1);
   });
 
   it('saveData : pas de lecture automatique, le bouton lance la vidéo', async () => {
