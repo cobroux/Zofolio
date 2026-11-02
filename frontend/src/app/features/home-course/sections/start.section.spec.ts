@@ -19,7 +19,9 @@ describe('StartSection', () => {
 
   it('dossard avant : course, distance et heure de départ ; terrain nuit', () => {
     const el = render();
-    expect(el.querySelector('app-bib')!.textContent).toContain("Grand Trail d'Auvergne · 79,4 km · départ 6 h 30");
+    expect(el.querySelector('app-bib')!.textContent).toContain(
+      "Grand Trail d'Auvergne · 79,4 km · départ 6 h 30",
+    );
     expect(el.querySelector('section')!.classList).toContain('terrain-night');
     expect(el.querySelector('.plate app-bib')).toBeTruthy();
   });
