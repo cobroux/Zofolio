@@ -184,7 +184,7 @@ Courbes : `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)`, `--ease-io: cubic-bezier
 - agrégation des commits par année ;
 - contraste de chaque paire texte/terrain.
 
-**Données nouvelles côté back** : agrégation des commits par année (à partir de la synchro GitHub existante), plus éventuellement le statut et le Lighthouse de la dernière CI. C'est le seul changement back, en lecture seule.
+**Données nouvelles côté back** : contributions par année de 2023 à aujourd'hui. La synchro actuelle ne couvre que le calendrier des 52 dernières semaines ; on ajoute une requête GraphQL `contributionsCollection(from, to)` par année, dans le client GitHub existant, stockée comme les autres données synchronisées, plus éventuellement le statut et le Lighthouse de la dernière CI. C'est le seul changement back, en lecture seule.
 
 ## 9. Performance et accessibilité
 
