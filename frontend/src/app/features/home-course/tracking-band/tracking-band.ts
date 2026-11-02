@@ -16,35 +16,21 @@ import {
   CheckpointId,
   CourseProgress,
   TOTAL_KM,
-  altitudeAt,
   altitudeRatioAt,
   formatKm,
-  gainAt,
   kmAtScroll,
   lastCheckpoint,
   profilePath,
 } from '../course-progress';
 import { RoadBook } from '../road-book/road-book';
+import { LABELS, clockAt, liveValues, passName } from '../live-values';
 
-const LABELS = {
-  depart: { short: $localize`0`, full: $localize`Départ`, name: $localize`Départ` },
-  p1: { short: $localize`P1`, full: $localize`Fondations`, name: $localize`P1 · Fondations` },
-  p2: { short: $localize`P2`, full: $localize`Worldline`, name: $localize`P2 · Worldline` },
-  p3: { short: $localize`P3`, full: $localize`Projets perso`, name: $localize`P3 · Projets perso` },
-  arrivee: { short: $localize`Arr.`, full: $localize`Arrivée`, name: $localize`Arrivée` },
-};
-/** Heure du départ officiel (GTA 2025, spec §3) : seul « passage » avant P1. */
-const START_CLOCK = '06:30:00';
 const LONGEST = Math.max(...Object.values(SPLITS).map((s) => s.legS));
 const SPLIT_MS = 2400;
 
-const clockAt = (id: CheckpointId) => (id === 'depart' ? START_CLOCK : SPLITS[id].clock);
-/** Nom court affiché devant un temps de passage : « P2 », « Départ », « Arrivée ». */
-const passName = (id: CheckpointId) => (id === 'depart' || id === 'arrivee' ? LABELS[id].full : LABELS[id].short);
 /** Durée de tronçon « 4 h 08 ». */
-const legText = (s: number) => `${Math.floor(s / 3600)} h ${String(Math.floor((s % 3600) / 60)).padStart(2, '0')}`;
-const group = (n: number) => Math.round(n).toLocaleString($localize`:@@numberLocale:fr-FR`);
-
+const legText = (s: number) =>
+  `${Math.floor(s / 3600)} h ${String(Math.floor((s % 3600) / 60)).padStart(2, '0')}`;
 /** Vrai la première fois de la session (et le note). Stockage bloqué : on montre quand même. */
 function firstInSession(id: CheckpointId): boolean {
   const key = `zofolio:split:${id}`;
@@ -82,11 +68,7 @@ export class TrackingBand {
   }));
 
   private readonly at = computed(() => lastCheckpoint(this.progress.scrollKm()));
-  protected readonly km = computed(() => formatKm(this.progress.scrollKm(), 1));
-  protected readonly alt = computed(() => group(altitudeAt(this.progress.scrollKm())));
-  protected readonly gain = computed(() => group(gainAt(this.progress.scrollKm())));
-  protected readonly passLabel = computed(() => passName(this.at()));
-  protected readonly passClock = computed(() => clockAt(this.at()));
+  protected readonly live = computed(() => liveValues(this.progress.scrollKm()));
 
   /** Ligne de pointage : texte du dernier pointage célébré, gardé pendant le repli. */
   protected readonly line = signal('');
@@ -106,7 +88,8 @@ export class TrackingBand {
     const host: HTMLElement = inject(ElementRef).nativeElement;
     let furthest = 0;
     let collapse = 0;
-    // Seulement en avançant au-delà du plus loin déjà atteint : revenir en arrière ne rejoue rien.
+    // Ligne de pointage et annonce : seulement en avançant au-delà du pointage le plus loin déjà atteint, pour ce pointage-là.
+    // Revenir en arrière ne rejoue rien ; les pointages sautés par un saut d'ancre (0 -> P3) ne sont pas rejoués non plus.
     effect(() => {
       const id = this.at();
       const i = CHECKPOINT_IDS.indexOf(id);
@@ -122,7 +105,12 @@ export class TrackingBand {
           ? $localize`${name}:name: · km ${km}:km: · ${clock}:clock: · ${leg}:leg: de la plus longue étape`
           : $localize`${name}:name: · km ${km}:km: · ${clock}:clock: · ${leg}:leg: d'étape`,
       );
-      this.said.update((s) => [...s, id === 'arrivee' ? $localize`Arrivée atteinte, km ${km}:km:` : $localize`${name}:name: atteint, km ${km}:km:`]);
+      this.said.update((s) => [
+        ...s,
+        id === 'arrivee'
+          ? $localize`Arrivée atteinte, km ${km}:km:`
+          : $localize`${name}:name: atteint, km ${km}:km:`,
+      ]);
       this.extended.set(true);
       clearTimeout(collapse);
       collapse = setTimeout(() => this.extended.set(false), SPLIT_MS) as unknown as number;
@@ -153,7 +141,11 @@ export class TrackingBand {
         // En bas de page, l'arrivée ne croise jamais la ligne de référence : le bas du scroll vaut l'arrivée.
         const max = document.documentElement.scrollHeight - innerHeight;
         const atEnd = max > 0 && scrollY >= max - 1;
-        const km = atEnd ? TOTAL_KM : anchors.length ? kmAtScroll(scrollY + innerHeight / 3, anchors) : 0;
+        const km = atEnd
+          ? TOTAL_KM
+          : anchors.length
+            ? kmAtScroll(scrollY + innerHeight / 3, anchors)
+            : 0;
         const shown = Math.round(km * 10) / 10;
         this.progress.scrollKm.set(shown);
         const p = shown / TOTAL_KM;
@@ -171,7 +163,8 @@ export class TrackingBand {
       // Chrome ne défile pas vers un élément focalisé déjà dans la fenêtre, même sous le bandeau : on le ramène dans le scroll-padding (WCAG 2.4.11), sans animation.
       const reveal = (e: FocusEvent) => {
         const t = e.target;
-        if (t instanceof Element && !host.contains(t) && t.matches(':focus-visible')) t.scrollIntoView({ block: 'nearest', behavior: 'instant' });
+        if (t instanceof Element && !host.contains(t) && t.matches(':focus-visible'))
+          t.scrollIntoView({ block: 'nearest', behavior: 'instant' });
       };
       update();
       addEventListener('scroll', schedule, { passive: true });
@@ -190,7 +183,8 @@ export class TrackingBand {
   }
 
   protected warmSoon(): void {
-    if (!this.warm()) this.warmTimer ||= setTimeout(() => this.warm.set(true), 300) as unknown as number;
+    if (!this.warm())
+      this.warmTimer ||= setTimeout(() => this.warm.set(true), 300) as unknown as number;
   }
 
   protected cool(): void {

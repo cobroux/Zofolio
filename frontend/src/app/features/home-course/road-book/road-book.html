@@ -4,6 +4,12 @@
       <h2 id="road-book-title" i18n>Road book</h2>
       <button type="button" class="x" (click)="close()" i18n>Fermer</button>
     </header>
+    <p class="live tnum">
+      <span><strong>{{ live().km }}</strong> <ng-container i18n>km</ng-container></span>
+      <span><ng-container i18n>alt.</ng-container> <strong>{{ live().alt }}</strong> m</span>
+      <span>D+ <strong>{{ live().gain }}</strong> m</span>
+      <span>{{ live().pass }} <strong>{{ live().clock }}</strong></span>
+    </p>
     <ol>
       @for (s of steps; track s.id) {
         <li>
@@ -15,5 +21,6 @@
         </li>
       }
     </ol>
+    <a class="how" href="https://github.com/cobroux/Zofolio/blob/main/frontend/src/app/features/home-course/course-progress.ts" i18n>Comment c'est calculé</a>
   </div>
 </dialog>

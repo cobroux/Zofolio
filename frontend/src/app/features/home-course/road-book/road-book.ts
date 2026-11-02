@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, inject, viewChild, ElementRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, viewChild, ElementRef } from '@angular/core';
 import { CHECKPOINTS } from '../profile.data';
 import { CHECKPOINT_IDS, CourseProgress, formatKm } from '../course-progress';
+import { liveValues } from '../live-values';
 
 const STEPS = {
   depart: { name: $localize`Départ`, line: $localize`Ingénieur fullstack, Java et Angular.` },
@@ -20,6 +21,8 @@ export class RoadBook {
   protected readonly progress = inject(CourseProgress);
   protected readonly formatKm = formatKm;
   protected readonly steps = CHECKPOINT_IDS.map((id) => ({ id, km: CHECKPOINTS[id], ...STEPS[id] }));
+  /** Sur mobile le bandeau ne montre que le km : le road book donne toutes les valeurs en direct. */
+  protected readonly live = computed(() => liveValues(this.progress.scrollKm()));
   private target: string | null = null;
   private opener: HTMLElement | null = null;
   private readonly dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');

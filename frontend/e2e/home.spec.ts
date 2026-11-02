@@ -117,6 +117,18 @@ for (const path of ['/fr/', '/en/', '/fr/mentions-legales']) {
   }
 }
 
+for (const motion of ['reduce', 'no-preference'] as const) {
+  test(`ligne de pointage repliée : le contenu juste au-dessus du bandeau reste cliquable (${motion})`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: motion });
+    await page.goto('/fr/');
+    await page.waitForLoadState('networkidle');
+    const top = (await page.locator('app-tracking-band .band').boundingBox())!.y;
+    for (const y of [top - 2, top - 12, top - 22]) {
+      expect(await page.evaluate((y) => !!document.elementFromPoint(200, y)?.closest('app-tracking-band'), y)).toBe(false);
+    }
+  });
+}
+
 test.describe('bandeau desktop 1440', () => {
   test.use({ viewport: { width: 1440, height: 900 } });
   test('collé en bas, 52 px, km 0,0 en haut puis 79,4 en bas de page', async ({ page }) => {

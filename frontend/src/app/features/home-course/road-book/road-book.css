@@ -63,7 +63,7 @@ ol {
   padding: 0;
   list-style: none;
 }
-a {
+ol a {
   display: grid;
   gap: 2px;
   min-height: var(--target);
@@ -73,16 +73,44 @@ a {
   text-decoration: none;
   transition: transform 140ms var(--ease-out);
 }
-a:active {
+ol a:active {
   transform: scale(0.97);
 }
-a[aria-current='location'] {
+ol a[aria-current='location'] {
   border-left-color: var(--accent);
 }
-a[aria-current='location'] strong {
+ol a[aria-current='location'] strong {
   color: var(--accent);
 }
 .line {
   color: var(--ink-2);
   font-size: var(--t-small);
+}
+.live {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1) var(--s-5);
+  margin: 0 0 var(--s-4);
+  color: var(--ink-2);
+}
+/* Angular retire les espaces entre balises : l'écart valeur / unité vient du gap. */
+.live span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+}
+.live strong {
+  color: var(--ink);
+  font: 700 1.3125rem / 1 var(--font-display);
+  font-stretch: 78%;
+}
+.live span:first-child strong {
+  color: var(--accent);
+}
+.how {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target);
+  margin-top: var(--s-4);
+  color: var(--ink-2);
 }

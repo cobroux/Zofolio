@@ -2,10 +2,10 @@
   <p class="line" aria-hidden="true">{{ line() }}</p>
   <div class="row">
     <p class="values" aria-hidden="true">
-      <span class="km"><span class="v">{{ km() }}</span> <span class="u" i18n>km</span></span>
-      <span class="stat alt"><span class="l" i18n>alt.</span> <span class="v">{{ alt() }}</span> <span class="u">m</span></span>
-      <span class="stat"><span class="l">D+</span> <span class="v">{{ gain() }}</span> <span class="u">m</span></span>
-      <span class="stat"><span class="l">{{ passLabel() }}</span> <span class="v">{{ passClock() }}</span></span>
+      <span class="km"><span class="v">{{ live().km }}</span> <span class="u" i18n>km</span></span>
+      <span class="stat alt"><span class="l" i18n>alt.</span> <span class="v">{{ live().alt }}</span> <span class="u">m</span></span>
+      <span class="stat"><span class="l">D+</span> <span class="v">{{ live().gain }}</span> <span class="u">m</span></span>
+      <span class="stat"><span class="l">{{ live().pass }}</span> <span class="v">{{ live().clock }}</span></span>
     </p>
     <nav aria-label="Parcours" i18n-aria-label>
       <div class="track">

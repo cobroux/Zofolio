@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { CourseProgress, gainAt } from '../course-progress';
 import { RoadBook } from './road-book';
 
 // jsdom n'implémente pas showModal : on simule open/close + l'évènement close.
@@ -23,6 +24,19 @@ describe('RoadBook', () => {
     document.body.append(opener);
     return { f, el, dialog: el.querySelector('dialog')!, opener };
   }
+
+  it('en-tête : valeurs en direct du bandeau ; pied : « Comment c\'est calculé »', async () => {
+    const { f, el } = await setup();
+    TestBed.inject(CourseProgress).scrollKm.set(30);
+    await f.whenStable();
+    const live = el.querySelector('.live')!.textContent!;
+    for (const v of ['30,0', 'alt.', 'D+', 'P1', '09:23:44']) expect(live).toContain(v);
+    expect(live).toContain(Math.round(gainAt(30)).toLocaleString('fr-FR'));
+    expect(el.querySelector('dialog a.how')!.getAttribute('href')).toBe(
+      'https://github.com/cobroux/Zofolio/blob/main/frontend/src/app/features/home-course/course-progress.ts',
+    );
+    document.body.replaceChildren();
+  });
 
   it('ouvre le dialog avec 5 étapes ancres dont une courante', async () => {
     const { f, el, dialog, opener } = await setup();
