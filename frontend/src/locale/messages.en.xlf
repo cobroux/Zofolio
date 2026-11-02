@@ -2916,6 +2916,30 @@
           <context context-type="linenumber">121</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="p1.promo.caption" datatype="html">
+        <source>La promo ILI 2024-2025.</source>
+        <target state="translated">The ILI class of 2024-2025.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
+          <context context-type="linenumber">193</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="p1.promo.alt" datatype="html">
+        <source>La promo ILI en sweats bleu ciel, sur l&apos;escalier d&apos;un bâtiment de l&apos;université.</source>
+        <target state="translated">The ILI class in light-blue hoodies, on a university building staircase.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
+          <context context-type="linenumber">192</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1745782249568579923" datatype="html">
+        <source>Badge rond « Certifiée meilleure promo ILI », ILI 2024-2025.</source>
+        <target state="translated">Round badge “Certified best ILI class”, ILI 2024-2025.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
+          <context context-type="linenumber">44,45</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

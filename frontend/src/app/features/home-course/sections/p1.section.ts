@@ -3,11 +3,12 @@ import { RouterLink } from '@angular/router';
 import { HomeResponse } from '../../../core/api/api.models';
 import { Aid } from '../../../shared/aid/aid';
 import { ChapterPin } from '../../../shared/chapter-pin/chapter-pin';
+import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
 
 /** P1 (Les fondations, km 20), compacte (spec §6) : une bande, puis l'index des projets d'école ; suivie du ravitaillement R1. `home` null = API en échec. */
 @Component({
   selector: 'app-p1',
-  imports: [Aid, ChapterPin, RouterLink],
+  imports: [Aid, ChapterPin, PhotoPlates, RouterLink],
   template: `
     <section id="p1" class="terrain-paper">
       <app-chapter-pin mark="P1" i18n-title title="Les fondations" i18n-meta meta="km 20 · 2020 → 2025" [sticky]="false" />
@@ -26,6 +27,24 @@ import { ChapterPin } from '../../../shared/chapter-pin/chapter-pin';
               }
             </ol>
           }
+        </div>
+        <div class="aside">
+          <picture class="badge">
+            <source type="image/avif" srcset="img/badge-promo-ili-320.avif 320w, img/badge-promo-ili-640.avif 640w" sizes="10rem" />
+            <source type="image/webp" srcset="img/badge-promo-ili-320.webp 320w, img/badge-promo-ili-640.webp 640w" sizes="10rem" />
+            <img
+              src="img/badge-promo-ili-320.jpg"
+              srcset="img/badge-promo-ili-320.jpg 320w, img/badge-promo-ili-640.jpg 640w"
+              sizes="10rem"
+              width="320"
+              height="330"
+              loading="lazy"
+              decoding="async"
+              i18n-alt
+              alt="Badge rond « Certifiée meilleure promo ILI », ILI 2024-2025."
+            />
+          </picture>
+          <app-photo-plates [main]="promo" />
         </div>
         @if (projects().length) {
           <p class="index">
@@ -69,6 +88,20 @@ import { ChapterPin } from '../../../shared/chapter-pin/chapter-pin';
     p {
       max-width: 62ch;
     }
+    .aside {
+      display: grid;
+      grid-template-columns: 10rem minmax(0, 14rem);
+      align-items: start;
+      gap: var(--s-5);
+    }
+    /* Tampon : le badge rond, découpé à son cercle et posé de travers. */
+    .badge img {
+      display: block;
+      width: 10rem;
+      height: auto;
+      clip-path: circle(49%);
+      transform: rotate(-8deg);
+    }
     /* Mini-frise : un segment par diplôme, longueur proportionnelle à la durée. */
     .frise {
       display: flex;
@@ -101,6 +134,9 @@ import { ChapterPin } from '../../../shared/chapter-pin/chapter-pin';
     .index .label {
       font-weight: 700;
     }
+    .index a {
+      white-space: nowrap;
+    }
     .index a,
     .index .label {
       margin-inline-end: var(--s-1);
@@ -122,7 +158,14 @@ import { ChapterPin } from '../../../shared/chapter-pin/chapter-pin';
         grid-column: 1 / span 3;
       }
       .body {
-        grid-column: 4 / -1;
+        grid-column: 4 / span 5;
+      }
+      .aside {
+        grid-column: 9 / -1;
+        grid-template-columns: 8rem minmax(0, 10rem);
+      }
+      .badge img {
+        width: 8rem;
       }
       .index,
       .note,
@@ -147,5 +190,12 @@ export class P1Section {
       .sort((a, b) => (a.period! < b.period! ? -1 : 1)),
   );
   protected readonly aid = computed(() => this.home()?.experiences.find((e) => e.stage === 'R1'));
+  protected readonly promo: Plate = {
+    src: 'img/promo-ili-640.jpg',
+    alt: $localize`:@@p1.promo.alt:La promo ILI en sweats bleu ciel, sur l'escalier d'un bâtiment de l'université.`,
+    caption: $localize`:@@p1.promo.caption:La promo ILI 2024-2025.`,
+    width: 640,
+    height: 853,
+  };
   protected readonly projects = computed(() => this.home()?.projects.filter((p) => p.stage === 'P1') ?? []);
 }

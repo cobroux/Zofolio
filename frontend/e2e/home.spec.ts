@@ -170,7 +170,7 @@ for (const width of [320, 360, 390, 767, 768, 1099, 1100, 1440, 1920]) {
   });
 }
 
-test('P1 compacte : un lien par projet d’école de l’API, aucune image (ni toge, ni image cassée)', async ({ page, request }) => {
+test('P1 compacte : un lien par projet d’école de l’API, le badge, ni toge ni image cassée', async ({ page, request }) => {
   const home = await (await request.get('/api/fr/home')).json();
   const school: { title: string }[] = home.projects.filter((p: { stage: string }) => p.stage === 'P1');
   expect(school.length).toBeGreaterThan(0);
@@ -178,8 +178,16 @@ test('P1 compacte : un lien par projet d’école de l’API, aucune image (ni t
   const index = page.locator('#p1 .index a');
   await expect(index).toHaveCount(school.length);
   for (const p of school) await expect(index.filter({ hasText: p.title })).toHaveCount(1);
-  // Badge et plaque de promo omis tant que les photos manquent : P1 ne porte aucune image.
-  await expect(page.locator('#p1 img')).toHaveCount(0);
+  await expect(page.locator('#p1 .badge img[src*="badge-promo-ili"]')).toBeVisible();
+  // Aucune photo de toge (retirée, spec §5 bis) et aucune image cassée une fois chargées (lazy).
+  await page.locator('#p1').scrollIntoViewIfNeeded();
+  const imgs = page.locator('#p1 img');
+  expect(await imgs.count()).toBe(2);
+  for (const img of await imgs.all()) {
+    await img.scrollIntoViewIfNeeded();
+    expect(await img.getAttribute('src')).not.toMatch(/toge|diplome|remise|ceremonie/i);
+    await expect.poll(() => img.evaluate((i: HTMLImageElement) => i.complete && i.naturalWidth > 0)).toBe(true);
+  }
 });
 
 test('P2 : la section Décision précède les plaques', async ({ page }) => {
