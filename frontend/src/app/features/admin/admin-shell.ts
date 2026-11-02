@@ -44,6 +44,7 @@ export class AdminShell {
     { path: 'courses', label: 'Courses' },
     { path: 'stats', label: 'Stats' },
     { path: 'medias', label: 'Médias' },
+    { path: 'cv', label: 'CV' },
   ];
 
   protected skip(e: Event) {

@@ -30,7 +30,9 @@
 	handle @trace {
 		respond 405
 	}
-	handle /api/admin/media {
+	# Uploads admin (médias, CV) : 6 Mo, le reste de l'API 1 Mo.
+	@uploads path /api/admin/media /api/admin/cv/*
+	handle @uploads {
 		request_body {
 			max_size 6MB
 		}
