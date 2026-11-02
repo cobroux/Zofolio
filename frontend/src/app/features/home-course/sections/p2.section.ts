@@ -7,7 +7,7 @@ import { DecisionCard } from '../../../shared/decision-card/decision-card';
 import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
 import { TradingAppDiagram } from '../../projects/diagrams/trading-app.diagram';
 import { WorldlineTimeline } from '../../projects/worldline-timeline';
-import { WORLDLINE_ALERTS } from '../content/decision';
+import { WORLDLINE_GATEWAY } from '../content/decision';
 
 /** P2 (Worldline, km 44, la plus longue étape), spec §6 : chapitre épinglé, faits du CV, Décision, plaques, étude ; suivie du ravitaillement R2. */
 @Component({
@@ -22,10 +22,10 @@ import { WORLDLINE_ALERTS } from '../content/decision';
           vendre des titres en bourse. Ici, une erreur ne se voit pas dans un log : elle se voit dans un ordre.
         </p>
         <ul class="facts">
-          <li i18n>Plateforme TOM (Trade Order Management) : elle reçoit, contrôle et transmet aux marchés les ordres de bourse des clients de Boursorama, Gilbert Dupont et Copartis.</li>
-          <li i18n>Migration move2cloud : l'échange d'ordres de bourse via MySQL remplacé par une messagerie asynchrone RabbitMQ, avec un émetteur d'ordres abstrait pour garder le comportement existant.</li>
+          <li i18n>Plateforme TOM (Trade Order Management) : elle reçoit, contrôle et transmet aux marchés les ordres de bourse de clients comme Boursorama et Copartis.</li>
+          <li i18n>Migration move2cloud : l'émetteur d'ordres rendu abstrait pour passer de MySQL à une file RabbitMQ, avec des ordres sérialisés en XML.</li>
           <li i18n>Post-marché Copartis : refonte des batchs de fin de journée, paramétrés par place de marché (Europe, États-Unis, Asie), pour intégrer les retours de marché tardifs.</li>
-          <li i18n>Contrôles pré-trade Boursorama : règles métier configurables par client (cohérence de prix, collars, présence bid/ask).</li>
+          <li i18n>Contrôles pré-trade Boursorama : trois contrôles (cohérence de prix, collars, présence bid/ask) rendus désactivables par client, testés en JUnit.</li>
           <li i18n>Portail d'administration multi-clients en JavaScript : statut des marchés en temps réel, internationalisation FR/EN.</li>
         </ul>
         <p class="now" i18n>
@@ -115,7 +115,7 @@ import { WORLDLINE_ALERTS } from '../content/decision';
 export class P2Section {
   readonly home = input<HomeResponse | null | undefined>();
   protected readonly aid = computed(() => this.home()?.experiences.find((e) => e.stage === 'R2'));
-  protected readonly decision = WORLDLINE_ALERTS;
+  protected readonly decision = WORLDLINE_GATEWAY;
   // Pas de photo de Worldline : les plaques prennent le schéma et la frise existants (spec §5, repli data-ui).
   protected readonly diagram: Plate = { ui: true, src: '', alt: '', width: 900, height: 330, caption: $localize`:@@p2.plate.diagram:Le parcours d'un ordre de bourse, de la saisie à l'exécution.` };
   protected readonly timeline: Plate = { ui: true, src: '', alt: '', width: 900, height: 330, caption: $localize`:@@p2.plate.timeline:Mars 2023 à septembre 2025 chez Worldline.` };

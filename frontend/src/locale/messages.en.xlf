@@ -2812,14 +2812,6 @@
           <context context-type="linenumber">25,26</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5246598898778544545" datatype="html">
-        <source>Plateforme TOM (Trade Order Management) : elle reçoit, contrôle et transmet aux marchés les ordres de bourse des clients de Boursorama, Gilbert Dupont et Copartis.</source>
-        <target state="translated">TOM platform (Trade Order Management): it receives, checks and routes to the markets the stock orders of Boursorama, Gilbert Dupont and Copartis clients.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">25,26</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="5604409134948484223" datatype="html">
         <source>Décision</source>
         <target state="translated">Decision</target>
@@ -2844,22 +2836,6 @@
           <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6982575495833251538" datatype="html">
-        <source>Migration move2cloud : l&apos;échange d&apos;ordres de bourse via MySQL remplacé par une messagerie asynchrone RabbitMQ, avec un émetteur d&apos;ordres abstrait pour garder le comportement existant.</source>
-        <target state="translated">move2cloud migration: stock-order exchange through MySQL replaced by asynchronous RabbitMQ messaging, with an abstracted order sender to keep the existing behaviour.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">26,27</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8157360410389636809" datatype="html">
-        <source>Contrôles pré-trade Boursorama : règles métier configurables par client (cohérence de prix, collars, présence bid/ask).</source>
-        <target state="translated">Boursorama pre-trade checks: business rules configurable per client (price consistency, collars, bid/ask presence).</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">28,29</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="8432562579042371182" datatype="html">
         <source>Options</source>
         <target state="translated">Options</target>
@@ -2874,30 +2850,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
           <context context-type="linenumber">27,28</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="decision.alerts.choice" datatype="html">
-        <source>ActiveMQ / JMS, après une étude comparative</source>
-        <target state="translated">ActiveMQ / JMS, after a comparative study</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/content/decision.ts</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="decision.alerts.problem" datatype="html">
-        <source>Propager les changements de configuration des alertes sans redémarrer le service</source>
-        <target state="translated">Propagate alert configuration changes without restarting the service</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/content/decision.ts</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="decision.alerts.result" datatype="html">
-        <source>Module producer/consumer testé en JUnit, changements propagés en temps réel</source>
-        <target state="translated">Producer/consumer module tested with JUnit, changes propagated in real time</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/content/decision.ts</context>
-          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="p2.plate.diagram" datatype="html">
@@ -2938,6 +2890,54 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
           <context context-type="linenumber">44,45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="decision.gateway.result" datatype="html">
+        <source>Producer/consumer Java testé en JUnit, ordre routé jusqu&apos;au marché de test</source>
+        <target state="translated">Java producer/consumer tested with JUnit, order routed to the test market</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/content/decision.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4318628037800618166" datatype="html">
+        <source>Contrôles pré-trade Boursorama : trois contrôles (cohérence de prix, collars, présence bid/ask) rendus désactivables par client, testés en JUnit.</source>
+        <target state="translated">Boursorama pre-trade checks: three checks (price consistency, collars, bid/ask presence) made switchable per client, tested with JUnit.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="decision.gateway.choice" datatype="html">
+        <source>RabbitMQ, pour l&apos;accusé de réception des ordres, la tenue sur de gros volumes et le clustering</source>
+        <target state="translated">RabbitMQ, for order acknowledgement, handling large volumes and clustering</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/content/decision.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="decision.gateway.problem" datatype="html">
+        <source>Faire passer l&apos;envoi des ordres de la passerelle TOM d&apos;une base MySQL à une file de messages (move2cloud)</source>
+        <target state="translated">Move order sending in the TOM gateway from a MySQL database to a message queue (move2cloud)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/content/decision.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7678893265550440318" datatype="html">
+        <source>Migration move2cloud : l&apos;émetteur d&apos;ordres rendu abstrait pour passer de MySQL à une file RabbitMQ, avec des ordres sérialisés en XML.</source>
+        <target state="translated">move2cloud migration: the order sender made abstract to move from MySQL to a RabbitMQ queue, with orders serialised as XML.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
+          <context context-type="linenumber">26,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8408593535590034321" datatype="html">
+        <source>Plateforme TOM (Trade Order Management) : elle reçoit, contrôle et transmet aux marchés les ordres de bourse de clients comme Boursorama et Copartis.</source>
+        <target state="translated">TOM platform (Trade Order Management): it receives, checks and routes to the markets the stock orders of clients such as Boursorama and Copartis.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
+          <context context-type="linenumber">25,26</context>
         </context-group>
       </trans-unit>
     </body>
