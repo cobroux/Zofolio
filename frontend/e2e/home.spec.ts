@@ -169,3 +169,45 @@ for (const width of [320, 360, 390, 767, 768, 1099, 1100, 1440, 1920]) {
     expect(race.y + race.height).toBeLessThanOrEqual(bib.y + bib.height);
   });
 }
+
+test('P1 compacte : un lien par projet d’école de l’API, aucune image (ni toge, ni image cassée)', async ({ page, request }) => {
+  const home = await (await request.get('/api/fr/home')).json();
+  const school: { title: string }[] = home.projects.filter((p: { stage: string }) => p.stage === 'P1');
+  expect(school.length).toBeGreaterThan(0);
+  await page.goto('/fr/');
+  const index = page.locator('#p1 .index a');
+  await expect(index).toHaveCount(school.length);
+  for (const p of school) await expect(index.filter({ hasText: p.title })).toHaveCount(1);
+  // Badge et plaque de promo omis tant que les photos manquent : P1 ne porte aucune image.
+  await expect(page.locator('#p1 img')).toHaveCount(0);
+});
+
+test('P2 : la section Décision précède les plaques', async ({ page }) => {
+  await page.goto('/fr/');
+  await expect(page.locator('#p2 section').filter({ has: page.getByRole('heading', { level: 3, name: 'Décision' }) })).toHaveCount(1);
+  const before = await page.evaluate(() => {
+    const d = document.querySelector('#p2 app-decision-card section');
+    const p = document.querySelector('#p2 app-photo-plates');
+    return !!d && !!p && !!(d.compareDocumentPosition(p) & Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+  expect(before).toBe(true);
+});
+
+test.describe('P2 desktop 1440', () => {
+  test.use({ viewport: { width: 1440, height: 900 } });
+  test('le chapitre P2 reste visible pendant qu’on scrolle dans l’étape', async ({ page }) => {
+    await page.goto('/fr/');
+    const p2 = page.locator('#p2');
+    const pin = p2.locator('app-chapter-pin');
+    const { top, height } = await p2.evaluate((e) => ({ top: e.getBoundingClientRect().top + scrollY, height: e.offsetHeight }));
+    const ys: number[] = [];
+    for (const f of [0.3, 0.6]) {
+      await page.evaluate((y) => scrollTo(0, y), top + height * f);
+      const b = (await pin.boundingBox())!;
+      expect(b.y).toBeGreaterThanOrEqual(0);
+      expect(b.y + b.height).toBeLessThanOrEqual(900 - 52); // au-dessus du bandeau
+      ys.push(Math.round(b.y));
+    }
+    expect(ys[0]).toBe(ys[1]); // épinglé : même position à deux hauteurs de scroll
+  });
+});

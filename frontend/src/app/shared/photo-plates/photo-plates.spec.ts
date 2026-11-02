@@ -73,7 +73,7 @@ describe('PhotoPlates', () => {
   });
   it("css : l'état caché passe par :host-context(html.js) (l'encapsulation casse `html.js .x`)", () => {
     // Styles compilés (encapsulation émulée) : `html.js` y recevrait _ngcontent et ne matcherait jamais.
-    const css = ((PhotoPlates as any).ɵcmp.styles as string[]).join('');
+    const css = (PhotoPlates as unknown as { ɵcmp: { styles: string[] } }).ɵcmp.styles.join('');
     expect(css).not.toMatch(/html\.js\[_ngcontent/);
     expect(css).toMatch(/html\.js\s*\[_nghost[^{]*\.plate/);
   });

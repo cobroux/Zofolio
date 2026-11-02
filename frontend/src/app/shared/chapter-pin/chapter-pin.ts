@@ -1,12 +1,12 @@
 import { Component, input } from '@angular/core';
 
-/** Chapitre épinglé d'une étape : sticky à gauche sur ordinateur, barre de 48 px sous 768 px, jamais sticky si `sticky` vaut false. */
+/** Chapitre épinglé d'une étape (titre = h2 de la section) : sticky à gauche sur ordinateur, barre de 48 px sous 768 px ; `sticky` false = version compacte (P1). */
 @Component({
   selector: 'app-chapter-pin',
   template: `
     <div class="pin">
       <span class="mark">{{ mark() }}</span>
-      <span class="title">{{ title() }}</span>
+      <h2 class="title">{{ title() }}</h2>
       <span class="meta tnum">{{ meta() }}</span>
     </div>
   `,

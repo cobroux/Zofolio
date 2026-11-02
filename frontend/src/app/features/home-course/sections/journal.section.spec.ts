@@ -139,14 +139,19 @@ describe('P3Section', () => {
 });
 
 describe('P1Section', () => {
-  it('GFaim en carte avec étude de cas, fiches courtes en une ligne', () => {
+  it('bande compacte non sticky, index en une ligne : étude de cas en lien interne, sinon le dépôt, ni carte ni image', () => {
     TestBed.configureTestingModule({ providers: [provideRouter([])] });
     const f = TestBed.createComponent(P1Section);
     f.componentRef.setInput('home', home);
     f.detectChanges();
     const el = f.nativeElement as HTMLElement;
-    expect(el.querySelector('app-segment-card a.study')?.getAttribute('href')).toBe('/projets/gfaim');
-    expect(el.querySelectorAll('.shorts li').length).toBe(2);
-    expect(el.querySelector('.shorts a')?.getAttribute('href')).toBe('https://github.com/cobroux/cin-folie');
+    expect([...el.querySelectorAll('.index a')].map((a) => a.getAttribute('href'))).toEqual([
+      '/projets/gfaim',
+      'https://github.com/cobroux/cin-folie',
+      'https://github.com/cobroux/lambda-calcul',
+    ]);
+    expect(el.querySelector('app-segment-card, img')).toBeNull();
+    expect(el.querySelector('app-chapter-pin')?.classList).not.toContain('sticky');
+    expect(el.querySelector('h2')?.textContent).toContain('Les fondations');
   });
 });

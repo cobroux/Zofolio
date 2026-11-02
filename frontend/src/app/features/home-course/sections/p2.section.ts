@@ -1,44 +1,42 @@
 import { Component, computed, input } from '@angular/core';
-import { HomeResponse } from '../../../core/api/api.models';
 import { RouterLink } from '@angular/router';
+import { HomeResponse } from '../../../core/api/api.models';
 import { Aid } from '../../../shared/aid/aid';
-import { Reveal } from '../../../shared/reveal/reveal';
-import { Split } from '../../../shared/split/split';
+import { ChapterPin } from '../../../shared/chapter-pin/chapter-pin';
+import { DecisionCard } from '../../../shared/decision-card/decision-card';
+import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
+import { TradingAppDiagram } from '../../projects/diagrams/trading-app.diagram';
+import { WorldlineTimeline } from '../../projects/worldline-timeline';
+import { WORLDLINE_ALERTS } from '../content/decision';
 
-/** P2 (Worldline, km 44, la plus longue étape) suivi du ravitaillement R2. `home` null = API en échec. */
+/** P2 (Worldline, km 44, la plus longue étape), spec §6 : chapitre épinglé, faits du CV, Décision, plaques, étude ; suivie du ravitaillement R2. */
 @Component({
   selector: 'app-p2',
-  imports: [Aid, Reveal, RouterLink, Split],
+  imports: [Aid, ChapterPin, DecisionCard, PhotoPlates, RouterLink, TradingAppDiagram, WorldlineTimeline],
   template: `
-    <section id="p2" aria-labelledby="p2-title">
-      <div class="head" appReveal>
-        <span class="stage d tnum" i18n>P2 · km 44 · la plus longue étape</span>
-        <h2 id="p2-title" i18n>2,5 ans sur une appli de trading</h2>
+    <section id="p2" class="terrain-deep">
+      <app-chapter-pin mark="P2" i18n-title title="Worldline" i18n-meta meta="km 44 · 2023 → 2025" />
+      <div class="stage">
+        <p class="lead" i18n>
+          Chez Worldline, de 2023 à 2025 : 2,5 ans, en stage puis en alternance. L'application permet à des professionnels de la finance d'acheter et de
+          vendre des titres en bourse. Ici, une erreur ne se voit pas dans un log : elle se voit dans un ordre.
+        </p>
+        <ul class="facts">
+          <li i18n>Plateforme TOM (Trade Order Management) : elle reçoit, contrôle et transmet aux marchés les ordres de bourse des clients de Boursorama, Gilbert Dupont et Copartis.</li>
+          <li i18n>Migration move2cloud : l'échange d'ordres de bourse via MySQL remplacé par une messagerie asynchrone RabbitMQ, avec un émetteur d'ordres abstrait pour garder le comportement existant.</li>
+          <li i18n>Post-marché Copartis : refonte des batchs de fin de journée, paramétrés par place de marché (Europe, États-Unis, Asie), pour intégrer les retours de marché tardifs.</li>
+          <li i18n>Contrôles pré-trade Boursorama : règles métier configurables par client (cohérence de prix, collars, présence bid/ask).</li>
+          <li i18n>Portail d'administration multi-clients en JavaScript : statut des marchés en temps réel, internationalisation FR/EN.</li>
+        </ul>
+        <p class="now" i18n>
+          Depuis juin 2026 : ingénieur d'études chez Aubay. En mission sur une application d'inventaire en microservices pour les Restos du Cœur,
+          j'interviens sur le back end, en Java/Spring Boot et en Python. J'ai aussi monté l'environnement Docker du projet et j'appuie l'équipe sur GitLab.
+        </p>
+        <app-decision-card [decision]="decision" />
+        <app-photo-plates [main]="diagram"><app-trading-app-diagram plate-ui /></app-photo-plates>
+        <app-photo-plates [main]="timeline"><app-worldline-timeline plate-ui /></app-photo-plates>
+        <a class="study" routerLink="/projets/trading-app" i18n>Lire l'étude de cas<span class="sr"> Worldline</span></a>
       </div>
-      <div class="intro">
-      <p class="lead" [appReveal]="1" i18n>
-        Chez Worldline, de 2023 à 2025 : 2,5 ans, en stage puis en alternance. L'application permet à des professionnels de la finance d'acheter et de
-        vendre des titres en bourse. Ici, une erreur ne se voit pas dans un log : elle se voit dans un ordre.
-      </p>
-      <a class="study" routerLink="/projets/trading-app" i18n>Lire l'étude de cas<span class="sr"> Worldline</span></a>
-      <p class="now" [appReveal]="1" i18n>
-        Depuis juin 2026 : ingénieur d'études chez Aubay. En mission sur une application d'inventaire en microservices pour les Restos du Cœur,
-        j'interviens sur le back end, en Java/Spring Boot et en Python. J'ai aussi monté l'environnement Docker du projet et j'appuie l'équipe sur GitLab.
-      </p>
-      </div>
-      @if (home() === null) {
-        <p class="unavailable" role="status" i18n>Contenu indisponible pour le moment.</p>
-      } @else {
-        <ol [appReveal]="2">
-          @for (m of missions(); track m.title) {
-            <li>
-              <h3>{{ m.title }}</h3>
-              <p>{{ m.body }}</p>
-              <app-split [duration]="m.period" [stack]="m.stack" [note]="m.note" />
-            </li>
-          }
-        </ol>
-      }
     </section>
     <app-aid km="51" [aid]="aid()" />
   `,
@@ -47,46 +45,51 @@ import { Split } from '../../../shared/split/split';
       display: block;
     }
     section {
-      --split-ink: light-dark(#a9b1c3, var(--ink-2));
+      /* Terrain nuit profonde dans les deux thèmes : jetons fixés pour la nuit (contrastes ≥ 4,5:1), --surface = un ton au-dessus pour la Décision et les schémas. */
+      --bg: #0a1120;
+      --surface: #16213a;
+      --accent: #ff8a2b;
+      --on-accent: #0e1626;
+      --line-muted: #5b6b8c;
+      --focus: #edeff4;
       display: grid;
       grid-template-columns: minmax(0, 1fr);
-      gap: var(--s-8) var(--gutter);
+      gap: var(--s-6) var(--gutter);
       padding: var(--s-9) var(--margin);
-      /* Aplat inversé : encre en clair, surface en sombre (DESIGN §3). */
-      /* sombre : un cran au-dessus de --surface pour garder la respiration de P2 (décision Enzo, revue T34 m10) */
-      background: light-dark(var(--ink), #1b2a48);
-      color: light-dark(var(--bg), var(--ink));
     }
-    .head {
-      display: flex;
-      flex-direction: column;
-      gap: var(--s-4);
+    /* Sans align-self: start l'hôte s'étire sur toute la rangée et le sticky n'a aucune course. */
+    app-chapter-pin {
+      align-self: start;
     }
     .stage {
-      color: light-dark(#ff8a2b, var(--accent));
-      font: 800 clamp(1.75rem, 4vw, 2.5rem) / 0.9 var(--font-display);
-      font-stretch: 72%;
-    }
-    .intro {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      gap: var(--s-7);
+    }
+    .stage > app-decision-card,
+    .stage > app-photo-plates {
+      align-self: stretch;
     }
     .lead {
       font-size: var(--t-lead);
       line-height: 1.35;
     }
-    .now {
-      margin-block-start: var(--s-6);
+    .facts {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-4);
       max-width: var(--measure);
+      margin: 0;
+      padding-inline-start: var(--s-5);
+    }
+    .facts li::marker {
+      color: var(--accent);
     }
     .study {
       display: inline-flex;
       align-items: center;
       min-height: var(--target);
-      color: inherit;
-      text-decoration: underline;
-      text-underline-offset: 0.2em;
     }
     .sr {
       position: absolute;
@@ -95,78 +98,25 @@ import { Split } from '../../../shared/split/split';
       overflow: hidden;
       clip-path: inset(50%);
     }
-    ol {
-      display: flex;
-      flex-direction: column;
-      gap: var(--s-7);
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    li {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: var(--s-3);
-      padding-inline-start: var(--s-6);
-    }
-    /* Frise : un repère carré par mission sur un trait vertical. */
-    li::before {
-      content: '';
-      position: absolute;
-      inset-block: 0 calc(var(--s-7) * -1);
-      inset-inline-start: 5px;
-      width: 2px;
-      background: light-dark(#a9b1c3, var(--line-muted));
-    }
-    li:last-child::before {
-      inset-block-end: 0;
-    }
-    li::after {
-      content: '';
-      position: absolute;
-      inset-block-start: 0.5em;
-      inset-inline-start: 0;
-      width: 12px;
-      height: 12px;
-      background: light-dark(#ff8a2b, var(--accent));
-    }
-    h3 {
-      font-size: 2.75rem;
-    }
-    @media (min-width: 768px) {
-      section {
-        min-height: 160svh;
-      }
-    }
     @media (min-width: 1100px) {
       section {
         grid-template-columns: repeat(12, minmax(0, 1fr));
-        align-content: start;
         padding-block: var(--s-10);
       }
-      .head {
-        grid-column: 1 / -1;
+      app-chapter-pin {
+        grid-column: 1 / span 4;
       }
-      .head h2 {
-        max-width: 12ch;
-      }
-      /* Le texte d'intro accompagne la lecture de la frise au lieu de laisser une colonne vide. */
-      .intro {
-        grid-column: 1 / span 6;
-        position: sticky;
-        top: var(--s-9);
-        align-self: start;
-      }
-      ol,
-      .unavailable {
-        grid-column: 7 / span 6;
+      .stage {
+        grid-column: 5 / -1;
       }
     }
   `,
 })
 export class P2Section {
   readonly home = input<HomeResponse | null | undefined>();
-  protected readonly missions = computed(() => this.home()?.experiences.filter((e) => e.stage === 'P2') ?? []);
   protected readonly aid = computed(() => this.home()?.experiences.find((e) => e.stage === 'R2'));
+  protected readonly decision = WORLDLINE_ALERTS;
+  // Pas de photo de Worldline : les plaques prennent le schéma et la frise existants (spec §5, repli data-ui).
+  protected readonly diagram: Plate = { ui: true, src: '', alt: '', width: 900, height: 330, caption: $localize`:@@p2.plate.diagram:Le parcours d'un ordre de bourse, de la saisie à l'exécution.` };
+  protected readonly timeline: Plate = { ui: true, src: '', alt: '', width: 900, height: 330, caption: $localize`:@@p2.plate.timeline:Mars 2023 à septembre 2025 chez Worldline.` };
 }
