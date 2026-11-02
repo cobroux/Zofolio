@@ -19,3 +19,7 @@ coverage/
 
 # Serveur : sauvegardes locales
 backups/
+
+# Espaces de travail des skills (scratch local)
+.superpowers/
+.taste-skill/
