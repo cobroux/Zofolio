@@ -88,3 +88,84 @@
 :root[data-theme='light'] {
   color-scheme: light;
 }
+
+/* Terrains de chapitre (spec §5) : coupe franche, mêmes valeurs que shared/terrain/terrain.ts. */
+.terrain-night {
+  background: #0e1626;
+  color: #edeff4;
+  --ink: #edeff4;
+  --ink-2: #a9b1c3;
+}
+.terrain-paper {
+  background: #f6f3ec;
+  color: #14161a;
+  --ink: #14161a;
+  --ink-2: #4a4d55;
+}
+.terrain-deep {
+  background: #0a1120;
+  color: #edeff4;
+  --ink: #edeff4;
+  --ink-2: #a9b1c3;
+}
+.terrain-accent {
+  background: #c2410c;
+  color: #ffffff;
+  --ink: #ffffff;
+  --ink-2: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .terrain-night {
+    background: #0e1626;
+    color: #edeff4;
+    --ink: #edeff4;
+    --ink-2: #a9b1c3;
+  }
+  :root:not([data-theme='light']) .terrain-paper {
+    background: #16203a;
+    color: #edeff4;
+    --ink: #edeff4;
+    --ink-2: #a9b1c3;
+  }
+  :root:not([data-theme='light']) .terrain-deep {
+    background: #0a1120;
+    color: #edeff4;
+    --ink: #edeff4;
+    --ink-2: #a9b1c3;
+  }
+  :root:not([data-theme='light']) .terrain-accent {
+    background: #ff8a2b;
+    color: #0e1626;
+    --ink: #0e1626;
+    --ink-2: #0e1626;
+  }
+}
+
+:root[data-theme='dark'] .terrain-night {
+  background: #0e1626;
+  color: #edeff4;
+  --ink: #edeff4;
+  --ink-2: #a9b1c3;
+}
+
+:root[data-theme='dark'] .terrain-paper {
+  background: #16203a;
+  color: #edeff4;
+  --ink: #edeff4;
+  --ink-2: #a9b1c3;
+}
+
+:root[data-theme='dark'] .terrain-deep {
+  background: #0a1120;
+  color: #edeff4;
+  --ink: #edeff4;
+  --ink-2: #a9b1c3;
+}
+
+:root[data-theme='dark'] .terrain-accent {
+  background: #ff8a2b;
+  color: #0e1626;
+  --ink: #0e1626;
+  --ink-2: #0e1626;
+}
