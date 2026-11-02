@@ -104,7 +104,7 @@ export function globalMessage(r: Extract<ContactResult, { ok: false }>): string 
         @if (done()) { <p class="note" i18n>Message envoyé. Merci, je réponds dès que possible.</p> }
         @if (global(); as g) { <p class="note">{{ g }}</p> }
       </div>
-      <noscript><p i18n>Sans JavaScript, écrivez directement par e-mail ou téléchargez le CV : les liens ci-dessus fonctionnent.</p></noscript>
+      <noscript i18n>Sans JavaScript, écrivez directement par e-mail ou téléchargez le CV : les liens ci-dessus fonctionnent.</noscript>
     </form>
   `,
   styles: `

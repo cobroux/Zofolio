@@ -9,7 +9,11 @@ for (const lang of LANGS) {
   for (const slug of SLUGS) {
     test(`accueil -> étude de cas ${slug} (${lang})`, async ({ page }) => {
       await page.goto(`/${lang}/`);
-      await page.locator(`a.study[href$="/projets/${slug}"]`).first().click();
+      const study = page.locator(`a.study[href$="/projets/${slug}"]`).first();
+      // Section hydratée à la demande (viewport) : on l'amène à l'écran et on attend son hydratation avant de cliquer.
+      await study.scrollIntoViewIfNeeded();
+      await expect(study).not.toHaveAttribute('jsaction'); // retiré une fois la section hydratée
+      await study.click();
       await expect(page).toHaveURL(new RegExp(`/${lang}/projets/${slug}$`));
       await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
       await expect(page.locator('html')).toHaveAttribute('lang', lang);

@@ -1,17 +1,25 @@
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { DeferBlockState } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import fixture from '../../../testing/home.fixture.json';
 import { HomePage } from './home.page';
 
-async function render(respond: (req: import('@angular/common/http/testing').TestRequest) => void) {
+async function render(respond: (req: import('@angular/common/http/testing').TestRequest) => void, expectDefer = true) {
   TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting(), provideRouter([])] });
   const f = TestBed.createComponent(HomePage);
   f.detectChanges();
   respond(TestBed.inject(HttpTestingController).expectOne('/api/fr/home'));
   await f.whenStable();
   f.detectChanges();
+  if (expectDefer) {
+    const blocks = await f.getDeferBlocks();
+    expect(blocks.length).toBe(5); // p1, p2, p3, journal, arrivée
+    for (const b of blocks) await b.render(DeferBlockState.Complete);
+    await f.whenStable();
+    f.detectChanges();
+  }
   return f.nativeElement as HTMLElement;
 }
 
