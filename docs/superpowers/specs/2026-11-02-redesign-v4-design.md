@@ -188,7 +188,7 @@ Courbes : `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)`, `--ease-io: cubic-bezier
 
 ## 9. Performance et accessibilité
 
-- **Hydratation incrémentale**, absente aujourd'hui (vérifié : `app.config.ts` n'a que `provideClientHydration()`). Elle est ajoutée en tranche 1 : `withIncrementalHydration()` et `@defer (hydrate on viewport)` sur P1, P2, P3, Journal et Arrivée. Le Départ et le bandeau restent en hydratation immédiate. Le gain sur le TBT est mesuré avant et après.
+- **Hydratation incrémentale : évaluée puis abandonnée** (2026-11-03). Avec Angular 22.2.3, un clic ou une frappe faits avant l'hydratation d'un bloc `@defer` sont perdus, quel que soit le déclencheur. Le gain mesuré était minime (TBT médian 42 → 10 ms, performance 0,90 → 0,91 sur 5 passages). On garde l'hydratation complète, et un test E2E sous réseau ralenti vérifie qu'un clic immédiat n'est jamais perdu. À réévaluer quand Angular corrigera le rejeu.
 - **Budget JS** : aucune dépendance ajoutée, pas de bibliothèque d'animation (CSS, WAAPI, rAF).
 - **Bandeau** : un seul écouteur de scroll passif et rAF ; il écrit `transform` directement sur l'élément, pas une variable CSS héritée.
 - **Budget de hauteur des éléments fixes sur mobile (390 × 844)** : barre de chapitre (48 px) + bandeau (52 px, 76 px quand il est étendu) ≤ 15 % de la hauteur. `scroll-padding-top` et `scroll-padding-bottom` en conséquence, pour que le focus ne soit jamais masqué (WCAG 2.4.11).
