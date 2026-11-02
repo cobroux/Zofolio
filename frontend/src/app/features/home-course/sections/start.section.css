@@ -86,7 +86,8 @@ picture img {
 }
 app-bib {
   justify-self: end;
-  width: min(64%, 360px);
+  /* 260 px minimum : sous cette largeur la ligne de course (13 px plancher) étire le dossard au-delà de 5:3. */
+  width: clamp(260px, 64%, 360px);
   margin-block-start: -19%;
   margin-inline-end: var(--s-4);
 }
