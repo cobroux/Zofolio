@@ -4,13 +4,15 @@ import { Component, input } from '@angular/core';
 @Component({
   selector: 'app-chapter-pin',
   template: `
-    <div class="pin" [class.sticky]="sticky()">
+    <div class="pin">
       <span class="mark">{{ mark() }}</span>
       <span class="title">{{ title() }}</span>
       <span class="meta tnum">{{ meta() }}</span>
     </div>
   `,
   styleUrl: './chapter-pin.css',
+  // title est une entrée : on retire l'attribut statique de l'hôte pour éviter l'infobulle native.
+  host: { '[class.sticky]': 'sticky()', '[attr.title]': 'null' },
 })
 export class ChapterPin {
   readonly mark = input.required<string>();

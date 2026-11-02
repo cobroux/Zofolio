@@ -1,17 +1,29 @@
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { readFileSync } from 'node:fs';
 import { PhotoPlates, Plate } from './photo-plates';
 
-const plate: Plate = { src: '/img/portrait-800.jpg', alt: 'Enzo au départ', caption: 'Départ', width: 800, height: 1000 };
+const plate: Plate = {
+  src: '/img/portrait-800.jpg',
+  alt: 'Enzo au départ',
+  caption: 'Départ',
+  width: 800,
+  height: 1000,
+};
 
-@Component({ imports: [PhotoPlates], template: `<app-photo-plates [main]="main" [inset]="inset" />` })
+@Component({
+  imports: [PhotoPlates],
+  template: `<app-photo-plates [main]="main" [inset]="inset" />`,
+})
 class Host {
   main = plate;
   inset: Plate | null = null;
 }
 @Component({
   imports: [PhotoPlates],
-  template: `<app-photo-plates [main]="main" [inset]="null"><svg plate-ui></svg></app-photo-plates>`,
+  template: `<app-photo-plates [main]="main" [inset]="null"
+    ><svg plate-ui></svg
+  ></app-photo-plates>`,
 })
 class UiHost {
   main: Plate = { ...plate, ui: true };
@@ -41,11 +53,16 @@ describe('PhotoPlates', () => {
   });
   it('révélation : .in posé une seule fois au passage dans le viewport', async () => {
     let cb!: IntersectionObserverCallback;
-    vi.stubGlobal('IntersectionObserver', class {
-      constructor(c: IntersectionObserverCallback) { cb = c; }
-      observe = vi.fn();
-      disconnect = vi.fn();
-    });
+    vi.stubGlobal(
+      'IntersectionObserver',
+      class {
+        constructor(c: IntersectionObserverCallback) {
+          cb = c;
+        }
+        observe = vi.fn();
+        disconnect = vi.fn();
+      },
+    );
     const f = TestBed.createComponent(Host);
     await f.whenStable();
     const fig: HTMLElement = f.nativeElement.querySelector('figure');
@@ -54,5 +71,10 @@ describe('PhotoPlates', () => {
     await f.whenStable();
     expect(fig.classList.contains('in')).toBe(true);
     vi.unstubAllGlobals();
+  });
+  it("css : l'état caché passe par :host-context(html.js) (l'encapsulation casse `html.js .x`)", () => {
+    const css = readFileSync('src/app/shared/photo-plates/photo-plates.css', 'utf8');
+    expect(css).not.toMatch(/^\s*html\.js/m);
+    expect(css).toContain(':host-context(html.js) .plate:not(.in)');
   });
 });

@@ -22,8 +22,8 @@ figcaption {
   justify-self: end;
 }
 /* Sans JS (html.js absent) l'image reste visible ; l'ouverture se joue une fois, l'encart avec 80 ms de décalage. */
-html.js .plate:not(.in) img,
-html.js .plate:not(.in) [data-ui] {
+:host-context(html.js) .plate:not(.in) img,
+:host-context(html.js) .plate:not(.in) [data-ui] {
   clip-path: inset(0 100% 0 0);
 }
 .plate img,
@@ -34,8 +34,8 @@ html.js .plate:not(.in) [data-ui] {
   transition-delay: 80ms;
 }
 @media (prefers-reduced-motion: reduce) {
-  html.js .plate:not(.in) img,
-  html.js .plate:not(.in) [data-ui] {
+  :host-context(html.js) .plate:not(.in) img,
+  :host-context(html.js) .plate:not(.in) [data-ui] {
     clip-path: none;
     opacity: 0;
   }

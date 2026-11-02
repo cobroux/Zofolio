@@ -6,7 +6,7 @@
   flex-direction: column;
   gap: 0.5rem;
 }
-.sticky {
+:host(.sticky) {
   position: sticky;
   top: 6rem;
 }
@@ -31,7 +31,7 @@
     padding-inline: var(--gutter, 1rem);
     background: var(--bg);
   }
-  .sticky {
+  :host(.sticky) {
     top: 0;
     z-index: 5;
   }

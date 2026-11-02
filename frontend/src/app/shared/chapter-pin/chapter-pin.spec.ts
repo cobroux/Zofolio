@@ -18,7 +18,8 @@ describe('ChapterPin', () => {
     expect(el.textContent).toContain('P2');
     expect(el.textContent).toContain('Worldline');
     expect(el.textContent).toContain('km 44');
-    expect(el.querySelector('.sticky')).toBeTruthy();
+    expect(el.querySelector('app-chapter-pin')!.classList).toContain('sticky');
+    expect(el.querySelector('[title]')).toBeNull();
   });
   it('sticky=false : pas de classe sticky', async () => {
     const f = TestBed.createComponent(Host);
