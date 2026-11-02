@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { readFileSync } from 'node:fs';
 import { PhotoPlates, Plate } from './photo-plates';
 
 const plate: Plate = {
@@ -73,8 +72,9 @@ describe('PhotoPlates', () => {
     vi.unstubAllGlobals();
   });
   it("css : l'état caché passe par :host-context(html.js) (l'encapsulation casse `html.js .x`)", () => {
-    const css = readFileSync('src/app/shared/photo-plates/photo-plates.css', 'utf8');
-    expect(css).not.toMatch(/^\s*html\.js/m);
-    expect(css).toContain(':host-context(html.js) .plate:not(.in)');
+    // Styles compilés (encapsulation émulée) : `html.js` y recevrait _ngcontent et ne matcherait jamais.
+    const css = ((PhotoPlates as any).ɵcmp.styles as string[]).join('');
+    expect(css).not.toMatch(/html\.js\[_ngcontent/);
+    expect(css).toMatch(/html\.js\s*\[_nghost[^{]*\.plate/);
   });
 });
