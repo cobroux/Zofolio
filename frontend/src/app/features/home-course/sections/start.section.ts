@@ -1,18 +1,14 @@
 import { Component, LOCALE_ID, inject } from '@angular/core';
 import { Bib } from '../../../shared/bib/bib';
+import { ContourField } from '../../../shared/contour-field/contour-field';
 
 /** Départ (DESIGN §5) : textes d'interface statiques (D3), aucune donnée d'API. */
 @Component({
   selector: 'app-start',
-  imports: [Bib],
+  imports: [Bib, ContourField],
   template: `
     <section id="depart">
-      <svg class="contours" aria-hidden="true" viewBox="0 0 800 600" preserveAspectRatio="none">
-        <path d="M0,420 C160,360 260,470 420,400 S700,330 800,380" />
-        <path d="M0,460 C170,400 270,510 430,440 S710,370 800,420" />
-        <path d="M0,500 C180,440 280,550 440,480 S720,410 800,460" />
-        <path d="M0,540 C190,480 290,590 450,520 S730,450 800,500" />
-      </svg>
+      <app-contour-field [levels]="12" />
       <div class="text">
         <p class="small tnum" i18n>Départ 6 h 30 · km 0</p>
         <h1>Enzo Leveque</h1>

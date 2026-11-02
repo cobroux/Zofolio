@@ -3,23 +3,11 @@
 }
 section {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   min-height: 100svh;
-}
-.contours {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  fill: none;
-  stroke: var(--contour);
-  stroke-width: 1.5;
-  vector-effect: non-scaling-stroke;
-}
-.contours path {
-  vector-effect: non-scaling-stroke;
 }
 /* Mobile : portrait en haut, la hauteur laisse les deux CTA dans le premier écran (360×640 compris). */
 section {

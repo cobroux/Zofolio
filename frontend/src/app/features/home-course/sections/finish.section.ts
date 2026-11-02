@@ -1,13 +1,15 @@
 import { Component, LOCALE_ID, inject } from '@angular/core';
+import { ContourField } from '../../../shared/contour-field/contour-field';
 import { Reveal } from '../../../shared/reveal/reveal';
 import { ContactForm } from '../../contact/contact-form';
 
 /** Statique (D3) : ne dépend pas de l'API. */
 @Component({
   selector: 'app-finish-section',
-  imports: [ContactForm, Reveal],
+  imports: [ContactForm, ContourField, Reveal],
   template: `
     <section id="arrivee" aria-labelledby="arrivee-title">
+      <app-contour-field [levels]="12" />
       <div class="intro">
         <p class="chrono" appReveal>
           <time datetime="PT13H35M53S">13:35:53</time>
@@ -35,6 +37,9 @@ import { ContactForm } from '../../contact/contact-form';
   `,
   styles: `
     section {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
       display: grid;
       grid-template-columns: minmax(0, 1fr);
       gap: var(--s-7) var(--gutter);
