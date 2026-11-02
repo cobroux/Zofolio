@@ -27,7 +27,16 @@ Test du concurrent : un autre dev traileur n'a ni ce profil, ni ce dossard, ni c
 
 **L'élément vivant.** Le bandeau de suivi affiche en direct le km, l'altitude et le D+ cumulé à la position de lecture. Ces chiffres sont calculés à partir du vrai profil (`profile.data.ts`), pas inventés. Survoler un pointage affiche un aperçu de l'étape, cliquer dessus y mène. Au toucher, le bandeau ouvre le road book. Sans JavaScript, le bandeau est une liste de liens d'ancre.
 
-**Chrono : donnée à fournir.** Le site ne connaît aujourd'hui que le départ à 6 h 30 et le temps total, 13 h 35 min 53 s. Les temps de passage à P1, P2 et P3 ne s'affichent que si Enzo fournit ses temps officiels. Sans eux, le bandeau montre le km, l'altitude et le D+, et l'Arrivée seule montre 13 h 35 min 53 s. Aucun temps intermédiaire ne sera interpolé.
+**Chrono : les vrais pointages officiels** (chrono-start, GTA 2025, X Ultra Trail 80 km, 11/10/2025, départ 06:30:00) :
+
+| Pointage | km | Heure de passage | Temps de course | Étape |
+| --- | --- | --- | --- | --- |
+| P1 | 20,0 | 09:23:44 | 2 h 53 min 44 s | 2 h 53 min 44 s |
+| P2 | 44,0 | 13:32:16 | 7 h 02 min 16 s | 4 h 08 min 32 s |
+| P3 | 58,2 | 16:18:29 | 9 h 48 min 29 s | 2 h 46 min 13 s |
+| Arrivée | 79,41 | 20:05:52 | 13 h 35 min 53 s | 3 h 47 min 23 s |
+
+Ces temps vont dans `profile.data.ts`, à côté de `CHECKPOINTS`. Entre deux pointages, le bandeau affiche le **dernier temps de passage atteint**, jamais un temps interpolé. Les places et classements (456ᵉ, etc.) ne sont pas affichés, comme le prévoit déjà la règle du site.
 
 ## 4. Ce qui reste, ce qui change
 
@@ -63,7 +72,7 @@ Chaque section a une composition différente de ses voisines, et aucune n'est un
 - **Mobile.** Le chapitre devient une fine barre sticky en haut, « P1 · Fondations ». Le contenu passe sur une colonne.
 
 ### P2 · Worldline, la plus longue étape (km 44)
-- **Ordinateur.** Terrain nuit profonde. Chapitre épinglé à gauche. Le texte de l'étape reprend les faits du CV : TOM, migration move2cloud vers RabbitMQ, choix argumenté d'ActiveMQ, batchs Copartis, contrôles pré-trade, puis Aubay (Java/Spring Boot et Python). À droite, les plaques photo superposées et un fragment d'interface réel de l'étude de cas, recadré, marqué `data-ui`. Le **pointage P2** apparaît à l'entrée de l'étape : une plaque claire en surimpression, « P2 · km 44 · 2,5 ans », plus le temps de passage s'il est fourni. Lien vers l'étude de cas.
+- **Ordinateur.** Terrain nuit profonde. Chapitre épinglé à gauche. Le texte de l'étape reprend les faits du CV : TOM, migration move2cloud vers RabbitMQ, choix argumenté d'ActiveMQ, batchs Copartis, contrôles pré-trade, puis Aubay (Java/Spring Boot et Python). À droite, les plaques photo superposées et un fragment d'interface réel de l'étude de cas, recadré, marqué `data-ui`. Le **pointage P2** apparaît à l'entrée de l'étape : une plaque claire en surimpression, « P2 · km 44 · 13:32:16 », avec en dessous « 4 h 08 de la plus longue étape · 2,5 ans chez Worldline ». Lien vers l'étude de cas.
 - **Ravitaillement R2.**
 - **Mobile.** Barre sticky, plaques en pleine largeur, pointage en petite bannière au-dessus du bandeau pendant 2 s.
 
@@ -76,7 +85,7 @@ Chaque section a une composition différente de ses voisines, et aucune n'est un
 - **Mobile.** Chiffres à environ 15vw, alignement conservé, légendes sous chaque chiffre.
 
 ### Arrivée · contact (km 79,41)
-- **Ordinateur.** Terrain nuit. La **ligne d'arrivée** : une large bande où s'affiche « 13 h 35 min 53 s », le seul chrono certain, en chiffres monumentaux, avec « Prochain objectif : 100 km » en petit. Dessous, le formulaire est présenté comme un **coupon détachable** : une carte pleine avec ses encoches, une perforation en points ronds, et le formulaire existant avec ses champs et ses états. Phidippides reste sous le formulaire.
+- **Ordinateur.** Terrain nuit. La **ligne d'arrivée** : une large bande où s'affiche « 13 h 35 min 53 s », le seul chrono certain, en chiffres monumentaux, avec « Prochain objectif : 100 km » en petit. Le détail des quatre pointages s'affiche en tableau compact sous le chrono. Dessous, le formulaire est présenté comme un **coupon détachable** : une carte pleine avec ses encoches, une perforation en points ronds, et le formulaire existant avec ses champs et ses états. Phidippides reste sous le formulaire.
 - **Pied de page, « le dos du dossard ».** Le dossard retourné porte les liens (email, GitHub, LinkedIn, CV) et le colophon.
 - **Mobile.** Coupon vertical, perforation horizontale.
 
@@ -157,9 +166,9 @@ Pas de nouveau contenu inventé (témoignages, logos, chiffres hors CV), pas de 
 
 ## 13. Décisions ouvertes (pour Enzo)
 
-1. **Temps de passage officiels** P1, P2 et P3 du GTA 2025 (site des résultats ou montre). Sans eux, pas de chrono intermédiaire.
-2. **Photos** : pour P2 et P3, en as-tu d'autres que celles de `frontend/public/img/` (équipe, lieu, course) ? Sinon, on utilisera des captures d'interface réelles et des photos de course.
-3. **Projets d'école en P1** : on les regroupe dans un index dense (recommandé) ou on les retire ?
+1. ~~Temps de passage~~ : fournis le 2026-11-02 (voir §3).
+2. **Photos** : il n'y a aujourd'hui que trois photos réelles (portrait, finisher Côte d'Opale, en course). Il en faut 8 à 12 : en priorité des photos du GTA 2025 avec le dossard 1592, d'autres courses ou entraînements, Enzo au travail (sans rien de confidentiel), plus des captures d'écran de projets, qu'on peut produire nous-mêmes. Sans ces photos, les plaques s'appuient sur les captures d'interface et les trois photos existantes.
+3. ~~Projets d'école~~ : conservés, regroupés en index dense dans P1 (décision d'Enzo du 2026-11-02).
 
 ## 14. Risques
 
