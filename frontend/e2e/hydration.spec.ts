@@ -9,9 +9,7 @@ test.beforeEach(async ({ page, context }) => {
   await cdp.send('Emulation.setCPUThrottlingRate', { rate: 4 });
 });
 
-// KNOWN ISSUE (Angular 22.2.3) : le clic rejoué sur un routerLink d'un bloc @defer est perdu, quel que soit le déclencheur
-// (viewport, interaction, immediate), et les premières frappes du formulaire sont effacées à l'hydratation. Voir task-2-report.md.
-test.fixme('clic sur une étude de cas avant hydratation : navigation rejouée', async ({ page }) => {
+test('clic sur une étude de cas avant hydratation : navigation rejouée', async ({ page }) => {
   await page.goto('/fr/', { waitUntil: 'domcontentloaded' });
   const study = page.locator('a.study[href$="/projets/gfaim"]').first();
   await study.scrollIntoViewIfNeeded();
@@ -19,7 +17,7 @@ test.fixme('clic sur une étude de cas avant hydratation : navigation rejouée',
   await expect(page).toHaveURL(/\/fr\/projets\/gfaim$/, { timeout: 60000 });
 });
 
-test.fixme('saisie dans le formulaire avant hydratation : rien de perdu', async ({ page }) => {
+test('saisie dans le formulaire avant hydratation : rien de perdu', async ({ page }) => {
   await page.goto('/fr/', { waitUntil: 'domcontentloaded' });
   const name = page.locator('#c-name');
   await name.scrollIntoViewIfNeeded();

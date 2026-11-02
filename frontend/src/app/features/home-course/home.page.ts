@@ -17,11 +17,11 @@ import { StartSection } from './sections/start.section';
   template: `
     <app-road-book /><app-elevation-profile />
     <app-start />
-    @defer (hydrate on viewport) { <app-p1 [home]="home.value()" /> }
-    @defer (hydrate on viewport) { <app-p2 [home]="home.value()" /> }
-    @defer (hydrate on viewport) { <app-p3-section [projects]="home.value()?.projects ?? null" /> }
-    @defer (hydrate on viewport) { <app-journal-section [races]="home.value()?.races ?? null" [contributions]="home.value()?.contributions ?? null" [sportYears]="home.value()?.sportYears ?? []" /> }
-    @defer (hydrate on viewport) { <app-finish-section /> }
+    <app-p1 [home]="home.value()" />
+    <app-p2 [home]="home.value()" />
+    <app-p3-section [projects]="home.value()?.projects ?? null" />
+    <app-journal-section [races]="home.value()?.races ?? null" [contributions]="home.value()?.contributions ?? null" [sportYears]="home.value()?.sportYears ?? []" />
+    <app-finish-section />
   `,
   styles: `
     :host {
