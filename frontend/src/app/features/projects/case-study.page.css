@@ -232,12 +232,6 @@ dd {
   .bib {
     grid-column: 9 / 13;
   }
-  .wrap {
-    padding-inline-end: calc(var(--margin) + 72px); /* même marge que l'accueil (rail du profil non rendu ici) */
-  }
-  .wall .wrap {
-    padding-inline-end: var(--margin);
-  }
   .grid {
     grid-template-columns: repeat(12, 1fr);
     column-gap: var(--gutter);

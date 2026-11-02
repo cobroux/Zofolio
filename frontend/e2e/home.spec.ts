@@ -47,9 +47,9 @@ test('404', async ({ page }) => {
 test.describe('mobile 390x844', () => {
   test.use({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
 
-  test('clavier : road book (ouverture, Échap, navigation)', async ({ page }) => {
+  test('clavier : « Parcours » ouvre le road book (Échap rend le focus, navigation)', async ({ page }) => {
     await page.goto('/fr/');
-    const bar = page.getByRole('button', { name: /road book|km/i }).first();
+    const bar = page.getByRole('navigation', { name: 'Parcours' }).getByRole('button', { name: 'Parcours' });
     await bar.focus();
     await page.keyboard.press('Enter');
     const dialog = page.getByRole('dialog');
@@ -63,11 +63,32 @@ test.describe('mobile 390x844', () => {
     await expect(dialog).toBeHidden();
     await expect(page).toHaveURL(/#p\d|#journal|#arrivee/);
   });
+
+  test('tabulation jusqu\'au contact : le focus ne passe jamais sous le bandeau (WCAG 2.4.11)', async ({ page }) => {
+    await page.goto('/fr/');
+    await page.waitForLoadState('networkidle');
+    for (let i = 0; i < 200; i++) {
+      await page.keyboard.press('Tab');
+      const f = await page.evaluate(() => {
+        const el = document.activeElement as HTMLElement;
+        const r = el.getBoundingClientRect();
+        // Le bandeau est fixe : ses propres contrôles ne peuvent pas être masqués par lui.
+        return { id: el.id, inBand: !!el.closest('app-tracking-band'), y: r.y, h: r.height, scrolled: scrollY > 0, desc: el.outerHTML.slice(0, 80) };
+      });
+      if (!f.inBand) {
+        // En haut de page rien n'est fixe au-dessus ; la barre de chapitre (48 px) n'existe qu'une fois la page défilée.
+        if (f.scrolled) expect(f.y, f.desc).toBeGreaterThanOrEqual(48);
+        expect(f.y + f.h, f.desc).toBeLessThanOrEqual(844 - 76);
+      }
+      if (f.id === 'c-name') return;
+    }
+    throw new Error('formulaire de contact jamais atteint au clavier');
+  });
 });
 
 test('clavier : rail de checkpoints (desktop)', async ({ page }) => {
   await page.goto('/fr/');
-  const links = page.getByRole('navigation', { name: 'Profil de la course' }).getByRole('link');
+  const links = page.getByRole('navigation', { name: 'Parcours' }).getByRole('link');
   expect(await links.count()).toBeGreaterThanOrEqual(5);
   await links.nth(2).focus();
   await page.keyboard.press('Enter');
@@ -96,14 +117,18 @@ for (const path of ['/fr/', '/en/', '/fr/mentions-legales']) {
   }
 }
 
-test.describe('rail desktop 1440', () => {
+test.describe('bandeau desktop 1440', () => {
   test.use({ viewport: { width: 1440, height: 900 } });
-  test('km 0 en haut, libellé non tronqué', async ({ page }) => {
+  test('collé en bas, 52 px, km 0,0 en haut puis 79,4 en bas de page', async ({ page }) => {
     await page.goto('/fr/');
-    const km = page.locator('app-elevation-profile .km');
-    await expect(km).toHaveText('km 0');
-    const [k, host] = await Promise.all([km.boundingBox(), page.locator('app-elevation-profile').boundingBox()]);
-    expect(k!.x + k!.width).toBeLessThanOrEqual(host!.x + host!.width);
-    expect(await km.evaluate((e) => e.scrollWidth <= e.clientWidth)).toBe(true);
+    const band = page.locator('app-tracking-band .band');
+    const km = band.locator('.values .km');
+    await expect(km).toContainText('0,0');
+    const b = (await band.boundingBox())!;
+    expect(Math.round(b.y + b.height)).toBe(900);
+    expect(Math.round(b.height)).toBe(52);
+    expect(await band.locator('.values').evaluate((e) => e.scrollWidth <= e.clientWidth)).toBe(true);
+    await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
+    await expect(km).toContainText('79,4');
   });
 });

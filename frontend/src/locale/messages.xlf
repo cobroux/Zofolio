@@ -106,14 +106,14 @@
         <source>en</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/core/layout/header.ts</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
       <trans-unit id="switchLabel" datatype="html">
         <source>EN, version anglaise</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/core/layout/header.ts</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="linenumber">66</context>
         </context-group>
       </trans-unit>
       <trans-unit id="725318901730987676" datatype="html">
@@ -685,133 +685,67 @@
         <source>fr-FR</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/course-progress.ts</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">60</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">9</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">21</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6751174241350002884" datatype="html">
-        <source>Profil de la course</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/elevation-profile/elevation-profile.html</context>
-          <context context-type="linenumber">1</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6044256456943348938" datatype="html">
-        <source>km</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/elevation-profile/elevation-profile.html</context>
-          <context context-type="linenumber">2</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/elevation-profile/elevation-profile.html</context>
-          <context context-type="linenumber">15</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/road-book/road-book.html</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/road-book/road-book.html</context>
-          <context context-type="linenumber">21</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8181410181518647436" datatype="html">
-        <source>0</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/elevation-profile/elevation-profile.ts</context>
-          <context context-type="linenumber">21</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3243838789504652996" datatype="html">
-        <source>Départ</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/elevation-profile/elevation-profile.ts</context>
-          <context context-type="linenumber">21</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/road-book/road-book.ts</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5787790710733465314" datatype="html">
-        <source>P1</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/elevation-profile/elevation-profile.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7631315999016152953" datatype="html">
-        <source>Fondations</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/elevation-profile/elevation-profile.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6844415904225286494" datatype="html">
-        <source>P2</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/elevation-profile/elevation-profile.ts</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="677188059782342345" datatype="html">
-        <source>Worldline</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/elevation-profile/elevation-profile.ts</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3562469738735404366" datatype="html">
-        <source>P3</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/elevation-profile/elevation-profile.ts</context>
-          <context context-type="linenumber">24</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7714761287339338401" datatype="html">
-        <source>Projets perso</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/elevation-profile/elevation-profile.ts</context>
-          <context context-type="linenumber">24</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3312499364293907840" datatype="html">
-        <source>Arr.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/elevation-profile/elevation-profile.ts</context>
-          <context context-type="linenumber">25</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7163148973019066404" datatype="html">
-        <source>Arrivée</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/elevation-profile/elevation-profile.ts</context>
-          <context context-type="linenumber">25</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/road-book/road-book.ts</context>
           <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1344027227739214355" datatype="html">
         <source>Road book</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/road-book/road-book.html</context>
-          <context context-type="linenumber">14,15</context>
+          <context context-type="linenumber">4,5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9059155436017318544" datatype="html">
         <source>Fermer</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/road-book/road-book.html</context>
-          <context context-type="linenumber">15,16</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6044256456943348938" datatype="html">
+        <source>km</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/road-book/road-book.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3243838789504652996" datatype="html">
+        <source>Départ</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/road-book/road-book.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="487853617470814801" datatype="html">
@@ -827,6 +761,10 @@
           <context context-type="sourcefile">src/app/features/home-course/road-book/road-book.ts</context>
           <context context-type="linenumber">7</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="6777866636230742309" datatype="html">
         <source>Les bases du métier, posées à la main.</source>
@@ -840,6 +778,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/road-book/road-book.ts</context>
           <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="468721458545100181" datatype="html">
@@ -855,6 +797,10 @@
           <context context-type="sourcefile">src/app/features/home-course/road-book/road-book.ts</context>
           <context context-type="linenumber">9</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="7675331876752477769" datatype="html">
         <source>Ce que j&apos;ai construit pour le plaisir.</source>
@@ -863,18 +809,26 @@
           <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="7163148973019066404" datatype="html">
+        <source>Arrivée</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/road-book/road-book.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7271538047895910958" datatype="html">
         <source>Parlons-en : contact, CV, GitHub.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/road-book/road-book.ts</context>
           <context context-type="linenumber">10</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1026481047826684264" datatype="html">
-        <source>Ouvrir le road book : km <x id="PH" equiv-text="km"/> sur <x id="PH_1" equiv-text="total"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/road-book/road-book.ts</context>
-          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2598620141573040078" datatype="html">
@@ -948,28 +902,28 @@
         <source>Journal de course</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">31,32</context>
+          <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2212520090994791218" datatype="html">
         <source>32 courses terminées, toujours un peu plus loin. Même méthode qu&apos;au travail : mesurer, ajuster, recommencer.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">32,33</context>
+          <context context-type="linenumber">33,34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4886577232727235058" datatype="html">
         <source>UTMB Index. Un chiffre, pas un classement.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">35,36</context>
+          <context context-type="linenumber">36,37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1307588471547279582" datatype="html">
         <source>Contenu indisponible pour le moment.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">47,48</context>
+          <context context-type="linenumber">48,49</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
@@ -996,185 +950,185 @@
         <source>Enzo montre sa médaille de finisher devant l&apos;affiche du Trail Côte d&apos;Opale</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">63,64</context>
+          <context context-type="linenumber">64,65</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5135005963082951569" datatype="html">
         <source>Voir le détail : les années en chiffres et les autres courses</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">69,70</context>
+          <context context-type="linenumber">70,71</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7421213708471553475" datatype="html">
         <source>Les années en chiffres</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">73,74</context>
+          <context context-type="linenumber">74,75</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2967245884137980359" datatype="html">
         <source>Course, vélo et natation, année par année, d&apos;après ma montre.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">74,75</context>
+          <context context-type="linenumber">75,76</context>
         </context-group>
       </trans-unit>
       <trans-unit id="510448242925122577" datatype="html">
         <source>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km et dénivelé : course et vélo (les km en natation, peu fiables, sont exclus). Année en cours incluse.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">75,76</context>
+          <context context-type="linenumber">76,77</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1229716062486939868" datatype="html">
         <source>Totaux annuels d&apos;endurance</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">78,79</context>
+          <context context-type="linenumber">79,80</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8415249390267046376" datatype="html">
         <source>Année</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">81,82</context>
+          <context context-type="linenumber">82,83</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1520696175350811727" datatype="html">
         <source>Kilomètres (km)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">82,83</context>
+          <context context-type="linenumber">83,84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6282014921908647866" datatype="html">
         <source>Dénivelé (m D+)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">83,84</context>
+          <context context-type="linenumber">84,85</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6318374050802732469" datatype="html">
         <source>Heures (h)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">84,85</context>
+          <context context-type="linenumber">85,86</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3757382813330853359" datatype="html">
         <source>Activités</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">85,86</context>
+          <context context-type="linenumber">86,87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1958150413233501306" datatype="html">
         <source>en cours</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">91</context>
+          <context context-type="linenumber">92</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4372371957547532942" datatype="html">
         <source>non renseigné</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">104,105</context>
+          <context context-type="linenumber">105,106</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3973931101896534797" datatype="html">
         <source>Date</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">129,130</context>
+          <context context-type="linenumber">133,134</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">337</context>
+          <context context-type="linenumber">343</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8317457230285174180" datatype="html">
         <source>Course</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">130,131</context>
+          <context context-type="linenumber">134,135</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">338</context>
+          <context context-type="linenumber">344</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1779552786277618671" datatype="html">
         <source>Distance</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">131,132</context>
+          <context context-type="linenumber">135,136</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">339</context>
+          <context context-type="linenumber">345</context>
         </context-group>
       </trans-unit>
       <trans-unit id="243567702094105596" datatype="html">
         <source>D+</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">133</context>
+          <context context-type="linenumber">137</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">340</context>
+          <context context-type="linenumber">346</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7631405440758027758" datatype="html">
         <source>Temps</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">133,134</context>
+          <context context-type="linenumber">137,138</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">341</context>
+          <context context-type="linenumber">347</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4388879716045736175" datatype="html">
         <source>Note</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">134,135</context>
+          <context context-type="linenumber">138,139</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">342</context>
+          <context context-type="linenumber">348</context>
         </context-group>
       </trans-unit>
       <trans-unit id="71658782535622884" datatype="html">
         <source>Date non renseignée</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">144,145</context>
+          <context context-type="linenumber">148,149</context>
         </context-group>
       </trans-unit>
       <trans-unit id="879123622368781140" datatype="html">
         <source>Record personnel</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">152</context>
+          <context context-type="linenumber">156</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4450271950810119055" datatype="html">
         <source>Dernières courses terminées</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">343</context>
+          <context context-type="linenumber">349</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6745294617554084103" datatype="html">
         <source>Autres courses terminées</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">344</context>
+          <context context-type="linenumber">350</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8923872238526304845" datatype="html">
@@ -1338,6 +1292,115 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
           <context context-type="linenumber">40,41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6870329524779746846" datatype="html">
+        <source>alt.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8921646052564591281" datatype="html">
+        <source>Parcours</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4584471423117695903" datatype="html">
+        <source>Comment c&apos;est calculé</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.html</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8181410181518647436" datatype="html">
+        <source>0</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5787790710733465314" datatype="html">
+        <source>P1</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7631315999016152953" datatype="html">
+        <source>Fondations</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6844415904225286494" datatype="html">
+        <source>P2</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="677188059782342345" datatype="html">
+        <source>Worldline</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3562469738735404366" datatype="html">
+        <source>P3</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7714761287339338401" datatype="html">
+        <source>Projets perso</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3312499364293907840" datatype="html">
+        <source>Arr.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2537053228277649003" datatype="html">
+        <source><x id="name" equiv-text="name"/> · km <x id="km" equiv-text="km"/> · <x id="clock" equiv-text="clock"/> · <x id="leg" equiv-text="leg"/> de la plus longue étape</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">121</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4512301851282775999" datatype="html">
+        <source><x id="name" equiv-text="name"/> · km <x id="km" equiv-text="km"/> · <x id="clock" equiv-text="clock"/> · <x id="leg" equiv-text="leg"/> d&apos;étape</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">122</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9014929949884219541" datatype="html">
+        <source>Arrivée atteinte, km <x id="km" equiv-text="km"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1147207281334853440" datatype="html">
+        <source><x id="name" equiv-text="name"/> atteint, km <x id="km" equiv-text="km"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">124</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3241816679336998255" datatype="html">

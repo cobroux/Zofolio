@@ -364,14 +364,6 @@
           <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6751174241350002884" datatype="html">
-        <source>Profil de la course</source>
-        <target state="translated">Course profile</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/elevation-profile/elevation-profile.html</context>
-          <context context-type="linenumber">1</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="6044256456943348938" datatype="html">
         <source>km</source>
         <target state="translated">km</target>
@@ -558,14 +550,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/road-book/road-book.ts</context>
           <context context-type="linenumber">10</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1026481047826684264" datatype="html">
-        <source>Ouvrir le road book : km <x id="PH" equiv-text="km"/> sur <x id="PH_1" equiv-text="total"/></source>
-        <target state="translated">Open the road book: km <x id="PH" equiv-text="km"/> of <x id="PH_1" equiv-text="total"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/road-book/road-book.ts</context>
-          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2598620141573040078" datatype="html">
@@ -2774,6 +2758,66 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/worldline-timeline.ts</context>
           <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2537053228277649003" datatype="html">
+        <source><x id="name" equiv-text="name"/> · km <x id="km" equiv-text="km"/> · <x id="clock" equiv-text="clock"/> · <x id="leg" equiv-text="leg"/> de la plus longue étape</source>
+        <target state="translated"><x id="name" equiv-text="name"/> · km <x id="km" equiv-text="km"/> · <x id="clock" equiv-text="clock"/> · <x id="leg" equiv-text="leg"/>, the longest leg</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">121</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4512301851282775999" datatype="html">
+        <source><x id="name" equiv-text="name"/> · km <x id="km" equiv-text="km"/> · <x id="clock" equiv-text="clock"/> · <x id="leg" equiv-text="leg"/> d&apos;étape</source>
+        <target state="translated"><x id="name" equiv-text="name"/> · km <x id="km" equiv-text="km"/> · <x id="clock" equiv-text="clock"/> · <x id="leg" equiv-text="leg"/> leg</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">122</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6870329524779746846" datatype="html">
+        <source>alt.</source>
+        <target state="translated">alt.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9014929949884219541" datatype="html">
+        <source>Arrivée atteinte, km <x id="km" equiv-text="km"/></source>
+        <target state="translated">Finish reached, km <x id="km" equiv-text="km"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8921646052564591281" datatype="html">
+        <source>Parcours</source>
+        <target state="translated">Course</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4584471423117695903" datatype="html">
+        <source>Comment c&apos;est calculé</source>
+        <target state="translated">How it&apos;s computed</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.html</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1147207281334853440" datatype="html">
+        <source><x id="name" equiv-text="name"/> atteint, km <x id="km" equiv-text="km"/></source>
+        <target state="translated"><x id="name" equiv-text="name"/> reached, km <x id="km" equiv-text="km"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
+          <context context-type="linenumber">124</context>
         </context-group>
       </trans-unit>
     </body>

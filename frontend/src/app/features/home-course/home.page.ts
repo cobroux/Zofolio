@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { ContentApi } from '../../core/api/content.api';
-import { ElevationProfile } from './elevation-profile/elevation-profile';
-import { RoadBook } from './road-book/road-book';
+import { TrackingBand } from './tracking-band/tracking-band';
 import { P1Section } from './sections/p1.section';
 import { P2Section } from './sections/p2.section';
 import { FinishSection } from './sections/finish.section';
@@ -13,9 +12,9 @@ import { StartSection } from './sections/start.section';
 /** Accueil : sections dans l'ordre #depart #p1 #p2 #p3 #journal #arrivee. Le contenu vient de /api/{lang}/home. */
 @Component({
   selector: 'app-home',
-  imports: [RoadBook, ElevationProfile, StartSection, P1Section, P2Section, P3Section, JournalSection, FinishSection],
+  imports: [TrackingBand, StartSection, P1Section, P2Section, P3Section, JournalSection, FinishSection],
   template: `
-    <app-road-book /><app-elevation-profile />
+    <app-tracking-band />
     <app-start />
     <app-p1 [home]="home.value()" />
     <app-p2 [home]="home.value()" />
