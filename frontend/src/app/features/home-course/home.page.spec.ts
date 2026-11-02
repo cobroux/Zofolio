@@ -19,7 +19,7 @@ describe('HomePage', () => {
   it('rend le hero et les étapes depuis la fixture', async () => {
     const el = await render((r) => r.flush(fixture));
     expect(el.querySelector('h1')?.textContent).toBe('Enzo Leveque');
-    expect(el.querySelector('app-bib')?.getAttribute('aria-hidden')).toBe('true');
+    expect(el.querySelector('app-bib .num')?.getAttribute('aria-hidden')).toBe('true');
     expect(el.querySelector('#p1')?.textContent).toContain("Master ILI, Université d'Artois");
     expect(el.querySelector('#p2')?.textContent).toContain('Mission de test');
     expect(el.textContent).toContain('Brancardier aux urgences');

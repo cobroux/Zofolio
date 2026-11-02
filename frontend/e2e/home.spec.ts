@@ -144,3 +144,21 @@ test.describe('bandeau desktop 1440', () => {
     await expect(km).toContainText('79,4');
   });
 });
+
+for (const width of [320, 390, 767, 768, 1099, 1100, 1440, 1920]) {
+  test(`couverture ${width} px : nom sur deux lignes max, dossard qui chevauche le bas du portrait`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/fr/');
+    await page.evaluate(() => document.fonts.ready);
+    const h1 = page.locator('#depart h1');
+    const lines = await h1.evaluate((e) => Math.round(e.getBoundingClientRect().height / parseFloat(getComputedStyle(e).lineHeight)));
+    expect(lines).toBe(width < 768 ? 2 : 1);
+    expect(await h1.evaluate((e) => e.scrollWidth <= e.clientWidth)).toBe(true);
+    const img = (await page.locator('#depart picture').boundingBox())!;
+    const bib = (await page.locator('#depart app-bib').boundingBox())!;
+    expect(bib.y).toBeLessThan(img.y + img.height);
+    expect(bib.y + bib.height).toBeGreaterThan(img.y + img.height);
+    expect(bib.x).toBeGreaterThanOrEqual(0);
+    expect(bib.x + bib.width).toBeLessThanOrEqual(width);
+  });
+}

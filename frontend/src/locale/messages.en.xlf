@@ -860,28 +860,20 @@
           <context context-type="linenumber">22,24</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7571053778988209212" datatype="html">
-        <source>Départ 6 h 30 · km 0</source>
-        <target state="translated">Start 06:30 · km 0</target>
+      <trans-unit id="1796191760886157522" datatype="html">
+        <source>Grand Trail d&apos;Auvergne · 79,4 km · départ 6 h 30</source>
+        <target state="translated">Grand Trail d&apos;Auvergne · 79.4 km · start 06:30</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
-          <context context-type="linenumber">17,18</context>
+          <context context-type="sourcefile">src/app/shared/bib/bib.ts</context>
+          <context context-type="linenumber">13,14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4386065544321049666" datatype="html">
-        <source>Ingénieur fullstack Java / Spring Boot + Angular</source>
-        <target state="translated">Java / Spring Boot + Angular full-stack engineer</target>
+      <trans-unit id="7574325606316659878" datatype="html">
+        <source>Ingénieur fullstack Java/Spring + Angular, chez Aubay après 2,5 ans de trading chez Worldline</source>
+        <target state="translated">Java/Spring + Angular full-stack engineer at Aubay, after 2.5 years in trading at Worldline</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
-          <context context-type="linenumber">19,20</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8024820102482525624" datatype="html">
-        <source>Java · Spring Boot · Angular · Docker · SQL</source>
-        <target state="translated">Java · Spring Boot · Angular · Docker · SQL</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
-          <context context-type="linenumber">22,23</context>
+          <context context-type="linenumber">14,15</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8615650319363734991" datatype="html">
@@ -2460,20 +2452,12 @@
           <context context-type="linenumber">345</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="205888203357535245" datatype="html">
-        <source>Ingénieur d&apos;études chez Aubay, après 2,5 ans sur une application de trading critique chez Worldline.</source>
-        <target state="translated">Software engineer at Aubay, after 2.5 years on a critical trading application at Worldline.</target>
+      <trans-unit id="7319890092453342343" datatype="html">
+        <source>2,5 ans sur une plateforme d&apos;ordres de bourse en production · migration move2cloud vers RabbitMQ · Angular SSR et Spring Boot 4 en production ici même</source>
+        <target state="translated">2.5 years on a production stock-order platform · move2cloud migration to RabbitMQ · Angular SSR and Spring Boot 4 in production right here</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
-          <context context-type="linenumber">20,21</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7651249318715680856" datatype="html">
-        <source>Aubay · 2,5 ans chez Worldline · trading</source>
-        <target state="translated">Aubay · 2.5 years at Worldline · trading</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
-          <context context-type="linenumber">21,22</context>
+          <context context-type="linenumber">15,16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3576389053257955599" datatype="html">
