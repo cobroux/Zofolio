@@ -1,7 +1,9 @@
 # Dev local : un seul point d'entrée 127.0.0.1:4000. En prod (T38), même routage derrière TLS.
 :4000 {
 	encode zstd gzip
-	handle /api/admin/media {
+	# Uploads admin (médias, CV) : 6 Mo, le reste de l'API 1 Mo.
+	@uploads path /api/admin/media /api/admin/cv/*
+	handle @uploads {
 		request_body {
 			max_size 6MB
 		}

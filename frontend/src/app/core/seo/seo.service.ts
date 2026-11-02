@@ -4,9 +4,9 @@ import { Meta, Title } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
-// Domaine pressenti, à confirmer à l'achat (SPEC §11) ; sitemap.xml et robots.txt le répètent.
-export const SITE_URL = 'https://enzoleveque.dev';
-export const DEFAULT_DESCRIPTION = $localize`Portfolio d'Enzo Leveque : 2,5 ans sur une application de trading chez Worldline, des projets perso nés de la course, et un Grand Trail d'Auvergne en 13 h 35 min 53 s.`;
+// sitemap.xml et robots.txt répètent ce domaine.
+export const SITE_URL = 'https://zoworks.fr';
+export const DEFAULT_DESCRIPTION = $localize`Portfolio d'Enzo Leveque, ingénieur d'études chez Aubay (Java/Spring Boot, Python), après 2,5 ans sur une application de trading chez Worldline. Études de cas, projets perso et code en production.`;
 
 /** Pose title, description, Open Graph, canonical et hreflang à chaque navigation (rendu SSR inclus). */
 @Injectable({ providedIn: 'root' })

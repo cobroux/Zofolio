@@ -37,6 +37,7 @@ export default [
           { path: 'courses', ...page('Courses', () => import('./races/race-admin.page').then((m) => m.RaceAdminPage)) },
           { path: 'stats', ...page('Stats', () => import('./stats/sport-year-admin.page').then((m) => m.SportYearAdminPage)) },
           { path: 'medias', ...page('Médias', () => import('./media/media.page').then((m) => m.MediaPage)) },
+          { path: 'cv', ...page('CV', () => import('./cv/cv.page').then((m) => m.CvPage)) },
           { path: '**', redirectTo: 'projets' },
         ],
       },

@@ -6,7 +6,7 @@ import { Reveal } from '../../../shared/reveal/reveal';
 
 /** 79.4 → « 79,4 km ». */
 export function formatDistance(km: number | null): string {
-  return km === null ? '—' : `${String(km).replace('.', ',')} km`;
+  return km === null ? '—' : `${km.toLocaleString($localize`:@@numberLocale:fr-FR`)} km`;
 }
 
 /** 48953 → « 13 h 35 min 53 s » ; les unités nulles de tête sont omises, pas celles du milieu. */

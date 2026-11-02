@@ -82,6 +82,12 @@ export class AdminApi {
     body.append('file', file);
     return this.call(this.http.post<MediaAdmin>('/api/admin/media', body));
   };
+  cv = () => this.call(this.http.get<Record<string, string | null>>('/api/admin/cv'));
+  uploadCv = (lang: string, file: File) => {
+    const body = new FormData();
+    body.append('file', file);
+    return this.call(this.http.put<void>(`/api/admin/cv/${lang}`, body));
+  };
   deleteMedia = (id: number) => this.call(this.http.delete<void>(`/api/admin/media/${id}`));
 
   /** Session expirée : retour à la connexion, avec l'adresse à retrouver ensuite. Toute erreur sort en `Problem`. */
