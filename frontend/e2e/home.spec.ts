@@ -190,15 +190,13 @@ test('P1 compacte : un lien par projet d’école de l’API, le badge, ni toge 
   }
 });
 
-test('P2 : la section Décision précède les plaques', async ({ page }) => {
+test('P2 allégée : la Décision y est, schéma et frise sont dans l’étude Worldline', async ({ page }) => {
   await page.goto('/fr/');
   await expect(page.locator('#p2 section').filter({ has: page.getByRole('heading', { level: 3, name: 'Décision' }) })).toHaveCount(1);
-  const before = await page.evaluate(() => {
-    const d = document.querySelector('#p2 app-decision-card section');
-    const p = document.querySelector('#p2 app-photo-plates');
-    return !!d && !!p && !!(d.compareDocumentPosition(p) & Node.DOCUMENT_POSITION_FOLLOWING);
-  });
-  expect(before).toBe(true);
+  await expect(page.locator('#p2 app-photo-plates')).toHaveCount(0);
+  await page.goto('/fr/projets/trading-app');
+  await expect(page.locator('app-worldline-timeline').first()).toBeAttached();
+  await expect(page.locator('#h-arch')).toHaveCount(1);
 });
 
 test.describe('P2 desktop 1440', () => {

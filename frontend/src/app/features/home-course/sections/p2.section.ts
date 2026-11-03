@@ -4,15 +4,12 @@ import { HomeResponse } from '../../../core/api/api.models';
 import { Aid } from '../../../shared/aid/aid';
 import { ChapterPin } from '../../../shared/chapter-pin/chapter-pin';
 import { DecisionCard } from '../../../shared/decision-card/decision-card';
-import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
-import { TradingAppDiagram } from '../../projects/diagrams/trading-app.diagram';
-import { WorldlineTimeline } from '../../projects/worldline-timeline';
 import { WORLDLINE_GATEWAY } from '../content/decision';
 
-/** P2 (Worldline, km 44, la plus longue étape), spec §6 : chapitre épinglé, faits du CV, Décision, plaques, étude ; suivie du ravitaillement R2. */
+/** P2 (Worldline, km 44, la plus longue étape), spec §6 : chapitre épinglé, faits du CV, Décision, lien vers l'étude (frise et schéma y vivent) ; suivie du ravitaillement R2. */
 @Component({
   selector: 'app-p2',
-  imports: [Aid, ChapterPin, DecisionCard, PhotoPlates, RouterLink, TradingAppDiagram, WorldlineTimeline],
+  imports: [Aid, ChapterPin, DecisionCard, RouterLink],
   template: `
     <section id="p2" class="terrain-deep">
       <app-chapter-pin mark="P2" i18n-title title="Worldline" i18n-meta meta="km 44 · 2023 → 2025" />
@@ -33,9 +30,7 @@ import { WORLDLINE_GATEWAY } from '../content/decision';
           j'interviens sur le back end, en Java/Spring Boot et en Python. J'ai aussi monté l'environnement Docker du projet et j'appuie l'équipe sur GitLab.
         </p>
         <app-decision-card [decision]="decision" />
-        <app-photo-plates [main]="diagram"><app-trading-app-diagram plate-ui /></app-photo-plates>
-        <app-photo-plates [main]="timeline"><app-worldline-timeline plate-ui /></app-photo-plates>
-        <a class="study" routerLink="/projets/trading-app" i18n>Lire l'étude de cas<span class="sr"> Worldline</span></a>
+        <a class="study" routerLink="/projets/trading-app" i18n>Voir la frise et l'architecture<span class="sr"> de Worldline</span></a>
       </div>
     </section>
     <app-aid km="51" [aid]="aid()" />
@@ -60,8 +55,7 @@ import { WORLDLINE_GATEWAY } from '../content/decision';
       align-items: flex-start;
       gap: var(--s-7);
     }
-    .stage > app-decision-card,
-    .stage > app-photo-plates {
+    .stage > app-decision-card {
       align-self: stretch;
     }
     .lead {
@@ -109,7 +103,4 @@ export class P2Section {
   readonly home = input<HomeResponse | null | undefined>();
   protected readonly aid = computed(() => this.home()?.experiences.find((e) => e.stage === 'R2'));
   protected readonly decision = WORLDLINE_GATEWAY;
-  // Pas de photo de Worldline : les plaques prennent le schéma et la frise existants (spec §5, repli data-ui).
-  protected readonly diagram: Plate = { ui: true, src: '', alt: '', width: 900, height: 330, caption: $localize`:@@p2.plate.diagram:Le parcours d'un ordre de bourse, de la saisie à l'exécution.` };
-  protected readonly timeline: Plate = { ui: true, src: '', alt: '', width: 900, height: 330, caption: $localize`:@@p2.plate.timeline:Mars 2023 à septembre 2025 chez Worldline.` };
 }
