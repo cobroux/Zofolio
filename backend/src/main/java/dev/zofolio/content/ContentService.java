@@ -151,7 +151,8 @@ public class ContentService {
 		}
 		List<Decision> decisions = pick(p.decisions, lang);
 		return new CaseStudy(pick(p.role, lang), pick(p.problem, lang), decisions == null ? List.of() : decisions,
-				pick(p.wall, lang), pick(p.takeaway, lang), pick(p.aiNote, lang),
+				pick(p.wall, lang), pick(p.contribution, lang), pick(p.takeaway, lang),
+				pick(p.hindsight, lang), pick(p.aiNote, lang),
 				p.githubRepos.stream().map(this::repoLink).toList());
 	}
 }

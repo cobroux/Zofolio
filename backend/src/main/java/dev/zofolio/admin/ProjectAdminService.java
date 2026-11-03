@@ -160,7 +160,9 @@ class ProjectAdminService {
 		p.role = c.text("role", in.role(), 200, false);
 		p.problem = c.text("problem", in.problem(), 3000, false);
 		p.wall = c.text("wall", in.wall(), 3000, false);
+		p.contribution = c.text("contribution", in.contribution(), 3000, false);
 		p.takeaway = c.text("takeaway", in.takeaway(), 3000, false);
+		p.hindsight = c.text("hindsight", in.hindsight(), 3000, false);
 		p.aiNote = c.text("aiNote", in.aiNote(), 3000, false);
 		p.stack = list(c, "stack", in.stack(), 12, null, 40);
 		p.githubRepos = list(c, "githubRepos", in.githubRepos(), 5, REPO, 100);
@@ -265,6 +267,6 @@ class ProjectAdminService {
 						p.video.caption());
 		return new ProjectAdmin(p.slug, p.tier.name(), p.stage, p.sortOrder, p.title, p.pitch, p.aiTag.name(), p.stack,
 				p.duration, p.note, p.githubRepos, p.demoUrl, p.metaTitle, p.metaDescription, p.role, p.problem,
-				p.decisions, p.wall, p.takeaway, p.aiNote, v);
+				p.decisions, p.wall, p.contribution, p.takeaway, p.hindsight, p.aiNote, v);
 	}
 }

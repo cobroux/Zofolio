@@ -48,8 +48,10 @@ export interface CaseStudy {
   role: string;
   problem: string;
   decisions: { title: string; tradeoff: string }[];
-  wall: string;
-  takeaway: string;
+  wall: string | null;
+  contribution: string | null;
+  takeaway: string | null;
+  hindsight: string | null;
   aiNote: string | null;
   repos: { name: string; url: string }[];
 }

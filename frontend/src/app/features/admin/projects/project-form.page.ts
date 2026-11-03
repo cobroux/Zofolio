@@ -13,7 +13,7 @@ import { MediaUpload } from '../media/media-upload';
 import { ProjectPreview } from './project-preview';
 
 const LANGS = ['fr', 'en'] as const;
-const TR_KEYS = ['title', 'pitch', 'duration', 'note', 'role', 'problem', 'wall', 'takeaway', 'aiNote', 'metaTitle', 'metaDescription'] as const;
+const TR_KEYS = ['title', 'pitch', 'duration', 'note', 'role', 'problem', 'wall', 'contribution', 'takeaway', 'hindsight', 'aiNote', 'metaTitle', 'metaDescription'] as const;
 type TrKey = (typeof TR_KEYS)[number];
 const REQUIRED: TrKey[] = ['title', 'pitch'];
 const SLUG = /^[a-z0-9-]{1,64}$/;
@@ -63,7 +63,7 @@ const pack = (v: { fr: string; en: string }): Tr | null => {
 
 interface TextField { key: TrKey; area?: boolean }
 const IDENTITY: TextField[] = [{ key: 'title' }, { key: 'pitch', area: true }, { key: 'duration' }, { key: 'note' }];
-const TEXTS: TextField[] = [{ key: 'role' }, { key: 'problem', area: true }, { key: 'wall', area: true }, { key: 'takeaway', area: true }, { key: 'aiNote', area: true }];
+const TEXTS: TextField[] = [{ key: 'role' }, { key: 'problem', area: true }, { key: 'wall', area: true }, { key: 'contribution', area: true }, { key: 'takeaway', area: true }, { key: 'hindsight', area: true }, { key: 'aiNote', area: true }];
 const SEO: TextField[] = [{ key: 'metaTitle' }, { key: 'metaDescription', area: true }];
 
 /** Formulaire d'un projet (DESIGN §11.1). Enregistrer = publier (D41) ; un nouveau projet naît `Masqué`. */
@@ -306,7 +306,7 @@ export class ProjectFormPage {
     stack: new FormControl('', { nonNullable: true }),
     demoUrl: new FormControl('', { nonNullable: true }),
     githubRepos: new FormControl<string[]>([], { nonNullable: true }),
-    title: text(), pitch: text(), duration: text(), note: text(), role: text(), problem: text(), wall: text(), takeaway: text(), aiNote: text(), metaTitle: text(), metaDescription: text(),
+    title: text(), pitch: text(), duration: text(), note: text(), role: text(), problem: text(), wall: text(), contribution: text(), takeaway: text(), hindsight: text(), aiNote: text(), metaTitle: text(), metaDescription: text(),
     video: new FormGroup({
       on: new FormControl(false, { nonNullable: true }),
       name: new FormControl('', { nonNullable: true }),
@@ -400,7 +400,7 @@ export class ProjectFormPage {
       slug: this.slug ?? (v.slug || null), tier: v.tier, stage: v.stage || null, sortOrder: int(v.sortOrder), aiTag: v.aiTag,
       stack: v.stack.split(',').map((s) => s.trim()).filter(Boolean), githubRepos: v.githubRepos, demoUrl: v.demoUrl.trim() || null,
       title: pack(v.title) ?? {}, pitch: pack(v.pitch) ?? {}, duration: pack(v.duration), note: pack(v.note), role: pack(v.role),
-      problem: pack(v.problem), wall: pack(v.wall), takeaway: pack(v.takeaway), aiNote: pack(v.aiNote), metaTitle: pack(v.metaTitle), metaDescription: pack(v.metaDescription),
+      problem: pack(v.problem), wall: pack(v.wall), contribution: pack(v.contribution), takeaway: pack(v.takeaway), hindsight: pack(v.hindsight), aiNote: pack(v.aiNote), metaTitle: pack(v.metaTitle), metaDescription: pack(v.metaDescription),
       decisions: dec.fr.length || dec.en.length ? dec : null,
       video: clip.on ? { name: clip.name, mp4: clip.mp4 || null, poster: clip.poster || null, width: int(clip.width), height: int(clip.height), caption: pack(clip.caption) ?? {} } : null,
     };

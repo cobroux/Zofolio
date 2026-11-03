@@ -84,6 +84,8 @@ class ProjectAdminIT {
 				{ "\"pitch\":{\"fr\":\"" + "p".repeat(301) + "\"}", "pitch.fr" },
 				{ "\"githubRepos\":[\"../etc\"]", "githubRepos[0]" },
 				{ "\"githubRepos\":[\"a\",\"b\",\"c\",\"d\",\"e\",\"f\"]", "githubRepos" },
+				{ "\"contribution\":{\"fr\":\"" + "c".repeat(3001) + "\"}", "contribution.fr" },
+				{ "\"hindsight\":{\"fr\":\"" + "h".repeat(3001) + "\"}", "hindsight.fr" },
 				{ "\"stage\":\"P2\"", "stage" },
 				{ "\"tier\":\"PUBLIC\"", "tier" },
 				{ "\"decisions\":{\"en\":[{\"title\":\"ok\",\"tradeoff\":\"ok\"},{\"title\":\"\",\"tradeoff\":\"ok\"}]}", "decisions.en[1].title" },
