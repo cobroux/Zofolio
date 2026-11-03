@@ -33,6 +33,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.client.MockRestServiceServer;
+import org.springframework.transaction.support.TransactionOperations;
 import org.springframework.web.client.RestClient;
 
 /** Aucun appel réseau : MockRestServiceServer. Le token ci-dessous est factice. */
@@ -50,7 +51,8 @@ class GithubSyncServiceTest {
 	int lastYear = Year.now().getValue();
 
 	GithubSyncService service(String token) {
-		return new GithubSyncService(new GithubClient(builder, URL, token, "cobroux"), repos, contributions, years);
+		return new GithubSyncService(new GithubClient(builder, URL, token, "cobroux"), repos, contributions, years,
+				TransactionOperations.withoutTransaction());
 	}
 
 	/** Une réponse par année de 2023 à aujourd'hui ; {@code failing} répond 500, les autres renvoient year * 10. */
@@ -192,8 +194,28 @@ class GithubSyncServiceTest {
 	}
 
 	@Test
+	void aSaveFailureKeepsTheCacheLogsItAndDoesNotPreventTheCiSync(CapturedOutput out) throws IOException {
+		when(contributions.save(any(GithubContributions.class))).thenThrow(new IllegalStateException("db down " + TOKEN));
+		server.expect(requestTo(URL)).andRespond(withSuccess(ok(), MediaType.APPLICATION_JSON));
+		expectYears(null);
+		server.expect(requestTo("http://github.test/repos/cobroux/Zofolio/actions/workflows/ci.yml/runs?branch=main&status=completed&per_page=1"))
+				.andRespond(withSuccess("{\"workflow_runs\":[{\"conclusion\":\"success\",\"html_url\":\"https://github.com/cobroux/Zofolio/actions/runs/2\"}]}",
+						MediaType.APPLICATION_JSON));
+		var service = service(TOKEN);
+
+		new GithubSyncJob(service).run(); // ne lève pas, et la CI est quand même lue
+
+		server.verify();
+		assertThat(service.ci().conclusion()).isEqualTo("success");
+		assertThat(out.getAll()).contains("cache conservé (IllegalStateException)").doesNotContain(TOKEN);
+	}
+
+	@Test
 	void blankTokenMakesNoRequest() {
-		service("").sync(); // aucune attente déclarée : toute requête ferait échouer MockRestServiceServer
+		var service = service("");
+		service.sync(); // aucune attente déclarée : toute requête ferait échouer MockRestServiceServer
+		service.syncCi();
+		assertThat(service.ci()).isNull();
 		server.verify();
 		verifyNoInteractions(repos, contributions, years);
 	}
