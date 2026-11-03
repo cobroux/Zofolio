@@ -35,6 +35,7 @@ export class CountUp {
     });
   }
 
+  /** Écrase les nombres rendus par le SSR (textContent) : sans effet visible avec le transfer cache, qui évite tout nouveau rendu côté client. */
   private play() {
     const items = [...this.el.querySelectorAll<HTMLElement>('[data-count]')].map((el) => ({
       el,

@@ -202,7 +202,7 @@ const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
         display: grid;
         grid-area: 1 / 1;
         opacity: 0;
-        transition: opacity 240ms ease;
+        transition: opacity 240ms var(--ease-out);
       }
       .shot.on {
         opacity: 1;

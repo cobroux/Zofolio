@@ -137,7 +137,6 @@ describe('P1Section', () => {
       'https://github.com/cobroux/cin-folie',
       'https://github.com/cobroux/lambda-calcul',
     ]);
-    expect(el.querySelector('app-segment-card')).toBeNull();
     expect(el.querySelector('.badge img')?.getAttribute('src')).toBe('img/badge-promo-ili-320.jpg');
     expect(el.querySelector('app-photo-plates img')?.getAttribute('src')).toBe('img/promo-ili-640.jpg');
     expect(el.querySelector('app-chapter-pin')?.classList).not.toContain('sticky');

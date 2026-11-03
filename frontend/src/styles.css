@@ -124,12 +124,12 @@ html:not(.js) app-contact-form form > :not(noscript) {
 }
 
 /* Bandeau de suivi fixe en bas (52 px, 76 px étendu) : ni le focus ni un saut d'ancre ne passent dessous (WCAG 2.4.11). */
-html {
+html:has(app-tracking-band) {
   scroll-padding-bottom: 92px;
 }
 @media (max-width: 767px) {
   /* Réservé à la barre de chapitre mobile (48 px). */
-  html {
+  html:has(app-tracking-band) {
     scroll-padding-top: 64px;
   }
 }

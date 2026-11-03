@@ -20,12 +20,12 @@ import { ContourField } from '../../../shared/contour-field/contour-field';
       </div>
       <div class="plate">
         <picture>
-          <source type="image/avif" srcset="img/portrait-480.avif 480w, img/portrait-800.avif 800w, img/portrait-1200.avif 1200w" sizes="(min-width: 1100px) 40vw, 100vw" />
-          <source type="image/webp" srcset="img/portrait-480.webp 480w, img/portrait-800.webp 800w, img/portrait-1200.webp 1200w" sizes="(min-width: 1100px) 40vw, 100vw" />
+          <source type="image/avif" srcset="img/portrait-480.avif 480w, img/portrait-800.avif 800w, img/portrait-1200.avif 1200w" sizes="(min-width: 1100px) 40vw, min(100vw, 640px)" />
+          <source type="image/webp" srcset="img/portrait-480.webp 480w, img/portrait-800.webp 800w, img/portrait-1200.webp 1200w" sizes="(min-width: 1100px) 40vw, min(100vw, 640px)" />
           <img
             src="img/portrait-800.jpg"
             srcset="img/portrait-480.jpg 480w, img/portrait-800.jpg 800w, img/portrait-1200.jpg 1200w"
-            sizes="(min-width: 1100px) 40vw, 100vw"
+            sizes="(min-width: 1100px) 40vw, min(100vw, 640px)"
             width="1200"
             height="1600"
             fetchpriority="high"
