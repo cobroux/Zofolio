@@ -116,6 +116,7 @@
       </trans-unit>
       <trans-unit id="otherLocale" datatype="html">
         <source>en</source>
+        <target state="translated">fr</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/core/layout/header.ts</context>
           <context context-type="linenumber">65</context>
@@ -123,6 +124,7 @@
       </trans-unit>
       <trans-unit id="switchLabel" datatype="html">
         <source>EN, version anglaise</source>
+        <target state="translated">FR, French version</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/core/layout/header.ts</context>
           <context context-type="linenumber">66</context>
@@ -480,9 +482,9 @@
           <context context-type="linenumber">67,68</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4529626337259579355" datatype="html">
-        <source>À chaque push, GitHub Actions lance quatre jobs : le back (build et tests, <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>./mvnw verify<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>), le front (lint, tests, build), les tests E2E Playwright sur la pile complète, et Lighthouse.</source>
-        <target state="initial">On every push, GitHub Actions runs four jobs: back (build and tests, <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>./mvnw verify<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>), front (lint, tests, build), Playwright E2E tests on the full stack, and Lighthouse.</target>
+      <trans-unit id="4637376921287560000" datatype="html">
+        <source>À chaque pull request et à chaque push sur <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>, GitHub Actions lance quatre jobs : le back (build et tests, <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>./mvnw verify<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>), le front (lint, tests, build), les tests E2E Playwright sur la pile complète, et Lighthouse.</source>
+        <target state="translated">On every pull request and every push to <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>, GitHub Actions runs four jobs: back end (build and tests, <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>./mvnw verify<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>), front end (lint, tests, build), Playwright E2E tests on the full stack, and Lighthouse.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
           <context context-type="linenumber">68,69</context>
@@ -496,28 +498,20 @@
           <context context-type="linenumber">69,70</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4167626673738975488" datatype="html">
-        <source>Les seuils Lighthouse mobile font passer le job au rouge : 90 en performance, 95 en accessibilité, bonnes pratiques et SEO. Ils sont mesurés sur le build de production lancé en CI. Pour fusionner, le back, le front et les E2E doivent être verts ; Lighthouse sert d&apos;alerte.</source>
-        <target state="translated">The mobile Lighthouse thresholds turn the job red: 90 for performance, 95 for accessibility, best practices and SEO. They are measured on the production build started in CI. To merge, the back end, front end and E2E jobs must be green; Lighthouse is a warning.</target>
+      <trans-unit id="6451365351491101394" datatype="html">
+        <source>Les seuils Lighthouse mobile font passer le job au rouge : 90 en performance, 95 en accessibilité, bonnes pratiques et SEO. Ils sont mesurés sur la pile Docker lancée en CI.</source>
+        <target state="translated">The mobile Lighthouse thresholds turn the job red: 90 for performance, 95 for accessibility, best practices and SEO. They are measured on the Docker stack started in CI.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
           <context context-type="linenumber">70,71</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2029578346137460090" datatype="html">
-        <source>190 tests au 21 octobre 2026 : 80 côté back, 81 côté front, 29 E2E.</source>
-        <target state="translated">190 tests as of 21 October 2026: 80 on the back end, 81 on the front end, 29 E2E.</target>
+      <trans-unit id="7764588041544603245" datatype="html">
+        <source>Un push sur <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> déclenche le déploiement, en parallèle de la CI et sans l&apos;attendre : GitHub Actions se connecte en SSH au serveur, récupère <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> et reconstruit les conteneurs. Docker Compose attend que chaque service soit sain avant de rendre la main. Pour revenir en arrière, une commande suffit.</source>
+        <target state="translated">A push to <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> triggers the deployment, in parallel with CI and without waiting for it: GitHub Actions connects to the server over SSH, fetches <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> and rebuilds the containers. Docker Compose waits for every service to be healthy before returning. Rolling back takes one command.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
           <context context-type="linenumber">71,72</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8862891218797040189" datatype="html">
-        <source>Une fusion sur <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> déclenche le déploiement : GitHub Actions se connecte en SSH au serveur, récupère <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> et reconstruit les conteneurs. Docker Compose attend que chaque service soit sain avant de rendre la main. Pour revenir en arrière, une commande suffit.</source>
-        <target state="translated">A merge to <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> triggers the deployment: GitHub Actions connects to the server over SSH, pulls <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> and rebuilds the containers. Docker Compose waits for every service to be healthy before returning. Rolling back takes one command.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">72,73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2599008181736713108" datatype="html">
@@ -525,7 +519,7 @@
         <target state="translated">The database is backed up every night on the server (7 days kept), and restores are tested on a throwaway database. No off-server copy yet: that is the next step.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">73,74</context>
+          <context context-type="linenumber">72,73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5942671110811724425" datatype="html">
@@ -533,7 +527,7 @@
         <target state="initial">It is all in the repo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">77,78</context>
+          <context context-type="linenumber">76,77</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4096810155458901411" datatype="html">
@@ -541,7 +535,7 @@
         <target state="initial">The source code</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">79,80</context>
+          <context context-type="linenumber">78,79</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4987758247039244483" datatype="html">
@@ -549,7 +543,7 @@
         <target state="initial">The plans and task lists (tasks/)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">80,81</context>
+          <context context-type="linenumber">79,80</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7830855131540145941" datatype="html">
@@ -557,7 +551,7 @@
         <target state="initial">The architecture decisions (docs/adr/)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">81,82</context>
+          <context context-type="linenumber">80,81</context>
         </context-group>
       </trans-unit>
       <trans-unit id="218251113383272180" datatype="html">
@@ -1640,9 +1634,9 @@
           <context context-type="linenumber">14,15</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7319890092453342343" datatype="html">
-        <source>2,5 ans sur une plateforme d&apos;ordres de bourse en production · migration move2cloud vers RabbitMQ · Angular SSR et Spring Boot 4 en production ici même</source>
-        <target state="translated">2.5 years on a production stock-order platform · move2cloud migration to RabbitMQ · Angular SSR and Spring Boot 4 in production right here</target>
+      <trans-unit id="6677815290942028406" datatype="html">
+        <source>2,5 ans sur une plateforme d&apos;ordres de bourse en production · prototype move2cloud vers RabbitMQ · Angular SSR et Spring Boot 4 en production ici même</source>
+        <target state="translated">2.5 years on a production stock-order platform · move2cloud prototype for RabbitMQ · Angular SSR and Spring Boot 4 in production right here</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
           <context context-type="linenumber">15,16</context>

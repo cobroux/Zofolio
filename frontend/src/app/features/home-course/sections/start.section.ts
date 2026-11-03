@@ -12,7 +12,7 @@ import { ContourField } from '../../../shared/contour-field/contour-field';
       <div class="text">
         <h1>Enzo <span>Leveque</span></h1>
         <p class="title" i18n>Ingénieur fullstack Java/Spring + Angular, chez Aubay après 2,5 ans de trading chez Worldline</p>
-        <p class="proof tnum" i18n>2,5 ans sur une plateforme d'ordres de bourse en production · migration move2cloud vers RabbitMQ · Angular SSR et Spring Boot 4 en production ici même</p>
+        <p class="proof tnum" i18n>2,5 ans sur une plateforme d'ordres de bourse en production · prototype move2cloud vers RabbitMQ · Angular SSR et Spring Boot 4 en production ici même</p>
         <div class="cta">
           <a class="primary" [href]="cv" i18n>Télécharger le CV</a>
           <a class="secondary" href="#arrivee" i18n>Me contacter</a>

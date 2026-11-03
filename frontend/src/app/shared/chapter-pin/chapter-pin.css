@@ -46,7 +46,7 @@
     font-size: 1.5rem;
     line-height: 48px;
   }
-  .title {
+  :host(.sticky) .title {
     font-size: 1rem;
   }
   .meta {

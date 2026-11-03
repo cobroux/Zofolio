@@ -425,8 +425,8 @@
           <context context-type="linenumber">67,68</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4529626337259579355" datatype="html">
-        <source>À chaque push, GitHub Actions lance quatre jobs : le back (build et tests, <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>./mvnw verify<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>), le front (lint, tests, build), les tests E2E Playwright sur la pile complète, et Lighthouse.</source>
+      <trans-unit id="4637376921287560000" datatype="html">
+        <source>À chaque pull request et à chaque push sur <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>, GitHub Actions lance quatre jobs : le back (build et tests, <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>./mvnw verify<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>), le front (lint, tests, build), les tests E2E Playwright sur la pile complète, et Lighthouse.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
           <context context-type="linenumber">68,69</context>
@@ -439,60 +439,53 @@
           <context context-type="linenumber">69,70</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4167626673738975488" datatype="html">
-        <source>Les seuils Lighthouse mobile font passer le job au rouge : 90 en performance, 95 en accessibilité, bonnes pratiques et SEO. Ils sont mesurés sur le build de production lancé en CI. Pour fusionner, le back, le front et les E2E doivent être verts ; Lighthouse sert d&apos;alerte.</source>
+      <trans-unit id="6451365351491101394" datatype="html">
+        <source>Les seuils Lighthouse mobile font passer le job au rouge : 90 en performance, 95 en accessibilité, bonnes pratiques et SEO. Ils sont mesurés sur la pile Docker lancée en CI.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
           <context context-type="linenumber">70,71</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2029578346137460090" datatype="html">
-        <source>190 tests au 21 octobre 2026 : 80 côté back, 81 côté front, 29 E2E.</source>
+      <trans-unit id="7764588041544603245" datatype="html">
+        <source>Un push sur <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> déclenche le déploiement, en parallèle de la CI et sans l&apos;attendre : GitHub Actions se connecte en SSH au serveur, récupère <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> et reconstruit les conteneurs. Docker Compose attend que chaque service soit sain avant de rendre la main. Pour revenir en arrière, une commande suffit.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
           <context context-type="linenumber">71,72</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8862891218797040189" datatype="html">
-        <source>Une fusion sur <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> déclenche le déploiement : GitHub Actions se connecte en SSH au serveur, récupère <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>main<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> et reconstruit les conteneurs. Docker Compose attend que chaque service soit sain avant de rendre la main. Pour revenir en arrière, une commande suffit.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">72,73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2599008181736713108" datatype="html">
         <source>La base est sauvegardée chaque nuit sur le serveur (7 jours gardés), et la restauration se teste sur une base jetable. Pas encore de copie hors du serveur : c&apos;est la prochaine étape.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">73,74</context>
+          <context context-type="linenumber">72,73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5942671110811724425" datatype="html">
         <source>Tout est dans le dépôt</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">77,78</context>
+          <context context-type="linenumber">76,77</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4096810155458901411" datatype="html">
         <source>Le code source</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">79,80</context>
+          <context context-type="linenumber">78,79</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4987758247039244483" datatype="html">
         <source>Les plans et listes de tâches (tasks/)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">80,81</context>
+          <context context-type="linenumber">79,80</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7830855131540145941" datatype="html">
         <source>Les décisions d&apos;architecture (docs/adr/)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/colophon/colophon.page.ts</context>
-          <context context-type="linenumber">81,82</context>
+          <context context-type="linenumber">80,81</context>
         </context-group>
       </trans-unit>
       <trans-unit id="218251113383272180" datatype="html">
@@ -1456,8 +1449,8 @@
           <context context-type="linenumber">14,15</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7319890092453342343" datatype="html">
-        <source>2,5 ans sur une plateforme d&apos;ordres de bourse en production · migration move2cloud vers RabbitMQ · Angular SSR et Spring Boot 4 en production ici même</source>
+      <trans-unit id="6677815290942028406" datatype="html">
+        <source>2,5 ans sur une plateforme d&apos;ordres de bourse en production · prototype move2cloud vers RabbitMQ · Angular SSR et Spring Boot 4 en production ici même</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
           <context context-type="linenumber">15,16</context>
