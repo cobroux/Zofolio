@@ -1,5 +1,5 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import { execSync } from 'node:child_process';
 
 const SLUGS = ['oltre', 'zotracker', 'gfaim', 'trading-app'];
@@ -91,19 +91,26 @@ test.describe('index P3 sur mobile', () => {
   });
 });
 
-test('fondu : accueil -> étude -> retour, sans erreur console', async ({ page }) => {
+const vtCount = (page: Page) => page.evaluate(() => (window as unknown as { __vt: number }).__vt);
+
+async function countViewTransitions(page: Page) {
   await page.addInitScript(() => {
     const w = window as unknown as { __vt: number };
     w.__vt = 0;
     const orig = document.startViewTransition?.bind(document);
     if (orig) document.startViewTransition = ((cb: never) => { w.__vt++; return orig(cb); }) as typeof document.startViewTransition;
   });
+}
+
+test('fondu : accueil -> étude -> retour, sans erreur console', async ({ page }) => {
+  await countViewTransitions(page);
   const errors: string[] = [];
   page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
   await page.goto('/fr/');
+  expect(await vtCount(page)).toBe(0);
   await page.locator('#p3 a.study[href$="/projets/oltre"]').click();
   await expect(page).toHaveURL(/\/projets\/oltre$/);
-  expect(await page.evaluate(() => (window as unknown as { __vt: number }).__vt)).toBeGreaterThanOrEqual(1);
+  expect(await vtCount(page)).toBeGreaterThanOrEqual(1);
   await page.goBack();
   await expect(page).toHaveURL(/\/fr\/?$/);
   expect(errors).toEqual([]);
@@ -112,6 +119,7 @@ test('fondu : accueil -> étude -> retour, sans erreur console', async ({ page }
 test.describe('reduced motion', () => {
   test.use({ reducedMotion: 'reduce' });
   test('fondu : sauté en mouvement réduit', async ({ page }) => {
+    await countViewTransitions(page);
     await page.goto('/fr/');
     await page.locator('#p3 a.study[href$="/projets/oltre"]').click();
     await expect(page).toHaveURL(/\/projets\/oltre$/);
@@ -119,6 +127,7 @@ test.describe('reduced motion', () => {
       () => document.getAnimations().filter((a) => (a.effect as KeyframeEffect | null)?.pseudoElement?.startsWith('::view-transition')).length,
     );
     expect(n).toBe(0);
+    expect(await vtCount(page)).toBeGreaterThanOrEqual(1);
   });
   test('index P3 : aperçu au survol, poster seul, aucune vidéo', async ({ page }) => {
     await page.goto('/fr/');

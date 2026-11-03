@@ -10,6 +10,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       routes,
       withViewTransitions({
+        skipInitialTransition: true,
         onViewTransitionCreated: ({ transition }) => {
           if (typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches) transition.skipTransition();
         },
