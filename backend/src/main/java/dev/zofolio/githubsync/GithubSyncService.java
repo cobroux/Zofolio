@@ -1,6 +1,7 @@
 package dev.zofolio.githubsync;
 
 import java.time.Instant;
+import java.time.Year;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -18,14 +19,20 @@ class GithubSyncService {
 
 	private static final Logger log = LoggerFactory.getLogger(GithubSyncService.class);
 
+	/** Premier millésime affiché par « L'endurance, deux fois ». */
+	static final int FIRST_YEAR = 2023;
+
 	private final GithubClient client;
 	private final GithubRepoRepository repos;
 	private final GithubContributionsRepository contributions;
+	private final GithubContributionYearRepository years;
 
-	GithubSyncService(GithubClient client, GithubRepoRepository repos, GithubContributionsRepository contributions) {
+	GithubSyncService(GithubClient client, GithubRepoRepository repos, GithubContributionsRepository contributions,
+			GithubContributionYearRepository years) {
 		this.client = client;
 		this.repos = repos;
 		this.contributions = contributions;
+		this.years = years;
 	}
 
 	/** Tout ou rien (D18) : en cas d'échec, le cache précédent reste intact. Ne lève jamais. */
@@ -70,6 +77,13 @@ class GithubSyncService {
 		c.total = s.calendar().total();
 		c.syncedAt = now;
 		contributions.save(c);
+		client.contributionYears(FIRST_YEAR, Year.now().getValue()).forEach((year, total) -> {
+			GithubContributionYear y = new GithubContributionYear();
+			y.year = year;
+			y.total = total;
+			y.syncedAt = now;
+			years.save(y);
+		});
 		log.info("github-sync : {} dépôts synchronisés", s.repos().size());
 	}
 }

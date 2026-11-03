@@ -9,6 +9,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -21,6 +23,8 @@ import org.springframework.web.client.RestClient;
 @Component
 class GithubClient {
 
+	private static final Logger log = LoggerFactory.getLogger(GithubClient.class);
+
 	static final String QUERY = """
 			query($login: String!) { user(login: $login) {
 			  repositories(first: 100, privacy: PUBLIC, ownerAffiliations: OWNER, isFork: false) { pageInfo { hasNextPage } nodes {
@@ -29,6 +33,10 @@ class GithubClient {
 			    defaultBranchRef { target { ... on Commit { history { totalCount } } } } } }
 			  contributionsCollection { contributionCalendar { totalContributions
 			    weeks { contributionDays { date contributionCount } } } } } }""";
+	/** Une année civile ; GitHub limite {@code from}-{@code to} à un an. */
+	static final String YEAR_QUERY = """
+			query($login: String!, $from: DateTime!, $to: DateTime!) { user(login: $login) {
+			  contributionsCollection(from: $from, to: $to) { contributionCalendar { totalContributions } } } }""";
 	private static final Duration TIMEOUT = Duration.ofSeconds(10);
 
 	record Repo(String name, Instant pushedAt, Integer commits, Map<String, Long> languages) {}
@@ -69,6 +77,8 @@ class GithubClient {
 		record Week(List<Day> contributionDays) {}
 
 		record Day(LocalDate date, Integer contributionCount) {}
+
+		record YearCalendar(Integer totalContributions) {}
 	}
 
 	private final RestClient http;
@@ -119,6 +129,36 @@ class GithubClient {
 		}
 		return new Snapshot(repos, toCalendar(u.contributionsCollection().contributionCalendar()),
 				u.repositories().pageInfo() == null || !Boolean.FALSE.equals(u.repositories().pageInfo().hasNextPage()));
+	}
+
+	/**
+	 * Total de contributions par année, une requête GraphQL par année. Une année en erreur est absente du résultat
+	 * (l'appelant garde alors sa valeur stockée).
+	 */
+	Map<Integer, Integer> contributionYears(int fromYear, int toYear) {
+		Map<Integer, Integer> totals = new LinkedHashMap<>();
+		for (int y = fromYear; y <= toYear; y++) {
+			try {
+				var vars = Map.of("login", login, "from", y + "-01-01T00:00:00Z", "to", y + "-12-31T23:59:59Z");
+				Response r = http.post().uri(url).header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
+						.contentType(MediaType.APPLICATION_JSON).body(Map.of("query", YEAR_QUERY, "variables", vars))
+						.retrieve().body(Response.class);
+				if (r != null && (r.errors() == null || r.errors().isEmpty()) && r.data() != null
+						&& r.data().user() != null && r.data().user().contributionsCollection() != null
+						&& r.data().user().contributionsCollection().contributionCalendar() != null) {
+					Integer t = r.data().user().contributionsCollection().contributionCalendar().totalContributions();
+					if (t != null && t >= 0) {
+						totals.put(y, t);
+						continue;
+					}
+				}
+				log.warn("github-sync : année {} ignorée (réponse incomplète)", y);
+			} catch (RuntimeException e) {
+				// jamais e.getMessage() : on ne journalise que le type d'erreur
+				log.warn("github-sync : année {} ignorée ({})", y, e.getClass().getSimpleName());
+			}
+		}
+		return totals;
 	}
 
 	private static Repo toRepo(Response.Node n) {

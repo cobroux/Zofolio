@@ -81,6 +81,11 @@ export interface SportYear {
   activities: number | null;
 }
 
+export interface ContributionYear {
+  year: number;
+  total: number;
+}
+
 export interface HomeResponse {
   experiences: Experience[];
   projects: ProjectSummary[];
@@ -89,6 +94,8 @@ export interface HomeResponse {
   sportYears: SportYear[];
   /** `null` tant qu'aucune synchro GitHub n'a réussi. */
   contributions: Contributions | null;
+  /** Année croissante ; `[]` si aucune synchro. */
+  contributionYears: ContributionYear[];
 }
 
 export interface ProblemDetail {

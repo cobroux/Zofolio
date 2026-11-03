@@ -32,6 +32,8 @@ public interface ContentDto {
 
 	record SportYearDto(Integer year, Integer distanceKm, Integer elevationGainM, Integer hours, Integer activities) {}
 
+	record ContributionYearDto(int year, int total) {}
+
 	record Home(List<ExperienceDto> experiences, List<ProjectSummary> projects, List<RaceDto> races,
-			Contributions contributions, List<SportYearDto> sportYears) {}
+			Contributions contributions, List<SportYearDto> sportYears, List<ContributionYearDto> contributionYears) {}
 }

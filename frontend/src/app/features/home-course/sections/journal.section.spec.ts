@@ -61,34 +61,30 @@ describe('JournalSection', () => {
     expect(f.nativeElement.querySelector('app-contributions .carnet')).toBeNull();
   });
 
-  it('stats annuelles : tableau avec légende, null en tiret, masqué si []', () => {
+  it("« L'endurance, deux fois » ouvre le Journal et remplace « Les années en chiffres »", () => {
     const f = TestBed.createComponent(JournalSection);
     f.componentRef.setInput('races', home.races);
-    f.componentRef.setInput('sportYears', [{ year: 2025, distanceKm: 2140, elevationGainM: 41200, hours: null, activities: 210 }]);
+    f.componentRef.setInput('sportYears', [{ year: 2025, distanceKm: 2140, elevationGainM: 1, hours: 1, activities: 1 }]);
+    f.componentRef.setInput('contributionYears', [{ year: 2025, total: 700 }]);
     f.detectChanges();
-    const t = f.nativeElement.querySelector('.stats table') as HTMLTableElement;
-    expect(t.querySelector('caption')).toBeTruthy();
-    expect(t.querySelectorAll('tbody tr').length).toBe(1);
-    expect(t.querySelectorAll('tbody td')[2].textContent).toContain('non renseigné');
-    expect(t.querySelectorAll('tbody td')[0].textContent).toMatch(/2\s140/);
-    f.componentRef.setInput('sportYears', []);
-    f.detectChanges();
-    expect(f.nativeElement.querySelector('.stats')).toBeNull();
+    const el = f.nativeElement as HTMLElement;
+    expect(el.querySelector('section')!.firstElementChild!.tagName).toBe('APP-ENDURANCE-TWICE');
+    expect(el.querySelector('app-endurance-twice [data-count="700"]')).toBeTruthy();
+    expect(el.textContent).not.toContain('Les années en chiffres');
+    expect(el.querySelector('.stats')).toBeNull();
   });
 
-  it('stats annuelles : années dans l’ordre chronologique, chiffre animable par CountUp', () => {
+  it('photo des Baudets en plaque, logo du club à côté du nom, rien de replié sauf courses et contributions', () => {
     const f = TestBed.createComponent(JournalSection);
     f.componentRef.setInput('races', home.races);
-    f.componentRef.setInput('sportYears', [
-      { year: 2026, distanceKm: 4748, elevationGainM: 1, hours: 1, activities: 1 },
-      { year: 2023, distanceKm: 347, elevationGainM: 1, hours: 1, activities: 1 },
-    ]);
+    f.componentRef.setInput('contributions', home.contributions);
     f.detectChanges();
-    const rows = [...f.nativeElement.querySelectorAll('.stats tbody th .yr')].map((e: Element) => e.textContent);
-    expect(rows).toEqual(['2023', '2026']);
-    const counts = [...f.nativeElement.querySelectorAll('.stats [data-count]')] as HTMLElement[];
-    expect(counts.map((e) => e.dataset['count'])).toEqual(['347', '4748']);
-    expect(counts[0].getAttribute('aria-hidden')).toBe('true');
+    const el = f.nativeElement as HTMLElement;
+    expect(el.querySelector('app-photo-plates img')?.getAttribute('src')).toBe('img/baudets-nuit-1280.jpg');
+    expect(el.querySelector('.club')?.textContent).toContain('Les Baudets Dhinges');
+    expect(el.querySelector('.club img')?.getAttribute('src')).toBe('img/logo-baudets-320.jpg');
+    expect(el.querySelector('details.more:not([open]) app-contributions')).toBeTruthy();
+    expect(el.querySelector('figure img[src*="finisher-cote-d-opale"]')).toBeTruthy();
   });
 
   it('affiche une course sans date sans planter', () => {

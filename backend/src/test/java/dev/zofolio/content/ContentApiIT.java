@@ -20,6 +20,8 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.annotation.Import;
 
 import dev.zofolio.TestcontainersConfiguration;
+import dev.zofolio.githubsync.GithubContributionYear;
+import dev.zofolio.githubsync.GithubContributionYearRepository;
 import dev.zofolio.githubsync.GithubContributions;
 import dev.zofolio.githubsync.GithubContributionsRepository;
 import dev.zofolio.githubsync.GithubRepo;
@@ -42,6 +44,8 @@ class ContentApiIT {
 	GithubRepoRepository githubRepos;
 	@Autowired
 	GithubContributionsRepository githubContributions;
+	@Autowired
+	GithubContributionYearRepository contributionYears;
 
 	@BeforeEach
 	void seed() {
@@ -50,6 +54,7 @@ class ContentApiIT {
 		experiences.deleteAll();
 		githubRepos.deleteAll();
 		githubContributions.deleteAll();
+		contributionYears.deleteAll();
 		Race r2 = race("Course B", null, 2);
 		Race r1 = race("Course A", Map.of("fr", "Note FR"), 1);
 		r1.name = Map.of("fr", "Course A", "en", "Race A");
@@ -168,6 +173,19 @@ class ContentApiIT {
 		r.languages = languages;
 		r.syncedAt = Instant.now();
 		return r;
+	}
+
+	@Test
+	void homeExposesContributionYearsSortedAscending() throws Exception {
+		for (int[] y : new int[][] { { 2026, 900 }, { 2023, 120 }, { 2024, 450 } }) {
+			GithubContributionYear c = new GithubContributionYear();
+			c.year = y[0];
+			c.total = y[1];
+			c.syncedAt = Instant.now();
+			contributionYears.save(c);
+		}
+		assertThat(get("/api/fr/home").body()).contains(
+				"\"contributionYears\":[{\"year\":2023,\"total\":120},{\"year\":2024,\"total\":450},{\"year\":2026,\"total\":900}]");
 	}
 
 	@Test

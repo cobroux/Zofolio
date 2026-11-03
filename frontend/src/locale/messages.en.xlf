@@ -2228,92 +2228,12 @@
           <context context-type="linenumber">128,129</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7421213708471553475" datatype="html">
-        <source>Les années en chiffres</source>
-        <target state="translated">The years in numbers</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">40,41</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2967245884137980359" datatype="html">
-        <source>Course, vélo et natation, année par année, d&apos;après ma montre.</source>
-        <target state="translated">Running, cycling and swimming, year by year, from my watch.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">41,42</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="510448242925122577" datatype="html">
-        <source>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km et dénivelé : course et vélo (les km en natation, peu fiables, sont exclus). Année en cours incluse.</source>
-        <target state="translated">Yearly totals only: no track, no heart rate, no health data. Distance and elevation: running and cycling (swim distances, unreliable, are excluded). Current year included.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">42,43</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1229716062486939868" datatype="html">
-        <source>Totaux annuels d&apos;endurance</source>
-        <target state="translated">Yearly endurance totals</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">45,46</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8415249390267046376" datatype="html">
-        <source>Année</source>
-        <target state="translated">Year</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">48,49</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1520696175350811727" datatype="html">
-        <source>Kilomètres (km)</source>
-        <target state="translated">Kilometres (km)</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">49,50</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6282014921908647866" datatype="html">
-        <source>Dénivelé (m D+)</source>
-        <target state="translated">Elevation gain (m D+)</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">50,51</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6318374050802732469" datatype="html">
-        <source>Heures (h)</source>
-        <target state="translated">Hours (h)</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">51,52</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3757382813330853359" datatype="html">
-        <source>Activités</source>
-        <target state="translated">Activities</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">52,53</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="1958150413233501306" datatype="html">
         <source>en cours</source>
         <target state="translated">in progress</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
           <context context-type="linenumber">58</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4372371957547532942" datatype="html">
-        <source>non renseigné</source>
-        <target state="translated">not provided</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">71,72</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5178652351654797364" datatype="html">
@@ -2374,14 +2294,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/contributions/contributions.ts</context>
           <context context-type="linenumber">113</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5135005963082951569" datatype="html">
-        <source>Voir le détail : les années en chiffres et les autres courses</source>
-        <target state="translated">See the details: the years in numbers and the other races</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">70,71</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4450271950810119055" datatype="html">
@@ -2918,6 +2830,70 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
           <context context-type="linenumber">25,26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4017369525568907398" datatype="html">
+        <source>L&apos;endurance, deux fois</source>
+        <target state="translated">Endurance, twice</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7826658690172855960" datatype="html">
+        <source>Les deux courbes montent. Ce n&apos;est pas une coïncidence, c&apos;est une méthode.</source>
+        <target state="translated">Both lines climb. It isn&apos;t a coincidence, it&apos;s a method.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3040692413047135014" datatype="html">
+        <source>Club : Les Baudets Dhinges</source>
+        <target state="translated">Club: Les Baudets Dhinges</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2710333106475782510" datatype="html">
+        <source>Sortie de nuit du club Les Baudets</source>
+        <target state="translated">Night run with the Les Baudets club</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">286</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5248783460892157038" datatype="html">
+        <source>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km : course et vélo. Commits : contributions GitHub de l&apos;année, année en cours incluse.</source>
+        <target state="translated">Yearly totals only: no route, no heart rate, no health data. Km: running and cycling. Commits: GitHub contributions for the year, current year included.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6438029402541832475" datatype="html">
+        <source>Voir le détail : les autres courses et le graphe de contributions</source>
+        <target state="translated">See the detail: other races and the contributions graph</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">80,81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8035424222449931004" datatype="html">
+        <source>commits : non renseigné</source>
+        <target state="translated">commits: not provided</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5669750021553088392" datatype="html">
+        <source>km : non renseigné</source>
+        <target state="translated">km: not provided</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
+          <context context-type="linenumber">22,23</context>
         </context-group>
       </trans-unit>
     </body>

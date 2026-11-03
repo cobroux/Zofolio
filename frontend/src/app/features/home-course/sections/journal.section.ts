@@ -1,9 +1,10 @@
 import { DatePipe, NgTemplateOutlet } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import { ContributionsGraph } from '../../../shared/contributions/contributions';
-import { Contributions, Race, SportYear } from '../../../core/api/api.models';
+import { Contributions, ContributionYear, Race, SportYear } from '../../../core/api/api.models';
 import { Reveal } from '../../../shared/reveal/reveal';
-import { CountUp } from '../../../shared/count-up/count-up';
+import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
+import { EnduranceTwice } from '../endurance/endurance-twice';
 
 /** 79.4 → « 79,4 km ». */
 export function formatDistance(km: number | null): string {
@@ -24,9 +25,10 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
 /** Pas de classement : uniquement des chiffres. Les lignes `INDEX`/`CLUB` ne sont pas des courses. */
 @Component({
   selector: 'app-journal-section',
-  imports: [ContributionsGraph, Reveal, CountUp, DatePipe, NgTemplateOutlet],
+  imports: [ContributionsGraph, Reveal, PhotoPlates, EnduranceTwice, DatePipe, NgTemplateOutlet],
   template: `
     <section id="journal" aria-labelledby="journal-title">
+      <app-endurance-twice class="endurance" [sportYears]="sportYears()" [contributionYears]="contributionYears()" />
       <div class="side">
         <div class="lede">
           <h2 id="journal-title" appReveal i18n>Journal de course</h2>
@@ -38,6 +40,14 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
           @for (r of others(); track r.name) {
             <p class="small">{{ r.name }}</p>
           }
+          <p class="club">
+            <picture>
+              <source type="image/avif" srcset="img/logo-baudets-320.avif" />
+              <source type="image/webp" srcset="img/logo-baudets-320.webp" />
+              <img src="img/logo-baudets-320.jpg" width="320" height="320" loading="lazy" decoding="async" alt="" />
+            </picture>
+            <span i18n>Club : Les Baudets Dhinges</span>
+          </p>
         </div>
       </div>
       @if (rows(); as list) {
@@ -47,7 +57,7 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
       } @else {
         <p class="unavailable" role="status" i18n>Contenu indisponible pour le moment.</p>
       }
-      <app-contributions class="contrib" [data]="contributions()" [appReveal]="2" />
+      <app-photo-plates class="night" [main]="night" [appReveal]="2" />
       <figure [appReveal]="2">
         <picture>
           <source type="image/avif" srcset="img/finisher-cote-d-opale-640.avif 640w, img/finisher-cote-d-opale-1280.avif 1280w" sizes="(min-width: 768px) 40vw, 360px" />
@@ -65,58 +75,11 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
           />
         </picture>
       </figure>
-      @if (sportYears().length || (rows()?.length ?? 0) > shown) {
+      @if (contributions() || (rows()?.length ?? 0) > shown) {
       <details class="more">
-        <summary i18n>Voir le détail : les années en chiffres et les autres courses</summary>
+        <summary i18n>Voir le détail : les autres courses et le graphe de contributions</summary>
       <div class="body">
-      @if (sportYears().length) {
-        <div class="stats">
-        <h3 id="stats-title" i18n>Les années en chiffres</h3>
-        <p i18n>Course, vélo et natation, année par année, d'après ma montre.</p>
-        <p class="small" i18n>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km et dénivelé : course et vélo (les km en natation, peu fiables, sont exclus). Année en cours incluse.</p>
-        <div class="scroll" role="region" tabindex="0" aria-labelledby="stats-title">
-          <table [appCountUp]="number">
-            <caption class="sr" i18n>Totaux annuels d'endurance</caption>
-            <thead>
-              <tr>
-                <th scope="col" i18n>Année</th>
-                <th scope="col" class="num km" i18n>Kilomètres (km)</th>
-                <th scope="col" class="num" i18n>Dénivelé (m D+)</th>
-                <th scope="col" class="num" i18n>Heures (h)</th>
-                <th scope="col" class="num" i18n>Activités</th>
-              </tr>
-            </thead>
-            <tbody>
-              @for (y of years(); track y.year) {
-                <tr>
-                  <th scope="row"><span class="yr">{{ y.year }}</span>@if (y.year === thisYear) { <span class="small" i18n>en cours</span> }</th>
-                  <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.distanceKm, bar: true, year: y.year }" />
-                  <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.elevationGainM }" />
-                  <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.hours }" />
-                  <ng-container *ngTemplateOutlet="cell; context: { $implicit: y.activities }" />
-                </tr>
-              }
-            </tbody>
-          </table>
-        </div>
-        <ng-template #cell let-v let-bar="bar" let-year="year">
-          <td class="num" [class.km]="bar">
-          @if (v === null) {
-              <span aria-hidden="true">—</span><span class="sr" i18n>non renseigné</span>
-            } @else {
-              @if (bar) {
-                <!-- Chiffre animé par CountUp, masqué aux lecteurs d'écran qui lisent la valeur finale. -->
-                <span aria-hidden="true" [attr.data-count]="v">{{ number(v) }}</span><span class="sr">{{ number(v) }}</span>
-                <!-- Décoratif : les km sont déjà en texte. Longueur = km / max des années. -->
-                <span class="bar" aria-hidden="true" [class.now]="year === thisYear" [style.--k]="v / maxKm()"></span>
-              } @else {
-                {{ number(v) }}
-              }
-            }
-          </td>
-        </ng-template>
-        </div>
-      }
+      <app-contributions class="contrib" [data]="contributions()" />
       @if (rows(); as list) {
         @if (list.length > shown) {
           <ng-container *ngTemplateOutlet="racesTable; context: { $implicit: list.slice(shown), caption: label.otherRaces }" />
@@ -266,24 +229,11 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
     .pr svg {
       color: var(--accent);
     }
-    .stats { display: flex; flex-direction: column; gap: var(--s-3); }
     .more { display: flex; flex-direction: column; gap: var(--s-7); }
+    .club { display: flex; align-items: center; gap: var(--s-3); color: var(--ink-2); font-size: var(--t-small); }
+    .club img { display: block; width: 3rem; height: 3rem; object-fit: cover; }
+    .night { max-width: 48rem; }
     .more summary { display: flex; align-items: center; min-height: var(--target); font-weight: 600; text-decoration: underline; cursor: pointer; }
-    .stats h3 { margin: 0; font: 800 clamp(1.25rem, 2vw, 1.625rem) / 1.05 var(--font-display); font-stretch: 75%; letter-spacing: -0.02em; }
-    .stats .scroll { overflow-x: auto; }
-    .stats table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums lining-nums; }
-    .stats th, .stats td { padding: var(--s-3) var(--s-3) var(--s-3) 0; text-align: left; font-weight: 400; }
-    .stats thead th { color: var(--ink-2); font-size: var(--t-small); font-weight: 600; vertical-align: bottom; }
-    .stats th.num, .stats td.num { text-align: right; white-space: nowrap; }
-    /* Barre par année, proportionnelle aux km : la progression se lit d'un coup d'œil (décoratif, aria-hidden). */
-    .stats th.km, .stats td.km { text-align: left; width: 40%; min-width: 5.5rem; }
-    .bar { display: block; height: 6px; margin-top: var(--s-2); background: var(--ink-2); transform: scaleX(calc(var(--k) * var(--p, 1))); transform-origin: left; }
-    .bar.now { background: var(--accent); }
-    /* le body a overflow-wrap: anywhere : sans cela la colonne Année s'écrase chiffre par chiffre à 390 */
-    .stats th { overflow-wrap: normal; }
-    .stats tbody th { white-space: nowrap; }
-    .stats tbody th .small { display: block; }
-    .stats .yr { font: 800 1.5rem / 1 var(--font-display); font-stretch: 75%; margin-inline-end: var(--s-2); }
     .sr {
       position: absolute;
       width: 1px;
@@ -306,18 +256,18 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
     @media (min-width: 768px) and (max-width: 1279px) {
       .races tbody tr { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     }
-    /* Desktop, 3 rangées : intro | dernières courses ; contributions | photo ; détail replié en pleine largeur,
-       années à gauche et autres courses dans la colonne des dernières (mêmes colonnes, tableaux alignés). */
+    /* Desktop : endurance | intro et dernières courses | plaques ; détail replié en pleine largeur. */
     @media (min-width: 1280px) {
       section { grid-template-columns: repeat(12, minmax(0, 1fr)); padding-block: var(--s-10); }
-      .side { grid-column: 1 / span 5; grid-row: 1; }
-      .latest, .unavailable { grid-column: 6 / span 7; grid-row: 1; align-self: start; }
-      .contrib { grid-column: 1 / span 7; grid-row: 2; align-self: end; }
-      figure { grid-column: 9 / span 4; grid-row: 2; max-width: none; }
+      .endurance { grid-column: 1 / -1; grid-row: 1; }
+      .side { grid-column: 1 / span 5; grid-row: 2; }
+      .latest, .unavailable { grid-column: 6 / span 7; grid-row: 2; align-self: start; }
+      .night { grid-column: 1 / span 7; grid-row: 3; max-width: none; }
+      figure { grid-column: 9 / span 4; grid-row: 3; max-width: none; }
       figure img { aspect-ratio: 4 / 3; }
-      .more { grid-column: 1 / -1; grid-row: 3; }
+      .more { grid-column: 1 / -1; grid-row: 4; }
       .body { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--s-7) var(--gutter); align-items: start; }
-      .stats { grid-column: 1 / span 5; }
+      .contrib { grid-column: 1 / span 5; }
       .body > .races { grid-column: 6 / span 7; }
     }
   `,
@@ -327,15 +277,17 @@ export class JournalSection {
   readonly races = input<Race[] | null>(null);
   /** `null` = pas encore de synchro GitHub : le graphe n'est pas rendu. */
   readonly contributions = input<Contributions | null>(null);
-  /** Ordre libre (affiché par `years`) ; `[]` : le bloc n'est pas rendu. */
+  /** Ordre libre ; mis en regard des commits par année dans « L'endurance, deux fois ». */
   readonly sportYears = input<SportYear[]>([]);
-  protected readonly thisYear = new Date().getFullYear();
-  protected readonly number = (n: number) => ELEVATION.format(n);
-  /** Ordre chronologique : la progression se lit de haut en bas, et CountUp remplit les barres dans cet ordre. */
-  protected readonly years = computed(() => [...this.sportYears()].sort((a, b) => a.year - b.year));
-  /** Plus grand total annuel : échelle commune des barres. */
-  protected readonly maxKm = computed(() => Math.max(1, ...this.sportYears().map((y) => y.distanceKm ?? 0)));
-  /** Les dernières courses restent visibles ; le reste et les années en chiffres sont repliés (conseil du 2026-10-21). */
+  readonly contributionYears = input<ContributionYear[]>([]);
+  protected readonly night: Plate = {
+    src: 'img/baudets-nuit-1280.jpg',
+    alt: 'Le groupe du club Les Baudets rassemblé de nuit sur une place, frontales allumées, Enzo en selfie au premier plan',
+    caption: $localize`Sortie de nuit du club Les Baudets`,
+    width: 1280,
+    height: 960,
+  };
+  /** Les dernières courses restent visibles ; le reste et le graphe de contributions sont repliés (conseil du 2026-10-21). */
   protected readonly shown = 3;
   readonly rows = computed(() => this.races()?.filter((r) => r.kind === 'RACE') ?? null);
   readonly others = computed(() => this.races()?.filter((r) => r.kind !== 'RACE') ?? []);

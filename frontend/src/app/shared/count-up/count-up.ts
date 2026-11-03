@@ -40,17 +40,21 @@ export class CountUp {
       el,
       value: Number(el.dataset['count']),
       bar: el.closest('td, li, div')?.querySelector<HTMLElement>('.bar') ?? null,
+      row: el.closest('tr, li') ?? el,
     }));
+    // Les éléments d'une même ligne (tr, li) se remplissent ensemble ; les lignes se suivent.
+    const rows = [...new Set(items.map((it) => it.row))];
     const draw = (p: number[]) =>
-      items.forEach((it, i) => {
-        it.el.textContent = this.format()(Math.round(it.value * p[i]));
-        it.bar?.style.setProperty('--p', String(p[i]));
+      items.forEach((it) => {
+        const q = p[rows.indexOf(it.row)];
+        it.el.textContent = this.format()(Math.round(it.value * q));
+        it.bar?.style.setProperty('--p', String(q));
       });
     draw(items.map(() => 0));
     let start: number | undefined;
     const frame = (now: number) => {
       start ??= now;
-      const p = steps(now - start, items.length);
+      const p = steps(now - start, rows.length);
       draw(p);
       if (p.at(-1)! < 1) requestAnimationFrame(frame);
     };

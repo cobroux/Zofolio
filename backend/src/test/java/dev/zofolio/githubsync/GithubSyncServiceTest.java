@@ -1,6 +1,7 @@
 package dev.zofolio.githubsync;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -8,6 +9,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.header;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
@@ -19,6 +21,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.nio.charset.StandardCharsets;
+import java.time.Year;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -43,9 +46,50 @@ class GithubSyncServiceTest {
 	MockRestServiceServer server = MockRestServiceServer.bindTo(builder).build();
 	GithubRepoRepository repos = mock(GithubRepoRepository.class);
 	GithubContributionsRepository contributions = mock(GithubContributionsRepository.class);
+	GithubContributionYearRepository years = mock(GithubContributionYearRepository.class);
+	int lastYear = Year.now().getValue();
 
 	GithubSyncService service(String token) {
-		return new GithubSyncService(new GithubClient(builder, URL, token, "cobroux"), repos, contributions);
+		return new GithubSyncService(new GithubClient(builder, URL, token, "cobroux"), repos, contributions, years);
+	}
+
+	/** Une réponse par année de 2023 à aujourd'hui ; {@code failing} répond 500, les autres renvoient year * 10. */
+	void expectYears(Integer failing) {
+		for (int y = 2023; y <= lastYear; y++) {
+			server.expect(requestTo(URL)).andExpect(content().string(containsString("\"" + y + "-01-01T00:00:00Z\"")))
+					.andRespond(failing != null && failing == y ? withServerError()
+							: withSuccess("{\"data\":{\"user\":{\"contributionsCollection\":{\"contributionCalendar\":{\"totalContributions\":"
+									+ y * 10 + "}}}}}", MediaType.APPLICATION_JSON));
+		}
+	}
+
+	@Test
+	void syncRequestsEachYearFrom2023AndStoresOneRowPerYear() throws IOException {
+		server.expect(requestTo(URL)).andRespond(withSuccess(ok(), MediaType.APPLICATION_JSON));
+		expectYears(null);
+
+		service(TOKEN).sync();
+
+		server.verify();
+		var saved = org.mockito.ArgumentCaptor.forClass(GithubContributionYear.class);
+		verify(years, times(lastYear - 2022)).save(saved.capture());
+		assertThat(saved.getAllValues()).extracting(y -> y.year).containsExactly(
+				java.util.stream.IntStream.rangeClosed(2023, lastYear).boxed().toArray(Integer[]::new));
+		assertThat(saved.getAllValues()).allMatch(y -> y.total == y.year * 10 && y.syncedAt != null);
+	}
+
+	@Test
+	void aYearInErrorIsNotWrittenSoItKeepsItsPreviousValue(CapturedOutput out) throws IOException {
+		server.expect(requestTo(URL)).andRespond(withSuccess(ok(), MediaType.APPLICATION_JSON));
+		expectYears(2024);
+
+		service(TOKEN).sync();
+
+		server.verify();
+		var saved = org.mockito.ArgumentCaptor.forClass(GithubContributionYear.class);
+		verify(years, times(lastYear - 2023)).save(saved.capture());
+		assertThat(saved.getAllValues()).extracting(y -> y.year).doesNotContain(2024).contains(2023, 2025);
+		assertThat(out.getAll()).contains("année 2024 ignorée").doesNotContain(TOKEN);
 	}
 
 	@Test
@@ -56,6 +100,7 @@ class GithubSyncServiceTest {
 		server.expect(requestTo(URL)).andExpect(method(HttpMethod.POST))
 				.andExpect(header("Authorization", "Bearer " + TOKEN))
 				.andRespond(withSuccess(ok(), MediaType.APPLICATION_JSON));
+		expectYears(null);
 
 		service(TOKEN).sync();
 
@@ -84,7 +129,7 @@ class GithubSyncServiceTest {
 		}
 		verify(repos, never()).save(any());
 		verify(repos, never()).deleteAll(any(Iterable.class));
-		verifyNoInteractions(contributions);
+		verifyNoInteractions(contributions, years);
 		assertThat(out.getAll()).contains("cache conservé").doesNotContain(TOKEN);
 	}
 
@@ -95,6 +140,7 @@ class GithubSyncServiceTest {
 		when(repos.findAll()).thenReturn(List.of(stale));
 		server.expect(requestTo(URL)).andRespond(withSuccess(
 				ok().replace("\"hasNextPage\":false", "\"hasNextPage\":true"), MediaType.APPLICATION_JSON));
+		expectYears(null);
 
 		service(TOKEN).sync();
 
@@ -110,6 +156,7 @@ class GithubSyncServiceTest {
 		when(repos.findAll()).thenReturn(List.of(cached));
 		String empty = ok().replaceAll("(?s)\"nodes\":\\[.*?\\]\\},\\s*\"contributionsCollection", "\"nodes\":[]},\"contributionsCollection");
 		server.expect(requestTo(URL)).andRespond(withSuccess(empty, MediaType.APPLICATION_JSON));
+		expectYears(null);
 
 		service(TOKEN).sync();
 
@@ -122,7 +169,7 @@ class GithubSyncServiceTest {
 	void blankTokenMakesNoRequest() {
 		service("").sync(); // aucune attente déclarée : toute requête ferait échouer MockRestServiceServer
 		server.verify();
-		verifyNoInteractions(repos, contributions);
+		verifyNoInteractions(repos, contributions, years);
 	}
 
 	private static String ok() throws IOException {
