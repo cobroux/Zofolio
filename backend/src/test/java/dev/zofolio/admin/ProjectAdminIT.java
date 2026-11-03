@@ -86,7 +86,7 @@ class ProjectAdminIT {
 				{ "\"githubRepos\":[\"a\",\"b\",\"c\",\"d\",\"e\",\"f\"]", "githubRepos" },
 				{ "\"contribution\":{\"fr\":\"" + "c".repeat(3001) + "\"}", "contribution.fr" },
 				{ "\"hindsight\":{\"fr\":\"" + "h".repeat(3001) + "\"}", "hindsight.fr" },
-				{ "\"stage\":\"P2\"", "stage" },
+				{ "\"stage\":\"P4\"", "stage" },
 				{ "\"tier\":\"PUBLIC\"", "tier" },
 				{ "\"decisions\":{\"en\":[{\"title\":\"ok\",\"tradeoff\":\"ok\"},{\"title\":\"\",\"tradeoff\":\"ok\"}]}", "decisions.en[1].title" },
 				{ "\"video\":{\"name\":\"Bad Name\",\"width\":0,\"height\":800}", "video.name" },

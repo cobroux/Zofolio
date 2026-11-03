@@ -294,7 +294,7 @@ export class ProjectFormPage {
   protected readonly texts = TEXTS;
   protected readonly seo = SEO;
   protected readonly tiers = Object.entries(TIER_LABELS);
-  protected readonly stages = [['', 'Aucune'], ['P1', 'P1 · les fondations'], ['P3', 'P3 · projets nés de la course']];
+  protected readonly stages = [['', 'Aucune'], ['P1', 'P1 · les fondations'], ['P2', 'P2 · Worldline'], ['P3', 'P3 · projets nés de la course']];
   protected readonly aiTags = [['HAND', 'Écrit à la main'], ['HAND_THEN_AI', 'Commencé à la main, puis IA'], ['AI', 'IA comme outil, conçu et revu par moi']];
 
   protected readonly form = new FormGroup({

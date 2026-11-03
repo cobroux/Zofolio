@@ -143,7 +143,7 @@ class ProjectAdminService {
 		if (p.aiTag == null && in.aiTag() == null) {
 			c.add("aiTag", "NotNull");
 		}
-		if (in.stage() != null && !in.stage().equals("P1") && !in.stage().equals("P3")) {
+		if (in.stage() != null && !in.stage().matches("P[123]")) {
 			c.add("stage", "Pattern");
 		}
 		p.stage = in.stage();
