@@ -237,7 +237,7 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
     .sr {
       position: absolute;
       width: 1px;
-      height: 1px;
+      height: 1px; /* taste-skill-ignore : masquage visuel pour lecteur d écran */
       overflow: hidden;
       clip-path: inset(50%);
     }

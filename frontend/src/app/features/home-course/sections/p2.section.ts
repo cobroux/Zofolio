@@ -23,7 +23,7 @@ import { WORLDLINE_GATEWAY } from '../content/decision';
         </p>
         <ul class="facts">
           <li i18n>Plateforme TOM (Trade Order Management) : elle reçoit, contrôle et transmet aux marchés les ordres de bourse de clients comme Boursorama et Copartis.</li>
-          <li i18n>Migration move2cloud : l'émetteur d'ordres rendu abstrait pour passer de MySQL à une file RabbitMQ, avec des ordres sérialisés en XML.</li>
+          <li i18n>Prototype move2cloud : l'émetteur d'ordres rendu abstrait pour passer de MySQL à une file RabbitMQ, avec des ordres sérialisés en XML.</li>
           <li i18n>Post-marché Copartis : refonte des batchs de fin de journée, paramétrés par place de marché (Europe, États-Unis, Asie), pour intégrer les retours de marché tardifs.</li>
           <li i18n>Contrôles pré-trade Boursorama : trois contrôles (cohérence de prix, collars, présence bid/ask) rendus désactivables par client, testés en JUnit.</li>
           <li i18n>Portail d'administration multi-clients en JavaScript : statut des marchés en temps réel, internationalisation FR/EN.</li>
@@ -94,7 +94,7 @@ import { WORLDLINE_GATEWAY } from '../content/decision';
     .sr {
       position: absolute;
       width: 1px;
-      height: 1px;
+      height: 1px; /* taste-skill-ignore : masquage visuel pour lecteur d écran */
       overflow: hidden;
       clip-path: inset(50%);
     }

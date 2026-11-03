@@ -139,7 +139,7 @@ export function globalMessage(r: Extract<ContactResult, { ok: false }>): string 
     .err, .note { margin: 0; font-size: var(--t-small); }
     .err { align-self: flex-start; padding: 2px var(--s-2); background: var(--ink); color: var(--bg); }
     .note { max-width: 52ch; }
-    .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+    .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; } /* taste-skill-ignore */
   `,
 })
 export class ContactForm {

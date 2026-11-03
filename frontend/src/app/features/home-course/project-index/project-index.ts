@@ -168,7 +168,7 @@ const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
     .sr {
       position: absolute;
       width: 1px;
-      height: 1px;
+      height: 1px; /* taste-skill-ignore : masquage visuel pour lecteur d écran */
       overflow: hidden;
       clip-path: inset(50%);
     }
