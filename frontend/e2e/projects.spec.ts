@@ -157,6 +157,12 @@ test.describe('reduced motion', () => {
     await expect(page.locator('#p3 .preview video')).toHaveCount(0);
     await expect(page.locator('#p3 .preview .shot.on img')).toBeVisible();
   });
+  test('blocs en entrée : tous visibles sans défilement', async ({ page }) => {
+    await page.goto('/fr/projets/trading-app');
+    await page.waitForLoadState('networkidle');
+    const hidden = await page.locator('.reveal').evaluateAll((els) => els.filter((e) => getComputedStyle(e).opacity !== '1').length);
+    expect(hidden).toBe(0);
+  });
   test('clip : pas de lecture automatique, bouton Lecture présent', async ({ page }) => {
     await page.goto('/fr/projets/oltre');
     await page.locator('app-clip').scrollIntoViewIfNeeded();

@@ -108,13 +108,13 @@ html.js .reveal:not(.in) {
   transition: none;
 }
 @media (prefers-reduced-motion: reduce) {
+  /* La page réduite est la page finie : aucun bloc ne reste invisible en attendant le défilement. */
   html.js .reveal:not(.in) {
+    opacity: 1;
     transform: none;
   }
   .reveal {
-    transition-property: opacity !important;
-    transition-duration: 160ms !important;
-    transition-delay: 0s;
+    transition: none;
   }
 }
 
