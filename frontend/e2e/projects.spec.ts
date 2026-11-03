@@ -84,6 +84,8 @@ test.describe('index P3 sur mobile', () => {
     expect(await clip.locator('video').evaluateAll((vs) => vs.some((v) => !(v as HTMLVideoElement).paused))).toBe(false);
     await clip.getByRole('button', { name: 'Lecture' }).tap();
     await expect.poll(() => clip.locator('video').evaluate((v: HTMLVideoElement) => !v.paused)).toBe(true);
+    // Le cadre d'aperçu est masqué ici : sa vidéo ne doit jamais être montée (pas de second téléchargement).
+    await expect(page.locator('#p3 .preview video')).toHaveCount(0);
   });
 });
 

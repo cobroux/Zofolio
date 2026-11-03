@@ -129,7 +129,7 @@ const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
       position: absolute;
       inset: 0;
     }
-    /* Ligne active : soulignée et décalée, jamais d'atténuation des autres (contraste conservé). */
+    /* Ligne active : soulignée, sans bouger (spec §1) ni atténuer les autres (contraste conservé). */
     .on h3 a,
     h3 a:hover {
       text-decoration: underline;
@@ -221,16 +221,9 @@ const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
         font: 800 clamp(2rem, 4vw, 3.5rem) / 1 var(--font-display);
         font-stretch: 72%;
       }
-      h3 {
-        transition: transform 240ms var(--ease-out);
-      }
-      .on h3 {
-        transform: translateX(var(--s-3));
-      }
     }
     @media (prefers-reduced-motion: reduce) {
-      .shot,
-      h3 {
+      .shot {
         transition: none;
       }
     }
@@ -260,7 +253,8 @@ export class ProjectIndex {
     const host: HTMLElement = inject(ElementRef).nativeElement;
     const destroy = inject(DestroyRef);
     afterNextRender(() => {
-      this.motion.set(!calm());
+      // Cadre masqué (tactile ou étroit) : sa vidéo ne doit jamais se monter ni se télécharger.
+      this.motion.set(!calm() && matchMedia('(min-width: 768px) and (hover: hover) and (pointer: fine)').matches);
       if (typeof IntersectionObserver === 'undefined') return this.onScreen.set(true);
       // Hors écran, la vidéo est retirée : elle ne tourne jamais pour personne.
       const io = new IntersectionObserver(([e]) => this.onScreen.set(e.isIntersecting));

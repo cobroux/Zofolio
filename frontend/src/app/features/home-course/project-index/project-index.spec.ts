@@ -12,8 +12,8 @@ const projects: ProjectSummary[] = [bySlug('gfaim'), bySlug('oltre'), bySlug('hi
 let el: HTMLElement;
 let fix: ReturnType<typeof TestBed.createComponent<ProjectIndex>>;
 
-function render(list: ProjectSummary[] | null, opts: { reduced?: boolean } = {}) {
-  vi.stubGlobal('matchMedia', () => ({ matches: !!opts.reduced }));
+function render(list: ProjectSummary[] | null, opts: { reduced?: boolean; touch?: boolean } = {}) {
+  vi.stubGlobal('matchMedia', (q: string) => ({ matches: q.includes('reduce') ? !!opts.reduced : !opts.touch }));
   TestBed.resetTestingModule();
   TestBed.configureTestingModule({ providers: [provideRouter([])] });
   fix = TestBed.createComponent(ProjectIndex);
@@ -96,6 +96,14 @@ describe('ProjectIndex', () => {
     expect(v.hasAttribute('loop')).toBe(true);
     render(projects, { reduced: true });
     focusRow(1);
+    expect(el.querySelector('.preview video')).toBeNull();
+  });
+
+  it('écran tactile ou étroit : le cadre est masqué, sa vidéo ne se charge jamais', () => {
+    render(projects, { touch: true });
+    hoverRow(1);
+    expect(el.querySelector('.preview video')).toBeNull();
+    focusRow(0); // un toucher sur un titre passe aussi par le focus
     expect(el.querySelector('.preview video')).toBeNull();
   });
 });
