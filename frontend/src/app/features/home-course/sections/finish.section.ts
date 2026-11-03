@@ -84,6 +84,10 @@ const ROWS = (['p1', 'p2', 'p3', 'arrivee'] as const).map((id) => ({ id, km: CHE
     .splits tbody th { font-weight: 600; }
     .splits tbody th span { color: var(--ink-2); font-weight: 400; }
     .splits tbody tr { border-top: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); }
+    /* Téléphone : les cellules passent à la ligne, aucune colonne n'est rognée à 320 px. */
+    @media (max-width: 480px) {
+      .splits th, .splits td { white-space: normal; overflow-wrap: normal; padding-right: var(--s-2); }
+    }
     .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
     .contact { display: flex; flex-direction: column; gap: var(--s-4); align-items: flex-start; }
     .lead { font-size: var(--t-lead); font-weight: 600; line-height: 1.3; max-width: 24ch; }

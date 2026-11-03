@@ -50,7 +50,8 @@ const REPO = 'https://github.com/cobroux/Zofolio';
     dl { display: grid; gap: 1.2cqi; }
     dl div { display: flex; flex-wrap: wrap; gap: 0 2cqi; }
     dt { font-weight: 700; }
-    dt::after { content: ' :'; }
+    dt::after { content: ':'; }
+    :host-context(html[lang='fr']) dt::after { content: '\\00a0:'; }
     dd { margin: 0; font-variant-numeric: tabular-nums lining-nums; }
     .contact { display: flex; flex-wrap: wrap; gap: 0 3cqi; margin-top: 2.5cqi; font-weight: 600; }
     a { color: inherit; display: inline-flex; align-items: center; min-height: var(--target); }

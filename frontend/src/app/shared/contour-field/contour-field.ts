@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { contourPaths } from './contours';
 
 const W = 1000;
@@ -26,5 +26,5 @@ export class ContourField {
   readonly levels = input(12);
   protected readonly W = W;
   protected readonly H = H;
-  protected paths = () => contourPaths(this.levels(), W, H);
+  protected readonly paths = computed(() => contourPaths(this.levels(), W, H));
 }

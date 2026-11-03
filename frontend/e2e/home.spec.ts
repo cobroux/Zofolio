@@ -219,3 +219,17 @@ test.describe('P2 desktop 1440', () => {
     expect(ys[0]).toBe(ys[1]); // épinglé : même position à deux hauteurs de scroll
   });
 });
+
+test('Arrivée à 320 px : aucune cellule des pointages ne dépasse son tableau', async ({ browser }) => {
+  const page = await (await browser.newContext({ viewport: { width: 320, height: 640 } })).newPage();
+  await page.goto('/fr/');
+  const over = await page.evaluate(() => {
+    const t = document.querySelector('.splits')!.getBoundingClientRect();
+    const s = document.querySelector('#arrivee')!.getBoundingClientRect();
+    return [...document.querySelectorAll('.splits th, .splits td')].filter((c) => {
+      const r = c.getBoundingClientRect();
+      return r.right > t.right + 1 || r.right > s.right + 1 || c.scrollWidth > c.clientWidth + 1;
+    }).length;
+  });
+  expect(over).toBe(0);
+});
