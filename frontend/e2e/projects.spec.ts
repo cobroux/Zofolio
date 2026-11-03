@@ -91,8 +91,35 @@ test.describe('index P3 sur mobile', () => {
   });
 });
 
+test('fondu : accueil -> étude -> retour, sans erreur console', async ({ page }) => {
+  await page.addInitScript(() => {
+    const w = window as unknown as { __vt: number };
+    w.__vt = 0;
+    const orig = document.startViewTransition?.bind(document);
+    if (orig) document.startViewTransition = ((cb: never) => { w.__vt++; return orig(cb); }) as typeof document.startViewTransition;
+  });
+  const errors: string[] = [];
+  page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+  await page.goto('/fr/');
+  await page.locator('#p3 a.study[href$="/projets/oltre"]').click();
+  await expect(page).toHaveURL(/\/projets\/oltre$/);
+  expect(await page.evaluate(() => (window as unknown as { __vt: number }).__vt)).toBeGreaterThanOrEqual(1);
+  await page.goBack();
+  await expect(page).toHaveURL(/\/fr\/?$/);
+  expect(errors).toEqual([]);
+});
+
 test.describe('reduced motion', () => {
   test.use({ reducedMotion: 'reduce' });
+  test('fondu : sauté en mouvement réduit', async ({ page }) => {
+    await page.goto('/fr/');
+    await page.locator('#p3 a.study[href$="/projets/oltre"]').click();
+    await expect(page).toHaveURL(/\/projets\/oltre$/);
+    const n = await page.evaluate(
+      () => document.getAnimations().filter((a) => (a.effect as KeyframeEffect | null)?.pseudoElement?.startsWith('::view-transition')).length,
+    );
+    expect(n).toBe(0);
+  });
   test('index P3 : aperçu au survol, poster seul, aucune vidéo', async ({ page }) => {
     await page.goto('/fr/');
     const zotracker = page.locator('#p3 ol.rows > li').filter({ has: page.locator('a[href$="/projets/zotracker"]') });

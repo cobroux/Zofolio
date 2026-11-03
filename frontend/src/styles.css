@@ -90,7 +90,7 @@ video {
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation-duration: 200ms;
-  animation-timing-function: ease;
+  animation-timing-function: var(--ease-out);
 }
 
 /* Entrée des blocs (DESIGN §7) : caché seulement si le script inline a posé html.js ; sans JS tout est visible. */
