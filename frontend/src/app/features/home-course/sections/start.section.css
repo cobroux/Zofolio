@@ -1,11 +1,7 @@
 :host {
   display: block;
 }
-/* Terrain nuit dans les deux thèmes : accent et focus fixés pour la nuit (comme le bandeau, contrastes ≥ 4,5:1). */
 section {
-  --accent: #ff8a2b;
-  --on-accent: #0e1626;
-  --focus: #edeff4;
   position: relative;
   isolation: isolate;
   overflow: hidden;

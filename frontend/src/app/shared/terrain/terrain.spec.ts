@@ -9,6 +9,13 @@ describe('terrains', () => {
     for (const p of [t.light, t.dark]) {
       expect(contrast(p.bg, p.ink)).toBeGreaterThanOrEqual(4.5);
       expect(contrast(p.bg, p.ink2)).toBeGreaterThanOrEqual(4.5);
+      // Texte sur la surface (repli vidéo, cartes) et jetons cohérents : CTA, focus et accent visibles.
+      expect(contrast(p.surface, p.ink)).toBeGreaterThanOrEqual(4.5);
+      expect(contrast(p.surface, p.ink2)).toBeGreaterThanOrEqual(4.5);
+      expect(contrast(p.accent, p.onAccent)).toBeGreaterThanOrEqual(4.5);
+      expect(contrast(p.bg, p.focus)).toBeGreaterThanOrEqual(3);
+      expect(contrast(p.surface, p.focus)).toBeGreaterThanOrEqual(3);
+      expect(contrast(p.bg, p.accent)).toBeGreaterThanOrEqual(3);
     }
   });
   it('valeurs de la spec §5', () => {

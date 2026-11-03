@@ -68,10 +68,6 @@ const ROWS = (['p1', 'p2', 'p3', 'arrivee'] as const).map((id) => ({ id, km: CHE
       grid-template-columns: minmax(0, 1fr);
       gap: var(--s-7) var(--gutter);
       padding: var(--s-10) var(--margin) var(--s-9);
-      /* Le formulaire, partagé avec d'autres pages, lit ces jetons : on les fixe sur la nuit. */
-      --bg: #0e1626;
-      --surface: #16203a;
-      --focus: #edeff4;
     }
     .intro { container-type: inline-size; display: flex; flex-direction: column; gap: var(--s-5); align-items: flex-start; }
     p { margin: 0; }

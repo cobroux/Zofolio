@@ -1,7 +1,5 @@
-/* Bandeau de suivi : terrain nuit dans les deux thèmes, donc accent et focus fixés pour la nuit (contrastes ≥ 4,5:1). */
+/* Bandeau de suivi : terrain nuit dans les deux thèmes (jetons du terrain). */
 .band {
-  --accent: #ff8a2b;
-  --focus: #edeff4;
   --trail: #5b6b8c;
   position: fixed;
   inset: auto 0 0;

@@ -85,31 +85,52 @@
   color-scheme: light;
 }
 
-/* Terrains de chapitre (spec §5) : coupe franche, mêmes valeurs que shared/terrain/terrain.ts. */
+/* Terrains de chapitre (spec §5) : coupe franche, chaque terrain redéfinit tout son jeu de jetons (fond, surface, encres, accent, focus). Mêmes valeurs que shared/terrain/terrain.ts. */
 .terrain-night {
   background: #0e1626;
   color: #edeff4;
+  --bg: #0e1626;
+  --surface: #16213a;
   --ink: #edeff4;
   --ink-2: #a9b1c3;
+  --accent: #ff8a2b;
+  --on-accent: #0e1626;
+  --focus: #edeff4;
+  --line-muted: #5b6b8c;
 }
 .terrain-paper {
   background: #f6f3ec;
   color: #14161a;
+  --bg: #f6f3ec;
+  --surface: #ece8de;
   --ink: #14161a;
   --ink-2: #4a4d55;
+  --accent: #c2410c;
+  --on-accent: #ffffff;
+  --focus: #14161a;
+  --line-muted: #8a8d94;
 }
 .terrain-deep {
   background: #0a1120;
   color: #edeff4;
+  --bg: #0a1120;
+  --surface: #16213a;
   --ink: #edeff4;
   --ink-2: #a9b1c3;
+  --accent: #ff8a2b;
+  --on-accent: #0e1626;
+  --focus: #edeff4;
+  --line-muted: #5b6b8c;
 }
 .terrain-accent {
   background: #c2410c;
   color: #ffffff;
   --bg: #c2410c;
+  --surface: #9a3412;
   --ink: #ffffff;
   --ink-2: #ffffff;
+  --accent: #ffffff;
+  --on-accent: #c2410c;
   --focus: #ffffff;
 }
 
@@ -117,27 +138,48 @@
   :root:not([data-theme='light']) .terrain-night {
     background: #0e1626;
     color: #edeff4;
+    --bg: #0e1626;
+    --surface: #16213a;
     --ink: #edeff4;
     --ink-2: #a9b1c3;
+    --accent: #ff8a2b;
+    --on-accent: #0e1626;
+    --focus: #edeff4;
+    --line-muted: #5b6b8c;
   }
   :root:not([data-theme='light']) .terrain-paper {
     background: #16203a;
     color: #edeff4;
+    --bg: #16203a;
+    --surface: #1e2b4a;
     --ink: #edeff4;
     --ink-2: #a9b1c3;
+    --accent: #ff8a2b;
+    --on-accent: #0e1626;
+    --focus: #edeff4;
+    --line-muted: #5b6b8c;
   }
   :root:not([data-theme='light']) .terrain-deep {
     background: #0a1120;
     color: #edeff4;
+    --bg: #0a1120;
+    --surface: #16213a;
     --ink: #edeff4;
     --ink-2: #a9b1c3;
+    --accent: #ff8a2b;
+    --on-accent: #0e1626;
+    --focus: #edeff4;
+    --line-muted: #5b6b8c;
   }
   :root:not([data-theme='light']) .terrain-accent {
     background: #ff8a2b;
     color: #0e1626;
     --bg: #ff8a2b;
+    --surface: #ffb36b;
     --ink: #0e1626;
     --ink-2: #0e1626;
+    --accent: #0e1626;
+    --on-accent: #ff8a2b;
     --focus: #0e1626;
   }
 }
@@ -145,29 +187,50 @@
 :root[data-theme='dark'] .terrain-night {
   background: #0e1626;
   color: #edeff4;
+  --bg: #0e1626;
+  --surface: #16213a;
   --ink: #edeff4;
   --ink-2: #a9b1c3;
+  --accent: #ff8a2b;
+  --on-accent: #0e1626;
+  --focus: #edeff4;
+  --line-muted: #5b6b8c;
 }
 
 :root[data-theme='dark'] .terrain-paper {
   background: #16203a;
   color: #edeff4;
+  --bg: #16203a;
+  --surface: #1e2b4a;
   --ink: #edeff4;
   --ink-2: #a9b1c3;
+  --accent: #ff8a2b;
+  --on-accent: #0e1626;
+  --focus: #edeff4;
+  --line-muted: #5b6b8c;
 }
 
 :root[data-theme='dark'] .terrain-deep {
   background: #0a1120;
   color: #edeff4;
+  --bg: #0a1120;
+  --surface: #16213a;
   --ink: #edeff4;
   --ink-2: #a9b1c3;
+  --accent: #ff8a2b;
+  --on-accent: #0e1626;
+  --focus: #edeff4;
+  --line-muted: #5b6b8c;
 }
 
 :root[data-theme='dark'] .terrain-accent {
   background: #ff8a2b;
   color: #0e1626;
   --bg: #ff8a2b;
+  --surface: #ffb36b;
   --ink: #0e1626;
   --ink-2: #0e1626;
+  --accent: #0e1626;
+  --on-accent: #ff8a2b;
   --focus: #0e1626;
 }

@@ -45,13 +45,6 @@ import { WORLDLINE_GATEWAY } from '../content/decision';
       display: block;
     }
     section {
-      /* Terrain nuit profonde dans les deux thèmes : jetons fixés pour la nuit (contrastes ≥ 4,5:1), --surface = un ton au-dessus pour la Décision et les schémas. */
-      --bg: #0a1120;
-      --surface: #16213a;
-      --accent: #ff8a2b;
-      --on-accent: #0e1626;
-      --line-muted: #5b6b8c;
-      --focus: #edeff4;
       display: grid;
       grid-template-columns: minmax(0, 1fr);
       gap: var(--s-6) var(--gutter);

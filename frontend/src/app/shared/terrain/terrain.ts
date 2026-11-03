@@ -2,24 +2,28 @@ export type Terrain = 'night' | 'paper' | 'deep' | 'accent';
 
 export interface Pair {
   bg: string;
+  surface: string;
   ink: string;
   ink2: string;
+  accent: string;
+  onAccent: string;
+  focus: string;
 }
 
 // Mêmes valeurs que les classes .terrain-* de src/styles/tokens.css (spec §5).
-const NIGHT: Pair = { bg: '#0e1626', ink: '#edeff4', ink2: '#a9b1c3' };
-const DEEP: Pair = { bg: '#0a1120', ink: '#edeff4', ink2: '#a9b1c3' };
+const NIGHT: Pair = { bg: '#0e1626', surface: '#16213a', ink: '#edeff4', ink2: '#a9b1c3', accent: '#ff8a2b', onAccent: '#0e1626', focus: '#edeff4' };
+const DEEP: Pair = { ...NIGHT, bg: '#0a1120' };
 
 export const TERRAINS: Record<Terrain, { light: Pair; dark: Pair }> = {
   night: { light: NIGHT, dark: NIGHT },
   paper: {
-    light: { bg: '#f6f3ec', ink: '#14161a', ink2: '#4a4d55' },
-    dark: { bg: '#16203a', ink: '#edeff4', ink2: '#a9b1c3' },
+    light: { bg: '#f6f3ec', surface: '#ece8de', ink: '#14161a', ink2: '#4a4d55', accent: '#c2410c', onAccent: '#ffffff', focus: '#14161a' },
+    dark: { ...NIGHT, bg: '#16203a', surface: '#1e2b4a' },
   },
   deep: { light: DEEP, dark: DEEP },
   accent: {
-    light: { bg: '#c2410c', ink: '#ffffff', ink2: '#ffffff' },
-    dark: { bg: '#ff8a2b', ink: '#0e1626', ink2: '#0e1626' },
+    light: { bg: '#c2410c', surface: '#9a3412', ink: '#ffffff', ink2: '#ffffff', accent: '#ffffff', onAccent: '#c2410c', focus: '#ffffff' },
+    dark: { bg: '#ff8a2b', surface: '#ffb36b', ink: '#0e1626', ink2: '#0e1626', accent: '#0e1626', onAccent: '#ff8a2b', focus: '#0e1626' },
   },
 };
 
