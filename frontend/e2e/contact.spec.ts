@@ -36,3 +36,11 @@ test('contact : e-mail reçu dans Mailpit, puis 6e envoi refusé (429)', async (
   expect(res.status()).toBe(429);
   await expect(form.getByRole('status')).toContainText('Trop de messages');
 });
+
+test('arrivée : le mailto est visible dès le premier écran de la section', async ({ page }) => {
+  await page.goto('/fr/');
+  await page.locator('#arrivee').scrollIntoViewIfNeeded();
+  await page.evaluate(() => document.getElementById('arrivee')!.scrollIntoView());
+  const mail = page.locator('#arrivee a[href^="mailto:"]').first();
+  await expect(mail).toBeInViewport();
+});

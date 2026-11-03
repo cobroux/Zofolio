@@ -98,6 +98,13 @@ export interface HomeResponse {
   contributionYears: ContributionYear[];
 }
 
+/** GET /api/build : une donnée absente vaut null. */
+export interface BuildInfo {
+  commit: string | null;
+  deployedAt: string | null;
+  ci: { conclusion: 'success' | 'failure' | null; url: string | null };
+}
+
 export interface ProblemDetail {
   type: string;
   title: string;

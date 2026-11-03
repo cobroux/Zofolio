@@ -64,6 +64,32 @@ class GithubSyncServiceTest {
 	}
 
 	@Test
+	void ciStatusComesFromTheLatestCompletedMainRunAndNeverLogsTheToken(CapturedOutput out) {
+		server.expect(requestTo("http://github.test/repos/cobroux/Zofolio/actions/workflows/ci.yml/runs?branch=main&status=completed&per_page=1"))
+				.andExpect(header("Authorization", "Bearer " + TOKEN))
+				.andRespond(withSuccess("{\"workflow_runs\":[{\"conclusion\":\"failure\",\"html_url\":\"https://github.com/cobroux/Zofolio/actions/runs/1\"}]}",
+						MediaType.APPLICATION_JSON));
+		var service = service(TOKEN);
+		assertThat(service.ci()).isNull();
+		service.syncCi();
+		server.verify();
+		assertThat(service.ci()).isEqualTo(new CiStatus("failure", "https://github.com/cobroux/Zofolio/actions/runs/1"));
+
+		// Échec ou lien hors github.com : on garde la valeur précédente / on retire le lien.
+		server.reset();
+		server.expect(requestTo("http://github.test/repos/cobroux/Zofolio/actions/workflows/ci.yml/runs?branch=main&status=completed&per_page=1"))
+				.andRespond(withServerError());
+		service.syncCi();
+		assertThat(service.ci().conclusion()).isEqualTo("failure");
+		server.reset();
+		server.expect(requestTo("http://github.test/repos/cobroux/Zofolio/actions/workflows/ci.yml/runs?branch=main&status=completed&per_page=1"))
+				.andRespond(withSuccess("{\"workflow_runs\":[{\"conclusion\":\"cancelled\",\"html_url\":\"http://evil.test/x\"}]}", MediaType.APPLICATION_JSON));
+		service.syncCi();
+		assertThat(service.ci()).isEqualTo(new CiStatus(null, null));
+		assertThat(out.getAll()).doesNotContain(TOKEN);
+	}
+
+	@Test
 	void syncRequestsEachYearFrom2023AndStoresOneRowPerYear() throws IOException {
 		server.expect(requestTo(URL)).andRespond(withSuccess(ok(), MediaType.APPLICATION_JSON));
 		expectYears(null);

@@ -9,7 +9,9 @@ async function render(respond: (req: import('@angular/common/http/testing').Test
   TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting(), provideRouter([])] });
   const f = TestBed.createComponent(HomePage);
   f.detectChanges();
-  respond(TestBed.inject(HttpTestingController).expectOne('/api/fr/home'));
+  const http = TestBed.inject(HttpTestingController);
+  respond(http.expectOne('/api/fr/home'));
+  http.expectOne('/api/build').flush(null, { status: 404, statusText: 'Not Found' });
   await f.whenStable();
   f.detectChanges();
   return f.nativeElement as HTMLElement;

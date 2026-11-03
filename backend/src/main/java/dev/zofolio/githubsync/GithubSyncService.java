@@ -15,13 +15,14 @@ import dev.zofolio.githubsync.GithubClient.Repo;
 import dev.zofolio.githubsync.GithubClient.Snapshot;
 
 @Service
-class GithubSyncService {
+public class GithubSyncService {
 
 	private static final Logger log = LoggerFactory.getLogger(GithubSyncService.class);
 
 	/** Premier millésime affiché par « L'endurance, deux fois ». */
 	static final int FIRST_YEAR = 2023;
 
+	private volatile CiStatus ci;
 	private final GithubClient client;
 	private final GithubRepoRepository repos;
 	private final GithubContributionsRepository contributions;
@@ -33,6 +34,24 @@ class GithubSyncService {
 		this.repos = repos;
 		this.contributions = contributions;
 		this.years = years;
+	}
+
+	/** Dernier statut CI connu (mémoire seule : repris à la prochaine synchro), {@code null} tant qu'aucun n'a été lu. */
+	public CiStatus ci() {
+		return ci;
+	}
+
+	/** Ne lève jamais ; en cas d'échec on garde la valeur précédente. */
+	void syncCi() {
+		try {
+			CiStatus s = client.latestCiRun();
+			if (s != null) {
+				ci = s;
+			}
+		} catch (RuntimeException e) {
+			// jamais e.getMessage() : on ne journalise que le type d'erreur
+			log.warn("github-sync : statut CI conservé ({})", e.getClass().getSimpleName());
+		}
 	}
 
 	/** Tout ou rien (D18) : en cas d'échec, le cache précédent reste intact. Ne lève jamais. */

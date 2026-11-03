@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,11 @@ class GithubClient {
 			query($login: String!, $from: DateTime!, $to: DateTime!) { user(login: $login) {
 			  contributionsCollection(from: $from, to: $to) { contributionCalendar { totalContributions } } } }""";
 	private static final Duration TIMEOUT = Duration.ofSeconds(10);
+
+	/** Réponse REST de la liste des exécutions d'un workflow. */
+	record Runs(@JsonProperty("workflow_runs") List<Run> workflowRuns) {
+		record Run(String conclusion, @JsonProperty("html_url") String htmlUrl) {}
+	}
 
 	record Repo(String name, Instant pushedAt, Integer commits, Map<String, Long> languages) {}
 
@@ -159,6 +165,26 @@ class GithubClient {
 			}
 		}
 		return totals;
+	}
+
+	/**
+	 * Dernière exécution terminée du workflow CI sur main (lecture publique, aucun droit de plus que le token existant).
+	 *
+	 * @return {@code null} si aucune exécution
+	 */
+	CiStatus latestCiRun() {
+		Runs r = http.get()
+				.uri(url.replaceFirst("/graphql$", "") + "/repos/" + login
+						+ "/Zofolio/actions/workflows/ci.yml/runs?branch=main&status=completed&per_page=1")
+				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token).retrieve().body(Runs.class);
+		if (r == null || r.workflowRuns() == null || r.workflowRuns().isEmpty() || r.workflowRuns().get(0) == null) {
+			return null;
+		}
+		var run = r.workflowRuns().get(0);
+		String conclusion = "success".equals(run.conclusion()) || "failure".equals(run.conclusion()) ? run.conclusion()
+				: null;
+		String link = run.htmlUrl() != null && run.htmlUrl().startsWith("https://github.com/") ? run.htmlUrl() : null;
+		return new CiStatus(conclusion, link);
 	}
 
 	private static Repo toRepo(Response.Node n) {

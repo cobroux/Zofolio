@@ -1,38 +1,62 @@
 import { Component, LOCALE_ID, inject } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
+import { ContentApi } from '../../../core/api/content.api';
+import { Bib } from '../../../shared/bib/bib';
 import { ContourField } from '../../../shared/contour-field/contour-field';
 import { Reveal } from '../../../shared/reveal/reveal';
 import { ContactForm } from '../../contact/contact-form';
+import { LiveColophon } from '../live-colophon/live-colophon';
+import { passName } from '../live-values';
+import { CHECKPOINTS, SPLITS } from '../profile.data';
+import { formatDistance, formatDuration } from './journal.section';
 
-/** Statique (D3) : ne dépend pas de l'API. */
+const ROWS = (['p1', 'p2', 'p3', 'arrivee'] as const).map((id) => ({ id, km: CHECKPOINTS[id], ...SPLITS[id] }));
+
+/** Arrivée (terrain nuit, spec §6) : chrono officiel, pointages, contact puis formulaire, dos du dossard. Le build vient de /api/build ; absent, le colophon retire ses lignes. */
 @Component({
   selector: 'app-finish-section',
-  imports: [ContactForm, ContourField, Reveal],
+  imports: [Bib, ContactForm, ContourField, LiveColophon, Reveal],
   template: `
-    <section id="arrivee" aria-labelledby="arrivee-title">
+    <section id="arrivee" class="terrain-night" aria-labelledby="arrivee-title">
       <app-contour-field [levels]="12" />
       <div class="intro">
-        <p class="chrono" appReveal>
-          <time datetime="PT13H35M53S">13:35:53</time>
-          <span i18n>Arrivée 20 h 05 · km 79,4</span>
-        </p>
-        <h2 id="arrivee-title" appReveal i18n>Prochain objectif :<br />100 km.</h2>
-        <div class="gauge" [appReveal]="1" role="img" i18n-aria-label aria-label="79,4 km parcourus sur 100">
-          <div class="track" aria-hidden="true"><span class="fill"></span></div>
-          <p class="tnum"><span i18n>79,4 km</span><span i18n>100 km</span></p>
-        </div>
-        <p class="lead" [appReveal]="1" i18n>Et de nouveaux projets. Parlons-en.</p>
-        <a class="cv" [href]="cv" [appReveal]="1" i18n>Télécharger le CV</a>
-        <div class="contact" [appReveal]="2">
-          <p>
-            <a href="mailto:enzo.lvq12@gmail.com">enzo.lvq12@gmail.com</a> ·
-            <a href="https://github.com/cobroux" rel="noopener">GitHub</a> ·
-            <a href="https://www.linkedin.com/in/enzo-leveque1" rel="noopener">LinkedIn</a>
-          </p>
-          <p i18n>En poste chez Aubay, ouvert aux opportunités à Paris. Français, anglais (TOEIC 910).</p>
-        </div>
+        <h2 id="arrivee-title" appReveal><time datetime="PT13H35M53S">{{ finishTime }}</time></h2>
+        <p class="line" [appReveal]="1" i18n>Ligne d'arrivée du Grand Trail d'Auvergne, km 79,4. Prochain objectif : 100 km.</p>
+        <table class="splits tnum" [appReveal]="1">
+          <caption class="sr-only" i18n>Pointages officiels</caption>
+          <thead>
+            <tr>
+              <th scope="col" i18n>Pointage</th>
+              <th scope="col" i18n>Heure</th>
+              <th scope="col" i18n>Course</th>
+              <th scope="col" i18n>Tronçon</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (r of rows; track r.id) {
+              <tr>
+                <th scope="row">{{ name(r.id) }} <span>{{ km(r.km) }}</span></th>
+                <td>{{ r.clock }}</td>
+                <td>{{ dur(r.raceS) }}</td>
+                <td>{{ dur(r.legS) }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
       </div>
-      <div class="card" [appReveal]="2"><app-contact-form /><i></i></div>
+      <div class="contact" [appReveal]="1">
+        <p class="lead" i18n>Et de nouveaux projets. Parlons-en.</p>
+        <p class="actions">
+          <a class="mail" href="mailto:enzo.lvq12@gmail.com">enzo.lvq12&#64;gmail.com</a>
+          <a class="cv" [href]="cv" i18n>Télécharger le CV</a>
+          <a href="https://www.linkedin.com/in/enzo-leveque1" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/cobroux" rel="noopener">GitHub</a>
+        </p>
+        <p class="small" i18n>En poste chez Aubay, ouvert aux opportunités à Paris. Français, anglais (TOEIC 910).</p>
+      </div>
+      <div class="form" [appReveal]="2"><app-contact-form /></div>
       <p class="foot" i18n>Phidippides a couru de Marathon à Athènes pour porter un message. Ici, un formulaire suffit.</p>
+      <app-bib face="back" class="back"><app-live-colophon [info]="build.value() ?? null" /></app-bib>
     </section>
   `,
   styles: `
@@ -44,72 +68,52 @@ import { ContactForm } from '../../contact/contact-form';
       grid-template-columns: minmax(0, 1fr);
       gap: var(--s-7) var(--gutter);
       padding: var(--s-10) var(--margin) var(--s-9);
-      background: var(--accent);
-      color: var(--on-accent);
+      /* Le formulaire, partagé avec d'autres pages, lit ces jetons : on les fixe sur la nuit. */
+      --bg: #0e1626;
+      --surface: #16203a;
+      --focus: #edeff4;
     }
-    .intro {
-      container-type: inline-size;
-      display: flex;
-      flex-direction: column;
-      gap: var(--s-5);
-      align-items: flex-start;
-    }
-    /* Deux lignes imposées ; la taille suit la largeur de la colonne pour que « Prochain objectif : » tienne sur la première. */
-    h2 {
-      margin: 0;
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 15cqi, 8rem);
-    }
+    .intro { container-type: inline-size; display: flex; flex-direction: column; gap: var(--s-5); align-items: flex-start; }
     p { margin: 0; }
-    .contact { font-size: var(--t-small); }
-    /* Chrono d'arrivée : le temps de la GTA en display tabulaire, la ligne d'origine en légende. */
-    .chrono { display: flex; flex-direction: column; gap: var(--s-2); }
-    .chrono time { font: 800 clamp(2.5rem, 6cqi, 4rem) / 0.9 var(--font-display); font-stretch: 72%; font-variant-numeric: tabular-nums lining-nums; }
-    .chrono span { font-size: var(--t-small); }
-    /* Jauge d'objectif : 79,4 / 100, remplie une seule fois à l'entrée dans le viewport. */
-    .gauge { width: 100%; max-width: 28rem; display: flex; flex-direction: column; gap: var(--s-2); }
-    .track { height: 3px; background: color-mix(in srgb, var(--on-accent) 30%, transparent); }
-    .fill { display: block; height: 100%; background: var(--on-accent); transform: scaleX(0.794); transform-origin: left; transition: transform 600ms var(--ease-out); }
-    :host-context(html.js) .gauge:not(.in) .fill { transform: scaleX(0); }
-    .gauge p { display: flex; justify-content: space-between; font-size: var(--t-small); font-weight: 600; font-variant-numeric: tabular-nums lining-nums; }
-    @media (prefers-reduced-motion: reduce) {
-      .fill { transition: none; }
-      :host-context(html.js) .gauge:not(.in) .fill { transform: scaleX(0.794); }
-    }
-    /* Dossard : papier sur l'orange, 4 trous d'épingle comme le dossard de segment des pages projet. */
-    .card { position: relative; align-self: start; padding: var(--s-8) var(--s-6) var(--s-7); background: var(--bg); color: var(--ink); }
-    .card::before, .card::after, .card i::before, .card i::after { content: ''; position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); }
-    .card::before { inset: 12px auto auto 12px; }
-    .card::after { inset: 12px 12px auto auto; }
-    .card i::before { inset: auto auto 12px 12px; }
-    .card i::after { inset: auto 12px 12px auto; }
+    /* Chrono monumental : le temps officiel, une seule fois sur le site à cette taille. */
+    h2 { margin: 0; font: 800 clamp(2.75rem, 12cqi, 7rem) / 0.95 var(--font-display); font-stretch: 72%; font-variant-numeric: tabular-nums lining-nums; }
+    .line { font-size: var(--t-small); max-width: 44ch; }
+    .splits { width: 100%; max-width: 40rem; border-collapse: collapse; font-size: var(--t-small); font-variant-numeric: tabular-nums lining-nums; }
+    .splits th, .splits td { padding: var(--s-2) var(--s-3) var(--s-2) 0; text-align: left; font-weight: 400; white-space: nowrap; }
+    .splits thead th { color: var(--ink-2); }
+    .splits tbody th { font-weight: 600; }
+    .splits tbody th span { color: var(--ink-2); font-weight: 400; }
+    .splits tbody tr { border-top: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .contact { display: flex; flex-direction: column; gap: var(--s-4); align-items: flex-start; }
     .lead { font-size: var(--t-lead); font-weight: 600; line-height: 1.3; max-width: 24ch; }
-    .contact { display: flex; flex-direction: column; gap: var(--s-1); }
-    a { color: inherit; }
-    .contact a { display: inline-flex; align-items: center; min-height: var(--target); }
-    a:focus-visible { outline: 3px solid currentColor; outline-offset: 2px; }
-    .cv {
-      display: inline-flex;
-      align-items: center;
-      min-height: 48px;
-      padding: 0 var(--s-6);
-      background: var(--bg);
-      color: var(--ink);
-      font-weight: 600;
-      text-decoration: none;
-      transition: transform 140ms var(--ease-out);
-    }
+    .small { font-size: var(--t-small); max-width: 44ch; }
+    .actions { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-6); align-items: center; }
+    a { color: inherit; display: inline-flex; align-items: center; min-height: var(--target); }
+    a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+    .mail { font-size: var(--t-lead); font-weight: 600; }
+    .cv { padding: 0 var(--s-6); min-height: 48px; background: var(--accent); color: var(--on-accent); font-weight: 600; text-decoration: none; transition: transform 140ms var(--ease-out); }
     .cv:active { transform: scale(0.97); }
     .foot { max-width: 44ch; font-size: var(--t-small); }
+    .back { width: min(100%, 38rem); justify-self: start; }
     @media (min-width: 1100px) {
       section { grid-template-columns: repeat(12, minmax(0, 1fr)); }
-      /* Formulaire sur deux rangées ; la phrase de Phidippides ferme la colonne gauche, au niveau du bouton d'envoi. */
-      .intro { grid-column: 1 / span 6; grid-row: 1; }
-      .card { grid-column: 8 / span 5; grid-row: 1 / span 2; }
-      .foot { grid-column: 1 / span 6; grid-row: 2; align-self: end; }
+      .intro { grid-column: 1 / span 7; grid-row: 1; }
+      .contact { grid-column: 1 / span 7; grid-row: 2; }
+      .form { grid-column: 8 / span 5; grid-row: 1 / span 3; align-self: start; }
+      .foot { grid-column: 1 / span 7; grid-row: 3; align-self: end; }
+      .back { grid-column: 1 / -1; grid-row: 4; }
     }
   `,
 })
 export class FinishSection {
   protected readonly cv = `/api/${inject(LOCALE_ID).slice(0, 2)}/cv`;
+  private readonly api = inject(ContentApi);
+  protected readonly build = rxResource({ stream: () => this.api.build() });
+  protected readonly rows = ROWS;
+  /** Chrono officiel : secondes entières du tableau officiel, jamais une horloge recalculée. */
+  protected readonly finishTime = formatDuration(SPLITS.arrivee.raceS);
+  protected readonly name = passName;
+  protected readonly km = formatDistance;
+  protected readonly dur = formatDuration;
 }

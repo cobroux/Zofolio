@@ -774,6 +774,66 @@
           <context context-type="linenumber">42,43</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6413514884883484792" datatype="html">
+        <source>Commit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5653072874050459519" datatype="html">
+        <source>Déployé le</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
+          <context context-type="linenumber">22,23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="518737057825014328" datatype="html">
+        <source>Dernière CI sur main</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4212985239102280850" datatype="html">
+        <source>Stack</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
+          <context context-type="linenumber">36,37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
+          <context context-type="linenumber">64,65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7298284178367842272" datatype="html">
+        <source>Le code</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5293537796822127156" datatype="html">
+        <source>CV</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8884727762517616475" datatype="html">
+        <source>CI verte</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5030503749501151337" datatype="html">
+        <source>CI rouge</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8181410181518647436" datatype="html">
         <source>0</source>
         <context-group purpose="location">
@@ -1021,53 +1081,68 @@
           <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2598620141573040078" datatype="html">
-        <source>Arrivée 20 h 05 · km 79,4</source>
+      <trans-unit id="7846467849521429639" datatype="html">
+        <source>Ligne d&apos;arrivée du Grand Trail d&apos;Auvergne, km 79,4. Prochain objectif : 100 km.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">16,17</context>
+          <context context-type="linenumber">24,25</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1377516304527384357" datatype="html">
-        <source>Prochain objectif :<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/>100 km.</source>
+      <trans-unit id="1840148144109321307" datatype="html">
+        <source>Pointages officiels</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">18,19</context>
+          <context context-type="linenumber">26,27</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5178652351654797364" datatype="html">
-        <source>79,4 km parcourus sur 100</source>
+      <trans-unit id="7896913456749470052" datatype="html">
+        <source>Pointage</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">19,20</context>
+          <context context-type="linenumber">29,30</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3490420496671634451" datatype="html">
-        <source>79,4 km</source>
+      <trans-unit id="8312382490038553501" datatype="html">
+        <source>Heure</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">30,31</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="190099704623535625" datatype="html">
-        <source>100 km</source>
+      <trans-unit id="8317457230285174180" datatype="html">
+        <source>Course</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">97,98</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">296</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7466884877014493571" datatype="html">
+        <source>Tronçon</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
+          <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2519547902255538963" datatype="html">
         <source>Et de nouveaux projets. Parlons-en.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">23,24</context>
+          <context context-type="linenumber">48,49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1955051087209940082" datatype="html">
         <source>Télécharger le CV</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">24,25</context>
+          <context context-type="linenumber">51,52</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
@@ -1078,14 +1153,14 @@
         <source>En poste chez Aubay, ouvert aux opportunités à Paris. Français, anglais (TOEIC 910).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">31,32</context>
+          <context context-type="linenumber">55,56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4307381776281830307" datatype="html">
         <source>Phidippides a couru de Marathon à Athènes pour porter un message. Ici, un formulaire suffit.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">35,36</context>
+          <context context-type="linenumber">58,59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1220418434475838401" datatype="html">
@@ -1139,17 +1214,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
           <context context-type="linenumber">295</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8317457230285174180" datatype="html">
-        <source>Course</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">97,98</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">296</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1779552786277618671" datatype="html">
@@ -1622,13 +1686,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
           <context context-type="linenumber">60,61</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4212985239102280850" datatype="html">
-        <source>Stack</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">64,65</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4921439356441031513" datatype="html">
