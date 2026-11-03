@@ -2864,14 +2864,6 @@
           <context context-type="linenumber">286</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5248783460892157038" datatype="html">
-        <source>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km : course et vélo. Commits : contributions GitHub de l&apos;année, année en cours incluse.</source>
-        <target state="translated">Yearly totals only: no route, no heart rate, no health data. Km: running and cycling. Commits: GitHub contributions for the year, current year included.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
-          <context context-type="linenumber">42,43</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="6438029402541832475" datatype="html">
         <source>Voir le détail : les autres courses et le graphe de contributions</source>
         <target state="translated">See the detail: other races and the contributions graph</target>
@@ -2880,20 +2872,44 @@
           <context context-type="linenumber">80,81</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8035424222449931004" datatype="html">
-        <source>commits : non renseigné</source>
-        <target state="translated">commits: not provided</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
-          <context context-type="linenumber">31,32</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="5669750021553088392" datatype="html">
         <source>km : non renseigné</source>
         <target state="translated">km: not provided</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
           <context context-type="linenumber">22,23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4336166805390256235" datatype="html">
+        <source>contributions GitHub : non renseigné</source>
+        <target state="translated">GitHub contributions: not provided</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2106669205405741218" datatype="html">
+        <source>contributions GitHub</source>
+        <target state="translated">GitHub contributions</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4846726600125071564" datatype="html">
+        <source>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km : course et vélo. Contributions GitHub : commits, demandes de fusion, tickets et revues, année en cours incluse.</source>
+        <target state="translated">Yearly totals only: no route, no heart rate, no health data. Km: running and cycling. GitHub contributions: commits, pull requests, issues and reviews, current year included.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="journal.night.alt" datatype="html">
+        <source>Le groupe du club Les Baudets rassemblé de nuit sur une place, frontales allumées, Enzo en selfie au premier plan</source>
+        <target state="translated">The Les Baudets club gathered at night on a square, headlamps on, Enzo taking a selfie in the foreground</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
+          <context context-type="linenumber">285</context>
         </context-group>
       </trans-unit>
     </body>

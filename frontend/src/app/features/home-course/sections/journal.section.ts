@@ -282,7 +282,7 @@ export class JournalSection {
   readonly contributionYears = input<ContributionYear[]>([]);
   protected readonly night: Plate = {
     src: 'img/baudets-nuit-1280.jpg',
-    alt: 'Le groupe du club Les Baudets rassemblé de nuit sur une place, frontales allumées, Enzo en selfie au premier plan',
+    alt: $localize`:@@journal.night.alt:Le groupe du club Les Baudets rassemblé de nuit sur une place, frontales allumées, Enzo en selfie au premier plan`,
     caption: $localize`Sortie de nuit du club Les Baudets`,
     width: 1280,
     height: 960,

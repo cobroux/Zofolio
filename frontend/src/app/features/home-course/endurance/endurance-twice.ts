@@ -6,7 +6,7 @@ import { Reveal } from '../../../shared/reveal/reveal';
 const FIRST_YEAR = 2023;
 const NUMBER = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
 
-/** Km courus et commits, année par année : deux vraies séries, jamais estimées (spec §6). */
+/** Km courus et contributions GitHub, année par année : deux vraies séries, jamais estimées (spec §6). */
 @Component({
   selector: 'app-endurance-twice',
   imports: [CountUp, Reveal],
@@ -28,10 +28,10 @@ const NUMBER = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
             </div>
             <div class="cell">
               @if (r.commits === null) {
-                <span class="val" aria-hidden="true">—</span><span class="small" i18n>commits : non renseigné</span>
+                <span class="val" aria-hidden="true">—</span><span class="small" i18n>contributions GitHub : non renseigné</span>
               } @else {
                 <span class="val" aria-hidden="true" [attr.data-count]="r.commits">{{ number(r.commits) }}</span>
-                <span class="small"><span class="sr">{{ number(r.commits) }} </span>commits</span>
+                <span class="small"><span class="sr">{{ number(r.commits) }} </span><ng-container i18n>contributions GitHub</ng-container></span>
                 <span class="bar commits" aria-hidden="true" [style.--k]="r.commits / maxCommits()"></span>
               }
             </div>
@@ -39,7 +39,7 @@ const NUMBER = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
         }
       </ol>
       <p class="line" [appReveal]="1" i18n>Les deux courbes montent. Ce n'est pas une coïncidence, c'est une méthode.</p>
-      <p class="small note" i18n>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km : course et vélo. Commits : contributions GitHub de l'année, année en cours incluse.</p>
+      <p class="small note" i18n>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km : course et vélo. Contributions GitHub : commits, demandes de fusion, tickets et revues, année en cours incluse.</p>
     </div>
   `,
   styles: `

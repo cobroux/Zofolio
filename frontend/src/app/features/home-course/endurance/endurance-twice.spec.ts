@@ -31,10 +31,11 @@ describe('EnduranceTwice', () => {
     expect(rows.find((r) => r.year === '2026')!.km).toBe('4 748');
   });
 
-  it('commits absents pour une année : « non renseigné », pas de zéro', () => {
+  it('contributions absentes pour une année : « non renseigné », pas de zéro, libellé « contributions GitHub »', () => {
     const rows = render([y(2024, 2191)], []);
     const r = rows.find((x) => x.year === '2024')!;
-    expect(r.commits).toContain('non renseigné');
+    expect(r.commits).toContain('contributions GitHub : non renseigné');
+    expect([...rows.el.querySelectorAll('.cell')].some((c) => /\bcommits\b/.test(c.textContent!))).toBe(false);
     expect(rows.el.querySelectorAll('[data-count="0"]').length).toBe(0);
   });
 
