@@ -817,14 +817,14 @@
         <source>CI verte</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5030503749501151337" datatype="html">
         <source>CI rouge</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
-          <context context-type="linenumber">65</context>
+          <context context-type="linenumber">66</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8181410181518647436" datatype="html">
@@ -1418,14 +1418,14 @@
         <source>Le parcours d&apos;un ordre de bourse, de la saisie à l&apos;exécution.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">120</context>
+          <context context-type="linenumber">113</context>
         </context-group>
       </trans-unit>
       <trans-unit id="p2.plate.timeline" datatype="html">
         <source>Mars 2023 à septembre 2025 chez Worldline.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">121</context>
+          <context context-type="linenumber">114</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4180035747429477656" datatype="html">
@@ -1464,7 +1464,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">152,153</context>
+          <context context-type="linenumber">174,175</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3277084266824894235" datatype="html">
@@ -1688,81 +1688,85 @@
           <context context-type="linenumber">69,70</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8649839533549473236" datatype="html">
-        <source>Le problème</source>
+      <trans-unit id="3367146030113064235" datatype="html">
+        <source>Contexte et contraintes</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
           <context context-type="linenumber">88,89</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6310691346279544735" datatype="html">
-        <source>Les décisions</source>
+      <trans-unit id="4423441981265009871" datatype="html">
+        <source>Décision et alternative écartée</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">95,96</context>
+          <context context-type="linenumber">101,102</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7475501712995091876" datatype="html">
         <source>Compromis :</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">101</context>
+          <context context-type="linenumber">107</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5524712451340370698" datatype="html">
-        <source>km 60</source>
+      <trans-unit id="7858207736318806914" datatype="html">
+        <source>Ce que j&apos;ai porté</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">120,121</context>
+          <context context-type="linenumber">128,129</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="181330328678975882" datatype="html">
-        <source>Le mur du 60e km</source>
+      <trans-unit id="2902261471051690112" datatype="html">
+        <source>Résultat</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">122,123</context>
+          <context context-type="linenumber">137,138</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/decision-card/decision-card.ts</context>
+          <context context-type="linenumber">31,32</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2862028272647915969" datatype="html">
-        <source>Ce que j&apos;en retire</source>
+      <trans-unit id="1810979463252018937" datatype="html">
+        <source>Ce que je referais</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">130,131</context>
+          <context context-type="linenumber">146,147</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1673114612147962830" datatype="html">
-        <source>Liens</source>
+      <trans-unit id="8186013988289067040" datatype="html">
+        <source>Code</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">139,140</context>
+          <context context-type="linenumber">155,156</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5442571032125501579" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{ r.name }}"/> sur GitHub</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">143,144</context>
+          <context context-type="linenumber">159,160</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6358655669371888728" datatype="html">
         <source>Voir la démo</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">146,147</context>
+          <context context-type="linenumber">162,163</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5293774587552771604" datatype="html">
         <source>Revoir le clip</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">149,150</context>
+          <context context-type="linenumber">165,166</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5280079547787277567" datatype="html">
         <source><x id="PH" equiv-text="p.stage"/> · km <x id="PH_1" equiv-text="formatKm(CHECKPOINTS[id])"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">165</context>
+          <context context-type="linenumber">185</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8361028789661352179" datatype="html">
@@ -2674,13 +2678,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/decision-card/decision-card.ts</context>
           <context context-type="linenumber">25,26</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2902261471051690112" datatype="html">
-        <source>Résultat</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/decision-card/decision-card.ts</context>
-          <context context-type="linenumber">31,32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4118887439078151206" datatype="html">

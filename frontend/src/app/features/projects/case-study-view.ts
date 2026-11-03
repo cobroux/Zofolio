@@ -83,16 +83,22 @@ const SEGMENTS = {
       }
     </div>
 
-    <section class="blk" aria-labelledby="h-pb" appReveal>
+    <section class="blk" aria-labelledby="h-ctx" appReveal>
       <div class="wrap grid">
-        <h2 id="h-pb" i18n>Le problème</h2>
-        <div class="txt"><p>{{ v.c.problem }}</p></div>
+        <h2 id="h-ctx" i18n>Contexte et contraintes</h2>
+        <div class="txt">
+          <p>{{ v.c.problem }}</p>
+          @if (v.c.wall?.trim()) {
+            <p>{{ v.c.wall }}</p>
+          }
+        </div>
       </div>
     </section>
 
+    @if (v.c.decisions.length) {
     <section class="blk" aria-labelledby="h-dec" appReveal>
       <div class="wrap grid">
-        <h2 id="h-dec" i18n>Les décisions</h2>
+        <h2 id="h-dec" i18n>Décision et alternative écartée</h2>
         <div class="decisions">
           @for (d of v.c.decisions; track d.title) {
             <article>
@@ -105,6 +111,7 @@ const SEGMENTS = {
         </div>
       </div>
     </section>
+    }
 
     @if (diagram(); as d) {
       <section class="blk" aria-labelledby="h-arch">
@@ -115,44 +122,57 @@ const SEGMENTS = {
       </section>
     }
 
-    <section class="wall" aria-labelledby="h-wall">
-      <div class="wrap grid">
-        <p class="km tnum" aria-hidden="true" i18n>km 60</p>
-        <div class="txt">
-          <h2 id="h-wall" i18n>Le mur du 60e km</h2>
-          <p>{{ v.c.wall }}</p>
+    @if (v.c.contribution?.trim()) {
+      <section class="blk" aria-labelledby="h-own" appReveal>
+        <div class="wrap grid">
+          <h2 id="h-own" i18n>Ce que j'ai porté</h2>
+          <div class="txt"><p>{{ v.c.contribution }}</p></div>
         </div>
-      </div>
-    </section>
+      </section>
+    }
 
-    <section class="blk" aria-labelledby="h-ret" appReveal>
-      <div class="wrap grid">
-        <h2 id="h-ret" i18n>Ce que j'en retire</h2>
-        <div class="txt">
-          <p>{{ v.c.takeaway }}</p>
+    @if (v.c.takeaway?.trim()) {
+      <section class="blk" aria-labelledby="h-res" appReveal>
+        <div class="wrap grid">
+          <h2 id="h-res" i18n>Résultat</h2>
+          <div class="txt"><p>{{ v.c.takeaway }}</p></div>
         </div>
-      </div>
-    </section>
+      </section>
+    }
 
-    <section class="blk" aria-labelledby="h-liens">
-      <div class="wrap grid">
-        <h2 id="h-liens" i18n>Liens</h2>
-        <div class="txt">
-          <ul class="links">
-            @for (r of v.c.repos; track r.url) {
-              <li><a [href]="r.url" rel="noopener" i18n>{{ r.name }} sur GitHub</a></li>
-            }
-            @if (v.p.demoUrl) {
-              <li><a [href]="v.p.demoUrl" rel="noopener" i18n>Voir la démo</a></li>
-            }
-            @if (v.p.video) {
-              <li><a routerLink="." fragment="clip" i18n>Revoir le clip</a></li>
-            }
-          </ul>
-          <a class="cta" routerLink="/" fragment="arrivee" i18n>Me contacter</a>
+    @if (v.c.hindsight?.trim()) {
+      <section class="blk" aria-labelledby="h-redo" appReveal>
+        <div class="wrap grid">
+          <h2 id="h-redo" i18n>Ce que je referais</h2>
+          <div class="txt"><p>{{ v.c.hindsight }}</p></div>
         </div>
-      </div>
-    </section>
+      </section>
+    }
+
+    @if (v.c.repos.length || v.p.demoUrl || v.p.video) {
+      <section class="blk" aria-labelledby="h-code">
+        <div class="wrap grid">
+          <h2 id="h-code" i18n>Code</h2>
+          <div class="txt">
+            <ul class="links">
+              @for (r of v.c.repos; track r.url) {
+                <li><a [href]="r.url" rel="noopener" i18n>{{ r.name }} sur GitHub</a></li>
+              }
+              @if (v.p.demoUrl) {
+                <li><a [href]="v.p.demoUrl" rel="noopener" i18n>Voir la démo</a></li>
+              }
+              @if (v.p.video) {
+                <li><a routerLink="." fragment="clip" i18n>Revoir le clip</a></li>
+              }
+            </ul>
+          </div>
+        </div>
+      </section>
+    }
+
+    <div class="wrap">
+      <a class="cta" routerLink="/" fragment="arrivee" i18n>Me contacter</a>
+    </div>
     }
   `,
 })

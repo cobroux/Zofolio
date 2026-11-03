@@ -13,6 +13,8 @@ for (const lang of LANGS) {
       await expect(page).toHaveURL(new RegExp(`/${lang}/projets/${slug}$`));
       await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
       await expect(page.locator('html')).toHaveAttribute('lang', lang);
+      await expect(page.locator('h2').first()).toHaveAttribute('id', 'h-ctx');
+      await expect(page.locator('h2').first()).toBeVisible();
     });
   }
 }

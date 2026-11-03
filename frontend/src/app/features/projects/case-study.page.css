@@ -147,20 +147,6 @@ dd {
   font-weight: 600;
 }
 
-.wall {
-  margin-block-start: var(--s-9);
-  padding-block: var(--s-9);
-  background: var(--surface);
-}
-.km {
-  color: var(--accent);
-  font: 900 clamp(4rem, 12vw, 9rem) / 0.85 var(--font-display);
-  font-stretch: 62%;
-}
-.wall h2 {
-  margin-block-end: var(--s-5);
-}
-
 .links {
   display: grid;
   gap: var(--s-1);
