@@ -13,7 +13,9 @@ test('contact : e-mail reçu dans Mailpit, puis 6e envoi refusé (429)', async (
   await request.delete(MAILPIT);
   await page.goto('/fr/');
   const form = page.locator('app-contact-form');
+  // On attend l'hydratation (jsaction retiré) avant de saisir, sinon la saisie peut être écrasée.
   await form.scrollIntoViewIfNeeded();
+  await expect(form.locator('form')).not.toHaveAttribute('jsaction');
   await form.locator('#c-name').fill('Ada E2E');
   await form.locator('#c-email').fill('ada0@example.com');
   await form.locator('#c-message').fill('Message de test E2E');
