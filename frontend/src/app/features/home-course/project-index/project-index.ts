@@ -60,13 +60,11 @@ const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
               </li>
             }
           </ol>
-          <div class="preview" aria-hidden="true">
+          <div class="preview" [class.empty]="!list[active()]?.shot && !list[active()]?.p?.video" aria-hidden="true">
             @for (r of list; track r.p.slug; let i = $index) {
               <div class="shot" [class.on]="i === active()" [attr.data-slug]="r.p.slug">
                 @if (r.shot) {
                   <img [src]="r.shot" alt="" loading="lazy" />
-                } @else {
-                  <p class="plate">{{ r.p.title }}</p>
                 }
                 @if (r.p.video; as v) {
                   @if (i === active() && live()) {
@@ -197,6 +195,11 @@ const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
         aspect-ratio: 16 / 10;
         overflow: hidden;
         background: #0e1626;
+        transition: opacity 240ms var(--ease-out);
+      }
+      /* Ligne sans média : tout le cadre s'efface, aucun aplat vide ne reste. */
+      .preview.empty {
+        opacity: 0;
       }
       .shot {
         display: grid;
@@ -213,17 +216,10 @@ const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
         height: 100%;
         object-fit: contain;
       }
-      .plate {
-        display: grid;
-        place-items: center;
-        margin: 0;
-        color: #edeff4;
-        font: 800 clamp(2rem, 4vw, 3.5rem) / 1 var(--font-display);
-        font-stretch: 72%;
-      }
     }
     @media (prefers-reduced-motion: reduce) {
-      .shot {
+      .shot,
+      .preview {
         transition: none;
       }
     }

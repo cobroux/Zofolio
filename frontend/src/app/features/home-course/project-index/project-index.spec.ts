@@ -83,8 +83,17 @@ describe('ProjectIndex', () => {
     expect(previewFor(projects[1]).querySelector('img')?.getAttribute('src')).toBe(
       'media/oltre-1.webp',
     );
-    // Ni vidéo ni capture : le titre occupe le cadre plutôt qu'un aplat.
-    expect(previewFor(projects[2]).textContent).toContain('HistoQuiz');
+  });
+
+  it('ni vidéo ni capture : aucune plaque, cadre marqué vide quand la ligne est active', () => {
+    render(projects);
+    expect(el.querySelector('.preview .plate')).toBeNull();
+    expect(el.querySelector('.preview')!.classList).not.toContain('empty');
+    hoverRow(2);
+    expect(el.querySelector<HTMLElement>('.preview .shot.on')!.children.length).toBe(0);
+    expect(el.querySelector('.preview')!.classList).toContain('empty');
+    hoverRow(1);
+    expect(el.querySelector('.preview')!.classList).not.toContain('empty');
   });
 
   it('vidéo seulement sur la ligne active engagée, jamais en mouvement réduit', () => {

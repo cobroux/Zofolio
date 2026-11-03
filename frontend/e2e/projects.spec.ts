@@ -74,6 +74,22 @@ test('index P3 : survol puis focus = aperçu de la ligne, vidéo muette seulemen
   await expect(shot).toHaveAttribute('data-slug', 'oltre');
 });
 
+test('index P3 : une ligne sans média rend le cadre invisible', async ({ page }) => {
+  await page.goto('/fr/');
+  const preview = page.locator('#p3 .preview');
+  const histo = page.locator('#p3 ol.rows > li').filter({ has: page.locator('a[href$="/histoquiz"], a[href*="histoquiz"]') });
+  const oltre = page.locator('#p3 ol.rows > li').filter({ has: page.locator('a[href$="/projets/oltre"]') });
+  await histo.scrollIntoViewIfNeeded();
+  await expect(async () => {
+    await histo.hover();
+    await expect(preview).toHaveClass(/empty/, { timeout: 500 });
+  }).toPass();
+  await expect(preview).toHaveCSS('opacity', '0');
+  await oltre.hover();
+  await expect(preview).toHaveCSS('opacity', '1');
+  await expect(preview.locator('.shot.on video')).toHaveCount(1);
+});
+
 test.describe('index P3 sur mobile', () => {
   test.use({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
   test('poster en ligne, pas de cadre, vidéo seulement au toucher', async ({ page }) => {
