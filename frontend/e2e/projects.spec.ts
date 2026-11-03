@@ -13,8 +13,8 @@ for (const lang of LANGS) {
       await expect(page).toHaveURL(new RegExp(`/${lang}/projets/${slug}$`));
       await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
       await expect(page.locator('html')).toHaveAttribute('lang', lang);
-      await expect(page.locator('h2').first()).toHaveAttribute('id', 'h-ctx');
-      await expect(page.locator('h2').first()).toBeVisible();
+      await expect(page.locator('app-case-study-view > section h2').first()).toHaveAttribute('id', 'h-ctx');
+      await expect(page.locator('app-case-study-view > section h2').first()).toBeVisible();
     });
   }
 }
@@ -120,7 +120,7 @@ test('sans JavaScript : étude de cas lisible', async ({ browser }) => {
   const page = await ctx.newPage();
   await page.goto('/fr/projets/oltre');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Oltre');
-  await expect(page.locator('#h-pb')).toBeVisible();
+  await expect(page.locator('#h-ctx')).toBeVisible();
   await expect(page.locator('#h-dec')).toBeVisible();
   await ctx.close();
 });
