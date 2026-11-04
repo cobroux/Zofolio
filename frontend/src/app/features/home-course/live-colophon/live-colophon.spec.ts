@@ -22,13 +22,14 @@ function render(info: BuildInfo | null) {
 }
 
 describe('LiveColophon', () => {
-  it('données absentes : lignes retirées, contact toujours là', () => {
+  it('données absentes : lignes retirées, stack et dépôt toujours là', () => {
     const el = render(empty);
     expect(el.querySelector('[data-row="commit"]')).toBeNull();
     expect(el.querySelector('[data-row="deployed"]')).toBeNull();
     expect(el.querySelector('[data-row="ci"]')).toBeNull();
-    expect(el.querySelector('a[href^="mailto:"]')).toBeTruthy();
-    expect(render(null).querySelector('a[href^="mailto:"]')).toBeTruthy();
+    expect(el.querySelector('[data-row="stack"] a')).toBeTruthy();
+    expect(render(null).querySelector('[data-row="stack"] a')).toBeTruthy();
+    expect(el.querySelector('a[href^="mailto:"]')).toBeNull();
   });
 
   it('commit présent : lien vers le commit GitHub', () => {
@@ -83,5 +84,20 @@ describe('FinishSection', () => {
     expect(mail.compareDocumentPosition(form) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(el.querySelector('app-bib app-live-colophon')).toBeTruthy();
     expect(el.textContent).toContain('Prochain objectif');
+  });
+
+  it('chaque destination de contact apparaît une seule fois ; icônes aria-hidden', () => {
+    const el = finish();
+    for (const href of ['mailto:enzo.lvq12@gmail.com', 'https://github.com/cobroux', 'https://www.linkedin.com/in/enzo-leveque1']) {
+      expect(el.querySelectorAll(`a[href="${href}"]`), href).toHaveLength(1);
+    }
+    expect(el.querySelectorAll('a[href$="/cv"]')).toHaveLength(1);
+    const logos = el.querySelectorAll('a.btn svg');
+    expect(logos).toHaveLength(2);
+    logos.forEach((s) => {
+      expect(s.getAttribute('aria-hidden')).toBe('true');
+      expect(s.getAttribute('focusable')).toBe('false');
+    });
+    expect(el.querySelector('a[href="https://github.com/cobroux"]')!.textContent!.trim()).toBe('GitHub');
   });
 });

@@ -44,3 +44,14 @@ test('arrivée : le mailto est visible dès le premier écran de la section', as
   const mail = page.locator('#arrivee a[href^="mailto:"]').first();
   await expect(mail).toBeInViewport();
 });
+
+test('arrivée + dos du dossard : chaque destination de contact une seule fois, icônes masquées', async ({ page }) => {
+  await page.goto('/fr/');
+  const zone = page.locator('#arrivee');
+  for (const href of ['mailto:enzo.lvq12@gmail.com', 'https://github.com/cobroux', 'https://www.linkedin.com/in/enzo-leveque1', '/api/fr/cv']) {
+    await expect(zone.locator(`a[href="${href}"]`), href).toHaveCount(1);
+  }
+  await expect(zone.locator('a.btn svg[aria-hidden="true"]')).toHaveCount(2);
+  await expect(zone.getByRole('link', { name: 'GitHub', exact: true })).toBeVisible();
+  await expect(zone.getByRole('link', { name: 'LinkedIn', exact: true })).toBeVisible();
+});

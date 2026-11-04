@@ -4,7 +4,7 @@ import { BuildInfo } from '../../../core/api/api.models';
 const REPO = 'https://github.com/cobroux/Zofolio';
 
 /**
- * Le dos du dossard (spec §6) : commit, déploiement, CI, stack, contact. Une ligne n'existe que si sa donnée existe ;
+ * Le dos du dossard (spec §6) : commit, déploiement, CI, stack. Le contact vit dans l'Arrivée (une destination, un lien). Une ligne n'existe que si sa donnée existe ;
  * sur papier fixe (thème indifférent), donc couleurs propres à l'objet.
  */
 @Component({
@@ -37,23 +37,16 @@ const REPO = 'https://github.com/cobroux/Zofolio';
         <dd>Angular 22 SSR · Spring Boot 4 · PostgreSQL · Caddy · <a [href]="repo" rel="noopener" i18n>Le code</a></dd>
       </div>
     </dl>
-    <p class="contact">
-      <a href="mailto:enzo.lvq12@gmail.com">enzo.lvq12@gmail.com</a>
-      <a href="https://github.com/cobroux" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/enzo-leveque1" rel="noopener">LinkedIn</a>
-      <a [href]="cv" i18n>CV</a>
-    </p>
   `,
   styles: `
     :host { display: block; text-align: left; font-size: max(0.8125rem, 2.9cqi); line-height: 1.35; user-select: text; }
-    dl, p { margin: 0; }
+    dl { margin: 0; }
     dl { display: grid; gap: 1.2cqi; }
     dl div { display: flex; flex-wrap: wrap; gap: 0 2cqi; }
     dt { font-weight: 700; }
     dt::after { content: ':'; }
     :host-context(html[lang='fr']) dt::after { content: '\\00a0:'; }
     dd { margin: 0; font-variant-numeric: tabular-nums lining-nums; }
-    .contact { display: flex; flex-wrap: wrap; gap: 0 3cqi; margin-top: 2.5cqi; font-weight: 600; }
     a { color: inherit; display: inline-flex; align-items: center; min-height: var(--target); }
     a:focus-visible { outline: 3px solid #14161a; outline-offset: 2px; }
   `,
@@ -61,7 +54,6 @@ const REPO = 'https://github.com/cobroux/Zofolio';
 export class LiveColophon {
   readonly info = input<BuildInfo | null>(null);
   protected readonly repo = REPO;
-  protected readonly cv = `/api/${inject(LOCALE_ID).slice(0, 2)}/cv`;
   protected readonly ciGreen = $localize`CI verte`;
   protected readonly ciRed = $localize`CI rouge`;
   private readonly locale = inject(LOCALE_ID);

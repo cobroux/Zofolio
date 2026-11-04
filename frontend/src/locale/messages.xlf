@@ -806,25 +806,18 @@
           <context context-type="linenumber">37,38</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5293537796822127156" datatype="html">
-        <source>CV</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
-          <context context-type="linenumber">45</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="8884727762517616475" datatype="html">
         <source>CI verte</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
-          <context context-type="linenumber">65</context>
+          <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5030503749501151337" datatype="html">
         <source>CI rouge</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8181410181518647436" datatype="html">
