@@ -74,10 +74,14 @@ test('index P3 : survol puis focus = aperçu de la ligne, vidéo muette seulemen
   await expect(shot).toHaveAttribute('data-slug', 'oltre');
 });
 
-test('index P3 : une ligne sans média rend le cadre invisible', async ({ page }) => {
+test('index P3 : une ligne sans média ni preuves rend le cadre invisible', async ({ page, request }) => {
+  const home = await (await request.get('/api/fr/home')).json();
+  // Sans synchro GitHub, HistoQuiz n'a ni média ni preuve ; avec synchro, garmin-mcp peut rester vide.
+  const bare = home.projects.find((p: { slug: string; commits: number | null; languages: string[] }) => ['histoquiz', 'garmin-mcp'].includes(p.slug) && !p.commits && !p.languages.length);
+  test.skip(!bare, 'aucune ligne sans média ni preuve avec cette API');
   await page.goto('/fr/');
   const preview = page.locator('#p3 .preview');
-  const histo = page.locator('#p3 ol.rows > li').filter({ has: page.locator('a[href$="/histoquiz"], a[href*="histoquiz"]') });
+  const histo = page.locator('#p3 ol.rows > li').filter({ has: page.locator(`a[href*="${bare.slug}"]`) });
   const oltre = page.locator('#p3 ol.rows > li').filter({ has: page.locator('a[href$="/projets/oltre"]') });
   await histo.scrollIntoViewIfNeeded();
   await expect(async () => {
@@ -88,6 +92,33 @@ test('index P3 : une ligne sans média rend le cadre invisible', async ({ page }
   await oltre.hover();
   await expect(preview).toHaveCSS('opacity', '1');
   await expect(preview.locator('.shot.on video')).toHaveCount(1);
+});
+
+test('index P3 : survol HistoQuiz avec preuves GitHub si l’API en fournit, sinon cadre masqué', async ({ page, request }) => {
+  const home = await (await request.get('/api/fr/home')).json();
+  const hq = home.projects.find((p: { slug: string }) => p.slug === 'histoquiz');
+  await page.goto('/fr/');
+  const preview = page.locator('#p3 .preview');
+  const row = page.locator('#p3 ol.rows > li').filter({ has: page.locator('a[href*="histoquiz"]') });
+  await row.scrollIntoViewIfNeeded();
+  if (!hq.commits && !hq.languages.length) {
+    await expect(async () => {
+      await row.hover();
+      await expect(preview).toHaveClass(/empty/, { timeout: 500 });
+    }).toPass();
+    await expect(preview).toHaveCSS('opacity', '0');
+    return;
+  }
+  await expect(async () => {
+    await row.hover();
+    await expect(preview).not.toHaveClass(/empty/, { timeout: 500 });
+  }).toPass();
+  await expect(preview).toHaveCSS('opacity', '1');
+  const proof = preview.locator('.shot.on .proof');
+  await expect(proof).toBeVisible();
+  if (hq.commits) await expect(proof.locator('.big')).toHaveText(new Intl.NumberFormat('fr').format(hq.commits));
+  for (const l of hq.languages) await expect(proof).toContainText(l);
+  if (hq.lastPushAt) await expect(proof).toContainText(String(new Date(hq.lastPushAt).getUTCFullYear()));
 });
 
 test.describe('index P3 sur mobile', () => {

@@ -70,7 +70,7 @@ const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
                   <img [src]="r.shot" alt="" loading="lazy" />
                 } @else if (r.proof) {
                   <div class="proof">
-                    @if (r.p.commits !== null) {
+                    @if (r.p.commits) {
                       <span class="big">{{ r.p.commits | number }}</span>
                       <span class="label" i18n>commits</span>
                     }
@@ -272,10 +272,10 @@ export class ProjectIndex {
       this.projects()?.map((p) => ({
         p,
         study: p.tier === 'CASE_STUDY',
-        meta: splitParts(this.locale, { stack: p.stack, commits: p.commits }).join(' · '),
+        meta: splitParts(this.locale, { stack: p.stack, commits: p.commits || null }).join(' · '),
         shot: p.video?.poster ?? CAPTURES[p.slug] ?? null,
         // Preuves de la synchro GitHub : rien d'inventé, absentes = ligne comme avant.
-        proof: p.commits != null || p.languages.length > 0,
+        proof: !!p.commits || p.languages.length > 0,
         facts: splitParts(this.locale, { languages: p.languages, lastPushAt: p.lastPushAt }).join(' · '),
       })) ?? null,
   );
