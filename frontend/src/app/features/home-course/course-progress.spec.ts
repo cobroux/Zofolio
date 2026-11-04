@@ -19,6 +19,9 @@ describe('course-progress', () => {
     expect(lastCheckpoint(43.9)).toBe('p1');
     expect(lastCheckpoint(44)).toBe('p2');
     expect(lastCheckpoint(79.41)).toBe('arrivee');
+    // km affiché au dixième : 79,4 est l'arrivée (79,41 officiel), 79,3 ne l'est pas.
+    expect(lastCheckpoint(79.4)).toBe('arrivee');
+    expect(lastCheckpoint(79.3)).toBe('p3');
   });
 });
 

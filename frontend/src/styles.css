@@ -136,3 +136,14 @@ html:has(app-tracking-band) {
 body:has(app-tracking-band) {
   padding-bottom: 52px;
 }
+
+/* Un saut d'ancre pose le pointage sur la ligne de lecture du bandeau (1/3 du viewport) : le km affiché est alors celui du pointage. */
+html:has(app-tracking-band) :is(#p1, #p2, #p3, #arrivee) {
+  scroll-margin-top: var(--reading-line, 33svh);
+}
+@media (max-width: 767px) {
+  /* Le scroll-padding-top de la barre de chapitre s'ajoute à la marge. */
+  html:has(app-tracking-band) :is(#p1, #p2, #p3, #arrivee) {
+    scroll-margin-top: calc(var(--reading-line, 33svh) - 64px);
+  }
+}

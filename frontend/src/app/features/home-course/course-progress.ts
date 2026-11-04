@@ -44,9 +44,9 @@ export function gainAt(km: number): number {
   return sum;
 }
 
-/** Dernier pointage dont le km est ≤ `km`. */
+/** Dernier pointage dont le km est ≤ `km`. Comparé au dixième, comme le km affiché : 79,41 vaut 79,4, sinon l'arrivée ne serait jamais « passée ». */
 export const lastCheckpoint = (km: number): CheckpointId =>
-  CHECKPOINT_IDS.filter((id) => CHECKPOINTS[id] <= km).at(-1) ?? 'depart';
+  CHECKPOINT_IDS.filter((id) => r(CHECKPOINTS[id]) <= km).at(-1) ?? 'depart';
 
 /** Abscisse du tracé vertical au km donné, de 0 (altitude min) à 1 (max) : même échelle que `profilePath(true)`. */
 export const altitudeRatioAt = (km: number) => (lerp(km, PROFILE) - MIN) / (MAX - MIN);

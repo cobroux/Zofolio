@@ -126,6 +126,8 @@ export class TrackingBand {
       const measure = () => {
         // Position document de chaque section ; le départ est ramené à la ligne de référence du scroll 0 pour valoir km 0 en haut.
         const line = innerHeight / 3;
+        // Les sauts d'ancre posent le haut de la section sur cette même ligne (scroll-margin-top, styles.css) : km du pointage affiché.
+        document.documentElement.style.setProperty('--reading-line', `${line}px`);
         anchors = CHECKPOINT_IDS.flatMap((id) => {
           const el = document.getElementById(id);
           return el ? [[el.getBoundingClientRect().top + scrollY, CHECKPOINTS[id]] as const] : [];
