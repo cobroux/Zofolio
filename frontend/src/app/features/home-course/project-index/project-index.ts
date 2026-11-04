@@ -1,3 +1,4 @@
+import { DatePipe, DecimalPipe } from '@angular/common';
 import {
   Component,
   DestroyRef,
@@ -24,7 +25,7 @@ const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
  */
 @Component({
   selector: 'app-project-index',
-  imports: [Clip, RouterLink],
+  imports: [Clip, RouterLink, DatePipe, DecimalPipe],
   template: `
     @if (rows(); as list) {
       @if (list.length) {
@@ -56,15 +57,30 @@ const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
                   <app-clip class="inline" [video]="r.p.video" [autoplay]="false" />
                 } @else if (r.shot) {
                   <img class="inline" [src]="r.shot" alt="" loading="lazy" />
+                } @else if (r.facts) {
+                  <p class="inline facts">{{ r.facts }}</p>
                 }
               </li>
             }
           </ol>
-          <div class="preview" [class.empty]="!list[active()]?.shot && !list[active()]?.p?.video" aria-hidden="true">
+          <div class="preview" [class.empty]="!list[active()]?.shot && !list[active()]?.p?.video && !list[active()]?.proof" aria-hidden="true">
             @for (r of list; track r.p.slug; let i = $index) {
               <div class="shot" [class.on]="i === active()" [attr.data-slug]="r.p.slug">
                 @if (r.shot) {
                   <img [src]="r.shot" alt="" loading="lazy" />
+                } @else if (r.proof) {
+                  <div class="proof">
+                    @if (r.p.commits !== null) {
+                      <span class="big">{{ r.p.commits | number }}</span>
+                      <span class="label" i18n>commits</span>
+                    }
+                    @if (r.p.languages.length) {
+                      <span class="label">{{ r.p.languages.join(', ') }}</span>
+                    }
+                    @if (r.p.lastPushAt) {
+                      <span class="label"><ng-container i18n>dernier push</ng-container> {{ r.p.lastPushAt | date: 'mediumDate' }}</span>
+                    }
+                  </div>
                 }
                 @if (r.p.video; as v) {
                   @if (i === active() && live()) {
@@ -163,6 +179,10 @@ const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
       display: block;
       height: auto;
     }
+    .facts {
+      margin: 0;
+      font-size: var(--t-small);
+    }
     .sr {
       position: absolute;
       width: 1px;
@@ -210,6 +230,24 @@ const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
       .shot.on {
         opacity: 1;
       }
+      /* Preuves GitHub : chiffre monumental comme le dossard, texte clair fixe sur le cadre sombre (≥ 4,5:1 dans les deux thèmes). */
+      .proof {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: var(--s-2);
+        padding: var(--s-6);
+        color: #f6f3ec;
+      }
+      .big {
+        font: 800 clamp(5rem, 11vw, 9rem) / 0.8 var(--font-display);
+        font-stretch: 62%;
+        font-variant-numeric: lining-nums;
+      }
+      .label {
+        font-size: var(--t-small);
+      }
       .shot > * {
         grid-area: 1 / 1;
         width: 100%;
@@ -236,6 +274,9 @@ export class ProjectIndex {
         study: p.tier === 'CASE_STUDY',
         meta: splitParts(this.locale, { stack: p.stack, commits: p.commits }).join(' · '),
         shot: p.video?.poster ?? CAPTURES[p.slug] ?? null,
+        // Preuves de la synchro GitHub : rien d'inventé, absentes = ligne comme avant.
+        proof: p.commits != null || p.languages.length > 0,
+        facts: splitParts(this.locale, { languages: p.languages, lastPushAt: p.lastPushAt }).join(' · '),
       })) ?? null,
   );
   protected readonly active = signal(0);

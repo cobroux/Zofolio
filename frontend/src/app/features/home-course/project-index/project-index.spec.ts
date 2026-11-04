@@ -115,4 +115,22 @@ describe('ProjectIndex', () => {
     focusRow(0); // un toucher sur un titre passe aussi par le focus
     expect(el.querySelector('.preview video')).toBeNull();
   });
+
+  it('sans média mais avec preuves GitHub : chiffre, langages et dernier push dans le cadre, version compacte en ligne', () => {
+    const histo = { ...bySlug('histoquiz'), commits: 1234, languages: ['Java', 'TypeScript'], lastPushAt: '2026-10-14T09:35:08Z' };
+    render([histo]);
+    const proof = el.querySelector('.preview .shot.on .proof')!;
+    expect(proof.querySelector('.big')!.textContent).toMatch(/^1[,\u00a0\u202f. ]?234$/);
+    expect(proof.textContent).toContain('Java, TypeScript');
+    expect(proof.textContent).toMatch(/2026/);
+    expect(el.querySelector('.preview')!.classList).not.toContain('empty');
+    expect(el.querySelector('p.facts')!.textContent).toContain('Java, TypeScript');
+  });
+
+  it('sans média ni données : pas de preuve, pas de « 0 », cadre vide', () => {
+    render([bySlug('histoquiz')]);
+    expect(el.querySelector('.proof')).toBeNull();
+    expect(el.querySelector('p.facts')).toBeNull();
+    expect(el.querySelector('.preview')!.classList).toContain('empty');
+  });
 });
