@@ -190,6 +190,19 @@ test('P1 compacte : un lien par projet d’école de l’API, le badge, ni toge 
   }
 });
 
+test('graphe de contributions : visible hors du détail si l’API en fournit, sinon zone retirée', async ({ page, request }) => {
+  const home = await (await request.get('/api/fr/home')).json();
+  await page.goto('/fr/');
+  const graph = page.locator('#journal app-contributions');
+  if (home.contributions) {
+    await expect(graph.locator('.carnet')).toBeVisible();
+    await expect(page.locator('#journal details app-contributions')).toHaveCount(0);
+  } else {
+    await expect(graph).toHaveCount(0); // pas de GITHUB_TOKEN : ni graphe ni erreur
+  }
+  await expect(page.locator('#journal details summary')).not.toContainText('graphe');
+});
+
 test('P2 allégée : la Décision y est, schéma et frise sont dans l’étude Worldline', async ({ page }) => {
   await page.goto('/fr/');
   await expect(page.locator('#p2 section').filter({ has: page.getByRole('heading', { level: 3, name: 'Décision' }) })).toHaveCount(1);

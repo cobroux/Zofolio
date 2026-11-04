@@ -58,7 +58,7 @@ describe('JournalSection', () => {
     expect(f.nativeElement.querySelector('app-contributions .carnet')).toBeTruthy();
     f.componentRef.setInput('contributions', null);
     f.detectChanges();
-    expect(f.nativeElement.querySelector('app-contributions .carnet')).toBeNull();
+    expect(f.nativeElement.querySelector('app-contributions')).toBeNull();
   });
 
   it("« L'endurance, deux fois » ouvre le Journal et remplace « Les années en chiffres »", () => {
@@ -74,7 +74,7 @@ describe('JournalSection', () => {
     expect(el.querySelector('.stats')).toBeNull();
   });
 
-  it('photo des Baudets en plaque, logo du club à côté du nom, rien de replié sauf courses et contributions', () => {
+  it('photo des Baudets en plaque, logo du club à côté du nom, seules les autres courses sont repliées', () => {
     const f = TestBed.createComponent(JournalSection);
     f.componentRef.setInput('races', home.races);
     f.componentRef.setInput('contributions', home.contributions);
@@ -83,7 +83,9 @@ describe('JournalSection', () => {
     expect(el.querySelector('app-photo-plates img')?.getAttribute('src')).toBe('img/baudets-nuit-1280.jpg');
     expect(el.querySelector('.club')?.textContent).toContain('Les Baudets Dhinges');
     expect(el.querySelector('.club img')?.getAttribute('src')).toBe('img/logo-baudets-320.jpg');
-    expect(el.querySelector('details.more:not([open]) app-contributions')).toBeTruthy();
+    expect(el.querySelector('details app-contributions')).toBeNull();
+    expect(el.querySelector('section > app-contributions .carnet')).toBeTruthy();
+    expect(el.querySelector('details.more:not([open]) summary')?.textContent).not.toContain('graphe');
     expect(el.querySelector('figure img[src*="finisher-cote-d-opale"]')).toBeTruthy();
   });
 

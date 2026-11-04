@@ -75,18 +75,18 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
           />
         </picture>
       </figure>
-      @if (contributions() || (rows()?.length ?? 0) > shown) {
-      <details class="more">
-        <summary i18n>Voir le détail : les autres courses et le graphe de contributions</summary>
-      <div class="body">
-      <app-contributions class="contrib" [data]="contributions()" />
+      @if (contributions(); as c) {
+        <app-contributions class="contrib" [appReveal]="2" [data]="c" />
+      }
       @if (rows(); as list) {
         @if (list.length > shown) {
-          <ng-container *ngTemplateOutlet="racesTable; context: { $implicit: list.slice(shown), caption: label.otherRaces }" />
+          <details class="more">
+            <summary i18n>Voir le détail : les autres courses</summary>
+            <div class="body">
+              <ng-container *ngTemplateOutlet="racesTable; context: { $implicit: list.slice(shown), caption: label.otherRaces }" />
+            </div>
+          </details>
         }
-      }
-      </div>
-      </details>
       }
       <ng-template #racesTable let-list let-caption="caption">
         <table class="races">
@@ -265,10 +265,8 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
       .night { grid-column: 1 / span 7; grid-row: 3; max-width: none; }
       figure { grid-column: 9 / span 4; grid-row: 3; max-width: none; }
       figure img { aspect-ratio: 4 / 3; }
-      .more { grid-column: 1 / -1; grid-row: 4; }
-      .body { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--s-7) var(--gutter); align-items: start; }
-      .contrib { grid-column: 1 / span 5; }
-      .body > .races { grid-column: 6 / span 7; }
+      .contrib { grid-column: 1 / -1; grid-row: 4; }
+      .more { grid-column: 1 / -1; grid-row: 5; }
     }
   `,
 })
@@ -287,7 +285,7 @@ export class JournalSection {
     width: 1280,
     height: 960,
   };
-  /** Les dernières courses restent visibles ; le reste et le graphe de contributions sont repliés (conseil du 2026-10-21). */
+  /** Les dernières courses restent visibles ; le reste est replié ; le graphe de contributions est visible (retour d'Enzo, vague 3). */
   protected readonly shown = 3;
   readonly rows = computed(() => this.races()?.filter((r) => r.kind === 'RACE') ?? null);
   readonly others = computed(() => this.races()?.filter((r) => r.kind !== 'RACE') ?? []);
