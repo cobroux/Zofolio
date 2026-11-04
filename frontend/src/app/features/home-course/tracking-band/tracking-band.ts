@@ -162,6 +162,8 @@ export class TrackingBand {
       // La hauteur du document change aussi sans resize de fenêtre (polices, images).
       const ro = typeof ResizeObserver === 'undefined' ? undefined : new ResizeObserver(remeasure);
       ro?.observe(document.body);
+      // Le tracé est flexible : sa largeur change quand le texte des valeurs change de largeur, sans resize de la page.
+      ro?.observe(this.trace().nativeElement);
       // Chrome ne défile pas vers un élément focalisé déjà dans la fenêtre, même sous le bandeau : on le ramène dans le scroll-padding (WCAG 2.4.11), sans animation.
       const reveal = (e: FocusEvent) => {
         const t = e.target;

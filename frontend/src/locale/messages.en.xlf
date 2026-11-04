@@ -830,22 +830,6 @@
           <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5669750021553088392" datatype="html">
-        <source>km : non renseigné</source>
-        <target state="translated">km: not provided</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
-          <context context-type="linenumber">22,23</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4336166805390256235" datatype="html">
-        <source>contributions GitHub : non renseigné</source>
-        <target state="translated">GitHub contributions: not provided</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
-          <context context-type="linenumber">31,32</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="2106669205405741218" datatype="html">
         <source>contributions GitHub</source>
         <target state="translated">GitHub contributions</target>

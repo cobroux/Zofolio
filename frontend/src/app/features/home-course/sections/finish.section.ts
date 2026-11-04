@@ -100,9 +100,10 @@ const ROWS = (['p1', 'p2', 'p3', 'arrivee'] as const).map((id) => ({ id, km: CHE
       section { grid-template-columns: repeat(12, minmax(0, 1fr)); }
       .intro { grid-column: 1 / span 7; grid-row: 1; }
       .contact { grid-column: 1 / span 7; grid-row: 2; }
-      .form { grid-column: 8 / span 5; grid-row: 1 / span 3; align-self: start; }
-      .foot { grid-column: 1 / span 7; grid-row: 3; align-self: end; }
-      .back { grid-column: 1 / -1; grid-row: 4; }
+      .form { grid-column: 8 / span 5; grid-row: 1 / span 2; align-self: start; }
+      .foot { grid-column: 1 / span 7; grid-row: 3; align-self: start; }
+      /* Dossard sous le formulaire : la colonne droite ne reste pas vide. */
+      .back { grid-column: 8 / span 5; grid-row: 3; width: min(100%, 28rem); }
     }
   `,
 })
