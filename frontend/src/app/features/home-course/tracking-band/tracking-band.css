@@ -51,6 +51,28 @@
   letter-spacing: -0.02em;
   color: var(--accent);
 }
+/* Afficheur à rouleaux : fenêtre d'un chiffre, bande 0-9 en ::before qui glisse (le vrai chiffre reste dans le DOM, transparent). */
+.d {
+  position: relative;
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  color: transparent;
+}
+.d::before {
+  content: '0\A 1\A 2\A 3\A 4\A 5\A 6\A 7\A 8\A 9';
+  position: absolute;
+  inset: 0 auto auto 0;
+  color: var(--accent);
+  white-space: pre;
+  transform: translateY(calc(var(--n) * -1em));
+  transition: transform 260ms var(--ease-out);
+}
+@media (prefers-reduced-motion: reduce) {
+  .d::before {
+    transition: none;
+  }
+}
 .alt .v,
 .stat:nth-child(3) .v {
   min-width: 4.6ch;
