@@ -1,6 +1,7 @@
 import { Component, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HomeResponse } from '../../../core/api/api.models';
+import { CAPTURES } from '../project-index/project-index';
 import { Aid } from '../../../shared/aid/aid';
 import { ChapterPin } from '../../../shared/chapter-pin/chapter-pin';
 import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
@@ -67,16 +68,21 @@ import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
           <p class="index-title" i18n>Projets d'école :</p>
           <ul class="index">
             @for (p of projects(); track p.slug) {
-              <li>
+              <li class="card">
+                <span class="thumb" aria-hidden="true">
+                  @if (captures[p.slug]; as src) {
+                    <img [src]="src" alt="" loading="lazy" />
+                  }
+                </span>
                 @if (p.tier === 'CASE_STUDY') {
-                  <a class="study" [routerLink]="['/projets', p.slug]">{{ p.title }}</a>
+                  <a class="name" [routerLink]="['/projets', p.slug]">{{ p.title }}</a>
                 } @else if (p.repoUrl) {
-                  <a [href]="p.repoUrl" rel="noopener">{{ p.title }}</a>
+                  <a class="name" [href]="p.repoUrl" rel="noopener">{{ p.title }}</a>
                 } @else {
-                  <span>{{ p.title }}</span>
+                  <span class="name">{{ p.title }}</span>
                 }
                 @if (p.languages[0] ?? p.stack[0]; as lang) {
-                  <span class="lang">({{ lang }})</span>
+                  <span class="lang">{{ lang }}</span>
                 }
               </li>
             }
@@ -151,30 +157,54 @@ import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
       margin: 0;
       font-weight: 700;
     }
-    /* Index : grille de liens, une ligne = une cible de 44 px. */
+    .index-title {
+      margin: 0;
+      font-weight: 700;
+    }
+    /* Projets d'école : cartes, une carte = un lien. Vignette si capture, sinon aplat. */
     .index {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
-      gap: var(--s-1) var(--s-5);
+      grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+      gap: var(--s-4);
       margin: 0;
       padding: 0;
       list-style: none;
     }
-    .index li {
+    .card {
+      position: relative;
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      min-height: var(--target);
+      flex-direction: column;
+      gap: var(--s-1);
+      min-width: 0;
     }
-    .index a {
+    .thumb {
+      display: block;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: color-mix(in srgb, var(--ink) 8%, transparent);
+    }
+    .thumb img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+    .name {
       display: inline-flex;
       align-items: center;
       min-height: var(--target);
+      color: var(--ink);
+      font: 800 1.25rem / 1.1 var(--font-display);
+    }
+    .name::after {
+      content: '';
+      position: absolute;
+      inset: 0;
     }
     .lang {
-      margin-inline-start: var(--s-1);
+      font-size: var(--t-small);
       color: var(--ink-2);
-      white-space: nowrap;
     }
     .small {
       color: var(--ink-2);
@@ -231,6 +261,7 @@ export class P1Section {
     width: 640,
     height: 853,
   };
+  protected readonly captures = CAPTURES;
   protected readonly projects = computed(
     () => this.home()?.projects.filter((p) => p.stage === 'P1') ?? [],
   );

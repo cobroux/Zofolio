@@ -1,5 +1,6 @@
 import { Component, LOCALE_ID, inject } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
+import { BuildInfo } from '../../../core/api/api.models';
 import { ContentApi } from '../../../core/api/content.api';
 import { Bib } from '../../../shared/bib/bib';
 import { ContourField } from '../../../shared/contour-field/contour-field';
@@ -62,8 +63,9 @@ const ROWS = (['p1', 'p2', 'p3', 'arrivee'] as const).map((id) => ({
           Phidippides a couru de Marathon à Athènes pour porter un message. Ici, un formulaire
           suffit.
         </p>
-        <p class="actions">
+        <div class="actions">
           <a class="mail" href="mailto:enzo.lvq12@gmail.com">enzo.lvq12&#64;gmail.com</a>
+          <a class="btn primary" href="#contact" i18n>Écrire un message</a>
           <a class="btn" [href]="cv" i18n>Télécharger le CV</a>
           <a class="btn" href="https://www.linkedin.com/in/enzo-leveque1" rel="noopener"
             ><svg
@@ -93,15 +95,17 @@ const ROWS = (['p1', 'p2', 'p3', 'arrivee'] as const).map((id) => ({
               /></svg
             >GitHub</a
           >
-        </p>
+        </div>
         <p class="small" i18n>
           En poste chez Aubay, ouvert aux opportunités à Paris. Français, anglais (TOEIC 910).
         </p>
       </div>
-      <div class="form" [appReveal]="2"><app-contact-form /></div>
-      <app-bib face="back" class="back"
-        ><app-live-colophon [info]="build.value() ?? null"
-      /></app-bib>
+      <div class="form" id="contact" [appReveal]="2"><app-contact-form /></div>
+      @if (hasBuild(build.value())) {
+        <app-bib face="back" class="back"
+          ><app-live-colophon [info]="build.value() ?? null"
+        /></app-bib>
+      }
     </section>
   `,
   styles: `
@@ -196,11 +200,19 @@ const ROWS = (['p1', 'p2', 'p3', 'arrivee'] as const).map((id) => ({
       max-width: 44ch;
     }
     .actions {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr;
       gap: var(--s-2);
-      align-items: center;
       width: 100%;
+    }
+    .mail,
+    .btn.primary {
+      grid-column: 1 / -1;
+    }
+    @media (min-width: 700px) {
+      .actions {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
     }
     a {
       color: inherit;
@@ -215,13 +227,11 @@ const ROWS = (['p1', 'p2', 'p3', 'arrivee'] as const).map((id) => ({
     .mail {
       font-size: var(--t-lead);
       font-weight: 600;
-      flex-basis: 100%;
     }
     .btn {
-      flex: 1 1 10rem;
       justify-content: center;
       gap: var(--s-2);
-      padding: 0 var(--s-6);
+      padding: 0 var(--s-3);
       min-height: 48px;
       background: var(--accent);
       color: var(--on-accent);
@@ -269,6 +279,10 @@ const ROWS = (['p1', 'p2', 'p3', 'arrivee'] as const).map((id) => ({
   `,
 })
 export class FinishSection {
+  /** Dossard seulement si le build a au moins une donnée (commit, déploiement ou CI) : pas de carte vide en dev. */
+  protected hasBuild(b: BuildInfo | null | undefined): boolean {
+    return !!b && !!(b.commit || b.deployedAt || b.ci?.conclusion);
+  }
   protected readonly cv = `/api/${inject(LOCALE_ID).slice(0, 2)}/cv`;
   private readonly api = inject(ContentApi);
   protected readonly build = rxResource({ stream: () => this.api.build() });

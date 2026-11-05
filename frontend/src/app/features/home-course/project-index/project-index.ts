@@ -16,8 +16,10 @@ import { Clip, calm } from '../../../shared/clip/clip';
 import { splitParts } from '../../../shared/split/split';
 
 /** Captures d'interface réelles (spec §5 bis) pour un projet sans vidéo. */
-const CAPTURES: Record<string, string> = {
+export const CAPTURES: Record<string, string> = {
   gfaim: 'media/gfaim-shot-1.png',
+  'cin-folie': 'media/cinfolie-shot.webp',
+  'calculateur-dpe': 'media/dpe-shot.webp',
   oltre: 'media/oltre-1.webp',
   zotracker: 'media/zotracker-1.webp',
   histoquiz: 'media/histoquiz-shot.webp',
@@ -252,8 +254,10 @@ const CAPTURES: Record<string, string> = {
       .label {
         font-size: var(--t-small);
       }
+      /* Absolu : une capture portrait ne pousse plus la hauteur du cadre (sinon l'image active sort du cadre visible). */
       .shot > * {
-        grid-area: 1 / 1;
+        position: absolute;
+        inset: 0;
         width: 100%;
         height: 100%;
         object-fit: contain;

@@ -6,8 +6,8 @@ import { ProjectIndex } from './project-index';
 
 const home = fixture as HomeResponse;
 const bySlug = (s: string) => home.projects.find((p) => p.slug === s)!;
-// gfaim : étude sans vidéo ni dépôt dans la fixture ; oltre : étude + vidéo + dépôt ; cin-folie : dépôt seul, aucun média ni capture.
-const projects: ProjectSummary[] = [bySlug('gfaim'), bySlug('oltre'), bySlug('cin-folie')];
+// gfaim : étude sans vidéo ni dépôt dans la fixture ; oltre : étude + vidéo + dépôt ; lambda-calcul : dépôt seul, aucun média ni capture.
+const projects: ProjectSummary[] = [bySlug('gfaim'), bySlug('oltre'), bySlug('lambda-calcul')];
 
 let el: HTMLElement;
 let fix: ReturnType<typeof TestBed.createComponent<ProjectIndex>>;
@@ -116,7 +116,7 @@ describe('ProjectIndex', () => {
 
   it('sans média mais avec preuves GitHub : chiffre, langages et dernier push dans le cadre, version compacte en ligne', () => {
     const histo = {
-      ...bySlug('cin-folie'),
+      ...bySlug('lambda-calcul'),
       commits: 1234,
       languages: ['Java', 'TypeScript'],
       lastPushAt: '2026-10-14T09:35:08Z',
@@ -131,7 +131,7 @@ describe('ProjectIndex', () => {
   });
 
   it('sans média ni données : pas de preuve, pas de « 0 », cadre vide', () => {
-    render([bySlug('cin-folie')]);
+    render([bySlug('lambda-calcul')]);
     expect(el.querySelector('.proof')).toBeNull();
     expect(el.querySelector('p.facts')).toBeNull();
     expect(el.querySelector('.preview')!.classList).toContain('empty');
