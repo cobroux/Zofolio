@@ -287,3 +287,14 @@ dd {
     grid-column: 9 / 13;
   }
 }
+
+.facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  margin: 0;
+  padding-inline-start: var(--s-5);
+}
+.facts li::marker {
+  color: var(--accent);
+}

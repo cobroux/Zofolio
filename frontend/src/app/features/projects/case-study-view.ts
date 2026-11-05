@@ -8,6 +8,8 @@ import { formatKm } from '../home-course/course-progress';
 import { CHECKPOINTS } from '../home-course/profile.data';
 import { diagramFor, diagramTitle } from './diagrams/diagrams';
 import { WorldlineTimeline } from './worldline-timeline';
+import { DecisionCard } from '../../shared/decision-card/decision-card';
+import { WORLDLINE_GATEWAY } from '../home-course/content/decision';
 
 const SEGMENTS = {
   P1: $localize`Segment : les fondations`,
@@ -18,7 +20,7 @@ const SEGMENTS = {
 /** Gabarit d'une étude de cas (DESIGN §10.1), partagé par la page publique et l'aperçu de l'admin. Exige `project.caseStudy`. */
 @Component({
   selector: 'app-case-study-view',
-  imports: [RouterLink, DatePipe, DecimalPipe, NgComponentOutlet, Clip, Reveal, WorldlineTimeline],
+  imports: [RouterLink, DatePipe, DecimalPipe, NgComponentOutlet, Clip, Reveal, WorldlineTimeline, DecisionCard],
   styleUrl: './case-study.page.css',
   template: `
     @if (view(); as v) {
@@ -82,6 +84,24 @@ const SEGMENTS = {
         <app-clip id="clip" class="clipwrap" [video]="v.p.video" />
       }
     </div>
+
+    @if (v.p.slug === 'trading-app') {
+    <section class="blk" aria-labelledby="h-mis" appReveal>
+      <div class="wrap grid">
+        <h2 id="h-mis" i18n>Missions</h2>
+            <ul class="txt facts">
+              <li i18n>Plateforme TOM (Trade Order Management) : elle reçoit, contrôle et transmet aux marchés les ordres de bourse de clients comme Boursorama et Copartis.</li>
+              <li i18n>Prototype move2cloud : l'émetteur d'ordres rendu abstrait pour passer de MySQL à une file RabbitMQ, avec des ordres sérialisés en XML.</li>
+              <li i18n>Post-marché Copartis : refonte des batchs de fin de journée, paramétrés par place de marché (Europe, États-Unis, Asie), pour intégrer les retours de marché tardifs.</li>
+              <li i18n>Contrôles pré-trade Boursorama : trois contrôles (cohérence de prix, collars, présence bid/ask) rendus désactivables par client, testés en JUnit.</li>
+              <li i18n>Portail d'administration multi-clients en JavaScript : statut des marchés en temps réel, internationalisation FR/EN.</li>
+            </ul>
+      </div>
+      <div class="wrap">
+        <app-decision-card [decision]="worldlineDecision" />
+      </div>
+    </section>
+    }
 
     <section class="blk" aria-labelledby="h-ctx" appReveal>
       <div class="wrap grid">
@@ -177,6 +197,7 @@ const SEGMENTS = {
   `,
 })
 export class CaseStudyView {
+  protected readonly worldlineDecision = WORLDLINE_GATEWAY;
   readonly project = input.required<ProjectSummary>();
   protected readonly view = computed(() => {
     const p = this.project();

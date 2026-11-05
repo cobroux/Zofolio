@@ -10,10 +10,11 @@ describe('P2Section', () => {
     return f.nativeElement as HTMLElement;
   }
 
-  it('allégée : ni schéma ni frise, la Décision reste', () => {
+  it('courte : résumé + stack, missions et Décision déplacées dans l\'étude', () => {
     const el = render();
-    expect(el.querySelector('#p2 app-photo-plates')).toBeNull();
-    expect(el.querySelector('#p2 app-decision-card')).toBeTruthy();
+    expect(el.querySelector('#p2 app-decision-card')).toBeNull();
+    expect(el.querySelector('#p2 .facts')).toBeNull();
+    expect([...el.querySelectorAll('#p2 .stack li')].map((li) => li.textContent)).toEqual(['Java', 'Spring Boot', 'RabbitMQ', 'Hibernate']);
   });
 
   it("le lien mène à l'étude Worldline", () => {

@@ -48,11 +48,14 @@ describe('CaseStudyPage', () => {
     expect(el.querySelector('img.logo')?.getAttribute('alt')).toBe('Worldline');
     expect(el.querySelectorAll('app-worldline-timeline li').length).toBe(4);
     expect(el.querySelector('#h-arch')?.textContent).toBe("Le parcours d'un ordre");
+    expect(el.querySelectorAll('#h-mis ~ .facts li').length).toBe(5);
+    expect(el.querySelector('app-decision-card')).toBeTruthy();
     expect(el.querySelector('app-clip')).toBeNull();
     expect(el.querySelector('.links a[href^="https://github.com"]')).toBeNull();
     expect(el.querySelector('aside')?.textContent).not.toContain('Commits');
     expect(el.querySelector('aside')?.textContent).not.toContain('Langages');
     expect(el.querySelector('#h-code')).toBeNull();
+    expect(el.querySelector('#h-mis')).toBeTruthy();
     expect(el.querySelector('a[href="/#arrivee"]')?.textContent).toContain('Me contacter');
   });
 

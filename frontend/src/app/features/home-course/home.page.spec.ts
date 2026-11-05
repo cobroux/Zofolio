@@ -23,7 +23,7 @@ describe('HomePage', () => {
     expect(el.querySelector('h1')?.textContent).toBe('Enzo Leveque');
     expect(el.querySelector('app-bib .num')?.getAttribute('aria-hidden')).toBe('true');
     expect(el.querySelector('#p1')?.textContent).toContain("Master ILI, Université d'Artois");
-    expect(el.querySelector('#p2')?.textContent).toContain('move2cloud');
+    expect(el.querySelector('#p2')?.textContent).toContain('Boursorama');
     expect(el.textContent).toContain('Brancardier aux urgences');
     expect(el.querySelector('a[href="/api/fr/cv"]')).toBeTruthy();
   });

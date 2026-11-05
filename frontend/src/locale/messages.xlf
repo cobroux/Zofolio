@@ -268,7 +268,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">49,50</context>
+          <context context-type="linenumber">51,52</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1864695627253625534" datatype="html">
@@ -782,7 +782,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">64,65</context>
+          <context context-type="linenumber">66,67</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7298284178367842272" datatype="html">
@@ -868,7 +868,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2192511994903977266" datatype="html">
@@ -1348,63 +1348,35 @@
         <source>km 44 · 2023 → 2025</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7978693811374367682" datatype="html">
+        <source>2,5 ans sur une plateforme d&apos;ordres de bourse (Boursorama, Copartis), en stage puis en alternance. Ici, une erreur ne se voit pas dans un log : elle se voit dans un ordre.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
           <context context-type="linenumber">15,16</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1830637839692304579" datatype="html">
-        <source> Chez Worldline, de 2023 à 2025 : 2,5 ans, en stage puis en alternance. L&apos;application permet à des professionnels de la finance d&apos;acheter et de vendre des titres en bourse. Ici, une erreur ne se voit pas dans un log : elle se voit dans un ordre. </source>
+      <trans-unit id="8310543467411074866" datatype="html">
+        <source>Stack Worldline</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">18,19</context>
+          <context context-type="linenumber">16,17</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8408593535590034321" datatype="html">
-        <source>Plateforme TOM (Trade Order Management) : elle reçoit, contrôle et transmet aux marchés les ordres de bourse de clients comme Boursorama et Copartis.</source>
+      <trans-unit id="6612987998535837364" datatype="html">
+        <source>Depuis juin 2026 : ingénieur d&apos;études chez Aubay, back end Java/Spring Boot pour les Restos du Cœur.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
           <context context-type="linenumber">22,23</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="126728149264792569" datatype="html">
-        <source>Prototype move2cloud : l&apos;émetteur d&apos;ordres rendu abstrait pour passer de MySQL à une file RabbitMQ, avec des ordres sérialisés en XML.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">23,24</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8817989540445316427" datatype="html">
-        <source>Post-marché Copartis : refonte des batchs de fin de journée, paramétrés par place de marché (Europe, États-Unis, Asie), pour intégrer les retours de marché tardifs.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">24,25</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4318628037800618166" datatype="html">
-        <source>Contrôles pré-trade Boursorama : trois contrôles (cohérence de prix, collars, présence bid/ask) rendus désactivables par client, testés en JUnit.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">25,26</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3923986432926825546" datatype="html">
-        <source>Portail d&apos;administration multi-clients en JavaScript : statut des marchés en temps réel, internationalisation FR/EN.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">26,27</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3133540160084083044" datatype="html">
-        <source> Depuis juin 2026 : ingénieur d&apos;études chez Aubay. En mission sur une application d&apos;inventaire en microservices pour les Restos du Cœur, j&apos;interviens sur le back end, en Java/Spring Boot et en Python. J&apos;ai aussi monté l&apos;environnement Docker du projet et j&apos;appuie l&apos;équipe sur GitLab. </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">29,30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="517001199198442280" datatype="html">
         <source>Voir la frise et l&apos;architecture<x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;sr&quot;&gt;"/> de Worldline<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">33,35</context>
+          <context context-type="linenumber">23,25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4180035747429477656" datatype="html">
@@ -1443,7 +1415,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">174,175</context>
+          <context context-type="linenumber">194,195</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3277084266824894235" datatype="html">
@@ -1594,112 +1566,154 @@
         <source>Segment : les fondations</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7333686123790078124" datatype="html">
         <source>Segment : Worldline</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7979037827108164469" datatype="html">
         <source>Segment : projets nés de la course</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="262991673465632544" datatype="html">
         <source>← Retour au parcours (<x id="INTERPOLATION" equiv-text="{{ s.label }}"/>)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">27,28</context>
+          <context context-type="linenumber">29,30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7398124504908803632" datatype="html">
         <source>← Retour au parcours</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">29,30</context>
+          <context context-type="linenumber">31,32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3080140678516269306" datatype="html">
         <source>Fiche du projet</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2771905879066664456" datatype="html">
         <source>Durée</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">46,47</context>
+          <context context-type="linenumber">48,49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9005457553529671208" datatype="html">
         <source>Commits</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">52,53</context>
+          <context context-type="linenumber">54,55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2180522701456218992" datatype="html">
         <source>Langages</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">56,57</context>
+          <context context-type="linenumber">58,59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2456703340126200606" datatype="html">
         <source>Dernier push</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">60,61</context>
+          <context context-type="linenumber">62,63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4921439356441031513" datatype="html">
         <source>Commits et langages : synchro GitHub, 6 h.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">69,70</context>
+          <context context-type="linenumber">71,72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6388259543756072137" datatype="html">
+        <source>Missions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
+          <context context-type="linenumber">91,92</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8408593535590034321" datatype="html">
+        <source>Plateforme TOM (Trade Order Management) : elle reçoit, contrôle et transmet aux marchés les ordres de bourse de clients comme Boursorama et Copartis.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
+          <context context-type="linenumber">93,94</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="126728149264792569" datatype="html">
+        <source>Prototype move2cloud : l&apos;émetteur d&apos;ordres rendu abstrait pour passer de MySQL à une file RabbitMQ, avec des ordres sérialisés en XML.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
+          <context context-type="linenumber">94,95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8817989540445316427" datatype="html">
+        <source>Post-marché Copartis : refonte des batchs de fin de journée, paramétrés par place de marché (Europe, États-Unis, Asie), pour intégrer les retours de marché tardifs.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
+          <context context-type="linenumber">95,96</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4318628037800618166" datatype="html">
+        <source>Contrôles pré-trade Boursorama : trois contrôles (cohérence de prix, collars, présence bid/ask) rendus désactivables par client, testés en JUnit.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
+          <context context-type="linenumber">96,97</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3923986432926825546" datatype="html">
+        <source>Portail d&apos;administration multi-clients en JavaScript : statut des marchés en temps réel, internationalisation FR/EN.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
+          <context context-type="linenumber">97,98</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3367146030113064235" datatype="html">
         <source>Contexte et contraintes</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">88,89</context>
+          <context context-type="linenumber">108,109</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4423441981265009871" datatype="html">
         <source>Décision et alternative écartée</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">101,102</context>
+          <context context-type="linenumber">121,122</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7475501712995091876" datatype="html">
         <source>Compromis :</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">107</context>
+          <context context-type="linenumber">127</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7858207736318806914" datatype="html">
         <source>Ce que j&apos;ai porté</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">128,129</context>
+          <context context-type="linenumber">148,149</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2902261471051690112" datatype="html">
         <source>Résultat</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">137,138</context>
+          <context context-type="linenumber">157,158</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/decision-card/decision-card.ts</context>
@@ -1710,42 +1724,42 @@
         <source>Ce que je referais</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">146,147</context>
+          <context context-type="linenumber">166,167</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8186013988289067040" datatype="html">
         <source>Code</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">155,156</context>
+          <context context-type="linenumber">175,176</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5442571032125501579" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{ r.name }}"/> sur GitHub</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">159,160</context>
+          <context context-type="linenumber">179,180</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6358655669371888728" datatype="html">
         <source>Voir la démo</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">162,163</context>
+          <context context-type="linenumber">182,183</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5293774587552771604" datatype="html">
         <source>Revoir le clip</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">165,166</context>
+          <context context-type="linenumber">185,186</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5280079547787277567" datatype="html">
         <source><x id="PH" equiv-text="p.stage"/> · km <x id="PH_1" equiv-text="formatKm(CHECKPOINTS[id])"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">185</context>
+          <context context-type="linenumber">206</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8361028789661352179" datatype="html">
