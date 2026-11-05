@@ -69,6 +69,10 @@ export class TrackingBand {
 
   private readonly at = computed(() => lastCheckpoint(this.progress.scrollKm()));
   protected readonly live = computed(() => liveValues(this.progress.scrollKm()));
+  /** Km en caractères : chaque chiffre porte son rang (--n) pour que le rouleau glisse vers lui. */
+  protected readonly kmChars = computed(() =>
+    [...this.live().km].map((c) => ({ c, n: /\d/.test(c) ? +c : -1 })),
+  );
 
   /** Ligne de pointage : texte du dernier pointage célébré, gardé pendant le repli. */
   protected readonly line = signal('');

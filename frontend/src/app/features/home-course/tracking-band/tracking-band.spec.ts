@@ -90,6 +90,14 @@ describe('TrackingBand', () => {
     );
   });
 
+  it('afficheur km : un rouleau par chiffre, rang en --n, texte conservé', () => {
+    progress.scrollKm.set(44);
+    flush();
+    const d = [...el().querySelectorAll<HTMLElement>('.km .d')];
+    expect(d.map((x) => x.style.getPropertyValue('--n'))).toEqual(['4', '4', '0']);
+    expect(el().querySelector('.km .v')!.textContent).toBe(formatKm(44, 1));
+  });
+
   it('marque le pointage actif (IntersectionObserver)', () => {
     progress.active.set('p2');
     flush();
