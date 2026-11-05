@@ -141,4 +141,37 @@ describe('TrackingBand : boucle de scroll', () => {
     document.body.replaceChildren();
     vi.unstubAllGlobals();
   });
+  it('repères remesurés au chargement complet de la fenêtre', async () => {
+    const line = innerHeight / 3;
+    let shift = 0;
+    const doc: Record<string, number> = {
+      depart: line,
+      p1: line + 1000,
+      p2: 5000,
+      p3: 6000,
+      arrivee: 7000,
+    };
+    Object.entries(doc).forEach(([id, y]) => {
+      const s = document.createElement('section');
+      s.id = id;
+      s.getBoundingClientRect = () => ({ top: y + (id === 'depart' ? 0 : shift) }) as DOMRect;
+      document.body.append(s);
+    });
+    vi.spyOn(document, 'readyState', 'get').mockReturnValue('loading');
+    vi.stubGlobal('scrollY', 0);
+    const f = TestBed.createComponent(TrackingBand);
+    f.detectChanges();
+    const progress = TestBed.inject(CourseProgress);
+    vi.stubGlobal('scrollY', line + 500);
+    shift = 1000; // les polices ont décalé p1 : à scroll identique, le km baisse
+    dispatchEvent(new Event('scroll'));
+    await new Promise((r) => requestAnimationFrame(r));
+    const before = progress.scrollKm();
+    dispatchEvent(new Event('load'));
+    await new Promise((r) => requestAnimationFrame(r));
+    expect(progress.scrollKm()).toBeLessThan(before);
+    document.body.replaceChildren();
+    vi.restoreAllMocks();
+    vi.unstubAllGlobals();
+  });
 });

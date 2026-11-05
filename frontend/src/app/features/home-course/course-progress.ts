@@ -78,7 +78,7 @@ export class CourseProgress {
         entries
           .filter((e) => e.isIntersecting)
           .forEach((e) => this.active.set(e.target.id as CheckpointId)),
-      { rootMargin: '-50% 0px -50% 0px' },
+      { rootMargin: '-33% 0px -67% 0px' },
     ));
     CHECKPOINT_IDS.forEach((id) => {
       const el = document.getElementById(id);

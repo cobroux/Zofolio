@@ -100,7 +100,7 @@ nav {
 .trace {
   position: absolute;
   inset: 4px 0 auto;
-  height: 22px;
+  height: 30px;
 }
 svg {
   width: 100%;
@@ -169,7 +169,7 @@ li a {
 /* Pointage posé sur le tracé, à son altitude réelle. */
 .mark {
   position: absolute;
-  top: calc(4px + (1 - var(--a)) * 22px - 3px);
+  top: calc(4px + (1 - var(--a)) * 30px - 3px);
   left: calc(50% - 3px);
   width: 6px;
   height: 6px;
