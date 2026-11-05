@@ -4,18 +4,21 @@ import { HomeResponse } from '../../../core/api/api.models';
 import { Aid } from '../../../shared/aid/aid';
 import { ChapterPin } from '../../../shared/chapter-pin/chapter-pin';
 import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
+import { Shot, Shots } from '../shots/shots';
 
 /** P1 (Les fondations, km 20), compacte (spec §6) : une bande, puis l'index des projets d'école ; suivie du ravitaillement R1. `home` null = API en échec. */
 @Component({
   selector: 'app-p1',
-  imports: [Aid, ChapterPin, PhotoPlates, RouterLink],
+  imports: [Aid, ChapterPin, PhotoPlates, RouterLink, Shots],
   template: `
     <section id="p1" class="terrain-paper">
       <app-chapter-pin mark="P1" i18n-title title="Les fondations" i18n-meta meta="km 20 · 2020 → 2025" [sticky]="false" />
       @if (home(); as h) {
         <div class="body">
           @if (master(); as m) {
-            <p><strong>{{ m.title }}</strong> {{ m.body }}</p>
+            <p>
+              <strong>{{ m.title }}</strong> {{ m.body }}
+            </p>
           }
           @if (studies().length) {
             <ol class="frise" i18n-aria-label aria-label="Études">
@@ -62,6 +65,7 @@ import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
               }
             }
           </p>
+          <app-shots [shots]="shots" />
         }
         <p class="small note" i18n>Voie romaine sur le GR3 : c'est à peu près ici que le trail devient sérieux.</p>
       } @else if (home() === null) {
@@ -145,6 +149,9 @@ import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
       margin-inline-end: var(--s-4);
       color: var(--ink-2);
     }
+    app-shots {
+      --shot-h: 12rem;
+    }
     .small {
       color: var(--ink-2);
       font-size: var(--t-small);
@@ -168,6 +175,7 @@ import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
         width: 8rem;
       }
       .index,
+      app-shots,
       .note,
       .unavailable {
         grid-column: 1 / -1;
@@ -198,4 +206,28 @@ export class P1Section {
     height: 853,
   };
   protected readonly projects = computed(() => this.home()?.projects.filter((p) => p.stage === 'P1') ?? []);
+  protected readonly shots: Shot[] = [
+    {
+      name: 'GFaim',
+      src: 'media/gfaim-1.webp',
+      width: 540,
+      height: 1170,
+      alt: $localize`GFaim : le planificateur de repas familial`,
+      slug: 'gfaim',
+    },
+    {
+      name: 'Cin-folie',
+      src: 'media/cinfolie-shot.webp',
+      width: 1280,
+      height: 800,
+      alt: $localize`Cin-folie : le catalogue de films, avec recherche et filtres`,
+    },
+    {
+      name: 'Calculateur DPE',
+      src: 'media/dpe-shot.webp',
+      width: 1280,
+      height: 800,
+      alt: $localize`Calculateur DPE : le formulaire département, ville et rue`,
+    },
+  ];
 }

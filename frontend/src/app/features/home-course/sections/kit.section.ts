@@ -15,8 +15,8 @@ interface Tool {
   template: `
     <section id="equipement" aria-labelledby="kit-title">
       <header appReveal>
-        <h2 id="kit-title" i18n>Équipement</h2>
-        <p class="small" i18n>Ce que je maîtrise, et où ça a tourné.</p>
+        <h2 id="kit-title" i18n>Contrôle du matériel</h2>
+        <p class="small" i18n>Avant le départ : ce que j'emporte, et où ça a déjà tourné.</p>
       </header>
       <div class="groups">
         @for (g of groups; track g.title) {
@@ -25,13 +25,7 @@ interface Tool {
             <ul>
               @for (t of g.tools; track t.name) {
                 <li>
-                  <img
-                    [src]="'img/stack/' + t.icon + '.svg'"
-                    alt=""
-                    width="32"
-                    height="32"
-                    loading="lazy"
-                  />
+                  <img [src]="'img/stack/' + t.icon + '.svg'" alt="" width="32" height="32" loading="lazy" />
                   <span class="name">{{ t.name }}</span>
                   <span class="where small">{{ t.where }}</span>
                 </li>

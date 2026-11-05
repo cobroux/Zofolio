@@ -6,7 +6,9 @@ import fixture from '../../../testing/home.fixture.json';
 import { HomePage } from './home.page';
 
 async function render(respond: (req: import('@angular/common/http/testing').TestRequest) => void) {
-  TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting(), provideRouter([])] });
+  TestBed.configureTestingModule({
+    providers: [provideHttpClient(), provideHttpClientTesting(), provideRouter([])],
+  });
   const f = TestBed.createComponent(HomePage);
   f.detectChanges();
   const http = TestBed.inject(HttpTestingController);
@@ -26,6 +28,14 @@ describe('HomePage', () => {
     expect(el.querySelector('#p2')?.textContent).toContain('Boursorama');
     expect(el.textContent).toContain('Brancardier aux urgences');
     expect(el.querySelector('a[href="/api/fr/cv"]')).toBeTruthy();
+  });
+
+  it('matériel avant P1 ; 3 captures en P1 et en P3', async () => {
+    const el = await render((r) => r.flush(fixture));
+    const kit = el.querySelector('#equipement')!;
+    expect(kit.compareDocumentPosition(el.querySelector('#p1')!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(el.querySelectorAll('#p3 app-shots li').length).toBe(3);
+    expect(el.querySelectorAll('#p1 app-shots li').length).toBe(3);
   });
 
   it('affiche « contenu indisponible » si l’API échoue', async () => {

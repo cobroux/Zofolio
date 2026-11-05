@@ -966,7 +966,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">68,69</context>
+          <context context-type="linenumber">72,73</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/aid/aid.ts</context>
@@ -987,8 +987,8 @@
           <context context-type="linenumber">5,6</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
-          <context context-type="linenumber">40,41</context>
+          <context context-type="sourcefile">src/app/features/home-course/shots/shots.ts</context>
+          <context context-type="linenumber">38,39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6044256456943348938" datatype="html">
@@ -1292,15 +1292,15 @@
           <context context-type="linenumber">300</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5618287776451565416" datatype="html">
-        <source>Équipement</source>
+      <trans-unit id="2335736306044980317" datatype="html">
+        <source>Contrôle du matériel</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
           <context context-type="linenumber">18,19</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2760776462731080522" datatype="html">
-        <source>Ce que je maîtrise, et où ça a tourné.</source>
+      <trans-unit id="7478639649197906841" datatype="html">
+        <source>Avant le départ : ce que j&apos;emporte, et où ça a déjà tourné.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
           <context context-type="linenumber">19,20</context>
@@ -1331,77 +1331,98 @@
         <source>Outillage et déploiement</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
-          <context context-type="linenumber">122</context>
+          <context context-type="linenumber">128</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1925401333221122195" datatype="html">
         <source>Tous les projets</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
-          <context context-type="linenumber">125</context>
+          <context context-type="linenumber">131</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8624755520436938347" datatype="html">
         <source>VM Oracle : Oltre, Zotracker, Zofolio</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
-          <context context-type="linenumber">127</context>
+          <context context-type="linenumber">137</context>
         </context-group>
       </trans-unit>
       <trans-unit id="40690728452210554" datatype="html">
         <source>Les fondations</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5725735348337974814" datatype="html">
         <source>km 20 · 2020 → 2025</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1073193676081867607" datatype="html">
         <source>Études</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1745782249568579923" datatype="html">
         <source>Badge rond « Certifiée meilleure promo ILI », ILI 2024-2025.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">44,45</context>
+          <context context-type="linenumber">47,48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6927783812522560185" datatype="html">
         <source>Projets d&apos;école :</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">51,52</context>
+          <context context-type="linenumber">54,55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6121561528154077346" datatype="html">
         <source>Voie romaine sur le GR3 : c&apos;est à peu près ici que le trail devient sérieux.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">66,67</context>
+          <context context-type="linenumber">70,71</context>
         </context-group>
       </trans-unit>
       <trans-unit id="p1.promo.alt" datatype="html">
         <source>La promo ILI en sweats bleu ciel, sur l&apos;escalier d&apos;un bâtiment de l&apos;université.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">195</context>
+          <context context-type="linenumber">203</context>
         </context-group>
       </trans-unit>
       <trans-unit id="p1.promo.caption" datatype="html">
         <source>La promo ILI 2024-2025.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">196</context>
+          <context context-type="linenumber">204</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2758912822660978921" datatype="html">
+        <source>GFaim : le planificateur de repas familial</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
+          <context context-type="linenumber">215</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4850187595447357468" datatype="html">
+        <source>Cin-folie : le catalogue de films, avec recherche et filtres</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
+          <context context-type="linenumber">223</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5259187614748559800" datatype="html">
+        <source>Calculateur DPE : le formulaire département, ville et rue</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
+          <context context-type="linenumber">230</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3511225585075799922" datatype="html">
@@ -1443,63 +1464,35 @@
         <source>P3 · km 58,2</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">13,14</context>
+          <context context-type="linenumber">14,15</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1053292106523444216" datatype="html">
         <source>Nés de la course</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">14,15</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6913329241030016452" datatype="html">
-        <source>En images</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
-          <context context-type="linenumber">21,22</context>
+          <context context-type="linenumber">15,16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4978208947179417718" datatype="html">
         <source>Histoquiz : une question chronométrée sur la Première Guerre mondiale</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
-          <context context-type="linenumber">120</context>
+          <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4050292123299266289" datatype="html">
         <source>Oltre : l&apos;agenda qui organise vie pro et vie perso</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
-          <context context-type="linenumber">121</context>
+          <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
+          <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6483404779240013234" datatype="html">
         <source>Zotracker : le suivi de course en direct sur la carte</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
-          <context context-type="linenumber">122</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2758912822660978921" datatype="html">
-        <source>GFaim : le planificateur de repas familial</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
-          <context context-type="linenumber">123</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4850187595447357468" datatype="html">
-        <source>Cin-folie : le catalogue de films, avec recherche et filtres</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
-          <context context-type="linenumber">124</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5259187614748559800" datatype="html">
-        <source>Calculateur DPE : le formulaire département, ville et rue</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
-          <context context-type="linenumber">125</context>
+          <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
+          <context context-type="linenumber">73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7574325606316659878" datatype="html">
@@ -1532,6 +1525,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
           <context context-type="linenumber">33,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5216257512116603462" datatype="html">
+        <source>Captures</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/shots/shots.ts</context>
+          <context context-type="linenumber">20,21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8921646052564591281" datatype="html">

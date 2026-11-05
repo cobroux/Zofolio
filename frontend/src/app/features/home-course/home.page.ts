@@ -8,21 +8,19 @@ import { FinishSection } from './sections/finish.section';
 import { JournalSection } from './sections/journal.section';
 import { P3Section } from './sections/p3.section';
 import { KitSection } from './sections/kit.section';
-import { ShotsSection } from './sections/shots.section';
 import { StartSection } from './sections/start.section';
 
 /** Accueil : sections dans l'ordre #depart #p1 #p2 #p3 #journal #arrivee. Le contenu vient de /api/{lang}/home. */
 @Component({
   selector: 'app-home',
-  imports: [TrackingBand, StartSection, P1Section, P2Section, P3Section, ShotsSection, KitSection, JournalSection, FinishSection],
+  imports: [TrackingBand, StartSection, KitSection, P1Section, P2Section, P3Section, JournalSection, FinishSection],
   template: `
     <app-tracking-band />
     <app-start />
+    <app-kit-section />
     <app-p1 [home]="home.value()" />
     <app-p2 [home]="home.value()" />
     <app-p3-section [projects]="home.value()?.projects ?? null" />
-    <app-shots-section />
-    <app-kit-section />
     <app-journal-section [races]="home.value()?.races ?? null" [contributions]="home.value()?.contributions ?? null" [sportYears]="home.value()?.sportYears ?? []" [contributionYears]="home.value()?.contributionYears ?? []" />
     <app-finish-section />
   `,

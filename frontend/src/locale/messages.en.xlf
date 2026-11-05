@@ -3026,17 +3026,17 @@
           <context context-type="linenumber">91,92</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5618287776451565416" datatype="html">
-        <source>Équipement</source>
-        <target state="translated">Kit</target>
+      <trans-unit id="2335736306044980317" datatype="html">
+        <source>Contrôle du matériel</source>
+        <target state="translated">Kit check</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
           <context context-type="linenumber">18,19</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2760776462731080522" datatype="html">
-        <source>Ce que je maîtrise, et où ça a tourné.</source>
-        <target state="translated">What I master, and where it ran.</target>
+      <trans-unit id="7478639649197906841" datatype="html">
+        <source>Avant le départ : ce que j&apos;emporte, et où ça a déjà tourné.</source>
+        <target state="translated">Before the start: what I carry, and where it has already run.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
           <context context-type="linenumber">19,20</context>
@@ -3090,12 +3090,12 @@
           <context context-type="linenumber">127</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6913329241030016452" datatype="html">
-        <source>En images</source>
-        <target state="translated">In pictures</target>
+      <trans-unit id="5216257512116603462" datatype="html">
+        <source>Captures</source>
+        <target state="translated">Screenshots</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
-          <context context-type="linenumber">21,22</context>
+          <context context-type="sourcefile">src/app/features/home-course/shots/shots.ts</context>
+          <context context-type="linenumber">20,21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4978208947179417718" datatype="html">
