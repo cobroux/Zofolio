@@ -1050,14 +1050,7 @@
           <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3330394727731998227" datatype="html">
-        <source>Code<x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;sr&quot;&gt;"/> de <x id="INTERPOLATION" equiv-text="{{ r.p.title }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
-        <target state="translated">Code<x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;sr&quot;&gt;"/> for <x id="INTERPOLATION" equiv-text="{{ r.p.title }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/project-index/project-index.ts</context>
-          <context context-type="linenumber">52,53</context>
-        </context-group>
-      </trans-unit>
+      
       <trans-unit id="1307588471547279582" datatype="html">
         <source>Contenu indisponible pour le moment.</source>
         <target state="translated">Content currently unavailable.</target>
@@ -1186,7 +1179,7 @@
           <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7846467849521429639" datatype="html">
+      <trans-unit id="4498960743185778594" datatype="html">
         <source>Ligne d&apos;arrivée du Grand Trail d&apos;Auvergne, km 79,4. Prochain objectif : 100 km.</source>
         <target state="translated">Finish line of the Grand Trail d&apos;Auvergne, km 79.4. Next goal: 100 km.</target>
         <context-group purpose="location">
@@ -1194,7 +1187,7 @@
           <context context-type="linenumber">24,25</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1840148144109321307" datatype="html">
+      <trans-unit id="4598138881232551792" datatype="html">
         <source>Pointages officiels</source>
         <target state="translated">Official checkpoints</target>
         <context-group purpose="location">
@@ -1262,7 +1255,7 @@
           <context context-type="linenumber">17,18</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4570915871252515708" datatype="html">
+      <trans-unit id="5122705230210608888" datatype="html">
         <source>En poste chez Aubay, ouvert aux opportunités à Paris. Français, anglais (TOEIC 910).</source>
         <target state="translated">Working at Aubay, open to opportunities in Paris. French, English (TOEIC 910).</target>
         <context-group purpose="location">
@@ -1270,7 +1263,7 @@
           <context context-type="linenumber">55,56</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4307381776281830307" datatype="html">
+      <trans-unit id="3626333245026560741" datatype="html">
         <source>Phidippides a couru de Marathon à Athènes pour porter un message. Ici, un formulaire suffit.</source>
         <target state="translated">Pheidippides ran from Marathon to Athens to carry a message. Here, a form will do.</target>
         <context-group purpose="location">
@@ -1474,7 +1467,7 @@
           <context context-type="linenumber">51,52</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6121561528154077346" datatype="html">
+      <trans-unit id="7571324644948349676" datatype="html">
         <source>Voie romaine sur le GR3 : c&apos;est à peu près ici que le trail devient sérieux.</source>
         <target state="translated">Roman road on the GR3: roughly where the trail gets serious.</target>
         <context-group purpose="location">
@@ -3088,62 +3081,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
           <context context-type="linenumber">127</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5216257512116603462" datatype="html">
-        <source>Captures</source>
-        <target state="translated">Screenshots</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/shots/shots.ts</context>
-          <context context-type="linenumber">20,21</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4978208947179417718" datatype="html">
-        <source>Histoquiz : une question chronométrée sur la Première Guerre mondiale</source>
-        <target state="translated">Histoquiz: a timed question about the First World War</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
-          <context context-type="linenumber">120</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4050292123299266289" datatype="html">
-        <source>Oltre : l&apos;agenda qui organise vie pro et vie perso</source>
-        <target state="translated">Oltre: the calendar that organises work and personal life</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
-          <context context-type="linenumber">121</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6483404779240013234" datatype="html">
-        <source>Zotracker : le suivi de course en direct sur la carte</source>
-        <target state="translated">Zotracker: live race tracking on the map</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
-          <context context-type="linenumber">122</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2758912822660978921" datatype="html">
-        <source>GFaim : le planificateur de repas familial</source>
-        <target state="translated">GFaim: the family meal planner</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
-          <context context-type="linenumber">123</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4850187595447357468" datatype="html">
-        <source>Cin-folie : le catalogue de films, avec recherche et filtres</source>
-        <target state="translated">Cin-folie: the film catalogue, with search and filters</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
-          <context context-type="linenumber">124</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5259187614748559800" datatype="html">
-        <source>Calculateur DPE : le formulaire département, ville et rue</source>
-        <target state="translated">DPE calculator: the department, city and street form</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
-          <context context-type="linenumber">125</context>
         </context-group>
       </trans-unit>
     </body>

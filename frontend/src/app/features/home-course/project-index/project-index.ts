@@ -16,7 +16,12 @@ import { Clip, calm } from '../../../shared/clip/clip';
 import { splitParts } from '../../../shared/split/split';
 
 /** Captures d'interface réelles (spec §5 bis) pour un projet sans vidéo. */
-const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
+const CAPTURES: Record<string, string> = {
+  gfaim: 'media/gfaim-shot-1.png',
+  oltre: 'media/oltre-1.webp',
+  zotracker: 'media/zotracker-1.webp',
+  histoquiz: 'media/histoquiz-shot.webp',
+};
 
 /**
  * Index P3 avec aperçu (signature, spec §6) : une ligne par projet, en très grand titre, qui mène à l'étude (ou au dépôt).
@@ -48,11 +53,6 @@ const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
                   }
                 </div>
                 <p class="pitch">{{ r.p.pitch }}</p>
-                @if (r.study && r.p.repoUrl) {
-                  <a class="code" [href]="r.p.repoUrl" rel="noopener" i18n
-                    >Code<span class="sr"> de {{ r.p.title }}</span></a
-                  >
-                }
                 @if (r.p.video) {
                   <app-clip class="inline" [video]="r.p.video" [autoplay]="false" />
                 } @else if (r.shot) {
@@ -63,7 +63,13 @@ const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
               </li>
             }
           </ol>
-          <div class="preview" [class.empty]="!list[active()]?.shot && !list[active()]?.p?.video && !list[active()]?.proof" aria-hidden="true">
+          <div
+            class="preview"
+            [class.empty]="
+              !list[active()]?.shot && !list[active()]?.p?.video && !list[active()]?.proof
+            "
+            aria-hidden="true"
+          >
             @for (r of list; track r.p.slug; let i = $index) {
               <div class="shot" [class.on]="i === active()" [attr.data-slug]="r.p.slug">
                 @if (r.shot) {
@@ -78,7 +84,10 @@ const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
                       <span class="label">{{ r.p.languages.join(', ') }}</span>
                     }
                     @if (r.p.lastPushAt) {
-                      <span class="label"><ng-container i18n>dernier push</ng-container> {{ r.p.lastPushAt | date: 'mediumDate' }}</span>
+                      <span class="label"
+                        ><ng-container i18n>dernier push</ng-container>
+                        {{ r.p.lastPushAt | date: 'mediumDate' }}</span
+                      >
                     }
                   </div>
                 }
@@ -110,7 +119,7 @@ const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
     .rows {
       display: flex;
       flex-direction: column;
-      gap: var(--s-7);
+      gap: var(--s-6);
       margin: 0;
       padding: 0;
       list-style: none;
@@ -124,20 +133,20 @@ const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
     }
     .line {
       display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      gap: var(--s-2) var(--s-5);
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--s-1);
     }
     h3 {
       margin: 0;
-      font: 800 clamp(2.5rem, 7vw, 5.5rem) / 0.92 var(--font-display);
+      font: 800 clamp(1.75rem, 4.5vw, 3rem) / 0.95 var(--font-display);
       font-stretch: 72%;
     }
     h3 a {
       color: var(--ink);
       text-decoration: none;
     }
-    /* Toute la ligne est cliquable ; le lien code et le clip passent au-dessus. */
+    /* Toute la ligne est cliquable (un seul lien par projet) ; le clip passe au-dessus. */
     h3 a::after {
       content: '';
       position: absolute;
@@ -158,17 +167,9 @@ const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
       margin: 0;
       max-width: 60ch;
     }
-    .code,
     .inline {
       position: relative;
       z-index: 1;
-    }
-    .code {
-      display: inline-flex;
-      align-items: center;
-      min-height: var(--target);
-      color: var(--ink);
-      text-underline-offset: 0.2em;
     }
     app-clip.inline,
     img.inline {
@@ -178,6 +179,9 @@ const CAPTURES: Record<string, string> = { gfaim: 'media/gfaim-shot-1.png' };
     img.inline {
       display: block;
       height: auto;
+      max-height: 16rem;
+      object-fit: contain;
+      object-position: left;
     }
     .facts {
       margin: 0;
@@ -276,7 +280,9 @@ export class ProjectIndex {
         shot: p.video?.poster ?? CAPTURES[p.slug] ?? null,
         // Preuves de la synchro GitHub : rien d'inventé, absentes = ligne comme avant.
         proof: !!p.commits || p.languages.length > 0,
-        facts: splitParts(this.locale, { languages: p.languages, lastPushAt: p.lastPushAt }).join(' · '),
+        facts: splitParts(this.locale, { languages: p.languages, lastPushAt: p.lastPushAt }).join(
+          ' · ',
+        ),
       })) ?? null,
   );
   protected readonly active = signal(0);
@@ -291,7 +297,9 @@ export class ProjectIndex {
     const destroy = inject(DestroyRef);
     afterNextRender(() => {
       // Cadre masqué (tactile ou étroit) : sa vidéo ne doit jamais se monter ni se télécharger.
-      this.motion.set(!calm() && matchMedia('(min-width: 768px) and (hover: hover) and (pointer: fine)').matches);
+      this.motion.set(
+        !calm() && matchMedia('(min-width: 768px) and (hover: hover) and (pointer: fine)').matches,
+      );
       if (typeof IntersectionObserver === 'undefined') return this.onScreen.set(true);
       // Hors écran, la vidéo est retirée : elle ne tourne jamais pour personne.
       const io = new IntersectionObserver(([e]) => this.onScreen.set(e.isIntersecting));

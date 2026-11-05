@@ -30,12 +30,14 @@ describe('HomePage', () => {
     expect(el.querySelector('a[href="/api/fr/cv"]')).toBeTruthy();
   });
 
-  it('matériel avant P1 ; 3 captures en P1 et en P3', async () => {
+  it('matériel avant P1 ; pas de galerie séparée en P1 ni en P3', async () => {
     const el = await render((r) => r.flush(fixture));
     const kit = el.querySelector('#equipement')!;
-    expect(kit.compareDocumentPosition(el.querySelector('#p1')!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(el.querySelectorAll('#p3 app-shots li').length).toBe(3);
-    expect(el.querySelectorAll('#p1 app-shots li').length).toBe(3);
+    expect(
+      kit.compareDocumentPosition(el.querySelector('#p1')!) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+    expect(el.querySelectorAll('#p3 app-shots').length).toBe(0);
+    expect(el.querySelectorAll('#p1 app-shots').length).toBe(0);
   });
 
   it('affiche « contenu indisponible » si l’API échoue', async () => {

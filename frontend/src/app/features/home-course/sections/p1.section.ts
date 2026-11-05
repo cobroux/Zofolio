@@ -4,15 +4,21 @@ import { HomeResponse } from '../../../core/api/api.models';
 import { Aid } from '../../../shared/aid/aid';
 import { ChapterPin } from '../../../shared/chapter-pin/chapter-pin';
 import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
-import { Shot, Shots } from '../shots/shots';
 
 /** P1 (Les fondations, km 20), compacte (spec §6) : une bande, puis l'index des projets d'école ; suivie du ravitaillement R1. `home` null = API en échec. */
 @Component({
   selector: 'app-p1',
-  imports: [Aid, ChapterPin, PhotoPlates, RouterLink, Shots],
+  imports: [Aid, ChapterPin, PhotoPlates, RouterLink],
   template: `
     <section id="p1" class="terrain-paper">
-      <app-chapter-pin mark="P1" i18n-title title="Les fondations" i18n-meta meta="km 20 · 2020 → 2025" [sticky]="false" />
+      <app-chapter-pin
+        mark="P1"
+        i18n-title
+        title="Les fondations"
+        i18n-meta
+        meta="km 20 · 2020 → 2025"
+        [sticky]="false"
+      />
       @if (home(); as h) {
         <div class="body">
           @if (master(); as m) {
@@ -33,8 +39,16 @@ import { Shot, Shots } from '../shots/shots';
         </div>
         <div class="aside">
           <picture class="badge">
-            <source type="image/avif" srcset="img/badge-promo-ili-320.avif 320w, img/badge-promo-ili-640.avif 640w" sizes="10rem" />
-            <source type="image/webp" srcset="img/badge-promo-ili-320.webp 320w, img/badge-promo-ili-640.webp 640w" sizes="10rem" />
+            <source
+              type="image/avif"
+              srcset="img/badge-promo-ili-320.avif 320w, img/badge-promo-ili-640.avif 640w"
+              sizes="10rem"
+            />
+            <source
+              type="image/webp"
+              srcset="img/badge-promo-ili-320.webp 320w, img/badge-promo-ili-640.webp 640w"
+              sizes="10rem"
+            />
             <img
               src="img/badge-promo-ili-320.jpg"
               srcset="img/badge-promo-ili-320.jpg 320w, img/badge-promo-ili-640.jpg 640w"
@@ -50,24 +64,27 @@ import { Shot, Shots } from '../shots/shots';
           <app-photo-plates [main]="promo" />
         </div>
         @if (projects().length) {
-          <p class="index">
-            <span class="label" i18n>Projets d'école :</span>
+          <p class="index-title" i18n>Projets d'école :</p>
+          <ul class="index">
             @for (p of projects(); track p.slug) {
-              @if (p.tier === 'CASE_STUDY') {
-                <a class="study" [routerLink]="['/projets', p.slug]">{{ p.title }}</a>
-              } @else if (p.repoUrl) {
-                <a [href]="p.repoUrl" rel="noopener">{{ p.title }}</a>
-              } @else {
-                <span>{{ p.title }}</span>
-              }
-              @if (p.languages[0] ?? p.stack[0]; as lang) {
-                <span class="lang">({{ lang }})</span>
-              }
+              <li>
+                @if (p.tier === 'CASE_STUDY') {
+                  <a class="study" [routerLink]="['/projets', p.slug]">{{ p.title }}</a>
+                } @else if (p.repoUrl) {
+                  <a [href]="p.repoUrl" rel="noopener">{{ p.title }}</a>
+                } @else {
+                  <span>{{ p.title }}</span>
+                }
+                @if (p.languages[0] ?? p.stack[0]; as lang) {
+                  <span class="lang">({{ lang }})</span>
+                }
+              </li>
             }
-          </p>
-          <app-shots [shots]="shots" />
+          </ul>
         }
-        <p class="small note" i18n>Voie romaine sur le GR3 : c'est à peu près ici que le trail devient sérieux.</p>
+        <p class="small note" i18n>
+          Voie romaine sur le GR3 : c'est à peu près ici que le trail devient sérieux.
+        </p>
       } @else if (home() === null) {
         <p class="unavailable" role="status" i18n>Contenu indisponible pour le moment.</p>
       }
@@ -82,7 +99,7 @@ import { Shot, Shots } from '../shots/shots';
       display: grid;
       grid-template-columns: minmax(0, 1fr);
       gap: var(--s-5) var(--gutter);
-      padding: var(--s-8) var(--margin);
+      padding: var(--s-6) var(--margin);
     }
     .body {
       display: flex;
@@ -130,27 +147,34 @@ import { Shot, Shots } from '../shots/shots';
     .frise .tnum {
       font-weight: 600;
     }
-    /* Index : une ligne dense de liens (nom et langage), qui devient un paragraphe sur mobile. */
-    .index {
-      max-width: none;
-      line-height: 1.9;
-    }
-    .index .label {
+    .index-title {
+      margin: 0;
       font-weight: 700;
     }
-    .index a {
-      white-space: nowrap;
+    /* Index : grille de liens, une ligne = une cible de 44 px. */
+    .index {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+      gap: var(--s-1) var(--s-5);
+      margin: 0;
+      padding: 0;
+      list-style: none;
     }
-    .index a,
-    .index .label {
-      margin-inline-end: var(--s-1);
+    .index li {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      min-height: var(--target);
+    }
+    .index a {
+      display: inline-flex;
+      align-items: center;
+      min-height: var(--target);
     }
     .lang {
-      margin-inline-end: var(--s-4);
+      margin-inline-start: var(--s-1);
       color: var(--ink-2);
-    }
-    app-shots {
-      --shot-h: 12rem;
+      white-space: nowrap;
     }
     .small {
       color: var(--ink-2);
@@ -174,8 +198,8 @@ import { Shot, Shots } from '../shots/shots';
       .badge img {
         width: 8rem;
       }
+      .index-title,
       .index,
-      app-shots,
       .note,
       .unavailable {
         grid-column: 1 / -1;
@@ -185,7 +209,9 @@ import { Shot, Shots } from '../shots/shots';
 })
 export class P1Section {
   readonly home = input<HomeResponse | null | undefined>();
-  private readonly education = computed(() => this.home()?.experiences.filter((e) => e.stage === 'P1' && e.kind === 'EDUCATION') ?? []);
+  private readonly education = computed(
+    () => this.home()?.experiences.filter((e) => e.stage === 'P1' && e.kind === 'EDUCATION') ?? [],
+  );
   protected readonly master = computed(() => this.education()[0]);
   /** Ordre chronologique ; « 2020-2023 » → 3 ans (sinon 1). */
   protected readonly studies = computed(() =>
@@ -205,29 +231,7 @@ export class P1Section {
     width: 640,
     height: 853,
   };
-  protected readonly projects = computed(() => this.home()?.projects.filter((p) => p.stage === 'P1') ?? []);
-  protected readonly shots: Shot[] = [
-    {
-      name: 'GFaim',
-      src: 'media/gfaim-1.webp',
-      width: 540,
-      height: 1170,
-      alt: $localize`GFaim : le planificateur de repas familial`,
-      slug: 'gfaim',
-    },
-    {
-      name: 'Cin-folie',
-      src: 'media/cinfolie-shot.webp',
-      width: 1280,
-      height: 800,
-      alt: $localize`Cin-folie : le catalogue de films, avec recherche et filtres`,
-    },
-    {
-      name: 'Calculateur DPE',
-      src: 'media/dpe-shot.webp',
-      width: 1280,
-      height: 800,
-      alt: $localize`Calculateur DPE : le formulaire département, ville et rue`,
-    },
-  ];
+  protected readonly projects = computed(
+    () => this.home()?.projects.filter((p) => p.stage === 'P1') ?? [],
+  );
 }
