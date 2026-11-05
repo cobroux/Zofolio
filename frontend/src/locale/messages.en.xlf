@@ -3090,6 +3090,62 @@
           <context context-type="linenumber">127</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6913329241030016452" datatype="html">
+        <source>En images</source>
+        <target state="translated">In pictures</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
+          <context context-type="linenumber">21,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4978208947179417718" datatype="html">
+        <source>Histoquiz : une question chronométrée sur la Première Guerre mondiale</source>
+        <target state="translated">Histoquiz: a timed question about the First World War</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
+          <context context-type="linenumber">120</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4050292123299266289" datatype="html">
+        <source>Oltre : l&apos;agenda qui organise vie pro et vie perso</source>
+        <target state="translated">Oltre: the calendar that organises work and personal life</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
+          <context context-type="linenumber">121</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6483404779240013234" datatype="html">
+        <source>Zotracker : le suivi de course en direct sur la carte</source>
+        <target state="translated">Zotracker: live race tracking on the map</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
+          <context context-type="linenumber">122</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2758912822660978921" datatype="html">
+        <source>GFaim : le planificateur de repas familial</source>
+        <target state="translated">GFaim: the family meal planner</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
+          <context context-type="linenumber">123</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4850187595447357468" datatype="html">
+        <source>Cin-folie : le catalogue de films, avec recherche et filtres</source>
+        <target state="translated">Cin-folie: the film catalogue, with search and filters</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
+          <context context-type="linenumber">124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5259187614748559800" datatype="html">
+        <source>Calculateur DPE : le formulaire département, ville et rue</source>
+        <target state="translated">DPE calculator: the department, city and street form</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/shots.section.ts</context>
+          <context context-type="linenumber">125</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>
