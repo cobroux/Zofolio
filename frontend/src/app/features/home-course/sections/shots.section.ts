@@ -23,7 +23,14 @@ interface Shot {
         @for (s of shots; track s.src) {
           <li appReveal>
             <button type="button" (click)="open(s)">
-              <img [src]="s.src" [alt]="s.alt" [attr.width]="s.width" [attr.height]="s.height" loading="lazy" decoding="async" />
+              <img
+                [src]="s.src"
+                [alt]="s.alt"
+                [attr.width]="s.width"
+                [attr.height]="s.height"
+                loading="lazy"
+                decoding="async"
+              />
             </button>
             @if (s.slug) {
               <a [routerLink]="['/projets', s.slug]">{{ s.name }}</a>
@@ -117,12 +124,51 @@ export class ShotsSection {
   private readonly dlg = viewChild.required<ElementRef<HTMLDialogElement>>('dlg');
   protected readonly current = signal<Shot | null>(null);
   protected readonly shots: Shot[] = [
-    { name: 'Histoquiz', src: 'media/histoquiz-shot.webp', width: 780, height: 1688, alt: $localize`Histoquiz : une question chronométrée sur la Première Guerre mondiale` },
-    { name: 'Oltre', src: 'media/oltre-1.webp', width: 1280, height: 800, alt: $localize`Oltre : l'agenda qui organise vie pro et vie perso`, slug: 'oltre' },
-    { name: 'Zotracker', src: 'media/zotracker-1.webp', width: 1280, height: 800, alt: $localize`Zotracker : le suivi de course en direct sur la carte`, slug: 'zotracker' },
-    { name: 'GFaim', src: 'media/gfaim-1.webp', width: 540, height: 1170, alt: $localize`GFaim : le planificateur de repas familial`, slug: 'gfaim' },
-    { name: 'Cin-folie', src: 'media/cinfolie-shot.webp', width: 1280, height: 800, alt: $localize`Cin-folie : le catalogue de films, avec recherche et filtres` },
-    { name: 'Calculateur DPE', src: 'media/dpe-shot.webp', width: 1280, height: 800, alt: $localize`Calculateur DPE : le formulaire département, ville et rue` },
+    {
+      name: 'Histoquiz',
+      src: 'media/histoquiz-shot.webp',
+      width: 780,
+      height: 1688,
+      alt: $localize`Histoquiz : une question chronométrée sur la Première Guerre mondiale`,
+    },
+    {
+      name: 'Oltre',
+      src: 'media/oltre-1.webp',
+      width: 1280,
+      height: 800,
+      alt: $localize`Oltre : l'agenda qui organise vie pro et vie perso`,
+      slug: 'oltre',
+    },
+    {
+      name: 'Zotracker',
+      src: 'media/zotracker-1.webp',
+      width: 1280,
+      height: 800,
+      alt: $localize`Zotracker : le suivi de course en direct sur la carte`,
+      slug: 'zotracker',
+    },
+    {
+      name: 'GFaim',
+      src: 'media/gfaim-1.webp',
+      width: 540,
+      height: 1170,
+      alt: $localize`GFaim : le planificateur de repas familial`,
+      slug: 'gfaim',
+    },
+    {
+      name: 'Cin-folie',
+      src: 'media/cinfolie-shot.webp',
+      width: 1280,
+      height: 800,
+      alt: $localize`Cin-folie : le catalogue de films, avec recherche et filtres`,
+    },
+    {
+      name: 'Calculateur DPE',
+      src: 'media/dpe-shot.webp',
+      width: 1280,
+      height: 800,
+      alt: $localize`Calculateur DPE : le formulaire département, ville et rue`,
+    },
   ];
 
   protected open(s: Shot): void {

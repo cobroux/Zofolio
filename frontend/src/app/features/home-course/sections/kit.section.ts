@@ -25,7 +25,13 @@ interface Tool {
             <ul>
               @for (t of g.tools; track t.name) {
                 <li>
-                  <img [src]="'img/stack/' + t.icon + '.svg'" alt="" width="32" height="32" loading="lazy" />
+                  <img
+                    [src]="'img/stack/' + t.icon + '.svg'"
+                    alt=""
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                  />
                   <span class="name">{{ t.name }}</span>
                   <span class="where small">{{ t.where }}</span>
                 </li>
@@ -116,14 +122,24 @@ export class KitSection {
     },
     {
       title: $localize`Données`,
-      tools: [{ name: 'SQL (PostgreSQL, MySQL)', icon: 'postgresql', where: 'Worldline, Oltre, GFaim, Zofolio' }],
+      tools: [
+        {
+          name: 'SQL (PostgreSQL, MySQL)',
+          icon: 'postgresql',
+          where: 'Worldline, Oltre, GFaim, Zofolio',
+        },
+      ],
     },
     {
       title: $localize`Outillage et déploiement`,
       tools: [
         { name: 'Docker', icon: 'docker', where: 'Worldline, Oltre, GFaim, Histoquiz, Zotracker' },
         { name: 'Git', icon: 'git', where: $localize`Tous les projets` },
-        { name: 'CI/CD', icon: 'githubactions', where: 'GitLab CI (Worldline), GitHub Actions (Zofolio)' },
+        {
+          name: 'CI/CD',
+          icon: 'githubactions',
+          where: 'GitLab CI (Worldline), GitHub Actions (Zofolio)',
+        },
         { name: 'Linux', icon: 'linux', where: $localize`VM Oracle : Oltre, Zotracker, Zofolio` },
       ],
     },
