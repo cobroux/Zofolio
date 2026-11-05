@@ -168,6 +168,7 @@ export const CAPTURES: Record<string, string> = {
     .pitch {
       margin: 0;
       max-width: 60ch;
+      overflow-wrap: break-word;
     }
     .inline {
       position: relative;
@@ -211,7 +212,8 @@ export const CAPTURES: Record<string, string> = {
         gap: var(--gutter);
         align-items: start;
       }
-      .inline {
+      .inline,
+      img.inline {
         display: none;
       }
       .preview {

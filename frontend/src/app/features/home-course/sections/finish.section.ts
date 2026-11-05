@@ -65,7 +65,6 @@ const ROWS = (['p1', 'p2', 'p3', 'arrivee'] as const).map((id) => ({
         </p>
         <div class="actions">
           <a class="mail" href="mailto:enzo.lvq12@gmail.com">enzo.lvq12&#64;gmail.com</a>
-          <a class="btn primary" href="#contact" i18n>Écrire un message</a>
           <a class="btn" [href]="cv" i18n>Télécharger le CV</a>
           <a class="btn" href="https://www.linkedin.com/in/enzo-leveque1" rel="noopener"
             ><svg
@@ -100,7 +99,7 @@ const ROWS = (['p1', 'p2', 'p3', 'arrivee'] as const).map((id) => ({
           En poste chez Aubay, ouvert aux opportunités à Paris. Français, anglais (TOEIC 910).
         </p>
       </div>
-      <div class="form" id="contact" [appReveal]="2"><app-contact-form /></div>
+      <div class="form" [appReveal]="2"><app-contact-form /></div>
       @if (hasBuild(build.value())) {
         <app-bib face="back" class="back"
           ><app-live-colophon [info]="build.value() ?? null"
@@ -205,8 +204,7 @@ const ROWS = (['p1', 'p2', 'p3', 'arrivee'] as const).map((id) => ({
       gap: var(--s-2);
       width: 100%;
     }
-    .mail,
-    .btn.primary {
+    .mail {
       grid-column: 1 / -1;
     }
     @media (min-width: 700px) {
