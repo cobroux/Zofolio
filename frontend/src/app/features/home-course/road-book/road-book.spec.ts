@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { CourseProgress } from '../course-progress';
+import { CourseProgress, gainAt } from '../course-progress';
 import { RoadBook } from './road-book';
 
 // jsdom n'implémente pas showModal : on simule open/close + l'évènement close.
@@ -19,37 +19,42 @@ describe('RoadBook', () => {
     document.body.append(f.nativeElement);
     await f.whenStable();
     const el: HTMLElement = f.nativeElement;
-    return { el, dialog: el.querySelector('dialog')!, trigger: el.querySelector<HTMLButtonElement>('.bar')! };
+    // Le déclencheur vit dans le bandeau de suivi : le road book reçoit le bouton qui l'ouvre.
+    const opener = document.createElement('button');
+    document.body.append(opener);
+    return { f, el, dialog: el.querySelector('dialog')!, opener };
   }
 
-  it('libellé de la barre et marqueur lisent le km du scroll', async () => {
-    const f = TestBed.createComponent(RoadBook);
-    TestBed.inject(CourseProgress).scrollKm.set(12.4);
+  it('en-tête : valeurs en direct du bandeau ; pied : « Comment c\'est calculé »', async () => {
+    const { f, el } = await setup();
+    TestBed.inject(CourseProgress).scrollKm.set(30);
     await f.whenStable();
-    const el: HTMLElement = f.nativeElement;
-    expect(el.querySelector('.bar .km')!.textContent).toContain('km 12,4');
-    expect(el.querySelector('.bar')!.getAttribute('aria-label')).toContain('km 12,4 sur');
-    expect(el.querySelector<HTMLElement>('.mini')!.style.getPropertyValue('--p')).toBe(String(12.4 / 79.41));
+    const live = el.querySelector('.live')!.textContent!;
+    for (const v of ['30,0', 'alt.', 'D+', 'P1', '09:23:44']) expect(live).toContain(v);
+    expect(live).toContain(Math.round(gainAt(30)).toLocaleString('fr-FR'));
+    expect(el.querySelector('dialog a.how')!.getAttribute('href')).toBe(
+      'https://github.com/cobroux/Zofolio/blob/main/frontend/src/app/features/home-course/course-progress.ts',
+    );
+    document.body.replaceChildren();
   });
 
   it('ouvre le dialog avec 5 étapes ancres dont une courante', async () => {
-    const { el, dialog, trigger } = await setup();
-    expect(trigger.getAttribute('aria-label')).toBe('Ouvrir le road book : km 0 sur 79,4');
-    trigger.click();
+    const { f, el, dialog, opener } = await setup();
+    f.componentInstance.open(opener);
     expect(dialog.hasAttribute('open')).toBe(true);
     const links = [...el.querySelectorAll('ol a')];
     expect(links.map((a) => a.getAttribute('href'))).toEqual(['#depart', '#p1', '#p2', '#p3', '#arrivee']);
     expect(links.filter((a) => a.getAttribute('aria-current') === 'location').length).toBe(1);
-    el.remove();
+    document.body.replaceChildren();
   });
 
   it("ferme sur close (Esc) et rend le focus au déclencheur ; le tap sur une étape ferme aussi", async () => {
-    const { el, dialog, trigger } = await setup();
-    trigger.click();
+    const { f, el, dialog, opener } = await setup();
+    f.componentInstance.open(opener);
     dialog.dispatchEvent(new Event('close')); // Esc natif émet `close`
-    expect(document.activeElement).toBe(trigger);
+    expect(document.activeElement).toBe(opener);
 
-    trigger.click();
+    f.componentInstance.open(opener);
     const section = document.createElement('section');
     section.id = 'depart';
     document.body.append(section);
@@ -57,7 +62,6 @@ describe('RoadBook', () => {
     el.querySelector<HTMLAnchorElement>('ol a')!.click();
     expect(dialog.hasAttribute('open')).toBe(false);
     expect(document.activeElement).toBe(section); // le focus suit le lien, pas le déclencheur
-    section.remove();
-    el.remove();
+    document.body.replaceChildren();
   });
 });

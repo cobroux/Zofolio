@@ -34,6 +34,45 @@ describe('steps', () => {
   });
 });
 
+@Component({
+  imports: [CountUp],
+  template: `<ol [appCountUp]="fmt">
+    <li><div><span data-count="10">10</span><i class="bar"></i></div><div><span data-count="20">20</span><i class="bar"></i></div></li>
+    <li><div><span data-count="30">30</span><i class="bar"></i></div><div><span data-count="40">40</span><i class="bar"></i></div></li>
+  </ol>`,
+})
+class PairsHost {
+  fmt = (n: number) => String(n);
+}
+
+describe('CountUp, paires par ligne', () => {
+  afterEach(() => vi.unstubAllGlobals());
+
+  it("remplit ensemble les deux valeurs d'une ligne, puis passe à la suivante", async () => {
+    let cb: IntersectionObserverCallback | undefined;
+    vi.stubGlobal('IntersectionObserver', class {
+      constructor(c: IntersectionObserverCallback) { cb = c; }
+      observe = vi.fn();
+      disconnect = vi.fn();
+    });
+    vi.stubGlobal('matchMedia', () => ({ matches: false }));
+    const frames: FrameRequestCallback[] = [];
+    const f = TestBed.createComponent(PairsHost);
+    f.detectChanges();
+    await f.whenStable();
+    vi.stubGlobal('requestAnimationFrame', (fn: FrameRequestCallback) => frames.push(fn));
+    const hit = (v: boolean) => cb?.([{ isIntersecting: v }] as IntersectionObserverEntry[], {} as IntersectionObserver);
+    hit(false);
+    hit(true);
+    const counts = () => [...f.nativeElement.querySelectorAll('[data-count]')].map((e: Element) => e.textContent);
+    frames.shift()!(0);
+    frames.shift()!(STEP_MS);
+    expect(counts()).toEqual(['10', '20', '0', '0']);
+    frames.shift()!(STEP_MS * 2);
+    expect(counts()).toEqual(['10', '20', '30', '40']);
+  });
+});
+
 describe('CountUp', () => {
   afterEach(() => vi.unstubAllGlobals());
 

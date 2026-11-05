@@ -1,0 +1,55 @@
+:host {
+  display: block;
+}
+.pin {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+:host(.sticky) {
+  position: sticky;
+  top: 6rem;
+}
+.mark {
+  font: 800 clamp(5rem, 12vw, 11rem) / 0.85 var(--font-display);
+  font-stretch: 62%;
+  color: var(--accent);
+}
+.title {
+  font: 700 1.5rem / 1.15 var(--font-display);
+}
+/* Compacte (non sticky) : repère de taille moyenne, pas monumental. */
+:host(:not(.sticky)) .mark {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+.meta {
+  font: 400 1rem / 1.3 var(--font-text);
+  color: var(--ink-2);
+}
+@media (max-width: 767px) {
+  .pin {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+  /* Seule la version sticky devient une barre de 48 px opaque (fond = --bg du terrain). */
+  :host(.sticky) {
+    top: 0;
+    z-index: 5;
+  }
+  :host(.sticky) .pin {
+    height: 48px;
+    padding-inline: var(--gutter, 1rem);
+    background: var(--bg);
+  }
+  .mark {
+    font-size: 1.5rem;
+    line-height: 48px;
+  }
+  :host(.sticky) .title {
+    font-size: 1rem;
+  }
+  .meta {
+    font-size: 0.875rem;
+  }
+}

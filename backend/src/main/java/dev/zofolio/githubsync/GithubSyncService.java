@@ -1,35 +1,69 @@
 package dev.zofolio.githubsync;
 
 import java.time.Instant;
+import java.time.Year;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionOperations;
 import org.springframework.web.client.RestClientResponseException;
 
 import dev.zofolio.githubsync.GithubClient.Repo;
 import dev.zofolio.githubsync.GithubClient.Snapshot;
 
 @Service
-class GithubSyncService {
+public class GithubSyncService {
 
 	private static final Logger log = LoggerFactory.getLogger(GithubSyncService.class);
 
+	/** Premier millésime affiché par « L'endurance, deux fois ». */
+	static final int FIRST_YEAR = 2023;
+
+	private volatile CiStatus ci;
 	private final GithubClient client;
 	private final GithubRepoRepository repos;
 	private final GithubContributionsRepository contributions;
+	private final GithubContributionYearRepository years;
+	private final TransactionOperations tx;
 
-	GithubSyncService(GithubClient client, GithubRepoRepository repos, GithubContributionsRepository contributions) {
+	GithubSyncService(GithubClient client, GithubRepoRepository repos, GithubContributionsRepository contributions,
+			GithubContributionYearRepository years, TransactionOperations tx) {
+		this.tx = tx;
 		this.client = client;
 		this.repos = repos;
 		this.contributions = contributions;
+		this.years = years;
 	}
 
-	/** Tout ou rien (D18) : en cas d'échec, le cache précédent reste intact. Ne lève jamais. */
-	@Transactional
+	/** Dernier statut CI connu (mémoire seule : repris à la prochaine synchro), {@code null} tant qu'aucun n'a été lu. */
+	public CiStatus ci() {
+		return ci;
+	}
+
+	/** Ne lève jamais ; en cas d'échec on garde la valeur précédente. */
+	void syncCi() {
+		if (!client.enabled()) {
+			return;
+		}
+		try {
+			CiStatus s = client.latestCiRun();
+			if (s != null) {
+				ci = s;
+			}
+		} catch (RuntimeException e) {
+			// jamais e.getMessage() : on ne journalise que le type d'erreur
+			log.warn("github-sync : statut CI conservé ({})", e.getClass().getSimpleName());
+		}
+	}
+
+	/**
+	 * Tout ou rien (D18) : les appels GitHub se font hors transaction, puis l'écriture tient dans une courte transaction ;
+	 * en cas d'échec (réseau ou base), le cache précédent reste intact. Ne lève jamais.
+	 */
 	public void sync() {
 		if (!client.enabled()) {
 			log.info("github-sync : GITHUB_TOKEN vide, synchro ignorée");
@@ -46,6 +80,16 @@ class GithubSyncService {
 			log.warn("github-sync : échec, cache conservé ({})", e.getClass().getSimpleName());
 			return;
 		}
+		Map<Integer, Integer> yearTotals;
+		try {
+			yearTotals = client.contributionYears(FIRST_YEAR, Year.now().getValue());
+			tx.executeWithoutResult(status -> persist(s, yearTotals));
+		} catch (RuntimeException e) {
+			log.warn("github-sync : échec, cache conservé ({})", e.getClass().getSimpleName());
+		}
+	}
+
+	private void persist(Snapshot s, Map<Integer, Integer> yearTotals) {
 		Instant now = Instant.now();
 		Set<String> names = s.repos().stream().map(Repo::name).collect(Collectors.toSet());
 		var cached = repos.findAll();
@@ -70,6 +114,13 @@ class GithubSyncService {
 		c.total = s.calendar().total();
 		c.syncedAt = now;
 		contributions.save(c);
+		yearTotals.forEach((year, total) -> {
+			GithubContributionYear y = new GithubContributionYear();
+			y.year = year;
+			y.total = total;
+			y.syncedAt = now;
+			years.save(y);
+		});
 		log.info("github-sync : {} dépôts synchronisés", s.repos().size());
 	}
 }

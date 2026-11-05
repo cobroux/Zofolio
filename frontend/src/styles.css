@@ -90,7 +90,7 @@ video {
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation-duration: 200ms;
-  animation-timing-function: ease;
+  animation-timing-function: var(--ease-out);
 }
 
 /* Entrée des blocs (DESIGN §7) : caché seulement si le script inline a posé html.js ; sans JS tout est visible. */
@@ -108,13 +108,13 @@ html.js .reveal:not(.in) {
   transition: none;
 }
 @media (prefers-reduced-motion: reduce) {
+  /* La page réduite est la page finie : aucun bloc ne reste invisible en attendant le défilement. */
   html.js .reveal:not(.in) {
+    opacity: 1;
     transform: none;
   }
   .reveal {
-    transition-property: opacity !important;
-    transition-duration: 160ms !important;
-    transition-delay: 0s;
+    transition: none;
   }
 }
 
@@ -123,16 +123,27 @@ html:not(.js) app-contact-form form > :not(noscript) {
   display: none;
 }
 
-/* La barre road book sticky (--target) ne doit pas recouvrir le haut d'une section après un saut d'ancre. */
-@media (max-width: 1099px) {
-  section[id] {
-    scroll-margin-top: var(--target);
+/* Bandeau de suivi fixe en bas (52 px, 76 px étendu) : ni le focus ni un saut d'ancre ne passent dessous (WCAG 2.4.11). */
+html:has(app-tracking-band) {
+  scroll-padding-bottom: 92px;
+}
+@media (max-width: 767px) {
+  /* Réservé à la barre de chapitre mobile (48 px). */
+  html:has(app-tracking-band) {
+    scroll-padding-top: 64px;
   }
 }
+body:has(app-tracking-band) {
+  padding-bottom: 52px;
+}
 
-/* Le rail fixe (72 px) occupe le bord droit dès 1100 px. */
-@media (min-width: 1100px) {
-  main {
-    padding-right: 72px;
+/* Un saut d'ancre pose le pointage sur la ligne de lecture du bandeau (1/3 du viewport) : le km affiché est alors celui du pointage. */
+html:has(app-tracking-band) :is(#p1, #p2, #p3, #arrivee) {
+  scroll-margin-top: var(--reading-line, 33svh);
+}
+@media (max-width: 767px) {
+  /* Le scroll-padding-top de la barre de chapitre s'ajoute à la marge. */
+  html:has(app-tracking-band) :is(#p1, #p2, #p3, #arrivee) {
+    scroll-margin-top: calc(var(--reading-line, 33svh) - 64px);
   }
 }

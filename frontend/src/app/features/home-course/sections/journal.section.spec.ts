@@ -58,37 +58,35 @@ describe('JournalSection', () => {
     expect(f.nativeElement.querySelector('app-contributions .carnet')).toBeTruthy();
     f.componentRef.setInput('contributions', null);
     f.detectChanges();
-    expect(f.nativeElement.querySelector('app-contributions .carnet')).toBeNull();
+    expect(f.nativeElement.querySelector('app-contributions')).toBeNull();
   });
 
-  it('stats annuelles : tableau avec légende, null en tiret, masqué si []', () => {
+  it("« L'endurance, deux fois » ouvre le Journal et remplace « Les années en chiffres »", () => {
     const f = TestBed.createComponent(JournalSection);
     f.componentRef.setInput('races', home.races);
-    f.componentRef.setInput('sportYears', [{ year: 2025, distanceKm: 2140, elevationGainM: 41200, hours: null, activities: 210 }]);
+    f.componentRef.setInput('sportYears', [{ year: 2025, distanceKm: 2140, elevationGainM: 1, hours: 1, activities: 1 }]);
+    f.componentRef.setInput('contributionYears', [{ year: 2025, total: 700 }]);
     f.detectChanges();
-    const t = f.nativeElement.querySelector('.stats table') as HTMLTableElement;
-    expect(t.querySelector('caption')).toBeTruthy();
-    expect(t.querySelectorAll('tbody tr').length).toBe(1);
-    expect(t.querySelectorAll('tbody td')[2].textContent).toContain('non renseigné');
-    expect(t.querySelectorAll('tbody td')[0].textContent).toMatch(/2\s140/);
-    f.componentRef.setInput('sportYears', []);
-    f.detectChanges();
-    expect(f.nativeElement.querySelector('.stats')).toBeNull();
+    const el = f.nativeElement as HTMLElement;
+    expect(el.querySelector('section')!.firstElementChild!.tagName).toBe('APP-ENDURANCE-TWICE');
+    expect(el.querySelector('app-endurance-twice [data-count="700"]')).toBeTruthy();
+    expect(el.textContent).not.toContain('Les années en chiffres');
+    expect(el.querySelector('.stats')).toBeNull();
   });
 
-  it('stats annuelles : années dans l’ordre chronologique, chiffre animable par CountUp', () => {
+  it('photo des Baudets en plaque, logo du club à côté du nom, seules les autres courses sont repliées', () => {
     const f = TestBed.createComponent(JournalSection);
     f.componentRef.setInput('races', home.races);
-    f.componentRef.setInput('sportYears', [
-      { year: 2026, distanceKm: 4748, elevationGainM: 1, hours: 1, activities: 1 },
-      { year: 2023, distanceKm: 347, elevationGainM: 1, hours: 1, activities: 1 },
-    ]);
+    f.componentRef.setInput('contributions', home.contributions);
     f.detectChanges();
-    const rows = [...f.nativeElement.querySelectorAll('.stats tbody th .yr')].map((e: Element) => e.textContent);
-    expect(rows).toEqual(['2023', '2026']);
-    const counts = [...f.nativeElement.querySelectorAll('.stats [data-count]')] as HTMLElement[];
-    expect(counts.map((e) => e.dataset['count'])).toEqual(['347', '4748']);
-    expect(counts[0].getAttribute('aria-hidden')).toBe('true');
+    const el = f.nativeElement as HTMLElement;
+    expect(el.querySelector('app-photo-plates img')?.getAttribute('src')).toBe('img/baudets-nuit-1280.jpg');
+    expect(el.querySelector('.club')?.textContent).toContain('Les Baudets Dhinges');
+    expect(el.querySelector('.club img')?.getAttribute('src')).toBe('img/logo-baudets-320.jpg');
+    expect(el.querySelector('details app-contributions')).toBeNull();
+    expect(el.querySelector('section > app-contributions .carnet')).toBeTruthy();
+    expect(el.querySelector('details.more:not([open]) summary')?.textContent).not.toContain('graphe');
+    expect(el.querySelector('figure img[src*="finisher-cote-d-opale"]')).toBeTruthy();
   });
 
   it('affiche une course sans date sans planter', () => {
@@ -106,28 +104,19 @@ describe('JournalSection', () => {
 describe('P3Section', () => {
   beforeEach(() => TestBed.configureTestingModule({ providers: [provideRouter([])] }));
 
-  it('lien interne pour Oltre, externe pour HistoQuiz, commits/langages/push depuis la synchro, rien si null', () => {
+  it('terrain accent, index des seuls projets P3 : étude pour Oltre, dépôt pour HistoQuiz', () => {
     const f = TestBed.createComponent(P3Section);
     f.componentRef.setInput('projects', home.projects);
     f.detectChanges();
     const el = f.nativeElement as HTMLElement;
-    const [oltre, histo] = Array.from(el.querySelectorAll('article'));
+    expect(el.querySelector('section')!.classList).toContain('terrain-accent');
+    const [oltre, histo] = Array.from(el.querySelectorAll('ol.rows > li'));
+    expect(el.querySelectorAll('ol.rows > li').length).toBe(2);
     expect(oltre.querySelector('a.study')?.getAttribute('href')).toBe('/projets/oltre');
     expect(oltre.textContent).toContain('412 commits');
-    expect(oltre.textContent).toContain('Java, TypeScript, HTML');
-    expect(oltre.textContent).toMatch(/dernier push : oct\.? 2026/);
     expect(histo.querySelector('a.study')).toBeNull();
     expect(histo.querySelector('a')?.getAttribute('href')).toBe('https://github.com/cobroux/histoquiz');
     expect(histo.textContent).not.toContain('commits');
-  });
-
-  it('rend les projets P3 avec lien dépôt', () => {
-    const f = TestBed.createComponent(P3Section);
-    f.componentRef.setInput('projects', home.projects);
-    f.detectChanges();
-    const el = f.nativeElement as HTMLElement;
-    expect(el.querySelectorAll('article').length).toBe(2);
-    expect(el.querySelector('a[href="https://github.com/cobroux/oltre"]')).toBeTruthy();
     expect(el.textContent).not.toContain('puis IA');
   });
 
@@ -139,14 +128,20 @@ describe('P3Section', () => {
 });
 
 describe('P1Section', () => {
-  it('GFaim en carte avec étude de cas, fiches courtes en une ligne', () => {
+  it('bande compacte non sticky, index en une ligne : étude de cas en lien interne, sinon le dépôt, ni carte ni image', () => {
     TestBed.configureTestingModule({ providers: [provideRouter([])] });
     const f = TestBed.createComponent(P1Section);
     f.componentRef.setInput('home', home);
     f.detectChanges();
     const el = f.nativeElement as HTMLElement;
-    expect(el.querySelector('app-segment-card a.study')?.getAttribute('href')).toBe('/projets/gfaim');
-    expect(el.querySelectorAll('.shorts li').length).toBe(2);
-    expect(el.querySelector('.shorts a')?.getAttribute('href')).toBe('https://github.com/cobroux/cin-folie');
+    expect([...el.querySelectorAll('.index a')].map((a) => a.getAttribute('href'))).toEqual([
+      '/projets/gfaim',
+      'https://github.com/cobroux/cin-folie',
+      'https://github.com/cobroux/lambda-calcul',
+    ]);
+    expect(el.querySelector('.badge img')?.getAttribute('src')).toBe('img/badge-promo-ili-320.jpg');
+    expect(el.querySelector('app-photo-plates img')?.getAttribute('src')).toBe('img/promo-ili-640.jpg');
+    expect(el.querySelector('app-chapter-pin')?.classList).not.toContain('sticky');
+    expect(el.querySelector('h2')?.textContent).toContain('Les fondations');
   });
 });

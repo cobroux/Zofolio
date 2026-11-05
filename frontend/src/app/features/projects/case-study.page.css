@@ -147,20 +147,6 @@ dd {
   font-weight: 600;
 }
 
-.wall {
-  margin-block-start: var(--s-9);
-  padding-block: var(--s-9);
-  background: var(--surface);
-}
-.km {
-  color: var(--accent);
-  font: 900 clamp(4rem, 12vw, 9rem) / 0.85 var(--font-display);
-  font-stretch: 62%;
-}
-.wall h2 {
-  margin-block-end: var(--s-5);
-}
-
 .links {
   display: grid;
   gap: var(--s-1);
@@ -232,12 +218,6 @@ dd {
   .bib {
     grid-column: 9 / 13;
   }
-  .wrap {
-    padding-inline-end: calc(var(--margin) + 72px); /* même marge que l'accueil (rail du profil non rendu ici) */
-  }
-  .wall .wrap {
-    padding-inline-end: var(--margin);
-  }
   .grid {
     grid-template-columns: repeat(12, 1fr);
     column-gap: var(--gutter);
@@ -306,4 +286,15 @@ dd {
   .hero .timeline {
     grid-column: 9 / 13;
   }
+}
+
+.facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  margin: 0;
+  padding-inline-start: var(--s-5);
+}
+.facts li::marker {
+  color: var(--accent);
 }

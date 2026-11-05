@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, LOCALE_ID, inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, of, throwError } from 'rxjs';
-import { HomeResponse, ProjectSummary, Race } from './api.models';
+import { BuildInfo, HomeResponse, ProjectSummary, Race } from './api.models';
 
 /** Lectures du contenu ; toute erreur (réseau, timeout, 404) devient `null` : la section affiche « contenu indisponible ». */
 @Injectable({ providedIn: 'root' })
@@ -11,6 +11,8 @@ export class ContentApi {
   private readonly lang = inject(LOCALE_ID).slice(0, 2);
 
   home = () => this.get<HomeResponse>('home');
+  /** Hors langue : /api/build. Toute erreur devient `null` (les lignes du colophon sont alors retirées). */
+  build = () => this.http.get<BuildInfo>('/api/build').pipe(catchError(() => of(null)));
   races = () => this.get<Race[]>('races');
   projects = () => this.get<ProjectSummary[]>('projects');
   /** 404 -> `null` (slug inconnu) ; toute autre erreur (réseau, 5xx, timeout) est propagée : « API indisponible » n'est pas un 404. */

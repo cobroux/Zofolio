@@ -4,12 +4,12 @@ import { Router, provideRouter } from '@angular/router';
 import { of, firstValueFrom } from 'rxjs';
 import { AdminApi, ProjectAdmin, problem } from './admin.api';
 import { adminGuard } from './admin.routes';
-import { errorMap, fieldError, fieldId, mediaReason } from './admin.errors';
+import { errorMap, fieldError, fieldLabel, fieldId, mediaReason } from './admin.errors';
 import { validateProject } from './projects/project-form.page';
 
 const base = (over: Partial<ProjectAdmin> = {}): ProjectAdmin => ({
   slug: 'demo', tier: 'HIDDEN', stage: null, sortOrder: null, title: { fr: 'T' }, pitch: { fr: 'P' }, aiTag: 'HAND', stack: [], duration: null, note: null,
-  githubRepos: [], demoUrl: null, metaTitle: null, metaDescription: null, role: null, problem: null, decisions: null, wall: null, takeaway: null, aiNote: null, video: null, ...over,
+  githubRepos: [], demoUrl: null, metaTitle: null, metaDescription: null, role: null, problem: null, decisions: null, wall: null, contribution: null, takeaway: null, hindsight: null, aiNote: null, video: null, ...over,
 });
 
 describe('garde admin', () => {
@@ -57,4 +57,15 @@ describe('validateProject (aligné sur le back)', () => {
     expect(e).toMatchObject({ slug: 'Pattern', 'metaDescription.fr': 'Size', demoUrl: 'Pattern', 'title.fr': 'NotBlank', 'decisions.fr': 'Size', 'decisions.en[0].title': 'Size' });
   });
   it("le slug n'est pas revalidé en édition", () => expect(validateProject(base({ slug: 'X' }), false)).toEqual({}));
+});
+
+describe('rubriques de l’étude de cas', () => {
+  it('fieldLabel suit les libellés de la page', () => {
+    expect(fieldLabel('contribution.fr')).toBe('Ce que j’ai porté (français)');
+    expect(fieldLabel('hindsight.en')).toBe('Ce que je referais (anglais)');
+    expect(fieldLabel('takeaway.fr')).toBe('Résultat (français)');
+    expect(fieldLabel('wall.fr')).toBe('Contraintes (français)');
+    expect(fieldLabel('problem.fr')).toBe('Contexte (français)');
+    expect(fieldLabel('aiNote.fr')).toBe('Note sur l’IA (français)');
+  });
 });

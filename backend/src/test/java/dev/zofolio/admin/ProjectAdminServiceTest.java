@@ -23,7 +23,7 @@ class ProjectAdminServiceTest {
 
 	static ProjectAdmin project(List<String> stack, Map<String, List<Decision>> decisions, Integer sortOrder) {
 		return new ProjectAdmin("ok", null, null, sortOrder, Map.of("fr", "T"), Map.of("fr", "P"), "AI", stack, null, null,
-				null, null, null, null, null, null, decisions, null, null, null, null);
+				null, null, null, null, null, null, decisions, null, null, null, null, null, null);
 	}
 
 	@Test
@@ -38,7 +38,7 @@ class ProjectAdminServiceTest {
 	void blankValuesAreDroppedAndAValidProjectPasses() {
 		var in = project(List.of("Java"), null, 5);
 		assertThatThrownBy(() -> service.preview("fr", new ProjectAdmin("ok", null, null, 5, Map.of("fr", " "), Map.of("fr", "P"),
-				"AI", List.of(), null, null, null, null, null, null, null, null, null, null, null, null, null)))
+				"AI", List.of(), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)))
 				.isInstanceOf(ApiException.class); // title.fr blanc = absent
 		assertThat(in.stack()).containsExactly("Java");
 	}

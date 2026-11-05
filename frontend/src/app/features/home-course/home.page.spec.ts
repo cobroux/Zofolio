@@ -6,10 +6,14 @@ import fixture from '../../../testing/home.fixture.json';
 import { HomePage } from './home.page';
 
 async function render(respond: (req: import('@angular/common/http/testing').TestRequest) => void) {
-  TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting(), provideRouter([])] });
+  TestBed.configureTestingModule({
+    providers: [provideHttpClient(), provideHttpClientTesting(), provideRouter([])],
+  });
   const f = TestBed.createComponent(HomePage);
   f.detectChanges();
-  respond(TestBed.inject(HttpTestingController).expectOne('/api/fr/home'));
+  const http = TestBed.inject(HttpTestingController);
+  respond(http.expectOne('/api/fr/home'));
+  http.expectOne('/api/build').flush(null, { status: 404, statusText: 'Not Found' });
   await f.whenStable();
   f.detectChanges();
   return f.nativeElement as HTMLElement;
@@ -19,11 +23,19 @@ describe('HomePage', () => {
   it('rend le hero et les étapes depuis la fixture', async () => {
     const el = await render((r) => r.flush(fixture));
     expect(el.querySelector('h1')?.textContent).toBe('Enzo Leveque');
-    expect(el.querySelector('app-bib')?.getAttribute('aria-hidden')).toBe('true');
+    expect(el.querySelector('app-bib .num')?.getAttribute('aria-hidden')).toBe('true');
     expect(el.querySelector('#p1')?.textContent).toContain("Master ILI, Université d'Artois");
-    expect(el.querySelector('#p2')?.textContent).toContain('Mission de test');
+    expect(el.querySelector('#p2')?.textContent).toContain('Boursorama');
     expect(el.textContent).toContain('Brancardier aux urgences');
     expect(el.querySelector('a[href="/api/fr/cv"]')).toBeTruthy();
+  });
+
+  it('matériel avant P1 ; 3 captures en P1 et en P3', async () => {
+    const el = await render((r) => r.flush(fixture));
+    const kit = el.querySelector('#equipement')!;
+    expect(kit.compareDocumentPosition(el.querySelector('#p1')!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(el.querySelectorAll('#p3 app-shots li').length).toBe(3);
+    expect(el.querySelectorAll('#p1 app-shots li').length).toBe(3);
   });
 
   it('affiche « contenu indisponible » si l’API échoue', async () => {

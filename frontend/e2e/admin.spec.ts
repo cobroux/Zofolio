@@ -105,22 +105,27 @@ test.describe('admin connecté', () => {
     await expect(page.getByRole('alert').filter({ hasText: 'Type refusé' })).toBeVisible();
   });
 
-  test('stats : une année saisie apparaît dans le Journal (SSR), puis disparaît', async ({ page }) => {
+  test("stats : une année saisie apparaît dans « L'endurance, deux fois » (SSR), puis la valeur d'origine revient", async ({ page }) => {
+    const save = async (km: string, gain: string, hours: string, activities: string) => {
+      await page.getByLabel('Année', { exact: true }).fill('2024');
+      await page.getByLabel('Kilomètres').fill(km);
+      await page.getByLabel('D+ (m)').fill(gain);
+      await page.getByLabel('Heures').fill(hours);
+      await page.getByLabel('Activités').fill(activities);
+      await page.getByRole('button', { name: 'Enregistrer' }).click();
+      await expect(page.getByRole('status').filter({ hasText: '2024 enregistrée' })).toBeVisible();
+    };
     await login(page);
     await page.getByRole('link', { name: 'Stats' }).click();
-    await page.getByLabel('Année', { exact: true }).fill('2001');
-    await page.getByLabel('Kilomètres').fill('1234');
-    await page.getByRole('button', { name: 'Enregistrer' }).click();
-    await expect(page.getByRole('status').filter({ hasText: '2001 enregistrée' })).toBeVisible();
+    await save('1234', '13675', '184', '164'); // année semée (Garmin) : valeurs d'origine rétablies dans le finally
     try {
       const html = await (await page.request.get('/fr/')).text(); // rendu serveur, sans JS
-      expect(html).toContain('Les années en chiffres');
+      expect(html).toContain("L'endurance, deux fois");
+      expect(html).not.toContain('Les années en chiffres');
       expect(html).toMatch(/1\s234/);
     } finally {
-      await page.getByRole('button', { name: /^Supprimer 2001/ }).click();
-      await page.getByRole('button', { name: /^Confirmer/ }).click();
-      await expect(page.getByRole('status').filter({ hasText: '2001 supprimée' })).toBeVisible();
+      await save('2191', '13675', '184', '164');
     }
-    expect(await (await page.request.get('/fr/')).text()).not.toMatch(/1\s234/); // les années semées (Garmin) restent
+    expect(await (await page.request.get('/fr/')).text()).not.toMatch(/1\s234/);
   });
 });

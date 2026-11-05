@@ -45,6 +45,8 @@ class GithubSyncIT {
 	GithubRepoRepository repos;
 	@Autowired
 	GithubContributionsRepository contributions;
+	@Autowired
+	GithubContributionYearRepository years;
 	@LocalServerPort
 	int port;
 
@@ -84,6 +86,7 @@ class GithubSyncIT {
 		status.set(200);
 		repos.deleteAll();
 		contributions.deleteAll();
+		years.deleteAll();
 	}
 
 	@Test
@@ -96,6 +99,9 @@ class GithubSyncIT {
 		GithubContributions c = contributions.findById(GithubContributions.ID).orElseThrow();
 		assertThat(c.total).isEqualTo(4);
 		assertThat(c.counts).containsExactly(0, 3, 1);
+		assertThat(years.findAllByOrderByYearAsc()).extracting(y -> y.year, y -> y.total)
+				.startsWith(org.assertj.core.groups.Tuple.tuple(2023, 4))
+				.hasSize(java.time.Year.now().getValue() - 2022);
 
 		status.set(500);
 		service.sync();

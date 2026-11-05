@@ -14,8 +14,8 @@ interface AdminDto {
 			Map<String, String> pitch, String aiTag, List<String> stack, Map<String, String> duration,
 			Map<String, String> note, List<String> githubRepos, String demoUrl, Map<String, String> metaTitle,
 			Map<String, String> metaDescription, Map<String, String> role, Map<String, String> problem,
-			Map<String, List<Decision>> decisions, Map<String, String> wall, Map<String, String> takeaway,
-			Map<String, String> aiNote, VideoAdmin video) {}
+			Map<String, List<Decision>> decisions, Map<String, String> wall, Map<String, String> contribution,
+			Map<String, String> takeaway, Map<String, String> hindsight, Map<String, String> aiNote, VideoAdmin video) {}
 
 	record RaceAdmin(Long id, String kind, java.time.LocalDate date, Map<String, String> name, java.math.BigDecimal distanceKm,
 			Integer elevationGainM, Integer durationS, Map<String, String> note, Boolean personalRecord, Integer sortOrder) {}

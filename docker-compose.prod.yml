@@ -21,6 +21,9 @@ services:
     env_file: .env
     environment:
       MEDIA_DIR: /data/media
+      # Dos du dossard (GET /api/build) : posés par deploy.yml, vides sinon.
+      GIT_SHA: ${GIT_SHA:-}
+      DEPLOYED_AT: ${DEPLOYED_AT:-}
     volumes:
       - media:/data/media
     depends_on:

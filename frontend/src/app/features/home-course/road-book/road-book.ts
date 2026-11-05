@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, computed, afterNextRender, inject, viewChild, ElementRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, viewChild, ElementRef } from '@angular/core';
 import { CHECKPOINTS } from '../profile.data';
-import { CHECKPOINT_IDS, CourseProgress, TOTAL_KM, altitudeRatioAt, formatKm, profilePath } from '../course-progress';
+import { CHECKPOINT_IDS, CourseProgress, formatKm } from '../course-progress';
+import { liveValues } from '../live-values';
 
 const STEPS = {
   depart: { name: $localize`Départ`, line: $localize`Ingénieur fullstack, Java et Angular.` },
@@ -18,23 +19,17 @@ const STEPS = {
 })
 export class RoadBook {
   protected readonly progress = inject(CourseProgress);
-  protected readonly d = profilePath(false);
   protected readonly formatKm = formatKm;
   protected readonly steps = CHECKPOINT_IDS.map((id) => ({ id, km: CHECKPOINTS[id], ...STEPS[id] }));
-  protected readonly label = computed(() => {
-    const [km, total] = [formatKm(this.progress.scrollKm()), formatKm(TOTAL_KM)];
-    return $localize`Ouvrir le road book : km ${km} sur ${total}`;
-  });
-  protected readonly pos = computed(() => ({ p: this.progress.scrollKm() / TOTAL_KM, a: altitudeRatioAt(this.progress.scrollKm()) }));
+  /** Sur mobile le bandeau ne montre que le km : le road book donne toutes les valeurs en direct. */
+  protected readonly live = computed(() => liveValues(this.progress.scrollKm()));
   private target: string | null = null;
+  private opener: HTMLElement | null = null;
   private readonly dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
-  private readonly trigger = viewChild.required<ElementRef<HTMLButtonElement>>('trigger');
 
-  constructor() {
-    afterNextRender(() => this.progress.start());
-  }
-
-  protected open(): void {
+  /** Ouvert par le bouton « Parcours » du bandeau de suivi : `opener` reprend le focus à la fermeture. */
+  open(opener: HTMLElement): void {
+    this.opener = opener;
     this.dialog().nativeElement.showModal();
   }
 
@@ -49,6 +44,6 @@ export class RoadBook {
     const section = this.target ? document.getElementById(this.target) : null;
     this.target = null;
     if (section) section.tabIndex = -1;
-    (section ?? this.trigger().nativeElement).focus({ preventScroll: true });
+    (section ?? this.opener)?.focus({ preventScroll: true });
   }
 }

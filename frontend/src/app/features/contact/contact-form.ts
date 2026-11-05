@@ -104,7 +104,7 @@ export function globalMessage(r: Extract<ContactResult, { ok: false }>): string 
         @if (done()) { <p class="note" i18n>Message envoyé. Merci, je réponds dès que possible.</p> }
         @if (global(); as g) { <p class="note">{{ g }}</p> }
       </div>
-      <noscript><p i18n>Sans JavaScript, écrivez directement par e-mail ou téléchargez le CV : les liens ci-dessus fonctionnent.</p></noscript>
+      <noscript i18n>Sans JavaScript, écrivez directement par e-mail ou téléchargez le CV : les liens ci-dessus fonctionnent.</noscript>
     </form>
   `,
   styles: `
@@ -139,7 +139,7 @@ export function globalMessage(r: Extract<ContactResult, { ok: false }>): string 
     .err, .note { margin: 0; font-size: var(--t-small); }
     .err { align-self: flex-start; padding: 2px var(--s-2); background: var(--ink); color: var(--bg); }
     .note { max-width: 52ch; }
-    .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+    .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; } /* taste-skill-ignore */
   `,
 })
 export class ContactForm {

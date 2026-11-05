@@ -1,0 +1,62 @@
+<style>
+  .row{display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap}
+  .ph{position:relative;width:300px;height:600px;background:#162238;color:#edeff4;font-family:system-ui,sans-serif;border:10px solid #000;border-radius:28px;overflow:hidden}
+  .topo{position:absolute;inset:0;opacity:.12;background:repeating-radial-gradient(ellipse at 80% 30%,transparent 0 18px,#a8b0c0 18px 19px)}
+  .sticky{position:absolute;top:0;left:0;right:0;background:#0e1626;padding:10px 14px;display:flex;gap:10px;align-items:baseline;z-index:2}
+  .sticky b{font:800 26px/1 system-ui;color:#ff8a2b}.sticky span{font:700 14px system-ui}
+  .c{position:absolute;top:56px;left:14px;right:14px}
+  .c h3{font:800 30px/0.95 system-ui;margin:6px 0;letter-spacing:-.03em}
+  .c .s{font-size:12px;color:#a8b0c0}
+  .c p{font-size:14px;line-height:1.45}.c p b{color:#ff8a2b}
+  .img{height:150px;background:linear-gradient(#1f6fd1,#2a7d4f);margin:10px -14px 4px}
+  .img2{height:90px;width:55%;background:#7a8aa3;margin:-40px 0 0 auto;outline:6px solid #162238;position:relative}
+  .cap{font-size:10px;color:#a8b0c0}
+  .toast{position:absolute;left:12px;right:12px;bottom:62px;background:#edeff4;color:#0e1626;padding:8px 10px;font:700 13px system-ui}
+  .toast small{display:block;font:500 11px system-ui;color:#4a5568}
+  .band{position:absolute;left:0;right:0;bottom:0;height:52px;background:#0b1220;border-top:2px solid #ff8a2b;display:flex;align-items:center;gap:10px;padding:0 12px;font-size:12px}
+  .band .km{font:800 18px system-ui;color:#ff8a2b}
+  .band .bar{flex:1;height:4px;background:#3a4a66;position:relative}.band .bar i{position:absolute;left:0;top:0;bottom:0;width:55%;background:#ff8a2b}
+  .band .btn{border:1px solid #edeff4;padding:4px 8px;font-weight:700}
+  .sheet{width:300px;font-family:system-ui,sans-serif}
+  .rb{background:#0e1626;color:#edeff4;padding:14px;border-radius:4px}
+  .rb div{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #26324a;font-size:14px}
+  .rb .on{color:#ff8a2b;font-weight:700}
+  ul{font-size:14px;line-height:1.6;max-width:560px}
+</style>
+
+<h2>La même étape P2 sur téléphone</h2>
+<p class="subtitle">À gauche : l'écran pendant la lecture. À droite : ce qui s'ouvre quand on touche « Parcours ».</p>
+
+<div class="row">
+  <div class="ph">
+    <div class="topo"></div>
+    <div class="sticky"><b>P2</b><span>La plus longue étape</span></div>
+    <div class="c">
+      <div class="s">km 44 · Worldline · 2023 → 2025</div>
+      <h3>2,5 ans sur une appli de trading</h3>
+      <div class="img"></div><div class="img2"></div>
+      <div class="cap">Seclin, l'équipe TOM</div>
+      <p>J'ai fait évoluer <b>TOM</b>, qui transmet aux marchés les ordres de bourse de Boursorama…</p>
+    </div>
+    <div class="toast">Pointage P2 · 04:12:08<small>+2,5 ans d'expérience</small></div>
+    <div class="band"><span class="km">km 44</span><span class="bar"><i></i></span><span class="btn">Parcours</span></div>
+  </div>
+
+  <div class="sheet">
+    <div class="rb">
+      <div><span>Départ</span><span>km 0</span></div>
+      <div><span>P1 · Fondations</span><span>km 20</span></div>
+      <div class="on"><span>P2 · Worldline ◂ ici</span><span>km 44</span></div>
+      <div><span>P3 · Projets perso</span><span>km 58,2</span></div>
+      <div><span>Arrivée · Contact</span><span>km 79,4</span></div>
+    </div>
+  </div>
+</div>
+
+<ul>
+  <li><b>Chapitre épinglé</b> → une fine barre en haut (« P2 · La plus longue étape ») au lieu du grand titre à gauche.</li>
+  <li><b>Photos</b> → pleine largeur, la 2ᵉ chevauche légèrement la 1ʳᵉ ; le texte reste en une colonne.</li>
+  <li><b>Bandeau du bas</b> → compact : km, barre de progression, bouton « Parcours ». Pas de survol au doigt : un toucher ouvre le road book (déjà existant sur mobile) pour sauter à une étape.</li>
+  <li><b>Pointage</b> → petite bannière au-dessus du bandeau, 2 secondes.</li>
+  <li><b>Fond topo</b> → fixe sur mobile (batterie, fluidité) ; tout est aussi désactivé si « réduire les animations » est actif.</li>
+</ul>

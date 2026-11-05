@@ -38,8 +38,8 @@ import { Reveal } from '../../../shared/reveal/reveal';
         </g>
         <g appReveal="3">
           <path class="d-a d-hot" d="M656 155H728" marker-end="url(#trading-hh-h)" />
-          <text class="d-s" x="662" y="96" i18n>envoi</text>
-          <text class="d-s" x="662" y="118" i18n>asynchrone</text>
+          <text class="d-s" x="692" y="76" text-anchor="middle" i18n>envoi</text>
+          <text class="d-s" x="692" y="98" text-anchor="middle" i18n>asynchrone</text>
           <rect class="d-box" x="730" y="105" width="170" height="100" />
           <text class="d-t" x="746" y="138" i18n>Bourse</text>
           <text class="d-s" x="746" y="162" i18n>exécute l'ordre</text>
