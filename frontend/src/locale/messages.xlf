@@ -1288,6 +1288,62 @@
           <context context-type="linenumber">300</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="5618287776451565416" datatype="html">
+        <source>Équipement</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2760776462731080522" datatype="html">
+        <source>Ce que je maîtrise, et où ça a tourné.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="891718890825947806" datatype="html">
+        <source>Back end</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
+          <context context-type="linenumber">101</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2368525224699166515" datatype="html">
+        <source>Front end</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
+          <context context-type="linenumber">110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7140571963801415410" datatype="html">
+        <source>Données</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
+          <context context-type="linenumber">118</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6222879640212347572" datatype="html">
+        <source>Outillage et déploiement</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
+          <context context-type="linenumber">122</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1925401333221122195" datatype="html">
+        <source>Tous les projets</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
+          <context context-type="linenumber">125</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8624755520436938347" datatype="html">
+        <source>VM Oracle : Oltre, Zotracker, Zofolio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
+          <context context-type="linenumber">127</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="40690728452210554" datatype="html">
         <source>Les fondations</source>
         <context-group purpose="location">
