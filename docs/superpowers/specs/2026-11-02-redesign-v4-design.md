@@ -148,7 +148,7 @@ Courbes : `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)`, `--ease-io: cubic-bezier
 
 | Mouvement | But | Comment | Durée, courbe | Mouvement réduit |
 | --- | --- | --- | --- | --- |
-| Bandeau : km, altitude, D+ | Orientation (signature) | Valeurs pilotées par le scroll, écrites par rAF seulement quand le dixième change ; la trace orange se remplit par `transform: scaleX` d'un masque | Linéaire, suit le scroll | Identique (un chiffre qui change n'est pas un mouvement) ; la trace saute sans transition |
+| Bandeau : km, altitude, D+ | Orientation (signature) | Valeurs pilotées par le scroll, écrites par rAF. Le km s'affiche en rouleaux : chaque chiffre glisse verticalement (`transform: translateY`) vers sa nouvelle valeur, seulement quand le dixième change ; altitude, D+ et heure changent sans animation. La trace orange se remplit par `transform: scaleX` d'un masque | Linéaire, suit le scroll ; rouleaux 260 ms `--ease-out` | Changement instantané, sans glissement ; la trace saute sans transition |
 | Ligne de pointage du bandeau | Récompense, rythme | Le bandeau s'étend d'une ligne par `transform` ; elle reste 2,4 s puis se replie plus vite (180 ms). Une fois par étape et par session (`sessionStorage`, lu côté navigateur seulement, l'état SSR est replié) | Entrée 320 ms `--ease-out` | Ligne affichée sans déplacement |
 | Chapitre épinglé (P2) | Repère | `position: sticky`, pas d'animation | — | — |
 | Coupe de terrain | Changement de chapitre | Coupe nette, sans transition | — | — |
@@ -160,7 +160,7 @@ Courbes : `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)`, `--ease-io: cubic-bezier
 | Boutons, liens, lignes | Feedback | `scale(0.97)` au `:active` ; soulignement au survol | 140 / 160 ms | Conservé |
 | Accueil → étude | Continuité | Fondu (View Transition seulement avec resolver, §6) | 200 ms | Aucun |
 
-**Pas animés** : la navigation au clavier et le focus, le texte pendant la lecture, les chiffres du dossard et du colophon, le changement de langue, les courbes de niveau, et tout ce qui revient plus de cinq fois par session. Pas de parallaxe, pas de scroll-jacking, pas de curseur personnalisé, pas de particules.
+**Pas animés** : la navigation au clavier et le focus, le texte pendant la lecture, les chiffres du dossard et du colophon, le changement de langue, les courbes de niveau, et tout ce qui revient plus de cinq fois par session. Le km du bandeau est la seule exception à « un chiffre qui change n'est pas un mouvement » : ses rouleaux glissent (ligne Bandeau ci-dessus), même s'il revient plus de cinq fois par session. Pas de parallaxe, pas de scroll-jacking, pas de curseur personnalisé, pas de particules.
 
 ## 8. Composants (Angular, dans le code existant)
 
