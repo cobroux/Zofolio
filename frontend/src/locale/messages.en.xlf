@@ -838,20 +838,20 @@
           <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7826658690172855960" datatype="html">
-        <source>Les deux courbes montent. Ce n&apos;est pas une coïncidence, c&apos;est une méthode.</source>
+      <trans-unit id="5395927123734263540" datatype="html">
+        <source> Les deux courbes montent. Ce n&apos;est pas une coïncidence, c&apos;est une méthode. </source>
         <target state="translated">Both lines climb. It isn&apos;t a coincidence, it&apos;s a method.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
-          <context context-type="linenumber">41,42</context>
+          <context context-type="linenumber">65,66</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4846726600125071564" datatype="html">
-        <source>Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km : course et vélo. Contributions GitHub : commits, demandes de fusion, tickets et revues, année en cours incluse.</source>
+      <trans-unit id="2939977379070585055" datatype="html">
+        <source> Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km : course et vélo. Contributions GitHub : commits, demandes de fusion, tickets et revues, année en cours incluse. </source>
         <target state="translated">Yearly totals only: no route, no heart rate, no health data. Km: running and cycling. GitHub contributions: commits, pull requests, issues and reviews, current year included.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
-          <context context-type="linenumber">42,43</context>
+          <context context-type="linenumber">69,71</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6413514884883484792" datatype="html">
@@ -1279,12 +1279,12 @@
           <context context-type="linenumber">34,35</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2212520090994791218" datatype="html">
-        <source>32 courses terminées, toujours un peu plus loin. Même méthode qu&apos;au travail : mesurer, ajuster, recommencer.</source>
+      <trans-unit id="1752773440582032808" datatype="html">
+        <source> 32 courses terminées, toujours un peu plus loin. Même méthode qu&apos;au travail : mesurer, ajuster, recommencer. </source>
         <target state="translated">32 races finished, always a bit further. Same method as at work: measure, adjust, repeat.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">35,36</context>
+          <context context-type="linenumber">42,43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4886577232727235058" datatype="html">
@@ -1563,20 +1563,20 @@
           <context context-type="linenumber">14,15</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7574325606316659878" datatype="html">
-        <source>Ingénieur fullstack Java/Spring + Angular, chez Aubay après 2,5 ans de trading chez Worldline</source>
+      <trans-unit id="4020635115866003866" datatype="html">
+        <source> Ingénieur fullstack Java/Spring + Angular, chez Aubay après 2,5 ans de trading chez Worldline </source>
         <target state="translated">Java/Spring + Angular full-stack engineer at Aubay, after 2.5 years in trading at Worldline</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
-          <context context-type="linenumber">14,15</context>
+          <context context-type="linenumber">15,16</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6677815290942028406" datatype="html">
-        <source>2,5 ans sur une plateforme d&apos;ordres de bourse en production · prototype move2cloud vers RabbitMQ · Angular SSR et Spring Boot 4 en production ici même</source>
+      <trans-unit id="2516568423947938776" datatype="html">
+        <source> 2,5 ans sur une plateforme d&apos;ordres de bourse en production · prototype move2cloud vers RabbitMQ · Angular SSR et Spring Boot 4 en production ici même </source>
         <target state="translated">2.5 years on a production stock-order platform · move2cloud prototype for RabbitMQ · Angular SSR and Spring Boot 4 in production right here</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
-          <context context-type="linenumber">15,16</context>
+          <context context-type="linenumber">19,20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8615650319363734991" datatype="html">
@@ -2987,12 +2987,12 @@
           <context context-type="linenumber">81</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7978693811374367682" datatype="html">
-        <source>2,5 ans sur une plateforme d&apos;ordres de bourse (Boursorama, Copartis), en stage puis en alternance. Ici, une erreur ne se voit pas dans un log : elle se voit dans un ordre.</source>
+      <trans-unit id="2377883520840299694" datatype="html">
+        <source> 2,5 ans sur une plateforme d&apos;ordres de bourse (Boursorama, Copartis), en stage puis en alternance. Ici, une erreur ne se voit pas dans un log : elle se voit dans un ordre. </source>
         <target state="translated">2.5 years on a stock-order platform (Boursorama, Copartis), as an intern then a work-study engineer. Here, a mistake doesn&apos;t show up in a log: it shows up in an order.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">15,16</context>
+          <context context-type="linenumber">22,23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8310543467411074866" datatype="html">
@@ -3003,12 +3003,12 @@
           <context context-type="linenumber">16,17</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6612987998535837364" datatype="html">
-        <source>Depuis juin 2026 : ingénieur d&apos;études chez Aubay, back end Java/Spring Boot pour les Restos du Cœur.</source>
+      <trans-unit id="6780660996676898149" datatype="html">
+        <source> Depuis juin 2026 : ingénieur d&apos;études chez Aubay, back end Java/Spring Boot pour les Restos du Cœur. </source>
         <target state="translated">Since June 2026: software engineer at Aubay, Java/Spring Boot back end for the Restos du Cœur charity.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">22,23</context>
+          <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6388259543756072137" datatype="html">
@@ -3081,6 +3081,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
           <context context-type="linenumber">127</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2837755177616212556" datatype="html">
+        <source> Parcours </source>
+        <target state="translated">Course</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.html</context>
+          <context context-type="linenumber">64,65</context>
         </context-group>
       </trans-unit>
     </body>
