@@ -97,10 +97,11 @@ nav {
   margin-inline: 22px;
 }
 /* Repère du tracé : le point y est placé en px mesurés (tracking-band.ts). */
+/* 22 px : le point bas du tracé et son repère (Arrivée, 414 m) restent au-dessus des libellés posés en bas de la piste de 44 px. */
 .trace {
   position: absolute;
   inset: 4px 0 auto;
-  height: 30px;
+  height: 22px;
 }
 svg {
   width: 100%;
@@ -169,7 +170,7 @@ li a {
 /* Pointage posé sur le tracé, à son altitude réelle. */
 .mark {
   position: absolute;
-  top: calc(4px + (1 - var(--a)) * 30px - 3px);
+  top: calc(4px + (1 - var(--a)) * 22px - 3px);
   left: calc(50% - 3px);
   width: 6px;
   height: 6px;

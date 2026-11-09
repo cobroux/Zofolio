@@ -4,12 +4,13 @@ import { HomeResponse } from '../../../core/api/api.models';
 import { CAPTURES } from '../project-index/project-index';
 import { Aid } from '../../../shared/aid/aid';
 import { ChapterPin } from '../../../shared/chapter-pin/chapter-pin';
+import { ContourField } from '../../../shared/contour-field/contour-field';
 import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
 
 /** P1 (Les fondations, km 20), compacte (spec §6) : une bande, puis l'index des projets d'école ; suivie du ravitaillement R1. `home` null = API en échec. */
 @Component({
   selector: 'app-p1',
-  imports: [Aid, ChapterPin, PhotoPlates, RouterLink],
+  imports: [Aid, ChapterPin, ContourField, PhotoPlates, RouterLink],
   template: `
     <section id="p1" class="terrain-paper">
       <app-chapter-pin
@@ -72,6 +73,11 @@ import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
                 <span class="thumb" aria-hidden="true">
                   @if (captures[p.slug]; as src) {
                     <img [src]="src" alt="" loading="lazy" />
+                  } @else {
+                    <app-contour-field [levels]="6 + ($index % 5)" />
+                    <span class="mark">{{
+                      p.languages[0] ?? p.stack[0] ?? p.title.charAt(0)
+                    }}</span>
                   }
                 </span>
                 @if (p.tier === 'CASE_STUDY') {
@@ -178,10 +184,24 @@ import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
       min-width: 0;
     }
     .thumb {
-      display: block;
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      align-items: flex-end;
       aspect-ratio: 16 / 10;
       overflow: hidden;
       background: color-mix(in srgb, var(--ink) 8%, transparent);
+    }
+    /* Sans capture : courbes de niveau (densité variable par carte) et langage en grand, plutôt qu'un aplat vide. */
+    .thumb app-contour-field {
+      opacity: 0.22;
+    }
+    .thumb .mark {
+      padding: var(--s-3);
+      color: var(--ink-2);
+      font: 800 clamp(2rem, 3.5vw, 3rem) / 0.9 var(--font-display);
+      font-stretch: 72%;
+      letter-spacing: -0.02em;
     }
     .thumb img {
       display: block;
