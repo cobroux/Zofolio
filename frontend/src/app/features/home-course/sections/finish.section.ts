@@ -66,7 +66,7 @@ const ROWS = (['p1', 'p2', 'p3', 'arrivee'] as const).map((id) => ({
         <div class="actions">
           <a class="mail" href="mailto:enzo.lvq12@gmail.com">enzo.lvq12&#64;gmail.com</a>
           <a class="btn" [href]="cv" i18n>Télécharger le CV</a>
-          <a class="btn" href="https://www.linkedin.com/in/enzo-leveque1" rel="noopener"
+          <a class="link" href="https://www.linkedin.com/in/enzo-leveque1" rel="noopener"
             ><svg
               viewBox="0 0 24 24"
               width="20"
@@ -80,7 +80,7 @@ const ROWS = (['p1', 'p2', 'p3', 'arrivee'] as const).map((id) => ({
               /></svg
             >LinkedIn</a
           >
-          <a class="btn" href="https://github.com/cobroux" rel="noopener"
+          <a class="link" href="https://github.com/cobroux" rel="noopener"
             ><svg
               viewBox="0 0 24 24"
               width="20"
@@ -226,16 +226,21 @@ const ROWS = (['p1', 'p2', 'p3', 'arrivee'] as const).map((id) => ({
       font-size: var(--t-lead);
       font-weight: 600;
     }
+    /* Un seul orange dans l'Arrivée : l'envoi du formulaire. Le CV passe en contour, LinkedIn / GitHub en liens. */
     .btn {
       justify-content: center;
       gap: var(--s-2);
       padding: 0 var(--s-3);
       min-height: 48px;
-      background: var(--accent);
-      color: var(--on-accent);
+      border: 2px solid currentColor;
       font-weight: 600;
       text-decoration: none;
       transition: transform 140ms var(--ease-out);
+    }
+    .link {
+      justify-content: center;
+      gap: var(--s-2);
+      font-weight: 600;
     }
     .btn:active {
       transform: scale(0.97);

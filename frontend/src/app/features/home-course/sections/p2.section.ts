@@ -60,11 +60,13 @@ import { ChapterPin } from '../../../shared/chapter-pin/chapter-pin';
       padding: 0;
       list-style: none;
     }
-    .stack li {
-      padding: var(--s-1) var(--s-3);
-      border: 1px solid var(--line-muted);
-      border-radius: 999px;
-      font-size: var(--t-small);
+    /* Stack en texte séparé par des points médians : pas de pilules (charte : 0 arrondi). */
+    .stack {
+      color: var(--ink-2);
+    }
+    .stack li + li::before {
+      content: '·';
+      margin-inline-end: var(--s-2);
     }
     .study {
       display: inline-flex;

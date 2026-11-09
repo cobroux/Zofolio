@@ -112,7 +112,7 @@ describe('FinishSection', () => {
       expect(el.querySelectorAll(`a[href="${href}"]`), href).toHaveLength(1);
     }
     expect(el.querySelectorAll('a[href$="/cv"]')).toHaveLength(1);
-    const logos = el.querySelectorAll('a.btn svg');
+    const logos = el.querySelectorAll('a.link svg');
     expect(logos).toHaveLength(2);
     logos.forEach((s) => {
       expect(s.getAttribute('aria-hidden')).toBe('true');

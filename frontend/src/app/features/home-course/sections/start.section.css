@@ -90,6 +90,40 @@ app-bib {
   margin-inline-end: var(--s-4);
 }
 
+/* Mobile : le dossard (la signature) remonte dans le premier écran, juste après le titre ; photo en paysage pour tenir. */
+@media (max-width: 767px) {
+  section {
+    gap: var(--s-4);
+    padding: var(--s-7) var(--margin) var(--s-6);
+  }
+  .text {
+    display: contents;
+  }
+  h1 {
+    order: 1;
+  }
+  .title {
+    order: 2;
+  }
+  .plate {
+    order: 3;
+    padding: var(--s-2) 0 var(--s-2);
+  }
+  .cta {
+    order: 4;
+  }
+  .proof {
+    order: 5;
+  }
+  picture {
+    aspect-ratio: 3 / 2;
+  }
+  /* Recadrage plus bas : le visage remonte au-dessus du dossard qui chevauche le bas de la photo. */
+  picture img {
+    object-position: center 42%;
+  }
+}
+
 @media (min-width: 768px) {
   h1 {
     font-size: 10vw;

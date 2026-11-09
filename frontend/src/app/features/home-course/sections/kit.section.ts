@@ -53,12 +53,11 @@ interface Tool {
       grid-template-columns: minmax(0, 1fr);
       gap: var(--s-7) var(--gutter);
     }
+    /* Intitulés en texte, sans capitales espacées (charte). */
     h3 {
       margin: 0 0 var(--s-4);
-      font-size: var(--t-small);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--ink-2);
+      font-size: var(--t-lead);
+      color: var(--accent);
     }
     ul {
       display: flex;

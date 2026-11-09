@@ -51,7 +51,7 @@ test('arrivée + dos du dossard : chaque destination de contact une seule fois, 
   for (const href of ['mailto:enzo.lvq12@gmail.com', 'https://github.com/cobroux', 'https://www.linkedin.com/in/enzo-leveque1', '/api/fr/cv']) {
     await expect(zone.locator(`a[href="${href}"]`), href).toHaveCount(1);
   }
-  await expect(zone.locator('a.btn svg[aria-hidden="true"]')).toHaveCount(2);
+  await expect(zone.locator('a.link svg[aria-hidden="true"]')).toHaveCount(2);
   await expect(zone.getByRole('link', { name: 'GitHub', exact: true })).toBeVisible();
   await expect(zone.getByRole('link', { name: 'LinkedIn', exact: true })).toBeVisible();
 });
