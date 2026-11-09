@@ -25,7 +25,13 @@ interface Tool {
             <ul>
               @for (t of g.tools; track t.name) {
                 <li>
-                  <img [src]="'img/stack/' + t.icon + '.svg'" alt="" width="32" height="32" loading="lazy" />
+                  <img
+                    [src]="'img/stack/' + t.icon + '.svg'"
+                    alt=""
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                  />
                   <span class="name">{{ t.name }}</span>
                   <span class="where small">{{ t.where }}</span>
                 </li>
@@ -75,6 +81,11 @@ interface Tool {
     }
     img {
       grid-row: span 2;
+    }
+    /* Logo noir sur fond nuit (contraste < 3:1) : posé sur une plaque papier. */
+    img[src$='linux.svg'] {
+      padding: 3px;
+      background: #f6f3ec;
     }
     .name {
       font-weight: 600;

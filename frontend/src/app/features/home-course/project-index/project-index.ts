@@ -18,7 +18,8 @@ import { splitParts } from '../../../shared/split/split';
 /** Captures d'interface réelles (spec §5 bis) pour un projet sans vidéo. */
 export const CAPTURES: Record<string, string> = {
   gfaim: 'media/gfaim-shot-1.png',
-  'cin-folie': 'media/cinfolie-shot.webp',
+  // v2 : recadrée sous la barre du site (filtre « NSFW », connexion) ; nouveau nom car /media est mis en cache un an.
+  'cin-folie': 'media/cinfolie-shot-v2.webp',
   'calculateur-dpe': 'media/dpe-shot.webp',
   oltre: 'media/oltre-1.webp',
   zotracker: 'media/zotracker-1.webp',

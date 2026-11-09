@@ -216,6 +216,24 @@ import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
       min-height: var(--target);
       color: var(--ink);
       font: 800 1.25rem / 1.1 var(--font-display);
+      font-stretch: 72%;
+    }
+    /* Mobile : index compact en deux colonnes, vignettes plus basses, pour ne pas repousser Worldline de plusieurs écrans. */
+    @media (max-width: 767px) {
+      .index {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--s-3);
+      }
+      .thumb {
+        aspect-ratio: 3 / 2;
+      }
+      .thumb .mark {
+        padding: var(--s-2);
+        font-size: 1.75rem;
+      }
+      .name {
+        font-size: 1.0625rem;
+      }
     }
     .name::after {
       content: '';

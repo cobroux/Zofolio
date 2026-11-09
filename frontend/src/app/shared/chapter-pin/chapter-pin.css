@@ -15,8 +15,11 @@
   font-stretch: 62%;
   color: var(--accent);
 }
+/* Même chasse que les autres titres d'affichage (72 %), sinon Archivo sort en largeur 100 %. */
 .title {
-  font: 700 1.5rem / 1.15 var(--font-display);
+  font: 800 1.5rem / 1.15 var(--font-display);
+  font-stretch: 72%;
+  letter-spacing: -0.02em;
 }
 /* Compacte (non sticky) : repère de taille moyenne, pas monumental. */
 :host(:not(.sticky)) .mark {
@@ -37,9 +40,11 @@
     top: 0;
     z-index: 5;
   }
+  /* La barre va jusqu'aux bords mais son texte retombe sur la marge de la section (pas marge + gouttière). */
   :host(.sticky) .pin {
     height: 48px;
-    padding-inline: var(--gutter, 1rem);
+    margin-inline: calc(-1 * var(--margin));
+    padding-inline: var(--margin);
     background: var(--bg);
   }
   .mark {

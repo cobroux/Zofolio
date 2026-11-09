@@ -33,8 +33,9 @@ import { Experience } from '../../core/api/api.models';
       padding: var(--s-7) var(--margin);
       background: var(--surface);
     }
+    /* Un cran sous les titres de chapitre : un ravito n'est pas un pointage. */
     .d {
-      font: 800 2.25rem / 0.9 var(--font-display);
+      font: 800 1.5rem / 0.9 var(--font-display);
       font-stretch: 72%;
       letter-spacing: -0.02em;
     }
@@ -55,5 +56,7 @@ import { Experience } from '../../core/api/api.models';
 export class Aid {
   readonly km = input.required<string>();
   readonly aid = input<Experience | undefined>();
-  protected readonly meta = computed(() => [this.aid()?.period, this.aid()?.note].filter((x) => x).join(' · '));
+  protected readonly meta = computed(() =>
+    [this.aid()?.period, this.aid()?.note].filter((x) => x).join(' · '),
+  );
 }
