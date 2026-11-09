@@ -42,6 +42,8 @@ h3 {
 h1,
 h2 {
   font-size: var(--t-display);
+  /* Serrage plus fort aux grandes tailles d'affichage : les mots se tiennent comme une ligne imprimée. */
+  letter-spacing: -0.03em;
 }
 
 p {

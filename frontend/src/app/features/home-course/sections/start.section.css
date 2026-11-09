@@ -79,6 +79,8 @@ picture img {
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
+  /* Léger virage chaud : le ciel bleu part vers la palette nuit / orange sans effacer la photo. */
+  filter: saturate(0.82) sepia(0.12) contrast(1.03);
 }
 app-bib {
   justify-self: end;

@@ -4,7 +4,9 @@
   display: grid;
   container-type: inline-size;
   aspect-ratio: 5 / 3;
-  background: #f6f3ec;
+  /* Grain papier : bruit SVG à très faible opacité, par-dessus la couleur de fond (pas de dégradé). */
+  background-color: #f6f3ec;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.09 0 0 0 0 0.10 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   color: #14161a;
   text-align: center;
   /* Quatre trous d'épingle (pair-impair) : chaque trou est relié au coin par un aller-retour d'aire nulle. */
