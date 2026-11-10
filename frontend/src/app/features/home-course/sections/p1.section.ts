@@ -42,25 +42,19 @@ import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
         <div class="aside">
           <picture class="badge">
             <source
-              type="image/avif"
-              srcset="img/badge-promo-ili-320.avif 320w, img/badge-promo-ili-640.avif 640w"
-              sizes="10rem"
-            />
-            <source
               type="image/webp"
-              srcset="img/badge-promo-ili-320.webp 320w, img/badge-promo-ili-640.webp 640w"
+              srcset="img/univ-artois-320.webp 320w, img/univ-artois-640.webp 640w"
               sizes="10rem"
             />
             <img
-              src="img/badge-promo-ili-320.jpg"
-              srcset="img/badge-promo-ili-320.jpg 320w, img/badge-promo-ili-640.jpg 640w"
+              src="img/univ-artois-320.jpg"
               sizes="10rem"
               width="320"
-              height="330"
+              height="176"
               loading="lazy"
               decoding="async"
-              i18n-alt
-              alt="Badge rond « Certifiée meilleure promo ILI », ILI 2024-2025."
+              i18n-alt="@@p1.univ.alt"
+              alt="Logo de l'Université d'Artois."
             />
           </picture>
           <app-photo-plates [main]="promo" />
@@ -127,13 +121,11 @@ import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
       align-items: start;
       gap: var(--s-5);
     }
-    /* Tampon : le badge rond, découpé à son cercle et posé de travers. */
+    /* Logo de l'université : plaque blanche droite (fond du fichier officiel), sans recadrage. */
     .badge img {
       display: block;
       width: 10rem;
       height: auto;
-      clip-path: circle(49%);
-      transform: rotate(-8deg);
     }
     /* Mini-frise : un segment par diplôme, longueur proportionnelle à la durée. */
     .frise {

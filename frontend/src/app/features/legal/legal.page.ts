@@ -21,7 +21,7 @@ import { Component } from '@angular/core';
       <h2 i18n>Cookies</h2>
       <p i18n="@@legal.cookies">Aucun cookie ni traceur de mesure d'audience n'est déposé chez les visiteurs. Le stockage du navigateur sert uniquement à mémoriser le thème choisi (localStorage) et certaines animations déjà vues (sessionStorage, effacé à la fermeture de l'onglet). L'espace d'administration, réservé à l'éditeur, utilise un cookie de session technique. Ces usages sont strictement nécessaires et exemptés de consentement.</p>
       <h2 i18n>Crédits</h2>
-      <p i18n="@@legal.credits">Photographies : droits réservés à leurs auteurs. Pour toute demande de retrait d'une image : enzo.lvq12@gmail.com. Les logos de technologies sont des marques de leurs détenteurs respectifs, cités sans affiliation.</p>
+      <p i18n="@@legal.credits">Photographies : droits réservés à leurs auteurs. Pour toute demande de retrait d'une image : enzo.lvq12@gmail.com. Les logos (technologies, Université d'Artois) sont des marques de leurs détenteurs respectifs, cités sans affiliation.</p>
     </div>
   `,
   styles: `

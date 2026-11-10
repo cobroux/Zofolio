@@ -38,15 +38,27 @@ describe('JournalSection', () => {
     expect(el.querySelectorAll('.pr').length).toBe(1);
     expect(el.querySelector('.pr')?.textContent).toContain('Record personnel');
     expect(el.querySelector('tbody tr')?.textContent).toContain('7 h 32 min 39 s');
-    expect(el.querySelector('tbody th')?.textContent).toContain('Côte d\'Opale');
-    expect(el.textContent!.replace('Un chiffre, pas un classement.', '')).not.toMatch(/classement|rang|place/i);
-    expect(el.querySelectorAll('tbody td:first-child')[5].textContent).toContain('Date non renseignée'); // dates NULL du seed
+    expect(el.querySelector('tbody th')?.textContent).toContain("Côte d'Opale");
+    expect(el.textContent!.replace('Un chiffre, pas un classement.', '')).not.toMatch(
+      /classement|rang|place/i,
+    );
+    expect(el.querySelectorAll('tbody td:first-child')[5].textContent).toContain(
+      'Date non renseignée',
+    ); // dates NULL du seed
   });
 
   it('ordre chronologique décroissant, mois et année affichés, sans date en dernier', () => {
     const el = render(home.races);
-    const dates = [...el.querySelectorAll('tbody td:first-child')].map((c) => c.textContent!.trim());
-    expect(dates.slice(0, 5)).toEqual(['sept. 2026', 'avr. 2026', 'oct. 2025', 'sept. 2025', 'mai 2025']);
+    const dates = [...el.querySelectorAll('tbody td:first-child')].map((c) =>
+      c.textContent!.trim(),
+    );
+    expect(dates.slice(0, 5)).toEqual([
+      'sept. 2026',
+      'avr. 2026',
+      'oct. 2025',
+      'sept. 2025',
+      'mai 2025',
+    ]);
     expect([...el.querySelectorAll('tbody th')][1].textContent).toContain('Marathon de Paris');
   });
 
@@ -64,7 +76,9 @@ describe('JournalSection', () => {
   it("« L'endurance, deux fois » ouvre le Journal et remplace « Les années en chiffres »", () => {
     const f = TestBed.createComponent(JournalSection);
     f.componentRef.setInput('races', home.races);
-    f.componentRef.setInput('sportYears', [{ year: 2025, distanceKm: 2140, elevationGainM: 1, hours: 1, activities: 1 }]);
+    f.componentRef.setInput('sportYears', [
+      { year: 2025, distanceKm: 2140, elevationGainM: 1, hours: 1, activities: 1 },
+    ]);
     f.componentRef.setInput('contributionYears', [{ year: 2025, total: 700 }]);
     f.detectChanges();
     const el = f.nativeElement as HTMLElement;
@@ -80,12 +94,16 @@ describe('JournalSection', () => {
     f.componentRef.setInput('contributions', home.contributions);
     f.detectChanges();
     const el = f.nativeElement as HTMLElement;
-    expect(el.querySelector('app-photo-plates img')?.getAttribute('src')).toBe('img/baudets-nuit-1280.jpg');
+    expect(el.querySelector('app-photo-plates img')?.getAttribute('src')).toBe(
+      'img/baudets-nuit-1280.jpg',
+    );
     expect(el.querySelector('.club')?.textContent).toContain('Les Baudets Dhinges');
     expect(el.querySelector('.club img')?.getAttribute('src')).toBe('img/logo-baudets-320.jpg');
     expect(el.querySelector('details app-contributions')).toBeNull();
     expect(el.querySelector('section > app-contributions .carnet')).toBeTruthy();
-    expect(el.querySelector('details.more:not([open]) summary')?.textContent).not.toContain('graphe');
+    expect(el.querySelector('details.more:not([open]) summary')?.textContent).not.toContain(
+      'graphe',
+    );
     expect(el.querySelector('figure img[src*="finisher-cote-d-opale"]')).toBeTruthy();
   });
 
@@ -115,7 +133,9 @@ describe('P3Section', () => {
     expect(oltre.querySelector('a.study')?.getAttribute('href')).toBe('/projets/oltre');
     expect(oltre.textContent).toContain('412 commits');
     expect(histo.querySelector('a.study')).toBeNull();
-    expect(histo.querySelector('a')?.getAttribute('href')).toBe('https://github.com/cobroux/histoquiz');
+    expect(histo.querySelector('a')?.getAttribute('href')).toBe(
+      'https://github.com/cobroux/histoquiz',
+    );
     expect(histo.textContent).not.toContain('commits');
     expect(el.textContent).not.toContain('puis IA');
   });
@@ -139,8 +159,10 @@ describe('P1Section', () => {
       'https://github.com/cobroux/cin-folie',
       'https://github.com/cobroux/lambda-calcul',
     ]);
-    expect(el.querySelector('.badge img')?.getAttribute('src')).toBe('img/badge-promo-ili-320.jpg');
-    expect(el.querySelector('app-photo-plates img')?.getAttribute('src')).toBe('img/promo-ili-640.jpg');
+    expect(el.querySelector('.badge img')?.getAttribute('src')).toBe('img/univ-artois-320.jpg');
+    expect(el.querySelector('app-photo-plates img')?.getAttribute('src')).toBe(
+      'img/promo-ili-640.jpg',
+    );
     expect(el.querySelector('app-chapter-pin')?.classList).not.toContain('sticky');
     expect(el.querySelector('h2')?.textContent).toContain('Les fondations');
   });

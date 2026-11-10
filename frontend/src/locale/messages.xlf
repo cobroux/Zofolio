@@ -1358,13 +1358,6 @@
           <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1745782249568579923" datatype="html">
-        <source>Badge rond « Certifiée meilleure promo ILI », ILI 2024-2025.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">61,62</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="6927783812522560185" datatype="html">
         <source>Projets d&apos;école :</source>
         <context-group purpose="location">
@@ -2744,7 +2737,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="legal.credits" datatype="html">
-        <source>Photographies : droits réservés à leurs auteurs. Pour toute demande de retrait d&apos;une image : enzo.lvq12@gmail.com. Les logos de technologies sont des marques de leurs détenteurs respectifs, cités sans affiliation.</source>
+        <source>Photographies : droits réservés à leurs auteurs. Pour toute demande de retrait d&apos;une image : enzo.lvq12@gmail.com. Les logos (technologies, Université d&apos;Artois) sont des marques de leurs détenteurs respectifs, cités sans affiliation.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
           <context context-type="linenumber">24,27</context>
@@ -2755,6 +2748,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
           <context context-type="linenumber">105,107</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="p1.univ.alt" datatype="html">
+        <source>Logo de l&apos;Université d&apos;Artois.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
+          <context context-type="linenumber">57,59</context>
         </context-group>
       </trans-unit>
     </body>
