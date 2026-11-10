@@ -830,25 +830,9 @@
           <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2106669205405741218" datatype="html">
-        <source>contributions GitHub</source>
-        <target state="translated">GitHub contributions</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
-          <context context-type="linenumber">34</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5395927123734263540" datatype="html">
-        <source> Les deux courbes montent. Ce n&apos;est pas une coïncidence, c&apos;est une méthode. </source>
-        <target state="translated">Both lines climb. It isn&apos;t a coincidence, it&apos;s a method.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
-          <context context-type="linenumber">65,66</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2939977379070585055" datatype="html">
-        <source> Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km : course et vélo. Contributions GitHub : commits, demandes de fusion, tickets et revues, année en cours incluse. </source>
-        <target state="translated">Yearly totals only: no route, no heart rate, no health data. Km: running and cycling. GitHub contributions: commits, pull requests, issues and reviews, current year included.</target>
+      <trans-unit id="5494741360788478598" datatype="html">
+        <source> Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km : course et vélo. </source>
+        <target state="translated">Yearly totals only: no route, no heart rate, no health data. Km: running and cycling.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
           <context context-type="linenumber">69,71</context>

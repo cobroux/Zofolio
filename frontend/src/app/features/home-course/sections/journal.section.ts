@@ -1,7 +1,7 @@
 import { DatePipe, NgTemplateOutlet } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import { ContributionsGraph } from '../../../shared/contributions/contributions';
-import { Contributions, ContributionYear, Race, SportYear } from '../../../core/api/api.models';
+import { Contributions, Race, SportYear } from '../../../core/api/api.models';
 import { Reveal } from '../../../shared/reveal/reveal';
 import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
 import { EnduranceTwice } from '../endurance/endurance-twice';
@@ -30,11 +30,7 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
   imports: [ContributionsGraph, Reveal, PhotoPlates, EnduranceTwice, DatePipe, NgTemplateOutlet],
   template: `
     <section id="journal" aria-labelledby="journal-title">
-      <app-endurance-twice
-        class="endurance"
-        [sportYears]="sportYears()"
-        [contributionYears]="contributionYears()"
-      />
+      <app-endurance-twice class="endurance" [sportYears]="sportYears()" />
       <div class="side">
         <div class="lede">
           <h2 id="journal-title" appReveal i18n>Journal de course</h2>
@@ -429,9 +425,8 @@ export class JournalSection {
   readonly races = input<Race[] | null>(null);
   /** `null` = pas encore de synchro GitHub : le graphe n'est pas rendu. */
   readonly contributions = input<Contributions | null>(null);
-  /** Ordre libre ; mis en regard des commits par année dans « L'endurance, deux fois ». */
+  /** Ordre libre ; km par année dans « L'endurance, deux fois ». */
   readonly sportYears = input<SportYear[]>([]);
-  readonly contributionYears = input<ContributionYear[]>([]);
   protected readonly night: Plate = {
     src: 'img/baudets-nuit-1280.jpg',
     alt: $localize`:@@journal.night.alt:Le groupe du club Les Baudets rassemblé de nuit sur une place, frontales allumées, Enzo en selfie au premier plan`,

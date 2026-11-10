@@ -79,11 +79,10 @@ describe('JournalSection', () => {
     f.componentRef.setInput('sportYears', [
       { year: 2025, distanceKm: 2140, elevationGainM: 1, hours: 1, activities: 1 },
     ]);
-    f.componentRef.setInput('contributionYears', [{ year: 2025, total: 700 }]);
     f.detectChanges();
     const el = f.nativeElement as HTMLElement;
     expect(el.querySelector('section')!.firstElementChild!.tagName).toBe('APP-ENDURANCE-TWICE');
-    expect(el.querySelector('app-endurance-twice [data-count="700"]')).toBeTruthy();
+    expect(el.querySelector('app-endurance-twice [data-count="2140"]')).toBeTruthy();
     expect(el.textContent).not.toContain('Les années en chiffres');
     expect(el.querySelector('.stats')).toBeNull();
   });

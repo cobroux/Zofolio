@@ -732,22 +732,8 @@
           <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2106669205405741218" datatype="html">
-        <source>contributions GitHub</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
-          <context context-type="linenumber">33</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5395927123734263540" datatype="html">
-        <source> Les deux courbes montent. Ce n&apos;est pas une coïncidence, c&apos;est une méthode. </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
-          <context context-type="linenumber">65,66</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2939977379070585055" datatype="html">
-        <source> Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km : course et vélo. Contributions GitHub : commits, demandes de fusion, tickets et revues, année en cours incluse. </source>
+      <trans-unit id="5494741360788478598" datatype="html">
+        <source> Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé. Km : course et vélo. </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
           <context context-type="linenumber">69,71</context>
