@@ -10,17 +10,31 @@ import { ChapterPin } from '../../../shared/chapter-pin/chapter-pin';
   imports: [Aid, ChapterPin, RouterLink],
   template: `
     <section id="p2" class="terrain-deep">
-      <app-chapter-pin mark="P2" i18n-title title="Worldline" i18n-meta meta="km 44 · 2023 → 2025" />
+      <app-chapter-pin
+        mark="P2"
+        i18n-title
+        title="Worldline"
+        i18n-meta
+        meta="km 44 · 2023 → 2025"
+      />
       <div class="stage">
-        <p class="lead" i18n>2,5 ans sur une plateforme d'ordres de bourse (Boursorama, Copartis), en stage puis en alternance. Ici, une erreur ne se voit pas dans un log : elle se voit dans un ordre.</p>
+        <p class="lead" i18n>
+          2,5 ans sur une plateforme d'ordres de bourse (Boursorama, Copartis), en stage puis en
+          alternance. Ici, une erreur ne se voit pas dans un log : elle se voit dans un ordre.
+        </p>
         <ul class="stack" i18n-aria-label aria-label="Stack Worldline">
           <li>Java</li>
           <li>Spring Boot</li>
           <li>RabbitMQ</li>
           <li>Hibernate</li>
         </ul>
-        <p class="now" i18n>Depuis juin 2026 : ingénieur d'études chez Aubay, back end Java/Spring Boot pour les Restos du Cœur.</p>
-        <a class="study" routerLink="/projets/trading-app" i18n>Voir la frise et l'architecture<span class="sr"> de Worldline</span></a>
+        <p class="now" i18n>
+          Depuis juin 2026 : ingénieur d'études chez Aubay, back end Java/Spring Boot pour les
+          Restos du Cœur.
+        </p>
+        <a class="study" routerLink="/projets/trading-app" i18n
+          >Voir la frise et l'architecture<span class="sr"> de Worldline</span></a
+        >
       </div>
     </section>
     <app-aid km="51" [aid]="aid()" />
