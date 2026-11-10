@@ -1651,28 +1651,12 @@
           <context context-type="linenumber">8,9</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1289590097142821025" datatype="html">
-        <source>Enzo Leveque, particulier. Contact : enzo.lvq12@gmail.com. Conformément à l&apos;article 6-III-2 de la LCEN, l&apos;adresse de l&apos;éditeur non professionnel est communiquée à l&apos;hébergeur.</source>
-        <target state="translated">Enzo Leveque, private individual. Contact: enzo.lvq12@gmail.com. In accordance with article 6-III-2 of the French LCEN law, the address of a non-professional publisher is disclosed to the host.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">9,10</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="2545706311007543622" datatype="html">
         <source>Hébergeur</source>
         <target state="translated">Host</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
           <context context-type="linenumber">10,11</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8481889562994509985" datatype="html">
-        <source>Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, Allemagne, www.hetzner.com. Serveur situé dans l&apos;Union européenne.</source>
-        <target state="translated">Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, Germany, www.hetzner.com. Server located in the European Union.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">11,12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4804883747512845980" datatype="html">
@@ -1683,28 +1667,12 @@
           <context context-type="linenumber">12,13</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="180584972585342307" datatype="html">
-        <source>Le formulaire collecte votre nom, votre adresse e-mail, votre société (facultative) et votre message, pour répondre à votre demande. Une empreinte chiffrée de votre adresse IP est conservée uniquement pour limiter le nombre d&apos;envois (5 par heure). Aucun e-mail automatique ne vous est envoyé.</source>
-        <target state="translated">The form collects your name, email address, company (optional) and message, in order to answer your request. A hashed fingerprint of your IP address is kept only to limit the number of submissions (5 per hour). No automatic email is sent to you.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">13,14</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="3512982982093003769" datatype="html">
         <source>Conservation</source>
         <target state="translated">Retention</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
           <context context-type="linenumber">14,15</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1591925263490910487" datatype="html">
-        <source>Les messages sont conservés 12 mois, puis supprimés.</source>
-        <target state="translated">Messages are kept for 12 months, then deleted.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">15,16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4319694770578543913" datatype="html">
@@ -1715,14 +1683,6 @@
           <context context-type="linenumber">16,17</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="294773443966118137" datatype="html">
-        <source>Vous pouvez demander l&apos;accès, la rectification ou la suppression de vos données (RGPD) en écrivant à enzo.lvq12@gmail.com. Vous pouvez aussi saisir la CNIL (cnil.fr).</source>
-        <target state="translated">You can request access to, correction of or deletion of your data (GDPR) by writing to enzo.lvq12@gmail.com. You can also lodge a complaint with the CNIL (cnil.fr).</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">17,18</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="4516124744118816397" datatype="html">
         <source>Cookies</source>
         <target state="translated">Cookies</target>
@@ -1731,28 +1691,12 @@
           <context context-type="linenumber">18,19</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7352394060085291900" datatype="html">
-        <source>Ce site ne dépose aucun cookie ni traceur. Seule une préférence de thème est stockée dans votre navigateur (localStorage) : elle est strictement nécessaire et exemptée de consentement.</source>
-        <target state="translated">This site sets no cookies or trackers. Only a theme preference is stored in your browser (localStorage): it is strictly necessary and exempt from consent.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">19,20</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="6832369903253088923" datatype="html">
         <source>Crédits</source>
         <target state="translated">Credits</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
           <context context-type="linenumber">20,21</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3812385135159692023" datatype="html">
-        <source>Photographies : Enzo Leveque. Pour IMG_2487, si elle est utilisée plus tard : Margot et Fabien photographes, accord obtenu.</source>
-        <target state="translated">Photographs: Enzo Leveque. For IMG_2487, if used later: Margot and Fabien, photographers, permission obtained.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">21,22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1720878291486780063" datatype="html">
@@ -3083,12 +3027,84 @@
           <context context-type="linenumber">127</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2837755177616212556" datatype="html">
-        <source> Parcours </source>
-        <target state="translated">Course</target>
+      <trans-unit id="legal.editor" datatype="html">
+        <source>Enzo Leveque, particulier, directeur de la publication. Contact : enzo.lvq12@gmail.com. Conformément à l&apos;article 6-III-2 de la LCEN, l&apos;adresse de l&apos;éditeur non professionnel est communiquée à l&apos;hébergeur.</source>
+        <target state="translated">Enzo Leveque, private individual, publication director. Contact: enzo.lvq12@gmail.com. In accordance with article 6-III-2 of the French LCEN law, the address of the non-professional publisher has been provided to the host.</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.html</context>
-          <context context-type="linenumber">64,65</context>
+          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="legal.host" datatype="html">
+        <source>Oracle France SAS (Oracle Cloud Infrastructure), 15 boulevard Charles de Gaulle, 92715 Colombes Cedex, France, +33 1 57 60 20 20. Serveurs situés en région Paris (Union européenne).</source>
+        <target state="translated">Oracle France SAS (Oracle Cloud Infrastructure), 15 boulevard Charles de Gaulle, 92715 Colombes Cedex, France, +33 1 57 60 20 20. Servers located in the Paris region (European Union).</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
+          <context context-type="linenumber">12,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="legal.form" datatype="html">
+        <source>Le formulaire collecte votre nom, votre adresse e-mail, votre société (facultative) et votre message, uniquement pour répondre à votre demande. Responsable du traitement : Enzo Leveque. Base légale : l&apos;intérêt légitime à répondre aux demandes reçues (article 6-1-f du RGPD). Une empreinte (hachage) de votre adresse IP sert uniquement à limiter le nombre d&apos;envois (5 par heure). Aucun e-mail automatique ne vous est envoyé.</source>
+        <target state="translated">The form collects your name, email address, company (optional) and message, solely to answer your request. Data controller: Enzo Leveque. Legal basis: legitimate interest in answering the requests received (article 6(1)(f) GDPR). A hash of your IP address is used only to limit the number of submissions (5 per hour). No automatic email is sent to you.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="legal.recipients.title" datatype="html">
+        <source>Destinataires</source>
+        <target state="translated">Recipients</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="legal.recipients" datatype="html">
+        <source>Seul l&apos;éditeur lit les messages. Ils sont stockés chez Oracle (région Paris, Union européenne) et transmis par e-mail via Google (Gmail), ce qui peut impliquer un transfert vers les États-Unis encadré par le Data Privacy Framework.</source>
+        <target state="translated">Only the publisher reads the messages. They are stored with Oracle (Paris region, European Union) and forwarded by email through Google (Gmail), which may involve a transfer to the United States covered by the Data Privacy Framework.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="legal.retention" datatype="html">
+        <source>Les messages sont supprimés automatiquement de la base au bout de 12 mois ; la copie reçue par e-mail est supprimée dans le même délai.</source>
+        <target state="translated">Messages are automatically deleted from the database after 12 months; the copy received by email is deleted within the same period.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="legal.rights" datatype="html">
+        <source>Vous pouvez demander l&apos;accès à vos données, leur rectification, leur effacement, la limitation du traitement, vous y opposer ou en obtenir la portabilité, en écrivant à enzo.lvq12@gmail.com. Réponse sous un mois. Vous pouvez aussi saisir la CNIL (cnil.fr).</source>
+        <target state="translated">You can request access to your data, its rectification or erasure, the restriction of processing, object to it or obtain its portability, by writing to enzo.lvq12@gmail.com. Reply within one month. You can also lodge a complaint with the CNIL (cnil.fr).</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
+          <context context-type="linenumber">20,21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="legal.cookies" datatype="html">
+        <source>Aucun cookie ni traceur de mesure d&apos;audience n&apos;est déposé chez les visiteurs. Le stockage du navigateur sert uniquement à mémoriser le thème choisi (localStorage) et certaines animations déjà vues (sessionStorage, effacé à la fermeture de l&apos;onglet). L&apos;espace d&apos;administration, réservé à l&apos;éditeur, utilise un cookie de session technique. Ces usages sont strictement nécessaires et exemptés de consentement.</source>
+        <target state="translated">No cookie or audience-measurement tracker is set for visitors. Browser storage is only used to remember the chosen theme (localStorage) and some animations already seen (sessionStorage, cleared when the tab is closed). The admin area, reserved for the publisher, uses a technical session cookie. These uses are strictly necessary and exempt from consent.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
+          <context context-type="linenumber">22,23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="legal.credits" datatype="html">
+        <source>Photographies : droits réservés à leurs auteurs. Pour toute demande de retrait d&apos;une image : enzo.lvq12@gmail.com. Les logos de technologies sont des marques de leurs détenteurs respectifs, cités sans affiliation.</source>
+        <target state="translated">Photographs: rights reserved by their authors. To request the removal of an image: enzo.lvq12@gmail.com. Technology logos are trademarks of their respective owners, mentioned without affiliation.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
+          <context context-type="linenumber">24,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.privacy" datatype="html">
+        <source>Vos données servent uniquement à vous répondre. Détails et droits : <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/mentions-legales&quot;&gt;"/>mentions légales<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</source>
+        <target state="translated">Your data is used only to answer you. Details and rights: <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/mentions-legales&quot;&gt;"/>legal notice<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
+          <context context-type="linenumber">105,107</context>
         </context-group>
       </trans-unit>
     </body>

@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 interface ContactMessageRepository extends JpaRepository<ContactMessage, Long> {
 	long countByIpHashAndCreatedAtAfter(String ipHash, Instant since);
+
+	long deleteByCreatedAtBefore(Instant cutoff);
 }

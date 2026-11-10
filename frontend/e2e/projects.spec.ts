@@ -9,11 +9,13 @@ for (const lang of LANGS) {
   for (const slug of SLUGS) {
     test(`accueil -> étude de cas ${slug} (${lang})`, async ({ page }) => {
       await page.goto(`/${lang}/`);
-      await page.locator(`a.study[href$="/projets/${slug}"]`).first().click();
+      // GFaim est une carte de P1 et trading-app un lien de P2 : on prend le premier lien vers l'étude, quelle que soit sa classe.
+      await page.locator(`main a[href$="/projets/${slug}"]`).first().click();
       await expect(page).toHaveURL(new RegExp(`/${lang}/projets/${slug}$`));
       await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
       await expect(page.locator('html')).toHaveAttribute('lang', lang);
-      await expect(page.locator('app-case-study-view > section h2').first()).toHaveAttribute('id', 'h-ctx');
+      // L'étude Worldline commence par les missions (déplacées depuis l'accueil, vague 3).
+      await expect(page.locator('app-case-study-view > section h2').first()).toHaveAttribute('id', slug === 'trading-app' ? 'h-mis' : 'h-ctx');
       await expect(page.locator('app-case-study-view > section h2').first()).toBeVisible();
     });
   }
@@ -94,7 +96,7 @@ test('index P3 : une ligne sans média ni preuves rend le cadre invisible', asyn
   await expect(preview.locator('.shot.on video')).toHaveCount(1);
 });
 
-test('index P3 : survol HistoQuiz avec preuves GitHub si l’API en fournit, sinon cadre masqué', async ({ page, request }) => {
+test('index P3 : survol HistoQuiz avec preuves GitHub si l’API en fournit, sinon sa capture seule', async ({ page, request }) => {
   const home = await (await request.get('/api/fr/home')).json();
   const hq = home.projects.find((p: { slug: string }) => p.slug === 'histoquiz');
   await page.goto('/fr/');
@@ -102,11 +104,13 @@ test('index P3 : survol HistoQuiz avec preuves GitHub si l’API en fournit, sin
   const row = page.locator('#p3 ol.rows > li').filter({ has: page.locator('a[href*="histoquiz"]') });
   await row.scrollIntoViewIfNeeded();
   if (!hq.commits && !hq.languages.length) {
+    // HistoQuiz a une capture réelle (CAPTURES) : le cadre l'affiche, sans bloc de preuves GitHub.
     await expect(async () => {
       await row.hover();
-      await expect(preview).toHaveClass(/empty/, { timeout: 500 });
+      await expect(preview).not.toHaveClass(/empty/, { timeout: 500 });
     }).toPass();
-    await expect(preview).toHaveCSS('opacity', '0');
+    await expect(preview).toHaveCSS('opacity', '1');
+    await expect(preview.locator('.shot.on .proof')).toHaveCount(0);
     return;
   }
   await expect(async () => {

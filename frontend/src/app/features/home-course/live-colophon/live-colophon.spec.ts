@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
 import { BuildInfo } from '../../../core/api/api.models';
 import { Bib } from '../../../shared/bib/bib';
 import { FinishSection } from '../sections/finish.section';
@@ -69,7 +70,7 @@ describe('Bib face arrière', () => {
 describe('FinishSection', () => {
   async function finish(info: BuildInfo = empty) {
     TestBed.configureTestingModule({
-      providers: [provideHttpClient(), provideHttpClientTesting()],
+      providers: [provideHttpClient(), provideHttpClientTesting(), provideRouter([])],
     });
     const f = TestBed.createComponent(FinishSection);
     f.detectChanges();
