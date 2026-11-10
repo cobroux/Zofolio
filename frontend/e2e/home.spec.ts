@@ -247,7 +247,7 @@ test('graphe de contributions : dans P3 si l’API en fournit, sinon absent, jam
   await page.goto('/fr/');
   const graph = page.locator('#p3 app-contributions');
   if (home.contributions) await expect(graph.locator('.carnet')).toBeVisible();
-  else await expect(graph).toHaveCount(0);
+  else await expect(graph.locator('.carnet')).toHaveCount(0); // l'hôte reste rendu, le composant non
   await expect(page.locator('#journal app-contributions')).toHaveCount(0);
 });
 
