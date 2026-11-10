@@ -58,87 +58,38 @@ test('clip : affiche, lecture dans le viewport, Pause puis Lecture au clic', asy
   await expect.poll(playing).toBe(true);
 });
 
-test('index P3 : survol puis focus = aperçu de la ligne, vidéo muette seulement pendant le survol', async ({ page }) => {
+test('parcours P3 : une étape par projet, lien étude de cas, pas de carte ni d’aperçu', async ({
+  page,
+}) => {
   await page.goto('/fr/');
-  const zotracker = page.locator('#p3 ol.rows > li').filter({ has: page.locator('a[href$="/projets/zotracker"]') });
-  const shot = page.locator('#p3 .preview .shot.on');
-  await zotracker.scrollIntoViewIfNeeded();
-  // Le survol n'est pas rejoué avant l'hydratation : on le refait jusqu'à ce qu'il prenne.
-  await expect(async () => {
-    await zotracker.hover();
-    await expect(shot).toHaveAttribute('data-slug', 'zotracker', { timeout: 500 });
-  }).toPass();
-  const video = shot.locator('video');
-  await expect.poll(() => video.evaluate((v: HTMLVideoElement) => v.muted && !v.paused)).toBe(true);
-  await page.mouse.move(0, 0);
-  await expect(page.locator('#p3 .preview video')).toHaveCount(0);
-  await page.locator('#p3 a.study[href$="/projets/oltre"]').focus();
-  await expect(shot).toHaveAttribute('data-slug', 'oltre');
+  const steps = page.locator('#p3 ol.path > li');
+  expect(await steps.count()).toBeGreaterThan(0);
+  await expect(page.locator('#p3 ol.path > li article')).toHaveCount(await steps.count());
+  await expect(page.locator('#p3 .preview')).toHaveCount(0);
+  const oltre = steps.filter({ has: page.locator('a.study[href$="/projets/oltre"]') });
+  await expect(oltre.getByRole('link', { name: 'Étude de cas' })).toHaveAttribute(
+    'href',
+    /\/projets\/oltre$/,
+  );
 });
 
-test('index P3 : une ligne sans média ni preuves rend le cadre invisible', async ({ page, request }) => {
-  const home = await (await request.get('/api/fr/home')).json();
-  // Sans synchro GitHub, HistoQuiz n'a ni média ni preuve ; avec synchro, garmin-mcp peut rester vide.
-  const bare = home.projects.find((p: { slug: string; commits: number | null; languages: string[] }) => ['histoquiz', 'garmin-mcp'].includes(p.slug) && !p.commits && !p.languages.length);
-  test.skip(!bare, 'aucune ligne sans média ni preuve avec cette API');
-  await page.goto('/fr/');
-  const preview = page.locator('#p3 .preview');
-  const histo = page.locator('#p3 ol.rows > li').filter({ has: page.locator(`a[href*="${bare.slug}"]`) });
-  const oltre = page.locator('#p3 ol.rows > li').filter({ has: page.locator('a[href$="/projets/oltre"]') });
-  await histo.scrollIntoViewIfNeeded();
-  await expect(async () => {
-    await histo.hover();
-    await expect(preview).toHaveClass(/empty/, { timeout: 500 });
-  }).toPass();
-  await expect(preview).toHaveCSS('opacity', '0');
-  await oltre.hover();
-  await expect(preview).toHaveCSS('opacity', '1');
-  await expect(preview.locator('.shot.on video')).toHaveCount(1);
-});
-
-test('index P3 : survol HistoQuiz avec preuves GitHub si l’API en fournit, sinon sa capture seule', async ({ page, request }) => {
-  const home = await (await request.get('/api/fr/home')).json();
-  const hq = home.projects.find((p: { slug: string }) => p.slug === 'histoquiz');
-  await page.goto('/fr/');
-  const preview = page.locator('#p3 .preview');
-  const row = page.locator('#p3 ol.rows > li').filter({ has: page.locator('a[href*="histoquiz"]') });
-  await row.scrollIntoViewIfNeeded();
-  if (!hq.commits && !hq.languages.length) {
-    // HistoQuiz a une capture réelle (CAPTURES) : le cadre l'affiche, sans bloc de preuves GitHub.
-    await expect(async () => {
-      await row.hover();
-      await expect(preview).not.toHaveClass(/empty/, { timeout: 500 });
-    }).toPass();
-    await expect(preview).toHaveCSS('opacity', '1');
-    await expect(preview.locator('.shot.on .proof')).toHaveCount(0);
-    return;
-  }
-  await expect(async () => {
-    await row.hover();
-    await expect(preview).not.toHaveClass(/empty/, { timeout: 500 });
-  }).toPass();
-  await expect(preview).toHaveCSS('opacity', '1');
-  const proof = preview.locator('.shot.on .proof');
-  await expect(proof).toBeVisible();
-  if (hq.commits) await expect(proof.locator('.big')).toHaveText(new Intl.NumberFormat('fr').format(hq.commits));
-  for (const l of hq.languages) await expect(proof).toContainText(l);
-  if (hq.lastPushAt) await expect(proof).toContainText(String(new Date(hq.lastPushAt).getUTCFullYear()));
-});
-
-test.describe('index P3 sur mobile', () => {
+test.describe('parcours P3 sur mobile', () => {
   test.use({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
-  test('poster en ligne, pas de cadre, vidéo seulement au toucher', async ({ page }) => {
+  test('une colonne, vidéo seulement au toucher', async ({ page }) => {
     await page.goto('/fr/');
-    const clip = page.locator('#p3 app-clip.inline').first();
+    const clip = page.locator('#p3 app-clip').first();
     await clip.scrollIntoViewIfNeeded();
-    await expect(page.locator('#p3 .preview')).toBeHidden();
     await expect(clip.locator('img, video').first()).toBeVisible();
     await page.waitForTimeout(1000);
-    expect(await clip.locator('video').evaluateAll((vs) => vs.some((v) => !(v as HTMLVideoElement).paused))).toBe(false);
+    expect(
+      await clip
+        .locator('video')
+        .evaluateAll((vs) => vs.some((v) => !(v as HTMLVideoElement).paused)),
+    ).toBe(false);
     await clip.getByRole('button', { name: 'Lecture' }).tap();
-    await expect.poll(() => clip.locator('video').evaluate((v: HTMLVideoElement) => !v.paused)).toBe(true);
-    // Le cadre d'aperçu est masqué ici : sa vidéo ne doit jamais être montée (pas de second téléchargement).
-    await expect(page.locator('#p3 .preview video')).toHaveCount(0);
+    await expect
+      .poll(() => clip.locator('video').evaluate((v: HTMLVideoElement) => !v.paused))
+      .toBe(true);
   });
 });
 
@@ -179,18 +130,6 @@ test.describe('reduced motion', () => {
     );
     expect(n).toBe(0);
     expect(await vtCount(page)).toBeGreaterThanOrEqual(1);
-  });
-  test('index P3 : aperçu au survol, poster seul, aucune vidéo', async ({ page }) => {
-    await page.goto('/fr/');
-    const zotracker = page.locator('#p3 ol.rows > li').filter({ has: page.locator('a[href$="/projets/zotracker"]') });
-    await zotracker.scrollIntoViewIfNeeded();
-    await expect(async () => {
-      await zotracker.hover();
-      await expect(page.locator('#p3 .preview .shot.on')).toHaveAttribute('data-slug', 'zotracker', { timeout: 500 });
-    }).toPass();
-    await page.waitForTimeout(500);
-    await expect(page.locator('#p3 .preview video')).toHaveCount(0);
-    await expect(page.locator('#p3 .preview .shot.on img')).toBeVisible();
   });
   test('blocs en entrée : tous visibles sans défilement', async ({ page }) => {
     await page.goto('/fr/projets/trading-app');
