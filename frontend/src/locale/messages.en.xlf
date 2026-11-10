@@ -95,7 +95,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">7,8</context>
+          <context context-type="linenumber">8,9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="427363903857761559" datatype="html">
@@ -303,7 +303,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">49,50</context>
+          <context context-type="linenumber">51,52</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1864695627253625534" datatype="html">
@@ -559,7 +559,7 @@
         <target state="translated">Please enter your name.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2501435655979485632" datatype="html">
@@ -567,7 +567,7 @@
         <target state="translated">The name is limited to 100 characters.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6642383983049210204" datatype="html">
@@ -575,7 +575,7 @@
         <target state="translated">The name can&apos;t contain line breaks or control characters.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5137511631753222021" datatype="html">
@@ -583,7 +583,7 @@
         <target state="translated">Please enter your email address.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8248840202310026281" datatype="html">
@@ -591,7 +591,7 @@
         <target state="translated">This email address doesn&apos;t look valid.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8944155390370555793" datatype="html">
@@ -599,7 +599,7 @@
         <target state="translated">The email address is limited to 254 characters.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="101865109264846761" datatype="html">
@@ -607,7 +607,7 @@
         <target state="translated">The company name is limited to 100 characters.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8689885710461167142" datatype="html">
@@ -615,7 +615,7 @@
         <target state="translated">Write a message: a blank page won&apos;t get you very far.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4095498621406173633" datatype="html">
@@ -623,7 +623,7 @@
         <target state="translated">The message is limited to 5,000 characters.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6891246068499712897" datatype="html">
@@ -631,11 +631,11 @@
         <target state="translated">A few fields need fixing before sending.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">44</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">171</context>
+          <context context-type="linenumber">176</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5994709944568513011" datatype="html">
@@ -643,7 +643,7 @@
         <target state="translated">The message couldn&apos;t be read. Reload the page and try again.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5977354783300007521" datatype="html">
@@ -651,7 +651,7 @@
         <target state="translated">Too many messages sent from this connection. Try again in <x id="PH" equiv-text="minutes"/> min, or write directly to <x id="PH_1" equiv-text="MAIL"/>.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4739394653754967089" datatype="html">
@@ -659,7 +659,7 @@
         <target state="translated">Your message is saved, but the notification didn&apos;t go out. To be sure it gets read, write to <x id="PH" equiv-text="MAIL"/>.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1615612373453649510" datatype="html">
@@ -667,7 +667,7 @@
         <target state="translated">The server isn&apos;t responding. Check your connection and try again.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3230700482963386862" datatype="html">
@@ -675,7 +675,7 @@
         <target state="translated">An unexpected error occurred. Try again in a moment.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5311989772387115225" datatype="html">
@@ -683,7 +683,7 @@
         <target state="translated">Write a message</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">63,65</context>
+          <context context-type="linenumber">65,67</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5363451304863092478" datatype="html">
@@ -691,7 +691,7 @@
         <target state="translated">Name</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">66,67</context>
+          <context context-type="linenumber">68,69</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1890300073702152532" datatype="html">
@@ -699,7 +699,7 @@
         <target state="translated">Email</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">73,74</context>
+          <context context-type="linenumber">75,76</context>
         </context-group>
       </trans-unit>
       <trans-unit id="660503374886359087" datatype="html">
@@ -707,7 +707,7 @@
         <target state="translated">Company (optional)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">80,81</context>
+          <context context-type="linenumber">82,83</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8066608938393600549" datatype="html">
@@ -715,7 +715,7 @@
         <target state="translated">Message</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">87,88</context>
+          <context context-type="linenumber">89,90</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4480268770877163468" datatype="html">
@@ -723,7 +723,7 @@
         <target state="translated">Website (leave empty)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">95,96</context>
+          <context context-type="linenumber">97,98</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7866859822573346908" datatype="html">
@@ -731,7 +731,7 @@
         <target state="translated">Sending…</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">100</context>
+          <context context-type="linenumber">102</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3133580362486287681" datatype="html">
@@ -739,7 +739,15 @@
         <target state="translated">Send message</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">100</context>
+          <context context-type="linenumber">102</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.privacy" datatype="html">
+        <source>Vos données servent uniquement à vous répondre. Détails et droits : <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/mentions-legales&quot;&gt;"/>mentions légales<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</source>
+        <target state="translated">Your data is used only to answer you. Details and rights: <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/mentions-legales&quot;&gt;"/>legal notice<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
+          <context context-type="linenumber">105,107</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2877008356442102985" datatype="html">
@@ -747,7 +755,7 @@
         <target state="translated">Message sent. Thank you, I&apos;ll reply as soon as I can.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">104,105</context>
+          <context context-type="linenumber">108,109</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7907392076573524157" datatype="html">
@@ -755,7 +763,7 @@
         <target state="translated">Without JavaScript, email me directly or download the CV: the links above work.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">107</context>
+          <context context-type="linenumber">111</context>
         </context-group>
       </trans-unit>
       <trans-unit id="382391150458780591" datatype="html">
@@ -763,7 +771,7 @@
         <target state="translated">This field needs fixing.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">160</context>
+          <context context-type="linenumber">165</context>
         </context-group>
       </trans-unit>
       <trans-unit id="decision.gateway.problem" datatype="html">
@@ -807,11 +815,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">10</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4017369525568907398" datatype="html">
@@ -827,7 +835,7 @@
         <target state="translated">in progress</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">22,23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5494741360788478598" datatype="html">
@@ -835,7 +843,7 @@
         <target state="translated">Yearly totals only: no route, no heart rate, no health data. Km: running and cycling.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/endurance/endurance-twice.ts</context>
-          <context context-type="linenumber">69,71</context>
+          <context context-type="linenumber">42,43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6413514884883484792" datatype="html">
@@ -871,7 +879,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">64,65</context>
+          <context context-type="linenumber">66,67</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7298284178367842272" datatype="html">
@@ -887,7 +895,7 @@
         <target state="translated">CI green</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
-          <context context-type="linenumber">65</context>
+          <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5030503749501151337" datatype="html">
@@ -895,7 +903,7 @@
         <target state="translated">CI red</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8181410181518647436" datatype="html">
@@ -967,7 +975,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">16,17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2192511994903977266" datatype="html">
@@ -1034,25 +1042,40 @@
           <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
-      
+      <trans-unit id="7217126102850839095" datatype="html">
+        <source>commits</source>
+        <target state="translated">commits</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/project-index/project-index.ts</context>
+          <context context-type="linenumber">84,85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2527991368458837723" datatype="html">
+        <source>dernier push</source>
+        <target state="translated">last push</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/project-index/project-index.ts</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="1307588471547279582" datatype="html">
         <source>Contenu indisponible pour le moment.</source>
         <target state="translated">Content currently unavailable.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/project-index/project-index.ts</context>
-          <context context-type="linenumber">86,87</context>
+          <context context-type="linenumber">112,113</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/project-index/project-index.ts</context>
-          <context context-type="linenumber">89,91</context>
+          <context context-type="linenumber">115,117</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">58,59</context>
+          <context context-type="linenumber">74,75</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">68,69</context>
+          <context context-type="linenumber">95,96</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/aid/aid.ts</context>
@@ -1164,19 +1187,19 @@
         </context-group>
       </trans-unit>
       <trans-unit id="4498960743185778594" datatype="html">
-        <source>Ligne d&apos;arrivée du Grand Trail d&apos;Auvergne, km 79,4. Prochain objectif : 100 km.</source>
+        <source> Ligne d&apos;arrivée du Grand Trail d&apos;Auvergne, km 79,4. Prochain objectif : 100 km. </source>
         <target state="translated">Finish line of the Grand Trail d&apos;Auvergne, km 79.4. Next goal: 100 km.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">24,25</context>
+          <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4598138881232551792" datatype="html">
-        <source>Pointages officiels</source>
+        <source> Pointages officiels </source>
         <target state="translated">Official checkpoints</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">26,27</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7896913456749470052" datatype="html">
@@ -1184,7 +1207,7 @@
         <target state="translated">Checkpoint</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">29,30</context>
+          <context context-type="linenumber">40,41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8312382490038553501" datatype="html">
@@ -1192,7 +1215,7 @@
         <target state="translated">Time of day</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">30,31</context>
+          <context context-type="linenumber">41,42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8317457230285174180" datatype="html">
@@ -1200,15 +1223,15 @@
         <target state="translated">Race</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">31,32</context>
+          <context context-type="linenumber">42,43</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">97,98</context>
+          <context context-type="linenumber">136,137</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">296</context>
+          <context context-type="linenumber">433</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7466884877014493571" datatype="html">
@@ -1216,7 +1239,7 @@
         <target state="translated">Leg</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">32,33</context>
+          <context context-type="linenumber">43,44</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2519547902255538963" datatype="html">
@@ -1224,7 +1247,15 @@
         <target state="translated">And new projects. Let's talk.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">48,49</context>
+          <context context-type="linenumber">61,62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3626333245026560741" datatype="html">
+        <source> Phidippides a couru de Marathon à Athènes pour porter un message. Ici, un formulaire suffit. </source>
+        <target state="translated">Pheidippides ran from Marathon to Athens to carry a message. Here, a form will do.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
+          <context context-type="linenumber">63,64</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1955051087209940082" datatype="html">
@@ -1232,27 +1263,19 @@
         <target state="translated">Download the CV</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">51,52</context>
+          <context context-type="linenumber">68,69</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
-          <context context-type="linenumber">17,18</context>
+          <context context-type="linenumber">23,24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5122705230210608888" datatype="html">
-        <source>En poste chez Aubay, ouvert aux opportunités à Paris. Français, anglais (TOEIC 910).</source>
+        <source> En poste chez Aubay, ouvert aux opportunités à Paris. Français, anglais (TOEIC 910). </source>
         <target state="translated">Working at Aubay, open to opportunities in Paris. French, English (TOEIC 910).</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">55,56</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3626333245026560741" datatype="html">
-        <source>Phidippides a couru de Marathon à Athènes pour porter un message. Ici, un formulaire suffit.</source>
-        <target state="translated">Pheidippides ran from Marathon to Athens to carry a message. Here, a form will do.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">58,59</context>
+          <context context-type="linenumber">99,100</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1220418434475838401" datatype="html">
@@ -1260,7 +1283,7 @@
         <target state="translated">Training log</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">34,35</context>
+          <context context-type="linenumber">35,36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1752773440582032808" datatype="html">
@@ -1268,7 +1291,7 @@
         <target state="translated">32 races finished, always a bit further. Same method as at work: measure, adjust, repeat.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">42,43</context>
+          <context context-type="linenumber">37,38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4886577232727235058" datatype="html">
@@ -1276,7 +1299,7 @@
         <target state="translated">UTMB Index. A number, not a ranking.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">38,39</context>
+          <context context-type="linenumber">42,43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3040692413047135014" datatype="html">
@@ -1284,7 +1307,7 @@
         <target state="translated">Club: Les Baudets Dhinges</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">49,50</context>
+          <context context-type="linenumber">60,61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5924578661757316840" datatype="html">
@@ -1292,7 +1315,7 @@
         <target state="translated">Enzo shows his finisher medal in front of the Trail Côte d&apos;Opale poster</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">74,75</context>
+          <context context-type="linenumber">107,108</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3190780709209736404" datatype="html">
@@ -1300,7 +1323,7 @@
         <target state="translated">See the detail: other races</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">80,81</context>
+          <context context-type="linenumber">114,115</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3973931101896534797" datatype="html">
@@ -1308,11 +1331,11 @@
         <target state="translated">Date</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">96,97</context>
+          <context context-type="linenumber">135,136</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">295</context>
+          <context context-type="linenumber">432</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1779552786277618671" datatype="html">
@@ -1320,11 +1343,11 @@
         <target state="translated">Distance</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">98,99</context>
+          <context context-type="linenumber">137,138</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">297</context>
+          <context context-type="linenumber">434</context>
         </context-group>
       </trans-unit>
       <trans-unit id="243567702094105596" datatype="html">
@@ -1332,11 +1355,11 @@
         <target state="translated">Elev. gain</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">100</context>
+          <context context-type="linenumber">139</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">298</context>
+          <context context-type="linenumber">435</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7631405440758027758" datatype="html">
@@ -1344,11 +1367,11 @@
         <target state="translated">Time</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">100,101</context>
+          <context context-type="linenumber">139,140</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">299</context>
+          <context context-type="linenumber">436</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4388879716045736175" datatype="html">
@@ -1356,11 +1379,11 @@
         <target state="translated">Note</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">101,102</context>
+          <context context-type="linenumber">140,141</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">300</context>
+          <context context-type="linenumber">437</context>
         </context-group>
       </trans-unit>
       <trans-unit id="71658782535622884" datatype="html">
@@ -1368,7 +1391,7 @@
         <target state="translated">Date not provided</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">111,112</context>
+          <context context-type="linenumber">151,152</context>
         </context-group>
       </trans-unit>
       <trans-unit id="879123622368781140" datatype="html">
@@ -1376,7 +1399,7 @@
         <target state="translated">Personal record</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">119</context>
+          <context context-type="linenumber">164</context>
         </context-group>
       </trans-unit>
       <trans-unit id="journal.night.alt" datatype="html">
@@ -1384,7 +1407,7 @@
         <target state="translated">The Les Baudets club gathered at night on a square, headlamps on, Enzo taking a selfie in the foreground</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">285</context>
+          <context context-type="linenumber">422</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2710333106475782510" datatype="html">
@@ -1392,7 +1415,7 @@
         <target state="translated">Night run with the Les Baudets club</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">286</context>
+          <context context-type="linenumber">423</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4450271950810119055" datatype="html">
@@ -1400,7 +1423,7 @@
         <target state="translated">Latest finished races</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">301</context>
+          <context context-type="linenumber">438</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6745294617554084103" datatype="html">
@@ -1408,7 +1431,71 @@
         <target state="translated">Other finished races</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
-          <context context-type="linenumber">302</context>
+          <context context-type="linenumber">439</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2335736306044980317" datatype="html">
+        <source>Contrôle du matériel</source>
+        <target state="translated">Kit check</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7478639649197906841" datatype="html">
+        <source>Avant le départ : ce que j&apos;emporte, et où ça a déjà tourné.</source>
+        <target state="translated">Before the start: what I carry, and where it has already run.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="891718890825947806" datatype="html">
+        <source>Back end</source>
+        <target state="translated">Back end</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
+          <context context-type="linenumber">111</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2368525224699166515" datatype="html">
+        <source>Front end</source>
+        <target state="translated">Front end</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
+          <context context-type="linenumber">120</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7140571963801415410" datatype="html">
+        <source>Données</source>
+        <target state="translated">Data</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
+          <context context-type="linenumber">128</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6222879640212347572" datatype="html">
+        <source>Outillage et déploiement</source>
+        <target state="translated">Tooling and deployment</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
+          <context context-type="linenumber">138</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1925401333221122195" datatype="html">
+        <source>Tous les projets</source>
+        <target state="translated">Every project</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
+          <context context-type="linenumber">141</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8624755520436938347" datatype="html">
+        <source>VM Oracle : Oltre, Zotracker, Zofolio</source>
+        <target state="translated">Oracle VM: Oltre, Zotracker, Zofolio</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
+          <context context-type="linenumber">147</context>
         </context-group>
       </trans-unit>
       <trans-unit id="40690728452210554" datatype="html">
@@ -1416,7 +1503,7 @@
         <target state="translated">The foundations</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">19,20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5725735348337974814" datatype="html">
@@ -1424,7 +1511,7 @@
         <target state="translated">km 20 · 2020 → 2025</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">21,22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1073193676081867607" datatype="html">
@@ -1432,7 +1519,15 @@
         <target state="translated">Education</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="p1.univ.alt" datatype="html">
+        <source>Logo de l&apos;Université d&apos;Artois.</source>
+        <target state="translated">Logo of the Université d&apos;Artois.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
+          <context context-type="linenumber">57,59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6927783812522560185" datatype="html">
@@ -1440,15 +1535,15 @@
         <target state="translated">School projects:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">51,52</context>
+          <context context-type="linenumber">63,64</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7571324644948349676" datatype="html">
-        <source>Voie romaine sur le GR3 : c&apos;est à peu près ici que le trail devient sérieux.</source>
+        <source> Voie romaine sur le GR3 : c&apos;est à peu près ici que le trail devient sérieux. </source>
         <target state="translated">Roman road on the GR3: roughly where the trail gets serious.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">66,67</context>
+          <context context-type="linenumber">92,93</context>
         </context-group>
       </trans-unit>
       <trans-unit id="p1.promo.alt" datatype="html">
@@ -1456,7 +1551,7 @@
         <target state="translated">The ILI class in light-blue hoodies, on a university building staircase.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">195</context>
+          <context context-type="linenumber">289</context>
         </context-group>
       </trans-unit>
       <trans-unit id="p1.promo.caption" datatype="html">
@@ -1464,7 +1559,7 @@
         <target state="translated">The ILI class of 2024-2025.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">196</context>
+          <context context-type="linenumber">290</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3511225585075799922" datatype="html">
@@ -1472,47 +1567,31 @@
         <target state="translated">km 44 · 2023 → 2025</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">18,19</context>
+          <context context-type="linenumber">18,20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8408593535590034321" datatype="html">
-        <source>Plateforme TOM (Trade Order Management) : elle reçoit, contrôle et transmet aux marchés les ordres de bourse de clients comme Boursorama et Copartis.</source>
-        <target state="translated">TOM platform (Trade Order Management): it receives, checks and routes to the markets the stock orders of clients such as Boursorama and Copartis.</target>
+      <trans-unit id="2377883520840299694" datatype="html">
+        <source> 2,5 ans sur une plateforme d&apos;ordres de bourse (Boursorama, Copartis), en stage puis en alternance. Ici, une erreur ne se voit pas dans un log : elle se voit dans un ordre. </source>
+        <target state="translated">2.5 years on a stock-order platform (Boursorama, Copartis), as an intern then a work-study engineer. Here, a mistake doesn&apos;t show up in a log: it shows up in an order.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
+          <context context-type="linenumber">22,23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8310543467411074866" datatype="html">
+        <source>Stack Worldline</source>
+        <target state="translated">Worldline stack</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
           <context context-type="linenumber">25,26</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="126728149264792569" datatype="html">
-        <source>Prototype move2cloud : l&apos;émetteur d&apos;ordres rendu abstrait pour passer de MySQL à une file RabbitMQ, avec des ordres sérialisés en XML.</source>
-        <target state="translated">move2cloud prototype: the order sender made abstract to move from MySQL to a RabbitMQ queue, with orders serialised as XML.</target>
+      <trans-unit id="6780660996676898149" datatype="html">
+        <source> Depuis juin 2026 : ingénieur d&apos;études chez Aubay, back end Java/Spring Boot pour les Restos du Cœur. </source>
+        <target state="translated">Since June 2026: software engineer at Aubay, Java/Spring Boot back end for the Restos du Cœur charity.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">26,27</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8817989540445316427" datatype="html">
-        <source>Post-marché Copartis : refonte des batchs de fin de journée, paramétrés par place de marché (Europe, États-Unis, Asie), pour intégrer les retours de marché tardifs.</source>
-        <target state="translated">Copartis post-trade: end-of-day batch jobs reworked, configured per market (Europe, United States, Asia), to take in late market returns.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">27,28</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4318628037800618166" datatype="html">
-        <source>Contrôles pré-trade Boursorama : trois contrôles (cohérence de prix, collars, présence bid/ask) rendus désactivables par client, testés en JUnit.</source>
-        <target state="translated">Boursorama pre-trade checks: three checks (price consistency, collars, bid/ask presence) made switchable per client, tested with JUnit.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">28,29</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3923986432926825546" datatype="html">
-        <source>Portail d&apos;administration multi-clients en JavaScript : statut des marchés en temps réel, internationalisation FR/EN.</source>
-        <target state="translated">Multi-client admin portal in JavaScript: real-time market status, FR/EN internationalisation.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">29,30</context>
+          <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="517001199198442280" datatype="html">
@@ -1520,7 +1599,7 @@
         <target state="translated">See the timeline and the architecture<x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;sr&quot;&gt;"/> at Worldline<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">32,33</context>
+          <context context-type="linenumber">36,38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4180035747429477656" datatype="html">
@@ -1528,7 +1607,7 @@
         <target state="translated">P3 · km 58.2</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">13,14</context>
+          <context context-type="linenumber">14,15</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1053292106523444216" datatype="html">
@@ -1536,7 +1615,7 @@
         <target state="translated">Born from running</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">14,15</context>
+          <context context-type="linenumber">15,16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4020635115866003866" datatype="html">
@@ -1560,11 +1639,11 @@
         <target state="translated">Contact me</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
-          <context context-type="linenumber">18,19</context>
+          <context context-type="linenumber">24,25</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">174,175</context>
+          <context context-type="linenumber">194,195</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3277084266824894235" datatype="html">
@@ -1572,7 +1651,7 @@
         <target state="translated">Enzo Leveque in trail gear, in front of a blue sky.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
-          <context context-type="linenumber">33,34</context>
+          <context context-type="linenumber">59,60</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8921646052564591281" datatype="html">
@@ -1592,7 +1671,7 @@
         <target state="translated"><x id="name" equiv-text="name"/> · km <x id="km" equiv-text="km"/> · <x id="clock" equiv-text="clock"/> · <x id="leg" equiv-text="leg"/>, the longest leg</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
-          <context context-type="linenumber">105</context>
+          <context context-type="linenumber">109</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4512301851282775999" datatype="html">
@@ -1600,7 +1679,7 @@
         <target state="translated"><x id="name" equiv-text="name"/> · km <x id="km" equiv-text="km"/> · <x id="clock" equiv-text="clock"/> · <x id="leg" equiv-text="leg"/> leg</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
-          <context context-type="linenumber">106</context>
+          <context context-type="linenumber">110</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9014929949884219541" datatype="html">
@@ -1608,7 +1687,7 @@
         <target state="translated">Finish reached, km <x id="km" equiv-text="km"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
-          <context context-type="linenumber">111</context>
+          <context context-type="linenumber">115</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1147207281334853440" datatype="html">
@@ -1616,7 +1695,7 @@
         <target state="translated"><x id="name" equiv-text="name"/> reached, km <x id="km" equiv-text="km"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/tracking-band/tracking-band.ts</context>
-          <context context-type="linenumber">112</context>
+          <context context-type="linenumber">116</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3241816679336998255" datatype="html">
@@ -1624,7 +1703,15 @@
         <target state="translated">Publisher</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">8,9</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="legal.editor" datatype="html">
+        <source>Enzo Leveque, particulier, directeur de la publication. Contact : enzo.lvq12@gmail.com. Conformément à l&apos;article 6-III-2 de la LCEN, l&apos;adresse de l&apos;éditeur non professionnel est communiquée à l&apos;hébergeur.</source>
+        <target state="translated">Enzo Leveque, private individual, publication director. Contact: enzo.lvq12@gmail.com. In accordance with article 6-III-2 of the French LCEN law, the address of the non-professional publisher has been provided to the host.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
+          <context context-type="linenumber">10,11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2545706311007543622" datatype="html">
@@ -1632,7 +1719,15 @@
         <target state="translated">Host</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">10,11</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="legal.host" datatype="html">
+        <source>Oracle France SAS (Oracle Cloud Infrastructure), 15 boulevard Charles de Gaulle, 92715 Colombes Cedex, France, +33 1 57 60 20 20. Serveurs situés en région Paris (Union européenne).</source>
+        <target state="translated">Oracle France SAS (Oracle Cloud Infrastructure), 15 boulevard Charles de Gaulle, 92715 Colombes Cedex, France, +33 1 57 60 20 20. Servers located in the Paris region (European Union).</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
+          <context context-type="linenumber">12,13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4804883747512845980" datatype="html">
@@ -1640,7 +1735,31 @@
         <target state="translated">Contact form data</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">12,13</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="legal.form" datatype="html">
+        <source>Le formulaire collecte votre nom, votre adresse e-mail, votre société (facultative) et votre message, uniquement pour répondre à votre demande. Responsable du traitement : Enzo Leveque. Base légale : l&apos;intérêt légitime à répondre aux demandes reçues (article 6-1-f du RGPD). Une empreinte (hachage) de votre adresse IP sert uniquement à limiter le nombre d&apos;envois (5 par heure). Aucun e-mail automatique ne vous est envoyé.</source>
+        <target state="translated">The form collects your name, email address, company (optional) and message, solely to answer your request. Data controller: Enzo Leveque. Legal basis: legitimate interest in answering the requests received (article 6(1)(f) GDPR). A hash of your IP address is used only to limit the number of submissions (5 per hour). No automatic email is sent to you.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="legal.recipients.title" datatype="html">
+        <source>Destinataires</source>
+        <target state="translated">Recipients</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="legal.recipients" datatype="html">
+        <source>Seul l&apos;éditeur lit les messages. Ils sont stockés chez Oracle (région Paris, Union européenne) et transmis par e-mail via Google (Gmail), ce qui peut impliquer un transfert vers les États-Unis encadré par le Data Privacy Framework.</source>
+        <target state="translated">Only the publisher reads the messages. They are stored with Oracle (Paris region, European Union) and forwarded by email through Google (Gmail), which may involve a transfer to the United States covered by the Data Privacy Framework.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
+          <context context-type="linenumber">16,17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3512982982093003769" datatype="html">
@@ -1648,7 +1767,15 @@
         <target state="translated">Retention</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">14,15</context>
+          <context context-type="linenumber">17,18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="legal.retention" datatype="html">
+        <source>Les messages sont supprimés automatiquement de la base au bout de 12 mois ; la copie reçue par e-mail est supprimée dans le même délai.</source>
+        <target state="translated">Messages are automatically deleted from the database after 12 months; the copy received by email is deleted within the same period.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
+          <context context-type="linenumber">18,19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4319694770578543913" datatype="html">
@@ -1656,7 +1783,15 @@
         <target state="translated">Your rights</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">16,17</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="legal.rights" datatype="html">
+        <source>Vous pouvez demander l&apos;accès à vos données, leur rectification, leur effacement, la limitation du traitement, vous y opposer ou en obtenir la portabilité, en écrivant à enzo.lvq12@gmail.com. Réponse sous un mois. Vous pouvez aussi saisir la CNIL (cnil.fr).</source>
+        <target state="translated">You can request access to your data, its rectification or erasure, the restriction of processing, object to it or obtain its portability, by writing to enzo.lvq12@gmail.com. Reply within one month. You can also lodge a complaint with the CNIL (cnil.fr).</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
+          <context context-type="linenumber">20,21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4516124744118816397" datatype="html">
@@ -1664,7 +1799,15 @@
         <target state="translated">Cookies</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">18,19</context>
+          <context context-type="linenumber">21,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="legal.cookies" datatype="html">
+        <source>Aucun cookie ni traceur de mesure d&apos;audience n&apos;est déposé chez les visiteurs. Le stockage du navigateur sert uniquement à mémoriser le thème choisi (localStorage) et certaines animations déjà vues (sessionStorage, effacé à la fermeture de l&apos;onglet). L&apos;espace d&apos;administration, réservé à l&apos;éditeur, utilise un cookie de session technique. Ces usages sont strictement nécessaires et exemptés de consentement.</source>
+        <target state="translated">No cookie or audience-measurement tracker is set for visitors. Browser storage is only used to remember the chosen theme (localStorage) and some animations already seen (sessionStorage, cleared when the tab is closed). The admin area, reserved for the publisher, uses a technical session cookie. These uses are strictly necessary and exempt from consent.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
+          <context context-type="linenumber">22,23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6832369903253088923" datatype="html">
@@ -1672,7 +1815,15 @@
         <target state="translated">Credits</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">20,21</context>
+          <context context-type="linenumber">23,24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="legal.credits" datatype="html">
+        <source>Photographies : droits réservés à leurs auteurs. Pour toute demande de retrait d&apos;une image : enzo.lvq12@gmail.com. Les logos (technologies, Université d&apos;Artois) sont des marques de leurs détenteurs respectifs, cités sans affiliation.</source>
+        <target state="translated">Photographs: rights reserved by their authors. To request the removal of an image: enzo.lvq12@gmail.com. Logos (technologies, Université d&apos;Artois) are trademarks of their respective owners, mentioned without affiliation.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
+          <context context-type="linenumber">24,27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1720878291486780063" datatype="html">
@@ -1680,7 +1831,7 @@
         <target state="translated">Segment: the foundations</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7333686123790078124" datatype="html">
@@ -1688,7 +1839,7 @@
         <target state="translated">Segment: Worldline</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7979037827108164469" datatype="html">
@@ -1696,7 +1847,7 @@
         <target state="translated">Segment: side projects born from running</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="262991673465632544" datatype="html">
@@ -1704,7 +1855,7 @@
         <target state="translated">← Back to the course (<x id="INTERPOLATION" equiv-text="{{ s.label }}"/>)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">27,28</context>
+          <context context-type="linenumber">29,30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7398124504908803632" datatype="html">
@@ -1712,7 +1863,7 @@
         <target state="translated">← Back to the course</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">29,30</context>
+          <context context-type="linenumber">31,32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3080140678516269306" datatype="html">
@@ -1720,7 +1871,7 @@
         <target state="translated">Project details</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2771905879066664456" datatype="html">
@@ -1728,7 +1879,7 @@
         <target state="translated">Duration</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">46,47</context>
+          <context context-type="linenumber">48,49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9005457553529671208" datatype="html">
@@ -1736,7 +1887,7 @@
         <target state="translated">Commits</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">52,53</context>
+          <context context-type="linenumber">54,55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2180522701456218992" datatype="html">
@@ -1744,7 +1895,7 @@
         <target state="translated">Languages</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">56,57</context>
+          <context context-type="linenumber">58,59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2456703340126200606" datatype="html">
@@ -1752,7 +1903,7 @@
         <target state="translated">Last push</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">60,61</context>
+          <context context-type="linenumber">62,63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4921439356441031513" datatype="html">
@@ -1760,7 +1911,55 @@
         <target state="translated">Commits and languages: GitHub sync, every 6 h.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">69,70</context>
+          <context context-type="linenumber">71,72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6388259543756072137" datatype="html">
+        <source>Missions</source>
+        <target state="translated">Missions</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
+          <context context-type="linenumber">91,92</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8408593535590034321" datatype="html">
+        <source>Plateforme TOM (Trade Order Management) : elle reçoit, contrôle et transmet aux marchés les ordres de bourse de clients comme Boursorama et Copartis.</source>
+        <target state="translated">TOM platform (Trade Order Management): it receives, checks and routes to the markets the stock orders of clients such as Boursorama and Copartis.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
+          <context context-type="linenumber">93,94</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="126728149264792569" datatype="html">
+        <source>Prototype move2cloud : l&apos;émetteur d&apos;ordres rendu abstrait pour passer de MySQL à une file RabbitMQ, avec des ordres sérialisés en XML.</source>
+        <target state="translated">move2cloud prototype: the order sender made abstract to move from MySQL to a RabbitMQ queue, with orders serialised as XML.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
+          <context context-type="linenumber">94,95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8817989540445316427" datatype="html">
+        <source>Post-marché Copartis : refonte des batchs de fin de journée, paramétrés par place de marché (Europe, États-Unis, Asie), pour intégrer les retours de marché tardifs.</source>
+        <target state="translated">Copartis post-trade: end-of-day batch jobs reworked, configured per market (Europe, United States, Asia), to take in late market returns.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
+          <context context-type="linenumber">95,96</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4318628037800618166" datatype="html">
+        <source>Contrôles pré-trade Boursorama : trois contrôles (cohérence de prix, collars, présence bid/ask) rendus désactivables par client, testés en JUnit.</source>
+        <target state="translated">Boursorama pre-trade checks: three checks (price consistency, collars, bid/ask presence) made switchable per client, tested with JUnit.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
+          <context context-type="linenumber">96,97</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3923986432926825546" datatype="html">
+        <source>Portail d&apos;administration multi-clients en JavaScript : statut des marchés en temps réel, internationalisation FR/EN.</source>
+        <target state="translated">Multi-client admin portal in JavaScript: real-time market status, FR/EN internationalisation.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
+          <context context-type="linenumber">97,98</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3367146030113064235" datatype="html">
@@ -1768,7 +1967,7 @@
         <target state="translated">Context and constraints</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">88,89</context>
+          <context context-type="linenumber">108,109</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4423441981265009871" datatype="html">
@@ -1776,7 +1975,7 @@
         <target state="translated">Decision and the option I ruled out</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">101,102</context>
+          <context context-type="linenumber">121,122</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7475501712995091876" datatype="html">
@@ -1784,7 +1983,7 @@
         <target state="translated">Trade-off:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">107</context>
+          <context context-type="linenumber">127</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7858207736318806914" datatype="html">
@@ -1792,7 +1991,7 @@
         <target state="translated">What I owned</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">128,129</context>
+          <context context-type="linenumber">148,149</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2902261471051690112" datatype="html">
@@ -1800,7 +1999,7 @@
         <target state="translated">Result</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">137,138</context>
+          <context context-type="linenumber">157,158</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/decision-card/decision-card.ts</context>
@@ -1812,7 +2011,7 @@
         <target state="translated">What I would do differently</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">146,147</context>
+          <context context-type="linenumber">166,167</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8186013988289067040" datatype="html">
@@ -1820,7 +2019,7 @@
         <target state="translated">Code</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">155,156</context>
+          <context context-type="linenumber">175,176</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5442571032125501579" datatype="html">
@@ -1828,7 +2027,7 @@
         <target state="translated"><x id="INTERPOLATION" equiv-text="{{ r.name }}"/> on GitHub</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">159,160</context>
+          <context context-type="linenumber">179,180</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6358655669371888728" datatype="html">
@@ -1836,7 +2035,7 @@
         <target state="translated">See the demo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">162,163</context>
+          <context context-type="linenumber">182,183</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5293774587552771604" datatype="html">
@@ -1844,7 +2043,7 @@
         <target state="translated">Watch the clip again</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">165,166</context>
+          <context context-type="linenumber">185,186</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5280079547787277567" datatype="html">
@@ -1852,7 +2051,7 @@
         <target state="translated"><x id="PH" equiv-text="p.stage"/> · km <x id="PH_1" equiv-text="formatKm(CHECKPOINTS[id])"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">185</context>
+          <context context-type="linenumber">206</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8361028789661352179" datatype="html">
@@ -2803,9 +3002,9 @@
           <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7770271707668598464" datatype="html">
-        <source>Contributions GitHub par semaine sur 12 mois</source>
-        <target state="translated">GitHub contributions per week over 12 months</target>
+      <trans-unit id="5191438465495175957" datatype="html">
+        <source>Contributions GitHub par semaine sur 6 mois</source>
+        <target state="translated">GitHub contributions per week over 6 months</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/contributions/contributions.ts</context>
           <context context-type="linenumber">48,49</context>
@@ -2835,12 +3034,12 @@
           <context context-type="linenumber">65,66</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5256605689993326760" datatype="html">
-        <source><x id="PH" equiv-text="n(d.total)"/> contributions sur 12 mois · meilleure semaine : <x id="PH_1" equiv-text="n(best)"/></source>
-        <target state="translated"><x id="PH" equiv-text="n(d.total)"/> contributions over 12 months · best week: <x id="PH_1" equiv-text="n(best)"/></target>
+      <trans-unit id="4849955661453135629" datatype="html">
+        <source><x id="PH" equiv-text="n(total)"/> contributions sur 6 mois · meilleure semaine : <x id="PH_1" equiv-text="n(best)"/></source>
+        <target state="translated"><x id="PH" equiv-text="n(total)"/> contributions over 6 months · best week: <x id="PH_1" equiv-text="n(best)"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/contributions/contributions.ts</context>
-          <context context-type="linenumber">113</context>
+          <context context-type="linenumber">116</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5604409134948484223" datatype="html">
@@ -2889,206 +3088,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/split/split.ts</context>
           <context context-type="linenumber">15</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7217126102850839095" datatype="html">
-        <source>commits</source>
-        <target state="translated">commits</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/project-index/project-index.ts</context>
-          <context context-type="linenumber">75,76</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2527991368458837723" datatype="html">
-        <source>dernier push</source>
-        <target state="translated">last push</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/project-index/project-index.ts</context>
-          <context context-type="linenumber">81</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2377883520840299694" datatype="html">
-        <source> 2,5 ans sur une plateforme d&apos;ordres de bourse (Boursorama, Copartis), en stage puis en alternance. Ici, une erreur ne se voit pas dans un log : elle se voit dans un ordre. </source>
-        <target state="translated">2.5 years on a stock-order platform (Boursorama, Copartis), as an intern then a work-study engineer. Here, a mistake doesn&apos;t show up in a log: it shows up in an order.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">22,23</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8310543467411074866" datatype="html">
-        <source>Stack Worldline</source>
-        <target state="translated">Worldline stack</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">16,17</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6780660996676898149" datatype="html">
-        <source> Depuis juin 2026 : ingénieur d&apos;études chez Aubay, back end Java/Spring Boot pour les Restos du Cœur. </source>
-        <target state="translated">Since June 2026: software engineer at Aubay, Java/Spring Boot back end for the Restos du Cœur charity.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/p2.section.ts</context>
-          <context context-type="linenumber">32,33</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6388259543756072137" datatype="html">
-        <source>Missions</source>
-        <target state="translated">Missions</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">91,92</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2335736306044980317" datatype="html">
-        <source>Contrôle du matériel</source>
-        <target state="translated">Kit check</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
-          <context context-type="linenumber">18,19</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7478639649197906841" datatype="html">
-        <source>Avant le départ : ce que j&apos;emporte, et où ça a déjà tourné.</source>
-        <target state="translated">Before the start: what I carry, and where it has already run.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
-          <context context-type="linenumber">19,20</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="891718890825947806" datatype="html">
-        <source>Back end</source>
-        <target state="translated">Back end</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
-          <context context-type="linenumber">101</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2368525224699166515" datatype="html">
-        <source>Front end</source>
-        <target state="translated">Front end</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
-          <context context-type="linenumber">110</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7140571963801415410" datatype="html">
-        <source>Données</source>
-        <target state="translated">Data</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
-          <context context-type="linenumber">118</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6222879640212347572" datatype="html">
-        <source>Outillage et déploiement</source>
-        <target state="translated">Tooling and deployment</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
-          <context context-type="linenumber">122</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1925401333221122195" datatype="html">
-        <source>Tous les projets</source>
-        <target state="translated">Every project</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
-          <context context-type="linenumber">125</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8624755520436938347" datatype="html">
-        <source>VM Oracle : Oltre, Zotracker, Zofolio</source>
-        <target state="translated">Oracle VM: Oltre, Zotracker, Zofolio</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/kit.section.ts</context>
-          <context context-type="linenumber">127</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="legal.editor" datatype="html">
-        <source>Enzo Leveque, particulier, directeur de la publication. Contact : enzo.lvq12@gmail.com. Conformément à l&apos;article 6-III-2 de la LCEN, l&apos;adresse de l&apos;éditeur non professionnel est communiquée à l&apos;hébergeur.</source>
-        <target state="translated">Enzo Leveque, private individual, publication director. Contact: enzo.lvq12@gmail.com. In accordance with article 6-III-2 of the French LCEN law, the address of the non-professional publisher has been provided to the host.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">10,11</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="legal.host" datatype="html">
-        <source>Oracle France SAS (Oracle Cloud Infrastructure), 15 boulevard Charles de Gaulle, 92715 Colombes Cedex, France, +33 1 57 60 20 20. Serveurs situés en région Paris (Union européenne).</source>
-        <target state="translated">Oracle France SAS (Oracle Cloud Infrastructure), 15 boulevard Charles de Gaulle, 92715 Colombes Cedex, France, +33 1 57 60 20 20. Servers located in the Paris region (European Union).</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">12,13</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="legal.form" datatype="html">
-        <source>Le formulaire collecte votre nom, votre adresse e-mail, votre société (facultative) et votre message, uniquement pour répondre à votre demande. Responsable du traitement : Enzo Leveque. Base légale : l&apos;intérêt légitime à répondre aux demandes reçues (article 6-1-f du RGPD). Une empreinte (hachage) de votre adresse IP sert uniquement à limiter le nombre d&apos;envois (5 par heure). Aucun e-mail automatique ne vous est envoyé.</source>
-        <target state="translated">The form collects your name, email address, company (optional) and message, solely to answer your request. Data controller: Enzo Leveque. Legal basis: legitimate interest in answering the requests received (article 6(1)(f) GDPR). A hash of your IP address is used only to limit the number of submissions (5 per hour). No automatic email is sent to you.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">14,15</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="legal.recipients.title" datatype="html">
-        <source>Destinataires</source>
-        <target state="translated">Recipients</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">15,16</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="legal.recipients" datatype="html">
-        <source>Seul l&apos;éditeur lit les messages. Ils sont stockés chez Oracle (région Paris, Union européenne) et transmis par e-mail via Google (Gmail), ce qui peut impliquer un transfert vers les États-Unis encadré par le Data Privacy Framework.</source>
-        <target state="translated">Only the publisher reads the messages. They are stored with Oracle (Paris region, European Union) and forwarded by email through Google (Gmail), which may involve a transfer to the United States covered by the Data Privacy Framework.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">16,17</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="legal.retention" datatype="html">
-        <source>Les messages sont supprimés automatiquement de la base au bout de 12 mois ; la copie reçue par e-mail est supprimée dans le même délai.</source>
-        <target state="translated">Messages are automatically deleted from the database after 12 months; the copy received by email is deleted within the same period.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">18,19</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="legal.rights" datatype="html">
-        <source>Vous pouvez demander l&apos;accès à vos données, leur rectification, leur effacement, la limitation du traitement, vous y opposer ou en obtenir la portabilité, en écrivant à enzo.lvq12@gmail.com. Réponse sous un mois. Vous pouvez aussi saisir la CNIL (cnil.fr).</source>
-        <target state="translated">You can request access to your data, its rectification or erasure, the restriction of processing, object to it or obtain its portability, by writing to enzo.lvq12@gmail.com. Reply within one month. You can also lodge a complaint with the CNIL (cnil.fr).</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">20,21</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="legal.cookies" datatype="html">
-        <source>Aucun cookie ni traceur de mesure d&apos;audience n&apos;est déposé chez les visiteurs. Le stockage du navigateur sert uniquement à mémoriser le thème choisi (localStorage) et certaines animations déjà vues (sessionStorage, effacé à la fermeture de l&apos;onglet). L&apos;espace d&apos;administration, réservé à l&apos;éditeur, utilise un cookie de session technique. Ces usages sont strictement nécessaires et exemptés de consentement.</source>
-        <target state="translated">No cookie or audience-measurement tracker is set for visitors. Browser storage is only used to remember the chosen theme (localStorage) and some animations already seen (sessionStorage, cleared when the tab is closed). The admin area, reserved for the publisher, uses a technical session cookie. These uses are strictly necessary and exempt from consent.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">22,23</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="legal.credits" datatype="html">
-        <source>Photographies : droits réservés à leurs auteurs. Pour toute demande de retrait d&apos;une image : enzo.lvq12@gmail.com. Les logos (technologies, Université d&apos;Artois) sont des marques de leurs détenteurs respectifs, cités sans affiliation.</source>
-        <target state="translated">Photographs: rights reserved by their authors. To request the removal of an image: enzo.lvq12@gmail.com. Logos (technologies, Université d&apos;Artois) are trademarks of their respective owners, mentioned without affiliation.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/legal/legal.page.ts</context>
-          <context context-type="linenumber">24,27</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="contact.privacy" datatype="html">
-        <source>Vos données servent uniquement à vous répondre. Détails et droits : <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/mentions-legales&quot;&gt;"/>mentions légales<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</source>
-        <target state="translated">Your data is used only to answer you. Details and rights: <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/mentions-legales&quot;&gt;"/>legal notice<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/contact/contact-form.ts</context>
-          <context context-type="linenumber">105,107</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="p1.univ.alt" datatype="html">
-        <source>Logo de l&apos;Université d&apos;Artois.</source>
-        <target state="translated">Logo of the Université d&apos;Artois.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">57,59</context>
         </context-group>
       </trans-unit>
     </body>

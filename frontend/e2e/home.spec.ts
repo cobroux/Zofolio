@@ -239,8 +239,15 @@ test('P1 compacte : un lien par projet d’école de l’API, le badge, ni toge 
   }
 });
 
-test('graphe de contributions : retiré du journal', async ({ page }) => {
+test('graphe de contributions : dans P3 si l’API en fournit, sinon absent, jamais dans le journal', async ({
+  page,
+  request,
+}) => {
+  const home = await (await request.get('/api/fr/home')).json();
   await page.goto('/fr/');
+  const graph = page.locator('#p3 app-contributions');
+  if (home.contributions) await expect(graph.locator('.carnet')).toBeVisible();
+  else await expect(graph).toHaveCount(0);
   await expect(page.locator('#journal app-contributions')).toHaveCount(0);
 });
 

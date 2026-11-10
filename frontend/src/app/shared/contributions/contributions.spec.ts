@@ -27,14 +27,18 @@ describe('ContributionsGraph', () => {
 
   it('rend une barre par semaine, un résumé texte et un titre SVG', () => {
     const el = render(fixture.contributions as Contributions);
-    expect(el.querySelectorAll('svg[role="img"] rect').length).toBe(Math.ceil(fixture.contributions.counts.length / 7));
-    expect(el.querySelector('.sum')?.textContent).toMatch(/^812 contributions sur 12 mois · meilleure semaine : \d+$/);
+    expect(el.querySelectorAll('svg[role="img"] rect').length).toBe(26);
+    expect(el.querySelector('.sum')?.textContent).toMatch(
+      /^\d+ contributions sur 6 mois · meilleure semaine : \d+$/,
+    );
     expect(el.querySelector('title')?.textContent).toContain('par semaine');
     expect(el.querySelector('.legend')?.getAttribute('aria-hidden')).toBe('true');
   });
 
   it('null ou vide : rien', () => {
     expect(render(null).querySelector('.carnet')).toBeNull();
-    expect(render({ start: '2025-10-12', counts: [], total: 0, syncedAt: '' }).querySelector('.carnet')).toBeNull();
+    expect(
+      render({ start: '2025-10-12', counts: [], total: 0, syncedAt: '' }).querySelector('.carnet'),
+    ).toBeNull();
   });
 });
