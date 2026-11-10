@@ -239,20 +239,16 @@ test('P1 compacte : un lien par projet d’école de l’API, le badge, ni toge 
   }
 });
 
-test('graphe de contributions : visible hors du détail si l’API en fournit, sinon zone retirée', async ({
+test('graphe de contributions : dans P3 si l’API en fournit, sinon absent, jamais dans le journal', async ({
   page,
   request,
 }) => {
   const home = await (await request.get('/api/fr/home')).json();
   await page.goto('/fr/');
-  const graph = page.locator('#journal app-contributions');
-  if (home.contributions) {
-    await expect(graph.locator('.carnet')).toBeVisible();
-    await expect(page.locator('#journal details app-contributions')).toHaveCount(0);
-  } else {
-    await expect(graph).toHaveCount(0); // pas de GITHUB_TOKEN : ni graphe ni erreur
-  }
-  await expect(page.locator('#journal details summary')).not.toContainText('graphe');
+  const graph = page.locator('#p3 app-contributions');
+  if (home.contributions) await expect(graph.locator('.carnet')).toBeVisible();
+  else await expect(graph.locator('.carnet')).toHaveCount(0); // l'hôte reste rendu, le composant non
+  await expect(page.locator('#journal app-contributions')).toHaveCount(0);
 });
 
 test('P2 allégée : Décision, schéma et frise sont dans l’étude Worldline, pas sur l’accueil', async ({

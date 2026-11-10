@@ -62,28 +62,16 @@ describe('JournalSection', () => {
     expect([...el.querySelectorAll('tbody th')][1].textContent).toContain('Marathon de Paris');
   });
 
-  it('graphe de contributions : rendu si présent, rien si null', () => {
-    const f = TestBed.createComponent(JournalSection);
-    f.componentRef.setInput('races', home.races);
-    f.componentRef.setInput('contributions', home.contributions);
-    f.detectChanges();
-    expect(f.nativeElement.querySelector('app-contributions .carnet')).toBeTruthy();
-    f.componentRef.setInput('contributions', null);
-    f.detectChanges();
-    expect(f.nativeElement.querySelector('app-contributions')).toBeNull();
-  });
-
   it("« L'endurance, deux fois » ouvre le Journal et remplace « Les années en chiffres »", () => {
     const f = TestBed.createComponent(JournalSection);
     f.componentRef.setInput('races', home.races);
     f.componentRef.setInput('sportYears', [
       { year: 2025, distanceKm: 2140, elevationGainM: 1, hours: 1, activities: 1 },
     ]);
-    f.componentRef.setInput('contributionYears', [{ year: 2025, total: 700 }]);
     f.detectChanges();
     const el = f.nativeElement as HTMLElement;
     expect(el.querySelector('section')!.firstElementChild!.tagName).toBe('APP-ENDURANCE-TWICE');
-    expect(el.querySelector('app-endurance-twice [data-count="700"]')).toBeTruthy();
+    expect(el.querySelector('app-endurance-twice [data-count="2140"]')).toBeTruthy();
     expect(el.textContent).not.toContain('Les années en chiffres');
     expect(el.querySelector('.stats')).toBeNull();
   });
@@ -91,7 +79,6 @@ describe('JournalSection', () => {
   it('photo des Baudets en plaque, logo du club à côté du nom, seules les autres courses sont repliées', () => {
     const f = TestBed.createComponent(JournalSection);
     f.componentRef.setInput('races', home.races);
-    f.componentRef.setInput('contributions', home.contributions);
     f.detectChanges();
     const el = f.nativeElement as HTMLElement;
     expect(el.querySelector('app-photo-plates img')?.getAttribute('src')).toBe(
@@ -99,8 +86,6 @@ describe('JournalSection', () => {
     );
     expect(el.querySelector('.club')?.textContent).toContain('Les Baudets Dhinges');
     expect(el.querySelector('.club img')?.getAttribute('src')).toBe('img/logo-baudets-320.jpg');
-    expect(el.querySelector('details app-contributions')).toBeNull();
-    expect(el.querySelector('section > app-contributions .carnet')).toBeTruthy();
     expect(el.querySelector('details.more:not([open]) summary')?.textContent).not.toContain(
       'graphe',
     );

@@ -1,7 +1,6 @@
 import { DatePipe, NgTemplateOutlet } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
-import { ContributionsGraph } from '../../../shared/contributions/contributions';
-import { Contributions, ContributionYear, Race, SportYear } from '../../../core/api/api.models';
+import { Race, SportYear } from '../../../core/api/api.models';
 import { Reveal } from '../../../shared/reveal/reveal';
 import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
 import { EnduranceTwice } from '../endurance/endurance-twice';
@@ -27,14 +26,10 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
 /** Pas de classement : uniquement des chiffres. Les lignes `INDEX`/`CLUB` ne sont pas des courses. */
 @Component({
   selector: 'app-journal-section',
-  imports: [ContributionsGraph, Reveal, PhotoPlates, EnduranceTwice, DatePipe, NgTemplateOutlet],
+  imports: [Reveal, PhotoPlates, EnduranceTwice, DatePipe, NgTemplateOutlet],
   template: `
     <section id="journal" aria-labelledby="journal-title">
-      <app-endurance-twice
-        class="endurance"
-        [sportYears]="sportYears()"
-        [contributionYears]="contributionYears()"
-      />
+      <app-endurance-twice class="endurance" [sportYears]="sportYears()" />
       <div class="side">
         <div class="lede">
           <h2 id="journal-title" appReveal i18n>Journal de course</h2>
@@ -113,9 +108,6 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
           />
         </picture>
       </figure>
-      @if (contributions(); as c) {
-        <app-contributions class="contrib" [appReveal]="2" [data]="c" />
-      }
       @if (rows(); as list) {
         @if (list.length > shown) {
           <details class="more">
@@ -413,10 +405,6 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
       figure img {
         aspect-ratio: 4 / 3;
       }
-      .contrib {
-        grid-column: 1 / -1;
-        grid-row: 4;
-      }
       .more {
         grid-column: 1 / -1;
         grid-row: 5;
@@ -427,11 +415,8 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
 export class JournalSection {
   /** `null` = API en échec. */
   readonly races = input<Race[] | null>(null);
-  /** `null` = pas encore de synchro GitHub : le graphe n'est pas rendu. */
-  readonly contributions = input<Contributions | null>(null);
-  /** Ordre libre ; mis en regard des commits par année dans « L'endurance, deux fois ». */
+  /** Ordre libre ; km par année dans « L'endurance, deux fois ». */
   readonly sportYears = input<SportYear[]>([]);
-  readonly contributionYears = input<ContributionYear[]>([]);
   protected readonly night: Plate = {
     src: 'img/baudets-nuit-1280.jpg',
     alt: $localize`:@@journal.night.alt:Le groupe du club Les Baudets rassemblé de nuit sur une place, frontales allumées, Enzo en selfie au premier plan`,
@@ -439,7 +424,7 @@ export class JournalSection {
     width: 1280,
     height: 960,
   };
-  /** Les dernières courses restent visibles ; le reste est replié ; le graphe de contributions est visible (retour d'Enzo, vague 3). */
+  /** Les dernières courses restent visibles ; le reste est replié. */
   protected readonly shown = 3;
   readonly rows = computed(() => this.races()?.filter((r) => r.kind === 'RACE') ?? null);
   readonly others = computed(() => this.races()?.filter((r) => r.kind !== 'RACE') ?? []);

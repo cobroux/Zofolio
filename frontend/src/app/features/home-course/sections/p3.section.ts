@@ -1,12 +1,13 @@
 import { Component, computed, input } from '@angular/core';
-import { ProjectSummary } from '../../../core/api/api.models';
+import { Contributions, ProjectSummary } from '../../../core/api/api.models';
+import { ContributionsGraph } from '../../../shared/contributions/contributions';
 import { Reveal } from '../../../shared/reveal/reveal';
 import { ProjectIndex } from '../project-index/project-index';
 
 /** P3 (km 58,2), terrain accent : les projets nés de la course en index avec aperçu (spec §6). */
 @Component({
   selector: 'app-p3-section',
-  imports: [ProjectIndex, Reveal],
+  imports: [ProjectIndex, Reveal, ContributionsGraph],
   template: `
     <section id="p3" class="terrain-accent" aria-labelledby="p3-title">
       <header appReveal>
@@ -14,6 +15,7 @@ import { ProjectIndex } from '../project-index/project-index';
         <h2 id="p3-title" i18n>Nés de la course</h2>
       </header>
       <app-project-index [projects]="items()" />
+      <app-contributions [data]="contributions()" />
     </section>
   `,
   styles: `
@@ -44,6 +46,7 @@ import { ProjectIndex } from '../project-index/project-index';
   `,
 })
 export class P3Section {
+  readonly contributions = input<Contributions | null>(null);
   /** `null` = API en échec. */
   readonly projects = input<ProjectSummary[] | null>(null);
   readonly items = computed(() => this.projects()?.filter((p) => p.stage === 'P3') ?? null);
