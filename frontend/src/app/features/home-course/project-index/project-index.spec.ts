@@ -62,7 +62,24 @@ describe('ProjectIndex', () => {
       'https://github.com/cobroux/histoquiz',
     );
     expect(gfaim.querySelector('h3 a')?.getAttribute('href')).toBe('/projets/gfaim');
-    for (const row of [oltre, histo, gfaim]) expect(row.querySelectorAll('a').length).toBe(1);
+    // Aucune destination en double : le titre, puis seulement la démo et le code qu'il ne couvre pas.
+    for (const row of [oltre, histo, gfaim]) {
+      const hrefs = [...row.querySelectorAll('a')].map((a) => a.getAttribute('href'));
+      expect(new Set(hrefs).size).toBe(hrefs.length);
+    }
+    expect(histo.querySelectorAll('a').length).toBe(1);
+  });
+
+  it('étude avec démo et dépôt : liens « En ligne » et « Code » sous le pitch', () => {
+    render([{ ...bySlug('oltre'), demoUrl: 'https://demo.example', repoUrl: 'https://github.com/a/b' }]);
+    const links = [...rows()[0].querySelectorAll('.links a')].map((a) => [
+      a.textContent!.trim(),
+      a.getAttribute('href'),
+    ]);
+    expect(links).toEqual([
+      ['En ligne', 'https://demo.example'],
+      ['Code', 'https://github.com/a/b'],
+    ]);
   });
 
   it('focus clavier = même aperçu que le survol', () => {

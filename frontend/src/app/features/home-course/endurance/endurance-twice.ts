@@ -5,14 +5,20 @@ import { Reveal } from '../../../shared/reveal/reveal';
 
 const FIRST_YEAR = 2023;
 const NUMBER = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
+/** Séries secondaires de l'API, dans l'ordre d'affichage. */
+const EXTRAS = [
+  { key: 'elevationGainM', unit: $localize`m D+` },
+  { key: 'hours', unit: $localize`h` },
+  { key: 'activities', unit: $localize`sorties` },
+] as const;
 
-/** Km courus, année par année : une vraie série, jamais estimée (spec §6). */
+/** Totaux annuels d'endurance : km en grand avec sa barre, puis D+, heures et sorties. De vraies séries, jamais estimées (spec §6). */
 @Component({
   selector: 'app-endurance-twice',
   imports: [CountUp, Reveal],
   template: `
     <div class="endurance">
-      <h2 id="endurance-title" appReveal i18n>L'endurance, deux fois</h2>
+      <h2 id="endurance-title" appReveal i18n>L'endurance, année après année</h2>
       <ol [appCountUp]="number" aria-labelledby="endurance-title">
         @for (r of rows(); track r.year) {
           <li class="row" [class.now]="r.year === thisYear">
@@ -22,18 +28,25 @@ const NUMBER = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
                 <span class="small" i18n>en cours</span>
               }
             </p>
-            @if (hasKm()) {
-              <div class="cell">
-                @if (r.km !== null) {
-                  <span class="val" aria-hidden="true" [attr.data-count]="r.km">{{
-                    number(r.km)
-                  }}</span>
-                  <span class="small"
-                    ><span class="sr">{{ number(r.km) }} </span>km</span
-                  >
-                  <span class="bar km" aria-hidden="true" [style.--k]="r.km / maxKm()"></span>
+            <div class="cell">
+              <span class="val" aria-hidden="true" [attr.data-count]="r.km">{{
+                number(r.km)
+              }}</span>
+              <span class="small"
+                ><span class="sr">{{ number(r.km) }} </span>km</span
+              >
+              <span class="bar km" aria-hidden="true" [style.--k]="r.km / maxKm()"></span>
+            </div>
+            @if (r.extras.length) {
+              <ul class="extras">
+                @for (x of r.extras; track x.unit) {
+                  <li>
+                    @if (x.value !== null) {
+                      <b>{{ number(x.value) }}</b> {{ x.unit }}
+                    }
+                  </li>
                 }
-              </div>
+              </ul>
             }
           </li>
         }
@@ -56,13 +69,16 @@ const NUMBER = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
       font-size: clamp(3rem, 7vw, 6rem);
       text-wrap: balance;
     }
+    ol,
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
     ol {
       display: flex;
       flex-direction: column;
       gap: var(--s-6);
-      margin: 0;
-      padding: 0;
-      list-style: none;
     }
     .row {
       display: grid;
@@ -104,25 +120,35 @@ const NUMBER = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
     .now .bar {
       background: var(--accent);
     }
+    /* Séries secondaires : une ligne sous le km en mobile, des colonnes alignées à droite dès 768 px. */
+    .extras {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s-1) var(--s-5);
+      color: var(--ink-2);
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+    .extras li:empty {
+      display: none;
+    }
+    .extras b {
+      color: var(--ink);
+      font-weight: 600;
+    }
     .note {
       max-width: 60ch;
       margin: 0;
     }
-    .line {
-      max-width: 44ch;
-      margin: 0;
-      font-weight: 600;
-    }
     .sr {
       position: absolute;
       width: 1px;
-      height: 1px;
+      height: 1px; /* taste-skill-ignore : masquage visuel pour lecteur d écran */
       overflow: hidden;
       clip-path: inset(50%);
     }
     @media (min-width: 768px) {
       .row {
-        grid-template-columns: 6rem minmax(0, 1fr);
+        grid-template-columns: 6rem minmax(0, 1fr) auto;
         gap: var(--gutter);
         align-items: end;
       }
@@ -134,6 +160,16 @@ const NUMBER = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
       .val {
         font-size: clamp(2.5rem, 5vw, 4.5rem);
       }
+      .extras {
+        display: grid;
+        grid-template-columns: 12ch 6ch 11ch;
+        gap: var(--gutter);
+        text-align: end;
+      }
+      /* Une valeur absente garde sa colonne vide : les autres restent alignées. */
+      .extras li:empty {
+        display: block;
+      }
     }
   `,
 })
@@ -141,15 +177,20 @@ export class EnduranceTwice {
   readonly sportYears = input<SportYear[]>([]);
   protected readonly thisYear = new Date().getFullYear();
   protected readonly number = (n: number) => NUMBER.format(n);
-  /** De 2023 à l'année courante, chronologique ; une valeur absente donne `null` (cellule vide), une année sans aucune donnée est retirée. */
-  protected readonly rows = computed(() => {
-    const km = new Map(this.sportYears().map((y) => [y.year, y.distanceKm]));
-    return Array.from({ length: this.thisYear - FIRST_YEAR + 1 }, (_, i) => {
-      const year = FIRST_YEAR + i;
-      return { year, km: km.get(year) ?? null };
-    }).filter((r) => r.km !== null);
-  });
-  /** Une série entièrement absente (synchro vide) retire sa colonne au lieu d'afficher des tirets. */
-  protected readonly hasKm = computed(() => this.sportYears().length > 0);
-  protected readonly maxKm = computed(() => Math.max(1, ...this.rows().map((r) => r.km ?? 0)));
+  /** Une série entièrement absente retire sa colonne au lieu d'afficher des vides. */
+  private readonly extras = computed(() =>
+    EXTRAS.filter((x) => this.sportYears().some((y) => y[x.key] !== null)),
+  );
+  /** De 2023 à l'année courante, chronologique ; une année sans km est retirée. */
+  protected readonly rows = computed(() =>
+    this.sportYears()
+      .filter((y) => y.distanceKm !== null && y.year >= FIRST_YEAR && y.year <= this.thisYear)
+      .sort((a, b) => a.year - b.year)
+      .map((y) => ({
+        year: y.year,
+        km: y.distanceKm!,
+        extras: this.extras().map((x) => ({ unit: x.unit, value: y[x.key] })),
+      })),
+  );
+  protected readonly maxKm = computed(() => Math.max(1, ...this.rows().map((r) => r.km)));
 }

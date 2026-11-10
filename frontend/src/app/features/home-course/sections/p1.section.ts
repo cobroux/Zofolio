@@ -1,16 +1,16 @@
+import { NgTemplateOutlet } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HomeResponse } from '../../../core/api/api.models';
 import { CAPTURES } from '../project-index/project-index';
 import { Aid } from '../../../shared/aid/aid';
 import { ChapterPin } from '../../../shared/chapter-pin/chapter-pin';
-import { ContourField } from '../../../shared/contour-field/contour-field';
 import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
 
-/** P1 (Les fondations, km 20), compacte (spec §6) : une bande, puis l'index des projets d'école ; suivie du ravitaillement R1. `home` null = API en échec. */
+/** P1 (Les fondations, km 20), compacte (spec §6) : une bande, puis l'index des projets d'école (captures réelles en plaque, les autres en ligne de texte, aucune tuile de remplissage) ; suivie du ravitaillement R1. `home` null = API en échec. */
 @Component({
   selector: 'app-p1',
-  imports: [Aid, ChapterPin, ContourField, PhotoPlates, RouterLink],
+  imports: [Aid, ChapterPin, NgTemplateOutlet, PhotoPlates, RouterLink],
   template: `
     <section id="p1" class="terrain-paper">
       <app-chapter-pin
@@ -60,33 +60,44 @@ import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
           <app-photo-plates [main]="promo" />
         </div>
         @if (projects().length) {
-          <p class="index-title" i18n>Projets d'école :</p>
-          <ul class="index">
-            @for (p of projects(); track p.slug) {
-              <li class="card">
-                <span class="thumb" aria-hidden="true">
-                  @if (thumbs[p.slug] ?? captures[p.slug]; as src) {
-                    <img [src]="src" alt="" loading="lazy" />
-                  } @else {
-                    <app-contour-field [levels]="6 + ($index % 5)" />
-                    <span class="mark">{{
-                      p.languages[0] ?? p.stack[0] ?? p.title.charAt(0)
-                    }}</span>
-                  }
-                </span>
-                @if (p.tier === 'CASE_STUDY') {
-                  <a class="name" [routerLink]="['/projets', p.slug]">{{ p.title }}</a>
-                } @else if (p.repoUrl) {
-                  <a class="name" [href]="p.repoUrl" rel="noopener">{{ p.title }}</a>
-                } @else {
-                  <span class="name">{{ p.title }}</span>
+          <div class="index">
+            <p class="index-title" i18n>Projets d'école :</p>
+            @if (shown().length) {
+              <ul class="shots">
+                @for (r of shown(); track r.p.slug) {
+                  <li>
+                    <img [src]="r.src" alt="" width="480" height="300" loading="lazy" />
+                    <ng-container
+                      *ngTemplateOutlet="name; context: { $implicit: r.p }"
+                    ></ng-container>
+                  </li>
                 }
-                @if (p.languages[0] ?? p.stack[0]; as lang) {
-                  <span class="lang">{{ lang }}</span>
-                }
-              </li>
+              </ul>
             }
-          </ul>
+            @if (listed().length) {
+              <ul class="others">
+                @for (p of listed(); track p.slug) {
+                  <li>
+                    <ng-container
+                      *ngTemplateOutlet="name; context: { $implicit: p }"
+                    ></ng-container>
+                  </li>
+                }
+              </ul>
+            }
+          </div>
+          <ng-template #name let-p>
+            @if (p.tier === 'CASE_STUDY') {
+              <a class="name" [routerLink]="['/projets', p.slug]">{{ p.title }}</a>
+            } @else if (p.repoUrl) {
+              <a class="name" [href]="p.repoUrl" rel="noopener">{{ p.title }}</a>
+            } @else {
+              <span class="name">{{ p.title }}</span>
+            }
+            @if (p.languages[0] ?? p.stack[0]; as lang) {
+              <span class="lang">{{ lang }}</span>
+            }
+          </ng-template>
         }
         <p class="small note" i18n>
           Voie romaine sur le GR3 : c'est à peu près ici que le trail devient sérieux.
@@ -151,56 +162,57 @@ import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
     .frise .tnum {
       font-weight: 600;
     }
-    .index-title {
-      margin: 0;
-      font-weight: 700;
-    }
-    .index-title {
-      margin: 0;
-      font-weight: 700;
-    }
-    /* Projets d'école : cartes, une carte = un lien. Vignette si capture, sinon aplat. */
     .index {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-      gap: var(--s-4);
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--s-4) var(--gutter);
+    }
+    .index-title {
+      margin: 0;
+      font-weight: 700;
+    }
+    .index ul {
       margin: 0;
       padding: 0;
       list-style: none;
     }
-    .card {
+    /* Plaque des captures réelles : une carte = un lien. */
+    .shots {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--s-3);
+    }
+    .shots li {
       position: relative;
       display: flex;
       flex-direction: column;
       gap: var(--s-1);
       min-width: 0;
     }
-    .thumb {
-      position: relative;
-      isolation: isolate;
-      display: flex;
-      align-items: flex-end;
-      aspect-ratio: 16 / 10;
-      overflow: hidden;
-      background: color-mix(in srgb, var(--ink) 8%, transparent);
-    }
-    /* Sans capture : courbes de niveau (densité variable par carte) et langage en grand, plutôt qu'un aplat vide. */
-    .thumb app-contour-field {
-      opacity: 0.22;
-    }
-    .thumb .mark {
-      padding: var(--s-3);
-      color: var(--ink-2);
-      font: 800 clamp(2rem, 3.5vw, 3rem) / 0.9 var(--font-display);
-      font-stretch: 72%;
-      letter-spacing: -0.02em;
-    }
-    .thumb img {
+    .shots img {
       display: block;
       width: 100%;
-      height: 100%;
+      height: auto;
+      aspect-ratio: 16 / 10;
       object-fit: cover;
       object-position: top;
+    }
+    .shots .name::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+    /* Projets sans capture : une ligne de texte, pas de vignette inventée. */
+    .others {
+      display: flex;
+      flex-wrap: wrap;
+      align-content: start;
+      gap: 0 var(--s-6);
+    }
+    .others li {
+      display: flex;
+      align-items: baseline;
+      gap: var(--s-2);
     }
     .name {
       display: inline-flex;
@@ -210,27 +222,10 @@ import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
       font: 800 1.25rem / 1.1 var(--font-display);
       font-stretch: 72%;
     }
-    /* Mobile : index compact en deux colonnes, vignettes plus basses, pour ne pas repousser Worldline de plusieurs écrans. */
     @media (max-width: 767px) {
-      .index {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: var(--s-3);
-      }
-      .thumb {
-        aspect-ratio: 3 / 2;
-      }
-      .thumb .mark {
-        padding: var(--s-2);
-        font-size: 1.75rem;
-      }
       .name {
         font-size: 1.0625rem;
       }
-    }
-    .name::after {
-      content: '';
-      position: absolute;
-      inset: 0;
     }
     .lang {
       font-size: var(--t-small);
@@ -258,11 +253,24 @@ import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
       .badge img {
         width: 8rem;
       }
-      .index-title,
       .index,
       .note,
       .unavailable {
         grid-column: 1 / -1;
+      }
+      /* Plaque à gauche, ligne d'index à droite : la rangée occupe toute la largeur. */
+      .index {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+      }
+      .index-title {
+        grid-column: 1 / -1;
+      }
+      .shots {
+        grid-column: 1 / span 7;
+      }
+      .others {
+        grid-column: 8 / -1;
+        flex-direction: column;
       }
     }
   `,
@@ -301,4 +309,9 @@ export class P1Section {
   protected readonly projects = computed(
     () => this.home()?.projects.filter((p) => p.stage === 'P1') ?? [],
   );
+  private readonly shot = (slug: string) => this.thumbs[slug] ?? this.captures[slug];
+  protected readonly shown = computed(() =>
+    this.projects().flatMap((p) => (this.shot(p.slug) ? [{ p, src: this.shot(p.slug) }] : [])),
+  );
+  protected readonly listed = computed(() => this.projects().filter((p) => !this.shot(p.slug)));
 }

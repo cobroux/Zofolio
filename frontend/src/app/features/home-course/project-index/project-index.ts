@@ -56,10 +56,28 @@ export const CAPTURES: Record<string, string> = {
                   }
                 </div>
                 <p class="pitch">{{ r.p.pitch }}</p>
+                <!-- Le titre mène déjà à l'étude (sinon au dépôt) : ici seulement les destinations qu'il ne couvre pas. -->
+                @if (r.p.demoUrl || (r.study && r.p.repoUrl)) {
+                  <p class="links">
+                    @if (r.p.demoUrl) {
+                      <a [href]="r.p.demoUrl" rel="noopener" i18n>En ligne</a>
+                    }
+                    @if (r.study && r.p.repoUrl) {
+                      <a [href]="r.p.repoUrl" rel="noopener" i18n>Code</a>
+                    }
+                  </p>
+                }
                 @if (r.p.video) {
                   <app-clip class="inline" [video]="r.p.video" [autoplay]="false" />
                 } @else if (r.shot) {
-                  <img class="inline" [src]="r.shot" alt="" loading="lazy" />
+                  <img
+                    class="inline"
+                    [src]="r.shot"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
                 } @else if (r.facts) {
                   <p class="inline facts">{{ r.facts }}</p>
                 }
@@ -76,7 +94,7 @@ export const CAPTURES: Record<string, string> = {
             @for (r of list; track r.p.slug; let i = $index) {
               <div class="shot" [class.on]="i === active()" [attr.data-slug]="r.p.slug">
                 @if (r.shot) {
-                  <img [src]="r.shot" alt="" loading="lazy" />
+                  <img [src]="r.shot" alt="" width="640" height="400" loading="lazy" />
                 } @else if (r.proof) {
                   <div class="proof">
                     @if (r.p.commits) {
@@ -142,7 +160,7 @@ export const CAPTURES: Record<string, string> = {
     }
     h3 {
       margin: 0;
-      font: 800 clamp(1.75rem, 4.5vw, 3rem) / 0.95 var(--font-display);
+      font: 800 clamp(2.5rem, 7vw, 5.5rem) / 0.9 var(--font-display);
       font-stretch: 72%;
     }
     h3 a {
@@ -171,7 +189,19 @@ export const CAPTURES: Record<string, string> = {
       max-width: 60ch;
       overflow-wrap: break-word;
     }
-    .inline {
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s-2) var(--s-5);
+      margin: 0;
+    }
+    .links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: var(--target);
+    }
+    .inline,
+    .links {
       position: relative;
       z-index: 1;
     }

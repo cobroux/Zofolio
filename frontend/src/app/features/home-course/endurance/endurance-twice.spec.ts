@@ -37,7 +37,21 @@ describe('EnduranceTwice', () => {
   it('km absents (null) : année sans donnée retirée, titre là', () => {
     const rows = render([y(2023, null), y(2024, 10)]);
     expect(rows.map((r) => r.year)).toEqual(['2024']);
-    expect(rows.el.querySelector('h2')!.textContent).toContain("L'endurance, deux fois");
+    expect(rows.el.querySelector('h2')!.textContent).toContain("L'endurance, année après année");
+  });
+
+  it('D+, heures et sorties : affichés quand l’API les donne, colonne retirée si la série est vide', () => {
+    const full = { ...y(2025, 3619), elevationGainM: 29136, hours: 268, activities: 200 };
+    const extras = (el: HTMLElement) =>
+      [...el.querySelectorAll('li.row')].map((li) =>
+        [...li.querySelectorAll('.extras li')].map((x) => x.textContent!.replace(/\s+/g, ' ').trim()),
+      );
+    // 2024 n'a pas d'heures : sa case reste vide, jamais « 0 ». (\s+ replie aussi l'espace fine des milliers.)
+    expect(extras(render([full, { ...y(2024, 2191), elevationGainM: 13675, activities: 164 }]).el)).toEqual([
+      ['13 675 m D+', '', '164 sorties'],
+      ['29 136 m D+', '268 h', '200 sorties'],
+    ]);
+    expect(render([y(2024, 10)]).el.querySelector('.extras')).toBeNull();
   });
 
   it('année en cours marquée ; valeur finale dans le DOM (SSR, animation réduite)', () => {
