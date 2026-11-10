@@ -121,7 +121,6 @@ export class TrackingBand {
     });
 
     afterNextRender(() => {
-      this.progress.start();
       // Trace et point écrits en `transform` directement sur leurs éléments (spec §9), depuis la même valeur que le km affiché.
       let frame = 0;
       let anchors: (readonly [number, number])[] = [];
