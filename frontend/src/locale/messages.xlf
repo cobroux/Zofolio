@@ -955,6 +955,10 @@
           <context context-type="linenumber">95,96</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
+          <context context-type="linenumber">72,73</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/aid/aid.ts</context>
           <context context-type="linenumber">20,21</context>
         </context-group>
@@ -1425,14 +1429,53 @@
         <source>P3 · km 58,2</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">14,15</context>
+          <context context-type="linenumber">17,18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1053292106523444216" datatype="html">
         <source>Nés de la course</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">15,16</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1962255682619363720" datatype="html">
+        <source>{VAR_PLURAL, plural, =1 {1 commit} other {<x id="INTERPOLATION"/> commits}}</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
+          <context context-type="linenumber">39,41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4226590366025448333" datatype="html">
+        <source>dernier push <x id="INTERPOLATION" equiv-text="{{ r.p.lastPushAt | date: &apos;mediumDate&apos; }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
+          <context context-type="linenumber">45,46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4486155173945880688" datatype="html">
+        <source>Étude de cas</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
+          <context context-type="linenumber">58,59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7686066432652036052" datatype="html">
+        <source>En ligne</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
+          <context context-type="linenumber">61,62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8186013988289067040" datatype="html">
+        <source>Code</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
+          <context context-type="linenumber">175,176</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4020635115866003866" datatype="html">
@@ -1781,13 +1824,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
           <context context-type="linenumber">166,167</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8186013988289067040" datatype="html">
-        <source>Code</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">175,176</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5442571032125501579" datatype="html">
@@ -2670,35 +2706,35 @@
         <source>Contributions GitHub par semaine sur 6 mois</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/contributions/contributions.ts</context>
-          <context context-type="linenumber">48,49</context>
+          <context context-type="linenumber">58,59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2253150076336844412" datatype="html">
         <source>Repos</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/contributions/contributions.ts</context>
-          <context context-type="linenumber">60,61</context>
+          <context context-type="linenumber">78,79</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7541005936062780573" datatype="html">
         <source>Charge</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/contributions/contributions.ts</context>
-          <context context-type="linenumber">64,65</context>
+          <context context-type="linenumber">82,83</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2353389265111081084" datatype="html">
         <source>La hauteur donne la valeur ; le ton la répète.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/contributions/contributions.ts</context>
-          <context context-type="linenumber">65,66</context>
+          <context context-type="linenumber">83,84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4849955661453135629" datatype="html">
         <source><x id="PH" equiv-text="n(total)"/> contributions sur 6 mois · meilleure semaine : <x id="PH_1" equiv-text="n(best)"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/contributions/contributions.ts</context>
-          <context context-type="linenumber">116</context>
+          <context context-type="linenumber">181</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5604409134948484223" datatype="html">
