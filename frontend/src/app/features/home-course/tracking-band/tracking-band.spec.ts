@@ -98,8 +98,8 @@ describe('TrackingBand', () => {
     expect(el().querySelector('.km .v')!.textContent).toBe(formatKm(44, 1));
   });
 
-  it('marque le pointage actif (IntersectionObserver)', () => {
-    progress.active.set('p2');
+  it('marque le pointage actif (km du scroll)', () => {
+    progress.scrollKm.set(44);
     flush();
     const current = [...el().querySelectorAll('nav [aria-current="location"]')];
     expect(current.map((a) => a.getAttribute('href'))).toEqual(['#p2']);
