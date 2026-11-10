@@ -11,7 +11,8 @@ test.beforeEach(async ({ page, context }) => {
 
 test('clic sur une étude de cas avant hydratation : navigation rejouée', async ({ page }) => {
   await page.goto('/fr/', { waitUntil: 'domcontentloaded' });
-  const study = page.locator('a.study[href$="/projets/gfaim"]').first();
+  // GFaim est une carte de P1 depuis la vague 3 (lien sur le nom, plus de a.study).
+  const study = page.locator('a[href$="/projets/gfaim"]').first();
   await study.scrollIntoViewIfNeeded();
   await study.click();
   await expect(page).toHaveURL(/\/fr\/projets\/gfaim$/, { timeout: 60000 });

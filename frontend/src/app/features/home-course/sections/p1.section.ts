@@ -71,7 +71,7 @@ import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
             @for (p of projects(); track p.slug) {
               <li class="card">
                 <span class="thumb" aria-hidden="true">
-                  @if (captures[p.slug]; as src) {
+                  @if (thumbs[p.slug] ?? captures[p.slug]; as src) {
                     <img [src]="src" alt="" loading="lazy" />
                   } @else {
                     <app-contour-field [levels]="6 + ($index % 5)" />
@@ -300,6 +300,12 @@ export class P1Section {
     height: 853,
   };
   protected readonly captures = CAPTURES;
+  /** Vignettes 480 px des cartes (les captures pleine taille pèsent jusqu'à 138 Ko et pénalisaient le LCP mobile). */
+  protected readonly thumbs: Record<string, string> = {
+    gfaim: 'media/gfaim-shot-1-480.png',
+    'cin-folie': 'media/cinfolie-shot-v2-480.webp',
+    'calculateur-dpe': 'media/dpe-shot-480.webp',
+  };
   protected readonly projects = computed(
     () => this.home()?.projects.filter((p) => p.stage === 'P1') ?? [],
   );

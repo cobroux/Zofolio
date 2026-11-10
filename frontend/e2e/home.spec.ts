@@ -182,7 +182,8 @@ test('P1 compacte : un lien par projet d’école de l’API, le badge, ni toge 
   // Aucune photo de toge (retirée, spec §5 bis) et aucune image cassée une fois chargées (lazy).
   await page.locator('#p1').scrollIntoViewIfNeeded();
   const imgs = page.locator('#p1 img');
-  expect(await imgs.count()).toBe(2);
+  // Badge + photo de promo, plus les captures réelles des cartes de projets (les autres ont une vignette SVG).
+  expect(await imgs.count()).toBeGreaterThanOrEqual(2);
   for (const img of await imgs.all()) {
     await img.scrollIntoViewIfNeeded();
     expect(await img.getAttribute('src')).not.toMatch(/toge|diplome|remise|ceremonie/i);
@@ -203,11 +204,12 @@ test('graphe de contributions : visible hors du détail si l’API en fournit, s
   await expect(page.locator('#journal details summary')).not.toContainText('graphe');
 });
 
-test('P2 allégée : la Décision y est, schéma et frise sont dans l’étude Worldline', async ({ page }) => {
+test('P2 allégée : Décision, schéma et frise sont dans l’étude Worldline, pas sur l’accueil', async ({ page }) => {
   await page.goto('/fr/');
-  await expect(page.locator('#p2 section').filter({ has: page.getByRole('heading', { level: 3, name: 'Décision' }) })).toHaveCount(1);
+  await expect(page.locator('#p2 app-decision-card')).toHaveCount(0);
   await expect(page.locator('#p2 app-photo-plates')).toHaveCount(0);
   await page.goto('/fr/projets/trading-app');
+  await expect(page.locator('app-decision-card')).toHaveCount(1);
   await expect(page.locator('app-worldline-timeline').first()).toBeAttached();
   await expect(page.locator('#h-arch')).toHaveCount(1);
 });
@@ -218,10 +220,11 @@ test.describe('P2 desktop 1440', () => {
     await page.goto('/fr/');
     const p2 = page.locator('#p2');
     const pin = p2.locator('app-chapter-pin');
-    const { top, height } = await p2.evaluate((e) => ({ top: e.getBoundingClientRect().top + scrollY, height: e.offsetHeight }));
+    const top = await p2.evaluate((e) => e.getBoundingClientRect().top + scrollY);
     const ys: number[] = [];
-    for (const f of [0.3, 0.6]) {
-      await page.evaluate((y) => scrollTo(0, y), top + height * f);
+    // P2 est courte depuis l'allègement : on mesure dans la plage où le chapitre est épinglé, pas à 60 % de la section.
+    for (const dy of [60, 160]) {
+      await page.evaluate((y) => scrollTo(0, y), top + dy);
       const b = (await pin.boundingBox())!;
       expect(b.y).toBeGreaterThanOrEqual(0);
       expect(b.y + b.height).toBeLessThanOrEqual(900 - 52); // au-dessus du bandeau
