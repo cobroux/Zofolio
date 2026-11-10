@@ -17,6 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 import dev.zofolio.content.ContentDto.Home;
 import dev.zofolio.content.ContentDto.ProjectSummary;
 import dev.zofolio.githubsync.GithubContributions;
+import dev.zofolio.githubsync.GithubContributionYearRepository;
 import dev.zofolio.githubsync.GithubContributionsRepository;
 import dev.zofolio.githubsync.GithubRepo;
 import dev.zofolio.githubsync.GithubRepoRepository;
@@ -28,7 +29,7 @@ class ContentServiceTest {
 	ExperienceRepository experiences = mock(ExperienceRepository.class);
 	GithubRepoRepository githubRepos = mock(GithubRepoRepository.class);
 	GithubContributionsRepository contributions = mock(GithubContributionsRepository.class);
-	ContentService service = new ContentService(races, projects, experiences, githubRepos, contributions, mock(SportYearRepository.class), "cobroux");
+	ContentService service = new ContentService(races, projects, experiences, githubRepos, contributions, mock(SportYearRepository.class), mock(GithubContributionYearRepository.class), "cobroux");
 
 	@Test
 	void homeFallsBackToFrenchKeepsOrderAndFiltersStage() {

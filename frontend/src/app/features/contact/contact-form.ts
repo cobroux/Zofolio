@@ -1,4 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ContactApi, ContactResult } from './contact.api';
 
 type Field = 'name' | 'email' | 'company' | 'message';
@@ -58,6 +59,7 @@ export function globalMessage(r: Extract<ContactResult, { ok: false }>): string 
 
 @Component({
   selector: 'app-contact-form',
+  imports: [RouterLink],
   template: `
     <form method="post" novalidate (submit)="submit($event)" aria-labelledby="form-title">
       <h3 id="form-title" i18n>Écrire un message</h3>
@@ -99,12 +101,14 @@ export function globalMessage(r: Extract<ContactResult, { ok: false }>): string 
       <button type="submit" [disabled]="sending()">
         @if (sending()) { <ng-container i18n>Envoi en cours…</ng-container> } @else { <ng-container i18n>Envoyer le message</ng-container> }
       </button>
+      <!-- RGPD art. 13 : information au moment de la collecte. -->
+      <p class="privacy" i18n="@@contact.privacy">Vos données servent uniquement à vous répondre. Détails et droits : <a routerLink="/mentions-legales">mentions légales</a>.</p>
 
       <div class="status" role="status" aria-live="polite">
         @if (done()) { <p class="note" i18n>Message envoyé. Merci, je réponds dès que possible.</p> }
         @if (global(); as g) { <p class="note">{{ g }}</p> }
       </div>
-      <noscript><p i18n>Sans JavaScript, écrivez directement par e-mail ou téléchargez le CV : les liens ci-dessus fonctionnent.</p></noscript>
+      <noscript i18n>Sans JavaScript, écrivez directement par e-mail ou téléchargez le CV : les liens ci-dessus fonctionnent.</noscript>
     </form>
   `,
   styles: `
@@ -136,10 +140,11 @@ export function globalMessage(r: Extract<ContactResult, { ok: false }>): string 
       background: var(--accent);
     }
     button:disabled { opacity: 0.6; cursor: progress; }
+    .privacy { margin: 0; color: var(--ink-2); font-size: var(--t-small); }
     .err, .note { margin: 0; font-size: var(--t-small); }
     .err { align-self: flex-start; padding: 2px var(--s-2); background: var(--ink); color: var(--bg); }
     .note { max-width: 52ch; }
-    .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+    .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; } /* taste-skill-ignore */
   `,
 })
 export class ContactForm {

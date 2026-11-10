@@ -1,349 +1,201 @@
-# DESIGN.md — Portfolio d'Enzo Leveque, « La Course »
+# DESIGN.md — Portfolio d'Enzo Leveque, « La Course » v4 (« Grand reportage en direct »)
 
-Direction : affiche de course / magazine sport haut de gamme. Une idée : **le scroll est la distance, et la page est le dossard 1592.** Tout ce qui suit sert à ce que la métaphore structure sans jamais masquer le contenu.
+Document écrit après coup, depuis le site construit sur `redesign/v4` (vagues 1 et 2). Les valeurs viennent de `frontend/src/styles/tokens.css`, `styles.css` et des composants ; quand la spec (`docs/superpowers/specs/2026-11-02-redesign-v4-design.md`) et le code diffèrent, le code gagne.
 
-## 1. Direction artistique et principes
+Idée : **le road book et le suivi en direct du Grand Trail d'Auvergne 2025 (dossard 1592, profil réel de 79,4 km) sont la mise en page et la navigation.** Le dossard est la couverture, chaque étape de carrière est un chapitre en champ de couleur plein, un bandeau fixe en bas suit la lecture jusqu'à l'Arrivée. La métaphore structure sans jamais masquer le contenu.
 
-**Phrase d'idée :** le profil de dénivelé réel du Grand Trail d'Auvergne 2025 devient la barre de progression et le sommaire du site. Test concurrent : aucun autre portfolio n'a ce profil, ce dossard ni ces pointages.
-
-**Signature :** le dossard (grand numéro 1592 en condensé gras, orange) + le profil de dénivelé fixe qui se remplit pendant le scroll.
+## 1. Principes et liste anti-slop
 
 ### On fait
-- Grands aplats de couleur par chapitre (papier, encre, orange), très gros titres condensés, texte courant en pleine encre.
-- Le contenu d'abord : chaque section répond à une question d'un tech lead (qui, quoi, preuve, contact). La course habille, ne remplace pas.
-- Chiffres traités comme des données (tabulaires, alignés) : durées, km, D+, commits.
-- Humour sec en petit : splits ironiques, badges PR, notes de bas de page (« P2 : la plus longue étape. Ravito : badge d'accès. »).
-- Clins d'œil histoire discrets, une fois chacun : Phidippides (sous le formulaire de l'Arrivée, phrase explicite : « Phidippides a couru de Marathon à Athènes pour porter un message. Ici, un formulaire suffit. »), voies romaines (note sur le GR3 dans P1).
-- Un seul accent (orange). Un seul geste signature de mouvement (le profil).
-- Photos réelles, grandes, cadrage constant, angles droits.
+- Un champ de couleur plein par chapitre (§3, terrains), coupe franche entre deux chapitres, jamais de fondu.
+- Le contenu d'abord : chaque section répond à une question d'un tech lead (qui, quoi, preuve, contact).
+- Chiffres traités comme des données : tabulaires, vrais textes (SSR), jamais décoratifs ni inventés.
+- Humour sec en petit, une touche par section au plus. Phidippides une seule fois, sous le formulaire de l'Arrivée.
+- Un seul accent (orange). Trois signatures (§6) : bandeau de suivi, dossard, index P3 avec aperçu.
+- Photos réelles, grandes, angles droits, posées en plaques (§6).
 
-### On interdit (liste anti-slop)
-- Dégradés (fonds, boutons, texte), glow, ombres au repos, verre/flou d'arrière-plan, pilule flottante de nav.
-- Monospace hors vrai bloc de code (les chiffres sont tabulaires dans la police de texte).
-- Eyebrows (petit label au-dessus d'un titre), pastilles « New », MAJUSCULES minuscules espacées, numérotation 01/02/03 décorative (les pointages P1/P2/P3 sont du contenu, pas de la déco).
-- Filets de 1 px décoratifs, grilles visibles, repères de coupe. Séparer par espace ou changement de ton. Exception : courbes de niveau du fond (motif SVG très faible, aria-hidden) et le tracé du profil (c'est la donnée).
-- Grilles de 3 cartes identiques à icônes, cartes arrondies douces 12 px, avatars générés, blobs, emoji, mockups de dashboards gris.
-- Palette violet/indigo, crème jaunâtre + terracotta. Néon, vert fluo « fitness », anneaux d'activité.
-- Mot accentué dans un titre (italique/couleur/souligné). Titre sur plus de 2 lignes à toute largeur.
-- Classements, tracés GPS, cartes de chaleur de parcours. Citer UTMB index (459) comme un chiffre, jamais en classement.
-- Phrases creuses : « passionné », « solutions innovantes », « de l'idée à la production ». Remplacer par un fait chiffré.
-- Animer : voir §7 (liste du « pas animé »).
+### On interdit
+- Dégradés (fonds, boutons, texte), glow, ombres (aucun `box-shadow` ni `text-shadow` dans le code), verre/flou d'arrière-plan, pilule flottante.
+- Monospace hors vrai bloc de code. Eyebrows, pastilles « New », MAJUSCULES espacées (aucun `text-transform`, aucun interlettrage positif), numérotation 01/02/03 décorative. Les repères P1/P2/P3 et « km 58,2 » sont du contenu.
+- Filets décoratifs et grilles visibles : on sépare par espace ou changement de ton. Exceptions : courbes de niveau (SVG statique, `aria-hidden`, opacité 0,06 clair / 0,08 sombre) et tracé du profil (c'est la donnée).
+- Grilles de 3 cartes identiques, coins arrondis (0 partout ; seuls les points ronds du bandeau et les trous du dossard sont des cercles), avatars générés, blobs, emoji, mockups de dashboards.
+- Violet/indigo, néon, vert « fitness », anneaux d'activité. Classements, tracés GPS, cartes de chaleur. UTMB Index (459) cité comme un chiffre, jamais en classement.
+- Mot accentué dans un titre. Phrases creuses (« passionné », « solutions innovantes ») : remplacer par un fait chiffré.
+- Animer : voir §7.
 
 ### Ton
-Sérieux, factuel, avec 1 touche de fun par section maximum. Tutoiement jamais ; « je » sobre.
+Sérieux, factuel. Pas de tutoiement ; « je » sobre.
 
 ## 2. Typographie
 
-Deux familles, gratuites (OFL), auto-hébergées en WOFF2 variable, sous-ensemble latin + latin-ext (accents FR), `font-display: swap`, `size-adjust` sur le fallback pour éviter le CLS. Précharger uniquement Archivo (Display) et Source Sans 3 (romain).
+Deux familles OFL, auto-hébergées en WOFF2 variable (`styles/fonts.css`), `font-display: swap`, replis ajustés (`Archivo Fallback` : ascent 87,8 %, descent 21 % ; `Source Sans 3 Fallback` : `size-adjust` 92 %, ascent 111 %, descent 43 %). Préchargées : `/fr/fonts/archivo-latin.woff2` et `/fr/fonts/source-sans-3-latin.woff2`.
 
-| Rôle | Famille | Réglage |
+| Rôle | Jeton | Valeur |
 |---|---|---|
-| Display (titres, dossard, chiffres-clés) | **Archivo** variable (axes wght 100–900, wdth 62–125) | `wdth 70–75`, `wght 800`, interlettrage -0.02em, interligne 0.9 |
-| Texte (paragraphes, UI, légendes) | **Source Sans 3** variable | `wght 400/600`, interligne 1.5, `font-variant-numeric: lining-nums` |
+| Display | `--font-display` | `archivo, 'Archivo Fallback', 'Arial Narrow', 'Helvetica Neue', sans-serif` (axes wght 400–900, wdth 62–100 %) |
+| Texte | `--font-text` | `'Source Sans 3', 'Source Sans 3 Fallback', system-ui, sans-serif` (wght 400–700) |
 
-Fallbacks : `Archivo, "Arial Narrow", "Helvetica Neue", sans-serif` / `"Source Sans 3", system-ui, sans-serif`. Vérifier avec fonttools que les deux exposent `tnum` (sinon basculer les chiffres tabulaires sur Archivo wdth 100).
+Titres `h1`–`h3` globaux : Archivo 800, `font-stretch: 72%`, interlettrage -0.02em, interligne 0.9. Corps : Source Sans 3 400, interligne 1.5, `lining-nums`. Mesure `--measure: 62ch`.
 
-### Échelle (fluide, 5 tailles maximum)
-| Token | Taille (clamp) | Usage |
+### Échelle (jetons)
+| Jeton | Valeur | Usage |
 |---|---|---|
-| `--t-bib` | clamp(9rem, 32vw, 30rem) | Numéro 1592 du hero uniquement |
-| `--t-display` | clamp(3rem, 9vw, 8rem) | Titres de section (h2), 2 lignes max |
-| `--t-lead` | clamp(1.375rem, 2.2vw, 1.75rem) | Chapô, pitch (en `<p>`, ≤ 25 mots) |
-| `--t-body` | clamp(1.0625rem, 1vw + .8rem, 1.1875rem) | Texte courant, 17–19 px, 45–70 car. par ligne |
-| `--t-small` | 0.9375rem (15 px) | Légendes, notes, splits (jamais en dessous de 15 px) |
+| `--t-display` | clamp(3rem, 9vw, 8rem) | h1 / h2 par défaut |
+| `--t-lead` | clamp(1.375rem, 2.2vw, 1.75rem) | chapôs |
+| `--t-body` | clamp(1.0625rem, 1vw + 0.8rem, 1.1875rem) | texte courant |
+| `--t-small` | 0.9375rem (15 px) | légendes, notes, splits |
 
-h1 (nom) utilise `--t-display` ; le dossard est décoratif (`aria-hidden`, le nom reste le h1).
+Tailles locales réellement utilisées (toutes en Archivo sauf mention) : nom du Départ `15vw` (<768) puis `10vw`, 2 lignes max ; numéro P1/P2 du chapitre épinglé `clamp(5rem, 12vw, 11rem)` wdth 62 % (compact : `clamp(2.5rem, 5vw, 4rem)`) ; chrono de l'Arrivée `clamp(2.75rem, 12cqi, 7rem)` ; titres Journal et Endurance `clamp(3rem, 7vw, 6rem)` ; lignes de l'index P3 `clamp(2.5rem, 7vw, 5.5rem)` ; « km 58,2 » `clamp(1.75rem, 4vw, 2.5rem)` ; 459 `clamp(4rem, 8vw, 6rem)` ; valeurs d'endurance `clamp(2.25rem, 13vw, 4.5rem)`, puis `clamp(2.5rem, 5vw, 4.5rem)` dès 768 px ; études : h2 `clamp(2.25rem, 5.5vw, 4.5rem)` (`clamp(2.25rem, 3.3vw, 3.25rem)` en colonne dès 1100), h3 `clamp(1.5rem, 2.4vw, 2rem)`, numéro d'étape du dossard de segment `clamp(2.5rem, 5vw, 3.75rem)` wght 900 wdth 62 %.
 
 ### Chiffres
-- `font-variant-numeric: tabular-nums lining-nums` sur tout composant de données : splits, tableaux de courses, compteurs de commits, durées, km.
-- Format FR : espace fine insécable avant l'unité (`79,4 km`, `13 h 35 min 53 s` ; en display : `13h35'53`), virgule décimale en FR, point en EN ; milliers en espace fine insécable (`3 160 m`).
-- Alignement des splits à droite sur le séparateur décimal ; colonne de chiffres jamais en proportionnel.
-- Titres : sentence case, pas de capitales forcées. Majuscules uniquement pour le mot DÉPART/ARRIVÉE du dossard (taille ≥ 1 rem).
+- `.tnum` = `tabular-nums lining-nums`, posé sur splits, tableaux, bandeau, dossard, compteurs, `dd` des fiches.
+- Format par locale (`@@numberLocale`, `fr-FR` / `en`) : `79,4 km`, `13 h 35 min 53 s` (`formatDuration`), milliers groupés par la locale. Un champ absent s'écrit « — », jamais 0.
+- Titres en sentence case ; aucune capitale forcée.
 
-## 3. Couleur
+## 3. Couleur et terrains
 
-Un fond, une encre, un accent. Séparation des surfaces par pas de ton. Vérifiés WCAG (ratios calculés).
+Un fond, une encre, un accent. Surfaces séparées par pas de ton. Chaque terrain redéfinit tout son jeu de jetons ; mêmes valeurs dans `styles/tokens.css` et `shared/terrain/terrain.ts` (un test calcule les contrastes : encres et accent/on-accent ≥ 4,5:1, focus et accent sur fond ≥ 3:1).
 
-### Clair « Jour de course »
-| Token | Hex | Rôle | Contraste |
+### Racine (jetons du thème)
+| Jeton | Clair « Jour de course » | Sombre « Départ 6h30 » | Rôle |
 |---|---|---|---|
-| `--bg` | #F6F3EC | Papier blanc cassé (neutre froid-chaud, pas jaune-crème) | — |
-| `--surface` | #ECE8DE | Cartes, bandes de ravito | — |
-| `--ink` | #14161A | Texte courant, titres | 16,34:1 sur bg |
-| `--ink-2` | #4A4D55 | Légendes, notes | 7,63:1 bg, 6,91:1 surface |
-| `--accent` | #C2410C | Orange dossard : fonds de CTA, chiffres display, profil rempli | 4,67:1 sur bg (texte ≥ 18 px/600 ou UI), 4,23:1 sur surface (réservé grands éléments/UI ≥ 3:1) |
-| `--on-accent` | #FFFFFF | Texte sur bouton orange | 5,18:1 |
-| `--line-muted` | #8A8D94 | Profil non parcouru, contours de champ | 3,0:1 sur bg (UI ≥ 3:1) |
-| `--contour` | #14161A à 6 % | Courbes de niveau | décor, hors seuil |
-| `--focus` | #14161A + halo #F6F3EC | Anneau de focus 3 px + 2 px d'espace | ≥ 3:1 |
+| `--bg` | #f6f3ec | #0e1626 | fond |
+| `--surface` | #ece8de | #16213a | bandes, cartes, encadrés |
+| `--ink` | #14161a | #edeff4 | texte |
+| `--ink-2` | #4a4d55 | #a9b1c3 | légendes, notes |
+| `--accent` | #c2410c | #ff8a2b | CTA, chiffres-clés, tracé parcouru |
+| `--on-accent` | #ffffff | #0e1626 | texte sur accent |
+| `--line-muted` | #8a8d94 | #5b6b8c | tracé restant, contours de champs |
+| `--focus` | #14161a | #edeff4 | anneau de focus |
 
-### Sombre « Départ 6h30 »
-| Token | Hex | Rôle | Contraste |
-|---|---|---|---|
-| `--bg` | #0E1626 | Bleu nuit (pas noir pur) | — |
-| `--surface` | #16213A | Cartes, ravitos | — |
-| `--ink` | #EDEFF4 | Texte courant | 15,72:1 bg, 13,9:1 surface |
-| `--ink-2` | #A9B1C3 | Légendes | 8,41:1 bg, 7,44:1 surface |
-| `--accent` | #FF8A2B | Orange de frontale : CTA, profil « éclairé », chiffres | 7,68:1 bg, 6,8:1 surface |
-| `--on-accent` | #0E1626 | Texte sur bouton orange | 7,68:1 |
-| `--line-muted` | #5B6B8C | Profil non parcouru | 3,38:1 sur bg |
-| `--contour` | #EDEFF4 à 5 % | Courbes de niveau | décor |
+Le sombre s'applique par `prefers-color-scheme` (si `data-theme` n'est pas `light`) ou par `data-theme='dark'`.
+
+### Terrains de chapitre (classes `.terrain-*`)
+| Terrain | bg clair | bg sombre | surface clair / sombre | ink, accent, on-accent |
+|---|---|---|---|---|
+| `night` | #0e1626 | #0e1626 | #16213a / #16213a | #edeff4, #ff8a2b, #0e1626 (identiques dans les deux thèmes) |
+| `paper` | #f6f3ec | #16203a | #ece8de / #1e2b4a | clair : #14161a, #c2410c, #ffffff ; sombre : #edeff4, #ff8a2b, #0e1626 |
+| `deep` | #0a1120 | #0a1120 | #16213a / #16213a | comme `night` |
+| `accent` | #c2410c | #ff8a2b | #9a3412 / #ffb36b | clair : ink #ffffff, ink-2 #ffffff, accent #ffffff, on-accent #c2410c ; sombre : ink #0e1626, ink-2 #0e1626, accent #0e1626, on-accent #ff8a2b |
+
+`--line-muted` vaut #5b6b8c dans `night`, `deep` et `paper` sombre, #8a8d94 dans `paper` clair ; `accent` ne le redéfinit pas.
+
+Attribution (code) : Départ = `night` ; P1 = `paper` ; P2 = `deep` ; P3 = `accent` ; Arrivée = `night` ; bandeau de suivi = `night` dans les deux thèmes. Ravitaillements R1/R2 (`Aid`) et Journal : fond `--surface` du thème racine (pas de classe terrain). Études de cas, colophon, pied de page : jetons racine.
 
 ### Règles
-- Orange = actions, point courant, parcouru du profil, numéro du dossard. Jamais sur plus de ~8 % de la surface visible, sauf le bandeau d'arrivée (aplat orange plein, texte `--on-accent`, ok).
-- Pas de texte orange < 18 px en clair sur surface. Liens courants : encre soulignée (offset 3 px), orange au survol.
-- Sections en aplats : Départ = bg ; P1 = bg ; P2 = `--ink` inversé en clair (fond encre, texte papier) / `--surface` en sombre ; P3 = bg ; Journal = surface ; Arrivée = accent. Les inversions sont les seules ruptures de couleur.
-- Aucune information portée par la seule couleur (badges PR : icône + texte ; progression : aussi chiffrée en km).
-- Statuts : succès texte #1F6B3A sur bg clair (5,88:1) ; en sombre, utiliser l'orange + libellé, pas de vert.
+- Orange = actions, valeur du km, point courant, trace parcourue, numéros de chapitre, record personnel. Sur `accent`, l'accent s'inverse (blanc / nuit) : texte toujours `--ink`.
+- Liens courants : encre soulignée (offset 3 px), `--accent` au survol (pointeur fin). Focus : `outline: 3px solid var(--focus)`, offset 2 px.
+- Aucune information portée par la seule couleur (PR : étoile SVG + texte « Record personnel »).
+- Le dossard et le dos du dossard sont imprimés : couleurs fixes #f6f3ec / #14161a dans les deux thèmes.
 
 ## 4. Grille, espacement, breakpoints
 
-- Base 8 px. Tokens : 4, 8, 12, 16, 24, 32, 48, 64, 96, 144, 200.
-- Grille 12 colonnes, gouttière 24 px (16 px mobile). Marges latérales : 16 px mobile, 24 px tablette, 32 px desktop. Conteneur max 1440 px ; les images et aplats vont jusqu'aux bords.
-- Mesure du texte : 62 ch maximum. Trois bords gauches seulement : col. 1, col. 4, col. 7.
-- Écart entre sections : 144–200 px desktop, 96 px mobile ; intérieur de section ≤ 48 px.
-- Breakpoints (min-width) : `sm` 480, `md` 768, `lg` 1100, `xl` 1440. Le profil latéral fixe n'existe qu'à partir de `lg` ; en dessous : barre haute + road book.
-- Colonne latérale desktop : rail fixe de 72 px à droite (profil vertical), contenu décalé de 72 px.
-- Cibles tactiles ≥ 44×44 px (WCAG 2.2 : 24 px minimum, on vise plus). Un seul CTA primaire par écran.
-- Coins : carrés (0) partout ; boutons carrés. Décision unique, jamais d'arrondi 8–16 px.
-- Hauteurs : `min-height: 100svh` pour le hero uniquement (jamais `100vh`).
+- Base 8 px. `--s-1` 4, `--s-2` 8, `--s-3` 12, `--s-4` 16, `--s-5` 24, `--s-6` 32, `--s-7` 48, `--s-8` 64, `--s-9` 96, `--s-10` 144, `--s-11` 200.
+- `--margin` / `--gutter` : 16 / 16 px ; dès 768 px 24 / 24 ; dès 1100 px marge 32 (gouttière 24). Cible tactile `--target: 44px`.
+- Breakpoints (min-width) : sm 480, md 768, lg 1100, xl 1440 ; le Journal passe en bureau à 1280 px.
+- Grille 12 colonnes dès 1100 px (Départ : texte col. 1–7, plaque col. 8–12 ; P1 : pin 1–3, corps 4–8, aside 9–12 ; P2 : pin 1–4, scène 5–fin ; Arrivée : texte 1–7, formulaire 8–12). Contenu des études : `.wrap` max 1440 px, h2 col. 1–3, texte col. 4–11.
+- Coins carrés. `min-height: 100svh` pour le Départ seulement.
+- Saut d'ancre : `scroll-padding-bottom: 92px` (bandeau), `scroll-padding-top: 64px` sous 768 px (barre de chapitre) ; `body` reçoit `padding-bottom: 52px` quand le bandeau est présent (WCAG 2.4.11).
 
-## 5. Blueprint section par section
+## 5. Composition, section par section
 
-Chaque section est composée différemment de sa voisine. Titres ≤ 2 lignes.
+Ordre et ids : `#depart`, `#p1`, `#p2`, `#p3`, `#journal`, `#arrivee` (les cinq points du suivi sont `depart`, `p1` 20 km, `p2` 44 km, `p3` 58,2 km, `arrivee` 79,41 km ; `TOTAL_KM` = 79,41).
 
-### Départ (hero)
-- **Contenu :** h1 « Enzo Leveque », titre « Ingénieur fullstack Java / Spring Boot + Angular », 1 phrase (2,5 ans sur une appli de trading critique chez Worldline), stack en une ligne, CTA primaire « Télécharger le CV », CTA secondaire « Me contacter » : tous visibles sans scroll à 390×844 et 1440×900.
-- **Desktop :** aplat papier ; à gauche (col. 1–7) nom, titre, phrase, 2 CTA ; le dossard 1592 géant rogné par le bord bas ; à droite (col. 8–12) portrait trail sur ciel bleu, pleine hauteur, bord droit ras, cadre carré. Heure et distance en petit : « Départ 6h30 · km 0 ».
-- **Mobile :** portrait en haut (ratio 4:5, plein écran de largeur), puis nom, titre, CTA empilés ; dossard 1592 en filigrane derrière le portrait inférieur, jamais sous le texte. Les CTA tiennent dans les 844 px.
-- **Chiffre-clé :** « 2,5 ans · Worldline · trading » en lead, pas de compteurs animés.
+- **Départ** (`night`, `min-height: 100svh`, courbes de niveau 12 niveaux) : h1 « Enzo / Leveque » (deux lignes sous 768 px), titre en `--t-lead` 600, ligne de preuve en `--ink-2`, CTA « Télécharger le CV » (aplat `--accent`, 48 px de haut) et « Me contacter » (lien `#arrivee`). À droite dès 1100 px, portrait 4:5 (AVIF/WebP/JPEG, `fetchpriority="high"`, 1200×1600) avec le dossard qui chevauche son bas. CTA visibles sans scroll.
+- **P1 · Les fondations** (`paper`, km 20) : pin compact, bloc master, frise de diplômes (segments de 6 px de haut, longueur proportionnelle à la durée, dernier segment en accent), tampon rond du badge de promo (rotation -8°), plaque photo de promo, ligne d'index des projets d'école, note GR3. Suivie du ravitaillement R1.
+- **P2 · Worldline** (`deep`, km 44) : pin sticky à gauche (barre de 48 px sous 768 px), chapô, cinq faits, encadré Décision (§6), lien vers l'étude. Suivie de R2.
+- **P3 · Nés de la course** (`accent`, km 58,2) : en-tête « P3 · km 58,2 » + h2, puis index P3 avec aperçu (§6).
+- **Journal** (fond `--surface`) : « L'endurance, deux fois » (km courus et contributions par année depuis 2023, barres `transform: scaleX`, série absente = « — »), puis intro, UTMB Index 459, trois dernières courses, plaque nocturne du club, photo finisher ; le reste (graphe de contributions, autres courses) est replié dans un `<details>`. Tableau de courses sous 1280 px : une fiche par course.
+- **Arrivée** (`night`) : h2 = chrono officiel `13 h 35 min 53 s` (`<time datetime="PT13H35M53S">`, une seule fois à cette taille), tableau des pointages officiels, contact (e-mail, CV, LinkedIn, GitHub), formulaire, phrase Phidippides, dos du dossard (colophon vivant : commit, déploiement, CI, stack ; une ligne n'existe que si sa donnée existe).
+- **Ravitaillement** (`Aid`) : bande `--surface`, « Ravito · km N » en Archivo 800 2.25rem, un fait + une note. Hors profil.
+- **En-tête** : lien d'évitement (premier focusable), wordmark « E. Leveque » (Archivo 800 1.5rem), lien de langue (autre locale, 44 px), bascule de thème. **Pied de page** : `--surface`, GitHub, LinkedIn, Colophon, Mentions légales.
 
-### P1 — Fondations (km 20)
-- Titre « Les fondations ». Grand bloc Master ILI (Université d'Artois) à gauche ; à droite, 3 cartes segment (projets universitaires) de tailles inégales, tag « Écrit à la main ». Note : « Voie romaine sur le GR3 : c'est à peu près ici que le trail devient sérieux. »
-- Mobile : pile verticale, la carte la plus forte d'abord.
+## 6. Composants et signatures
 
-### Ravitaillement R1 (entre P1 et P2)
-- Bande `--surface` basse : brancardier aux urgences (soft skill : sang-froid, communication sous pression). 2 phrases, une ligne de « ration » (fait chiffré si disponible).
+### Signature 1 : bandeau de suivi (`TrackingBand`)
+- Fixe en bas, 52 px (76 px quand la ligne de pointage est ouverte), `terrain-night` dans les deux thèmes. Hôte de `RoadBook`.
+- Valeurs en direct à la position de lecture (ligne de référence à `innerHeight / 3`) : km au dixième (Archivo 800 30 px, orange), altitude, D+, dernier passage officiel ; jamais de temps interpolé. Tout vient du vrai profil (`profile.data.ts`, fonctions pures de `course-progress.ts`) ; lien « Comment c'est calculé » vers le dépôt (dès 1100 px). Valeurs `aria-hidden` ; largeurs réservées (`min-width` en `ch`) pour que rien ne saute.
+- Tracé : un `<path>` (viewBox 1000×100, `non-scaling-stroke`), restant `--trail` #5b6b8c 1.5 px, parcouru `--accent` 2.5 px via `clipPath` dont le masque est écrit en `transform: scaleX(p)`. Point courant 10 px (bordure #0e1626 2 px). Pointages P1/P2/P3/Arr. : liens d'ancre 44 px avec point de 6 px à l'altitude réelle, `aria-current="location"` sur l'actif.
+- Infobulle (pointeur fin) : papier #f6f3ec / #14161a, `scale(0.97)` + opacité 150 ms `--ease-out`, délai 300 ms au premier survol puis 0 entre voisins.
+- Ligne de pointage : 24 px qui glisse de derrière le bandeau, une fois par étape et par session (`sessionStorage`), visible 2400 ms, entrée 320 ms, sortie 180 ms ; annoncée par une région `aria-live="polite"`.
+- Sous 768 px : km + tracé + bouton « Parcours » (avec JS) qui ouvre le road book ; sans JS, les liens d'ancre restent.
 
-### P2 — Worldline (km 44, la plus longue étape)
-- Section la plus haute (≈ 2,5 écrans). Aplat inversé (encre / surface sombre). Grand titre « 2,5 ans sur une appli de trading ». Frise verticale des missions : chaque mission = bloc texte + split (stack, durée, impact). Le profil fixe s'y étire visiblement (étape longue).
-- Aucune donnée confidentielle ; chiffres génériques (ordre de grandeur) validés par Enzo.
-- Mobile : un bloc par mission, split en dessous.
+### Road book (`RoadBook`)
+`<dialog>` plein écran (`100dvh`), fond `--bg`, focus piégé, `Esc`, retour du focus au déclencheur. Valeurs en direct, puis les cinq étapes (km, nom, ligne) en ancres, bordure gauche 4 px `--line-muted`, `--accent` pour l'actuelle. Entrée 220 ms, sortie 160 ms, `translateY(12px)` + opacité (`@starting-style`).
 
-### Ravitaillement R2
-- Tuteur L1 (transmission, pédagogie). Même gabarit que R1, texte différent, jamais la même formulation.
+### Signature 2 : dossard (`Bib`)
+Rectangle 5:3 papier #f6f3ec / #14161a, **hôte conteneur** (`cqi`), quatre trous d'épingle découpés en `clip-path` evenodd (cercles de rayon ~1,2 % aux coins). Face avant : « 1592 » Archivo 800 `34cqi` wdth 62 %, interligne 0.8, puis « Grand Trail d'Auvergne · 79,4 km · départ 6 h 30 » en `max(0.8125rem, 3.6cqi)` 600 ; `aria-hidden` sur le numéro (le h1 porte le nom). Face arrière (`face="back"`) : contenu projeté, colophon vivant (`LiveColophon`, `max(0.8125rem, 2.9cqi)`). Largeur réglée sur l'hôte (Départ : `clamp(260px, 64%, 360px)` ; 72 % dès 1100 px). Version « segment » des études : voir §8.
 
-### P3 — Projets perso nés de la course (km 58,2)
-- Titre « Nés de la course ». Mosaïque (retours Enzo 2026-10-16) : Oltre en phare sur 7 colonnes (affiche 16:10 « Démo vidéo à venir » tant que le clip n'existe pas, jamais de faux lecteur), une pile paire de cartes sur 5 colonnes (Zotracker, garmin-mcp), la carte restante (HistoQuiz) en bandeau pleine largeur : aucune case vide. Chaque carte : pitch en 1 phrase, split, tag IA, lien « Voir le dépôt » (GitHub).
-- Mobile : clips en tête de carte, lecture seulement dans le viewport.
+### Signature 3 : index P3 avec aperçu (`ProjectIndex`)
+Une ligne par projet P3 en très grand titre (Archivo 800 `clamp(2.5rem, 7vw, 5.5rem)` wdth 72 %), `<h3>` dont le lien couvre toute la ligne (étude de cas, sinon dépôt), méta tabulaire (stack · commits), pitch, lien « Code ». Ligne active ou survolée : soulignée (0.06em), sans déplacement et sans atténuer les autres. Dès 768 px **avec pointeur fin et survol** : grille 7fr / 5fr, cadre d'aperçu sticky (`top: --s-9`, 16:10, fond #0e1626), fondu enchaîné 240 ms `--ease-out` ; la vidéo ne monte que si `motion && engaged && onScreen` (survol ou focus, à l'écran, hors mouvement réduit / `saveData` / 2g), sinon le poster. Ligne sans média : le cadre s'efface (opacité 0). Sans pointeur fin ou sous 768 px : pas de cadre, poster ou `Clip` en ligne, vidéo seulement au bouton. Source des posters : `video.poster`, sinon capture réelle (`gfaim-shot-1.png`).
 
-### Journal — carnet d'entraînement
-- Fond `--surface`. Deux colonnes (≥ 1280 px) : à gauche titre, courte intro, grand chiffre UTMB Index 459 (« un chiffre, pas un classement ») et photo finisher qui occupe la hauteur restante (le graphe de contributions GitHub viendra en V2) ; à droite la liste des courses en tableau (vrai `<table>`) : date, course, distance, D+, temps, note ironique. Entre 768 et 1279 px : texte et photo côte à côte, puis une fiche par course. Lignes : UTMB index 459, marathons Paris et Louvre-Lens, Côte d'Opale 62 km ×2 (7 h 37 → 7 h 32, badge PR), triathlon M de Fourmies, Ch'ti Trail S, Baudets d'Hinges (club).
-- Mobile : graphe défilable horizontalement (focusable), tableau en cartes empilées.
+### Plaques photo (`PhotoPlates`)
+Plaque principale + encart optionnel (55 % de large, à droite), légende 0.875rem `--ink-2`. Variante `ui` : capture ou schéma projeté en `[plate-ui]` à la place d'une image. Révélation une fois : `clip-path: inset(0 100% 0 0)` vers rien, 600 ms `--ease-io`, encart +80 ms. Sans JS (`html.js` absent) l'image est visible.
 
-### Arrivée — contact (km 79,41)
-- Aplat orange plein. « Arrivée 20 h 05 · km 79,4 », titre display sur 2 lignes imposées « Prochain objectif : / 100 km. » (taille en `cqi` pour tenir dans la colonne), puis « Et un nouveau poste. Parlons-en. », bouton CV, ligne e-mail · GitHub · LinkedIn. Formulaire à droite ; la phrase Phidippides ferme la colonne gauche.
-- Mobile : email en 2 lignes max, boutons pleine largeur.
+### Autres composants
+- **Chapitre épinglé** (`ChapterPin`) : repère (P1, P2), `h2` titre Archivo 700 1.5rem, méta tabulaire. Sticky (`top: 6rem`) ou compact ; sous 768 px, barre opaque de 48 px (`z-index: 5`).
+- **Encadré Décision** (`DecisionCard`) : `--surface`, padding 32 px, h3 orange `clamp(2rem, 4vw, 2.75rem)`, `dl` Problème / Options / Choix / Résultat ; **une rubrique vide est retirée, jamais remplie** ; deux colonnes (8rem + reste) dès 600 px.
+- **Split** (`Split`) : une ligne `durée · stack · commits · langages · dernier push`, `--t-small`, `--ink-2` (ou `--split-ink`), tabulaire ; note optionnelle dessous. Format via `Intl` de la locale.
+- **Clip** (`Clip`) : `aspect-ratio` = celui de la vidéo (16:10 en paysage), affiche puis `@defer (on viewport; on interaction)`, `<video muted loop playsinline preload="none" poster>`. Bouton « Lecture » / « Pause » 44×96 px minimum (fond `--ink`, texte `--bg`) **sous** le cadre, toujours visible. Lecture auto à 50 % dans le viewport, pause en dehors, jamais sous reduced-motion, `saveData` ou 2g ; un clic est toujours honoré ; fichier absent : « Démo vidéo à venir ».
+- **Courbes de niveau** (`ContourField`) : statique, `z-index: -1`, trait `--ink` 1.5 px, tracées depuis le profil réel.
+- **Bascule de thème** : bouton 44×44, trois états système → clair → sombre (`data-theme`, `localStorage` clé `theme` en `try/catch`), appliquée avant le rendu par le script inline de `index.html`. **Bascule de langue** : lien `hreflang` vers l'autre préfixe de locale, chemin et section active conservés (rechargement).
 
-## 6. Composants clés
+## 7. Mouvement
 
-### Dossard (`Bib`)
-Rectangle papier (clair) / blanc cassé (sombre), numéro 1592 en `--t-bib`, Archivo wdth 62, wght 900, orange ; 4 trous d'épingle en cercles `--bg` aux coins (formes pleines, pas de filet). Texte « Grand Trail d'Auvergne 2025 · 79,4 km » en `--t-small`. `aria-hidden` ; l'info est dans le h1.
+Principe : le mouvement sert l'orientation et le retour d'action. Propriétés animées : `transform`, `opacity`, `clip-path` ; jamais `transition: all`, jamais `ease-in`. Courbes : `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)`, `--ease-io: cubic-bezier(0.77, 0, 0.175, 1)`. `will-change` uniquement sur le masque du tracé du bandeau.
 
-### Profil de dénivelé (`ElevationProfile`)
-- Source : tableau [km, altitude] réel (Garmin), simplifié à ~200 points (Ramer–Douglas–Peucker), un seul `<path>` SVG + clipPath de progression.
-- Desktop : rail vertical fixe à droite (72 px), km 0 en haut. Mobile : barre horizontale 4 px en haut (profil mini 24 px de haut en tap-expand non requis).
-- Parcouru : `--accent` ; restant : `--line-muted`. Point courant : cercle plein de 10 px.
-- Checkpoints : 4 boutons ronds 24 px (zone 44 px) à 0 / 20 / 44 / 58,2 / 79,41 km avec libellé en infobulle ; chacun est un lien d'ancre (`#p2`) avec `aria-current="location"` sur l'actif. Libellés visibles au survol/focus uniquement sur desktop.
-- Accessibilité : `<nav aria-label="Profil de la course">` ; le SVG est décoratif, la liste d'ancres sert de vrai sommaire ; `role="progressbar"` n'est pas utilisé (pas de double annonce).
-- Sombre : au passage de chaque checkpoint, la portion parcourue « s'éclaire » (opacité 0,35 → 1 + couleur orange de frontale).
+| Mouvement | Propriété | Durée, courbe | Mouvement réduit |
+|---|---|---|---|
+| Trace et point du bandeau | `transform` écrit par rAF depuis le scroll | aucune transition, suit le scroll | identique (saute) |
+| Ligne de pointage | `transform: translateY` | entrée 320 ms, sortie 180 ms, `--ease-out` ; ouverte 2400 ms | affichée sans déplacement |
+| Infobulle de pointage | opacité + `scale(0.97)` | 150 ms `--ease-out`, délai 300 ms puis 0 | `transition: none` |
+| Entrée des blocs (`Reveal`) | opacité + `translateY(16px)` | 320 ms `--ease-out`, +60 ms par rang (`--i`, 0 à 3), une fois, marge -80 px | état final immédiat, rien de caché |
+| Plaques photo | `clip-path` | 600 ms `--ease-io`, encart +80 ms | fondu 160 ms `linear` |
+| Aperçu de l'index P3 | opacité | 240 ms `--ease-out` | aucune transition |
+| Endurance (`CountUp`) | texte + `--p` des barres | 700 ms par année (`STEP_MS`), freinage cubique, années l'une après l'autre | valeurs finales du SSR |
+| Road book | opacité + `translateY(12px)` | entrée 220 ms, sortie 160 ms, `--ease-out` | fondu 120 ms, sans translation |
+| Appui bouton, CTA, lien de pointage, étape du road book | `transform: scale(0.97)` à `:active` | 140 ms `--ease-out` | `transition: none` (CTA du Départ) ou durée 0.01 ms (règle globale) |
+| Survol lien | `color` | immédiat | — |
 
-### Carte segment (`SegmentCard`)
-Surface `--surface`, carrée, pas d'ombre. Contenu : vidéo/visuel 16:10 (ou aplat), titre (display wdth 75), pitch 1 phrase, ligne de split, tag IA, lien. Hover (pointeur fin) : image `scale(1.03)` dans son cadre masqué ; au toucher, rien. Aucune flèche décorative.
+### Transition de page : fondu de 200 ms
+`withViewTransitions` (Angular Router) : `::view-transition-old(root)` et `::view-transition-new(root)` à `animation-duration: 200ms`, `--ease-out`. **Sautée à la navigation initiale** (`skipInitialTransition: true`) et **sautée en `prefers-reduced-motion`** (`onViewTransitionCreated` appelle `skipTransition()`). La bascule de thème utilise `startViewTransition` sauf mouvement réduit (changement direct).
 
-### Ravitaillement (`Aid`)
-Bande basse (≤ 160 px) `--surface`, texte `--t-body`, un fait + un trait d'humour. Placée entre deux segments, hors profil. Titre en `<h3>` ou `<p>` strong (pas de h2).
+### Garanties
+- **Mouvement réduit** : règle globale `animation-duration: 0.01ms`, `transition-duration: 0.01ms`, une itération ; `Reveal` montre l'état final ; `CountUp` n'agit pas ; plaques en fondu 160 ms ; `scroll-behavior: smooth` seulement hors reduced-motion ; vidéos jamais lancées seules ; fondu de page sauté.
+- **Sans JS** : le script inline pose `html.js` ; sans lui tout est visible (`.reveal`, plaques). Le bandeau est une navigation de liens d'ancre (le bouton « Parcours » et le road book n'apparaissent qu'avec JS). Le formulaire de contact est masqué (il enverrait le message dans l'URL) : seul son `<noscript>` reste. Le contenu complet est dans le HTML SSR.
+- **Pas animé** : focus et navigation clavier, texte courant, chiffres du dossard, changement de langue, courbes de niveau, coupes de terrain, tout ce qui se produit plus de ~5 fois par session. Pas de parallaxe, de scroll-jacking, de curseur ni de particules.
 
-### Split (`Split`)
-Ligne de 4 colonnes : durée · stack · commits · note. Tabulaire, alignée à droite pour les nombres. Format : « 3 mois · Java 21, Spring Boot · 214 commits ». La note ironique (`--ink-2`, `--t-small`) : « dont 12 pour corriger un typo ». Badge PR (carré orange plein, icône + texte « PR »), uniquement pour un record réel.
+## 8. Études de cas (`projets/:slug`, `CaseStudyView`)
 
-### Tag IA (`AiTag`)
-Pastille carrée 28 px de haut, texte `--t-small` 600 : « Écrit à la main », « Commencé à la main, puis IA », « IA comme outil, conçu et revu par moi ». Ton `--surface`-contrasté (fond encre, texte papier en clair ; inverse en sombre) ; jamais en orange. Info textuelle explicite, pas d'icône seule. Lien vers une courte note « Comment j'utilise l'IA » (1 paragraphe dans la page projet).
+Page sur jetons racine, plus sobre que l'accueil : pas de bandeau ni de terrain, un seul `h1`.
 
-### Bascule de thème (`ThemeToggle`)
-Bouton 44×44 dans l'en-tête, `<button aria-pressed>` avec libellé « Thème sombre » ; 3 états : système / clair / sombre via menu simple. Défaut : `prefers-color-scheme`. Persistance `localStorage` dans try/catch. Application avant le premier rendu (script inline) pour éviter le flash.
+**Hero** : lien « ← Retour au parcours (P3 · km 58,2) » (ancre de l'étape), titre `h1`, chapô `--t-lead` (28ch), dossard de segment, puis clip (paysage : pleine largeur sous le hero ; portrait : sous le pitch ou entre pitch et dossard dès 1100 px, 340 px max) ; Worldline : logo, et la frise des 2,5 ans (`WorldlineTimeline`, filet vertical 2 px, bornes carrées orange 12 px, entrée par `Reveal`) à la place du clip.
 
-### Road book (`RoadBook`, mobile)
-- Déclencheur : tap sur la barre haute (zone ≥ 44 px) ou bouton « Road book » dans l'en-tête.
-- Plein écran (`<dialog>` modal, focus piégé, `Esc` ferme), fond `--bg`. Liste verticale des 5 étapes : nom, km, une phrase ; le profil est dessiné à gauche, chaque étape est une ancre. L'étape courante est marquée.
-- Fermeture au tap sur une étape, scroll vers l'ancre, retour du focus au déclencheur.
+**Dossard de segment** (`aside`, `aria-label="Fiche du projet"`) : `--surface`, quatre trous ronds de 12 px `--bg`, étape « P3 · km 58,2 » Archivo 900 wdth 62 % orange, `dl` (Durée, Rôle, Commits, Langages, Dernier push, Stack ; libellé `--ink-2`, valeur 600 tabulaire à droite). **Une valeur `null` retire sa ligne**, sans tiret. Note « Commits et langages : synchro GitHub, 6 h. ».
 
-### Navigation et en-tête
-Wordmark « E. Leveque » à gauche, bascule FR/EN et thème à droite. Pas de barre flottante ni de verre. Le lien d'évitement « Aller au contenu » est le premier élément focusable.
+**Rubriques, dans cet ordre** (chacune `<section>` avec `h2`, `appReveal` sauf Architecture et Code) :
+1. Contexte et contraintes (toujours ; paragraphe problème + paragraphe « mur » s'il existe)
+2. Décision et alternative écartée (si décisions ; première en pleine mesure, les suivantes côte à côte dès 1100 px ; `h3` + « Compromis : »)
+3. Architecture (schéma inline, titre `diagramTitle(slug)`)
+4. Ce que j'ai porté
+5. Résultat
+6. Ce que je referais
+7. Code (dépôts, démo, « Revoir le clip »)
 
-### Page projet (gabarit)
-Pitch + split → Problème → Schéma d'archi (SVG inline, couleurs du thème, titre et `desc`) → 2–3 décisions et compromis (texte, pas d'accordéon) → « Le mur du 60e km » (la difficulté : bloc `--surface` pleine largeur) → Ce que j'en retire → Liens (repo, démo, vidéo). Clip 15–30 s en boucle muette : `<video muted loop playsinline preload="metadata" poster>` ; pas d'autoplay hors viewport.
+Puis le CTA « Me contacter » (aplat `--accent`, vers `#arrivee`). **Une rubrique sans contenu (texte vide ou `null`) est retirée de la page, jamais remplacée par un texte de remplissage ni un titre vide.** Fiche courte ou slug inconnu : 404 ; API en échec : 503 avec `Retry-After: 30`, pas de `noindex`.
 
-## 7. Mouvement (selon Emil)
+**Schémas** (`diagram.css`, style « relais ») : cadre `--surface`, nœuds `--bg`, texte `--ink` 600 15 px et `--ink-2` 15 px, flèches `--ink` 2 px, optionnel en pointillé `6 5`, **un seul nœud fragile en aplat `--accent`** (texte `--on-accent`, flèche orange 3 px). Deux gabarits : horizontal (conteneur ≥ 950 px, viewBox 900) et vertical (max 360 px), un seul visible. Aucune animation.
 
-Principe : le mouvement sert l'orientation (où suis-je dans la course) et le retour d'action. Seules `transform` et `opacity` sont animées ; le reste jamais. Courbes : `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)`, `--ease-io: cubic-bezier(0.77, 0, 0.175, 1)`. Aucune `ease-in`. Aucun `transition: all`.
+## 9. Photos et médias
 
-| Animation | But | Propriété | Courbe / durée | Interruption | Reduced-motion |
-|---|---|---|---|---|---|
-| Profil rempli au scroll | Orientation (progression) | `transform: scaleY`/`scaleX` sur un masque (origine au départ) liée au scroll (`animation-timeline: scroll()`, fallback IntersectionObserver) | linéaire, pilotée par le scroll | Suit le scroll en direct ; aucune file d'attente | Pas de mouvement : état final discret à chaque checkpoint (changement de couleur instantané) |
-| Point courant | Position | `transform: translate` | pilotée par le scroll | Idem | Saute directement |
-| « Éclairage » du profil (sombre) | Récompense (identité sombre) | `opacity` du tracé orange (0,35 → 1) | `--ease-out` 400 ms, déclenché une fois par checkpoint | Transition CSS : se retarget si on revient en arrière | Passage instantané (opacité fixe) |
-| Entrée des blocs de section | Séquencer la lecture | `opacity` + `translateY(16px → 0)` | `--ease-out` 320 ms, décalage 60 ms par élément (titre, texte, visuel), déclenché 1 fois (IntersectionObserver, marge -80 px) | Transition (pas de keyframes), pas de reset si on repart | Fondu seul 160 ms, sans translation ; contenu jamais caché sans JS |
-| Ouverture road book | Continuité spatiale | `opacity` + `translateY(12px → 0)` du panneau | `--ease-out` 220 ms entrée, 160 ms sortie (sortie plus rapide) | Transition : un tap pendant l'ouverture inverse sans saut | Fondu 120 ms |
-| Bascule de thème | Retour d'action | `opacity` d'un voile `::view-transition` (View Transitions API) 200 ms ou changement direct | `ease` 200 ms | Retarget si double tap | Changement direct, sans transition |
-| Appui bouton / carte | Feedback tactile | `transform: scale(0.97)` à `:active` | `--ease-out` 140 ms, retour 160 ms | Transition ; retarget naturel | Conservé (feedback, sans déplacement) |
-| Survol carte (pointeur fin) | Affordance | image `scale(1.03)` | `ease` 240 ms, `@media (hover:hover) and (pointer:fine)` | Retarget à la sortie | Retiré |
-| Clip vidéo | Preuve vivante | lecture muette en boucle (déclenchée par IntersectionObserver) | — | Pause hors viewport | Poster fixe + bouton Lecture |
-| Compteur de splits | — | Pas d'animation | — | — | — |
-| Changement de langue FR/EN | — | Aucune | — | — | — |
+- Portrait du Départ : AVIF/WebP/JPEG, 480/800/1200 px, `width`/`height` renseignés, `object-position: center 20%`, pas de lazy-loading (LCP). Autres images : `loading="lazy" decoding="async"`, alt factuel, `alt=""` pour les affiches de clip (la légende nomme le contenu).
+- Pas de filtre coloré, de duotone, de grain, de bord arrondi (le tampon du badge de promo, découpé à son cercle, est un objet).
+- Vidéo : 15–30 s, boucle muette, MP4 puis WebM, affiche dans les deux cas, ≤ 2,5 Mo. Aucun tracé GPS, aucune carte de parcours.
 
-### Ce qu'on n'anime PAS
-- Navigation clavier et focus (anneau instantané), sommaire du road book au clavier, liens d'ancre des checkpoints (le saut vers l'ancre utilise `scroll-behavior: smooth` seulement hors reduced-motion).
-- Texte courant, tableaux, compteurs, chiffres du dossard, tags IA, parallaxe, scroll-jacking, curseur personnalisé, particules, marquees, machine à écrire.
-- `width`, `height`, `top/left`, `box-shadow`, `filter: blur` (hors masque rare de crossfade ≤ 2 px).
-- Tout ce qui se déclenche plus de ~5 fois par session (survols de liste, focus) : aucune animation d'entrée répétée.
+## 10. Admin (`/fr/admin`, inchangé en v4)
 
-### Règles transversales
-- Max 300 ms pour toute UI ; l'unique mouvement long (profil) est piloté par le scroll, pas par un timer.
-- Démarrer à `scale(0.95)` + opacité, jamais `scale(0)`. Popovers (infobulle de checkpoint) partent de leur déclencheur ; le road book (modale) reste centré.
-- Infobulle : délai 300 ms au premier survol, 0 ms ensuite entre checkpoints voisins.
-- `will-change` uniquement sur le masque du profil. Animations CSS plutôt que JS quand c'est prédéterminé.
-- Test : ralenti ×4, puis relecture le lendemain.
+Vérifié contre `features/admin/` : mêmes jetons racine, mêmes polices, `noindex`, FR seul. Pas de bandeau, de terrain ni de signature.
 
-## 8. Photos
-
-- **Hero :** portrait trail sur ciel bleu, source 1200×1600 (ratio 3:4). Jamais agrandi au-delà de 1200 px de large (`max-width: 1200px`, pas de `object-fit` qui agrandit) : sur écran plus large, le bloc garde sa taille et l'aplat papier absorbe l'espace. Exporter AVIF + WebP + JPEG, `fetchpriority="high"`, `width`/`height` renseignés (pas de CLS), pas de lazy-loading sur le LCP. Cadrage mobile : 4:5 centré sur le visage et le dossard visibles ; desktop : 3:4 pleine hauteur.
-- Ciel : le bleu de la photo ne doit pas entrer en collision avec l'orange ; pas de filtre coloré, légère correction de niveaux uniquement. Légende de lieu/date en `--t-small`.
-- **Photos de course :** une image dominante par section, 3:2 (large) ou 4:5 (portrait), même traitement partout, coins droits. Alt = description factuelle (« Montée vers Saint-Anthème, 14 h »), pas décorative. Max 6 à 8 photos sur la page.
-- **Recadrage des tiers :** visages de coureurs ou de bénévoles non consentants : recadrer ou flouter. Pas de plaques, pas de dossards tiers lisibles. Crédit photo si l'auteur est un tiers.
-- **Traitement :** pas de duotone, pas de grain artificiel, pas de bord arrondi. Clair : photo telle quelle. Sombre : réduire légèrement la luminosité (`filter: brightness(.9)` statique) si l'image est très blanche.
-- **Vidéo :** 15–30 s, boucle muette, ≤ 2,5 Mo par fichier, H.264 + WebM, affiche WebP (ADR 0003). Pas d'autoplay hors viewport ni sous `prefers-reduced-motion`/`Save-Data`.
-- Aucun tracé GPS, aucune carte de parcours ; le profil de dénivelé seul.
-- Poids total des images au premier écran ≤ 250 Ko ; `srcset` 480/800/1200 px ; Lighthouse mobile ≥ 90 perf.
-
-## 9. Checklist de revue design
-
-### Concept et contenu
-- [ ] En 10 s on comprend : nom, métier, stack, preuve (Worldline), action (CV, contact).
-- [ ] Hero : CTA CV + Contact visibles sans scroll à 390×844 et 1440×900.
-- [ ] La métaphore n'a jamais remplacé l'information (chaque section a un vrai titre).
-- [ ] Aucun classement, aucun tracé GPS ; chiffres de la course exacts (dossard 1592, 79,4 km, ~3 160 m D+, 13 h 35 min 53 s).
-- [ ] Tags IA justes : à la main / commencé à la main puis IA / conçu avec IA.
-- [ ] Clin d'œil histoire : max 2, discrets.
-
-### Anti-slop
-- [ ] Zéro dégradé, ombre au repos, verre, monospace, eyebrow, filet décoratif, numérotation 01/02.
-- [ ] Pas trois cartes identiques ; deux sections voisines n'ont pas la même composition.
-- [ ] Un seul accent (orange) et un seul geste signature (le profil).
-- [ ] Aucune phrase générique ; chaque affirmation a une preuve.
-- [ ] Titres ≤ 2 lignes à 320, 390, 768, 1440 px.
-
-### Typo et couleur
-- [ ] Archivo + Source Sans 3 chargées en WOFF2 auto-hébergé ; `tnum` actif sur les splits.
-- [ ] Contrastes mesurés : texte ≥ 4,5:1 ; UI et grands textes ≥ 3:1 ; thème clair et sombre.
-- [ ] Orange jamais en petit texte sur `--surface` clair (4,23:1).
-- [ ] Texte jamais sous 15 px ; texte courant 17–19 px, 45–70 car./ligne.
-
-### Mouvement et accessibilité
-- [ ] Seules `transform` et `opacity` animées ; aucun `transition: all`.
-- [ ] Chaque animation : but, courbe, durée, interruption, fallback reduced-motion (voir §7).
-- [ ] Rien d'animé au clavier ; focus visible (3 px, ≥ 3:1) ; ordre de tabulation logique.
-- [ ] Road book : focus piégé, `Esc`, retour du focus ; ancres des checkpoints navigables.
-- [ ] Cibles ≥ 44 px ; pas de glisser obligatoire (WCAG 2.2 : 2.5.7, 2.5.8) ; focus non masqué par l'en-tête fixe (2.4.11).
-- [ ] `lang` correct par langue, `hreflang`, bascule FR/EN conserve la position de scroll.
-- [ ] Alt texte et légendes ; vidéo sans son, avec poster et contrôle Lecture.
-- [ ] Thème : suit le système, bascule sans flash, persistance non bloquante.
-
-### Performance
-- [ ] Lighthouse mobile : perf ≥ 90, accessibilité ≥ 95 (clair et sombre).
-- [ ] LCP < 2,5 s (portrait hero préchargé), CLS < 0,05, JS d'animation < 20 Ko.
-- [ ] Images dimensionnées, formats modernes, vidéo hors viewport non chargée.
-- [ ] Relecture finale à froid le lendemain, sur un vrai téléphone, en ralenti ×4 pour le mouvement.
-
-## 10. V2 : page projet, clip, carnet d'entraînement, FR/EN
-
-Maquette : `docs/design/v2-page-projet.html` (Oltre, autonome, tokens de `tokens.css`, clair/sombre, bouton Thème pour comparer). Décisions compatibles D20-D26 ; aucune n'en contredit une. La page projet est plus sobre que l'accueil : pas de rail de profil, pas d'aplat orange, pas de geste signature animé. Elle garde le dossard, les chiffres tabulaires et un seul accent.
-
-### 10.1 Blueprint de la page projet (`projets/:slug`)
-Ordre fixe (D25, plan-v2 §4.2) : lien retour → pitch + dossard de segment → clip → problème → schéma → décisions → mur du 60e km → ce que j'en retire → liens. Un seul `<h1>` (titre du projet), les sections sont des `<h2>` en sentence case, sans eyebrow ni numérotation.
-
-| Zone | Desktop (≥ 1100) | Mobile (< 768) |
-|---|---|---|
-| Retour | Lien texte « ← Retour au parcours (P3, km 58,2) » vers `/#p3`, cible 44 px | Idem |
-| Pitch + dossard | Titre `--t-display` + chapô `--t-lead` (≤ 25 mots, 28ch) + Tag IA en col. 1-7 ; dossard en col. 9-12 | Pile : titre, chapô, tag, puis dossard pleine largeur |
-| Clip | Pleine largeur du conteneur, 16:10, sous le hero | Pleine largeur, 16:10 ; bouton et légende sous le cadre |
-| Problème, schéma, décisions, retire, liens | `h2` en col. 1-3, contenu en col. 4-11 (bords gauches 1 et 4 seulement), mesure 62 ch | `h2` au-dessus, contenu pleine largeur |
-| Décisions | Première décision en pleine mesure, les deux suivantes côte à côte (jamais 3 cartes identiques) ; titre `h3` + « Compromis : » en gras, texte, pas d'accordéon | Pile |
-| Mur du 60e km | Bande `--surface` pleine largeur ; « km 60 » display orange (décor, `aria-hidden`, ≥ 18 px) en col. 1-3, `h2` + texte en col. 4-11 | « km 60 » au-dessus, puis texte |
-| Liens | Liste de liens (dépôts, « Revoir le clip »), puis un CTA « Me contacter » | Idem, CTA pleine largeur |
-
-Variante **Worldline** (`trading-app`, titre « Application de trading chez Worldline ») : logo Worldline au-dessus du `h1`, frise des 2,5 ans sous le dossard (à la place du clip), et à la place de l'architecture un schéma « Le parcours d'un ordre » (vue d'ensemble, étapes qui entrent une à une), sans clip, `repos` vide donc pas de lien dépôt, dossard sans « Commits » ni « Langages » (valeurs `null` : ligne omise, pas de tiret). Aucun nom de fonctionnalité ni de client.
-Variante **GFaim** : clip portrait (10.3) ; pas de lien store.
-
-**Dossard de segment (`BibSplit`)** : rectangle `--surface`, 4 trous d'épingle `--bg` (comme `Bib`, §6), numéro d'étape « P3 · km 58,2 » en Archivo wdth 62 / 900 orange, puis une `<dl>` : libellé `--ink-2` à gauche, valeur à droite en `tabular-nums` (durée, rôle, commits, langages, dernier push, stack). Une ligne de note « synchro GitHub, 6 h » rappelle l'origine des chiffres. Landmark `<aside aria-label="Fiche du projet">`. `commits`, `languages`, `lastPushAt` à `null` : la ligne disparaît.
-
-### 10.2 Schéma d'architecture (SVG inline, D25)
-Style « relais » : nœuds carrés pleins `--bg` posés sur un cadre `--surface` (inversion de ton, aucun filet de contour), texte `--ink` 15 px (nom, 600) et `--ink-2` (détail), flèches orthogonales `--ink` 2 px à pointe pleine, légende de lien en `--ink-2` sur la flèche. **Une seule couleur d'accent : le nœud fragile (celui du mur) en aplat `--accent`, texte `--on-accent`, flèche orange.** Optionnel = pointillé. Aucune information par la seule couleur : le nœud orange porte aussi le texte « non officielle ». Contraste : orange sur `--surface` clair 4,23:1 (grand aplat, OK UI ≥ 3:1), texte dessus en `--on-accent` 5,18:1 / 7,68:1.
-- Deux gabarits du même schéma : horizontal (≥ 900 px, viewBox 900×330, texte 15 px minimum à l'affichage) et vertical (< 900 px, viewBox 360×700, `max-width: 360`), un seul visible (`display: none` sur l'autre : jamais de double annonce). `role="img"`, `<title>` et `<desc>` traduits (le `desc` décrit le flux en une phrase), légende `<figcaption>`.
-- Max 7 nœuds, 1 niveau de nesting. Rien de décoratif, pas d'icône de marque.
-
-### 10.3 Clip (`Clip`)
-- **Ratio : 16:10, partout** (tranche §5 16:9 contre §8 16:10). Raison : l'enregistrement est en 1280×800 (D24, `video.width/height`), donc 16:10 évite recadrage et bandes ; `SegmentCard` (§6) était déjà en 16:10. Le §5 est aligné. `aspect-ratio: 16/10` posé sur le cadre ; l'affiche (`<img>` en placeholder du `@defer`) a le même ratio : zéro CLS.
-- **Portrait (GFaim)** : cadre `aspect-ratio: 9/19.5`, `max-height: min(70svh, 640px)`, centré dans une bande `--surface` ; légende et boutons sous le cadre, à droite sur desktop.
-- **Affiche** WebP ≈ 40 Ko (ADR 0003), alt vide (la légende nomme le contenu).
-- **Contrôle** : un bouton texte unique « Lecture » / « Pause » (pas d'icône seule, pas de `controls` natif), 44×96 px minimum, fond `--ink`, texte `--bg`, placé **sous** le cadre (jamais en surimpression), premier élément focusable après la vidéo ; `aria-label` identique à son texte. Toujours visible (WCAG 2.2.2). La légende est le nom accessible (`aria-labelledby` sur la `<figure>`).
-- **Lecture** : `<video muted loop playsinline preload="none" poster>` ; démarre dans le viewport (seuil 50 %), se met en pause en dehors ; **aucune lecture automatique** sous `prefers-reduced-motion`, `saveData` ou `effectiveType` 2g : l'affiche reste, le bouton fait « Lecture ». Un clic utilisateur est toujours honoré. Clip absent (`video: null`) : le composant n'est pas rendu.
-- Légende : sujet + « Données factices, 22 s, sans son ».
-
-### 10.4 Carnet d'entraînement (graphe de contributions, D26)
-Pas de grille 53×7 : c'est la heatmap GitHub reproduite. Un **carnet** lit comme un volume hebdomadaire de plan d'entraînement.
-- **Forme** : une barre par semaine (53), la **hauteur** donne le total hebdomadaire (échelle linéaire, plancher 6 px, max = 90 px), alignées sur une ligne de base en encre 2 px. Semaine à zéro = repos : trait de 3 px en `--line-muted` (le repos fait partie du carnet). Une annotation « Meilleure semaine : N » au-dessus de la barre maximale.
-- **5 tons** (le ton répète la hauteur, il ne la remplace pas) : repos `--line-muted`, puis `--accent` mélangé à `--surface` à 35 / 55 / 78 / 100 % (`color-mix`, pas de dégradé), par quartiles des semaines actives. Aucun vert.
-- **Légende** : `Repos`, quatre tons, `Charge`, + « La hauteur donne la valeur ; le ton la répète. » ; `aria-hidden`.
-- **Accessibilité** : résumé texte au-dessus (« 812 contributions sur 12 mois · 41 semaines actives sur 53 · meilleure semaine : 47 »), le SVG est `role="img"` avec `<title>`. Mois sous la ligne de base, 15 px, tabulaires.
-- **Responsive** : viewBox 742×170 ; sous 742 px, conteneur `overflow-x: auto` focusable (`tabindex="0"`, `role="region"`, nommé par le résumé), scroll initial sur les semaines récentes. Section masquée si `contributions` est `null`. Pas d'animation (SSR, §7 « compteurs »).
-- Place : colonne gauche de la section Journal, sous le chiffre UTMB Index, à la place du vide actuel sous la photo si l'espace manque, sinon sous la photo.
-
-### 10.5 Bascule FR/EN (D21)
-Dans l'en-tête, groupe à droite avant le bouton Thème : `FR / EN`, deux liens `<a hreflang lang>` dans `<nav aria-label="Langue">` (traduit), chacun 44×44, `--t-small` 600 ; la langue courante `aria-current="true"` en encre soulignée 2 px (offset 6 px), l'autre en `--ink-2` ; séparateur « / » `aria-hidden`. Pas de drapeaux, pas de menu, pas de select. Le lien conserve le chemin et l'ancre active (la section courante) ; recharge de page, sans animation.
-
-### 10.6 Accueil : GFaim et fiches courtes (décisions d'Enzo, plan-v2 §9)
-- GFaim entre en **P1** avec une `SegmentCard` « étude de cas » (lien vers `projets/gfaim`) ; Cin-folie, quarkus-color, ObjVLisp2023, LambdaCalcul : une ligne chacune (nom, stack, lien dépôt) dans une liste compacte sous les cartes P1, sans carte ni tag, pour ne pas ajouter 4 cartes identiques.
-- Les 4 études de cas (Oltre, Zotracker, GFaim, Worldline) ont un lien « Lire l'étude de cas » (lien souligné, pas de flèche) en plus de « Voir le dépôt ». Les fiches courtes n'ont jamais de page.
-
-### 10.7 Mouvement V2 (Emil : un but, `transform`/`opacity`, `--ease-out`, jamais d'`ease-in`)
-| Élément | Propriété | Courbe | Durée | Interruption | Reduced-motion |
-|---|---|---|---|---|---|
-| Entrée des blocs (problème, décisions, retire) | `opacity` + `translateY(16px → 0)`, 1 fois | `--ease-out` | 320 ms, décalage 60 ms | Transition CSS, pas de reset | Fondu 160 ms seul |
-| Bouton Lecture/Pause, Me contacter, FR/EN | `transform: scale(.97)` à `:active` | `--ease-out` | 140 ms | Retarget naturel | Conservé |
-| Lien (survol, pointeur fin) | `color` seulement | `ease` | 120 ms | — | Retiré |
-| Clip | Lecture muette en boucle | — | — | Pause hors viewport, au `blur` d'onglet | Affiche + « Lecture », jamais auto |
-| Dossard, schéma, mur, carnet | Aucune | — | — | — | — |
-| Bascule FR/EN, thème | Rechargement / View Transitions (§7) | — | — | — | Direct |
-Pas de parallaxe, pas de tracé animé du schéma, pas de barres qui poussent dans le carnet. Aucun `transition: all`.
-
-### 10.8 Checklist V2
-- [ ] Ordre du gabarit respecté ; Worldline sans schéma, sans clip, sans ligne vide dans le dossard.
-- [ ] Un `h1` ; titres ≤ 2 lignes à 320, 390, 768, 1440 px (« Trois décisions, trois compromis » vérifier à 320).
-- [ ] Dossard : chiffres `tabular-nums`, lignes `null` omises, contraste orange ≥ 3:1 (grand display).
-- [ ] Schéma lisible en clair et en sombre, texte ≥ 15 px affiché, un seul nœud orange, `title` + `desc` traduits, pas de double annonce horizontal/vertical.
-- [ ] Clip 16:10 sans CLS ; sous reduced-motion, `saveData` et 2g : affiche + « Lecture », aucune requête vidéo avant clic ; bouton Pause visible, 44 px, nommé ; vidéo sans piste audio.
-- [ ] Carnet : résumé texte, légende, 5 tons distincts en clair et sombre, hauteur lisible sans la couleur, zone défilable focusable sur mobile.
-- [ ] Bascule FR/EN : 2 cibles 44 px, `aria-current`, `hreflang`, ancre conservée, fonctionne sans JS.
-- [ ] Un seul accent, zéro dégradé/ombre/filet décoratif/eyebrow ; mouvement conforme à 10.7.
-- [ ] Revue à 360/390/768/1440, clair et sombre, ralenti ×4.
-
-
-## 11. V3 : admin, colophon, stats du Journal
-
-Maquette : `docs/design/v3-colophon-admin.html` (captures 1440 et 390, clair et sombre : retirées du repo, voir l'historique git). Aucun token, aucune couleur, aucune police en plus : mêmes `--bg/--surface/--ink/--ink-2/--accent/--line-muted`, mêmes Archivo + Source Sans 3, coins carrés, un seul accent. Les textes du colophon sont ceux de `docs/content/copy-v3.md` (brouillon, non validé) ; la maquette n'en reprend que la structure.
-
-### 11.1 Admin (`/fr/admin`, usage d'Enzo seul)
 **Principe** : un outil, pas une vitrine. Pas de dossard, pas de profil, pas de mouvement signature, pas de sections en aplat orange. L'admin est une page `--bg` avec des bandes `--surface` ; la sobriété vient de la densité (interligne 1.4, espaces 8/16/24) et non d'une autre palette. Thème clair et sombre comme le site (même bascule), `noindex`.
 - **Cadre** : en-tête de 64 px (wordmark « Zofolio admin » en Archivo, liens Projets · Courses · Stats · Médias en 600 `--t-small`, Déconnexion à droite, chaque cible 44 px). Contenu en une colonne de 1100 px max. Titres de page en Archivo 800, `clamp(2rem, 4vw, 3rem)` (pas `--t-display` : l'admin ne crie pas).
 - **Connexion** : un seul champ « Mot de passe », un bouton primaire. Erreur sous le champ (texte + icône, `role="alert"`). `LOGIN_LOCKED` : « Trop d'essais. Réessayez dans N min » avec le `Retry-After` en minutes, bouton désactivé (`aria-disabled`, pas masqué).
@@ -363,36 +215,35 @@ Maquette : `docs/design/v3-colophon-admin.html` (captures 1440 et 390, clair et 
   | `INTERNAL_ERROR` / réseau | bandeau en tête | « Erreur du serveur. Rien n'est perdu : réessayez. » |
   Une erreur = texte + icône + bordure 2 px `--accent` du champ ; jamais la couleur seule. Pas de toast qui disparaît (les messages restent jusqu'à action).
 - **Zone d'upload** (Médias, clip) : bloc `--surface`, bordure 2 px **pleine** `--line-muted` (pas de pointillés « dropzone » : décor), grande cible, texte « Choisir un fichier » (bouton, clavier d'abord) et « ou déposez-le ici ». Contraintes écrites en clair avant l'envoi (« JPEG, PNG · 5 Mo max · MP4 · 2,5 Mo max · métadonnées retirées », alignées sur `MediaService` : 5 Mo image, 2,5 Mo MP4 ; pas de WebP en envoi). Envoi : barre de progression d'un trait de 4 px `--accent` + pourcentage en `tnum` (`role="progressbar"`) ; succès : nom, dimensions, poids, « Utilisé par : — ». Sous reduced-motion, la barre avance sans transition.
-- **Mouvement** : aucun, hors `scale(.97)` à `:active` des boutons (140 ms, §10.7) et fondu 120 ms de l'aperçu. Pas de squelette animé : « Chargement… » en texte.
+- **Mouvement** : aucun, hors `scale(.97)` à `:active` des boutons (140 ms, §7) et fondu 120 ms de l'aperçu. Pas de squelette animé : « Chargement… » en texte.
 - **Médias** : liste en tableau (miniature 48 px carrée, nom, dimensions, poids `tnum`, `usedBy`, Supprimer). Suppression = dialogue de confirmation, focus piégé, bouton par défaut « Annuler ».
 
-### 11.2 Colophon (`/fr/colophon`, ADN « La Course »)
-La page prouve la méthode. Elle garde la signature (dossard, orange, aplats) mais en **version calme** : aucun profil, pas de 1592 géant (le dossard est déjà sur l'accueil), mouvement = §7 seulement.
-- **Blueprint** (ordre de `copy-v3.md`) :
-  1. **Départ** (fond `--bg`) : `h1` « Colophon » en `--t-display` (une ligne), chapô `--t-lead`. À droite ≥ 1100 px, bloc « dossard » petit (`--surface`, hauteur ~ 12rem) : « Édition 2026 · FR + EN » et la date de dernière mise à jour en `tnum`. Pas d'image.
-  2. **La stack** (`--bg`) : trois colonnes de texte (Back, Front, Infra), **pas** de cartes ni d'icônes de logos. Chaque ligne : nom en 600, version en `tnum`.
-  3. **Méthode : une équipe d'agents** (aplat `--ink` inversé, comme P2) : liste des agents et du modèle de chacun en tableau (agent, rôle, modèle), la boucle d'une feature en 5 lignes (spec, tâche, test, revue, merge).
-  4. **IA assumée** (`--bg`) : les trois tags `AiTag` existants avec le projet concerné, sans fausse modestie.
-  5. **Ce que la CI vérifie** (`--surface`) : liste des jobs, un `Aid` (ravito) pour la phrase d'humour.
-  6. **Scores Lighthouse** (voir ci-dessous).
-  7. **Tout est dans le dépôt** (aplat `--accent`, texte `--on-accent`, comme l'Arrivée) : trois liens (dépôt, `tasks/`, `docs/adr/`) en grandes lignes soulignées. Seul aplat orange de la page.
-- **Scores Lighthouse comme des « splits »** : un tableau 4 lignes (Performance, Accessibilité, Bonnes pratiques, SEO) × 3 colonnes de pages (`/fr/`, `/en/`, `/fr/projets/oltre`). Le score est un `Split` : chiffre en Archivo 800 `wdth 75`, `tnum`, aligné à droite, taille `clamp(2.5rem, 6vw, 4.5rem)` ; libellé et seuil (« seuil 90 ») en `--t-small` `--ink-2`. **Tout score ≥ seuil est en encre ; le score qui est juste au seuil (≤ seuil + 2) prend une note ironique en `--ink-2` et une icône « limite » (« 90 : pile au seuil, je l'écris »)** ; aucun vert, aucun anneau/jauge/cercle d'activité. L'orange reste réservé au record éventuel (badge PR, icône + texte) : jamais pour « bon ». En dessous : date de mesure (`tnum`), méthode (« mobile, médiane de trois mesures »), lien vers le rapport `docs/reviews/…`. Valeurs en dur, datées, jamais « 100 » arrondi.
-- **Mobile 390** : une colonne ; le tableau des scores passe en 3 blocs (une page chacun) avec 4 splits en grille 2×2 ; le tableau des agents en `dl`.
-- **Accessibilité** : vrais `<table>` avec `<caption>`, scores lisibles sans la couleur ni l'icône (le mot « limite » est écrit), un `h1`, titres ≤ 2 lignes de 320 à 1440.
-
-### 11.3 Stats sport du Journal (`sportYears`)
-- **Place** : dans la colonne gauche du Journal, **sous** le graphe de contributions (§10.4), avant la photo si l'espace manque ; masqué si `sportYears` est `[]`. Titre `<h3>` « Les années en chiffres », une phrase d'intro, la note « Totaux annuels seulement : ni tracé, ni fréquence cardiaque, ni donnée de santé » en `--t-small`.
-- **Forme** : un vrai `<table>` (c'est l'équivalent texte), une ligne par année décroissante, colonnes Année · Kilomètres · D+ · Heures · Activités. Chiffres `tabular-nums lining-nums`, alignés à droite sur la virgule, milliers en espace fine insécable, unités dans l'en-tête de colonne (`km`, `m D+`, `h`), jamais répétées par cellule. Année en Archivo 800. Valeur `null` : tiret long « — » avec `aria-label` « non renseigné ». Ligne de l'année en cours : mention « en cours » en texte.
-- **Pas de graphique** : ni barres, ni anneaux, ni courbe (l'écart serait décor et la donnée est saisie à la main). Pas de classement ni de « meilleure année » en badge. Le seul geste visuel est la hauteur de ligne et la typographie.
-- **Mobile** : le tableau garde 5 colonnes si la largeur le permet à 15 px (≥ 360 px : Année, km, D+, h, act.) ; sinon `overflow-x: auto` focusable nommé par le titre. Pas d'animation, pas de compteur qui monte (SSR, §7).
-
-### 11.4 Checklist V3
+### Checklist admin
 - [ ] Admin : zéro couleur/police hors tokens ; un seul bouton orange par écran ; aucun dégradé, ombre, verre, filet décoratif, zébrage ; coins carrés.
 - [ ] Admin : FR et EN côte à côte ≥ 900 px, empilés en dessous, `lang` par champ ; labels visibles ; compteurs `tnum`.
 - [ ] Admin : chaque `code` d'erreur a un texte FR, une icône et une position ; erreur jamais portée par la couleur seule ; focus placé sur le récapitulatif après un échec.
 - [ ] Admin : upload au clavier ; contraintes écrites avant l'envoi ; refus expliqué en clair ; suppression avec confirmation et `usedBy`.
 - [ ] Admin : `noindex`, aucune donnée en `localStorage`, aucun `innerHTML`.
-- [ ] Colophon : un `h1`, titres ≤ 2 lignes de 320 à 1440 ; un seul aplat orange ; aucune carte d'icônes ni logo ; faits renvoyant à un fichier du dépôt.
-- [ ] Colophon : scores = splits en `tnum`, datés, valeurs réelles, note au seuil, aucune jauge ni vert.
-- [ ] Stats : `<table>` avec `<caption>`, `tnum`, `null` → « — », masqué si `[]`, aucun graphique ni classement ; rendu SSR sans `sportYears`.
-- [ ] 360 / 390 / 768 / 1440, clair et sombre, contrastes mesurés ; texte ≥ 15 px.
+
+## 11. Checklist de revue v4
+
+- [ ] Bandeau : valeurs du km, trace et point calculés depuis le profil réel ; liens d'ancre sans JS ; ligne de pointage une fois par étape et par session ; rien ne passe sous le bandeau au focus (92 px).
+- [ ] Terrains : coupe franche, aucun fondu entre chapitres ; chaque paire texte/terrain ≥ 4,5:1 en clair et en sombre ; sur `accent`, texte blanc (clair) ou nuit (sombre).
+- [ ] Dossard : trous en `clip-path`, `cqi`, `aria-hidden` sur le numéro ; dos = colophon vivant, lignes sans donnée omises.
+- [ ] Index P3 : survol et focus identiques ; vidéo seulement en survol/focus à l'écran ; aucun aperçu ni téléchargement vidéo sans pointeur fin.
+- [ ] Études : ordre des rubriques respecté, rubrique vide retirée, ligne `null` du dossard de segment omise, un seul nœud orange par schéma.
+- [ ] Mouvement : seules `transform`, `opacity`, `clip-path` ; aucun `transition: all`, aucun `ease-in` ; reduced-motion : état final, fondu de page sauté ; navigation initiale sans fondu.
+- [ ] Sans JS : tout le contenu lisible, bandeau en liens d'ancre, formulaire remplacé par son `<noscript>`.
+- [ ] Un seul accent, zéro dégradé, ombre, verre, eyebrow, monospace, numérotation décorative ; titres ≤ 2 lignes à 320, 390, 768, 1440 px ; texte ≥ 15 px ; cibles ≥ 44 px.
+- [ ] Lighthouse mobile ≥ 90 perf, ≥ 95 accessibilité / bonnes pratiques / SEO ; axe-core sans violation en clair, sombre, FR, EN.
+
+## 12. Écarts constatés dans le build, non érigés en règle
+
+Présents dans le code, à ne pas reproduire sur de nouvelles surfaces ni à lire comme des décisions du système :
+- Filets de 1 px entre lignes des tableaux de courses (`--line-muted`) et des pointages de l'Arrivée (`--ink` à 25 %), filet vertical de 2 px de la frise Worldline, bandes de 6 px de la frise de diplômes P1 : relèvent de la donnée tabulaire ou de la frise, mais contredisent la règle « pas de filet » du §1.
+- `filter: brightness(1.08)` au survol du CTA primaire du Départ (`start.section.css`) : hors liste des propriétés animées du §7.
+- Le colophon (`/colophon`) garde la structure v3 (aplats `--ink`, `--surface`, `--accent` de page entière sur jetons racine, et non les terrains v4) et n'utilise ni bandeau ni signatures.
+
+## 13. Vérifications non faites
+
+Contrastes non recalculés ici (repris des tests de `terrain.ts`) ; captures de `.superpowers/sdd/2026-11-03-redesign-v4-vague-2/captures/` et site local non rouverts pour cette rédaction (valeurs lues dans le code).

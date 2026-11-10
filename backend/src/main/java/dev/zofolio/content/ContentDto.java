@@ -22,8 +22,9 @@ public interface ContentDto {
 
 	record Video(String mp4, String webm, String poster, int width, int height, String caption) {}
 
-	record CaseStudy(String role, String problem, List<Decision> decisions, String wall, String takeaway,
-			String aiNote, List<RepoLink> repos) {}
+	/** Rubriques de la page : Contexte=problem, Contraintes=wall, Ce que j'ai porté=contribution, Résultat=takeaway, Ce que je referais=hindsight. */
+	record CaseStudy(String role, String problem, List<Decision> decisions, String wall, String contribution,
+			String takeaway, String hindsight, String aiNote, List<RepoLink> repos) {}
 
 	record ExperienceDto(String stage, String kind, String title, String body, String period, List<String> stack,
 			String note) {}
@@ -32,6 +33,8 @@ public interface ContentDto {
 
 	record SportYearDto(Integer year, Integer distanceKm, Integer elevationGainM, Integer hours, Integer activities) {}
 
+	record ContributionYearDto(int year, int total) {}
+
 	record Home(List<ExperienceDto> experiences, List<ProjectSummary> projects, List<RaceDto> races,
-			Contributions contributions, List<SportYearDto> sportYears) {}
+			Contributions contributions, List<SportYearDto> sportYears, List<ContributionYearDto> contributionYears) {}
 }

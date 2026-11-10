@@ -8,6 +8,10 @@ describe('LegalPage', () => {
     const el: HTMLElement = f.nativeElement;
     expect(el.textContent).not.toContain('À FOURNIR');
     expect(el.querySelector('main')).toBeNull();
-    expect(el.querySelectorAll('h2').length).toBe(7);
+    expect(el.querySelectorAll('h2').length).toBe(8);
+    // LCEN 6-III-1 : l'hébergeur réel (VM Oracle), avec son téléphone.
+    expect(el.textContent).toContain('Oracle France SAS');
+    expect(el.textContent).toContain('+33 1 57 60 20 20');
+    expect(el.textContent).not.toContain('Hetzner');
   });
 });

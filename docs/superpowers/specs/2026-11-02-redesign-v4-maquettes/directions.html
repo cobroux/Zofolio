@@ -1,0 +1,60 @@
+<style>
+  .m{background:#0e1626;color:#edeff4;font-family:system-ui,sans-serif;padding:14px;height:260px;position:relative;overflow:hidden;border-radius:4px}
+  .m b.big{font:800 34px/0.95 system-ui;letter-spacing:-.03em;display:block}
+  .o{color:#ff8a2b}.s{font-size:11px;color:#a8b0c0}
+  .tick{position:absolute;left:0;right:0;bottom:0;background:#ff8a2b;color:#0e1626;font:700 12px system-ui;padding:6px 10px;display:flex;justify-content:space-between}
+  .live{display:inline-block;background:#e11;color:#fff;font:700 10px system-ui;padding:2px 6px;margin-bottom:8px}
+  .split{position:absolute;right:12px;top:40px;background:#edeff4;color:#0e1626;padding:8px 10px;font:700 13px system-ui}
+  .topo{position:absolute;inset:0;opacity:.18;background:repeating-radial-gradient(circle at 70% 40%,transparent 0 14px,#a8b0c0 14px 15px)}
+  .photo{position:absolute;right:0;top:0;bottom:0;width:42%;background:#1f6fd1}
+  .cap{position:absolute;right:8px;bottom:8px;font-size:10px;background:#0e1626;padding:3px 6px}
+  .chap{position:absolute;left:14px;bottom:14px;font:800 60px/1 system-ui;color:#ff8a2b;opacity:.9}
+  .prof{position:absolute;left:10px;right:10px;bottom:46px;height:60px}
+  .cp{position:absolute;width:12px;height:12px;border-radius:50%;background:#ff8a2b;border:2px solid #0e1626}
+  .pop{position:absolute;left:46%;bottom:112px;background:#edeff4;color:#0e1626;padding:8px;font-size:11px;width:150px}
+</style>
+
+<h2>Trois directions pour un site plus accrocheur</h2>
+<p class="subtitle">Toutes gardent « La Course » (dossard, profil, P1-P2-P3, orange). Elles diffèrent par ce qui donne envie d'aller au bout. On peut en mixer deux. Clique sur celle(s) qui te parlent.</p>
+
+<div class="cards" data-multiselect>
+  <div class="card" data-choice="live" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="m">
+      <span class="live">● EN DIRECT</span>
+      <b class="big">Enzo Leveque</b>
+      <span class="s">Dossard 1592 · Grand Trail d'Auvergne</span>
+      <div class="split">P2 · km 44<br><span class="o">+2,5 ans</span> Worldline</div>
+      <div class="tick"><span>km 31,4 ▸ prochain pointage P2</span><span>04:12:08</span></div>
+    </div></div>
+    <div class="card-body">
+      <h3>A · Suivi en direct</h3>
+      <p>Le visiteur « suit la course » comme une retransmission sport : bandeau live en bas (km, chrono qui tourne), à chaque section un <b>pointage</b> s'affiche en surimpression (temps de passage, chiffres qui défilent). Sensation : ça avance, on veut voir l'arrivée.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="magazine" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="m">
+      <div class="topo"></div><div class="photo"></div><span class="cap">Côte d'Opale, km 63</span>
+      <span class="s">Chapitre 2</span>
+      <b class="big">La plus<br>longue étape</b>
+      <span class="chap">P2</span>
+    </div></div>
+    <div class="card-body">
+      <h3>B · Grand reportage</h3>
+      <p>Une mise en page de magazine sport haut de gamme : fond de <b>courbes de niveau</b> qui bougent doucement, grandes photos légendées qui se superposent au texte, titres de chapitre qui restent épinglés pendant qu'on lit, changement d'ambiance de couleur à chaque étape.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="explore" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="m">
+      <b class="big">Le parcours</b><span class="s">Survole un pointage</span>
+      <svg class="prof" viewBox="0 0 300 60" preserveAspectRatio="none"><path d="M0 55 L40 30 L70 40 L110 10 L150 35 L190 20 L230 45 L300 25" fill="none" stroke="#ff8a2b" stroke-width="2"/></svg>
+      <span class="cp" style="left:36%;bottom:94px"></span>
+      <div class="pop"><b>P2 · Worldline</b><br>2,5 ans · trading · RabbitMQ → voir</div>
+    </div></div>
+    <div class="card-body">
+      <h3>C · Parcours à explorer</h3>
+      <p>Le profil devient une <b>carte interactive</b> : on survole un pointage pour voir un aperçu, on clique pour y sauter ; projets en « ravitos » qu'on ouvre. Récompense la curiosité, plus ludique.</p>
+    </div>
+  </div>
+</div>

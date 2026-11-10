@@ -67,6 +67,12 @@ public class Project {
 	public Map<String, String> aiNote;
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")
+	public Map<String, String> contribution;
+	@JdbcTypeCode(SqlTypes.JSON)
+	@Column(columnDefinition = "jsonb")
+	public Map<String, String> hindsight;
+	@JdbcTypeCode(SqlTypes.JSON)
+	@Column(columnDefinition = "jsonb")
 	public Map<String, String> metaTitle;
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(columnDefinition = "jsonb")

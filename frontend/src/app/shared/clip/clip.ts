@@ -6,7 +6,7 @@ let uid = 0;
 const ignore = () => undefined;
 
 /** Pas de lecture automatique si l'utilisateur a demandé moins de mouvement ou économise les données (DESIGN §10.3). */
-function calm(): boolean {
+export function calm(): boolean {
   const c = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
   return (
     matchMedia('(prefers-reduced-motion: reduce)').matches || c?.saveData === true || /(^|slow-)2g$/.test(c?.effectiveType ?? '')
@@ -56,6 +56,8 @@ function calm(): boolean {
 })
 export class Clip {
   readonly video = input<Video | null>();
+  /** `false` : la vidéo ne part qu'au toucher du bouton (lignes de l'index P3 sur mobile). */
+  readonly autoplay = input(true);
   protected readonly capId = `clip-cap-${uid++}`;
   protected readonly playing = signal(false);
   protected readonly missing = signal(false);
@@ -84,7 +86,7 @@ export class Clip {
         play();
         return;
       }
-      if (calm() || typeof IntersectionObserver === 'undefined') return;
+      if (!this.autoplay() || calm() || typeof IntersectionObserver === 'undefined') return;
       // Un clic fige le mode manuel : l'observateur ne relance ni ne met plus en pause.
       const io = new IntersectionObserver(([e]) => !this.manual && (e.isIntersecting ? play() : v.pause()), { threshold: 0.5 });
       io.observe(v);

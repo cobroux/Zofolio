@@ -203,3 +203,14 @@ export const PROFILE: readonly (readonly [km: number, ele: number])[] = [
 ];
 
 export const CHECKPOINTS = { depart: 0, p1: 20, p2: 44, p3: 58.2, arrivee: 79.41 } as const;
+
+/** Pointages officiels du GTA 2025 : heure d'horloge, temps de course et temps du tronçon (secondes). */
+export const SPLITS: Record<
+  'p1' | 'p2' | 'p3' | 'arrivee',
+  { clock: string; raceS: number; legS: number }
+> = {
+  p1: { clock: '09:23:44', raceS: 10424, legS: 10424 },
+  p2: { clock: '13:32:16', raceS: 25336, legS: 14912 },
+  p3: { clock: '16:18:29', raceS: 35309, legS: 9973 },
+  arrivee: { clock: '20:05:52', raceS: 48953, legS: 13644 },
+};

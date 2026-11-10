@@ -1,0 +1,340 @@
+/* Bandeau de suivi : terrain nuit dans les deux thèmes (jetons du terrain). */
+.band {
+  --trail: #5b6b8c;
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 10;
+  height: 52px;
+  font: 400 var(--t-small) / 1 var(--font-text);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--s-5);
+  height: 100%;
+  padding-inline: var(--margin);
+  background: inherit;
+}
+
+/* Valeurs : chiffres en Archivo condensé, unités et libellés en texte, largeurs réservées pour que rien ne saute au scroll. */
+.values {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-5);
+  max-width: none;
+  margin: 0;
+  white-space: nowrap;
+}
+/* Angular retire les espaces entre balises : l'écart valeur / unité vient du gap. */
+.km,
+.stat {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+}
+.v {
+  display: inline-block;
+  font: 700 21px / 1 var(--font-display);
+  font-stretch: 78%;
+  letter-spacing: -0.01em;
+  text-align: right;
+}
+.km .v {
+  min-width: 3.6ch;
+  font-size: 30px;
+  font-weight: 800;
+  font-stretch: 72%;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+/* Afficheur à rouleaux : fenêtre d'un chiffre, bande 0-9 en ::before qui glisse (le vrai chiffre reste dans le DOM, transparent). */
+.d {
+  position: relative;
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  color: transparent;
+}
+.d::before {
+  content: '0\A 1\A 2\A 3\A 4\A 5\A 6\A 7\A 8\A 9';
+  position: absolute;
+  inset: 0 auto auto 0;
+  color: var(--accent);
+  white-space: pre;
+  transform: translateY(calc(var(--n) * -1em));
+  transition: transform 260ms var(--ease-out);
+}
+@media (prefers-reduced-motion: reduce) {
+  .d::before {
+    transition: none;
+  }
+}
+.alt .v,
+.stat:nth-child(3) .v {
+  min-width: 4.6ch;
+}
+.l,
+.u {
+  color: var(--ink-2);
+}
+
+nav {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--s-3);
+  min-width: 0;
+}
+.track {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: var(--target);
+  margin-inline: 22px;
+}
+/* Repère du tracé : le point y est placé en px mesurés (tracking-band.ts). */
+/* 22 px : le point bas du tracé et son repère (Arrivée, 414 m) restent au-dessus des libellés posés en bas de la piste de 44 px. */
+.trace {
+  position: absolute;
+  inset: 4px 0 auto;
+  height: 22px;
+}
+svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+path {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+  stroke-linejoin: round;
+}
+.rest {
+  stroke: var(--trail);
+  stroke-width: 1.5;
+}
+.done {
+  stroke: var(--accent);
+  stroke-width: 2.5;
+}
+/* Suit le scroll sans transition, y compris en mouvement réduit (la trace saute). Seul will-change autorisé (DESIGN §7). */
+.mask {
+  transform-box: fill-box;
+  transform-origin: left;
+  transform: scaleX(0);
+  will-change: transform;
+}
+.dot {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #0e1626;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+ul {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+li {
+  position: absolute;
+  top: 0;
+  translate: -50% 0;
+}
+a {
+  color: inherit;
+}
+li a {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: var(--target);
+  height: var(--target);
+  padding-bottom: 1px;
+  color: var(--ink-2);
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+}
+/* Pointage posé sur le tracé, à son altitude réelle. */
+.mark {
+  position: absolute;
+  top: calc(4px + (1 - var(--a)) * 22px - 3px);
+  left: calc(50% - 3px);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+li a[aria-current='location'] {
+  color: var(--accent);
+}
+li a[aria-current='location'] .mark {
+  background: var(--accent);
+}
+
+.tip {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .tip {
+    --tx: -50%;
+    position: absolute;
+    bottom: calc(100% + 14px);
+    left: 50%;
+    display: grid;
+    gap: var(--s-1);
+    padding: var(--s-2) var(--s-3);
+    background: #f6f3ec;
+    color: #14161a;
+    font-weight: 400;
+    line-height: 1.2;
+    white-space: nowrap;
+    text-align: left;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateX(var(--tx)) scale(0.97);
+    transform-origin: bottom center;
+    transition:
+      opacity 150ms var(--ease-out),
+      transform 150ms var(--ease-out);
+  }
+  li:first-child .tip {
+    --tx: 0;
+    left: 0;
+    transform-origin: bottom left;
+  }
+  li:last-child .tip {
+    --tx: 0;
+    left: auto;
+    right: 0;
+    transform-origin: bottom right;
+  }
+  li a:hover .tip {
+    opacity: 1;
+    transform: translateX(var(--tx));
+    transition-delay: 300ms;
+  }
+  .warm li a:hover .tip {
+    transition-delay: 0ms;
+  }
+  .tip strong {
+    font-weight: 600;
+  }
+}
+
+.open {
+  display: none;
+  align-items: center;
+  min-height: var(--target);
+  padding: 0 var(--s-4);
+  border: 2px solid var(--ink);
+  background: none;
+  color: var(--ink);
+  font: 600 var(--t-small) / 1 var(--font-text);
+  cursor: pointer;
+  transition: transform 140ms var(--ease-out);
+}
+.open:active,
+li a:active {
+  transform: scale(0.97);
+}
+li a {
+  transition: transform 140ms var(--ease-out);
+}
+
+.how {
+  display: none;
+  align-items: center;
+  min-height: var(--target);
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+@media (min-width: 1100px) {
+  .how {
+    display: inline-flex;
+  }
+}
+
+/* Ligne de pointage : glisse de derrière le bandeau (52 -> 76 px), entrée 320 ms, sortie plus rapide. */
+.line {
+  position: absolute;
+  inset: auto 0 100%;
+  display: flex;
+  align-items: center;
+  height: 24px;
+  max-width: none;
+  margin: 0;
+  padding-inline: var(--margin);
+  background: inherit;
+  font: 700 var(--t-small) / 1 var(--font-display);
+  font-stretch: 80%;
+  white-space: nowrap;
+  transform: translateY(100%);
+  /* Replié : masqué et inerte (sinon une bande invisible de 24 px capterait clics et survols au-dessus du bandeau). */
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    transform 180ms var(--ease-out),
+    visibility 0s 180ms;
+}
+.split .line {
+  transform: none;
+  visibility: visible;
+  transition:
+    transform 320ms var(--ease-out),
+    visibility 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line,
+  .split .line {
+    transform: none;
+    transition: none;
+  }
+  .tip {
+    transition: none !important;
+  }
+}
+
+/* Mobile : km, tracé et bouton « Parcours » qui ouvre le road book. Sans JS, les liens d'ancre restent. */
+@media (max-width: 767px) {
+  .row {
+    gap: var(--s-3);
+  }
+  .stat {
+    display: none;
+  }
+  .track {
+    margin-inline: 7px;
+  }
+  :host-context(html.js) ul {
+    display: none;
+  }
+  :host-context(html.js) .trace {
+    top: 11px;
+  }
+  :host-context(html.js) .open {
+    display: inline-flex;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

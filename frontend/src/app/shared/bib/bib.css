@@ -1,9 +1,32 @@
+/* Papier imprimé dans les deux thèmes : couleurs fixées, contraste ≥ 4,5:1 sur #f6f3ec. */
+/* L'hôte est le conteneur : les cqi de .face et de ses enfants valent 1 % de la largeur du dossard. */
 :host {
-  display: block;
-  color: var(--accent);
-  font: 800 var(--t-bib) / 0.8 var(--font-display);
+  display: grid;
+  container-type: inline-size;
+  aspect-ratio: 5 / 3;
+  /* Grain papier : bruit SVG à très faible opacité, par-dessus la couleur de fond (pas de dégradé). */
+  background-color: #f6f3ec;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.09 0 0 0 0 0.10 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  color: #14161a;
+  text-align: center;
+  /* Quatre trous d'épingle (pair-impair) : chaque trou est relié au coin par un aller-retour d'aire nulle. */
+  clip-path: polygon(evenodd, 0 0, 100% 0, 100% 100%, 0 100%, 0 0, 7.80% 10%, 7.27% 12.12%, 6% 13%, 4.73% 12.12%, 4.20% 10%, 4.73% 7.88%, 6% 7%, 7.27% 7.88%, 7.80% 10%, 0 0, 95.80% 10%, 95.27% 12.12%, 94% 13%, 92.73% 12.12%, 92.20% 10%, 92.73% 7.88%, 94% 7%, 95.27% 7.88%, 95.80% 10%, 0 0, 95.80% 90%, 95.27% 92.12%, 94% 93%, 92.73% 92.12%, 92.20% 90%, 92.73% 87.88%, 94% 87%, 95.27% 87.88%, 95.80% 90%, 0 0, 7.80% 90%, 7.27% 92.12%, 6% 93%, 4.73% 92.12%, 4.20% 90%, 4.73% 87.88%, 6% 87%, 7.27% 87.88%, 7.80% 90%, 0 0);
+}
+.face {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4cqi;
+  padding: 9cqi 10cqi 7cqi;
+}
+.num {
+  font: 800 34cqi / 0.8 var(--font-display);
   font-stretch: 62%;
-  font-variant-numeric: tabular-nums lining-nums;
   letter-spacing: -0.02em;
   user-select: none;
+}
+.race {
+  font: 600 max(0.8125rem, 3.6cqi) / 1.2 var(--font-text);
+  text-wrap: balance;
 }

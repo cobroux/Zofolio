@@ -30,6 +30,24 @@ function lerp(x: number, pts: readonly (readonly [number, number])[]): number {
   return x1 === x0 ? y1 : y0 + ((x - x0) / (x1 - x0)) * (y1 - y0);
 }
 
+/** Altitude en m au km donné (bornée aux extrémités). */
+export const altitudeAt = (km: number) => lerp(km, PROFILE);
+
+/** D+ cumulé en m jusqu'au km donné : somme des montées, dernier segment au prorata. */
+export function gainAt(km: number): number {
+  let sum = 0;
+  for (let i = 1; i < PROFILE.length && PROFILE[i - 1][0] < km; i++) {
+    const [[k0, e0], [k1, e1]] = [PROFILE[i - 1], PROFILE[i]];
+    const up = Math.max(0, e1 - e0);
+    sum += km >= k1 ? up : (up * (km - k0)) / (k1 - k0);
+  }
+  return sum;
+}
+
+/** Dernier pointage dont le km est ≤ `km`. Comparé au dixième, comme le km affiché : 79,41 vaut 79,4, sinon l'arrivée ne serait jamais « passée ». */
+export const lastCheckpoint = (km: number): CheckpointId =>
+  CHECKPOINT_IDS.filter((id) => r(CHECKPOINTS[id]) <= km).at(-1) ?? 'depart';
+
 /** Abscisse du tracé vertical au km donné, de 0 (altitude min) à 1 (max) : même échelle que `profilePath(true)`. */
 export const altitudeRatioAt = (km: number) => (lerp(km, PROFILE) - MIN) / (MAX - MIN);
 
@@ -37,8 +55,9 @@ export const altitudeRatioAt = (km: number) => (lerp(km, PROFILE) - MIN) / (MAX 
 export const kmAtScroll = (pos: number, anchors: readonly (readonly [number, number])[]) =>
   lerp(pos, anchors);
 
-/** « 79,4 » (fr) / « 79.4 » (en) : km au dixième, séparateur de la locale. */
-export const formatKm = (km: number) => r(km).toLocaleString($localize`:@@numberLocale:fr-FR`);
+/** « 79,4 » (fr) / « 79.4 » (en) : km au dixième, séparateur de la locale. `digits` = décimales imposées (« 44,0 »). */
+export const formatKm = (km: number, digits = 0) =>
+  r(km).toLocaleString($localize`:@@numberLocale:fr-FR`, { minimumFractionDigits: digits });
 
 /** Checkpoint actif = section qui croise la mi-hauteur du viewport (IntersectionObserver, aucun calcul de layout). */
 @Injectable({ providedIn: 'root' })
@@ -59,7 +78,7 @@ export class CourseProgress {
         entries
           .filter((e) => e.isIntersecting)
           .forEach((e) => this.active.set(e.target.id as CheckpointId)),
-      { rootMargin: '-50% 0px -50% 0px' },
+      { rootMargin: '-33% 0px -67% 0px' },
     ));
     CHECKPOINT_IDS.forEach((id) => {
       const el = document.getElementById(id);

@@ -1,0 +1,45 @@
+<div class="band terrain-night" [class.split]="extended()">
+  <p class="line" aria-hidden="true">{{ line() }}</p>
+  <div class="row">
+    <p class="values" aria-hidden="true">
+      <span class="km"><span class="v">@for (k of kmChars(); track $index) {@if (k.n < 0) {{{ k.c }}} @else {<span class="d" [style.--n]="k.n">{{ k.c }}</span>}}</span> <span class="u" i18n>km</span></span>
+      <span class="stat alt"><span class="l" i18n>alt.</span> <span class="v">{{ live().alt }}</span> <span class="u">m</span></span>
+      <span class="stat"><span class="l">D+</span> <span class="v">{{ live().gain }}</span> <span class="u">m</span></span>
+      <span class="stat"><span class="l">{{ live().pass }}</span> <span class="v">{{ live().clock }}</span></span>
+    </p>
+    <nav aria-label="Parcours" i18n-aria-label>
+      <div class="track">
+        <div class="trace" #trace aria-hidden="true">
+          <svg viewBox="0 0 1000 100" preserveAspectRatio="none">
+            <clipPath id="band-done"><rect #mask class="mask" x="0" y="0" width="1000" height="100" /></clipPath>
+            <path class="rest" [attr.d]="d" />
+            <path class="done" [attr.d]="d" clip-path="url(#band-done)" />
+          </svg>
+          <span class="dot" #dot></span>
+        </div>
+        <ul [class.warm]="warm()" (mouseleave)="cool()">
+          @for (c of items; track c.id) {
+            <li [style.left.%]="c.x" [style.--a]="c.a">
+              <a [href]="'#' + c.id" [attr.aria-current]="progress.active() === c.id ? 'location' : null" (mouseenter)="warmSoon()">
+                <span class="mark" aria-hidden="true"></span>
+                <span class="short">{{ c.short }}</span><span class="sr-only"> {{ c.full }}, <ng-container i18n>km</ng-container> {{ formatKm(c.km) }}</span>
+                <span class="tip" aria-hidden="true">
+                  <strong>{{ c.name }}</strong>
+                  <span class="tnum"><ng-container i18n>km</ng-container> {{ formatKm(c.km) }} · {{ c.clock }}</span>
+                </span>
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+      <button #opener type="button" class="open" aria-haspopup="dialog" (click)="roadBook.open(opener)" i18n>Parcours</button>
+    </nav>
+    <a class="how" href="https://github.com/cobroux/Zofolio/blob/main/frontend/src/app/features/home-course/course-progress.ts" i18n>Comment c'est calculé</a>
+  </div>
+  <div class="sr-only" aria-live="polite">
+    @for (m of said(); track $index) {
+      <p>{{ m }}</p>
+    }
+  </div>
+</div>
+<app-road-book #roadBook />

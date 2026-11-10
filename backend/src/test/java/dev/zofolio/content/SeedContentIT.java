@@ -59,6 +59,9 @@ class SeedContentIT {
 			JsonNode cs = p.get("caseStudy");
 			assertThat(cs.isNull()).as(slug).isFalse();
 			for (String f : new String[] { "role", "problem", "wall", "takeaway" }) {
+				if (slug.equals("trading-app") && f.equals("takeaway")) {
+					continue; // rubrique vide masquée (l'accueil porte ces faits)
+				}
 				assertThat(cs.get(f).asText()).as(slug + "." + f).isNotBlank();
 			}
 			assertThat(cs.get("decisions").size()).as(slug).isBetween(2, 3);
@@ -69,6 +72,27 @@ class SeedContentIT {
 			} else {
 				assertThat(cs.get("repos")).isNotEmpty();
 			}
+		}
+	}
+
+	@Test
+	void caseStudiesV4ContentIsSeeded() throws Exception {
+		assertV4("oltre", "J'ai tout construit seul, de zéro : le backend Spring Boot, le frontend Angular, leur mise en place et le déploiement en conteneurs.", "I built all of it alone, from scratch: the Spring Boot back end, the Angular front end, their setup and the container deployment.", "L'application couvre le sport, avec mes activités Garmin, les dépenses, les tâches, les rendez-vous et les repas, plus un coach IA optionnel. Une configuration de production en HTTPS est en place, avec un seul point d'entrée exposé.", "The app covers sport, with my Garmin activities, expenses, tasks, appointments and meals, plus an optional AI coach. A production setup over HTTPS is in place, with a single exposed entry point.");
+		assertV4("zotracker", "J'ai conçu et développé tout le système : le serveur Node qui reçoit les positions, les projette sur le tracé GPX et les diffuse en direct, la page publique, l'espace admin, les alertes et le mode simulation, puis le déploiement en conteneur derrière Caddy.", "I designed and built the whole system: the Node server that receives positions, projects them onto the GPX route and broadcasts them live, the public page, the admin area, the alerts and the simulation mode, then the container deployment behind Caddy.", "Les proches suivent ma position en direct sur une page publique, sans rien installer. Le serveur calcule l'allure et les heures de passage, et envoie des alertes. Le mode simulation permet de tout tester sans courir. Un fichier GPX piégé de 920 Ko, qui prenait 5,8 s à lire, se traite maintenant en 5 ms.", "Loved ones follow my position live on a public page, with nothing to install. The server computes pace and passing times, and sends alerts. The simulation mode lets me test everything without running. A booby-trapped 920 KB GPX file that took 5.8 s to parse now takes 5 ms.");
+		assertV4("gfaim", "Nous étions quatre, et je me suis occupé du front et du back. Le projet comprend une application Android native et une API Quarkus avec PostgreSQL.", "We were a team of four, and I worked on both the front end and the back end. The project has a native Android app and a Quarkus API with PostgreSQL.", "Le projet de fin d'études a été livré : une API avec authentification par jeton, PostgreSQL et l'API Spoonacular, documentée en OpenAPI, et l'application Android native. Il n'est pas déployé.", "The final-year project was delivered: an API with token authentication, PostgreSQL and the Spoonacular API, documented with OpenAPI, and the native Android app. It is not deployed.");
+		JsonNode ta = new ObjectMapper().readTree(get("/api/fr/projects/trading-app"));
+		assertThat(ta.get("stage").asText()).isEqualTo("P2");
+		assertThat(ta.get("caseStudy").path("contribution").textValue()).isNull();
+		assertThat(ta.get("caseStudy").path("takeaway").textValue()).isNull();
+		assertThat(new ObjectMapper().readTree(get("/api/en/projects/trading-app")).get("caseStudy").path("takeaway").textValue()).isNull();
+	}
+
+	private void assertV4(String slug, String contribFr, String contribEn, String takeFr, String takeEn) throws Exception {
+		for (String lang : new String[] { "fr", "en" }) {
+			JsonNode cs = new ObjectMapper().readTree(get("/api/" + lang + "/projects/" + slug)).get("caseStudy");
+			assertThat(cs.path("contribution").textValue()).as(slug + lang).isEqualTo(lang.equals("fr") ? contribFr : contribEn);
+			assertThat(cs.path("takeaway").textValue()).as(slug + lang).isEqualTo(lang.equals("fr") ? takeFr : takeEn);
+			assertThat(cs.path("hindsight").textValue()).as(slug + lang + ".hindsight").isNull();
 		}
 	}
 

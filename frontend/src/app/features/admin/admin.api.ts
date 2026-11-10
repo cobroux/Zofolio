@@ -13,7 +13,7 @@ export interface ProjectAdmin {
   title: Tr; pitch: Tr; aiTag: string | null; stack: string[]; duration: Tr | null; note: Tr | null;
   githubRepos: string[]; demoUrl: string | null; metaTitle: Tr | null; metaDescription: Tr | null;
   role: Tr | null; problem: Tr | null; decisions: Record<string, Decision[]> | null; wall: Tr | null;
-  takeaway: Tr | null; aiNote: Tr | null; video: VideoAdmin | null;
+  contribution: Tr | null; takeaway: Tr | null; hindsight: Tr | null; aiNote: Tr | null; video: VideoAdmin | null;
 }
 export interface RaceAdmin {
   id: number | null; kind: string; date: string | null; name: Tr; distanceKm: number | null; elevationGainM: number | null;

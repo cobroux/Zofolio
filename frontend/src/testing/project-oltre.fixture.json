@@ -43,7 +43,9 @@
       }
     ],
     "wall": "Mur de test.",
+    "contribution": null,
     "takeaway": "Leçon de test.",
+    "hindsight": null,
     "aiNote": null,
     "repos": [
       {

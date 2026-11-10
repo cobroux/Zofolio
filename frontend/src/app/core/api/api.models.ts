@@ -48,8 +48,10 @@ export interface CaseStudy {
   role: string;
   problem: string;
   decisions: { title: string; tradeoff: string }[];
-  wall: string;
-  takeaway: string;
+  wall: string | null;
+  contribution: string | null;
+  takeaway: string | null;
+  hindsight: string | null;
   aiNote: string | null;
   repos: { name: string; url: string }[];
 }
@@ -81,6 +83,11 @@ export interface SportYear {
   activities: number | null;
 }
 
+export interface ContributionYear {
+  year: number;
+  total: number;
+}
+
 export interface HomeResponse {
   experiences: Experience[];
   projects: ProjectSummary[];
@@ -89,6 +96,15 @@ export interface HomeResponse {
   sportYears: SportYear[];
   /** `null` tant qu'aucune synchro GitHub n'a réussi. */
   contributions: Contributions | null;
+  /** Année croissante ; `[]` si aucune synchro. */
+  contributionYears: ContributionYear[];
+}
+
+/** GET /api/build : une donnée absente vaut null. */
+export interface BuildInfo {
+  commit: string | null;
+  deployedAt: string | null;
+  ci: { conclusion: 'success' | 'failure' | null; url: string | null };
 }
 
 export interface ProblemDetail {

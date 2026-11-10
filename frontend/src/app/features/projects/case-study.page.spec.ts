@@ -39,7 +39,6 @@ describe('CaseStudyPage', () => {
     expect(el.querySelector('#h-arch')).toBeTruthy();
     expect(el.querySelector('svg title')?.textContent).toContain('Oltre');
     expect(el.querySelectorAll('.decisions article').length).toBe(2);
-    expect(el.querySelector('#h-wall')?.textContent).toBe('Le mur du 60e km');
     expect(el.querySelectorAll('.links a[href^="https://github.com"]').length).toBe(2);
   });
 
@@ -49,10 +48,36 @@ describe('CaseStudyPage', () => {
     expect(el.querySelector('img.logo')?.getAttribute('alt')).toBe('Worldline');
     expect(el.querySelectorAll('app-worldline-timeline li').length).toBe(4);
     expect(el.querySelector('#h-arch')?.textContent).toBe("Le parcours d'un ordre");
+    expect(el.querySelectorAll('#h-mis ~ .facts li').length).toBe(5);
+    expect(el.querySelector('app-decision-card')).toBeTruthy();
     expect(el.querySelector('app-clip')).toBeNull();
     expect(el.querySelector('.links a[href^="https://github.com"]')).toBeNull();
     expect(el.querySelector('aside')?.textContent).not.toContain('Commits');
     expect(el.querySelector('aside')?.textContent).not.toContain('Langages');
+    expect(el.querySelector('#h-code')).toBeNull();
+    expect(el.querySelector('#h-mis')).toBeTruthy();
+    expect(el.querySelector('a[href="/#arrivee"]')?.textContent).toContain('Me contacter');
+  });
+
+  const full = { ...oltre, caseStudy: { ...oltre.caseStudy, contribution: 'Porté.', hindsight: 'Refait.' } };
+
+  it('gabarit : rubriques dans l\'ordre de la spec', async () => {
+    const { el } = await render('oltre', (r) => r.flush(full));
+    const view = el.querySelector('app-case-study-view')!;
+    expect([...view.querySelectorAll('h2')].map((h) => h.id)).toEqual(['h-ctx', 'h-dec', 'h-arch', 'h-own', 'h-res', 'h-redo', 'h-code']);
+    expect(view.querySelector('#h-ctx')!.closest('section')!.querySelectorAll('p').length).toBe(2);
+  });
+
+  it('rubriques absentes : section retirée, titre compris', async () => {
+    const cs = { ...full.caseStudy, wall: null, contribution: null, takeaway: null, hindsight: '  ', decisions: [] };
+    const { el } = await render('oltre', (r) => r.flush({ ...full, caseStudy: cs }));
+    for (const id of ['h-dec', 'h-own', 'h-res', 'h-redo']) expect(el.querySelector('#' + id)).toBeNull();
+    expect(el.querySelector('#h-ctx')!.closest('section')!.querySelectorAll('p').length).toBe(1);
+  });
+
+  it('aiNote jamais affiché', async () => {
+    const { el } = await render('oltre', (r) => r.flush({ ...full, caseStudy: { ...full.caseStudy, aiNote: 'Conçu avec IA.' } }));
+    expect(el.textContent).not.toContain('Conçu avec IA.');
   });
 
   it('fiche courte (caseStudy nul) : 404', async () => {

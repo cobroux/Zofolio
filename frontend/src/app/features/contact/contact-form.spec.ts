@@ -1,5 +1,6 @@
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { ContactForm, validate } from './contact-form';
 import { ContactApi, ContactResult } from './contact.api';
@@ -23,7 +24,7 @@ describe('ContactForm', () => {
   function setup(result: ContactResult | null) {
     sent = [];
     TestBed.configureTestingModule({
-      providers: [{ provide: ContactApi, useValue: { send: (b: unknown): Observable<ContactResult> => (sent.push(b), of(result!)) } }],
+      providers: [provideRouter([]), { provide: ContactApi, useValue: { send: (b: unknown): Observable<ContactResult> => (sent.push(b), of(result!)) } }],
     });
     const f = TestBed.createComponent(ContactForm);
     f.componentInstance.v.set(ok);
@@ -85,7 +86,7 @@ describe('ContactApi', () => {
     const { HttpClient } = await import('@angular/common/http');
     const e = new HttpErrorResponse({ status: 429, headers: new HttpHeaders({ 'Retry-After': '120' }), error: { code: 'RATE_LIMITED' } });
     TestBed.configureTestingModule({
-      providers: [{ provide: HttpClient, useValue: { post: () => new Observable((s) => s.error(e)) } }],
+      providers: [provideRouter([]), { provide: HttpClient, useValue: { post: () => new Observable((s) => s.error(e)) } }],
     });
     const r = await new Promise<ContactResult>((res) => TestBed.inject(ContactApi).send({ ...ok, company: null, website: '' }).subscribe(res));
     expect(r).toMatchObject({ ok: false, status: 429, code: 'RATE_LIMITED', retryAfterS: 120 });

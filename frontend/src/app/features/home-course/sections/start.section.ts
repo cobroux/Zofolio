@@ -1,45 +1,66 @@
 import { Component, LOCALE_ID, inject } from '@angular/core';
 import { Bib } from '../../../shared/bib/bib';
+import { ContourField } from '../../../shared/contour-field/contour-field';
 
-/** Départ (DESIGN §5) : textes d'interface statiques (D3), aucune donnée d'API. */
+/** Départ (spec §6) : textes d'interface statiques (D3), aucune donnée d'API. */
 @Component({
   selector: 'app-start',
-  imports: [Bib],
+  imports: [Bib, ContourField],
   template: `
-    <section id="depart">
-      <svg class="contours" aria-hidden="true" viewBox="0 0 800 600" preserveAspectRatio="none">
-        <path d="M0,420 C160,360 260,470 420,400 S700,330 800,380" />
-        <path d="M0,460 C170,400 270,510 430,440 S710,370 800,420" />
-        <path d="M0,500 C180,440 280,550 440,480 S720,410 800,460" />
-        <path d="M0,540 C190,480 290,590 450,520 S730,450 800,500" />
-      </svg>
+    <section id="depart" class="terrain-night">
+      <app-contour-field [levels]="12" />
       <div class="text">
-        <p class="small tnum" i18n>Départ 6 h 30 · km 0</p>
-        <h1>Enzo Leveque</h1>
-        <p class="title" i18n>Ingénieur fullstack Java / Spring Boot + Angular</p>
-        <p class="lead" i18n>Ingénieur d'études chez Aubay, après 2,5 ans sur une application de trading critique chez Worldline.</p>
-        <p class="keyfact small" i18n>Aubay · 2,5 ans chez Worldline · trading</p>
-        <p class="stack small" i18n>Java · Spring Boot · Angular · Docker · SQL</p>
+        <h1>Enzo <span>Leveque</span></h1>
+        <p class="title" i18n>
+          Ingénieur fullstack Java/Spring + Angular, chez Aubay après 2,5 ans de trading chez
+          Worldline
+        </p>
+        <p class="proof tnum" i18n>
+          2,5 ans sur une plateforme d'ordres de bourse en production · prototype move2cloud vers
+          RabbitMQ · Angular SSR et Spring Boot 4 en production ici même
+        </p>
         <div class="cta">
           <a class="primary" [href]="cv" i18n>Télécharger le CV</a>
           <a class="secondary" href="#arrivee" i18n>Me contacter</a>
         </div>
       </div>
-      <app-bib />
-      <picture>
-        <source type="image/avif" srcset="img/portrait-480.avif 480w, img/portrait-800.avif 800w, img/portrait-1200.avif 1200w" sizes="(min-width: 1100px) 40vw, 100vw" />
-        <source type="image/webp" srcset="img/portrait-480.webp 480w, img/portrait-800.webp 800w, img/portrait-1200.webp 1200w" sizes="(min-width: 1100px) 40vw, 100vw" />
-        <img
-          src="img/portrait-800.jpg"
-          srcset="img/portrait-480.jpg 480w, img/portrait-800.jpg 800w, img/portrait-1200.jpg 1200w"
-          sizes="(min-width: 1100px) 40vw, 100vw"
-          width="1200"
-          height="1600"
-          fetchpriority="high"
-          i18n-alt
-          alt="Enzo Leveque en tenue de trail, devant un ciel bleu."
-        />
-      </picture>
+      <div class="plate">
+        <picture>
+          <source
+            type="image/avif"
+            srcset="
+              img/portrait-480.avif   480w,
+              img/portrait-800.avif   800w,
+              img/portrait-1200.avif 1200w
+            "
+            sizes="(min-width: 1100px) 40vw, min(100vw, 640px)"
+          />
+          <source
+            type="image/webp"
+            srcset="
+              img/portrait-480.webp   480w,
+              img/portrait-800.webp   800w,
+              img/portrait-1200.webp 1200w
+            "
+            sizes="(min-width: 1100px) 40vw, min(100vw, 640px)"
+          />
+          <img
+            src="img/portrait-800.jpg"
+            srcset="
+              img/portrait-480.jpg   480w,
+              img/portrait-800.jpg   800w,
+              img/portrait-1200.jpg 1200w
+            "
+            sizes="(min-width: 1100px) 40vw, min(100vw, 640px)"
+            width="1200"
+            height="1600"
+            fetchpriority="high"
+            i18n-alt
+            alt="Enzo Leveque en tenue de trail, devant un ciel bleu."
+          />
+        </picture>
+        <app-bib />
+      </div>
     </section>
   `,
   styleUrl: './start.section.css',

@@ -21,7 +21,7 @@ import { Reveal } from '../../shared/reveal/reveal';
     .sr {
       position: absolute;
       width: 1px;
-      height: 1px;
+      height: 1px; /* taste-skill-ignore : masquage visuel pour lecteur d écran */
       overflow: hidden;
       clip-path: inset(50%);
       white-space: nowrap;
