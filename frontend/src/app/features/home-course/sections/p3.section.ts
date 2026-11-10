@@ -19,8 +19,8 @@ import { CAPTURES } from '../project-index/project-index';
       </header>
       @if (steps(); as list) {
         <ol class="path">
-          @for (r of list; track r.p.slug) {
-            <li [class.short]="!r.study">
+          @for (r of list; track r.p.slug; let i = $index) {
+            <li [class.short]="!r.study" [appReveal]="i + 1">
               <span class="dot" aria-hidden="true"></span>
               <article>
                 <h3>
