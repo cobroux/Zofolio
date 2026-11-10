@@ -278,7 +278,7 @@ li a {
   margin: 0;
   padding-inline: var(--margin);
   background: inherit;
-  font: 600 var(--t-small) / 1 var(--font-display);
+  font: 700 var(--t-small) / 1 var(--font-display);
   font-stretch: 80%;
   white-space: nowrap;
   transform: translateY(100%);

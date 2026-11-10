@@ -3,7 +3,8 @@
 @font-face {
   font-family: archivo;
   src: url('/fr/fonts/archivo-latin.woff2') format('woff2');
-  font-weight: 400 900;
+  /* Instance 700-900 (seules graisses utilisées) : 98 -> 70 Ko, pour le LCP mobile. */
+  font-weight: 700 900;
   font-stretch: 62% 100%;
   font-display: swap;
 }

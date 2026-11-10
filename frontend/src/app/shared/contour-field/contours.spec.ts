@@ -9,4 +9,8 @@ describe('contourPaths', () => {
     expect(Math.min(...n)).toBeGreaterThanOrEqual(0);
     expect(Math.max(...n)).toBeLessThanOrEqual(1000);
   });
+
+  it('reste léger : rendu en SSR sur 7 champs de l’accueil', () => {
+    expect(contourPaths(12, 1000, 600).join('').length).toBeLessThan(12_000);
+  });
 });
