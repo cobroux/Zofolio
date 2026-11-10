@@ -1,5 +1,16 @@
 import { TestBed } from '@angular/core/testing';
-import { CourseProgress, altitudeAt, altitudeRatioAt, formatKm, gainAt, kmAtScroll, kmToCoord, lastCheckpoint, profilePath, TOTAL_KM } from './course-progress';
+import {
+  CourseProgress,
+  altitudeAt,
+  altitudeRatioAt,
+  formatKm,
+  gainAt,
+  kmAtScroll,
+  kmToCoord,
+  lastCheckpoint,
+  profilePath,
+  TOTAL_KM,
+} from './course-progress';
 import { PROFILE } from './profile.data';
 
 describe('course-progress', () => {
@@ -39,7 +50,11 @@ describe('profil : coordonnées et scroll', () => {
     expect(altitudeRatioAt(0)).toBeCloseTo((414 - 407) / (1369 - 407));
     expect(altitudeRatioAt(46.43)).toBe(1); // point culminant, 1369 m
     expect(altitudeRatioAt(0.09)).toBeCloseTo((410.5 - 407) / (1369 - 407)); // mi-chemin entre 414 et 407 m
-    const anchors = [[300, 0], [800, 20], [3000, 44]] as const;
+    const anchors = [
+      [300, 0],
+      [800, 20],
+      [3000, 44],
+    ] as const;
     expect(kmAtScroll(0, anchors)).toBe(0);
     expect(kmAtScroll(800, anchors)).toBe(20);
     expect(kmAtScroll(1900, anchors)).toBe(32);
@@ -47,63 +62,15 @@ describe('profil : coordonnées et scroll', () => {
   });
 });
 
-describe('CourseProgress.start', () => {
-  it("passe au checkpoint de la section qui croise l'observateur", () => {
-    let cb!: IntersectionObserverCallback;
-    const observed: string[] = [];
-    vi.stubGlobal(
-      'IntersectionObserver',
-      class {
-        constructor(c: IntersectionObserverCallback) {
-          cb = c;
-        }
-        observe(e: Element) {
-          observed.push(e.id);
-        }
-      },
-    );
-    ['depart', 'p1', 'p2', 'p3', 'arrivee'].forEach((id) => {
-      const s = document.createElement('section');
-      s.id = id;
-      document.body.append(s);
-    });
+describe('CourseProgress.active', () => {
+  it('suit le km du scroll, sans observateur', () => {
     const p = TestBed.inject(CourseProgress);
-    p.start();
-    expect(observed).toEqual(['depart', 'p1', 'p2', 'p3', 'arrivee']);
-    cb([{ isIntersecting: true, target: document.getElementById('p3')! } as unknown as IntersectionObserverEntry], {} as IntersectionObserver);
+    expect(p.active()).toBe('depart');
+    p.scrollKm.set(44);
+    expect(p.active()).toBe('p2');
+    p.scrollKm.set(58.2);
     expect(p.active()).toBe('p3');
-    expect(p.km()).toBe(58.2);
-    document.body.replaceChildren();
-    vi.unstubAllGlobals();
-  });
-
-  it('start() deux fois : déconnecte l\'ancien observateur et observe les nouveaux nœuds', () => {
-    const disconnect = vi.fn();
-    const observed: Element[] = [];
-    vi.stubGlobal(
-      'IntersectionObserver',
-      class {
-        observe(e: Element) {
-          observed.push(e);
-        }
-        disconnect = disconnect;
-      },
-    );
-    const mk = () => {
-      const s = document.createElement('section');
-      s.id = 'depart';
-      document.body.append(s);
-      return s;
-    };
-    const p = TestBed.inject(CourseProgress);
-    mk();
-    p.start();
-    document.body.replaceChildren(); // navigation vers les mentions légales puis retour : sections recréées
-    const fresh = mk();
-    p.start();
-    expect(disconnect).toHaveBeenCalledTimes(1);
-    expect(observed.at(-1)).toBe(fresh);
-    document.body.replaceChildren();
-    vi.unstubAllGlobals();
+    p.scrollKm.set(TOTAL_KM);
+    expect(p.active()).toBe('arrivee');
   });
 });

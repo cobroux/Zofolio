@@ -59,30 +59,12 @@ export const kmAtScroll = (pos: number, anchors: readonly (readonly [number, num
 export const formatKm = (km: number, digits = 0) =>
   r(km).toLocaleString($localize`:@@numberLocale:fr-FR`, { minimumFractionDigits: digits });
 
-/** Checkpoint actif = section qui croise la mi-hauteur du viewport (IntersectionObserver, aucun calcul de layout). */
+/** Checkpoint actif = dernier checkpoint atteint par le km du scroll : une seule source pour le bandeau, le profil et le sommaire. */
 @Injectable({ providedIn: 'root' })
 export class CourseProgress {
-  readonly active = signal<CheckpointId>('depart');
-  readonly km = computed(() => CHECKPOINTS[this.active()]);
   /** km courant du scroll, au dixième : source unique du libellé ; le point du profil est placé sur la même valeur. Le signal ignore les `set` identiques. */
   readonly scrollKm = signal(0);
+  readonly active = computed(() => lastCheckpoint(this.scrollKm()));
+  readonly km = computed(() => CHECKPOINTS[this.active()]);
   readonly ratio = computed(() => this.km() / TOTAL_KM);
-  private io?: IntersectionObserver;
-
-  /** Navigateur seulement. Réobserve les sections courantes (la page d'accueil peut être recréée). Sans section, l'état reste « depart ». */
-  start(): void {
-    if (typeof IntersectionObserver === 'undefined') return;
-    this.io?.disconnect();
-    const io = (this.io = new IntersectionObserver(
-      (entries) =>
-        entries
-          .filter((e) => e.isIntersecting)
-          .forEach((e) => this.active.set(e.target.id as CheckpointId)),
-      { rootMargin: '-33% 0px -67% 0px' },
-    ));
-    CHECKPOINT_IDS.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) io.observe(el);
-    });
-  }
 }
