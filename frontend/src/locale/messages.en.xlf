@@ -846,66 +846,6 @@
           <context context-type="linenumber">42,43</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6413514884883484792" datatype="html">
-        <source>Commit</source>
-        <target state="translated">Commit</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
-          <context context-type="linenumber">16,17</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5653072874050459519" datatype="html">
-        <source>Déployé le</source>
-        <target state="translated">Deployed on</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
-          <context context-type="linenumber">22,23</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="518737057825014328" datatype="html">
-        <source>Dernière CI sur main</source>
-        <target state="translated">Latest CI run on main</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
-          <context context-type="linenumber">28,29</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4212985239102280850" datatype="html">
-        <source>Stack</source>
-        <target state="translated">Stack</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
-          <context context-type="linenumber">36,37</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
-          <context context-type="linenumber">66,67</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7298284178367842272" datatype="html">
-        <source>Le code</source>
-        <target state="translated">The code</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
-          <context context-type="linenumber">37,38</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8884727762517616475" datatype="html">
-        <source>CI verte</source>
-        <target state="translated">CI green</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
-          <context context-type="linenumber">57</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5030503749501151337" datatype="html">
-        <source>CI rouge</source>
-        <target state="translated">CI red</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/home-course/live-colophon/live-colophon.ts</context>
-          <context context-type="linenumber">58</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="8181410181518647436" datatype="html">
         <source>0</source>
         <target state="translated">0</target>
@@ -1079,7 +1019,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">72,73</context>
+          <context context-type="linenumber">71,72</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/aid/aid.ts</context>
@@ -1195,7 +1135,7 @@
         <target state="translated">Finish line of the Grand Trail d&apos;Auvergne, km 79.4. Next goal: 100 km.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">32,33</context>
+          <context context-type="linenumber">27,28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4598138881232551792" datatype="html">
@@ -1203,7 +1143,7 @@
         <target state="translated">Official checkpoints</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7896913456749470052" datatype="html">
@@ -1211,7 +1151,7 @@
         <target state="translated">Checkpoint</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">40,41</context>
+          <context context-type="linenumber">35,36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8312382490038553501" datatype="html">
@@ -1219,7 +1159,7 @@
         <target state="translated">Time of day</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">41,42</context>
+          <context context-type="linenumber">36,37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8317457230285174180" datatype="html">
@@ -1227,7 +1167,7 @@
         <target state="translated">Race</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">42,43</context>
+          <context context-type="linenumber">37,38</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
@@ -1243,7 +1183,7 @@
         <target state="translated">Leg</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">43,44</context>
+          <context context-type="linenumber">38,39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2519547902255538963" datatype="html">
@@ -1251,7 +1191,7 @@
         <target state="translated">And new projects. Let's talk.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">61,62</context>
+          <context context-type="linenumber">56,57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3626333245026560741" datatype="html">
@@ -1259,7 +1199,7 @@
         <target state="translated">Pheidippides ran from Marathon to Athens to carry a message. Here, a form will do.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">63,64</context>
+          <context context-type="linenumber">58,59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1955051087209940082" datatype="html">
@@ -1267,7 +1207,7 @@
         <target state="translated">Download the CV</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">68,69</context>
+          <context context-type="linenumber">63,64</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/start.section.ts</context>
@@ -1279,7 +1219,7 @@
         <target state="translated">Working at Aubay, open to opportunities in Paris. French, English (TOEIC 910).</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/finish.section.ts</context>
-          <context context-type="linenumber">99,100</context>
+          <context context-type="linenumber">94,95</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1220418434475838401" datatype="html">
@@ -1611,7 +1551,7 @@
         <target state="translated">P3 · km 58.2</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">17,18</context>
+          <context context-type="linenumber">16,17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1053292106523444216" datatype="html">
@@ -1619,7 +1559,7 @@
         <target state="translated">Born from running</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">18,19</context>
+          <context context-type="linenumber">17,18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1962255682619363720" datatype="html">
@@ -1627,7 +1567,7 @@
         <target state="translated">{VAR_PLURAL, plural, =1 {1 commit} other {<x id="INTERPOLATION"/> commits}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">39,41</context>
+          <context context-type="linenumber">38,40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4226590366025448333" datatype="html">
@@ -1635,7 +1575,7 @@
         <target state="translated">last push <x id="INTERPOLATION" equiv-text="{{ r.p.lastPushAt | date: &apos;mediumDate&apos; }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">45,46</context>
+          <context context-type="linenumber">44,45</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4486155173945880688" datatype="html">
@@ -1643,7 +1583,7 @@
         <target state="translated">Case study</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">58,59</context>
+          <context context-type="linenumber">57,58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7686066432652036052" datatype="html">
@@ -1651,7 +1591,7 @@
         <target state="translated">Live</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">61,62</context>
+          <context context-type="linenumber">60,61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8186013988289067040" datatype="html">
@@ -1659,7 +1599,7 @@
         <target state="translated">Code</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p3.section.ts</context>
-          <context context-type="linenumber">65</context>
+          <context context-type="linenumber">64</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
@@ -1952,6 +1892,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
           <context context-type="linenumber">62,63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4212985239102280850" datatype="html">
+        <source>Stack</source>
+        <target state="translated">Stack</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
+          <context context-type="linenumber">66,67</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4921439356441031513" datatype="html">
@@ -3040,46 +2988,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/clip/clip.ts</context>
           <context context-type="linenumber">47</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5191438465495175957" datatype="html">
-        <source>Contributions GitHub par semaine sur 6 mois</source>
-        <target state="translated">GitHub contributions per week over 6 months</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/contributions/contributions.ts</context>
-          <context context-type="linenumber">58,59</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2253150076336844412" datatype="html">
-        <source>Repos</source>
-        <target state="translated">Rest</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/contributions/contributions.ts</context>
-          <context context-type="linenumber">78,79</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7541005936062780573" datatype="html">
-        <source>Charge</source>
-        <target state="translated">Load</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/contributions/contributions.ts</context>
-          <context context-type="linenumber">82,83</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2353389265111081084" datatype="html">
-        <source>La hauteur donne la valeur ; le ton la répète.</source>
-        <target state="translated">Height gives the value; the shade repeats it.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/contributions/contributions.ts</context>
-          <context context-type="linenumber">83,84</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4849955661453135629" datatype="html">
-        <source><x id="PH" equiv-text="n(total)"/> contributions sur 6 mois · meilleure semaine : <x id="PH_1" equiv-text="n(best)"/></source>
-        <target state="translated"><x id="PH" equiv-text="n(total)"/> contributions over 6 months · best week: <x id="PH_1" equiv-text="n(best)"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/contributions/contributions.ts</context>
-          <context context-type="linenumber">181</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5604409134948484223" datatype="html">

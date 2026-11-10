@@ -1,8 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Contributions, ProjectSummary } from '../../../core/api/api.models';
-import { ContributionsGraph } from '../../../shared/contributions/contributions';
+import { ProjectSummary } from '../../../core/api/api.models';
 import { Clip } from '../../../shared/clip/clip';
 import { Reveal } from '../../../shared/reveal/reveal';
 import { CAPTURES } from '../project-index/project-index';
@@ -10,7 +9,7 @@ import { CAPTURES } from '../project-index/project-index';
 /** P3 (km 58,2), terrain accent : les projets nés de la course en parcours vertical, une étape par projet. */
 @Component({
   selector: 'app-p3-section',
-  imports: [RouterLink, DatePipe, Clip, Reveal, ContributionsGraph],
+  imports: [RouterLink, DatePipe, Clip, Reveal],
   template: `
     <section id="p3" class="terrain-accent" aria-labelledby="p3-title">
       <header appReveal>
@@ -71,7 +70,6 @@ import { CAPTURES } from '../project-index/project-index';
       } @else {
         <p class="unavailable" i18n>Contenu indisponible pour le moment.</p>
       }
-      <app-contributions [data]="contributions()" />
     </section>
   `,
   styles: `
@@ -185,7 +183,6 @@ import { CAPTURES } from '../project-index/project-index';
   `,
 })
 export class P3Section {
-  readonly contributions = input<Contributions | null>(null);
   /** `null` = API en échec. */
   readonly projects = input<ProjectSummary[] | null>(null);
   readonly items = computed(() => this.projects()?.filter((p) => p.stage === 'P3') ?? null);

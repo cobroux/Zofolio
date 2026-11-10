@@ -1,12 +1,7 @@
 import { Component, LOCALE_ID, inject } from '@angular/core';
-import { rxResource } from '@angular/core/rxjs-interop';
-import { BuildInfo } from '../../../core/api/api.models';
-import { ContentApi } from '../../../core/api/content.api';
-import { Bib } from '../../../shared/bib/bib';
 import { ContourField } from '../../../shared/contour-field/contour-field';
 import { Reveal } from '../../../shared/reveal/reveal';
 import { ContactForm } from '../../contact/contact-form';
-import { LiveColophon } from '../live-colophon/live-colophon';
 import { passName } from '../live-values';
 import { CHECKPOINTS, SPLITS } from '../profile.data';
 import { formatDistance, formatDuration } from './journal.section';
@@ -17,10 +12,10 @@ const ROWS = (['p1', 'p2', 'p3', 'arrivee'] as const).map((id) => ({
   ...SPLITS[id],
 }));
 
-/** Arrivée (terrain nuit, spec §6) : chrono officiel, pointages, contact puis formulaire, dos du dossard. Le build vient de /api/build ; absent, le colophon retire ses lignes. */
+/** Arrivée (terrain nuit, spec §6) : chrono officiel, pointages, contact puis formulaire. */
 @Component({
   selector: 'app-finish-section',
-  imports: [Bib, ContactForm, ContourField, LiveColophon, Reveal],
+  imports: [ContactForm, ContourField, Reveal],
   template: `
     <section id="arrivee" class="terrain-night" aria-labelledby="arrivee-title">
       <app-contour-field [levels]="12" />
@@ -100,11 +95,6 @@ const ROWS = (['p1', 'p2', 'p3', 'arrivee'] as const).map((id) => ({
         </p>
       </div>
       <div class="form" [appReveal]="2"><app-contact-form /></div>
-      @if (hasBuild(build.value())) {
-        <app-bib face="back" class="back"
-          ><app-live-colophon [info]="build.value() ?? null"
-        /></app-bib>
-      }
     </section>
   `,
   styles: `
@@ -249,11 +239,6 @@ const ROWS = (['p1', 'p2', 'p3', 'arrivee'] as const).map((id) => ({
       max-width: 44ch;
       font-size: var(--t-small);
     }
-    .back {
-      width: min(100%, 38rem);
-      justify-self: start;
-      aspect-ratio: auto;
-    }
     @media (min-width: 1100px) {
       section {
         grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -271,24 +256,11 @@ const ROWS = (['p1', 'p2', 'p3', 'arrivee'] as const).map((id) => ({
         grid-row: 1 / span 2;
         align-self: start;
       }
-      /* Dossard en bande pleine largeur sous les deux colonnes, hauteur au contenu. */
-      .back {
-        grid-column: 1 / -1;
-        grid-row: 3;
-        width: 100%;
-        justify-self: stretch;
-      }
     }
   `,
 })
 export class FinishSection {
-  /** Dossard seulement si le build a au moins une donnée (commit, déploiement ou CI) : pas de carte vide en dev. */
-  protected hasBuild(b: BuildInfo | null | undefined): boolean {
-    return !!b && !!(b.commit || b.deployedAt || b.ci?.conclusion);
-  }
   protected readonly cv = `/api/${inject(LOCALE_ID).slice(0, 2)}/cv`;
-  private readonly api = inject(ContentApi);
-  protected readonly build = rxResource({ stream: () => this.api.build() });
   protected readonly rows = ROWS;
   /** Chrono officiel : secondes entières du tableau officiel, jamais une horloge recalculée. */
   protected readonly finishTime = formatDuration(SPLITS.arrivee.raceS);
