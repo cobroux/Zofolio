@@ -91,18 +91,18 @@ Détecteurs : impeccable a remonté 8 alertes « image cassée », toutes fausse
 ## 6. Plans d'action
 
 ### A. Remise au vert (1 à 2 h)
-- [ ] Dimensions sur les 4 images, puis relancer Lighthouse
-- [ ] Corriger le titre d'Endurance
+- [x] Dimensions sur les 4 images (Lighthouse reste à relancer en CI)
+- [x] Corriger le titre d'Endurance
 - [ ] Fusionner les 7 PR Dependabot (déploie : sur feu vert)
 - [ ] Fermer ou fusionner les PR #30 et #31 (à décider par Enzo)
 
 ### B. Vague 4 design (2 à 3 jours)
-- [ ] P2 en étape reine : missions en pointages, encadré Décision, Aubay en pointage
-- [ ] Matériel sans logos
-- [ ] P1 en ligne d'index et plaque des 3 vraies captures
-- [ ] P3 : `ProjectIndex` remonté, lien « En ligne » conservé
-- [ ] Endurance en plaque de données, nouveau titre
-- [ ] DESIGN.md réécrit sur ces sections
+- [x] P2 en étape reine : missions en pointages, encadré Décision, Aubay en pointage
+- [x] Matériel sans logos
+- [x] P1 en ligne d'index et plaque des 3 vraies captures
+- [x] P3 : `ProjectIndex` remonté, lien « En ligne » conservé
+- [x] Endurance en plaque de données, nouveau titre
+- [x] DESIGN.md réécrit sur ces sections
 - [ ] Non retenus pour cette vague : hero en temps de passage, échelle typographique, photo plein écran
 
 ### C. Socle (1 jour)
@@ -130,3 +130,10 @@ Détecteurs : impeccable a remonté 8 alertes « image cassée », toutes fausse
 - Captures de l'inspecteur avant travaux : `zofolio-wt/.taste-skill/before/`
 - Archive de la critique impeccable : `zofolio-wt/.impeccable/critique/`
 - Branche de travail : `redesign/vague-4`, worktree `Portefolio/zofolio-vague4.nosync`
+
+## 9. État au 13 novembre 2026
+
+Plans A et B faits sur `redesign/vague-4` (commits locaux, rien poussé, rien déployé).
+Vérifié : build, 148 tests unitaires, lint, i18n FR/EN, E2E accueil, projets, bandeau et hydratation contre un aperçu local (axe compris, clair et sombre, FR et EN).
+Non vérifié : Lighthouse, E2E contact et admin, test « API arrêtée » (ils demandent la pile Docker complète, donc la CI).
+À savoir : P2 dense revient sur le choix du 3-4 novembre (P2 allégée) ; le graphe et les logos ne reviennent pas.

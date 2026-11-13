@@ -96,33 +96,22 @@ test('index P3 : une ligne sans média ni preuves rend le cadre invisible', asyn
   await expect(preview.locator('.shot.on video')).toHaveCount(1);
 });
 
-test('index P3 : survol HistoQuiz avec preuves GitHub si l’API en fournit, sinon sa capture seule', async ({ page, request }) => {
-  const home = await (await request.get('/api/fr/home')).json();
-  const hq = home.projects.find((p: { slug: string }) => p.slug === 'histoquiz');
+// La capture réelle l'emporte sur les preuves GitHub (project-index.ts : `@if (r.shot) … @else if (r.proof)`), que la synchro ait tourné ou non.
+// Le bloc de preuves d'une ligne sans média est couvert par project-index.spec.ts.
+test('index P3 : survol HistoQuiz = sa capture réelle dans le cadre, sans bloc de preuves GitHub', async ({ page }) => {
   await page.goto('/fr/');
   const preview = page.locator('#p3 .preview');
+  const shot = preview.locator('.shot.on');
   const row = page.locator('#p3 ol.rows > li').filter({ has: page.locator('a[href*="histoquiz"]') });
   await row.scrollIntoViewIfNeeded();
-  if (!hq.commits && !hq.languages.length) {
-    // HistoQuiz a une capture réelle (CAPTURES) : le cadre l'affiche, sans bloc de preuves GitHub.
-    await expect(async () => {
-      await row.hover();
-      await expect(preview).not.toHaveClass(/empty/, { timeout: 500 });
-    }).toPass();
-    await expect(preview).toHaveCSS('opacity', '1');
-    await expect(preview.locator('.shot.on .proof')).toHaveCount(0);
-    return;
-  }
+  // Le survol n'est pas rejoué avant l'hydratation : on le refait jusqu'à ce qu'il prenne.
   await expect(async () => {
     await row.hover();
-    await expect(preview).not.toHaveClass(/empty/, { timeout: 500 });
+    await expect(shot).toHaveAttribute('data-slug', 'histoquiz', { timeout: 500 });
   }).toPass();
   await expect(preview).toHaveCSS('opacity', '1');
-  const proof = preview.locator('.shot.on .proof');
-  await expect(proof).toBeVisible();
-  if (hq.commits) await expect(proof.locator('.big')).toHaveText(new Intl.NumberFormat('fr').format(hq.commits));
-  for (const l of hq.languages) await expect(proof).toContainText(l);
-  if (hq.lastPushAt) await expect(proof).toContainText(String(new Date(hq.lastPushAt).getUTCFullYear()));
+  await expect(shot.locator('img')).toBeVisible();
+  await expect(shot.locator('.proof')).toHaveCount(0);
 });
 
 test.describe('index P3 sur mobile', () => {
