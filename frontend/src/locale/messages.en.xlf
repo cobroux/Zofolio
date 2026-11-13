@@ -1011,7 +1011,7 @@
         <target state="translated">Live</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/project-index/project-index.ts</context>
-          <context context-type="linenumber">63,64</context>
+          <context context-type="linenumber">75,76</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8186013988289067040" datatype="html">
@@ -1019,7 +1019,7 @@
         <target state="translated">Code</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/project-index/project-index.ts</context>
-          <context context-type="linenumber">67</context>
+          <context context-type="linenumber">79</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/projects/case-study-view.ts</context>
@@ -1031,7 +1031,7 @@
         <target state="translated">commits</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/project-index/project-index.ts</context>
-          <context context-type="linenumber">102,103</context>
+          <context context-type="linenumber">120,121</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2527991368458837723" datatype="html">
@@ -1039,7 +1039,7 @@
         <target state="translated">last push</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/project-index/project-index.ts</context>
-          <context context-type="linenumber">109</context>
+          <context context-type="linenumber">127</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1307588471547279582" datatype="html">
@@ -1047,11 +1047,11 @@
         <target state="translated">Content currently unavailable.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/project-index/project-index.ts</context>
-          <context context-type="linenumber">130,131</context>
+          <context context-type="linenumber">164,165</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/project-index/project-index.ts</context>
-          <context context-type="linenumber">133,135</context>
+          <context context-type="linenumber">167,169</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/journal.section.ts</context>
@@ -1059,7 +1059,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">96,97</context>
+          <context context-type="linenumber">70,71</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/aid/aid.ts</context>
@@ -1487,7 +1487,7 @@
         <target state="translated">The foundations</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">18,19</context>
+          <context context-type="linenumber">17,18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5725735348337974814" datatype="html">
@@ -1495,7 +1495,7 @@
         <target state="translated">km 20 · 2020 → 2025</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">20,21</context>
+          <context context-type="linenumber">19,20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1073193676081867607" datatype="html">
@@ -1503,7 +1503,7 @@
         <target state="translated">Education</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="p1.univ.alt" datatype="html">
@@ -1511,7 +1511,7 @@
         <target state="translated">Logo of the Université d&apos;Artois.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">56,58</context>
+          <context context-type="linenumber">55,57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6927783812522560185" datatype="html">
@@ -1519,7 +1519,7 @@
         <target state="translated">School projects:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">63,64</context>
+          <context context-type="linenumber">62,63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7571324644948349676" datatype="html">
@@ -1527,7 +1527,7 @@
         <target state="translated">Roman road on the GR3: roughly where the trail gets serious.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">93,94</context>
+          <context context-type="linenumber">67,68</context>
         </context-group>
       </trans-unit>
       <trans-unit id="p1.promo.alt" datatype="html">
@@ -1535,7 +1535,7 @@
         <target state="translated">The ILI class in light-blue hoodies, on a university building staircase.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">283</context>
+          <context context-type="linenumber">187</context>
         </context-group>
       </trans-unit>
       <trans-unit id="p1.promo.caption" datatype="html">
@@ -1543,7 +1543,7 @@
         <target state="translated">The ILI class of 2024-2025.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/home-course/sections/p1.section.ts</context>
-          <context context-type="linenumber">284</context>
+          <context context-type="linenumber">188</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3511225585075799922" datatype="html">

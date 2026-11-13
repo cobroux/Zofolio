@@ -99,7 +99,7 @@ Détecteurs : impeccable a remonté 8 alertes « image cassée », toutes fausse
 ### B. Vague 4 design (2 à 3 jours)
 - [x] P2 en étape reine : missions en pointages, encadré Décision, Aubay en pointage
 - [x] Matériel : logos remis à la demande d'Enzo le 13/11 (seul le titre, un cran plus petit, est gardé)
-- [x] P1 : une liste alignée pour les 8 projets d'école, plaque des 3 vraies captures à côté (présentation revue le 13/11)
+- [x] P1 : index interactif des 8 projets d'école (`ProjectIndex` compact : une ligne par projet, aperçu collant qui change au survol), choisi par Enzo le 13/11 après deux essais refusés
 - [x] P3 : `ProjectIndex` remonté, lien « En ligne » conservé
 - [x] Endurance en plaque de données, nouveau titre
 - [x] DESIGN.md réécrit sur ces sections
@@ -134,6 +134,7 @@ Détecteurs : impeccable a remonté 8 alertes « image cassée », toutes fausse
 ## 9. État au 13 novembre 2026
 
 Plans A et B faits sur `redesign/vague-4` (commits locaux, rien poussé, rien déployé).
-Vérifié : build, 148 tests unitaires, lint, i18n FR/EN, E2E accueil, projets, bandeau et hydratation contre un aperçu local (axe compris, clair et sombre, FR et EN).
+Vérifié : build, 148 tests unitaires, lint, i18n FR/EN, E2E accueil, projets et bandeau contre un aperçu local (76 sur 77, axe compris, clair et sombre, FR et EN).
+L'aperçu local lit maintenant l'API de la pile Docker `zofolio-wt` (port 4000) : le réseau du 13/11 filtrait zoworks.fr.
 Non vérifié : Lighthouse, E2E contact et admin, test « API arrêtée » (ils demandent la pile Docker complète, donc la CI).
-À savoir : P2 dense revient sur le choix du 3-4 novembre (P2 allégée) ; le graphe et les logos ne reviennent pas.
+À savoir : P2 dense revient sur le choix du 3-4 novembre (P2 allégée) ; le graphe de contributions ne revient pas, les logos du matériel si.

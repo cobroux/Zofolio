@@ -227,8 +227,9 @@ test('P1 compacte : un lien par projet d’école de l’API, le badge, ni toge 
   await expect(page.locator('#p1 .badge img[src*="univ-artois"]')).toBeVisible();
   // Aucune photo de toge (retirée, spec §5 bis) et aucune image cassée une fois chargées (lazy).
   await page.locator('#p1').scrollIntoViewIfNeeded();
-  const imgs = page.locator('#p1 img');
-  // Badge + photo de promo, plus les captures réelles des cartes de projets (les autres ont une vignette SVG).
+  // Visibles seulement : l'index garde une image en ligne par capture pour le tactile, masquée (donc jamais chargée) sous pointeur fin.
+  const imgs = page.locator('#p1 img:visible');
+  // Badge + photo de promo, plus les captures réelles de l'index des projets d'école.
   expect(await imgs.count()).toBeGreaterThanOrEqual(2);
   for (const img of await imgs.all()) {
     await img.scrollIntoViewIfNeeded();

@@ -17,24 +17,13 @@ function render(h: HomeResponse | null) {
 describe('P1Section (projets d’école)', () => {
   const school = home.projects.filter((p) => p.stage === 'P1');
 
-  it('les projets sont tous dans la même liste, une fois chacun', () => {
+  it('les projets sont tous dans l’index compact, une ligne et un seul lien chacun', () => {
     const el = render(home);
-    const names = [...el.querySelectorAll('#p1 .list .name')].map((n) => n.textContent);
-    expect(names).toEqual(school.map((p) => p.title));
-  });
-
-  it('plaque : une image par capture réelle, légendée par les noms, sans lien en double ni tuile de remplissage', () => {
-    const el = render(home);
-    const imgs = [...el.querySelectorAll('#p1 .shots img')];
-    expect(imgs.length).toBeGreaterThan(0);
-    expect(imgs.length).toBeLessThan(school.length);
-    for (const img of imgs) {
-      expect(img.getAttribute('src')).toMatch(/^media\//);
-      expect(img.getAttribute('width')).toBe('480');
-    }
-    const caption = el.querySelector('#p1 .shots figcaption')!.textContent!;
-    expect(caption.split(', ').length).toBe(imgs.length);
-    expect(el.querySelector('#p1 .shots a')).toBeNull();
+    const rows = [...el.querySelectorAll('#p1 app-project-index.compact ol.rows > li')];
+    expect(rows.map((r) => r.querySelector('h3')!.textContent!.trim())).toEqual(
+      school.map((p) => p.title),
+    );
+    expect(el.querySelectorAll('#p1 .index a').length).toBeLessThanOrEqual(school.length);
     expect(el.querySelector('#p1 app-contour-field, #p1 .index .mark, #p1 .thumb')).toBeNull();
   });
 
