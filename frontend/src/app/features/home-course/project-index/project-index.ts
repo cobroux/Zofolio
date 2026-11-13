@@ -160,7 +160,8 @@ export const CAPTURES: Record<string, string> = {
     }
     h3 {
       margin: 0;
-      font: 800 clamp(2.5rem, 7vw, 5.5rem) / 0.9 var(--font-display);
+      /* Interligne 1 : les jambages (g, p de « garmin-mcp ») ne touchent plus la ligne de méta. */
+      font: 800 clamp(2.5rem, 7vw, 5.5rem) / 1 var(--font-display);
       font-stretch: 72%;
     }
     h3 a {
