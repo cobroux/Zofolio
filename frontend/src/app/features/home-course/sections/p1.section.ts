@@ -1,4 +1,3 @@
-import { NgTemplateOutlet } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HomeResponse } from '../../../core/api/api.models';
@@ -7,10 +6,10 @@ import { Aid } from '../../../shared/aid/aid';
 import { ChapterPin } from '../../../shared/chapter-pin/chapter-pin';
 import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
 
-/** P1 (Les fondations, km 20), compacte (spec §6) : une bande, puis l'index des projets d'école (captures réelles en plaque, les autres en ligne de texte, aucune tuile de remplissage) ; suivie du ravitaillement R1. `home` null = API en échec. */
+/** P1 (Les fondations, km 20), compacte (spec §6) : une bande, puis l'index des projets d'école (une liste pour tous, les captures réelles en plaque d'illustration à côté, aucune tuile de remplissage) ; suivie du ravitaillement R1. `home` null = API en échec. */
 @Component({
   selector: 'app-p1',
-  imports: [Aid, ChapterPin, NgTemplateOutlet, PhotoPlates, RouterLink],
+  imports: [Aid, ChapterPin, PhotoPlates, RouterLink],
   template: `
     <section id="p1" class="terrain-paper">
       <app-chapter-pin
@@ -62,42 +61,33 @@ import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
         @if (projects().length) {
           <div class="index">
             <p class="index-title" i18n>Projets d'école :</p>
+            <ul class="list">
+              @for (p of projects(); track p.slug) {
+                <li>
+                  @if (p.tier === 'CASE_STUDY') {
+                    <a class="name" [routerLink]="['/projets', p.slug]">{{ p.title }}</a>
+                  } @else if (p.repoUrl) {
+                    <a class="name" [href]="p.repoUrl" rel="noopener">{{ p.title }}</a>
+                  } @else {
+                    <span class="name">{{ p.title }}</span>
+                  }
+                  @if (p.languages[0] ?? p.stack[0]; as lang) {
+                    <span class="lang">{{ lang }}</span>
+                  }
+                </li>
+              }
+            </ul>
             @if (shown().length) {
-              <ul class="shots">
-                @for (r of shown(); track r.p.slug) {
-                  <li>
+              <figure class="shots">
+                <div class="strip">
+                  @for (r of shown(); track r.p.slug) {
                     <img [src]="r.src" alt="" width="480" height="300" loading="lazy" />
-                    <ng-container
-                      *ngTemplateOutlet="name; context: { $implicit: r.p }"
-                    ></ng-container>
-                  </li>
-                }
-              </ul>
-            }
-            @if (listed().length) {
-              <ul class="others">
-                @for (p of listed(); track p.slug) {
-                  <li>
-                    <ng-container
-                      *ngTemplateOutlet="name; context: { $implicit: p }"
-                    ></ng-container>
-                  </li>
-                }
-              </ul>
+                  }
+                </div>
+                <figcaption class="small">{{ caption() }}</figcaption>
+              </figure>
             }
           </div>
-          <ng-template #name let-p>
-            @if (p.tier === 'CASE_STUDY') {
-              <a class="name" [routerLink]="['/projets', p.slug]">{{ p.title }}</a>
-            } @else if (p.repoUrl) {
-              <a class="name" [href]="p.repoUrl" rel="noopener">{{ p.title }}</a>
-            } @else {
-              <span class="name">{{ p.title }}</span>
-            }
-            @if (p.languages[0] ?? p.stack[0]; as lang) {
-              <span class="lang">{{ lang }}</span>
-            }
-          </ng-template>
         }
         <p class="small note" i18n>
           Voie romaine sur le GR3 : c'est à peu près ici que le trail devient sérieux.
@@ -171,48 +161,43 @@ import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
       margin: 0;
       font-weight: 700;
     }
-    .index ul {
+    /* Les projets d'école, tous au même rang : nom puis langage, sur deux colonnes alignées. */
+    .list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-content: start;
+      gap: 0 var(--gutter);
       margin: 0;
       padding: 0;
       list-style: none;
     }
-    /* Plaque des captures réelles : une carte = un lien. */
-    .shots {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: var(--s-3);
-    }
-    .shots li {
-      position: relative;
+    .list li {
       display: flex;
-      flex-direction: column;
-      gap: var(--s-1);
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0 var(--s-2);
       min-width: 0;
     }
-    .shots img {
+    /* Captures réelles en plaque d'illustration, légendée ; c'est la liste qui porte les liens. */
+    .shots {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-2);
+      max-width: 36rem;
+      margin: 0;
+    }
+    .strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--s-2);
+    }
+    .strip img {
       display: block;
       width: 100%;
       height: auto;
       aspect-ratio: 16 / 10;
       object-fit: cover;
       object-position: top;
-    }
-    .shots .name::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-    }
-    /* Projets sans capture : une ligne de texte, pas de vignette inventée. */
-    .others {
-      display: flex;
-      flex-wrap: wrap;
-      align-content: start;
-      gap: 0 var(--s-6);
-    }
-    .others li {
-      display: flex;
-      align-items: baseline;
-      gap: var(--s-2);
     }
     .name {
       display: inline-flex;
@@ -258,19 +243,20 @@ import { PhotoPlates, Plate } from '../../../shared/photo-plates/photo-plates';
       .unavailable {
         grid-column: 1 / -1;
       }
-      /* Plaque à gauche, ligne d'index à droite : la rangée occupe toute la largeur. */
+      /* Liste à gauche, plaque à droite, de même hauteur : la rangée occupe toute la largeur. */
       .index {
         grid-template-columns: repeat(12, minmax(0, 1fr));
+        align-items: start;
       }
       .index-title {
         grid-column: 1 / -1;
       }
-      .shots {
-        grid-column: 1 / span 7;
+      .list {
+        grid-column: 1 / span 5;
       }
-      .others {
-        grid-column: 8 / -1;
-        flex-direction: column;
+      .shots {
+        grid-column: 6 / -1;
+        max-width: none;
       }
     }
   `,
@@ -313,5 +299,10 @@ export class P1Section {
   protected readonly shown = computed(() =>
     this.projects().flatMap((p) => (this.shot(p.slug) ? [{ p, src: this.shot(p.slug) }] : [])),
   );
-  protected readonly listed = computed(() => this.projects().filter((p) => !this.shot(p.slug)));
+  /** Légende de la plaque : les projets montrés, dans l'ordre des images. */
+  protected readonly caption = computed(() =>
+    this.shown()
+      .map((r) => r.p.title)
+      .join(', '),
+  );
 }

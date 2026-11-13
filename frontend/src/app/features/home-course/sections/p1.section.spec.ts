@@ -17,24 +17,25 @@ function render(h: HomeResponse | null) {
 describe('P1Section (projets d’école)', () => {
   const school = home.projects.filter((p) => p.stage === 'P1');
 
-  it('chaque projet une seule fois : capture réelle en plaque, sinon ligne de texte', () => {
+  it('les projets sont tous dans la même liste, une fois chacun', () => {
     const el = render(home);
-    const names = [...el.querySelectorAll('#p1 .index .name')].map((n) => n.textContent);
-    expect(names.sort()).toEqual(school.map((p) => p.title).sort());
-    const shots = [...el.querySelectorAll('#p1 .shots li')];
-    expect(shots.length).toBeGreaterThan(0);
-    for (const li of shots) {
-      const img = li.querySelector('img')!;
+    const names = [...el.querySelectorAll('#p1 .list .name')].map((n) => n.textContent);
+    expect(names).toEqual(school.map((p) => p.title));
+  });
+
+  it('plaque : une image par capture réelle, légendée par les noms, sans lien en double ni tuile de remplissage', () => {
+    const el = render(home);
+    const imgs = [...el.querySelectorAll('#p1 .shots img')];
+    expect(imgs.length).toBeGreaterThan(0);
+    expect(imgs.length).toBeLessThan(school.length);
+    for (const img of imgs) {
       expect(img.getAttribute('src')).toMatch(/^media\//);
       expect(img.getAttribute('width')).toBe('480');
     }
-    expect(el.querySelectorAll('#p1 .others li').length).toBe(school.length - shots.length);
-  });
-
-  it('aucune tuile de remplissage pour un projet sans capture', () => {
-    const el = render(home);
+    const caption = el.querySelector('#p1 .shots figcaption')!.textContent!;
+    expect(caption.split(', ').length).toBe(imgs.length);
+    expect(el.querySelector('#p1 .shots a')).toBeNull();
     expect(el.querySelector('#p1 app-contour-field, #p1 .index .mark, #p1 .thumb')).toBeNull();
-    expect(el.querySelector('#p1 .others img')).toBeNull();
   });
 
   it('API en échec : message, aucun index', () => {

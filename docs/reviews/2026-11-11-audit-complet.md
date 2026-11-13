@@ -98,8 +98,8 @@ Détecteurs : impeccable a remonté 8 alertes « image cassée », toutes fausse
 
 ### B. Vague 4 design (2 à 3 jours)
 - [x] P2 en étape reine : missions en pointages, encadré Décision, Aubay en pointage
-- [x] Matériel sans logos
-- [x] P1 en ligne d'index et plaque des 3 vraies captures
+- [x] Matériel : logos remis à la demande d'Enzo le 13/11 (seul le titre, un cran plus petit, est gardé)
+- [x] P1 : une liste alignée pour les 8 projets d'école, plaque des 3 vraies captures à côté (présentation revue le 13/11)
 - [x] P3 : `ProjectIndex` remonté, lien « En ligne » conservé
 - [x] Endurance en plaque de données, nouveau titre
 - [x] DESIGN.md réécrit sur ces sections

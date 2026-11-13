@@ -3,11 +3,12 @@ import { Reveal } from '../../../shared/reveal/reveal';
 
 interface Tool {
   name: string;
+  icon: string;
   /** Où la techno a servi : seulement des projets réels du portfolio. */
   where: string;
 }
 
-/** Équipement : les stacks maîtrisées, chacune prouvée par les projets où elle a tourné. Texte seul : pas de logos de marque (un seul accent, DESIGN §1). */
+/** Équipement : les stacks maîtrisées, chacune prouvée par les projets où elle a tourné. */
 @Component({
   selector: 'app-kit-section',
   imports: [Reveal],
@@ -24,6 +25,13 @@ interface Tool {
             <ul>
               @for (t of g.tools; track t.name) {
                 <li>
+                  <img
+                    [src]="'img/stack/' + t.icon + '.svg'"
+                    alt=""
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                  />
                   <span class="name">{{ t.name }}</span>
                   <span class="where small">{{ t.where }}</span>
                 </li>
@@ -64,14 +72,24 @@ interface Tool {
     ul {
       display: flex;
       flex-direction: column;
-      gap: var(--s-3);
+      gap: var(--s-4);
       margin: 0;
       padding: 0;
       list-style: none;
     }
     li {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 32px minmax(0, 1fr);
+      column-gap: var(--s-3);
+      align-items: center;
+    }
+    img {
+      grid-row: span 2;
+    }
+    /* Logo noir sur fond nuit (contraste < 3:1) : posé sur une plaque papier. */
+    img[src$='linux.svg'] {
+      padding: 3px;
+      background: #f6f3ec;
     }
     .name {
       font-weight: 600;
@@ -96,18 +114,18 @@ export class KitSection {
     {
       title: $localize`Back end`,
       tools: [
-        { name: 'Java', where: 'Worldline, Oltre, Histoquiz, GFaim' },
-        { name: 'Spring Boot', where: 'Worldline, Oltre, Histoquiz, Zofolio' },
-        { name: 'Quarkus', where: 'GFaim' },
-        { name: 'Hibernate / JPA', where: 'Worldline' },
+        { name: 'Java', icon: 'java', where: 'Worldline, Oltre, Histoquiz, GFaim' },
+        { name: 'Spring Boot', icon: 'spring', where: 'Worldline, Oltre, Histoquiz, Zofolio' },
+        { name: 'Quarkus', icon: 'quarkus', where: 'GFaim' },
+        { name: 'Hibernate / JPA', icon: 'hibernate', where: 'Worldline' },
       ],
     },
     {
       title: $localize`Front end`,
       tools: [
-        { name: 'Angular', where: 'Oltre, Histoquiz, Zofolio' },
-        { name: 'TypeScript', where: 'Oltre, Histoquiz, Zofolio' },
-        { name: 'JavaScript', where: 'Worldline, Zotracker' },
+        { name: 'Angular', icon: 'angular', where: 'Oltre, Histoquiz, Zofolio' },
+        { name: 'TypeScript', icon: 'typescript', where: 'Oltre, Histoquiz, Zofolio' },
+        { name: 'JavaScript', icon: 'javascript', where: 'Worldline, Zotracker' },
       ],
     },
     {
@@ -115,6 +133,7 @@ export class KitSection {
       tools: [
         {
           name: 'SQL (PostgreSQL, MySQL)',
+          icon: 'postgresql',
           where: 'Worldline, Oltre, GFaim, Zofolio',
         },
       ],
@@ -122,13 +141,14 @@ export class KitSection {
     {
       title: $localize`Outillage et déploiement`,
       tools: [
-        { name: 'Docker', where: 'Worldline, Oltre, GFaim, Histoquiz, Zotracker' },
-        { name: 'Git', where: $localize`Tous les projets` },
+        { name: 'Docker', icon: 'docker', where: 'Worldline, Oltre, GFaim, Histoquiz, Zotracker' },
+        { name: 'Git', icon: 'git', where: $localize`Tous les projets` },
         {
           name: 'CI/CD',
+          icon: 'githubactions',
           where: 'GitLab CI (Worldline), GitHub Actions (Zofolio)',
         },
-        { name: 'Linux', where: $localize`VM Oracle : Oltre, Zotracker, Zofolio` },
+        { name: 'Linux', icon: 'linux', where: $localize`VM Oracle : Oltre, Zotracker, Zofolio` },
       ],
     },
   ];
