@@ -107,15 +107,16 @@ Détecteurs : impeccable a remonté 8 alertes « image cassée », toutes fausse
 
 ### C. Socle (1 jour)
 - [ ] Sauvegarde chiffrée hors serveur, volume `media` compris
-- [ ] Déploiement conditionné à la CI
+- [x] Déploiement conditionné à la CI (`workflow_run` ; le serveur déploie encore le dernier `main`, pas le commit validé)
 - [ ] Sonde de disponibilité avec alerte
 - [ ] Images construites en CI et étiquetées par commit (retour arrière en une minute)
-- [ ] CSP sans `'unsafe-inline'`, JSON-LD `Person`, HTTP/3, WebKit mobile en E2E
+- [x] JSON-LD `Person`, WebKit mobile en E2E (3 tests, à valider en CI)
+- [ ] CSP sans `'unsafe-inline'`, HTTP/3
 
 ### D. Ménage (1 h)
 - [ ] 58 branches distantes, 9 worktrees dont 4 dans `/tmp`
 - [ ] Dossier `Portefolio/Zofolio/` (restes de build) et `backend 2`
-- [ ] Code mort : `/api/build` et statut CI, `contributions` dans l'API d'accueil
+- [x] Code mort : `/api/build` et statut CI, `contributions` dans l'API d'accueil (la table `github_contributions` reste en base)
 
 ## 7. Non vérifié
 
@@ -138,3 +139,10 @@ Vérifié : build, 148 tests unitaires, lint, i18n FR/EN, E2E accueil, projets e
 L'aperçu local lit maintenant l'API de la pile Docker `zofolio-wt` (port 4000) : le réseau du 13/11 filtrait zoworks.fr.
 Non vérifié : Lighthouse, E2E contact et admin, test « API arrêtée » (ils demandent la pile Docker complète, donc la CI).
 À savoir : P2 dense revient sur le choix du 3-4 novembre (P2 allégée) ; le graphe de contributions ne revient pas, les logos du matériel si.
+
+## 10. État au 15 novembre 2026
+
+Ajoutés sur `redesign/vague-4` (commits locaux `dca6781` et `d9bf30c`, rien poussé) : déploiement après CI verte, JSON-LD `Person`, projet E2E WebKit mobile, retrait du code mort.
+Vérifié : 149 tests unitaires front, lint, 28 tests unitaires back ; contrôle visuel de P1 et P3 à 768, 900, 1099 et 1280 px, clair et sombre, FR et EN, sans débordement.
+Non vérifié : tests d'intégration back et tests WebKit (CI), rendu SSR du JSON-LD, score de performance Lighthouse.
+À corriger dans l'admin : accents graves de code dans les pitchs de quarkus-color et LambdaCalcul.
