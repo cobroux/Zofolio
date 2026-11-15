@@ -44,8 +44,6 @@ class GithubSyncIT {
 	@Autowired
 	GithubRepoRepository repos;
 	@Autowired
-	GithubContributionsRepository contributions;
-	@Autowired
 	GithubContributionYearRepository years;
 	@LocalServerPort
 	int port;
@@ -85,7 +83,6 @@ class GithubSyncIT {
 	void clean() {
 		status.set(200);
 		repos.deleteAll();
-		contributions.deleteAll();
 		years.deleteAll();
 	}
 
@@ -96,9 +93,6 @@ class GithubSyncIT {
 		GithubRepo a = repos.findById("repo-a").orElseThrow();
 		assertThat(a.commits).isEqualTo(10);
 		assertThat(a.languages).containsEntry("Java", 500L);
-		GithubContributions c = contributions.findById(GithubContributions.ID).orElseThrow();
-		assertThat(c.total).isEqualTo(4);
-		assertThat(c.counts).containsExactly(0, 3, 1);
 		assertThat(years.findAllByOrderByYearAsc()).extracting(y -> y.year, y -> y.total)
 				.startsWith(org.assertj.core.groups.Tuple.tuple(2023, 4))
 				.hasSize(java.time.Year.now().getValue() - 2022);
@@ -107,7 +101,6 @@ class GithubSyncIT {
 		service.sync();
 
 		assertThat(repos.count()).isEqualTo(3);
-		assertThat(contributions.count()).isEqualTo(1);
 		HttpResponse<String> r = HttpClient.newHttpClient().send(
 				HttpRequest.newBuilder(URI.create("http://localhost:" + port + "/api/fr/projects/inconnu")).build(),
 				HttpResponse.BodyHandlers.ofString());

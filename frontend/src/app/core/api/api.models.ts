@@ -56,14 +56,6 @@ export interface CaseStudy {
   repos: { name: string; url: string }[];
 }
 
-export interface Contributions {
-  /** Premier jour (dimanche) du calendrier GitHub, `YYYY-MM-DD`. */
-  start: string;
-  counts: number[];
-  total: number;
-  syncedAt: string;
-}
-
 export interface Race {
   kind: 'RACE' | 'INDEX' | 'CLUB';
   date: string | null;
@@ -94,17 +86,8 @@ export interface HomeResponse {
   races: Race[];
   /** Année décroissante ; `[]` si aucune. */
   sportYears: SportYear[];
-  /** `null` tant qu'aucune synchro GitHub n'a réussi. */
-  contributions: Contributions | null;
   /** Année croissante ; `[]` si aucune synchro. */
   contributionYears: ContributionYear[];
-}
-
-/** GET /api/build : une donnée absente vaut null. */
-export interface BuildInfo {
-  commit: string | null;
-  deployedAt: string | null;
-  ci: { conclusion: 'success' | 'failure' | null; url: string | null };
 }
 
 export interface ProblemDetail {

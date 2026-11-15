@@ -29,12 +29,10 @@ public interface ContentDto {
 	record ExperienceDto(String stage, String kind, String title, String body, String period, List<String> stack,
 			String note) {}
 
-	record Contributions(LocalDate start, List<Integer> counts, int total, Instant syncedAt) {}
-
 	record SportYearDto(Integer year, Integer distanceKm, Integer elevationGainM, Integer hours, Integer activities) {}
 
 	record ContributionYearDto(int year, int total) {}
 
 	record Home(List<ExperienceDto> experiences, List<ProjectSummary> projects, List<RaceDto> races,
-			Contributions contributions, List<SportYearDto> sportYears, List<ContributionYearDto> contributionYears) {}
+			List<SportYearDto> sportYears, List<ContributionYearDto> contributionYears) {}
 }

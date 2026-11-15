@@ -16,9 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import dev.zofolio.content.ContentDto.Home;
 import dev.zofolio.content.ContentDto.ProjectSummary;
-import dev.zofolio.githubsync.GithubContributions;
 import dev.zofolio.githubsync.GithubContributionYearRepository;
-import dev.zofolio.githubsync.GithubContributionsRepository;
 import dev.zofolio.githubsync.GithubRepo;
 import dev.zofolio.githubsync.GithubRepoRepository;
 
@@ -28,8 +26,7 @@ class ContentServiceTest {
 	ProjectRepository projects = mock(ProjectRepository.class);
 	ExperienceRepository experiences = mock(ExperienceRepository.class);
 	GithubRepoRepository githubRepos = mock(GithubRepoRepository.class);
-	GithubContributionsRepository contributions = mock(GithubContributionsRepository.class);
-	ContentService service = new ContentService(races, projects, experiences, githubRepos, contributions, mock(SportYearRepository.class), mock(GithubContributionYearRepository.class), "cobroux");
+	ContentService service = new ContentService(races, projects, experiences, githubRepos, mock(SportYearRepository.class), mock(GithubContributionYearRepository.class), "cobroux");
 
 	@Test
 	void homeFallsBackToFrenchKeepsOrderAndFiltersStage() {
@@ -93,20 +90,6 @@ class ContentServiceTest {
 		assertThat(s.commits()).isNull();
 		assertThat(s.languages()).isEmpty();
 		assertThat(s.lastPushAt()).isNull();
-		assertThat(service.home("fr").contributions()).isNull();
-	}
-
-	@Test
-	void homeExposesCachedContributions() {
-		GithubContributions c = new GithubContributions();
-		c.startDate = LocalDate.parse("2026-10-11");
-		c.counts = List.of(0, 3);
-		c.total = 3;
-		c.syncedAt = Instant.parse("2026-10-15T12:00:30Z");
-		when(contributions.findById(GithubContributions.ID)).thenReturn(Optional.of(c));
-
-		assertThat(service.home("fr").contributions().total()).isEqualTo(3);
-		assertThat(service.home("fr").contributions().counts()).containsExactly(0, 3);
 	}
 
 	private static GithubRepo cached(String name, int commits, String pushedAt, Map<String, Long> languages) {

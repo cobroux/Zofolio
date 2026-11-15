@@ -21,7 +21,6 @@ import org.springframework.web.server.ResponseStatusException;
 import dev.zofolio.content.ContentDto.CaseStudy;
 import dev.zofolio.content.ContentDto.Decision;
 import dev.zofolio.content.ContentDto.ContributionYearDto;
-import dev.zofolio.content.ContentDto.Contributions;
 import dev.zofolio.content.ContentDto.ExperienceDto;
 import dev.zofolio.content.ContentDto.Home;
 import dev.zofolio.content.ContentDto.ProjectSummary;
@@ -29,9 +28,7 @@ import dev.zofolio.content.ContentDto.RaceDto;
 import dev.zofolio.content.ContentDto.RepoLink;
 import dev.zofolio.content.ContentDto.SportYearDto;
 import dev.zofolio.content.ContentDto.Video;
-import dev.zofolio.githubsync.GithubContributions;
 import dev.zofolio.githubsync.GithubContributionYearRepository;
-import dev.zofolio.githubsync.GithubContributionsRepository;
 import dev.zofolio.githubsync.GithubRepo;
 import dev.zofolio.githubsync.GithubRepoRepository;
 
@@ -47,17 +44,15 @@ public class ContentService {
 	private final ExperienceRepository experiences;
 
 	private final GithubRepoRepository githubRepos;
-	private final GithubContributionsRepository githubContributions;
 	private final SportYearRepository sportYears;
 	private final GithubContributionYearRepository githubContributionYears;
 	private final String login;
 
 	ContentService(RaceRepository races, ProjectRepository projects, ExperienceRepository experiences,
-			GithubRepoRepository githubRepos, GithubContributionsRepository githubContributions, SportYearRepository sportYears,
+			GithubRepoRepository githubRepos, SportYearRepository sportYears,
 			GithubContributionYearRepository githubContributionYears,
 			@Value("${zofolio.github.login:cobroux}") String login) {
 		this.githubRepos = githubRepos;
-		this.githubContributions = githubContributions;
 		this.sportYears = sportYears;
 		this.githubContributionYears = githubContributionYears;
 		this.login = login;
@@ -93,9 +88,7 @@ public class ContentService {
 				.map(e -> new ExperienceDto(e.stage, e.kind.name(), pick(e.title, lang), pick(e.body, lang),
 						pick(e.period, lang), e.stack, pick(e.note, lang)))
 				.toList();
-		var contrib = githubContributions.findById(GithubContributions.ID)
-				.map(c -> new Contributions(c.startDate, c.counts, c.total, c.syncedAt)).orElse(null);
-		return new Home(xp, projects(lang).stream().filter(p -> p.stage() != null).toList(), races(lang), contrib,
+		return new Home(xp, projects(lang).stream().filter(p -> p.stage() != null).toList(), races(lang),
 				sportYears.findAllByOrderByYearDesc().stream().map(y -> new SportYearDto((int) y.year, y.distanceKm,
 						y.elevationGainM, y.hours, y.activities)).toList(),
 				githubContributionYears.findAllByOrderByYearAsc().stream()

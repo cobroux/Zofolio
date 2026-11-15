@@ -17,10 +17,6 @@ class GithubSyncJob {
 
 	@Scheduled(fixedRateString = "PT6H", initialDelayString = "PT30S")
 	void run() {
-		try {
-			service.sync();
-		} finally {
-			service.syncCi();
-		}
+		service.sync();
 	}
 }
