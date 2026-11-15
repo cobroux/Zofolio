@@ -1,7 +1,9 @@
 name: Deploy
 
 on:
-  push:
+  workflow_run: # déploie seulement si la CI du même commit a réussi
+    workflows: [CI]
+    types: [completed]
     branches: [main]
   workflow_dispatch:
 
@@ -14,6 +16,7 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
     runs-on: ubuntu-latest
     steps:
       - name: Clé SSH et known_hosts
@@ -29,7 +32,7 @@ jobs:
         run: |
           # restart caddy : le Caddyfile monté en fichier unique garde l'ancien inode après git checkout.
           ssh -i ~/.ssh/id_deploy "$SSH_USER@$SSH_HOST" \
-            'cd /opt/zofolio && git fetch -q origin main && git checkout -q -f -B main origin/main && (docker network inspect edge >/dev/null 2>&1 || docker network create edge >/dev/null) && GIT_SHA=$(git rev-parse HEAD) DEPLOYED_AT=$(date -u +%FT%TZ) docker compose -f docker-compose.prod.yml up -d --build --wait --remove-orphans && docker compose -f docker-compose.prod.yml restart caddy'
+            'cd /opt/zofolio && git fetch -q origin main && git checkout -q -f -B main origin/main && (docker network inspect edge >/dev/null 2>&1 || docker network create edge >/dev/null) && docker compose -f docker-compose.prod.yml up -d --build --wait --remove-orphans && docker compose -f docker-compose.prod.yml restart caddy'
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_HOST: ${{ secrets.SSH_HOST }}

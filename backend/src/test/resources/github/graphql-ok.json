@@ -8,8 +8,5 @@
      "defaultBranchRef":{"target":{"history":{"totalCount":5}}}},
     {"name":"repo-vide","pushedAt":null,"languages":{"edges":[]},"defaultBranchRef":null}
   ]},
-  "contributionsCollection":{"contributionCalendar":{"totalContributions":4,
-    "weeks":[{"contributionDays":[
-      {"date":"2026-10-11","contributionCount":0},{"date":"2026-10-12","contributionCount":3},
-      {"date":"2026-10-13","contributionCount":1}]}]}}
+  "contributionsCollection":{"contributionCalendar":{"totalContributions":4}}
 }}}

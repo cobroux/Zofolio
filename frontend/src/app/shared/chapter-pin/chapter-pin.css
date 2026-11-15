@@ -10,6 +10,12 @@
   position: sticky;
   top: 6rem;
 }
+/* Entre la barre mobile et la colonne dédiée (dès 1100 px), le repère n'a pas de place à lui : collant, il passerait sur le texte d'un chapitre long. */
+@media (min-width: 768px) and (max-width: 1099px) {
+  :host(.sticky) {
+    position: static;
+  }
+}
 .mark {
   font: 800 clamp(5rem, 12vw, 11rem) / 0.85 var(--font-display);
   font-stretch: 62%;

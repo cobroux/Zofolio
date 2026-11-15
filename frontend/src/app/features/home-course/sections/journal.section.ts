@@ -415,7 +415,7 @@ const ELEVATION = new Intl.NumberFormat($localize`:@@numberLocale:fr-FR`);
 export class JournalSection {
   /** `null` = API en échec. */
   readonly races = input<Race[] | null>(null);
-  /** Ordre libre ; km par année dans « L'endurance, deux fois ». */
+  /** Ordre libre ; totaux par année dans « L'endurance, année après année ». */
   readonly sportYears = input<SportYear[]>([]);
   protected readonly night: Plate = {
     src: 'img/baudets-nuit-1280.jpg',

@@ -227,8 +227,9 @@ test('P1 compacte : un lien par projet d’école de l’API, le badge, ni toge 
   await expect(page.locator('#p1 .badge img[src*="univ-artois"]')).toBeVisible();
   // Aucune photo de toge (retirée, spec §5 bis) et aucune image cassée une fois chargées (lazy).
   await page.locator('#p1').scrollIntoViewIfNeeded();
-  const imgs = page.locator('#p1 img');
-  // Badge + photo de promo, plus les captures réelles des cartes de projets (les autres ont une vignette SVG).
+  // Visibles seulement : l'index garde une image en ligne par capture pour le tactile, masquée (donc jamais chargée) sous pointeur fin.
+  const imgs = page.locator('#p1 img:visible');
+  // Badge + photo de promo, plus les captures réelles de l'index des projets d'école.
   expect(await imgs.count()).toBeGreaterThanOrEqual(2);
   for (const img of await imgs.all()) {
     await img.scrollIntoViewIfNeeded();
@@ -239,11 +240,18 @@ test('P1 compacte : un lien par projet d’école de l’API, le badge, ni toge 
   }
 });
 
-test('P2 allégée : Décision, schéma et frise sont dans l’étude Worldline, pas sur l’accueil', async ({
+test('P2 étape reine : missions de l’API et Décision sur l’accueil, schéma et frise dans l’étude Worldline', async ({
   page,
+  request,
 }) => {
+  const home = await (await request.get('/api/fr/home')).json();
+  const missions = home.experiences.filter(
+    (e: { stage: string; kind: string }) => e.stage === 'P2' && e.kind === 'MISSION',
+  );
   await page.goto('/fr/');
-  await expect(page.locator('#p2 app-decision-card')).toHaveCount(0);
+  await expect(page.locator('#p2 ol.passes > li')).toHaveCount(missions.length);
+  await expect(page.locator('#p2 app-decision-card')).toHaveCount(1);
+  await expect(page.locator('#p2 .now h3')).toHaveText('Aubay');
   await expect(page.locator('#p2 app-photo-plates')).toHaveCount(0);
   await page.goto('/fr/projets/trading-app');
   await expect(page.locator('app-decision-card')).toHaveCount(1);

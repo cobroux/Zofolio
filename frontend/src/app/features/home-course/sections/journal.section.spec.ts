@@ -62,7 +62,7 @@ describe('JournalSection', () => {
     expect([...el.querySelectorAll('tbody th')][1].textContent).toContain('Marathon de Paris');
   });
 
-  it("« L'endurance, deux fois » ouvre le Journal et remplace « Les années en chiffres »", () => {
+  it("« L'endurance, année après année » ouvre le Journal et remplace « Les années en chiffres »", () => {
     const f = TestBed.createComponent(JournalSection);
     f.componentRef.setInput('races', home.races);
     f.componentRef.setInput('sportYears', [
@@ -107,14 +107,14 @@ describe('JournalSection', () => {
 describe('P3Section', () => {
   beforeEach(() => TestBed.configureTestingModule({ providers: [provideRouter([])] }));
 
-  it('terrain accent, parcours des seuls projets P3 : étude pour Oltre, dépôt pour HistoQuiz', () => {
+  it('terrain accent, index des seuls projets P3 : étude pour Oltre, dépôt pour HistoQuiz', () => {
     const f = TestBed.createComponent(P3Section);
     f.componentRef.setInput('projects', home.projects);
     f.detectChanges();
     const el = f.nativeElement as HTMLElement;
     expect(el.querySelector('section')!.classList).toContain('terrain-accent');
-    const [oltre, histo] = Array.from(el.querySelectorAll('ol.path > li'));
-    expect(el.querySelectorAll('ol.path > li').length).toBe(2);
+    const [oltre, histo] = Array.from(el.querySelectorAll('ol.rows > li'));
+    expect(el.querySelectorAll('ol.rows > li').length).toBe(2);
     expect(oltre.querySelector('a.study')?.getAttribute('href')).toBe('/projets/oltre');
     expect(oltre.textContent).toContain('412 commits');
     expect(histo.querySelector('a.study')).toBeNull();

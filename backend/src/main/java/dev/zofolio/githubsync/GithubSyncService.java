@@ -23,41 +23,17 @@ public class GithubSyncService {
 	/** Premier millésime affiché par « L'endurance, deux fois ». */
 	static final int FIRST_YEAR = 2023;
 
-	private volatile CiStatus ci;
 	private final GithubClient client;
 	private final GithubRepoRepository repos;
-	private final GithubContributionsRepository contributions;
 	private final GithubContributionYearRepository years;
 	private final TransactionOperations tx;
 
-	GithubSyncService(GithubClient client, GithubRepoRepository repos, GithubContributionsRepository contributions,
+	GithubSyncService(GithubClient client, GithubRepoRepository repos,
 			GithubContributionYearRepository years, TransactionOperations tx) {
 		this.tx = tx;
 		this.client = client;
 		this.repos = repos;
-		this.contributions = contributions;
 		this.years = years;
-	}
-
-	/** Dernier statut CI connu (mémoire seule : repris à la prochaine synchro), {@code null} tant qu'aucun n'a été lu. */
-	public CiStatus ci() {
-		return ci;
-	}
-
-	/** Ne lève jamais ; en cas d'échec on garde la valeur précédente. */
-	void syncCi() {
-		if (!client.enabled()) {
-			return;
-		}
-		try {
-			CiStatus s = client.latestCiRun();
-			if (s != null) {
-				ci = s;
-			}
-		} catch (RuntimeException e) {
-			// jamais e.getMessage() : on ne journalise que le type d'erreur
-			log.warn("github-sync : statut CI conservé ({})", e.getClass().getSimpleName());
-		}
 	}
 
 	/**
@@ -108,12 +84,6 @@ public class GithubSyncService {
 			e.syncedAt = now;
 			repos.save(e);
 		}
-		GithubContributions c = new GithubContributions();
-		c.startDate = s.calendar().start();
-		c.counts = s.calendar().counts();
-		c.total = s.calendar().total();
-		c.syncedAt = now;
-		contributions.save(c);
 		yearTotals.forEach((year, total) -> {
 			GithubContributionYear y = new GithubContributionYear();
 			y.year = year;

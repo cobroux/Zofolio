@@ -22,8 +22,6 @@ import org.springframework.context.annotation.Import;
 import dev.zofolio.TestcontainersConfiguration;
 import dev.zofolio.githubsync.GithubContributionYear;
 import dev.zofolio.githubsync.GithubContributionYearRepository;
-import dev.zofolio.githubsync.GithubContributions;
-import dev.zofolio.githubsync.GithubContributionsRepository;
 import dev.zofolio.githubsync.GithubRepo;
 import dev.zofolio.githubsync.GithubRepoRepository;
 
@@ -43,8 +41,6 @@ class ContentApiIT {
 	@Autowired
 	GithubRepoRepository githubRepos;
 	@Autowired
-	GithubContributionsRepository githubContributions;
-	@Autowired
 	GithubContributionYearRepository contributionYears;
 
 	@BeforeEach
@@ -53,7 +49,6 @@ class ContentApiIT {
 		projects.deleteAll();
 		experiences.deleteAll();
 		githubRepos.deleteAll();
-		githubContributions.deleteAll();
 		contributionYears.deleteAll();
 		Race r2 = race("Course B", null, 2);
 		Race r1 = race("Course A", Map.of("fr", "Note FR"), 1);
@@ -152,23 +147,14 @@ class ContentApiIT {
 	void githubCacheIsAggregatedForCuratedReposOnly() throws Exception {
 		assertThat(get("/api/fr/projects/etude").body()).contains("\"commits\":null", "\"languages\":[]",
 				"\"lastPushAt\":null");
-		assertThat(get("/api/fr/home").body()).contains("\"contributions\":null");
 		githubRepos.saveAll(List.of(cached("repo-a", 10, "2026-01-01T00:00:00Z", Map.of("Java", 500L, "HTML", 5L, "Dockerfile", 400L)),
 				cached("repo-b", 5, "2026-03-01T00:00:00Z", Map.of("TypeScript", 300L, "Java", 100L)),
 				cached("prive-non-cure", 999, "2030-01-01T00:00:00Z", Map.of("Rust", 99999L))));
-		GithubContributions c = new GithubContributions();
-		c.startDate = LocalDate.parse("2026-10-11");
-		c.counts = List.of(0, 3);
-		c.total = 3;
-		c.syncedAt = Instant.parse("2026-10-15T12:00:30Z");
-		githubContributions.save(c);
 
 		String body = get("/api/fr/projects/etude").body();
 
 		assertThat(body).contains("\"commits\":15", "\"languages\":[\"Java\",\"TypeScript\",\"HTML\"]",
 				"\"lastPushAt\":\"2026-03-01T00:00:00Z\"").doesNotContain("prive-non-cure", "Rust", "999");
-		assertThat(get("/api/fr/home").body()).contains("\"contributions\":{\"start\":\"2026-10-11\",\"counts\":[0,3]",
-				"\"total\":3", "\"syncedAt\":\"2026-10-15T12:00:30Z\"").doesNotContain("prive-non-cure");
 	}
 
 	private static GithubRepo cached(String name, int commits, String pushedAt, Map<String, Long> languages) {

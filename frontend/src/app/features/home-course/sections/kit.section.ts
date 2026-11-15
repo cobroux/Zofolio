@@ -65,6 +65,10 @@ interface Tool {
       font-size: var(--t-lead);
       color: var(--accent);
     }
+    /* Un cran sous les titres de chapitre : le matériel n'est pas un pointage. */
+    h2 {
+      font-size: clamp(2.25rem, 5.5vw, 4.5rem);
+    }
     ul {
       display: flex;
       flex-direction: column;

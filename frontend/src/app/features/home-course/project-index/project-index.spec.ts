@@ -12,7 +12,10 @@ const projects: ProjectSummary[] = [bySlug('gfaim'), bySlug('oltre'), bySlug('la
 let el: HTMLElement;
 let fix: ReturnType<typeof TestBed.createComponent<ProjectIndex>>;
 
-function render(list: ProjectSummary[] | null, opts: { reduced?: boolean; touch?: boolean } = {}) {
+function render(
+  list: ProjectSummary[] | null,
+  opts: { reduced?: boolean; touch?: boolean; compact?: boolean } = {},
+) {
   vi.stubGlobal('matchMedia', (q: string) => ({
     matches: q.includes('reduce') ? !!opts.reduced : !opts.touch,
   }));
@@ -20,6 +23,7 @@ function render(list: ProjectSummary[] | null, opts: { reduced?: boolean; touch?
   TestBed.configureTestingModule({ providers: [provideRouter([])] });
   fix = TestBed.createComponent(ProjectIndex);
   fix.componentRef.setInput('projects', list);
+  if (opts.compact) fix.componentRef.setInput('compact', true);
   fix.detectChanges();
   TestBed.tick();
   el = fix.nativeElement as HTMLElement;
@@ -62,7 +66,26 @@ describe('ProjectIndex', () => {
       'https://github.com/cobroux/histoquiz',
     );
     expect(gfaim.querySelector('h3 a')?.getAttribute('href')).toBe('/projets/gfaim');
-    for (const row of [oltre, histo, gfaim]) expect(row.querySelectorAll('a').length).toBe(1);
+    // Aucune destination en double : le titre, puis seulement la démo et le code qu'il ne couvre pas.
+    for (const row of [oltre, histo, gfaim]) {
+      const hrefs = [...row.querySelectorAll('a')].map((a) => a.getAttribute('href'));
+      expect(new Set(hrefs).size).toBe(hrefs.length);
+    }
+    expect(histo.querySelectorAll('a').length).toBe(1);
+  });
+
+  it('étude avec démo et dépôt : liens « En ligne » et « Code » sous le pitch', () => {
+    render([
+      { ...bySlug('oltre'), demoUrl: 'https://demo.example', repoUrl: 'https://github.com/a/b' },
+    ]);
+    const links = [...rows()[0].querySelectorAll('.links a')].map((a) => [
+      a.textContent!.trim(),
+      a.getAttribute('href'),
+    ]);
+    expect(links).toEqual([
+      ['En ligne', 'https://demo.example'],
+      ['Code', 'https://github.com/a/b'],
+    ]);
   });
 
   it('focus clavier = même aperçu que le survol', () => {
@@ -135,5 +158,30 @@ describe('ProjectIndex', () => {
     expect(el.querySelector('.proof')).toBeNull();
     expect(el.querySelector('p.facts')).toBeNull();
     expect(el.querySelector('.preview')!.classList).toContain('empty');
+  });
+
+  it('compacte : langage sur la ligne, aucun lien secondaire ; cadre jamais vide (capture, sinon pitch) ; pitch et données sous le cadre', () => {
+    const gfaim = bySlug('gfaim');
+    const lambda = bySlug('lambda-calcul');
+    render([gfaim, lambda], { compact: true });
+    expect(el.classList.contains('compact')).toBe(true);
+    const [g, l] = rows();
+    expect(g.querySelector('.meta')?.textContent).toBe(gfaim.languages[0] ?? gfaim.stack[0]);
+    expect(el.querySelector('.links')).toBeNull();
+    expect(g.querySelectorAll('a').length).toBe(1);
+    // Le pitch reste sur la ligne (lecteurs d'écran, tactile) ; le cadre et sa légende sont des doublons visuels.
+    expect(l.querySelector('.pitch')?.textContent).toBe(lambda.pitch);
+    expect(el.querySelector('.caps')?.getAttribute('aria-hidden')).toBe('true');
+    expect(preview().querySelector('img')?.getAttribute('src')).toBe('media/gfaim-shot-1.png');
+    expect(g.querySelector('img.inline')?.getAttribute('src')).toBe('media/gfaim-shot-1-480.png');
+    expect(el.querySelector('.cap.on')?.textContent).toContain(gfaim.pitch);
+    hoverRow(1);
+    expect(el.querySelector('.preview')?.classList.contains('empty')).toBe(false);
+    expect(preview().querySelector('.say')?.textContent).toBe(lambda.pitch);
+    expect(preview().querySelector('.proof')).toBeNull();
+    // Légende : jamais le pitch en double du cadre, ni le langage seul en double de la ligne.
+    const cap = el.querySelector('.cap.on')!.textContent!.trim();
+    expect(cap).not.toContain(lambda.pitch);
+    expect(cap).not.toBe(lambda.stack[0]);
   });
 });

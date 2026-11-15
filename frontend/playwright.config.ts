@@ -7,5 +7,9 @@ export default defineConfig({
   retries: process.env['CI'] ? 1 : 0,
   reporter: process.env['CI'] ? 'github' : 'list',
   use: { baseURL: process.env['BASE_URL'] ?? 'http://localhost:4000', trace: 'retain-on-failure' },
-  projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+  projects: [
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    // Safari mobile : seulement les blocs « mobile » de l'accueil et des projets (les autres specs supposent survol ou bureau).
+    { name: 'webkit-mobile', use: { ...devices['iPhone 13'] }, testMatch: /(home|projects)\.spec\.ts/, grep: /mobile 390|sur mobile/ },
+  ],
 });

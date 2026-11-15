@@ -46,12 +46,11 @@ class GithubSyncServiceTest {
 	RestClient.Builder builder = RestClient.builder();
 	MockRestServiceServer server = MockRestServiceServer.bindTo(builder).build();
 	GithubRepoRepository repos = mock(GithubRepoRepository.class);
-	GithubContributionsRepository contributions = mock(GithubContributionsRepository.class);
 	GithubContributionYearRepository years = mock(GithubContributionYearRepository.class);
 	int lastYear = Year.now().getValue();
 
 	GithubSyncService service(String token) {
-		return new GithubSyncService(new GithubClient(builder, URL, token, "cobroux"), repos, contributions, years,
+		return new GithubSyncService(new GithubClient(builder, URL, token, "cobroux"), repos, years,
 				TransactionOperations.withoutTransaction());
 	}
 
@@ -63,32 +62,6 @@ class GithubSyncServiceTest {
 							: withSuccess("{\"data\":{\"user\":{\"contributionsCollection\":{\"contributionCalendar\":{\"totalContributions\":"
 									+ y * 10 + "}}}}}", MediaType.APPLICATION_JSON));
 		}
-	}
-
-	@Test
-	void ciStatusComesFromTheLatestCompletedMainRunAndNeverLogsTheToken(CapturedOutput out) {
-		server.expect(requestTo("http://github.test/repos/cobroux/Zofolio/actions/workflows/ci.yml/runs?branch=main&status=completed&per_page=1"))
-				.andExpect(header("Authorization", "Bearer " + TOKEN))
-				.andRespond(withSuccess("{\"workflow_runs\":[{\"conclusion\":\"failure\",\"html_url\":\"https://github.com/cobroux/Zofolio/actions/runs/1\"}]}",
-						MediaType.APPLICATION_JSON));
-		var service = service(TOKEN);
-		assertThat(service.ci()).isNull();
-		service.syncCi();
-		server.verify();
-		assertThat(service.ci()).isEqualTo(new CiStatus("failure", "https://github.com/cobroux/Zofolio/actions/runs/1"));
-
-		// Échec ou lien hors github.com : on garde la valeur précédente / on retire le lien.
-		server.reset();
-		server.expect(requestTo("http://github.test/repos/cobroux/Zofolio/actions/workflows/ci.yml/runs?branch=main&status=completed&per_page=1"))
-				.andRespond(withServerError());
-		service.syncCi();
-		assertThat(service.ci().conclusion()).isEqualTo("failure");
-		server.reset();
-		server.expect(requestTo("http://github.test/repos/cobroux/Zofolio/actions/workflows/ci.yml/runs?branch=main&status=completed&per_page=1"))
-				.andRespond(withSuccess("{\"workflow_runs\":[{\"conclusion\":\"cancelled\",\"html_url\":\"http://evil.test/x\"}]}", MediaType.APPLICATION_JSON));
-		service.syncCi();
-		assertThat(service.ci()).isEqualTo(new CiStatus(null, null));
-		assertThat(out.getAll()).doesNotContain(TOKEN);
 	}
 
 	@Test
@@ -121,7 +94,7 @@ class GithubSyncServiceTest {
 	}
 
 	@Test
-	void successWritesReposAndContributionsAndDropsStaleOnes(CapturedOutput out) throws IOException {
+	void successWritesReposAndDropsStaleOnes(CapturedOutput out) throws IOException {
 		GithubRepo stale = new GithubRepo();
 		stale.name = "supprime";
 		when(repos.findAll()).thenReturn(List.of(stale));
@@ -135,7 +108,6 @@ class GithubSyncServiceTest {
 		server.verify();
 		verify(repos).deleteAll(List.of(stale));
 		verify(repos, times(3)).save(any(GithubRepo.class));
-		verify(contributions).save(any(GithubContributions.class));
 		assertThat(out.getAll()).doesNotContain(TOKEN);
 	}
 
@@ -157,7 +129,7 @@ class GithubSyncServiceTest {
 		}
 		verify(repos, never()).save(any());
 		verify(repos, never()).deleteAll(any(Iterable.class));
-		verifyNoInteractions(contributions, years);
+		verifyNoInteractions(years);
 		assertThat(out.getAll()).contains("cache conservé").doesNotContain(TOKEN);
 	}
 
@@ -194,19 +166,15 @@ class GithubSyncServiceTest {
 	}
 
 	@Test
-	void aSaveFailureKeepsTheCacheLogsItAndDoesNotPreventTheCiSync(CapturedOutput out) throws IOException {
-		when(contributions.save(any(GithubContributions.class))).thenThrow(new IllegalStateException("db down " + TOKEN));
+	void aSaveFailureKeepsTheCacheAndLogsIt(CapturedOutput out) throws IOException {
+		when(repos.save(any(GithubRepo.class))).thenThrow(new IllegalStateException("db down " + TOKEN));
 		server.expect(requestTo(URL)).andRespond(withSuccess(ok(), MediaType.APPLICATION_JSON));
 		expectYears(null);
-		server.expect(requestTo("http://github.test/repos/cobroux/Zofolio/actions/workflows/ci.yml/runs?branch=main&status=completed&per_page=1"))
-				.andRespond(withSuccess("{\"workflow_runs\":[{\"conclusion\":\"success\",\"html_url\":\"https://github.com/cobroux/Zofolio/actions/runs/2\"}]}",
-						MediaType.APPLICATION_JSON));
 		var service = service(TOKEN);
 
-		new GithubSyncJob(service).run(); // ne lève pas, et la CI est quand même lue
+		new GithubSyncJob(service).run(); // ne lève pas
 
 		server.verify();
-		assertThat(service.ci().conclusion()).isEqualTo("success");
 		assertThat(out.getAll()).contains("cache conservé (IllegalStateException)").doesNotContain(TOKEN);
 	}
 
@@ -214,10 +182,8 @@ class GithubSyncServiceTest {
 	void blankTokenMakesNoRequest() {
 		var service = service("");
 		service.sync(); // aucune attente déclarée : toute requête ferait échouer MockRestServiceServer
-		service.syncCi();
-		assertThat(service.ci()).isNull();
 		server.verify();
-		verifyNoInteractions(repos, contributions, years);
+		verifyNoInteractions(repos, years);
 	}
 
 	private static String ok() throws IOException {

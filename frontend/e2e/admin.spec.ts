@@ -105,7 +105,7 @@ test.describe('admin connecté', () => {
     await expect(page.getByRole('alert').filter({ hasText: 'Type refusé' })).toBeVisible();
   });
 
-  test("stats : une année saisie apparaît dans « L'endurance, deux fois » (SSR), puis la valeur d'origine revient", async ({ page }) => {
+  test("stats : une année saisie apparaît dans « L'endurance, année après année » (SSR), puis la valeur d'origine revient", async ({ page }) => {
     const save = async (km: string, gain: string, hours: string, activities: string) => {
       await page.getByLabel('Année', { exact: true }).fill('2024');
       await page.getByLabel('Kilomètres').fill(km);
@@ -120,7 +120,7 @@ test.describe('admin connecté', () => {
     await save('1234', '13675', '184', '164'); // année semée (Garmin) : valeurs d'origine rétablies dans le finally
     try {
       const html = await (await page.request.get('/fr/')).text(); // rendu serveur, sans JS
-      expect(html).toContain("L'endurance, deux fois");
+      expect(html).toContain("L'endurance, année après année");
       expect(html).not.toContain('Les années en chiffres');
       expect(html).toMatch(/1\s234/);
     } finally {
