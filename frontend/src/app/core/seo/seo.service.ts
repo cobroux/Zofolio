@@ -8,6 +8,8 @@ import { filter } from 'rxjs';
 export const SITE_URL = 'https://zoworks.fr';
 export const DEFAULT_DESCRIPTION = $localize`Portfolio d'Enzo Leveque, ingénieur d'études chez Aubay (Java/Spring Boot, Python), après 2,5 ans sur une application de trading chez Worldline. Études de cas, projets perso et code en production.`;
 
+const PERSON_SAME_AS = ['https://github.com/cobroux', 'https://www.linkedin.com/in/enzo-leveque1']; // = pied de page
+
 /** Pose title, description, Open Graph, canonical et hreflang à chaque navigation (rendu SSR inclus). */
 @Injectable({ providedIn: 'root' })
 export class SeoService {
@@ -51,6 +53,21 @@ export class SeoService {
     this.link('alternate', at('fr'), 'fr');
     this.link('alternate', at('en'), 'en');
     this.link('alternate', at('fr'), 'x-default');
+    this.personJsonLd(path === '' ? { href, title } : null);
+  }
+
+  // Page d'accueil seulement. Nom, poste (titre de page) et liens : uniquement ce que le site affiche déjà.
+  private personJsonLd(home: { href: string; title: string } | null) {
+    this.doc.head.querySelector('script[data-jsonld="person"]')?.remove();
+    if (!home) return;
+    const name = 'Enzo Leveque';
+    const jobTitle = home.title.startsWith(`${name}, `) ? home.title.slice(name.length + 2) : undefined;
+    const data = { '@context': 'https://schema.org', '@type': 'Person', name, jobTitle, url: home.href, sameAs: PERSON_SAME_AS };
+    const el = this.doc.createElement('script');
+    el.type = 'application/ld+json';
+    el.dataset['jsonld'] = 'person';
+    el.textContent = JSON.stringify(data).replace(/</g, '\\u003c'); // JSON.stringify omet jobTitle s'il est undefined
+    this.doc.head.appendChild(el);
   }
 
   private link(rel: string, href: string, hreflang?: string) {
